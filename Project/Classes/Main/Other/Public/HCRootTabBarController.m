@@ -7,8 +7,6 @@
 //
 
 #import "HCRootTabBarController.h"
-#import "WWSideslipViewController.h"
-
 #import "HCHomeViewController.h"
 #import "HCMessageViewController.h"
 #import "HCMoreViewController.h"
@@ -29,22 +27,22 @@
 - (void)setupChildControllers
 {
     [self setupChildNavigationControllerWithClass:[UINavigationController class]
-                                  tabBarImageName:@"icon_home"
+                                  tabBarImageName:@"time"
                           rootViewControllerClass:[HCHomeViewController class]
                           rootViewControllerTitle:@"时光"];
 //
     [self setupChildNavigationControllerWithClass:[UINavigationController class]
-                                  tabBarImageName:@"icon_found"
+                                  tabBarImageName:@"Speach"
                           rootViewControllerClass:[HCMessageViewController class]
                           rootViewControllerTitle:@"消息"];
 //
     [self setupChildNavigationControllerWithClass:[UINavigationController class]
-                                  tabBarImageName:@"icon_more"
+                                  tabBarImageName:@"ThinkChange"
                           rootViewControllerClass:[HCScanViewController class]
                           rootViewControllerTitle:@"扫一扫"];
 
     [self setupChildNavigationControllerWithClass:[UINavigationController class]
-                                  tabBarImageName:@"icon_me"
+                                  tabBarImageName:@"more"
                           rootViewControllerClass:[HCMoreViewController class]
                           rootViewControllerTitle:@"更多"];
     
