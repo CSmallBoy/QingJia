@@ -1,18 +1,18 @@
 //
-//  HCFoundViewController.m
+//  HCScanViewController.m
 //  Project
 //
-//  Created by 陈福杰 on 15/12/15.
+//  Created by 陈福杰 on 15/12/16.
 //  Copyright © 2015年 com.xxx. All rights reserved.
 //
 
-#import "HCFoundViewController.h"
+#import "HCScanViewController.h"
 
-@interface HCFoundViewController ()
+@interface HCScanViewController ()
 
 @end
 
-@implementation HCFoundViewController
+@implementation HCScanViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

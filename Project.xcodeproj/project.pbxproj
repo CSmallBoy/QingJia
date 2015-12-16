@@ -96,7 +96,6 @@
 		0A80DE6D1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A80DE6B1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib */; };
 		0A8A4F691C1FD54200753D65 /* WWSideslipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F681C1FD54200753D65 /* WWSideslipViewController.m */; };
 		0A8A4F7C1C1FD6C900753D65 /* HCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */; };
-		0A8A4F7F1C1FD7DA00753D65 /* HCFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F7E1C1FD7DA00753D65 /* HCFoundViewController.m */; };
 		0A8A4F821C1FD7FE00753D65 /* HCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */; };
 		0A8A4F851C1FD81900753D65 /* HCMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F841C1FD81900753D65 /* HCMoreViewController.m */; };
 		0A8A4F8C1C1FF71900753D65 /* HCMoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F8B1C1FF71900753D65 /* HCMoreInfo.m */; };
@@ -123,6 +122,7 @@
 		0ABAFECC1BF34726009ABF57 /* HCDictionaryApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAFEC71BF34726009ABF57 /* HCDictionaryApi.m */; };
 		0ABAFECD1BF34726009ABF57 /* HCGetUserInfoByDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAFEC91BF34726009ABF57 /* HCGetUserInfoByDeviceApi.m */; };
 		0ABAFECE1BF34726009ABF57 /* HCVatarUploadApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAFECB1BF34726009ABF57 /* HCVatarUploadApi.m */; };
+		0AEEDDC11C21017D0065A8FF /* HCScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEDDC01C21017D0065A8FF /* HCScanViewController.m */; };
 		0AF96BDD1C0ECFB4007AD92F /* CFJInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF96BDC1C0ECFB4007AD92F /* CFJInputView.m */; };
 		0AF9B8341BF56DFD00DCA75A /* UIImage+CFJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B8331BF56DFD00DCA75A /* UIImage+CFJ.m */; };
 		0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83A1BF5887700DCA75A /* KWFormView.m */; };
@@ -313,8 +313,6 @@
 		0A8A4F681C1FD54200753D65 /* WWSideslipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWSideslipViewController.m; sourceTree = "<group>"; };
 		0A8A4F7A1C1FD6C900753D65 /* HCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeViewController.h; sourceTree = "<group>"; };
 		0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeViewController.m; sourceTree = "<group>"; };
-		0A8A4F7D1C1FD7DA00753D65 /* HCFoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFoundViewController.h; sourceTree = "<group>"; };
-		0A8A4F7E1C1FD7DA00753D65 /* HCFoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFoundViewController.m; sourceTree = "<group>"; };
 		0A8A4F801C1FD7FE00753D65 /* HCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessageViewController.h; sourceTree = "<group>"; };
 		0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessageViewController.m; sourceTree = "<group>"; };
 		0A8A4F831C1FD81900753D65 /* HCMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMoreViewController.h; sourceTree = "<group>"; };
@@ -362,6 +360,8 @@
 		0ABAFEC91BF34726009ABF57 /* HCGetUserInfoByDeviceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGetUserInfoByDeviceApi.m; sourceTree = "<group>"; };
 		0ABAFECA1BF34726009ABF57 /* HCVatarUploadApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCVatarUploadApi.h; sourceTree = "<group>"; };
 		0ABAFECB1BF34726009ABF57 /* HCVatarUploadApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCVatarUploadApi.m; sourceTree = "<group>"; };
+		0AEEDDBF1C21017D0065A8FF /* HCScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCScanViewController.h; sourceTree = "<group>"; };
+		0AEEDDC01C21017D0065A8FF /* HCScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCScanViewController.m; sourceTree = "<group>"; };
 		0AF96BDB1C0ECFB4007AD92F /* CFJInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFJInputView.h; sourceTree = "<group>"; };
 		0AF96BDC1C0ECFB4007AD92F /* CFJInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFJInputView.m; sourceTree = "<group>"; };
 		0AF9B8321BF56DFD00DCA75A /* UIImage+CFJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CFJ.h"; sourceTree = "<group>"; };
@@ -719,8 +719,8 @@
 		0A6B7E111BF1EB74008D54B3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0AEEDDBB1C21016A0065A8FF /* Scan */,
 				0A8A4F861C1FDCA700753D65 /* Left */,
-				0A8A4F6A1C1FD65C00753D65 /* Found */,
 				0A8A4F6E1C1FD65C00753D65 /* Home */,
 				0A8A4F721C1FD65C00753D65 /* Message */,
 				0A8A4F761C1FD65C00753D65 /* More */,
@@ -871,39 +871,6 @@
 				0A8A4F681C1FD54200753D65 /* WWSideslipViewController.m */,
 			);
 			path = WWSideslipViewControllerClass;
-			sourceTree = "<group>";
-		};
-		0A8A4F6A1C1FD65C00753D65 /* Found */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4F6B1C1FD65C00753D65 /* Controller */,
-				0A8A4F6C1C1FD65C00753D65 /* Model */,
-				0A8A4F6D1C1FD65C00753D65 /* View */,
-			);
-			path = Found;
-			sourceTree = "<group>";
-		};
-		0A8A4F6B1C1FD65C00753D65 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4F7D1C1FD7DA00753D65 /* HCFoundViewController.h */,
-				0A8A4F7E1C1FD7DA00753D65 /* HCFoundViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		0A8A4F6C1C1FD65C00753D65 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0A8A4F6D1C1FD65C00753D65 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		0A8A4F6E1C1FD65C00753D65 /* Home */ = {
@@ -1299,6 +1266,39 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		0AEEDDBB1C21016A0065A8FF /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				0AEEDDBC1C21016A0065A8FF /* Controller */,
+				0AEEDDBD1C21016A0065A8FF /* Model */,
+				0AEEDDBE1C21016A0065A8FF /* View */,
+			);
+			path = Scan;
+			sourceTree = "<group>";
+		};
+		0AEEDDBC1C21016A0065A8FF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0AEEDDBF1C21017D0065A8FF /* HCScanViewController.h */,
+				0AEEDDC01C21017D0065A8FF /* HCScanViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0AEEDDBD1C21016A0065A8FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0AEEDDBE1C21016A0065A8FF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0AF96BDA1C0ECFB4007AD92F /* CFJInputView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1619,7 +1619,6 @@
 				0A6B7F701BF1EB74008D54B3 /* HCTableViewController.m in Sources */,
 				0A8A4FC21C2002CB00753D65 /* HCTimeViewController.m in Sources */,
 				0A8A4FB01C2001F100753D65 /* HCNotificationViewController.m in Sources */,
-				0A8A4F7F1C1FD7DA00753D65 /* HCFoundViewController.m in Sources */,
 				0A6B7F221BF1EB74008D54B3 /* HCAvatarMgr.m in Sources */,
 				0ABAFEC41BF3470B009ABF57 /* HCJsonRequestApi.m in Sources */,
 				0A6B7F6D1BF1EB74008D54B3 /* HCPopoverView.m in Sources */,
@@ -1648,6 +1647,7 @@
 				0A6B7F6A1BF1EB74008D54B3 /* HCBarButtonItem.m in Sources */,
 				0ABAFEBD1BF346E0009ABF57 /* HCChangePwdApi.m in Sources */,
 				0A6B7F6E1BF1EB74008D54B3 /* HCRootTabBarController.m in Sources */,
+				0AEEDDC11C21017D0065A8FF /* HCScanViewController.m in Sources */,
 				0ABAFECC1BF34726009ABF57 /* HCDictionaryApi.m in Sources */,
 				0A6B7F261BF1EB74008D54B3 /* HCVersionMgr.m in Sources */,
 				0ABAFECD1BF34726009ABF57 /* HCGetUserInfoByDeviceApi.m in Sources */,
