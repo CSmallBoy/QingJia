@@ -12,7 +12,7 @@
 #import "HCHomeViewController.h"
 #import "HCMessageViewController.h"
 #import "HCMoreViewController.h"
-#import "HCFoundViewController.h"
+#import "HCScanViewController.h"
 
 @interface HCRootTabBarController ()
 
@@ -35,12 +35,12 @@
 //
     [self setupChildNavigationControllerWithClass:[UINavigationController class]
                                   tabBarImageName:@"icon_found"
-                          rootViewControllerClass:[HCFoundViewController class]
+                          rootViewControllerClass:[HCMessageViewController class]
                           rootViewControllerTitle:@"消息"];
 //
     [self setupChildNavigationControllerWithClass:[UINavigationController class]
                                   tabBarImageName:@"icon_more"
-                          rootViewControllerClass:[HCFoundViewController class]
+                          rootViewControllerClass:[HCScanViewController class]
                           rootViewControllerTitle:@"扫一扫"];
 
     [self setupChildNavigationControllerWithClass:[UINavigationController class]
