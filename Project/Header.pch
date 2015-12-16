@@ -1,0 +1,26 @@
+//
+//  Header.pch
+//  Project
+//
+//  Created by 陈福杰 on 15/11/10.
+//  Copyright © 2015年 com.xxx. All rights reserved.
+//
+
+#ifndef Header_pch
+#define Header_pch
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "HCMacros.h"
+#import "Utils.h"
+#import "HCJsonRequestApi.h"
+#import "UIView+TKUtilities.h"
+#import "HCBarButtonItem.h"
+#import "HCAccountMgr.h"
+#import "HCAppMgr.h"
+#import "HCDataMgr.h"
+//#import "HCDictionaryMgr.h"
+#import "MJExtension.h"
+#import "SDImageCache.h"
+
+#endif /* Header_pch */
