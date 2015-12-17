@@ -8,7 +8,9 @@
 
 #import "HCRequest.h"
 
-typedef void(^HCHomeDetailBlock)(HCRequestStatus requestStatus, NSString *message, NSArray *array);
+@class HCHomeDetailInfo;
+
+typedef void(^HCHomeDetailBlock)(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info);
 
 @interface HCHomeDetailApi : HCRequest
 

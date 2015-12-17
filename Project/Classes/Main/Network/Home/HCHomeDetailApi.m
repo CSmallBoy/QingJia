@@ -24,10 +24,8 @@
 
 - (id)formatResponseObject:(id)responseObject
 {
-    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:10];
-    
     NSMutableArray *userArr = [NSMutableArray array];
-    for (NSInteger i = 0; i < 5; i ++)
+    for (NSInteger i = 0; i < 4; i ++)
     {
         HCHomeDetailUserInfo *userInfo = [[HCHomeDetailUserInfo alloc] init];
         userInfo.uid = [NSString stringWithFormat:@"%@", @(i)];
@@ -37,9 +35,7 @@
     HCHomeDetailInfo *info = [[HCHomeDetailInfo alloc] init];
     info.praiseArr = userArr;
     
-    [arrayM addObject:info];
-    
-    return arrayM;
+    return info;
 }
 
 

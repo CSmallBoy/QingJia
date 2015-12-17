@@ -15,6 +15,8 @@
 		0A47AD4B1C225A8900706326 /* HCHomeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A47AD4A1C225A8900706326 /* HCHomeDetailViewController.m */; };
 		0A546D271C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A546D261C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m */; };
 		0A65918B1C0411F300E91975 /* HCUserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65918A1C0411F300E91975 /* HCUserApi.m */; };
+		0A66CBA01C22C26700530763 /* HCPublishInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A66CB9F1C22C26700530763 /* HCPublishInfo.m */; };
+		0A66CBA31C22E96500530763 /* HCHomePublishApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A66CBA21C22E96500530763 /* HCHomePublishApi.m */; };
 		0A67B21D1C0D63B300FB87C8 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A67B20C1C0D63B300FB87C8 /* 0.jpg */; };
 		0A67B21E1C0D63B300FB87C8 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A67B20D1C0D63B300FB87C8 /* 1.jpg */; };
 		0A67B21F1C0D63B300FB87C8 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A67B20E1C0D63B300FB87C8 /* 10.jpg */; };
@@ -130,6 +132,7 @@
 		0AC40DBE1C226B870074AA79 /* HCHomeDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DBD1C226B870074AA79 /* HCHomeDetailApi.m */; };
 		0AC40DC11C2270E20074AA79 /* HCHomeDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DC01C2270E20074AA79 /* HCHomeDetailInfo.m */; };
 		0AC40DC41C2273940074AA79 /* HCHomeDetailUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DC31C2273940074AA79 /* HCHomeDetailUserInfo.m */; };
+		0AC40DC71C22B71D0074AA79 /* HCPublishTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DC61C22B71D0074AA79 /* HCPublishTableViewCell.m */; };
 		0AEEDDC11C21017D0065A8FF /* HCScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEDDC01C21017D0065A8FF /* HCScanViewController.m */; };
 		0AEEDDC41C2109850065A8FF /* HCPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEDDC31C2109850065A8FF /* HCPublishViewController.m */; };
 		0AEEDDC71C210A8F0065A8FF /* HCHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEDDC61C210A8F0065A8FF /* HCHomeTableViewCell.m */; };
@@ -185,6 +188,10 @@
 		0A5EFC231C117474008B3548 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		0A6591891C0411F300E91975 /* HCUserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserApi.h; sourceTree = "<group>"; };
 		0A65918A1C0411F300E91975 /* HCUserApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserApi.m; sourceTree = "<group>"; };
+		0A66CB9E1C22C26700530763 /* HCPublishInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPublishInfo.h; sourceTree = "<group>"; };
+		0A66CB9F1C22C26700530763 /* HCPublishInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPublishInfo.m; sourceTree = "<group>"; };
+		0A66CBA11C22E96500530763 /* HCHomePublishApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomePublishApi.h; sourceTree = "<group>"; };
+		0A66CBA21C22E96500530763 /* HCHomePublishApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomePublishApi.m; sourceTree = "<group>"; };
 		0A67B20C1C0D63B300FB87C8 /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
 		0A67B20D1C0D63B300FB87C8 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		0A67B20E1C0D63B300FB87C8 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
@@ -396,6 +403,8 @@
 		0AC40DC01C2270E20074AA79 /* HCHomeDetailInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeDetailInfo.m; sourceTree = "<group>"; };
 		0AC40DC21C2273940074AA79 /* HCHomeDetailUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeDetailUserInfo.h; sourceTree = "<group>"; };
 		0AC40DC31C2273940074AA79 /* HCHomeDetailUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeDetailUserInfo.m; sourceTree = "<group>"; };
+		0AC40DC51C22B71D0074AA79 /* HCPublishTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPublishTableViewCell.h; sourceTree = "<group>"; };
+		0AC40DC61C22B71D0074AA79 /* HCPublishTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPublishTableViewCell.m; sourceTree = "<group>"; };
 		0AEEDDBF1C21017D0065A8FF /* HCScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCScanViewController.h; sourceTree = "<group>"; };
 		0AEEDDC01C21017D0065A8FF /* HCScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCScanViewController.m; sourceTree = "<group>"; };
 		0AEEDDC21C2109850065A8FF /* HCPublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPublishViewController.h; sourceTree = "<group>"; };
@@ -969,6 +978,8 @@
 				0AC40DC01C2270E20074AA79 /* HCHomeDetailInfo.m */,
 				0AC40DC21C2273940074AA79 /* HCHomeDetailUserInfo.h */,
 				0AC40DC31C2273940074AA79 /* HCHomeDetailUserInfo.m */,
+				0A66CB9E1C22C26700530763 /* HCPublishInfo.h */,
+				0A66CB9F1C22C26700530763 /* HCPublishInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -980,6 +991,8 @@
 				0AEEDDC61C210A8F0065A8FF /* HCHomeTableViewCell.m */,
 				0A546D251C225F1A00AB9EDB /* HCHomeDetailTableViewCell.h */,
 				0A546D261C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m */,
+				0AC40DC51C22B71D0074AA79 /* HCPublishTableViewCell.h */,
+				0AC40DC61C22B71D0074AA79 /* HCPublishTableViewCell.m */,
 				0ABFC6261C2134BA00ED8164 /* HCFunctionTagView.h */,
 				0ABFC6271C2134BA00ED8164 /* HCFunctionTagView.m */,
 				0A3E57821C214E5E00AA4DB9 /* HCHomeMoreImgView.h */,
@@ -1386,6 +1399,8 @@
 				0AEEDDD01C210ED50065A8FF /* HCHomeApi.m */,
 				0AC40DBC1C226B870074AA79 /* HCHomeDetailApi.h */,
 				0AC40DBD1C226B870074AA79 /* HCHomeDetailApi.m */,
+				0A66CBA11C22E96500530763 /* HCHomePublishApi.h */,
+				0A66CBA21C22E96500530763 /* HCHomePublishApi.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1775,6 +1790,7 @@
 				0A47AD4B1C225A8900706326 /* HCHomeDetailViewController.m in Sources */,
 				0A6B7F191BF1EB74008D54B3 /* UIAlertView+HTBlock.m in Sources */,
 				0A6B7F311BF1EB74008D54B3 /* Utils.m in Sources */,
+				0A66CBA01C22C26700530763 /* HCPublishInfo.m in Sources */,
 				0A6B7F9B1BF1EB74008D54B3 /* TOActivitySafari.m in Sources */,
 				0AF96BDD1C0ECFB4007AD92F /* CFJInputView.m in Sources */,
 				C7C9079D1C2278E00054CB7C /* HCProductCenterDetailViewController.m in Sources */,
@@ -1803,6 +1819,7 @@
 				0ABAFEBF1BF346E0009ABF57 /* HCLogoutApi.m in Sources */,
 				0A6B7F1E1BF1EB74008D54B3 /* UIView+TKUtilities.m in Sources */,
 				0A67B22A1C0D63B300FB87C8 /* ImgShowViewController.m in Sources */,
+				0A66CBA31C22E96500530763 /* HCHomePublishApi.m in Sources */,
 				0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */,
 				0A8A4F851C1FD81900753D65 /* HCMoreViewController.m in Sources */,
 				0A6B7F5F1BF1EB74008D54B3 /* HCLoginViewController.m in Sources */,
@@ -1826,6 +1843,7 @@
 				0ABAFECC1BF34726009ABF57 /* HCDictionaryApi.m in Sources */,
 				0A6B7F261BF1EB74008D54B3 /* HCVersionMgr.m in Sources */,
 				C7C9079A1C2278E00054CB7C /* HCBuyRecordsViewController.m in Sources */,
+				0AC40DC71C22B71D0074AA79 /* HCPublishTableViewCell.m in Sources */,
 				0ABAFECD1BF34726009ABF57 /* HCGetUserInfoByDeviceApi.m in Sources */,
 				0ABAFECE1BF34726009ABF57 /* HCVatarUploadApi.m in Sources */,
 				0A6B7F5D1BF1EB74008D54B3 /* HCFindPwdViewController.m in Sources */,

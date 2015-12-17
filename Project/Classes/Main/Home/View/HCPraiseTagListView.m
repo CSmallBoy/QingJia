@@ -7,6 +7,7 @@
 //
 
 #import "HCPraiseTagListView.h"
+#import "HCHomeDetailUserInfo.h"
 
 @interface HCPraiseTagListView()
 
@@ -33,38 +34,44 @@
 
 // tag为数组形式
 
-- (void)setTagListWithTagArray:(NSArray *)array
+- (void)setPraiseTagListWithTagArray:(NSArray *)array
 {
-    NSMutableDictionary *dicM = [NSMutableDictionary dictionaryWithCapacity:1];
-    for (NSInteger i = 0; i < array.count; i++)
+    NSMutableArray *arrayM = [NSMutableArray arrayWithArray:array];
+    HCHomeDetailUserInfo *info = [[HCHomeDetailUserInfo alloc] init];
+    info.uid = @"242424";
+    info.nickName = @"时光";
+    [arrayM insertObject:info atIndex:0];
+    
+    for (NSInteger i = 0; i < arrayM.count; i++)
     {
-        [dicM setObject:array[i] forKey:@(i)];
-    }
-    [self setTagListWithTagDictionary:dicM];
-}
-
-// tag为字典形式
-
-- (void)setTagListWithTagDictionary:(NSDictionary *)dictionary
-{
-    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+        HCHomeDetailUserInfo *info = arrayM[i];
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         
-        if ([key integerValue] != dictionary.count - 1)
+        NSString *title = nil;
+        if (i != arrayM.count - 1 && i != 0)
         {
-            value = [NSString stringWithFormat:@"%@、", value];
+            title = [NSString stringWithFormat:@"%@、", info.nickName];
+        }else
+        {
+            title = info.nickName;
         }
-        btn.tag = [key integerValue];
         
+        btn.tag = [info.uid integerValue];
         btn.titleLabel.font = [UIFont systemFontOfSize:13];
-        
-        [btn setTitle:value forState:UIControlStateNormal];
-        
-        [btn addTarget:self action:@selector(handleTagButton:) forControlEvents:UIControlEventTouchUpInside];
-        
+        if (i == 0)
+        {
+            [btn setImage:OrigIMG(@"Like_nor") forState:UIControlStateNormal];
+        }else
+        {
+            [btn setTitle:title forState:UIControlStateNormal];
+            [btn addTarget:self action:@selector(handleTagButton:) forControlEvents:UIControlEventTouchUpInside];
+        }
+
         NSDictionary *attriDic = @{NSFontAttributeName: [UIFont systemFontOfSize:13]};
-        CGSize size_value = [value sizeWithAttributes:attriDic];
+        CGSize size_value = [title sizeWithAttributes:attriDic];
+        
         size_value.width ++;
         size_value.height ++;
         
@@ -85,11 +92,10 @@
         _previousFrame = newRect;
         
         [self setupTotalHeightWithHeight:_totalHeight+size_value.height];
-        
-        [self addSubview:btn];
-    }];
-}
 
+        [self addSubview:btn];
+    }
+}
 
 #pragma mark - private methods
 

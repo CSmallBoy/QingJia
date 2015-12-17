@@ -22,6 +22,11 @@
 {
     [super viewDidLoad];
     [self setupChildControllers];
+    
+    UIView *v = [[UIView alloc] initWithFrame:self.view.frame];
+    v.backgroundColor = RGB(219, 36, 45);
+    [self.tabBar insertSubview:v atIndex:0];
+    self.tabBar.opaque = YES;
 }
 
 - (void)setupChildControllers
@@ -74,12 +79,15 @@
     }
     
     rootVC.title = title;
+
     
     UINavigationController *navVc = [[class  alloc] initWithRootViewController:rootVC];
     navVc.tabBarItem.image = OrigIMG(name);
     
-    NSString *selectedImage = [NSString stringWithFormat:@"%@_click",name];
+    NSString *selectedImage = [NSString stringWithFormat:@"%@_sel",name];
     navVc.tabBarItem.selectedImage = OrigIMG(selectedImage);
+    // 设置字体颜色
+    [navVc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
     
     [self addChildViewController:navVc];
 }

@@ -14,5 +14,6 @@
 
 @property (nonatomic, strong) HCHomeInfo *info;
 @property (nonatomic, strong) HCHomeDetailInfo *detailInfo;
+@property (nonatomic, assign) CGFloat praiseHeight;
 
 @end

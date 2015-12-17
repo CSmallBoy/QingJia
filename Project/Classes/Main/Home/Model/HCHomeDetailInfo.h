@@ -11,5 +11,6 @@
 @interface HCHomeDetailInfo : NSObject
 
 @property (nonatomic, strong) NSArray *praiseArr;
+@property (nonatomic, strong) NSArray *commentsArr;
 
 @end

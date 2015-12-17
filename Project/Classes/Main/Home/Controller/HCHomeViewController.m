@@ -185,7 +185,7 @@
 {
     if (!_leftItem)
     {
-        _leftItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"time_but_right Sidebar") style:UIBarButtonItemStylePlain target:self action:@selector(handleLeftItem)];
+        _leftItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"time_but_left Sidebar") style:UIBarButtonItemStylePlain target:self action:@selector(handleLeftItem)];
     }
     return _leftItem;
 }
@@ -194,7 +194,7 @@
 {
     if (!_rightItem)
     {
-        _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"time_but_left Sidebar") style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem)];
+        _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"time_but_right Sidebar") style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem)];
     }
     return _rightItem;
 }
@@ -217,7 +217,7 @@
             [self showHUDError:message];
         }
     }];
-    api = _baseRequest;
+    _baseRequest = api;
 }
 
 - (void)requestMoreHomeData

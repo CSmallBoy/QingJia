@@ -10,6 +10,8 @@
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 #import "HCHomeInfo.h"
+#import "HCHomeDetailUserInfo.h"
+#import "HCHomeDetailInfo.h"
 #import "HCHomeMoreImgView.h"
 #import "HCPraiseTagListView.h"
 
@@ -66,12 +68,19 @@
         CGFloat height = (WIDTH(self)-30) / 3;
         self.moreImgView.frame = CGRectMake(0, MaxY(self.contents)+10, WIDTH(self), height);
     }
+    
     if (!IsEmpty(_info.imgArr))
     {
-        self.praiseTag.frame = CGRectMake(10, MaxY(self.moreImgView)+5, WIDTH(self)-20, 20);
+        if (!IsEmpty(_detailInfo.praiseArr))
+        {
+            self.praiseTag.frame = CGRectMake(10, MaxY(self.moreImgView)+5, WIDTH(self)-20, _praiseHeight);
+        }
     }else
     {
-        self.praiseTag.frame = CGRectMake(10, MaxY(self.contents)+5, WIDTH(self)-20, 20);
+        if (!IsEmpty(_detailInfo.praiseArr))
+        {
+            self.praiseTag.frame = CGRectMake(10, MaxY(self.contents)+5, WIDTH(self)-20, _praiseHeight);
+        }
     }
 }
 
@@ -112,6 +121,11 @@
     }else
     {
         self.moreImgView.hidden = YES;
+    }
+    
+    if (!IsEmpty(_detailInfo.praiseArr))
+    {
+        [self.praiseTag setPraiseTagListWithTagArray:_detailInfo.praiseArr];
     }
 }
 

@@ -45,8 +45,7 @@
 - (SZTextView *)textView
 {
     if (_textView == nil) {
-//        CGRect cellFrame = self.contentView.bounds;
-        CGRect cellFrame = CGRectMake(10, self.contentView.bounds.origin.y + 25, self.contentView.bounds.size.width - 30, self.contentView.bounds.size.height);
+        CGRect cellFrame = CGRectMake(10, self.contentView.bounds.origin.y + self.topSpace, self.contentView.bounds.size.width - 30, self.contentView.bounds.size.height);
         cellFrame.origin.y += kPadding;
         cellFrame.size.height -= kPadding;
         

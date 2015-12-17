@@ -45,7 +45,10 @@
     }else
     {
         [[HCAccountMgr manager] getLoginInfoData];
-        self.window.rootViewController = [[HCRootTabBarController alloc] init];
+        HCRootTabBarController *tabBarController = [[HCRootTabBarController alloc] init];
+        
+        
+        self.window.rootViewController = tabBarController;
     }
 }
 
