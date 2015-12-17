@@ -11,6 +11,9 @@
 		0A3E57841C214E5E00AA4DB9 /* HCHomeMoreImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3E57831C214E5E00AA4DB9 /* HCHomeMoreImgView.m */; };
 		0A418C1D1C147D4B0024DAC3 /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A418C1C1C147D4B0024DAC3 /* libPushSDK-1.8.8.a */; };
 		0A418C1F1C148E9C0024DAC3 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A418C1E1C148E9C0024DAC3 /* PushConfig.plist */; };
+		0A47AD481C2256F500706326 /* HCHomeUserTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A47AD471C2256F500706326 /* HCHomeUserTimeViewController.m */; };
+		0A47AD4B1C225A8900706326 /* HCHomeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A47AD4A1C225A8900706326 /* HCHomeDetailViewController.m */; };
+		0A546D271C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A546D261C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m */; };
 		0A65918B1C0411F300E91975 /* HCUserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65918A1C0411F300E91975 /* HCUserApi.m */; };
 		0A67B21D1C0D63B300FB87C8 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A67B20C1C0D63B300FB87C8 /* 0.jpg */; };
 		0A67B21E1C0D63B300FB87C8 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A67B20D1C0D63B300FB87C8 /* 1.jpg */; };
@@ -124,6 +127,10 @@
 		0ABAFECD1BF34726009ABF57 /* HCGetUserInfoByDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAFEC91BF34726009ABF57 /* HCGetUserInfoByDeviceApi.m */; };
 		0ABAFECE1BF34726009ABF57 /* HCVatarUploadApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAFECB1BF34726009ABF57 /* HCVatarUploadApi.m */; };
 		0ABFC6281C2134BA00ED8164 /* HCFunctionTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFC6271C2134BA00ED8164 /* HCFunctionTagView.m */; };
+		0AC40DBB1C22661C0074AA79 /* HCPraiseTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DBA1C22661C0074AA79 /* HCPraiseTagListView.m */; };
+		0AC40DBE1C226B870074AA79 /* HCHomeDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DBD1C226B870074AA79 /* HCHomeDetailApi.m */; };
+		0AC40DC11C2270E20074AA79 /* HCHomeDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DC01C2270E20074AA79 /* HCHomeDetailInfo.m */; };
+		0AC40DC41C2273940074AA79 /* HCHomeDetailUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DC31C2273940074AA79 /* HCHomeDetailUserInfo.m */; };
 		0AEEDDC11C21017D0065A8FF /* HCScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEDDC01C21017D0065A8FF /* HCScanViewController.m */; };
 		0AEEDDC41C2109850065A8FF /* HCPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEDDC31C2109850065A8FF /* HCPublishViewController.m */; };
 		0AEEDDC71C210A8F0065A8FF /* HCHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEDDC61C210A8F0065A8FF /* HCHomeTableViewCell.m */; };
@@ -161,6 +168,12 @@
 		0A418C1B1C147D4B0024DAC3 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		0A418C1C1C147D4B0024DAC3 /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
 		0A418C1E1C148E9C0024DAC3 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		0A47AD461C2256F500706326 /* HCHomeUserTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeUserTimeViewController.h; sourceTree = "<group>"; };
+		0A47AD471C2256F500706326 /* HCHomeUserTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeUserTimeViewController.m; sourceTree = "<group>"; };
+		0A47AD491C225A8900706326 /* HCHomeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeDetailViewController.h; sourceTree = "<group>"; };
+		0A47AD4A1C225A8900706326 /* HCHomeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeDetailViewController.m; sourceTree = "<group>"; };
+		0A546D251C225F1A00AB9EDB /* HCHomeDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeDetailTableViewCell.h; sourceTree = "<group>"; };
+		0A546D261C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeDetailTableViewCell.m; sourceTree = "<group>"; };
 		0A5EFC211C11746D008B3548 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		0A5EFC231C117474008B3548 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		0A6591891C0411F300E91975 /* HCUserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserApi.h; sourceTree = "<group>"; };
@@ -370,6 +383,14 @@
 		0ABAFECB1BF34726009ABF57 /* HCVatarUploadApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCVatarUploadApi.m; sourceTree = "<group>"; };
 		0ABFC6261C2134BA00ED8164 /* HCFunctionTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFunctionTagView.h; sourceTree = "<group>"; };
 		0ABFC6271C2134BA00ED8164 /* HCFunctionTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFunctionTagView.m; sourceTree = "<group>"; };
+		0AC40DB91C22661C0074AA79 /* HCPraiseTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPraiseTagListView.h; sourceTree = "<group>"; };
+		0AC40DBA1C22661C0074AA79 /* HCPraiseTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPraiseTagListView.m; sourceTree = "<group>"; };
+		0AC40DBC1C226B870074AA79 /* HCHomeDetailApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeDetailApi.h; sourceTree = "<group>"; };
+		0AC40DBD1C226B870074AA79 /* HCHomeDetailApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeDetailApi.m; sourceTree = "<group>"; };
+		0AC40DBF1C2270E20074AA79 /* HCHomeDetailInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeDetailInfo.h; sourceTree = "<group>"; };
+		0AC40DC01C2270E20074AA79 /* HCHomeDetailInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeDetailInfo.m; sourceTree = "<group>"; };
+		0AC40DC21C2273940074AA79 /* HCHomeDetailUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeDetailUserInfo.h; sourceTree = "<group>"; };
+		0AC40DC31C2273940074AA79 /* HCHomeDetailUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeDetailUserInfo.m; sourceTree = "<group>"; };
 		0AEEDDBF1C21017D0065A8FF /* HCScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCScanViewController.h; sourceTree = "<group>"; };
 		0AEEDDC01C21017D0065A8FF /* HCScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCScanViewController.m; sourceTree = "<group>"; };
 		0AEEDDC21C2109850065A8FF /* HCPublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPublishViewController.h; sourceTree = "<group>"; };
@@ -908,6 +929,10 @@
 				0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */,
 				0AEEDDC21C2109850065A8FF /* HCPublishViewController.h */,
 				0AEEDDC31C2109850065A8FF /* HCPublishViewController.m */,
+				0A47AD461C2256F500706326 /* HCHomeUserTimeViewController.h */,
+				0A47AD471C2256F500706326 /* HCHomeUserTimeViewController.m */,
+				0A47AD491C225A8900706326 /* HCHomeDetailViewController.h */,
+				0A47AD4A1C225A8900706326 /* HCHomeDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -917,6 +942,10 @@
 			children = (
 				0AEEDDC81C210BCF0065A8FF /* HCHomeInfo.h */,
 				0AEEDDC91C210BCF0065A8FF /* HCHomeInfo.m */,
+				0AC40DBF1C2270E20074AA79 /* HCHomeDetailInfo.h */,
+				0AC40DC01C2270E20074AA79 /* HCHomeDetailInfo.m */,
+				0AC40DC21C2273940074AA79 /* HCHomeDetailUserInfo.h */,
+				0AC40DC31C2273940074AA79 /* HCHomeDetailUserInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -926,10 +955,14 @@
 			children = (
 				0AEEDDC51C210A8F0065A8FF /* HCHomeTableViewCell.h */,
 				0AEEDDC61C210A8F0065A8FF /* HCHomeTableViewCell.m */,
+				0A546D251C225F1A00AB9EDB /* HCHomeDetailTableViewCell.h */,
+				0A546D261C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m */,
 				0ABFC6261C2134BA00ED8164 /* HCFunctionTagView.h */,
 				0ABFC6271C2134BA00ED8164 /* HCFunctionTagView.m */,
 				0A3E57821C214E5E00AA4DB9 /* HCHomeMoreImgView.h */,
 				0A3E57831C214E5E00AA4DB9 /* HCHomeMoreImgView.m */,
+				0AC40DB91C22661C0074AA79 /* HCPraiseTagListView.h */,
+				0AC40DBA1C22661C0074AA79 /* HCPraiseTagListView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1336,6 +1369,8 @@
 			children = (
 				0AEEDDCF1C210ED50065A8FF /* HCHomeApi.h */,
 				0AEEDDD01C210ED50065A8FF /* HCHomeApi.m */,
+				0AC40DBC1C226B870074AA79 /* HCHomeDetailApi.h */,
+				0AC40DBD1C226B870074AA79 /* HCHomeDetailApi.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1660,8 +1695,10 @@
 				0A8A4FBF1C2002B600753D65 /* HCTagManagerViewController.m in Sources */,
 				0A8A4FB31C20020300753D65 /* HCProducCenterViewController.m in Sources */,
 				0ABAFEBE1BF346E0009ABF57 /* HCLoginApi.m in Sources */,
+				0AC40DBE1C226B870074AA79 /* HCHomeDetailApi.m in Sources */,
 				0AEEDDCA1C210BCF0065A8FF /* HCHomeInfo.m in Sources */,
 				0AEEDDC71C210A8F0065A8FF /* HCHomeTableViewCell.m in Sources */,
+				0AC40DC11C2270E20074AA79 /* HCHomeDetailInfo.m in Sources */,
 				0A8A4FAD1C2001E000753D65 /* HClassCalendarViewController.m in Sources */,
 				0A8A4FB91C20022600753D65 /* HCRescueCenterViewController.m in Sources */,
 				0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */,
@@ -1674,6 +1711,8 @@
 				0A6B7F201BF1EB74008D54B3 /* HCAccountDBMgr.m in Sources */,
 				0A6B7F631BF1EB74008D54B3 /* HCAccountMgr.m in Sources */,
 				0ABAFEC51BF3470B009ABF57 /* HCRequest.m in Sources */,
+				0A546D271C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m in Sources */,
+				0A47AD4B1C225A8900706326 /* HCHomeDetailViewController.m in Sources */,
 				0A6B7F191BF1EB74008D54B3 /* UIAlertView+HTBlock.m in Sources */,
 				0A6B7F311BF1EB74008D54B3 /* Utils.m in Sources */,
 				0A6B7F9B1BF1EB74008D54B3 /* TOActivitySafari.m in Sources */,
@@ -1705,11 +1744,14 @@
 				0A6B7F671BF1EB74008D54B3 /* HCStepMoveView.m in Sources */,
 				0AAB69A31C06009800A0A2E8 /* AppDelegate.m in Sources */,
 				0AEEDDC41C2109850065A8FF /* HCPublishViewController.m in Sources */,
+				0AC40DC41C2273940074AA79 /* HCHomeDetailUserInfo.m in Sources */,
 				0A6B7F9C1BF1EB74008D54B3 /* TOWebViewController.m in Sources */,
 				0A6B7F181BF1EB74008D54B3 /* NSString+MD5.m in Sources */,
 				0AEEDDD11C210ED50065A8FF /* HCHomeApi.m in Sources */,
 				0ABAFE961BF343F2009ABF57 /* HCTagListView.m in Sources */,
+				0AC40DBB1C22661C0074AA79 /* HCPraiseTagListView.m in Sources */,
 				0AF9B8341BF56DFD00DCA75A /* UIImage+CFJ.m in Sources */,
+				0A47AD481C2256F500706326 /* HCHomeUserTimeViewController.m in Sources */,
 				0A6B7F6B1BF1EB74008D54B3 /* HCNavTabBar.m in Sources */,
 				0A6B7D9D1BF1EB6A008D54B3 /* main.m in Sources */,
 				0A6B7F6A1BF1EB74008D54B3 /* HCBarButtonItem.m in Sources */,

@@ -12,9 +12,13 @@
 
 @protocol HCHomeTableViewCellDelegate <NSObject>
 
+@optional
+
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath moreImgView:(NSInteger)index; // 多图中的第几张
 
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPahth functionIndex:(NSInteger)index; // 功能按钮
+
+- (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn; // 点击了头像
 
 @end
 

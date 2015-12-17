@@ -1,20 +1,19 @@
 //
-//  HCHomeTableViewCell.m
+//  HCHomeDetailTableViewCell.m
 //  Project
 //
-//  Created by 陈福杰 on 15/12/16.
+//  Created by 陈福杰 on 15/12/17.
 //  Copyright © 2015年 com.xxx. All rights reserved.
 //
 
-#import "HCHomeTableViewCell.h"
+#import "HCHomeDetailTableViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
-#import "HCFunctionTagView.h"
 #import "HCHomeInfo.h"
 #import "HCHomeMoreImgView.h"
-#import "HCHomeMoreImgView.h"
+#import "HCPraiseTagListView.h"
 
-@interface HCHomeTableViewCell()<HCHomeMoreImgViewDelegate, HCFunctionTagViewDelegate>
+@interface HCHomeDetailTableViewCell()<HCHomeMoreImgViewDelegate>
 
 @property (nonatomic, strong) UIButton *headButton;
 @property (nonatomic, strong) UILabel *nickName;
@@ -22,15 +21,12 @@
 @property (nonatomic, strong) UILabel *times;
 @property (nonatomic, strong) UILabel *contents;
 
-@property (nonatomic, strong) UIImageView *addressImgView;
-@property (nonatomic, strong) UILabel *address;
-
-@property (nonatomic, strong) HCFunctionTagView *functionTagView;
 @property (nonatomic, strong) HCHomeMoreImgView *moreImgView;
+@property (nonatomic, strong) HCPraiseTagListView *praiseTag;
 
 @end
 
-@implementation HCHomeTableViewCell
+@implementation HCHomeDetailTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -42,10 +38,9 @@
         [self.contentView addSubview:self.deveceModel];
         [self.contentView addSubview:self.times];
         [self.contentView addSubview:self.contents];
-        [self.contentView addSubview:self.addressImgView];
-        [self.contentView addSubview:self.address];
-        [self.contentView addSubview:self.functionTagView];
+        
         [self.contentView addSubview:self.moreImgView];
+        [self.contentView addSubview:self.praiseTag];
     }
     return self;
 }
@@ -71,51 +66,20 @@
         CGFloat height = (WIDTH(self)-30) / 3;
         self.moreImgView.frame = CGRectMake(0, MaxY(self.contents)+10, WIDTH(self), height);
     }
-    // 地址
     if (!IsEmpty(_info.imgArr))
     {
-        if (!IsEmpty(_info.address))
-        {
-            self.addressImgView.frame = CGRectMake(10, MaxY(self.moreImgView)+5, 15, 20);
-            self.address.frame = CGRectMake(MaxX(self.addressImgView)+5, MaxY(self.moreImgView)+5, WIDTH(self)-40, 20);
-        }
+        self.praiseTag.frame = CGRectMake(10, MaxY(self.moreImgView)+5, WIDTH(self)-20, 20);
     }else
     {
-        self.addressImgView.frame = CGRectMake(10, MaxY(self.contents)+10, 15, 20);
-        self.address.frame = CGRectMake(MaxX(self.addressImgView)+10, MaxY(self.contents)+10, WIDTH(self)-40, 20);
+        self.praiseTag.frame = CGRectMake(10, MaxY(self.contents)+5, WIDTH(self)-20, 20);
     }
-    
-    self.functionTagView.frame = CGRectMake(0, self.contentView.frame.size.height-30, WIDTH(self), 30);
 }
 
 #pragma mark - HCHomeMoreImgViewDelegate
 
 - (void)hchomeMoreImgView:(NSInteger)index
 {
-    if ([self.delegate respondsToSelector:@selector(hcHomeTableViewCell:indexPath:moreImgView:)])
-    {
-        [self.delegate hcHomeTableViewCell:self indexPath:_indexPath moreImgView:index];
-    }
-}
-
-#pragma mark - HCFunctionTagViewDelegate
-
-- (void)hcfunctionTagViewButtonIndex:(NSInteger)index
-{
-    if ([self.delegate respondsToSelector:@selector(hcHomeTableViewCell:indexPath:functionIndex:)])
-    {
-        [self.delegate hcHomeTableViewCell:self indexPath:_indexPath functionIndex:index];
-    }
-}
-
-#pragma mark - private methods
-
-- (void)handleHeadButton:(UIButton *)button
-{
-    if ([self.delegate respondsToSelector:@selector(hcHomeTableViewCell:indexPath:seleteHead:)])
-    {
-        [self.delegate hcHomeTableViewCell:self indexPath:_indexPath seleteHead:button];
-    }
+    DLog(@"第几张图片");
 }
 
 #pragma mark - setter or getter
@@ -149,37 +113,13 @@
     {
         self.moreImgView.hidden = YES;
     }
-    
-    // 地址
-    if (!IsEmpty(info.address))
-    {
-        self.address.hidden = NO;
-        self.addressImgView.hidden = NO;
-        self.address.text = info.address;
-    }else
-    {
-        self.address.hidden = YES;
-        self.addressImgView.hidden = YES;
-    }
-    
-    NSString *zanNum = ([info.zan integerValue]) ? info.zan : @"点赞";
-    NSString *commentNum = ([info.comments integerValue]) ? info.comments : @"评论";
-    
-    NSArray *functionArr = @[@[@"Like_nor", zanNum],
-                             @[@"label_nor", @"标记"],
-                             @[@"Share_nor", @"分享"],
-                             @[@"Bubble_nor", commentNum]];
-    [self.functionTagView functionTagWithArrary:functionArr];
 }
-
-#pragma mark - setter or getter 
 
 - (UIButton *)headButton
 {
     if (!_headButton)
     {
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_headButton addTarget:self action:@selector(handleHeadButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _headButton;
 }
@@ -231,37 +171,6 @@
     return _contents;
 }
 
-- (UIImageView *)addressImgView
-{
-    if (!_addressImgView)
-    {
-        _addressImgView = [[UIImageView alloc] init];
-        _addressImgView.image = OrigIMG(@"time_Pointer_dis");
-    }
-    return _addressImgView;
-}
-
-- (UILabel *)address
-{
-    if (!_address)
-    {
-        _address = [[UILabel alloc] init];
-        _address.textColor = DarkGrayColor;
-        _address.font = [UIFont systemFontOfSize:15];
-    }
-    return _address;
-}
-
-- (HCFunctionTagView *)functionTagView
-{
-    if (!_functionTagView)
-    {
-        _functionTagView = [[HCFunctionTagView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
-        _functionTagView.delegate = self;
-    }
-    return _functionTagView;
-}
-
 - (HCHomeMoreImgView *)moreImgView
 {
     if (!_moreImgView)
@@ -273,6 +182,14 @@
     return _moreImgView;
 }
 
+- (HCPraiseTagListView *)praiseTag
+{
+    if (!_praiseTag)
+    {
+        _praiseTag = [[HCPraiseTagListView alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 20)];
+    }
+    return _praiseTag;
+}
 
 
 @end

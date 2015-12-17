@@ -30,9 +30,9 @@
 
 - (void)handleButton:(UIButton *)button
 {
-    if ([self.delegate respondsToSelector:@selector(hchomeMoreImgView:)])
+    if ([self.delegates respondsToSelector:@selector(hchomeMoreImgView:)])
     {
-        [self.delegate hchomeMoreImgView:button.tag];
+        [self.delegates hchomeMoreImgView:button.tag];
     }
 }
 

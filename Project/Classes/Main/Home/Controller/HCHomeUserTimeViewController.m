@@ -1,45 +1,41 @@
 //
-//  HCHomeViewController.m
+//  HCHomeUserTimeViewController.m
 //  Project
 //
-//  Created by 陈福杰 on 15/12/15.
+//  Created by 陈福杰 on 15/12/17.
 //  Copyright © 2015年 com.xxx. All rights reserved.
 //
 
-#import "HCHomeViewController.h"
-#import "HCHomeDetailViewController.h"
 #import "HCHomeUserTimeViewController.h"
 #import "MJRefresh.h"
-#import "HCPublishViewController.h"
 #import "HCHomeTableViewCell.h"
 #import "HCHomeInfo.h"
 #import "HCHomeApi.h"
 
-#define HCHomeCell @"HCHomeTableViewCell"
+#define HCHomeUserTimeCell @"HCHomeUserTimeCell"
 
-@interface HCHomeViewController ()<HCHomeTableViewCellDelegate>
+@interface HCHomeUserTimeViewController ()<HCHomeTableViewCellDelegate>
 
-@property (nonatomic, strong) UIBarButtonItem *leftItem;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 
 @end
 
-@implementation HCHomeViewController
+@implementation HCHomeUserTimeViewController
 
 #pragma mark - life cycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"M-时光";
-    
+    HCHomeInfo *info = self.data[@"data"];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@的时光", info.nickName];
+    [self setupBackItem];
     [self readLocationData];
     
-    self.navigationItem.leftBarButtonItem = self.leftItem;
     self.navigationItem.rightBarButtonItem = self.rightItem;
     
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
-    [self.tableView registerClass:[HCHomeTableViewCell class] forCellReuseIdentifier:HCHomeCell];
+    [self.tableView registerClass:[HCHomeTableViewCell class] forCellReuseIdentifier:HCHomeUserTimeCell];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
     
@@ -50,10 +46,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HCHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HCHomeCell];
+    HCHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HCHomeUserTimeCell];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.indexPath = indexPath;
-    cell.delegate = self;
     HCHomeInfo *info = self.dataSource[indexPath.section];
     cell.info = info;
     
@@ -62,11 +57,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HCHomeInfo *info = self.dataSource[indexPath.section];
-    HCHomeDetailViewController *detail = [[HCHomeDetailViewController alloc] init];
-    detail.data = @{@"data": info};
-    detail.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detail animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,24 +102,11 @@
 
 #pragma mark - HCHomeTableViewCellDelegate
 
-- (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPahth functionIndex:(NSInteger)index
-{
-    DLog(@"indexPath");
-}
-
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath moreImgView:(NSInteger)index
 {
-    DLog(@"ind");
+    DLog(@"点击了第几张图片");
 }
 
-- (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn
-{
-    HCHomeInfo *info = self.dataSource[indexPath.section];
-    HCHomeUserTimeViewController *userTime = [[HCHomeUserTimeViewController alloc] init];
-    userTime.data = @{@"data": info};
-    userTime.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:userTime animated:YES];
-}
 
 #pragma mark - private methods
 
@@ -151,7 +128,7 @@
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory=[paths objectAtIndex:0];
-    return [documentsDirectory stringByAppendingPathComponent:@"homedata.plist"];
+    return [documentsDirectory stringByAppendingPathComponent:@"usertimedata.plist"];
 }
 
 - (void)writeLocationData:(NSArray *)array
@@ -167,34 +144,17 @@
     [arrayM writeToFile:path atomically:YES];
 }
 
-- (void)handleLeftItem
-{
-    
-}
-
 - (void)handleRightItem
 {
-    HCPublishViewController *publish = [[HCPublishViewController alloc] init];
-    publish.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:publish animated:YES];
 }
 
 #pragma mark - setter or getter
-
-- (UIBarButtonItem *)leftItem
-{
-    if (!_leftItem)
-    {
-        _leftItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"time_but_right Sidebar") style:UIBarButtonItemStylePlain target:self action:@selector(handleLeftItem)];
-    }
-    return _leftItem;
-}
 
 - (UIBarButtonItem *)rightItem
 {
     if (!_rightItem)
     {
-        _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"time_but_left Sidebar") style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem)];
+        _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"time_but_right Sideba_Clock") style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem)];
     }
     return _rightItem;
 }
@@ -217,7 +177,6 @@
             [self showHUDError:message];
         }
     }];
-    api = _baseRequest;
 }
 
 - (void)requestMoreHomeData

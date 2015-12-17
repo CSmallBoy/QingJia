@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong) UILabel *markLabel;
 
-@property (nonatomic, weak) id<HCHomeMoreImgViewDelegate>delegate;
+@property (nonatomic, weak) id<HCHomeMoreImgViewDelegate>delegates;
 
 - (void)hchomeMoreImgViewWithUrlStringArray:(NSArray *)array;
 
