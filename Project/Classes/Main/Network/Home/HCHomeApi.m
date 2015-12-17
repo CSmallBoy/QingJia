@@ -32,7 +32,7 @@
         info.deviceModel = @"iphone 6";
         info.inputtime = @"1450236588";
         info.contents = @"丽日当空，泉山缭绕，簇簇的白色花朵像一条流动的江河，仿佛世间所有的生命都应约前来，在这刹那间，在透明如醇蜜的阳光下，同时欢呼，同时飞旋，同时幻化成无数游离的光点";
-        info.zan = @"100";
+        info.zan = [NSString stringWithFormat:@"%@", @(i)];
         info.comments = @"0";
         
         if (i==1)
@@ -44,11 +44,11 @@
             info.imgArr = @[@"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/2.jpg"];
         }else if (i == 3)
         {
-            info.imgArr = @[@"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/2.jpg", @"http://www.xiaodaohang.cn/3.jpg", @"http://www.xiaodaohang.cn/1.jpg"];
+            info.imgArr = @[@"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/2.jpg", @"http://www.xiaodaohang.cn/3.jpg", @"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/3.jpg", @"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/1.jpg"];
             info.address = @"上海市闵行区";
         }else if (i == 6 || i == 8 || i==10)
         {
-            info.address = @"上海市闵行区";
+            info.address = @"上海市闵行区梅陇镇502室";
         }
         
         [arrayM addObject:info];

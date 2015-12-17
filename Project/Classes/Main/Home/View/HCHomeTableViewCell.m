@@ -13,7 +13,7 @@
 #import "HCHomeMoreImgView.h"
 #import "HCHomeMoreImgView.h"
 
-@interface HCHomeTableViewCell()
+@interface HCHomeTableViewCell()<HCHomeMoreImgViewDelegate, HCFunctionTagViewDelegate>
 
 @property (nonatomic, strong) UIImageView *headImgView;
 @property (nonatomic, strong) UILabel *nickName;
@@ -75,16 +75,36 @@
     {
         if (!IsEmpty(_info.address))
         {
-            self.addressImgView.frame = CGRectMake(10, MaxY(self.moreImgView)+10, 15, 20);
-            self.address.frame = CGRectMake(MaxX(self.addressImgView)+5, MaxY(self.moreImgView)+10, WIDTH(self)-40, 20);
+            self.addressImgView.frame = CGRectMake(10, MaxY(self.moreImgView)+5, 15, 20);
+            self.address.frame = CGRectMake(MaxX(self.addressImgView)+5, MaxY(self.moreImgView)+5, WIDTH(self)-40, 20);
         }
     }else
     {
         self.addressImgView.frame = CGRectMake(10, MaxY(self.contents)+10, 15, 20);
-        self.address.frame = CGRectMake(MaxX(self.addressImgView)+5, MaxY(self.contents)+10, WIDTH(self)-40, 20);
+        self.address.frame = CGRectMake(MaxX(self.addressImgView)+10, MaxY(self.contents)+10, WIDTH(self)-40, 20);
     }
     
     self.functionTagView.frame = CGRectMake(0, self.contentView.frame.size.height-30, WIDTH(self), 30);
+}
+
+#pragma mark - HCHomeMoreImgViewDelegate
+
+- (void)hchomeMoreImgView:(NSInteger)index
+{
+    if ([self.delegate respondsToSelector:@selector(hcHomeTableViewCell:indexPath:moreImgView:)])
+    {
+        [self.delegate hcHomeTableViewCell:self indexPath:_indexPath moreImgView:index];
+    }
+}
+
+#pragma mark - HCFunctionTagViewDelegate
+
+- (void)hcfunctionTagViewButtonIndex:(NSInteger)index
+{
+    if ([self.delegate respondsToSelector:@selector(hcHomeTableViewCell:indexPath:functionIndex:)])
+    {
+        [self.delegate hcHomeTableViewCell:self indexPath:_indexPath functionIndex:index];
+    }
 }
 
 - (void)setInfo:(HCHomeInfo *)info
@@ -111,7 +131,6 @@
     if (!IsEmpty(info.imgArr))
     {
         self.moreImgView.hidden = NO;
-        [self.moreImgView removeAllSubviews];
         [self.moreImgView hchomeMoreImgViewWithUrlStringArray:info.imgArr];
     }else
     {
@@ -224,6 +243,7 @@
     if (!_functionTagView)
     {
         _functionTagView = [[HCFunctionTagView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+        _functionTagView.delegate = self;
     }
     return _functionTagView;
 }
@@ -232,8 +252,9 @@
 {
     if (!_moreImgView)
     {
-        CGFloat width = (SCREEN_WIDTH - 30) / 3;
+        CGFloat width = (SCREEN_WIDTH - 40) / 3;
         _moreImgView = [[HCHomeMoreImgView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+        _moreImgView.delegate = self;
     }
     return _moreImgView;
 }

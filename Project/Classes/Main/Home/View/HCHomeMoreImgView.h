@@ -8,8 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HCHomeMoreImgViewDelegate <NSObject>
+
+- (void)hchomeMoreImgView:(NSInteger)index;
+
+@end
+
 @interface HCHomeMoreImgView : UIScrollView
 
+@property (nonatomic, strong) UILabel *markLabel;
+
+@property (nonatomic, weak) id<HCHomeMoreImgViewDelegate>delegate;
+
 - (void)hchomeMoreImgViewWithUrlStringArray:(NSArray *)array;
+
 
 @end

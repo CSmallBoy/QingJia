@@ -7,12 +7,10 @@
 //
 
 #import "HCHomeMoreImgView.h"
-#import "UIImageView+WebCache.h"
+//#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 
 @interface HCHomeMoreImgView()
-
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) UILabel *markLabel;
 
 @end
 
@@ -23,51 +21,59 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-//        [self addSubview:self.scrollView];
+        self.pagingEnabled = YES;
+        self.showsHorizontalScrollIndicator = NO;
+        self.showsVerticalScrollIndicator = NO;
     }
     return self;
+}
+
+- (void)handleButton:(UIButton *)button
+{
+    if ([self.delegate respondsToSelector:@selector(hchomeMoreImgView:)])
+    {
+        [self.delegate hchomeMoreImgView:button.tag];
+    }
 }
 
 - (void)hchomeMoreImgViewWithUrlStringArray:(NSArray *)array
 {
     CGFloat imgViewWith = (SCREEN_WIDTH-40) / 3;
-    self.contentSize = CGSizeMake((SCREEN_WIDTH/3)*array.count, imgViewWith);
+    NSInteger count =  (3 - array.count % 3)%3;
+    self.contentSize = CGSizeMake((SCREEN_WIDTH/3)* (array.count + count), imgViewWith);
+    [self removeAllSubviews];
     for (NSInteger i = 0; i < array.count; i++)
     {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(imgViewWith*i+10*(i+1), 0, imgViewWith, imgViewWith)];
-        [imgView sd_setImageWithURL:[NSURL URLWithString:array[i]] placeholderImage:OrigIMG(@"publish_picture")];
-        [self addSubview:imgView];
+        NSInteger page = (int)(i)/3+1;
+        CGFloat imgViewX = imgViewWith*i + 10*(i) + 10 *page;
         
-        if (i == 3)
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(imgViewX, 0, imgViewWith, imgViewWith);
+        button.tag = i;
+        [button addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button sd_setImageWithURL:[NSURL URLWithString:array[i]] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
+        [self addSubview:button];
+        
+        if (i == 2)
         {
-            self.markLabel.text = [NSString stringWithFormat:@">%@", @(array.count)];
-            [imgView addSubview:self.markLabel];
+            self.markLabel.text = [NSString stringWithFormat:@"%@ >", @(array.count)];
+            
+            NSDictionary *attriDic = @{NSFontAttributeName: [UIFont systemFontOfSize:30]};
+            CGSize size_value = [self.markLabel.text sizeWithAttributes:attriDic];
+            self.markLabel.frame = CGRectMake(imgViewWith-size_value.width, imgViewWith-size_value.height, size_value.width, size_value.height);
+            [button addSubview:self.markLabel];
         }
     }
-}
-
-- (UIScrollView *)scrollView
-{
-    if (!_scrollView)
-    {
-        CGFloat scrollViewH = (SCREEN_WIDTH-30) / 3;
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, scrollViewH)];
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.showsVerticalScrollIndicator = NO;
-        
-        _scrollView.backgroundColor = [UIColor lightGrayColor];
-    }
-    return _scrollView;
 }
 
 - (UILabel *)markLabel
 {
     if (!_markLabel)
     {
-        CGFloat height = ((SCREEN_WIDTH-40) / 3 )*0.5;
-        _markLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, height, height)];
+        _markLabel = [[UILabel alloc] init];
         _markLabel.font = [UIFont systemFontOfSize:30];
-        _markLabel.backgroundColor = RGBA(0, 0, 0, 0);
+        _markLabel.textColor = [UIColor whiteColor];
+        _markLabel.backgroundColor = RGBA(0, 0, 0, 0.3);
     }
     return _markLabel;
 }

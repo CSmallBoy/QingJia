@@ -20,6 +20,7 @@
 
 - (void)functionTagWithArrary:(NSArray *)array
 {
+    [self removeAllSubviews];
     UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self), 1)];
     topLine.backgroundColor = RGB(220, 220, 220);
     [self addSubview:topLine];
