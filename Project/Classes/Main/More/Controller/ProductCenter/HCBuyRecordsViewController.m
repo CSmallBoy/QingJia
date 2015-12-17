@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"购买记录";
+    [self setupBackItem];
     
 }
 
