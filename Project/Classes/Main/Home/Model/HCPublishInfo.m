@@ -16,7 +16,7 @@
     if (!_imageArray)
     {
         _imageArray = [NSMutableArray array];
-        [_imageArray addObject:[UIImage imageNamed:@"AddImages"]];
+        [_imageArray addObject:[UIImage imageNamed:@"Add-Images"]];
     }
     return _imageArray;
 }

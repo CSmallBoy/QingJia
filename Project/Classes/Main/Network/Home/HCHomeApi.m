@@ -29,7 +29,7 @@
         HCHomeInfo *info = [[HCHomeInfo alloc] init];
         info.imgName = @"http://www.xiaodaohang.cn/1.jpg";
         info.nickName = @"姓名测试";
-        info.deviceModel = @"iphone 6";
+        info.deviceModel = [Utils systemModel];
         info.inputtime = @"1450236588";
         info.contents = @"丽日当空，泉山缭绕，簇簇的白色花朵像一条流动的江河，仿佛世间所有的生命都应约前来，在这刹那间，在透明如醇蜜的阳光下，同时欢呼，同时飞旋，同时幻化成无数游离的光点";
         info.zan = [NSString stringWithFormat:@"%@", @(i)];

@@ -18,13 +18,15 @@
 
 @implementation HCViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    self.view.backgroundColor = kHCBackgroundColor;
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.view.backgroundColor = kHCBackgroundColor;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

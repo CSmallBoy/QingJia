@@ -8,7 +8,9 @@
 
 #import "HCHomeViewController.h"
 #import "HCHomeDetailViewController.h"
+#import "HCShareViewController.h"
 #import "HCHomeUserTimeViewController.h"
+#import "HCEditCommentViewController.h"
 #import "MJRefresh.h"
 #import "HCPublishViewController.h"
 #import "HCHomeTableViewCell.h"
@@ -112,9 +114,28 @@
 
 #pragma mark - HCHomeTableViewCellDelegate
 
-- (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPahth functionIndex:(NSInteger)index
+- (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath functionIndex:(NSInteger)index
 {
-    DLog(@"indexPath");
+    HCHomeInfo *info = self.dataSource[indexPath.section];
+    if (index == 3)
+    {
+        HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
+        UIViewController *rootController = self.view.window.rootViewController;
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+        {
+            editComment.modalPresentationStyle=
+            UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+        }else
+        {
+            rootController.modalPresentationStyle=
+            UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+        }
+        [rootController presentViewController:editComment animated:YES completion:nil];
+    }else if (index == 2)
+    {
+        HCShareViewController  *shareVC = [[HCShareViewController alloc] init];
+        [self presentViewController:shareVC animated:YES completion:nil];
+    }
 }
 
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath moreImgView:(NSInteger)index

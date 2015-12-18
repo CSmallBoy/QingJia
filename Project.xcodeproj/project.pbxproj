@@ -32,6 +32,13 @@
 		0A67B2291C0D63B300FB87C8 /* bg_main@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A67B2181C0D63B300FB87C8 /* bg_main@2x.png */; };
 		0A67B22A1C0D63B300FB87C8 /* ImgShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A67B21A1C0D63B300FB87C8 /* ImgShowViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0A67B22B1C0D63B300FB87C8 /* MRImgShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A67B21C1C0D63B300FB87C8 /* MRImgShowView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0A67E76A1C239EF3005B8CD2 /* HCEditCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A67E7691C239EF3005B8CD2 /* HCEditCommentViewController.m */; };
+		0A67E76D1C23B837005B8CD2 /* HCEditCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A67E76C1C23B837005B8CD2 /* HCEditCommentView.m */; };
+		0A67E7701C23C3F3005B8CD2 /* HCEditCommentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A67E76F1C23C3F3005B8CD2 /* HCEditCommentApi.m */; };
+		0A67E7731C23C49D005B8CD2 /* HCEditCommentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A67E7721C23C49D005B8CD2 /* HCEditCommentInfo.m */; };
+		0A67E7771C23D700005B8CD2 /* HCShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A67E7751C23D700005B8CD2 /* HCShareViewController.m */; };
+		0A67E7781C23D700005B8CD2 /* HCShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A67E7761C23D700005B8CD2 /* HCShareViewController.xib */; };
+		0A67E7851C23FAB5005B8CD2 /* HCHomeDetailCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A67E7841C23FAB5005B8CD2 /* HCHomeDetailCommentTableViewCell.m */; };
 		0A6AFD5E1BFBFFBE0073982C /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A6AFD381BFBFFBE0073982C /* UMSocialLocalizable.strings */; };
 		0A6AFD5F1BFBFFBE0073982C /* libUMSocial_Sdk_4.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6AFD461BFBFFBE0073982C /* libUMSocial_Sdk_4.3.a */; };
 		0A6AFD601BFBFFBE0073982C /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6AFD481BFBFFBE0073982C /* UMSCommentDetailController.xib */; };
@@ -209,6 +216,19 @@
 		0A67B21A1C0D63B300FB87C8 /* ImgShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgShowViewController.m; sourceTree = "<group>"; };
 		0A67B21B1C0D63B300FB87C8 /* MRImgShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRImgShowView.h; sourceTree = "<group>"; };
 		0A67B21C1C0D63B300FB87C8 /* MRImgShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRImgShowView.m; sourceTree = "<group>"; };
+		0A67E7681C239EF3005B8CD2 /* HCEditCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEditCommentViewController.h; sourceTree = "<group>"; };
+		0A67E7691C239EF3005B8CD2 /* HCEditCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEditCommentViewController.m; sourceTree = "<group>"; };
+		0A67E76B1C23B837005B8CD2 /* HCEditCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEditCommentView.h; sourceTree = "<group>"; };
+		0A67E76C1C23B837005B8CD2 /* HCEditCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEditCommentView.m; sourceTree = "<group>"; };
+		0A67E76E1C23C3F3005B8CD2 /* HCEditCommentApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEditCommentApi.h; sourceTree = "<group>"; };
+		0A67E76F1C23C3F3005B8CD2 /* HCEditCommentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEditCommentApi.m; sourceTree = "<group>"; };
+		0A67E7711C23C49D005B8CD2 /* HCEditCommentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEditCommentInfo.h; sourceTree = "<group>"; };
+		0A67E7721C23C49D005B8CD2 /* HCEditCommentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEditCommentInfo.m; sourceTree = "<group>"; };
+		0A67E7741C23D700005B8CD2 /* HCShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCShareViewController.h; sourceTree = "<group>"; };
+		0A67E7751C23D700005B8CD2 /* HCShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCShareViewController.m; sourceTree = "<group>"; };
+		0A67E7761C23D700005B8CD2 /* HCShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCShareViewController.xib; sourceTree = "<group>"; };
+		0A67E7831C23FAB5005B8CD2 /* HCHomeDetailCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeDetailCommentTableViewCell.h; sourceTree = "<group>"; };
+		0A67E7841C23FAB5005B8CD2 /* HCHomeDetailCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeDetailCommentTableViewCell.m; sourceTree = "<group>"; };
 		0A6AFD391BFBFFBE0073982C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		0A6AFD3B1BFBFFBE0073982C /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		0A6AFD3C1BFBFFBE0073982C /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -961,10 +981,15 @@
 				0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */,
 				0AEEDDC21C2109850065A8FF /* HCPublishViewController.h */,
 				0AEEDDC31C2109850065A8FF /* HCPublishViewController.m */,
+				0A67E7681C239EF3005B8CD2 /* HCEditCommentViewController.h */,
+				0A67E7691C239EF3005B8CD2 /* HCEditCommentViewController.m */,
 				0A47AD461C2256F500706326 /* HCHomeUserTimeViewController.h */,
 				0A47AD471C2256F500706326 /* HCHomeUserTimeViewController.m */,
 				0A47AD491C225A8900706326 /* HCHomeDetailViewController.h */,
 				0A47AD4A1C225A8900706326 /* HCHomeDetailViewController.m */,
+				0A67E7741C23D700005B8CD2 /* HCShareViewController.h */,
+				0A67E7751C23D700005B8CD2 /* HCShareViewController.m */,
+				0A67E7761C23D700005B8CD2 /* HCShareViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -980,6 +1005,8 @@
 				0AC40DC31C2273940074AA79 /* HCHomeDetailUserInfo.m */,
 				0A66CB9E1C22C26700530763 /* HCPublishInfo.h */,
 				0A66CB9F1C22C26700530763 /* HCPublishInfo.m */,
+				0A67E7711C23C49D005B8CD2 /* HCEditCommentInfo.h */,
+				0A67E7721C23C49D005B8CD2 /* HCEditCommentInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -991,6 +1018,8 @@
 				0AEEDDC61C210A8F0065A8FF /* HCHomeTableViewCell.m */,
 				0A546D251C225F1A00AB9EDB /* HCHomeDetailTableViewCell.h */,
 				0A546D261C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m */,
+				0A67E7831C23FAB5005B8CD2 /* HCHomeDetailCommentTableViewCell.h */,
+				0A67E7841C23FAB5005B8CD2 /* HCHomeDetailCommentTableViewCell.m */,
 				0AC40DC51C22B71D0074AA79 /* HCPublishTableViewCell.h */,
 				0AC40DC61C22B71D0074AA79 /* HCPublishTableViewCell.m */,
 				0ABFC6261C2134BA00ED8164 /* HCFunctionTagView.h */,
@@ -999,6 +1028,8 @@
 				0A3E57831C214E5E00AA4DB9 /* HCHomeMoreImgView.m */,
 				0AC40DB91C22661C0074AA79 /* HCPraiseTagListView.h */,
 				0AC40DBA1C22661C0074AA79 /* HCPraiseTagListView.m */,
+				0A67E76B1C23B837005B8CD2 /* HCEditCommentView.h */,
+				0A67E76C1C23B837005B8CD2 /* HCEditCommentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1401,6 +1432,8 @@
 				0AC40DBD1C226B870074AA79 /* HCHomeDetailApi.m */,
 				0A66CBA11C22E96500530763 /* HCHomePublishApi.h */,
 				0A66CBA21C22E96500530763 /* HCHomePublishApi.m */,
+				0A67E76E1C23C3F3005B8CD2 /* HCEditCommentApi.h */,
+				0A67E76F1C23C3F3005B8CD2 /* HCEditCommentApi.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1658,6 +1691,7 @@
 				0A67B2271C0D63B300FB87C8 /* 8.jpg in Resources */,
 				0A67B2221C0D63B300FB87C8 /* 3.jpg in Resources */,
 				0A6AFD671BFBFFBE0073982C /* UMSShareListController.xib in Resources */,
+				0A67E7781C23D700005B8CD2 /* HCShareViewController.xib in Resources */,
 				0A6AFD601BFBFFBE0073982C /* UMSCommentDetailController.xib in Resources */,
 				0A6AFD661BFBFFBE0073982C /* UMSnsAccountViewController.xib in Resources */,
 				0A6AFD651BFBFFBE0073982C /* UMSLoginViewController.xib in Resources */,
@@ -1759,6 +1793,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A67B22B1C0D63B300FB87C8 /* MRImgShowView.m in Sources */,
+				0A67E76D1C23B837005B8CD2 /* HCEditCommentView.m in Sources */,
 				0A65918B1C0411F300E91975 /* HCUserApi.m in Sources */,
 				0A8A4F8C1C1FF71900753D65 /* HCMoreInfo.m in Sources */,
 				0A6B7F611BF1EB74008D54B3 /* HCRegistViewController.m in Sources */,
@@ -1784,6 +1819,7 @@
 				0A3E57841C214E5E00AA4DB9 /* HCHomeMoreImgView.m in Sources */,
 				C7C9079B1C2278E00054CB7C /* HCCustomTagViewController.m in Sources */,
 				0A6B7F201BF1EB74008D54B3 /* HCAccountDBMgr.m in Sources */,
+				0A67E7701C23C3F3005B8CD2 /* HCEditCommentApi.m in Sources */,
 				0A6B7F631BF1EB74008D54B3 /* HCAccountMgr.m in Sources */,
 				0ABAFEC51BF3470B009ABF57 /* HCRequest.m in Sources */,
 				0A546D271C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m in Sources */,
@@ -1793,6 +1829,7 @@
 				0A66CBA01C22C26700530763 /* HCPublishInfo.m in Sources */,
 				0A6B7F9B1BF1EB74008D54B3 /* TOActivitySafari.m in Sources */,
 				0AF96BDD1C0ECFB4007AD92F /* CFJInputView.m in Sources */,
+				0A67E76A1C239EF3005B8CD2 /* HCEditCommentViewController.m in Sources */,
 				C7C9079D1C2278E00054CB7C /* HCProductCenterDetailViewController.m in Sources */,
 				0A8A4F8F1C1FF7FE00753D65 /* HCMoreCollectionViewCell.m in Sources */,
 				0ABFC6281C2134BA00ED8164 /* HCFunctionTagView.m in Sources */,
@@ -1806,6 +1843,8 @@
 				C7C9079C1C2278E00054CB7C /* HCProducCenterViewController.m in Sources */,
 				0A6B7F221BF1EB74008D54B3 /* HCAvatarMgr.m in Sources */,
 				0ABAFEC41BF3470B009ABF57 /* HCJsonRequestApi.m in Sources */,
+				0A67E7851C23FAB5005B8CD2 /* HCHomeDetailCommentTableViewCell.m in Sources */,
+				0A67E7771C23D700005B8CD2 /* HCShareViewController.m in Sources */,
 				0A6B7F6D1BF1EB74008D54B3 /* HCPopoverView.m in Sources */,
 				C7C907AF1C227B5D0054CB7C /* HCProductIntrodApi.m in Sources */,
 				0A6B7F651BF1EB74008D54B3 /* HCLoginInfo.m in Sources */,
@@ -1845,6 +1884,7 @@
 				C7C9079A1C2278E00054CB7C /* HCBuyRecordsViewController.m in Sources */,
 				0AC40DC71C22B71D0074AA79 /* HCPublishTableViewCell.m in Sources */,
 				0ABAFECD1BF34726009ABF57 /* HCGetUserInfoByDeviceApi.m in Sources */,
+				0A67E7731C23C49D005B8CD2 /* HCEditCommentInfo.m in Sources */,
 				0ABAFECE1BF34726009ABF57 /* HCVatarUploadApi.m in Sources */,
 				0A6B7F5D1BF1EB74008D54B3 /* HCFindPwdViewController.m in Sources */,
 			);

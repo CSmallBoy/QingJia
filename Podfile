@@ -14,3 +14,5 @@ pod 'ACEExpandableTextCell'
 pod 'SDCycleScrollView'
 
 pod 'UITableView+FDTemplateLayoutCell'
+
+pod 'MLEmojiLabel'

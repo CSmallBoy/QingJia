@@ -51,36 +51,42 @@
 {
     [super layoutSubviews];
     
-    self.headButton.frame = CGRectMake(10, 10, WIDTH(self)*0.15, WIDTH(self)*0.15);
-    ViewRadius(self.headButton, WIDTH(self.headButton)*0.5);
-    
-    self.nickName.frame = CGRectMake(MaxX(self.headButton)+10, HEIGHT(self.headButton)*0.3, 100, 20);
-    self.deveceModel.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 100, 20);
-    
-    self.times.frame = CGRectMake(WIDTH(self)-120, MinY(self.nickName), 110, 20);
-    
-    CGFloat contentsHeight = [Utils detailTextHeight:_info.contents lineSpage:4 width:WIDTH(self)-20 font:14];
-    self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
-    
-    // 图片
-    if (!IsEmpty(_info.imgArr))
+    if (!IsEmpty(_info)) // 第一组
     {
-        CGFloat height = (WIDTH(self)-30) / 3;
-        self.moreImgView.frame = CGRectMake(0, MaxY(self.contents)+10, WIDTH(self), height);
-    }
-    
-    if (!IsEmpty(_info.imgArr))
-    {
-        if (!IsEmpty(_detailInfo.praiseArr))
+        self.headButton.frame = CGRectMake(10, 10, WIDTH(self)*0.15, WIDTH(self)*0.15);
+        ViewRadius(self.headButton, WIDTH(self.headButton)*0.5);
+        
+        self.nickName.frame = CGRectMake(MaxX(self.headButton)+10, HEIGHT(self.headButton)*0.3, 100, 20);
+        self.deveceModel.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 200, 20);
+        
+        self.times.frame = CGRectMake(WIDTH(self)-120, MinY(self.nickName), 110, 20);
+        
+        CGFloat contentsHeight = [Utils detailTextHeight:_info.contents lineSpage:4 width:WIDTH(self)-20 font:14];
+        self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
+        
+        // 图片
+        if (!IsEmpty(_info.imgArr))
         {
-            self.praiseTag.frame = CGRectMake(10, MaxY(self.moreImgView)+5, WIDTH(self)-20, _praiseHeight);
+            CGFloat height = (WIDTH(self)-30) / 3;
+            self.moreImgView.frame = CGRectMake(0, MaxY(self.contents)+10, WIDTH(self), height);
+        }
+        
+        if (!IsEmpty(_info.imgArr))
+        {
+            if (!IsEmpty(_praiseArr))
+            {
+                self.praiseTag.frame = CGRectMake(10, MaxY(self.moreImgView)+5, WIDTH(self)-20, _praiseHeight);
+            }
+        }else
+        {
+            if (!IsEmpty(_praiseArr))
+            {
+                self.praiseTag.frame = CGRectMake(10, MaxY(self.contents)+5, WIDTH(self)-20, _praiseHeight);
+            }
         }
     }else
     {
-        if (!IsEmpty(_detailInfo.praiseArr))
-        {
-            self.praiseTag.frame = CGRectMake(10, MaxY(self.contents)+5, WIDTH(self)-20, _praiseHeight);
-        }
+        
     }
 }
 
@@ -100,6 +106,9 @@
     if (!IsEmpty(info.imgName))
     {
         [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.imgName] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
+    }else
+    {
+        [self.headButton setImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
     }
     
     self.nickName.text = info.nickName;
@@ -123,9 +132,9 @@
         self.moreImgView.hidden = YES;
     }
     
-    if (!IsEmpty(_detailInfo.praiseArr))
+    if (!IsEmpty(_praiseArr) && !self.praiseTag.subviews.count)
     {
-        [self.praiseTag setPraiseTagListWithTagArray:_detailInfo.praiseArr];
+        [self.praiseTag setPraiseTagListWithTagArray:_praiseArr];
     }
 }
 

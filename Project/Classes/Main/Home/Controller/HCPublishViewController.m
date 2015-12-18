@@ -104,6 +104,7 @@
 
 - (void)hcpublishTableViewCellImageViewIndex:(NSInteger)index
 {
+    [self.view endEditing:YES];
     if (_info.imageArray.count == index)
     {
        UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
@@ -124,7 +125,6 @@
     if (buttonIndex == 0) // 拍照
     {
         UIImagePickerController * picker = [[UIImagePickerController alloc]init];
-//        [[picker navigationBar] setTintColor:[UIColor whiteColor]];
         picker.delegate = self;
         picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -149,6 +149,7 @@
     if (_info.imageArray.count >= 10)
     {
         [self showHUDText:@"最多只能发布9张图片"];
+        [picker dismissViewControllerAnimated:YES completion:nil];
         return;
     }
     

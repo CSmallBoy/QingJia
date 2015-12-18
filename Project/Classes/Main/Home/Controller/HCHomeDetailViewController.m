@@ -8,12 +8,14 @@
 
 #import "HCHomeDetailViewController.h"
 #import "HCHomeDetailTableViewCell.h"
+#import "HCHomeDetailCommentTableViewCell.h"
 #import "HCHomeDetailInfo.h"
 #import "HCHomeDetailUserInfo.h"
 #import "HCHomeInfo.h"
 #import "HCHomeDetailApi.h"
 
 #define HCHomeDetailCell @"HCHomeDetailTableViewCell"
+#define HCHomeDetailComment @"HCHomeDetailCommentTableViewCell"
 
 @interface HCHomeDetailViewController ()
 
@@ -33,20 +35,27 @@
     [self requestHomeDetail];
     
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
-    [self.tableView registerClass:[HCHomeDetailTableViewCell class] forCellReuseIdentifier:HCHomeDetailCell];
+    [self.tableView registerClass:[HCHomeDetailCommentTableViewCell class] forCellReuseIdentifier:HCHomeDetailComment];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HCHomeDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HCHomeDetailCell];
+    UITableViewCell *cell = nil;
+    if (indexPath.section == 0)
+    {
+        HCHomeDetailTableViewCell *detailCell = [[HCHomeDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HCHomeDetailCell];
+        detailCell.praiseHeight = _praiseHeight;
+        detailCell.praiseArr = _detailInfo.praiseArr;
+        HCHomeInfo *info = self.data[@"data"];
+        detailCell.info = info;
+        cell = detailCell;
+    }else
+    {
+        HCHomeDetailCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:HCHomeDetailComment];
+        commentCell.info = _detailInfo.commentsArr[indexPath.row];
+        cell = commentCell;
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.praiseHeight = _praiseHeight;
-    
-    cell.detailInfo = _detailInfo;
-    
-    HCHomeInfo *info = self.data[@"data"];
-    cell.info = info;
-    
     return cell;
 }
 
@@ -76,23 +85,27 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat height = 30 + WIDTH(self.view)*0.15;
     
-    HCHomeInfo *info = self.data[@"data"];
-    
-    height = height + [Utils detailTextHeight:info.contents lineSpage:4 width:WIDTH(self.view)-20 font:14];
-    
-    if (!IsEmpty(info.imgArr))
+    if (indexPath.section == 0)
     {
-        height = height + (WIDTH(self.view)-40)/3 + 13;
-    }
-    
-    if (!IsEmpty(_detailInfo.praiseArr))
+        CGFloat height = 30 + WIDTH(self.view)*0.15;
+        HCHomeInfo *info = self.data[@"data"];
+        height = height + [Utils detailTextHeight:info.contents lineSpage:4 width:WIDTH(self.view)-20 font:14];
+        if (!IsEmpty(info.imgArr))
+        {
+            height = height + (WIDTH(self.view)-40)/3 + 13;
+        }
+        if (!IsEmpty(_detailInfo.praiseArr))
+        {
+            height = height + [self getPraiseHeight];
+        }
+        return height;
+    }else
     {
-        height = height + [self getPraiseHeight];
+        HCHomeInfo *info = _detailInfo.commentsArr[indexPath.row];
+        return [Utils detailTextHeight:info.comments width:WIDTH(self.view)-70 font:14] + 60;
     }
-    
-    return height;
+    return 0;
 }
 
 - (CGFloat)getPraiseHeight

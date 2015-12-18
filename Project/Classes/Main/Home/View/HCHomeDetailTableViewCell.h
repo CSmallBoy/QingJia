@@ -13,7 +13,7 @@
 @interface HCHomeDetailTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) HCHomeInfo *info;
-@property (nonatomic, strong) HCHomeDetailInfo *detailInfo;
+@property (nonatomic, strong) NSArray *praiseArr; // 点赞的用户
 @property (nonatomic, assign) CGFloat praiseHeight;
 
 @end

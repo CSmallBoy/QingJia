@@ -34,11 +34,14 @@ PODS:
   - MBProgressHUD (0.9.1)
   - MJExtension (3.0.3)
   - MJRefresh (3.0.1)
+  - MLEmojiLabel (1.0.0):
+    - TTTAttributedLabel (~> 1.13.4)
   - SDCycleScrollView (1.3)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SZTextView (1.2.1)
+  - TTTAttributedLabel (1.13.4)
   - UITableView+FDTemplateLayoutCell (1.3)
   - YTKNetwork (0.5.0):
     - AFDownloadRequestOperation (~> 2.0)
@@ -52,6 +55,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJExtension
   - MJRefresh
+  - MLEmojiLabel
   - SDCycleScrollView
   - SDWebImage
   - UITableView+FDTemplateLayoutCell
@@ -67,9 +71,11 @@ SPEC CHECKSUMS:
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJExtension: de557e1c48ef3212590d3203764c8003fae68815
   MJRefresh: ca22bb7197c4a17a0491763773cd5cb106b2a810
+  MLEmojiLabel: ceeab17d10d296cc00636bf201c8da597fdede10
   SDCycleScrollView: 90e43636fcc8e6a7f74e8b64d87418a8e96549b4
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   UITableView+FDTemplateLayoutCell: d5be6056b5060313f5955a2590ecd33142ad713d
   YTKNetwork: 3f163c181ce5f03d52cf88f39d6757f46894280c
 

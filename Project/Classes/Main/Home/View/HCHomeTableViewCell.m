@@ -58,7 +58,7 @@
     ViewRadius(self.headButton, WIDTH(self.headButton)*0.5);
     
     self.nickName.frame = CGRectMake(MaxX(self.headButton)+10, HEIGHT(self.headButton)*0.3, 100, 20);
-    self.deveceModel.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 100, 20);
+    self.deveceModel.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 200, 20);
     
     self.times.frame = CGRectMake(WIDTH(self)-120, MinY(self.nickName), 110, 20);
     
