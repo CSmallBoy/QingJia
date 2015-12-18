@@ -79,15 +79,6 @@
 
 #pragma mark - private methods
 
--(void)addBtnAction:(UIButton *)sender
-{
-    
-}
--(void)deleteBtnAction:(UIButton *)sender
-{
-    
-}
-
 -(void)buyWayFirst
 {
     DLog(@"购买方式1");
@@ -107,7 +98,17 @@
 
 -(void)clickDeleteBtn
 {
-    self.info.buyNumber -= 1;
+    if (self.info.buyNumber > 10) {
+        self.info.buyNumber -= 1;
+    }else
+    {
+        NSLog(@"%d",[self.delegate respondsToSelector:@selector(showForbidDelete)]);
+        if ([self.delegate respondsToSelector:@selector(showForbidDelete)]) {
+            [self.delegate showForbidDelete];
+
+        }
+    }
+
     self.buyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyNumber];
     self.priceLb.text = [NSString stringWithFormat:@"%d元",self.info.buyNumber*self.info.price];
        NSLog(@"%@",self.priceLb.text);

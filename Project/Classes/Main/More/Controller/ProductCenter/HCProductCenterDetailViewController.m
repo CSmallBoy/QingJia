@@ -16,7 +16,7 @@
 #import "HCProductIntrodApi.h"
 static NSString *IDCellF = @"introduction";
 
-@interface HCProductCenterDetailViewController ()
+@interface HCProductCenterDetailViewController ()<HCProductIntroductionInfoDelegate>
 
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @property(nonatomic,strong)UIView *footerView;
@@ -48,16 +48,12 @@ static NSString *IDCellF = @"introduction";
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
         HCProductIntroductionCell *ProductIntroductionCell = [tableView dequeueReusableCellWithIdentifier:IDCellF];
+    ProductIntroductionCell.delegate = self;
     ProductIntroductionCell.indexPath = indexPath;
     ProductIntroductionCell.info = self.info;
     return ProductIntroductionCell;
     
 }
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -86,7 +82,7 @@ static NSString *IDCellF = @"introduction";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 44;
+    return 64;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -118,6 +114,11 @@ static NSString *IDCellF = @"introduction";
     [self.navigationController pushViewController:[HCBuyRecordsViewController new] animated:YES];
 }
 
+-(void)showForbidDelete
+{
+    [self showHUDText:@"最小购买数为10"];
+
+}
 #pragma mark---setter or getter
 
 - (UIBarButtonItem *)rightItem
@@ -136,13 +137,14 @@ static NSString *IDCellF = @"introduction";
     if(!_footerView)
     {
     _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 64)];
-    
+        
     UIButton *buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyBtn.frame = CGRectMake(20, HEIGHT(_footerView)-40, WIDTH(self.view)-40, 45);
+    buyBtn.frame = CGRectMake(20, 20, WIDTH(self.view)-40, 45);
     [buyBtn setTitle:@"购买" forState:UIControlStateNormal];
     [buyBtn addTarget:self action:@selector(handleBuyBtn) forControlEvents:UIControlEventTouchUpInside];
     ViewRadius(buyBtn, 4);
     buyBtn.backgroundColor = RGB(253, 89, 83);
+        
     [_footerView addSubview:buyBtn];
     }
     return _footerView;

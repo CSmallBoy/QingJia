@@ -9,11 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "HCProductIntroductionInfo.h"
 
+@protocol HCProductIntroductionInfoDelegate <NSObject>
+
+@optional
+
+-(void)showForbidDelete;
+
+@end
 
 @interface HCProductIntroductionCell : UITableViewCell
 
 @property(nonatomic,strong) NSIndexPath *indexPath;
 
 @property (nonatomic,strong) HCProductIntroductionInfo *info;
+@property (nonatomic, weak) id<HCProductIntroductionInfoDelegate>delegate;
 
 @end
