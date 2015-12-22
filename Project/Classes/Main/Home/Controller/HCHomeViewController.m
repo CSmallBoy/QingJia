@@ -205,11 +205,9 @@
     if (app.sideViewController.showStatus)
     {
         [app.sideViewController hideSideViewController:YES];
-        [app.sideViewController hideHomeView];
     }else
     {
         [app.sideViewController showLeftViewController:YES];
-        [app.sideViewController showHomeView];
     }
 }
 

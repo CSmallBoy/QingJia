@@ -62,6 +62,10 @@
     {
         vc = [[HCSoftwareSettingViewController alloc] init];
     }
+    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    DLog(<#fmt, ...#>)
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

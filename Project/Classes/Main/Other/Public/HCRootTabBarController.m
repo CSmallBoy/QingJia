@@ -23,7 +23,7 @@
     [super viewDidLoad];
     [self setupChildControllers];
     
-    UIView *redTabBarView = [[UIView alloc] initWithFrame:self.view.frame];
+    UIView *redTabBarView = [[UIView alloc] initWithFrame:self.view.bounds];
     redTabBarView.backgroundColor = kHCNavBarColor;
     [self.tabBar insertSubview:redTabBarView atIndex:0];
     self.tabBar.layer.masksToBounds = YES; // 超出部分不显示

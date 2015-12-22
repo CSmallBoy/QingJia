@@ -321,12 +321,14 @@
 
 - (void)hideHomeView
 {
-    [_currentView removeFromSuperview];
+    [_baseView insertSubview:_leftViewController.view aboveSubview:_currentView];
+    [self layoutCurrentViewWithOffset:0];
 }
 
 - (void)showHomeView
 {
-    [_baseView addSubview:_currentView];
+    [_baseView insertSubview:_leftViewController.view belowSubview:_currentView];
+    [self layoutCurrentViewWithOffset:0];
 }
 
 
