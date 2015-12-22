@@ -197,6 +197,8 @@
 		C7E252DD1C29430A00204959 /* HCNotificationCenterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252D71C29430A00204959 /* HCNotificationCenterApi.m */; };
 		C7E252DE1C29430A00204959 /* HCCustomTagApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252DA1C29430A00204959 /* HCCustomTagApi.m */; };
 		C7E252DF1C29430A00204959 /* HCProductIntrodApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252DC1C29430A00204959 /* HCProductIntrodApi.m */; };
+		C7E252E31C294A7500204959 /* HCRescueCenterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252E21C294A7500204959 /* HCRescueCenterInfo.m */; };
+		C7E252E71C294C4300204959 /* HCRescueCenterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252E61C294C4300204959 /* HCRescueCenterApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -576,6 +578,10 @@
 		C7E252DA1C29430A00204959 /* HCCustomTagApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCustomTagApi.m; sourceTree = "<group>"; };
 		C7E252DB1C29430A00204959 /* HCProductIntrodApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductIntrodApi.h; sourceTree = "<group>"; };
 		C7E252DC1C29430A00204959 /* HCProductIntrodApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductIntrodApi.m; sourceTree = "<group>"; };
+		C7E252E11C294A7500204959 /* HCRescueCenterInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCRescueCenterInfo.h; sourceTree = "<group>"; };
+		C7E252E21C294A7500204959 /* HCRescueCenterInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCRescueCenterInfo.m; sourceTree = "<group>"; };
+		C7E252E51C294C4300204959 /* HCRescueCenterApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCRescueCenterApi.h; sourceTree = "<group>"; };
+		C7E252E61C294C4300204959 /* HCRescueCenterApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCRescueCenterApi.m; sourceTree = "<group>"; };
 		C95F998133825127EECF22B1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E9376B27D02CD20170277F57 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1474,16 +1480,16 @@
 		C7E252411C2942D300204959 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				C7E252461C2942D300204959 /* HCNotificationViewController.h */,
+				C7E252471C2942D300204959 /* HCNotificationViewController.m */,
+				C7E2524A1C2942D300204959 /* HCUnReadNotificationViewController.h */,
+				C7E2524B1C2942D300204959 /* HCUnReadNotificationViewController.m */,
+				C7E252481C2942D300204959 /* HCReadNotificationViewController.h */,
+				C7E252491C2942D300204959 /* HCReadNotificationViewController.m */,
 				C7E252421C2942D300204959 /* HCFollowNotificationViewController.h */,
 				C7E252431C2942D300204959 /* HCFollowNotificationViewController.m */,
 				C7E252441C2942D300204959 /* HCNotificationDetailViewController.h */,
 				C7E252451C2942D300204959 /* HCNotificationDetailViewController.m */,
-				C7E252461C2942D300204959 /* HCNotificationViewController.h */,
-				C7E252471C2942D300204959 /* HCNotificationViewController.m */,
-				C7E252481C2942D300204959 /* HCReadNotificationViewController.h */,
-				C7E252491C2942D300204959 /* HCReadNotificationViewController.m */,
-				C7E2524A1C2942D300204959 /* HCUnReadNotificationViewController.h */,
-				C7E2524B1C2942D300204959 /* HCUnReadNotificationViewController.m */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1537,10 +1543,10 @@
 		C7E252671C2942D300204959 /* RescueCenter */ = {
 			isa = PBXGroup;
 			children = (
-				C7E252681C2942D300204959 /* HCCaseDetailViewController.h */,
-				C7E252691C2942D300204959 /* HCCaseDetailViewController.m */,
 				C7E2526A1C2942D300204959 /* HCRescueCenterViewController.h */,
 				C7E2526B1C2942D300204959 /* HCRescueCenterViewController.m */,
+				C7E252681C2942D300204959 /* HCCaseDetailViewController.h */,
+				C7E252691C2942D300204959 /* HCCaseDetailViewController.m */,
 			);
 			path = RescueCenter;
 			sourceTree = "<group>";
@@ -1566,6 +1572,7 @@
 		C7E252721C2942D300204959 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C7E252E01C294A4500204959 /* RescueCenter */,
 				C7E252731C2942D300204959 /* HCMoreInfo.h */,
 				C7E252741C2942D300204959 /* HCMoreInfo.m */,
 				C7E252751C2942D300204959 /* NotificationCenter */,
@@ -1723,6 +1730,7 @@
 		C7E252D41C29430A00204959 /* More */ = {
 			isa = PBXGroup;
 			children = (
+				C7E252E41C294C1200204959 /* RescueCenter */,
 				C7E252D51C29430A00204959 /* NotificationCenter */,
 				C7E252D81C29430A00204959 /* ProductCenter */,
 			);
@@ -1747,6 +1755,24 @@
 				C7E252DC1C29430A00204959 /* HCProductIntrodApi.m */,
 			);
 			path = ProductCenter;
+			sourceTree = "<group>";
+		};
+		C7E252E01C294A4500204959 /* RescueCenter */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252E11C294A7500204959 /* HCRescueCenterInfo.h */,
+				C7E252E21C294A7500204959 /* HCRescueCenterInfo.m */,
+			);
+			path = RescueCenter;
+			sourceTree = "<group>";
+		};
+		C7E252E41C294C1200204959 /* RescueCenter */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252E51C294C4300204959 /* HCRescueCenterApi.h */,
+				C7E252E61C294C4300204959 /* HCRescueCenterApi.m */,
+			);
+			path = RescueCenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1819,6 +1845,7 @@
 				TargetAttributes = {
 					0A6B7D971BF1EB6A008D54B3 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 2CF2K69ZFQ;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2077,6 +2104,7 @@
 				0A6B7F9C1BF1EB74008D54B3 /* TOWebViewController.m in Sources */,
 				0A6B7F181BF1EB74008D54B3 /* NSString+MD5.m in Sources */,
 				C7E252B01C2942D300204959 /* HCAfterSalesApplyViewController.m in Sources */,
+				C7E252E31C294A7500204959 /* HCRescueCenterInfo.m in Sources */,
 				C7E252C91C2942D300204959 /* HCBuyRecordTableViewCell.m in Sources */,
 				0AEEDDD11C210ED50065A8FF /* HCHomeApi.m in Sources */,
 				0ABAFE961BF343F2009ABF57 /* HCTagListView.m in Sources */,
@@ -2087,6 +2115,7 @@
 				0A47AD481C2256F500706326 /* HCHomeUserTimeViewController.m in Sources */,
 				C7E252BA1C2942D300204959 /* HCRefundSuccessViewController.m in Sources */,
 				C7E252D31C2942D300204959 /* HCProductIntroductionCell.m in Sources */,
+				C7E252E71C294C4300204959 /* HCRescueCenterApi.m in Sources */,
 				C7E252A81C2942D300204959 /* HCAddItemViewController.m in Sources */,
 				C7E252B61C2942D300204959 /* HCOrderOnlineViewController.m in Sources */,
 				0AC89D701C28F427003EED90 /* YRSideViewController.m in Sources */,
@@ -2296,9 +2325,9 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/Project/Classes/Vender/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.xiaodaohang;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.xiaodaohang11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "921e1026-3d61-4ea8-a136-8fcdfc307d78";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2326,9 +2355,9 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/Project/Classes/Vender/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.xiaodaohang;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.xiaodaohang11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "921e1026-3d61-4ea8-a136-8fcdfc307d78";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

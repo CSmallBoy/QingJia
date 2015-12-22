@@ -8,16 +8,23 @@
 
 #import "HCRescueCenterViewController.h"
 #import "HCCaseDetailViewController.h"
+#import "HCRescueCenterApi.h"
+#import "HCRescueCenterInfo.h"
+#import "UIImageView+WebCache.h"
+
 @interface HCRescueCenterViewController ()<UISearchBarDelegate>
 
 @property (nonatomic,strong) UISearchBar *searchBar;
+
+@property (nonatomic,strong) UIView *searchBarView;
+
 @end
 
 @implementation HCRescueCenterViewController
 -(UISearchBar *)searchBar
 {
     if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 44)];
+        _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
         _searchBar.delegate = self;
         _searchBar.placeholder = @"请输入关键词快速搜索内容";
     }
@@ -26,9 +33,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"求助中心";
-    [self.view addSubview:self.searchBar];
+    [self requestHomeData];
+
     [self setupBackItem];
-    self.tableView.frame = CGRectMake(0, 108, SCREEN_WIDTH, SCREEN_HEIGHT);
+
 }
 
 
@@ -41,16 +49,21 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:rescueID];
     }
-    cell.imageView.image = OrigIMG(@"Notice");
-    cell.textLabel.text = @"M-Talk1244535";
-    cell.detailTextLabel.text = @"时发生发勿忘我勿忘我勿忘我勿忘我勿忘我阿阿阿阿阿阿阿阿阿阿阿阿阿啊00000000阿什顿。。。";
-//    cell.detailTextLabel.numberOfLines = 0;
+    
+    HCRescueCenterInfo *info ;
+    info = self.dataSource[indexPath.row];
+    NSURL *imageViewUrl = [NSURL URLWithString:info.headerImageStr];
+
+    [cell.imageView sd_setImageWithURL:imageViewUrl placeholderImage:OrigIMG(@"Salve_mtalk")];
+    cell.textLabel.text = info.newsTitle;
+    cell.detailTextLabel.text = info.detailNews;
+    
     return  cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataSource.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,10 +71,66 @@
     return 50;
 }
 
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 44;
+    }
+    else
+    {
+        return 0;
+    }
+}
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return self.searchBarView;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCCaseDetailViewController *caseDetailVC = [[HCCaseDetailViewController  alloc]init];
+    
+    HCRescueCenterInfo *info = self.dataSource[indexPath.row];
+    caseDetailVC.urlStr = info.urlStr;
     [self.navigationController pushViewController:caseDetailVC animated:YES];
+}
+
+#pragma mark----Setter Or Getter
+
+-(UIView *)searchBarView
+{
+    if (!_searchBarView) {
+        _searchBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+        [_searchBarView addSubview:self.searchBar];
+    }
+    return _searchBarView;
+}
+
+
+#pragma mark - network
+
+- (void)requestHomeData
+{
+    HCRescueCenterApi *api = [[HCRescueCenterApi alloc] init];
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:array];
+            [self.tableView reloadData];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
 }
 
 @end

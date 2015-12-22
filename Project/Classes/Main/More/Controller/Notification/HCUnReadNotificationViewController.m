@@ -37,24 +37,7 @@
         
         cell = [[HCNotificationCenterTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:unreadID];
         cell.info = self.dataSource[indexPath.section];
-//        cell.indexPath = indexPath;
-        
-//        cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:unreadID];
-//        UIView *deletView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 44)];
-//        HCButtonItem *deleteBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 0, 44, 44) WithImageName:@"Settings_icon_Cache_dis" WithImageWidth:44 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:-5];
-//        deletView.backgroundColor = [UIColor whiteColor];
-//        [deletView addSubview:deleteBtn];
-//        [cell.contentView addSubview:deletView];
-//    }
-//    
-//    UILabel * timeLab = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width-180, 0,170, 20)];
-//    timeLab.textAlignment = NSTextAlignmentRight;
-//    timeLab.font = [UIFont systemFontOfSize:12];
-//    [cell.contentView addSubview:timeLab];
-//    timeLab.text = [NSString stringWithFormat:@"2015年08月23日 12:10"];
-//    cell.textLabel.text = @"M-Talk";
-//    cell.detailTextLabel.text = @"丝状噬菌体表面呈现技术自1985年至今已逐渐成熟，通过将随机核苷酸编码的寡肽插入编码包被蛋白基因的开放读框末端，即可构建含有大量的具有不同结构和组成信息的噬菌体呈现表位文库";
-//    timeLab.textColor = [UIColor lightGrayColor];
+
     }
     return cell;
    

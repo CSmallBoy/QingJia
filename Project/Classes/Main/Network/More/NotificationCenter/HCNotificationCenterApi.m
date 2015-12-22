@@ -20,14 +20,7 @@
 }
 
 - (id)formatResponseObject:(id)responseObject
-{
-//    NSMutableArray *userArr = [NSMutableArray array];
-//    for (NSInteger i = 0; i < 4; i ++)
-//    {
-//        HCNotificationCenterInfo *userInfo = [[HCNotificationCenterInfo alloc] init];
-//      
-//    }
-    
+{ 
     NSMutableArray *NotificationArr = [NSMutableArray array];
     for (NSInteger i = 0; i < 5; i++)
     {
