@@ -112,7 +112,10 @@
 
 - (void)handleTagButton:(UIButton *)button
 {
-    DLog(@"点击了---%@", @(button.tag));
+    if ([self.delegate respondsToSelector:@selector(hcpraiseTagListViewSelectedTag:)])
+    {
+        [self.delegate hcpraiseTagListViewSelectedTag:button.tag];
+    }
 }
 
 

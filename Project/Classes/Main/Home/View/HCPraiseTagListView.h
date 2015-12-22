@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HCPraiseTagListViewDelegate <NSObject>
+
+- (void)hcpraiseTagListViewSelectedTag:(NSInteger)index;
+
+@end
+
 @interface HCPraiseTagListView : UIView
 
 /**
  *  标签文本赋值，以数组形式
  */
 - (void)setPraiseTagListWithTagArray:(NSArray *)array;
+
+@property (nonatomic, weak) id<HCPraiseTagListViewDelegate>delegate;
 
 @end

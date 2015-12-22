@@ -11,7 +11,9 @@
 #import "HCShareViewController.h"
 #import "HCHomeUserTimeViewController.h"
 #import "HCEditCommentViewController.h"
+#import "HCHomePictureDetailViewController.h"
 #import "MJRefresh.h"
+#import "AppDelegate.h"
 #import "HCPublishViewController.h"
 #import "HCHomeTableViewCell.h"
 #import "HCHomeInfo.h"
@@ -135,12 +137,21 @@
     {
         HCShareViewController  *shareVC = [[HCShareViewController alloc] init];
         [self presentViewController:shareVC animated:YES completion:nil];
+    }else if (index == 1)
+    {
+        [self showHUDText:@"标记成功！"];
+    }else if (index == 0)
+    {
+        [self showHUDText:@"点赞成功!"];
     }
 }
 
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath moreImgView:(NSInteger)index
 {
-    DLog(@"ind");
+    HCHomePictureDetailViewController *pictureDetail = [[HCHomePictureDetailViewController alloc] init];
+    pictureDetail.data = @{@"data": self.dataSource[indexPath.section], @"index": @(index)};
+    pictureDetail.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:pictureDetail animated:YES];
 }
 
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn
@@ -190,7 +201,16 @@
 
 - (void)handleLeftItem
 {
-    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.sideViewController.showStatus)
+    {
+        [app.sideViewController hideSideViewController:YES];
+        [app.sideViewController hideHomeView];
+    }else
+    {
+        [app.sideViewController showLeftViewController:YES];
+        [app.sideViewController showHomeView];
+    }
 }
 
 - (void)handleRightItem

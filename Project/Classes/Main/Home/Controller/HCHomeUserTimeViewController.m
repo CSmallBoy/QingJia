@@ -7,6 +7,8 @@
 //
 
 #import "HCHomeUserTimeViewController.h"
+#import "HCHomeDetailViewController.h"
+#import "HCHomePictureDetailViewController.h"
 #import "MJRefresh.h"
 #import "HCHomeTableViewCell.h"
 #import "HCHomeInfo.h"
@@ -48,6 +50,7 @@
 {
     HCHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HCHomeUserTimeCell];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.delegate = self;
     cell.indexPath = indexPath;
     HCHomeInfo *info = self.dataSource[indexPath.section];
     cell.info = info;
@@ -57,6 +60,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    HCHomeInfo *info = self.dataSource[indexPath.section];
+    HCHomeDetailViewController *detail = [[HCHomeDetailViewController alloc] init];
+    detail.data = @{@"data": info};
+    detail.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,9 +112,11 @@
 
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath moreImgView:(NSInteger)index
 {
-    DLog(@"点击了第几张图片");
+    HCHomePictureDetailViewController *pictureDetail = [[HCHomePictureDetailViewController alloc] init];
+    pictureDetail.data = @{@"data": self.dataSource[indexPath.section], @"index": @(index)};
+    pictureDetail.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:pictureDetail animated:YES];
 }
-
 
 #pragma mark - private methods
 

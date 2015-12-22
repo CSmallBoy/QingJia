@@ -23,9 +23,10 @@
     [super viewDidLoad];
     [self setupChildControllers];
     
-    UIView *v = [[UIView alloc] initWithFrame:self.view.frame];
-    v.backgroundColor = RGB(219, 36, 45);
-    [self.tabBar insertSubview:v atIndex:0];
+    UIView *redTabBarView = [[UIView alloc] initWithFrame:self.view.frame];
+    redTabBarView.backgroundColor = kHCNavBarColor;
+    [self.tabBar insertSubview:redTabBarView atIndex:0];
+    self.tabBar.layer.masksToBounds = YES; // 超出部分不显示
     self.tabBar.opaque = YES;
 }
 

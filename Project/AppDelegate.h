@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YRSideViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -18,6 +19,7 @@
 // 选择下面按钮
 - (void)setupSelectedIndex:(NSInteger)index;
 
+@property (strong,nonatomic) YRSideViewController *sideViewController;
 
 @end
 

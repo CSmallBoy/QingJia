@@ -9,10 +9,9 @@
 #import "AppDelegate.h"
 #import "HCAvatarMgr.h"
 #import "HCVersionMgr.h"
-
 #import "YTKNetworkConfig.h"
-
 #import "HCRootTabBarController.h"
+#import "HCLeftViewController.h"
 #import "APService.h"
 
 @interface AppDelegate ()
@@ -45,10 +44,22 @@
     }else
     {
         [[HCAccountMgr manager] getLoginInfoData];
-        HCRootTabBarController *tabBarController = [[HCRootTabBarController alloc] init];
+        
+        HCRootTabBarController *main = [[HCRootTabBarController alloc] init];
+        
+        HCLeftViewController *left = [[HCLeftViewController alloc] init];
+        UINavigationController *leftNav = [[UINavigationController alloc] initWithRootViewController:left];
+        
+        _sideViewController=[[YRSideViewController alloc]init];
+        _sideViewController.rootViewController= main;
+        _sideViewController.leftViewController=leftNav;
+        _sideViewController.leftViewShowWidth= [UIScreen mainScreen].bounds.size.width*0.7;
+        _sideViewController.needSwipeShowMenu=true;//默认开启的可滑动展示
+        
+        self.window.rootViewController = _sideViewController;
         
         
-        self.window.rootViewController = tabBarController;
+        self.window.rootViewController = _sideViewController;
     }
 }
 

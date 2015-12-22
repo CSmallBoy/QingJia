@@ -7,7 +7,9 @@
 //
 
 #import "HCHomeDetailViewController.h"
+#import "HCEditCommentViewController.h"
 #import "HCHomeDetailTableViewCell.h"
+#import "HCHomePictureDetailViewController.h"
 #import "HCHomeDetailCommentTableViewCell.h"
 #import "HCHomeDetailInfo.h"
 #import "HCHomeDetailUserInfo.h"
@@ -17,10 +19,12 @@
 #define HCHomeDetailCell @"HCHomeDetailTableViewCell"
 #define HCHomeDetailComment @"HCHomeDetailCommentTableViewCell"
 
-@interface HCHomeDetailViewController ()
+@interface HCHomeDetailViewController ()<HCHomeDetailCommentTableViewCellDelegate, HCHomeDetailTableViewCellDelegate>
 
 @property (nonatomic, strong) HCHomeDetailInfo *detailInfo;
 @property (nonatomic, assign) CGFloat praiseHeight;
+
+@property (nonatomic, assign) CGFloat commentHeight;
 
 @end
 
@@ -45,6 +49,7 @@
     {
         HCHomeDetailTableViewCell *detailCell = [[HCHomeDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HCHomeDetailCell];
         detailCell.praiseHeight = _praiseHeight;
+        detailCell.delegates = self;
         detailCell.praiseArr = _detailInfo.praiseArr;
         HCHomeInfo *info = self.data[@"data"];
         detailCell.info = info;
@@ -52,6 +57,7 @@
     }else
     {
         HCHomeDetailCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:HCHomeDetailComment];
+        commentCell.delegate = self;
         commentCell.info = _detailInfo.commentsArr[indexPath.row];
         cell = commentCell;
     }
@@ -102,8 +108,7 @@
         return height;
     }else
     {
-        HCHomeInfo *info = _detailInfo.commentsArr[indexPath.row];
-        return [Utils detailTextHeight:info.comments width:WIDTH(self.view)-70 font:14] + 60;
+        return _commentHeight + 70;
     }
     return 0;
 }
@@ -151,6 +156,45 @@
         _praiseHeight = totalHeight;
     }
     return _praiseHeight;
+}
+
+#pragma mark -  HCHomeDetailTableViewCellDelegate
+
+- (void)hchomeDetailTableViewCellSelectedImage:(NSInteger)index
+{
+    HCHomeInfo *info = self.data[@"data"];
+    HCHomePictureDetailViewController *pictureDetail = [[HCHomePictureDetailViewController alloc] init];
+    pictureDetail.data = @{@"data": info, @"index": @(index)};
+    pictureDetail.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:pictureDetail animated:YES];
+}
+
+- (void)hchomeDetailTableViewCellSelectedTagWithUserid:(NSInteger)index
+{
+    [self showHUDText:[NSString stringWithFormat:@"点击了id为--%@--的用户", @(index)]];
+}
+
+#pragma mark - HCHomeDetailCommentTableViewCellDelegate
+
+- (void)hchomeDetailCommentTableViewCellCommentHeight:(CGFloat)commentHeight
+{
+    _commentHeight = commentHeight;
+}
+
+- (void)hchomeDetailCommentTableViewCellCommentButton
+{
+    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
+    UIViewController *rootController = self.view.window.rootViewController;
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        editComment.modalPresentationStyle=
+        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+    }else
+    {
+        rootController.modalPresentationStyle=
+        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+    }
+    [rootController presentViewController:editComment animated:YES completion:nil];
 }
 
 #pragma mark - network

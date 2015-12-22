@@ -18,7 +18,6 @@
 @property (nonatomic, strong) UILabel *nickName;
 @property (nonatomic, strong) UILabel *times;
 @property (nonatomic, strong) MLEmojiLabel *commentLable;
-@property (nonatomic, strong) UIButton *commentBtn;
 
 @end
 
@@ -36,20 +35,6 @@
         [self.contentView addSubview:self.commentLable];
     }
     return self;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.headButton.frame = CGRectMake(10, 10, 40, 40);
-    ViewRadius(self.headButton, 20);
-    
-    self.nickName.frame = CGRectMake(MaxX(self.headButton)+10, 15, 150, 20);
-    self.times.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 140, 20);
-    self.commentBtn.frame = CGRectMake(WIDTH(self)-80, 15, 70, 30);
-    
-    CGSize size = [self.commentLable preferredSizeWithMaxWidth:WIDTH(self)-70];
-    self.commentLable.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.times), WIDTH(self)-70, size.height);
 }
 
 #pragma mark - MLEmojiLabelDelegate
@@ -82,7 +67,10 @@
 
 - (void)handleCommentButton
 {
-    DLog(@"点击了回复按钮");
+    if ([self.delegate respondsToSelector:@selector(hchomeDetailCommentTableViewCellCommentButton)])
+    {
+        [self.delegate hchomeDetailCommentTableViewCellCommentButton];
+    }
 }
 
 #pragma mark - setter or getter
@@ -102,6 +90,20 @@
     self.nickName.text = info.nickName;
     self.times.text = info.inputtime;
     self.commentLable.text = info.comments;
+    
+    self.headButton.frame = CGRectMake(10, 10, 40, 40);
+    ViewRadius(self.headButton, 20);
+    
+    self.nickName.frame = CGRectMake(MaxX(self.headButton)+10, 12, 150, 20);
+    self.times.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 140, 20);
+    self.commentBtn.frame = CGRectMake(SCREEN_WIDTH-80, 15, 70, 30);
+    
+    CGSize size = [self.commentLable preferredSizeWithMaxWidth:SCREEN_WIDTH-70];
+    self.commentLable.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.times), SCREEN_WIDTH-70, size.height);
+    if ([self.delegate respondsToSelector:@selector(hchomeDetailCommentTableViewCellCommentHeight:)])
+    {
+        [self.delegate hchomeDetailCommentTableViewCellCommentHeight:size.height];
+    }
 }
 
 - (UIButton *)headButton

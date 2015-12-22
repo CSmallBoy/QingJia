@@ -15,7 +15,7 @@
 #import "HCHomeMoreImgView.h"
 #import "HCPraiseTagListView.h"
 
-@interface HCHomeDetailTableViewCell()<HCHomeMoreImgViewDelegate>
+@interface HCHomeDetailTableViewCell()<HCHomeMoreImgViewDelegate, HCPraiseTagListViewDelegate>
 
 @property (nonatomic, strong) UIButton *headButton;
 @property (nonatomic, strong) UILabel *nickName;
@@ -51,42 +51,36 @@
 {
     [super layoutSubviews];
     
-    if (!IsEmpty(_info)) // 第一组
+    self.headButton.frame = CGRectMake(10, 10, WIDTH(self)*0.15, WIDTH(self)*0.15);
+    ViewRadius(self.headButton, WIDTH(self.headButton)*0.5);
+    
+    self.nickName.frame = CGRectMake(MaxX(self.headButton)+10, HEIGHT(self.headButton)*0.3, 100, 20);
+    self.deveceModel.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 200, 20);
+    
+    self.times.frame = CGRectMake(WIDTH(self)-120, MinY(self.nickName), 110, 20);
+    
+    CGFloat contentsHeight = [Utils detailTextHeight:_info.contents lineSpage:4 width:WIDTH(self)-20 font:14];
+    self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
+    
+    // 图片
+    if (!IsEmpty(_info.imgArr))
     {
-        self.headButton.frame = CGRectMake(10, 10, WIDTH(self)*0.15, WIDTH(self)*0.15);
-        ViewRadius(self.headButton, WIDTH(self.headButton)*0.5);
-        
-        self.nickName.frame = CGRectMake(MaxX(self.headButton)+10, HEIGHT(self.headButton)*0.3, 100, 20);
-        self.deveceModel.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 200, 20);
-        
-        self.times.frame = CGRectMake(WIDTH(self)-120, MinY(self.nickName), 110, 20);
-        
-        CGFloat contentsHeight = [Utils detailTextHeight:_info.contents lineSpage:4 width:WIDTH(self)-20 font:14];
-        self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
-        
-        // 图片
-        if (!IsEmpty(_info.imgArr))
+        CGFloat height = (WIDTH(self)-30) / 3;
+        self.moreImgView.frame = CGRectMake(0, MaxY(self.contents)+10, WIDTH(self), height);
+    }
+    
+    if (!IsEmpty(_info.imgArr))
+    {
+        if (!IsEmpty(_praiseArr))
         {
-            CGFloat height = (WIDTH(self)-30) / 3;
-            self.moreImgView.frame = CGRectMake(0, MaxY(self.contents)+10, WIDTH(self), height);
-        }
-        
-        if (!IsEmpty(_info.imgArr))
-        {
-            if (!IsEmpty(_praiseArr))
-            {
-                self.praiseTag.frame = CGRectMake(10, MaxY(self.moreImgView)+5, WIDTH(self)-20, _praiseHeight);
-            }
-        }else
-        {
-            if (!IsEmpty(_praiseArr))
-            {
-                self.praiseTag.frame = CGRectMake(10, MaxY(self.contents)+5, WIDTH(self)-20, _praiseHeight);
-            }
+            self.praiseTag.frame = CGRectMake(10, MaxY(self.moreImgView)+5, WIDTH(self)-20, _praiseHeight);
         }
     }else
     {
-        
+        if (!IsEmpty(_praiseArr))
+        {
+            self.praiseTag.frame = CGRectMake(10, MaxY(self.contents)+5, WIDTH(self)-20, _praiseHeight);
+        }
     }
 }
 
@@ -94,7 +88,20 @@
 
 - (void)hchomeMoreImgView:(NSInteger)index
 {
-    DLog(@"第几张图片");
+    if ([self.delegates respondsToSelector:@selector(hchomeDetailTableViewCellSelectedImage:)])
+    {
+        [self.delegates hchomeDetailTableViewCellSelectedImage:index];
+    }
+}
+
+#pragma mark - HCPraiseTagListViewDelegate
+
+- (void)hcpraiseTagListViewSelectedTag:(NSInteger)index
+{
+    if ([self.delegates respondsToSelector:@selector(hchomeDetailTableViewCellSelectedTagWithUserid:)])
+    {
+        [self.delegates hchomeDetailTableViewCellSelectedTagWithUserid:index];
+    }
 }
 
 #pragma mark - setter or getter
@@ -210,6 +217,8 @@
     if (!_praiseTag)
     {
         _praiseTag = [[HCPraiseTagListView alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 20)];
+        _praiseTag.delegate = self;
+        _praiseTag.backgroundColor = [UIColor lightGrayColor];
     }
     return _praiseTag;
 }
