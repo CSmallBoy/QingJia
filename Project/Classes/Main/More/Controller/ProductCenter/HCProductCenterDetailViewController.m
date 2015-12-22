@@ -76,13 +76,20 @@ static NSString *IDCellF = @"introduction";
         return 300;
     }else
     {
-        return 132;
+        return 275;
     }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 64;
+    if (section == 1)
+    {
+        return 74;
+    }
+    else
+    {
+        return 10;
+    }
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -114,10 +121,15 @@ static NSString *IDCellF = @"introduction";
     [self.navigationController pushViewController:[HCBuyRecordsViewController new] animated:YES];
 }
 
--(void)showForbidDelete
+-(void)showForbidLabelDelete
 {
-    [self showHUDText:@"最小购买数为10"];
+    [self showHUDText:@"标签最小购买数为10"];
 
+}
+
+-(void)showForbidHotStampingMachineDelete
+{
+    [self showHUDText:@"烫印机最小购买数量为0"];
 }
 #pragma mark---setter or getter
 

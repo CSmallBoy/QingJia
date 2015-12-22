@@ -8,15 +8,13 @@
 
 #import "HCCustomTagUserInfoCell.h"
 #import "UIImageView+WebCache.h"
-
+#import "UIButton+WebCache.h"
 @interface HCCustomTagUserInfoCell ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *titleArr;
 @property (nonatomic, strong) NSArray *placeholderTitleArr;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic,strong) UIButton *headerIMGBtn;
-
-
 
 @end
 
@@ -66,18 +64,13 @@
 
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
-     self.titleLabel.text = self.titleArr[indexPath.row];
-//    self.textLabel.text = @"111111";
-   // if (indexPath.section == 0) {
+    self.titleLabel.text = self.titleArr[indexPath.row];
+
         if (indexPath.row == 0)
         {
-//            self.titleLabel.text = self.titleArr[indexPath.row];
-//            [self.contentView addSubview:self.titleLabel];
             [self.contentView addSubview: self.headerIMGBtn];
         }else if (indexPath.row != 0)
         {
-//            self.titleLabel.text = self.titleArr[indexPath.row];
-//            [self.contentView addSubview:self.titleLabel];
             NSAttributedString *attriString = [[NSAttributedString alloc] initWithString:self.placeholderTitleArr[indexPath.row - 1] attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]}];
             self.textField.attributedPlaceholder = attriString;
         }
@@ -114,13 +107,28 @@
     
 }
 
+#pragma mark --- privous Method
+
+-(void)handleheaderIMG
+{
+//    [self ]
+//    if ([self.delegate respondsToSelector:@selector(addUserHeaderIMG)])
+//    {
+     NSLog(@"1111");
+        [self.delegate addUserHeaderIMG];
+        
+//    }
+   
+}
+
+#pragma mark --  Setter Or Getter
 -(UIButton *)headerIMGBtn
 {
     if (!_headerIMGBtn) {
-        _headerIMGBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-50, 2, 40, 40)];
-        [_headerIMGBtn setBackgroundImage:OrigIMG(@"icon") forState:UIControlStateNormal];
-        _headerIMGBtn.backgroundColor = [UIColor redColor];
-        ViewBorderRadius(_headerIMGBtn, 45, 1, [UIColor grayColor]);
+        _headerIMGBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 2, 80, 80)];
+        [_headerIMGBtn setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
+//        [self.headerIMGBtn sd_setBackgroundImageWithURL:self.tagUserInfo.userImageUrlStr forState:UIControlEventTouchUpInside completed:nil];
+        [_headerIMGBtn addTarget:self action:@selector(handleheaderIMG) forControlEvents:UIControlEventTouchUpInside];
     }
     return _headerIMGBtn;
 }
@@ -147,7 +155,6 @@
     return _titleLabel;
 }
 
-
 - (NSArray *)placeholderTitleArr
 {
     if (!_placeholderTitleArr)
@@ -165,4 +172,5 @@
     }
     return _titleArr;
 }
+
 @end

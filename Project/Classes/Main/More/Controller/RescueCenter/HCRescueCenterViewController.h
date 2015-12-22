@@ -2,7 +2,7 @@
 //  HCRescueCenterViewController.h
 //  Project
 //
-//  Created by 陈福杰 on 15/12/15.
+//  Created by 朱宗汉 on 15/12/21.
 //  Copyright © 2015年 com.xxx. All rights reserved.
 //
 

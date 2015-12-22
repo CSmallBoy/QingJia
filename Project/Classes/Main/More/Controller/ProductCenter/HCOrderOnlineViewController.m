@@ -10,7 +10,8 @@
 #import "KWFormViewQuickBuilder.h"
 #import "HCTagUserInfo.h"
 
-
+#import "HCGoodsListTableViewCell.h"
+#import "HCPayWayTableViewCell.h"
 
 @interface HCOrderOnlineViewController ()<UITextViewDelegate>
 
@@ -47,31 +48,19 @@
             UITableViewCell* Tcell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"acceptGoodsAddress"];
             
                 [Tcell.contentView addSubview:self.acceptGoodsAddressTextView];
-
             cell = Tcell;
             
         }else if (indexPath.section == 1)
         {
-            UITableViewCell *ttcell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"goodsList"];
-            KWFormViewQuickBuilder *builder = [[KWFormViewQuickBuilder alloc]init];
- 
-            [builder addRecord: self.listTitleArr];
-            for (NSInteger i = 0; i < 1; i++) {
-                [builder addRecord:@[@"M-Talk二维码(定制版)",@"2",@"3"]];
-                 [builder addRecord:@[@"M-Talk烫印机",@"5",@"6"]];
-            }
-            CGFloat width = (WIDTH(self.view) - 130)*0.33;
-            CGFloat widths = WIDTH(self.view)*0.25;
-            width = (width > 90) ? widths : width;
-            KWFormView *formView = [builder startCreatWithWidths:@[@(width), @(width), @(width), @(MAX(90, width))] startPoint:CGPointMake(20, 20)];
-            [ttcell.contentView addSubview:formView];
-            
-            ttcell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell = ttcell;
+            HCGoodsListTableViewCell *goodsListcell = [[HCGoodsListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"goodsList"];
+            cell = goodsListcell;
         }else
         {
-        UITableViewCell* Tcell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"goodsList"];
+        HCPayWayTableViewCell* Tcell = [[HCPayWayTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"goodsList111"];
+            
         cell = Tcell;
+            
+            
         
     }
     }

@@ -13,8 +13,6 @@
 
 @optional
 
-
-
 -(void)addUserHeaderIMG;
 
 @end

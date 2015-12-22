@@ -14,7 +14,8 @@
 -(id)mutableCopyWithZone:(NSZone *)zone
 {
     HCTagUserInfo *tagUserInfo = [[[self class]allocWithZone:zone]init];
-    tagUserInfo.userImage = [_userImage mutableCopy];
+    tagUserInfo.userImageStr = [_userImageStr mutableCopy];
+     tagUserInfo.userImageUrlStr = [_userImageUrlStr mutableCopy];
     tagUserInfo.userName = [_userName mutableCopy];
     tagUserInfo.userGender = [_userGender mutableCopy];
     tagUserInfo.userBirthday = [_userBirthday mutableCopy];

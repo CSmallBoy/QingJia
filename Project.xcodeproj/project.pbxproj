@@ -109,16 +109,6 @@
 		0A80DE6D1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A80DE6B1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib */; };
 		0A8A4F7C1C1FD6C900753D65 /* HCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */; };
 		0A8A4F821C1FD7FE00753D65 /* HCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */; };
-		0A8A4F851C1FD81900753D65 /* HCMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F841C1FD81900753D65 /* HCMoreViewController.m */; };
-		0A8A4F8C1C1FF71900753D65 /* HCMoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F8B1C1FF71900753D65 /* HCMoreInfo.m */; };
-		0A8A4F8F1C1FF7FE00753D65 /* HCMoreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F8E1C1FF7FE00753D65 /* HCMoreCollectionViewCell.m */; };
-		0A8A4FAA1C2001C500753D65 /* HCAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4FA91C2001C500753D65 /* HCAddItemViewController.m */; };
-		0A8A4FAD1C2001E000753D65 /* HClassCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4FAC1C2001E000753D65 /* HClassCalendarViewController.m */; };
-		0A8A4FB01C2001F100753D65 /* HCNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4FAF1C2001F100753D65 /* HCNotificationViewController.m */; };
-		0A8A4FB61C20021600753D65 /* HCPromisedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4FB51C20021600753D65 /* HCPromisedViewController.m */; };
-		0A8A4FB91C20022600753D65 /* HCRescueCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4FB81C20022600753D65 /* HCRescueCenterViewController.m */; };
-		0A8A4FBF1C2002B600753D65 /* HCTagManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4FBE1C2002B600753D65 /* HCTagManagerViewController.m */; };
-		0A8A4FC21C2002CB00753D65 /* HCTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4FC11C2002CB00753D65 /* HCTimeViewController.m */; };
 		0AA0EB981C1536F3007F7EAB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB971C1536F3007F7EAB /* AddressBook.framework */; };
 		0AA0EB9A1C1536FB007F7EAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */; };
 		0AAB69A31C06009800A0A2E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB69A21C06009800A0A2E8 /* AppDelegate.m */; };
@@ -139,19 +129,6 @@
 		0AC40DC11C2270E20074AA79 /* HCHomeDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DC01C2270E20074AA79 /* HCHomeDetailInfo.m */; };
 		0AC40DC41C2273940074AA79 /* HCHomeDetailUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DC31C2273940074AA79 /* HCHomeDetailUserInfo.m */; };
 		0AC40DC71C22B71D0074AA79 /* HCPublishTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC40DC61C22B71D0074AA79 /* HCPublishTableViewCell.m */; };
-		0AC89D311C28ED70003EED90 /* HCCustomTagApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D301C28ED70003EED90 /* HCCustomTagApi.m */; };
-		0AC89D381C28EE44003EED90 /* HCCustomTagContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D331C28EE44003EED90 /* HCCustomTagContactTableViewCell.m */; };
-		0AC89D391C28EE44003EED90 /* HCCustomTagUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D351C28EE44003EED90 /* HCCustomTagUserInfoCell.m */; };
-		0AC89D3A1C28EE44003EED90 /* HCCustomTagUserMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D371C28EE44003EED90 /* HCCustomTagUserMedicalCell.m */; };
-		0AC89D3D1C28EE86003EED90 /* HCProductIntroductionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D3C1C28EE86003EED90 /* HCProductIntroductionCell.m */; };
-		0AC89D421C28EEAA003EED90 /* HCContactPersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D3F1C28EEAA003EED90 /* HCContactPersonInfo.m */; };
-		0AC89D431C28EEAA003EED90 /* HCTagUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D411C28EEAA003EED90 /* HCTagUserInfo.m */; };
-		0AC89D461C28EEC1003EED90 /* HCProductIntroductionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D451C28EEC1003EED90 /* HCProductIntroductionInfo.m */; };
-		0AC89D551C28F120003EED90 /* HCBuyRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D4C1C28F120003EED90 /* HCBuyRecordsViewController.m */; };
-		0AC89D561C28F120003EED90 /* HCCustomTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D4E1C28F120003EED90 /* HCCustomTagViewController.m */; };
-		0AC89D571C28F120003EED90 /* HCOrderOnlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D501C28F120003EED90 /* HCOrderOnlineViewController.m */; };
-		0AC89D581C28F120003EED90 /* HCProducCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D521C28F120003EED90 /* HCProducCenterViewController.m */; };
-		0AC89D591C28F120003EED90 /* HCProductCenterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D541C28F120003EED90 /* HCProductCenterDetailViewController.m */; };
 		0AC89D5E1C28F1B2003EED90 /* HCLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D5B1C28F1B2003EED90 /* HCLeftViewController.m */; };
 		0AC89D621C28F1C6003EED90 /* HCLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D611C28F1C6003EED90 /* HCLeftView.m */; };
 		0AC89D651C28F21F003EED90 /* HCHomePictureDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D641C28F21F003EED90 /* HCHomePictureDetailViewController.m */; };
@@ -172,8 +149,54 @@
 		0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83A1BF5887700DCA75A /* KWFormView.m */; };
 		0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */; };
 		3AA0DCFA47C83622EEE93AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9376B27D02CD20170277F57 /* libPods.a */; };
-		C7C907AF1C227B5D0054CB7C /* HCProductIntrodApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C907AE1C227B5D0054CB7C /* HCProductIntrodApi.m */; };
 		C7C907B21C227BB90054CB7C /* HCImgViewTagList.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C907B11C227BB90054CB7C /* HCImgViewTagList.m */; };
+		C7E252A81C2942D300204959 /* HCAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2523B1C2942D300204959 /* HCAddItemViewController.m */; };
+		C7E252A91C2942D300204959 /* HClassCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2523E1C2942D300204959 /* HClassCalendarViewController.m */; };
+		C7E252AA1C2942D300204959 /* HCMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252401C2942D300204959 /* HCMoreViewController.m */; };
+		C7E252AB1C2942D300204959 /* HCFollowNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252431C2942D300204959 /* HCFollowNotificationViewController.m */; };
+		C7E252AC1C2942D300204959 /* HCNotificationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252451C2942D300204959 /* HCNotificationDetailViewController.m */; };
+		C7E252AD1C2942D300204959 /* HCNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252471C2942D300204959 /* HCNotificationViewController.m */; };
+		C7E252AE1C2942D300204959 /* HCReadNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252491C2942D300204959 /* HCReadNotificationViewController.m */; };
+		C7E252AF1C2942D300204959 /* HCUnReadNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2524B1C2942D300204959 /* HCUnReadNotificationViewController.m */; };
+		C7E252B01C2942D300204959 /* HCAfterSalesApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2524E1C2942D300204959 /* HCAfterSalesApplyViewController.m */; };
+		C7E252B11C2942D300204959 /* HCBuyRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252501C2942D300204959 /* HCBuyRecordsViewController.m */; };
+		C7E252B21C2942D300204959 /* HCCustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252521C2942D300204959 /* HCCustomerViewController.m */; };
+		C7E252B31C2942D300204959 /* HCCustomTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252541C2942D300204959 /* HCCustomTagViewController.m */; };
+		C7E252B41C2942D300204959 /* HCJDBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252561C2942D300204959 /* HCJDBuyViewController.m */; };
+		C7E252B51C2942D300204959 /* HCLogisticsInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252581C2942D300204959 /* HCLogisticsInfoViewController.m */; };
+		C7E252B61C2942D300204959 /* HCOrderOnlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2525A1C2942D300204959 /* HCOrderOnlineViewController.m */; };
+		C7E252B71C2942D300204959 /* HCProducCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2525C1C2942D300204959 /* HCProducCenterViewController.m */; };
+		C7E252B81C2942D300204959 /* HCProductCenterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2525E1C2942D300204959 /* HCProductCenterDetailViewController.m */; };
+		C7E252B91C2942D300204959 /* HCTaoBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252601C2942D300204959 /* HCTaoBaoViewController.m */; };
+		C7E252BA1C2942D300204959 /* HCRefundSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252631C2942D300204959 /* HCRefundSuccessViewController.m */; };
+		C7E252BB1C2942D300204959 /* HCPromisedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252661C2942D300204959 /* HCPromisedViewController.m */; };
+		C7E252BC1C2942D300204959 /* HCCaseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252691C2942D300204959 /* HCCaseDetailViewController.m */; };
+		C7E252BD1C2942D300204959 /* HCRescueCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2526B1C2942D300204959 /* HCRescueCenterViewController.m */; };
+		C7E252BE1C2942D300204959 /* HCTagManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2526E1C2942D300204959 /* HCTagManagerViewController.m */; };
+		C7E252BF1C2942D300204959 /* HCTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252711C2942D300204959 /* HCTimeViewController.m */; };
+		C7E252C01C2942D300204959 /* HCMoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252741C2942D300204959 /* HCMoreInfo.m */; };
+		C7E252C11C2942D300204959 /* HCNotificationCenterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252771C2942D300204959 /* HCNotificationCenterInfo.m */; };
+		C7E252C21C2942D300204959 /* HCContactPersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2527B1C2942D300204959 /* HCContactPersonInfo.m */; };
+		C7E252C31C2942D300204959 /* HCTagUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2527D1C2942D300204959 /* HCTagUserInfo.m */; };
+		C7E252C41C2942D300204959 /* HCLogisticsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252801C2942D300204959 /* HCLogisticsInfo.m */; };
+		C7E252C51C2942D300204959 /* HCProductIntroductionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252831C2942D300204959 /* HCProductIntroductionInfo.m */; };
+		C7E252C61C2942D300204959 /* HCMoreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252861C2942D300204959 /* HCMoreCollectionViewCell.m */; };
+		C7E252C71C2942D300204959 /* HCButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252891C2942D300204959 /* HCButtonItem.m */; };
+		C7E252C81C2942D300204959 /* HCNotificationCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2528B1C2942D300204959 /* HCNotificationCenterTableViewCell.m */; };
+		C7E252C91C2942D300204959 /* HCBuyRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2528F1C2942D300204959 /* HCBuyRecordTableViewCell.m */; };
+		C7E252CA1C2942D300204959 /* HCLogisticsInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252921C2942D300204959 /* HCLogisticsInfoTableViewCell.m */; };
+		C7E252CB1C2942D300204959 /* HCLogisticsInfoTableViewCellSecond.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252941C2942D300204959 /* HCLogisticsInfoTableViewCellSecond.m */; };
+		C7E252CC1C2942D300204959 /* HCCustomerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252971C2942D300204959 /* HCCustomerTableViewCell.m */; };
+		C7E252CD1C2942D300204959 /* HCCustomTagContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2529A1C2942D300204959 /* HCCustomTagContactTableViewCell.m */; };
+		C7E252CE1C2942D300204959 /* HCCustomTagUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2529C1C2942D300204959 /* HCCustomTagUserInfoCell.m */; };
+		C7E252CF1C2942D300204959 /* HCCustomTagUserMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E2529E1C2942D300204959 /* HCCustomTagUserMedicalCell.m */; };
+		C7E252D01C2942D300204959 /* HCGoodsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252A11C2942D300204959 /* HCGoodsListTableViewCell.m */; };
+		C7E252D11C2942D300204959 /* HCPayWayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252A31C2942D300204959 /* HCPayWayTableViewCell.m */; };
+		C7E252D21C2942D300204959 /* HCPayWayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E252A41C2942D300204959 /* HCPayWayTableViewCell.xib */; };
+		C7E252D31C2942D300204959 /* HCProductIntroductionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252A71C2942D300204959 /* HCProductIntroductionCell.m */; };
+		C7E252DD1C29430A00204959 /* HCNotificationCenterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252D71C29430A00204959 /* HCNotificationCenterApi.m */; };
+		C7E252DE1C29430A00204959 /* HCCustomTagApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252DA1C29430A00204959 /* HCCustomTagApi.m */; };
+		C7E252DF1C29430A00204959 /* HCProductIntrodApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E252DC1C29430A00204959 /* HCProductIntrodApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -384,26 +407,6 @@
 		0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeViewController.m; sourceTree = "<group>"; };
 		0A8A4F801C1FD7FE00753D65 /* HCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessageViewController.h; sourceTree = "<group>"; };
 		0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessageViewController.m; sourceTree = "<group>"; };
-		0A8A4F831C1FD81900753D65 /* HCMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMoreViewController.h; sourceTree = "<group>"; };
-		0A8A4F841C1FD81900753D65 /* HCMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMoreViewController.m; sourceTree = "<group>"; };
-		0A8A4F8A1C1FF71900753D65 /* HCMoreInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMoreInfo.h; sourceTree = "<group>"; };
-		0A8A4F8B1C1FF71900753D65 /* HCMoreInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMoreInfo.m; sourceTree = "<group>"; };
-		0A8A4F8D1C1FF7FE00753D65 /* HCMoreCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMoreCollectionViewCell.h; sourceTree = "<group>"; };
-		0A8A4F8E1C1FF7FE00753D65 /* HCMoreCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMoreCollectionViewCell.m; sourceTree = "<group>"; };
-		0A8A4FA81C2001C500753D65 /* HCAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddItemViewController.h; sourceTree = "<group>"; };
-		0A8A4FA91C2001C500753D65 /* HCAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddItemViewController.m; sourceTree = "<group>"; };
-		0A8A4FAB1C2001E000753D65 /* HClassCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClassCalendarViewController.h; sourceTree = "<group>"; };
-		0A8A4FAC1C2001E000753D65 /* HClassCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClassCalendarViewController.m; sourceTree = "<group>"; };
-		0A8A4FAE1C2001F100753D65 /* HCNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationViewController.h; sourceTree = "<group>"; };
-		0A8A4FAF1C2001F100753D65 /* HCNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationViewController.m; sourceTree = "<group>"; };
-		0A8A4FB41C20021600753D65 /* HCPromisedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedViewController.h; sourceTree = "<group>"; };
-		0A8A4FB51C20021600753D65 /* HCPromisedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedViewController.m; sourceTree = "<group>"; };
-		0A8A4FB71C20022600753D65 /* HCRescueCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCRescueCenterViewController.h; sourceTree = "<group>"; };
-		0A8A4FB81C20022600753D65 /* HCRescueCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCRescueCenterViewController.m; sourceTree = "<group>"; };
-		0A8A4FBD1C2002B600753D65 /* HCTagManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagManagerViewController.h; sourceTree = "<group>"; };
-		0A8A4FBE1C2002B600753D65 /* HCTagManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagManagerViewController.m; sourceTree = "<group>"; };
-		0A8A4FC01C2002CB00753D65 /* HCTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTimeViewController.h; sourceTree = "<group>"; };
-		0A8A4FC11C2002CB00753D65 /* HCTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTimeViewController.m; sourceTree = "<group>"; };
 		0AA0EB971C1536F3007F7EAB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		0AAB69A21C06009800A0A2E8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -439,32 +442,6 @@
 		0AC40DC31C2273940074AA79 /* HCHomeDetailUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeDetailUserInfo.m; sourceTree = "<group>"; };
 		0AC40DC51C22B71D0074AA79 /* HCPublishTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPublishTableViewCell.h; sourceTree = "<group>"; };
 		0AC40DC61C22B71D0074AA79 /* HCPublishTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPublishTableViewCell.m; sourceTree = "<group>"; };
-		0AC89D2F1C28ED70003EED90 /* HCCustomTagApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCustomTagApi.h; sourceTree = "<group>"; };
-		0AC89D301C28ED70003EED90 /* HCCustomTagApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCustomTagApi.m; sourceTree = "<group>"; };
-		0AC89D321C28EE44003EED90 /* HCCustomTagContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCCustomTagContactTableViewCell.h; path = Project/Classes/Main/More/View/ProductCenter/HCCustomTagCell/HCCustomTagContactTableViewCell.h; sourceTree = SOURCE_ROOT; };
-		0AC89D331C28EE44003EED90 /* HCCustomTagContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCCustomTagContactTableViewCell.m; path = Project/Classes/Main/More/View/ProductCenter/HCCustomTagCell/HCCustomTagContactTableViewCell.m; sourceTree = SOURCE_ROOT; };
-		0AC89D341C28EE44003EED90 /* HCCustomTagUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCCustomTagUserInfoCell.h; path = Project/Classes/Main/More/View/ProductCenter/HCCustomTagCell/HCCustomTagUserInfoCell.h; sourceTree = SOURCE_ROOT; };
-		0AC89D351C28EE44003EED90 /* HCCustomTagUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCCustomTagUserInfoCell.m; path = Project/Classes/Main/More/View/ProductCenter/HCCustomTagCell/HCCustomTagUserInfoCell.m; sourceTree = SOURCE_ROOT; };
-		0AC89D361C28EE44003EED90 /* HCCustomTagUserMedicalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCCustomTagUserMedicalCell.h; path = Project/Classes/Main/More/View/ProductCenter/HCCustomTagCell/HCCustomTagUserMedicalCell.h; sourceTree = SOURCE_ROOT; };
-		0AC89D371C28EE44003EED90 /* HCCustomTagUserMedicalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCCustomTagUserMedicalCell.m; path = Project/Classes/Main/More/View/ProductCenter/HCCustomTagCell/HCCustomTagUserMedicalCell.m; sourceTree = SOURCE_ROOT; };
-		0AC89D3B1C28EE86003EED90 /* HCProductIntroductionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCProductIntroductionCell.h; path = Project/Classes/Main/More/View/ProductCenter/HCProductDetail/HCProductIntroductionCell.h; sourceTree = SOURCE_ROOT; };
-		0AC89D3C1C28EE86003EED90 /* HCProductIntroductionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCProductIntroductionCell.m; path = Project/Classes/Main/More/View/ProductCenter/HCProductDetail/HCProductIntroductionCell.m; sourceTree = SOURCE_ROOT; };
-		0AC89D3E1C28EEAA003EED90 /* HCContactPersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCContactPersonInfo.h; path = Project/Classes/Main/More/Model/ProductCenter/CustomTagInfo/HCContactPersonInfo.h; sourceTree = SOURCE_ROOT; };
-		0AC89D3F1C28EEAA003EED90 /* HCContactPersonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCContactPersonInfo.m; path = Project/Classes/Main/More/Model/ProductCenter/CustomTagInfo/HCContactPersonInfo.m; sourceTree = SOURCE_ROOT; };
-		0AC89D401C28EEAA003EED90 /* HCTagUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCTagUserInfo.h; path = Project/Classes/Main/More/Model/ProductCenter/CustomTagInfo/HCTagUserInfo.h; sourceTree = SOURCE_ROOT; };
-		0AC89D411C28EEAA003EED90 /* HCTagUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCTagUserInfo.m; path = Project/Classes/Main/More/Model/ProductCenter/CustomTagInfo/HCTagUserInfo.m; sourceTree = SOURCE_ROOT; };
-		0AC89D441C28EEC1003EED90 /* HCProductIntroductionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCProductIntroductionInfo.h; path = Project/Classes/Main/More/Model/ProductCenter/HCProductIntroductionInfo/HCProductIntroductionInfo.h; sourceTree = SOURCE_ROOT; };
-		0AC89D451C28EEC1003EED90 /* HCProductIntroductionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCProductIntroductionInfo.m; path = Project/Classes/Main/More/Model/ProductCenter/HCProductIntroductionInfo/HCProductIntroductionInfo.m; sourceTree = SOURCE_ROOT; };
-		0AC89D4B1C28F120003EED90 /* HCBuyRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCBuyRecordsViewController.h; path = Project/Classes/Main/More/Controller/ProductCenter/HCBuyRecordsViewController.h; sourceTree = SOURCE_ROOT; };
-		0AC89D4C1C28F120003EED90 /* HCBuyRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCBuyRecordsViewController.m; path = Project/Classes/Main/More/Controller/ProductCenter/HCBuyRecordsViewController.m; sourceTree = SOURCE_ROOT; };
-		0AC89D4D1C28F120003EED90 /* HCCustomTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCCustomTagViewController.h; path = Project/Classes/Main/More/Controller/ProductCenter/HCCustomTagViewController.h; sourceTree = SOURCE_ROOT; };
-		0AC89D4E1C28F120003EED90 /* HCCustomTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCCustomTagViewController.m; path = Project/Classes/Main/More/Controller/ProductCenter/HCCustomTagViewController.m; sourceTree = SOURCE_ROOT; };
-		0AC89D4F1C28F120003EED90 /* HCOrderOnlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCOrderOnlineViewController.h; path = Project/Classes/Main/More/Controller/ProductCenter/HCOrderOnlineViewController.h; sourceTree = SOURCE_ROOT; };
-		0AC89D501C28F120003EED90 /* HCOrderOnlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCOrderOnlineViewController.m; path = Project/Classes/Main/More/Controller/ProductCenter/HCOrderOnlineViewController.m; sourceTree = SOURCE_ROOT; };
-		0AC89D511C28F120003EED90 /* HCProducCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCProducCenterViewController.h; path = Project/Classes/Main/More/Controller/ProductCenter/HCProducCenterViewController.h; sourceTree = SOURCE_ROOT; };
-		0AC89D521C28F120003EED90 /* HCProducCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCProducCenterViewController.m; path = Project/Classes/Main/More/Controller/ProductCenter/HCProducCenterViewController.m; sourceTree = SOURCE_ROOT; };
-		0AC89D531C28F120003EED90 /* HCProductCenterDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCProductCenterDetailViewController.h; path = Project/Classes/Main/More/Controller/ProductCenter/HCProductCenterDetailViewController.h; sourceTree = SOURCE_ROOT; };
-		0AC89D541C28F120003EED90 /* HCProductCenterDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCProductCenterDetailViewController.m; path = Project/Classes/Main/More/Controller/ProductCenter/HCProductCenterDetailViewController.m; sourceTree = SOURCE_ROOT; };
 		0AC89D5A1C28F1B2003EED90 /* HCLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLeftViewController.h; sourceTree = "<group>"; };
 		0AC89D5B1C28F1B2003EED90 /* HCLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLeftViewController.m; sourceTree = "<group>"; };
 		0AC89D601C28F1C6003EED90 /* HCLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLeftView.h; sourceTree = "<group>"; };
@@ -504,10 +481,101 @@
 		0AF9B83B1BF5887700DCA75A /* KWFormViewQuickBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFormViewQuickBuilder.h; sourceTree = "<group>"; };
 		0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFormViewQuickBuilder.m; sourceTree = "<group>"; };
 		6ACE64504D5E86E87CC78BEE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		C7C907AD1C227B5D0054CB7C /* HCProductIntrodApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductIntrodApi.h; sourceTree = "<group>"; };
-		C7C907AE1C227B5D0054CB7C /* HCProductIntrodApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductIntrodApi.m; sourceTree = "<group>"; };
 		C7C907B01C227BB90054CB7C /* HCImgViewTagList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCImgViewTagList.h; sourceTree = "<group>"; };
 		C7C907B11C227BB90054CB7C /* HCImgViewTagList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCImgViewTagList.m; sourceTree = "<group>"; };
+		C7E2523A1C2942D300204959 /* HCAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddItemViewController.h; sourceTree = "<group>"; };
+		C7E2523B1C2942D300204959 /* HCAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddItemViewController.m; sourceTree = "<group>"; };
+		C7E2523D1C2942D300204959 /* HClassCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClassCalendarViewController.h; sourceTree = "<group>"; };
+		C7E2523E1C2942D300204959 /* HClassCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClassCalendarViewController.m; sourceTree = "<group>"; };
+		C7E2523F1C2942D300204959 /* HCMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMoreViewController.h; sourceTree = "<group>"; };
+		C7E252401C2942D300204959 /* HCMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMoreViewController.m; sourceTree = "<group>"; };
+		C7E252421C2942D300204959 /* HCFollowNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFollowNotificationViewController.h; sourceTree = "<group>"; };
+		C7E252431C2942D300204959 /* HCFollowNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFollowNotificationViewController.m; sourceTree = "<group>"; };
+		C7E252441C2942D300204959 /* HCNotificationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationDetailViewController.h; sourceTree = "<group>"; };
+		C7E252451C2942D300204959 /* HCNotificationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationDetailViewController.m; sourceTree = "<group>"; };
+		C7E252461C2942D300204959 /* HCNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationViewController.h; sourceTree = "<group>"; };
+		C7E252471C2942D300204959 /* HCNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationViewController.m; sourceTree = "<group>"; };
+		C7E252481C2942D300204959 /* HCReadNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReadNotificationViewController.h; sourceTree = "<group>"; };
+		C7E252491C2942D300204959 /* HCReadNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReadNotificationViewController.m; sourceTree = "<group>"; };
+		C7E2524A1C2942D300204959 /* HCUnReadNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUnReadNotificationViewController.h; sourceTree = "<group>"; };
+		C7E2524B1C2942D300204959 /* HCUnReadNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUnReadNotificationViewController.m; sourceTree = "<group>"; };
+		C7E2524D1C2942D300204959 /* HCAfterSalesApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAfterSalesApplyViewController.h; sourceTree = "<group>"; };
+		C7E2524E1C2942D300204959 /* HCAfterSalesApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAfterSalesApplyViewController.m; sourceTree = "<group>"; };
+		C7E2524F1C2942D300204959 /* HCBuyRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBuyRecordsViewController.h; sourceTree = "<group>"; };
+		C7E252501C2942D300204959 /* HCBuyRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBuyRecordsViewController.m; sourceTree = "<group>"; };
+		C7E252511C2942D300204959 /* HCCustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCustomerViewController.h; sourceTree = "<group>"; };
+		C7E252521C2942D300204959 /* HCCustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCustomerViewController.m; sourceTree = "<group>"; };
+		C7E252531C2942D300204959 /* HCCustomTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCustomTagViewController.h; sourceTree = "<group>"; };
+		C7E252541C2942D300204959 /* HCCustomTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCustomTagViewController.m; sourceTree = "<group>"; };
+		C7E252551C2942D300204959 /* HCJDBuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCJDBuyViewController.h; sourceTree = "<group>"; };
+		C7E252561C2942D300204959 /* HCJDBuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCJDBuyViewController.m; sourceTree = "<group>"; };
+		C7E252571C2942D300204959 /* HCLogisticsInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLogisticsInfoViewController.h; sourceTree = "<group>"; };
+		C7E252581C2942D300204959 /* HCLogisticsInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLogisticsInfoViewController.m; sourceTree = "<group>"; };
+		C7E252591C2942D300204959 /* HCOrderOnlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCOrderOnlineViewController.h; sourceTree = "<group>"; };
+		C7E2525A1C2942D300204959 /* HCOrderOnlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCOrderOnlineViewController.m; sourceTree = "<group>"; };
+		C7E2525B1C2942D300204959 /* HCProducCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProducCenterViewController.h; sourceTree = "<group>"; };
+		C7E2525C1C2942D300204959 /* HCProducCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProducCenterViewController.m; sourceTree = "<group>"; };
+		C7E2525D1C2942D300204959 /* HCProductCenterDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductCenterDetailViewController.h; sourceTree = "<group>"; };
+		C7E2525E1C2942D300204959 /* HCProductCenterDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductCenterDetailViewController.m; sourceTree = "<group>"; };
+		C7E2525F1C2942D300204959 /* HCTaoBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTaoBaoViewController.h; sourceTree = "<group>"; };
+		C7E252601C2942D300204959 /* HCTaoBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTaoBaoViewController.m; sourceTree = "<group>"; };
+		C7E252621C2942D300204959 /* HCRefundSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCRefundSuccessViewController.h; sourceTree = "<group>"; };
+		C7E252631C2942D300204959 /* HCRefundSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCRefundSuccessViewController.m; sourceTree = "<group>"; };
+		C7E252651C2942D300204959 /* HCPromisedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedViewController.h; sourceTree = "<group>"; };
+		C7E252661C2942D300204959 /* HCPromisedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedViewController.m; sourceTree = "<group>"; };
+		C7E252681C2942D300204959 /* HCCaseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCaseDetailViewController.h; sourceTree = "<group>"; };
+		C7E252691C2942D300204959 /* HCCaseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCaseDetailViewController.m; sourceTree = "<group>"; };
+		C7E2526A1C2942D300204959 /* HCRescueCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCRescueCenterViewController.h; sourceTree = "<group>"; };
+		C7E2526B1C2942D300204959 /* HCRescueCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCRescueCenterViewController.m; sourceTree = "<group>"; };
+		C7E2526D1C2942D300204959 /* HCTagManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagManagerViewController.h; sourceTree = "<group>"; };
+		C7E2526E1C2942D300204959 /* HCTagManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagManagerViewController.m; sourceTree = "<group>"; };
+		C7E252701C2942D300204959 /* HCTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTimeViewController.h; sourceTree = "<group>"; };
+		C7E252711C2942D300204959 /* HCTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTimeViewController.m; sourceTree = "<group>"; };
+		C7E252731C2942D300204959 /* HCMoreInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMoreInfo.h; sourceTree = "<group>"; };
+		C7E252741C2942D300204959 /* HCMoreInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMoreInfo.m; sourceTree = "<group>"; };
+		C7E252761C2942D300204959 /* HCNotificationCenterInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationCenterInfo.h; sourceTree = "<group>"; };
+		C7E252771C2942D300204959 /* HCNotificationCenterInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationCenterInfo.m; sourceTree = "<group>"; };
+		C7E2527A1C2942D300204959 /* HCContactPersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCContactPersonInfo.h; sourceTree = "<group>"; };
+		C7E2527B1C2942D300204959 /* HCContactPersonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCContactPersonInfo.m; sourceTree = "<group>"; };
+		C7E2527C1C2942D300204959 /* HCTagUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagUserInfo.h; sourceTree = "<group>"; };
+		C7E2527D1C2942D300204959 /* HCTagUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagUserInfo.m; sourceTree = "<group>"; };
+		C7E2527F1C2942D300204959 /* HCLogisticsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLogisticsInfo.h; sourceTree = "<group>"; };
+		C7E252801C2942D300204959 /* HCLogisticsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLogisticsInfo.m; sourceTree = "<group>"; };
+		C7E252821C2942D300204959 /* HCProductIntroductionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductIntroductionInfo.h; sourceTree = "<group>"; };
+		C7E252831C2942D300204959 /* HCProductIntroductionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductIntroductionInfo.m; sourceTree = "<group>"; };
+		C7E252851C2942D300204959 /* HCMoreCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMoreCollectionViewCell.h; sourceTree = "<group>"; };
+		C7E252861C2942D300204959 /* HCMoreCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMoreCollectionViewCell.m; sourceTree = "<group>"; };
+		C7E252881C2942D300204959 /* HCButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCButtonItem.h; sourceTree = "<group>"; };
+		C7E252891C2942D300204959 /* HCButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCButtonItem.m; sourceTree = "<group>"; };
+		C7E2528A1C2942D300204959 /* HCNotificationCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationCenterTableViewCell.h; sourceTree = "<group>"; };
+		C7E2528B1C2942D300204959 /* HCNotificationCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationCenterTableViewCell.m; sourceTree = "<group>"; };
+		C7E2528E1C2942D300204959 /* HCBuyRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBuyRecordTableViewCell.h; sourceTree = "<group>"; };
+		C7E2528F1C2942D300204959 /* HCBuyRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBuyRecordTableViewCell.m; sourceTree = "<group>"; };
+		C7E252911C2942D300204959 /* HCLogisticsInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLogisticsInfoTableViewCell.h; sourceTree = "<group>"; };
+		C7E252921C2942D300204959 /* HCLogisticsInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLogisticsInfoTableViewCell.m; sourceTree = "<group>"; };
+		C7E252931C2942D300204959 /* HCLogisticsInfoTableViewCellSecond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLogisticsInfoTableViewCellSecond.h; sourceTree = "<group>"; };
+		C7E252941C2942D300204959 /* HCLogisticsInfoTableViewCellSecond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLogisticsInfoTableViewCellSecond.m; sourceTree = "<group>"; };
+		C7E252961C2942D300204959 /* HCCustomerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCustomerTableViewCell.h; sourceTree = "<group>"; };
+		C7E252971C2942D300204959 /* HCCustomerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCustomerTableViewCell.m; sourceTree = "<group>"; };
+		C7E252991C2942D300204959 /* HCCustomTagContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCustomTagContactTableViewCell.h; sourceTree = "<group>"; };
+		C7E2529A1C2942D300204959 /* HCCustomTagContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCustomTagContactTableViewCell.m; sourceTree = "<group>"; };
+		C7E2529B1C2942D300204959 /* HCCustomTagUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCustomTagUserInfoCell.h; sourceTree = "<group>"; };
+		C7E2529C1C2942D300204959 /* HCCustomTagUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCustomTagUserInfoCell.m; sourceTree = "<group>"; };
+		C7E2529D1C2942D300204959 /* HCCustomTagUserMedicalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCustomTagUserMedicalCell.h; sourceTree = "<group>"; };
+		C7E2529E1C2942D300204959 /* HCCustomTagUserMedicalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCustomTagUserMedicalCell.m; sourceTree = "<group>"; };
+		C7E252A01C2942D300204959 /* HCGoodsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGoodsListTableViewCell.h; sourceTree = "<group>"; };
+		C7E252A11C2942D300204959 /* HCGoodsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGoodsListTableViewCell.m; sourceTree = "<group>"; };
+		C7E252A21C2942D300204959 /* HCPayWayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPayWayTableViewCell.h; sourceTree = "<group>"; };
+		C7E252A31C2942D300204959 /* HCPayWayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPayWayTableViewCell.m; sourceTree = "<group>"; };
+		C7E252A41C2942D300204959 /* HCPayWayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCPayWayTableViewCell.xib; sourceTree = "<group>"; };
+		C7E252A61C2942D300204959 /* HCProductIntroductionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductIntroductionCell.h; sourceTree = "<group>"; };
+		C7E252A71C2942D300204959 /* HCProductIntroductionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductIntroductionCell.m; sourceTree = "<group>"; };
+		C7E252D61C29430A00204959 /* HCNotificationCenterApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationCenterApi.h; sourceTree = "<group>"; };
+		C7E252D71C29430A00204959 /* HCNotificationCenterApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationCenterApi.m; sourceTree = "<group>"; };
+		C7E252D91C29430A00204959 /* HCCustomTagApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCustomTagApi.h; sourceTree = "<group>"; };
+		C7E252DA1C29430A00204959 /* HCCustomTagApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCustomTagApi.m; sourceTree = "<group>"; };
+		C7E252DB1C29430A00204959 /* HCProductIntrodApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductIntrodApi.h; sourceTree = "<group>"; };
+		C7E252DC1C29430A00204959 /* HCProductIntrodApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductIntrodApi.m; sourceTree = "<group>"; };
 		C95F998133825127EECF22B1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E9376B27D02CD20170277F57 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -856,11 +924,11 @@
 		0A6B7E111BF1EB74008D54B3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				C7E252371C2942D300204959 /* More */,
 				0AEEDDBB1C21016A0065A8FF /* Scan */,
 				0A8A4F861C1FDCA700753D65 /* Left */,
 				0A8A4F6E1C1FD65C00753D65 /* Home */,
 				0A8A4F721C1FD65C00753D65 /* Message */,
-				0A8A4F761C1FD65C00753D65 /* More */,
 				0ABAFE971BF34591009ABF57 /* Network */,
 				0A6B7E791BF1EB74008D54B3 /* Login */,
 				0A6B7E981BF1EB74008D54B3 /* Other */,
@@ -1109,67 +1177,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		0A8A4F761C1FD65C00753D65 /* More */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4F771C1FD65C00753D65 /* Controller */,
-				0A8A4F781C1FD65C00753D65 /* Model */,
-				0A8A4F791C1FD65C00753D65 /* View */,
-			);
-			path = More;
-			sourceTree = "<group>";
-		};
-		0A8A4F771C1FD65C00753D65 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4FBA1C20025200753D65 /* TagManager */,
-				0A8A4F901C20013B00753D65 /* AddItem */,
-				0A8A4F911C20013B00753D65 /* ClassCalendar */,
-				0A8A4F921C20013B00753D65 /* Notification */,
-				0A8A4F941C20013B00753D65 /* Promised */,
-				C7C7072B1C241901004FDC36 /* ProductCenter */,
-				0A8A4F951C20013B00753D65 /* RescueCenter */,
-				0A8A4F971C20013B00753D65 /* Time */,
-				0A8A4F831C1FD81900753D65 /* HCMoreViewController.h */,
-				0A8A4F841C1FD81900753D65 /* HCMoreViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		0A8A4F781C1FD65C00753D65 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4FBB1C20026E00753D65 /* TagManager */,
-				0A8A4F981C20015100753D65 /* AddItem */,
-				0A8A4F991C20015100753D65 /* ClassCalendar */,
-				C7C9079E1C227A410054CB7C /* ProductCenter */,
-				0A8A4F9A1C20015100753D65 /* Notification */,
-				0A8A4F9C1C20015100753D65 /* Promised */,
-				0A8A4F9D1C20015100753D65 /* RescueCenter */,
-				0A8A4F9F1C20015100753D65 /* Time */,
-				0A8A4F8A1C1FF71900753D65 /* HCMoreInfo.h */,
-				0A8A4F8B1C1FF71900753D65 /* HCMoreInfo.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0A8A4F791C1FD65C00753D65 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4FBC1C20029D00753D65 /* TagManager */,
-				0A8A4FA01C20017900753D65 /* AddItem */,
-				0A8A4FA11C20017900753D65 /* ClassCalendar */,
-				0A8A4FA21C20017900753D65 /* Notification */,
-				C7C907A61C227A9B0054CB7C /* ProductCenter */,
-				0A8A4FA41C20017900753D65 /* Promised */,
-				0A8A4FA51C20017900753D65 /* RescueCenter */,
-				0A8A4FA71C20017900753D65 /* Time */,
-				0A8A4F8D1C1FF7FE00753D65 /* HCMoreCollectionViewCell.h */,
-				0A8A4F8E1C1FF7FE00753D65 /* HCMoreCollectionViewCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		0A8A4F861C1FDCA700753D65 /* Left */ = {
 			isa = PBXGroup;
 			children = (
@@ -1206,173 +1213,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		0A8A4F901C20013B00753D65 /* AddItem */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4FA81C2001C500753D65 /* HCAddItemViewController.h */,
-				0A8A4FA91C2001C500753D65 /* HCAddItemViewController.m */,
-			);
-			path = AddItem;
-			sourceTree = "<group>";
-		};
-		0A8A4F911C20013B00753D65 /* ClassCalendar */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4FAB1C2001E000753D65 /* HClassCalendarViewController.h */,
-				0A8A4FAC1C2001E000753D65 /* HClassCalendarViewController.m */,
-			);
-			path = ClassCalendar;
-			sourceTree = "<group>";
-		};
-		0A8A4F921C20013B00753D65 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4FAE1C2001F100753D65 /* HCNotificationViewController.h */,
-				0A8A4FAF1C2001F100753D65 /* HCNotificationViewController.m */,
-			);
-			path = Notification;
-			sourceTree = "<group>";
-		};
-		0A8A4F941C20013B00753D65 /* Promised */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4FB41C20021600753D65 /* HCPromisedViewController.h */,
-				0A8A4FB51C20021600753D65 /* HCPromisedViewController.m */,
-			);
-			path = Promised;
-			sourceTree = "<group>";
-		};
-		0A8A4F951C20013B00753D65 /* RescueCenter */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4FB71C20022600753D65 /* HCRescueCenterViewController.h */,
-				0A8A4FB81C20022600753D65 /* HCRescueCenterViewController.m */,
-			);
-			path = RescueCenter;
-			sourceTree = "<group>";
-		};
-		0A8A4F971C20013B00753D65 /* Time */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4FC01C2002CB00753D65 /* HCTimeViewController.h */,
-				0A8A4FC11C2002CB00753D65 /* HCTimeViewController.m */,
-			);
-			path = Time;
-			sourceTree = "<group>";
-		};
-		0A8A4F981C20015100753D65 /* AddItem */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AddItem;
-			sourceTree = "<group>";
-		};
-		0A8A4F991C20015100753D65 /* ClassCalendar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ClassCalendar;
-			sourceTree = "<group>";
-		};
-		0A8A4F9A1C20015100753D65 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Notification;
-			sourceTree = "<group>";
-		};
-		0A8A4F9C1C20015100753D65 /* Promised */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Promised;
-			sourceTree = "<group>";
-		};
-		0A8A4F9D1C20015100753D65 /* RescueCenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = RescueCenter;
-			sourceTree = "<group>";
-		};
-		0A8A4F9F1C20015100753D65 /* Time */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Time;
-			sourceTree = "<group>";
-		};
-		0A8A4FA01C20017900753D65 /* AddItem */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AddItem;
-			sourceTree = "<group>";
-		};
-		0A8A4FA11C20017900753D65 /* ClassCalendar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ClassCalendar;
-			sourceTree = "<group>";
-		};
-		0A8A4FA21C20017900753D65 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Notification;
-			sourceTree = "<group>";
-		};
-		0A8A4FA41C20017900753D65 /* Promised */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Promised;
-			sourceTree = "<group>";
-		};
-		0A8A4FA51C20017900753D65 /* RescueCenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = RescueCenter;
-			sourceTree = "<group>";
-		};
-		0A8A4FA71C20017900753D65 /* Time */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Time;
-			sourceTree = "<group>";
-		};
-		0A8A4FBA1C20025200753D65 /* TagManager */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A4FBD1C2002B600753D65 /* HCTagManagerViewController.h */,
-				0A8A4FBE1C2002B600753D65 /* HCTagManagerViewController.m */,
-			);
-			path = TagManager;
-			sourceTree = "<group>";
-		};
-		0A8A4FBB1C20026E00753D65 /* TagManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TagManager;
-			sourceTree = "<group>";
-		};
-		0A8A4FBC1C20029D00753D65 /* TagManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TagManager;
-			sourceTree = "<group>";
-		};
 		0ABAFE971BF34591009ABF57 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C7E252D41C29430A00204959 /* More */,
 				0AEEDDCB1C210EBC0065A8FF /* Home */,
 				0AEEDDCC1C210EBC0065A8FF /* Message */,
-				C7C907AB1C227B5D0054CB7C /* More */,
 				0AEEDDCE1C210EBC0065A8FF /* Scan */,
 				0ABAFEB61BF34677009ABF57 /* Login */,
 				0ABAFE9D1BF3461A009ABF57 /* Other */,
@@ -1580,103 +1426,325 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C7C7072B1C241901004FDC36 /* ProductCenter */ = {
+		C7E252371C2942D300204959 /* More */ = {
 			isa = PBXGroup;
 			children = (
-				0AC89D4B1C28F120003EED90 /* HCBuyRecordsViewController.h */,
-				0AC89D4C1C28F120003EED90 /* HCBuyRecordsViewController.m */,
-				0AC89D4D1C28F120003EED90 /* HCCustomTagViewController.h */,
-				0AC89D4E1C28F120003EED90 /* HCCustomTagViewController.m */,
-				0AC89D4F1C28F120003EED90 /* HCOrderOnlineViewController.h */,
-				0AC89D501C28F120003EED90 /* HCOrderOnlineViewController.m */,
-				0AC89D511C28F120003EED90 /* HCProducCenterViewController.h */,
-				0AC89D521C28F120003EED90 /* HCProducCenterViewController.m */,
-				0AC89D531C28F120003EED90 /* HCProductCenterDetailViewController.h */,
-				0AC89D541C28F120003EED90 /* HCProductCenterDetailViewController.m */,
-			);
-			name = ProductCenter;
-			path = ../../../../../../MTalk/Project/Classes/Main/More/Controller/ProductCenter;
-			sourceTree = "<group>";
-		};
-		C7C7073B1C241975004FDC36 /* CustomTagInfo */ = {
-			isa = PBXGroup;
-			children = (
-				0AC89D3E1C28EEAA003EED90 /* HCContactPersonInfo.h */,
-				0AC89D3F1C28EEAA003EED90 /* HCContactPersonInfo.m */,
-				0AC89D401C28EEAA003EED90 /* HCTagUserInfo.h */,
-				0AC89D411C28EEAA003EED90 /* HCTagUserInfo.m */,
-			);
-			name = CustomTagInfo;
-			path = ../../../../../../../MTalk/Project/Classes/Main/More/Model/ProductCenter/CustomTagInfo;
-			sourceTree = "<group>";
-		};
-		C7C707401C241975004FDC36 /* HCProductIntroductionInfo */ = {
-			isa = PBXGroup;
-			children = (
-				0AC89D441C28EEC1003EED90 /* HCProductIntroductionInfo.h */,
-				0AC89D451C28EEC1003EED90 /* HCProductIntroductionInfo.m */,
-			);
-			name = HCProductIntroductionInfo;
-			path = ../../../../../../../MTalk/Project/Classes/Main/More/Model/ProductCenter/HCProductIntroductionInfo;
-			sourceTree = "<group>";
-		};
-		C7C707461C2419EF004FDC36 /* HCCustomTagCell */ = {
-			isa = PBXGroup;
-			children = (
-				0AC89D321C28EE44003EED90 /* HCCustomTagContactTableViewCell.h */,
-				0AC89D331C28EE44003EED90 /* HCCustomTagContactTableViewCell.m */,
-				0AC89D341C28EE44003EED90 /* HCCustomTagUserInfoCell.h */,
-				0AC89D351C28EE44003EED90 /* HCCustomTagUserInfoCell.m */,
-				0AC89D361C28EE44003EED90 /* HCCustomTagUserMedicalCell.h */,
-				0AC89D371C28EE44003EED90 /* HCCustomTagUserMedicalCell.m */,
-			);
-			name = HCCustomTagCell;
-			path = ../../../../../../../MTalk/Project/Classes/Main/More/View/ProductCenter/HCCustomTagCell;
-			sourceTree = "<group>";
-		};
-		C7C7074D1C2419EF004FDC36 /* HCProductDetail */ = {
-			isa = PBXGroup;
-			children = (
-				0AC89D3B1C28EE86003EED90 /* HCProductIntroductionCell.h */,
-				0AC89D3C1C28EE86003EED90 /* HCProductIntroductionCell.m */,
-			);
-			name = HCProductDetail;
-			path = ../../../../../../../MTalk/Project/Classes/Main/More/View/ProductCenter/HCProductDetail;
-			sourceTree = "<group>";
-		};
-		C7C9079E1C227A410054CB7C /* ProductCenter */ = {
-			isa = PBXGroup;
-			children = (
-				C7C7073B1C241975004FDC36 /* CustomTagInfo */,
-				C7C707401C241975004FDC36 /* HCProductIntroductionInfo */,
-			);
-			path = ProductCenter;
-			sourceTree = "<group>";
-		};
-		C7C907A61C227A9B0054CB7C /* ProductCenter */ = {
-			isa = PBXGroup;
-			children = (
-				C7C707461C2419EF004FDC36 /* HCCustomTagCell */,
-				C7C7074D1C2419EF004FDC36 /* HCProductDetail */,
-			);
-			path = ProductCenter;
-			sourceTree = "<group>";
-		};
-		C7C907AB1C227B5D0054CB7C /* More */ = {
-			isa = PBXGroup;
-			children = (
-				C7C907AC1C227B5D0054CB7C /* ProductCenter */,
+				C7E252381C2942D300204959 /* Controller */,
+				C7E252721C2942D300204959 /* Model */,
+				C7E252841C2942D300204959 /* View */,
 			);
 			path = More;
 			sourceTree = "<group>";
 		};
-		C7C907AC1C227B5D0054CB7C /* ProductCenter */ = {
+		C7E252381C2942D300204959 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0AC89D2F1C28ED70003EED90 /* HCCustomTagApi.h */,
-				0AC89D301C28ED70003EED90 /* HCCustomTagApi.m */,
-				C7C907AD1C227B5D0054CB7C /* HCProductIntrodApi.h */,
-				C7C907AE1C227B5D0054CB7C /* HCProductIntrodApi.m */,
+				C7E252391C2942D300204959 /* AddItem */,
+				C7E2523C1C2942D300204959 /* ClassCalendar */,
+				C7E2523F1C2942D300204959 /* HCMoreViewController.h */,
+				C7E252401C2942D300204959 /* HCMoreViewController.m */,
+				C7E252411C2942D300204959 /* Notification */,
+				C7E2524C1C2942D300204959 /* ProductCenter */,
+				C7E252641C2942D300204959 /* Promised */,
+				C7E252671C2942D300204959 /* RescueCenter */,
+				C7E2526C1C2942D300204959 /* TagManager */,
+				C7E2526F1C2942D300204959 /* Time */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C7E252391C2942D300204959 /* AddItem */ = {
+			isa = PBXGroup;
+			children = (
+				C7E2523A1C2942D300204959 /* HCAddItemViewController.h */,
+				C7E2523B1C2942D300204959 /* HCAddItemViewController.m */,
+			);
+			path = AddItem;
+			sourceTree = "<group>";
+		};
+		C7E2523C1C2942D300204959 /* ClassCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				C7E2523D1C2942D300204959 /* HClassCalendarViewController.h */,
+				C7E2523E1C2942D300204959 /* HClassCalendarViewController.m */,
+			);
+			path = ClassCalendar;
+			sourceTree = "<group>";
+		};
+		C7E252411C2942D300204959 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252421C2942D300204959 /* HCFollowNotificationViewController.h */,
+				C7E252431C2942D300204959 /* HCFollowNotificationViewController.m */,
+				C7E252441C2942D300204959 /* HCNotificationDetailViewController.h */,
+				C7E252451C2942D300204959 /* HCNotificationDetailViewController.m */,
+				C7E252461C2942D300204959 /* HCNotificationViewController.h */,
+				C7E252471C2942D300204959 /* HCNotificationViewController.m */,
+				C7E252481C2942D300204959 /* HCReadNotificationViewController.h */,
+				C7E252491C2942D300204959 /* HCReadNotificationViewController.m */,
+				C7E2524A1C2942D300204959 /* HCUnReadNotificationViewController.h */,
+				C7E2524B1C2942D300204959 /* HCUnReadNotificationViewController.m */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		C7E2524C1C2942D300204959 /* ProductCenter */ = {
+			isa = PBXGroup;
+			children = (
+				C7E2524D1C2942D300204959 /* HCAfterSalesApplyViewController.h */,
+				C7E2524E1C2942D300204959 /* HCAfterSalesApplyViewController.m */,
+				C7E2524F1C2942D300204959 /* HCBuyRecordsViewController.h */,
+				C7E252501C2942D300204959 /* HCBuyRecordsViewController.m */,
+				C7E252511C2942D300204959 /* HCCustomerViewController.h */,
+				C7E252521C2942D300204959 /* HCCustomerViewController.m */,
+				C7E252531C2942D300204959 /* HCCustomTagViewController.h */,
+				C7E252541C2942D300204959 /* HCCustomTagViewController.m */,
+				C7E252551C2942D300204959 /* HCJDBuyViewController.h */,
+				C7E252561C2942D300204959 /* HCJDBuyViewController.m */,
+				C7E252571C2942D300204959 /* HCLogisticsInfoViewController.h */,
+				C7E252581C2942D300204959 /* HCLogisticsInfoViewController.m */,
+				C7E252591C2942D300204959 /* HCOrderOnlineViewController.h */,
+				C7E2525A1C2942D300204959 /* HCOrderOnlineViewController.m */,
+				C7E2525B1C2942D300204959 /* HCProducCenterViewController.h */,
+				C7E2525C1C2942D300204959 /* HCProducCenterViewController.m */,
+				C7E2525D1C2942D300204959 /* HCProductCenterDetailViewController.h */,
+				C7E2525E1C2942D300204959 /* HCProductCenterDetailViewController.m */,
+				C7E2525F1C2942D300204959 /* HCTaoBaoViewController.h */,
+				C7E252601C2942D300204959 /* HCTaoBaoViewController.m */,
+				C7E252611C2942D300204959 /* ReturnAndSales */,
+			);
+			path = ProductCenter;
+			sourceTree = "<group>";
+		};
+		C7E252611C2942D300204959 /* ReturnAndSales */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252621C2942D300204959 /* HCRefundSuccessViewController.h */,
+				C7E252631C2942D300204959 /* HCRefundSuccessViewController.m */,
+			);
+			path = ReturnAndSales;
+			sourceTree = "<group>";
+		};
+		C7E252641C2942D300204959 /* Promised */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252651C2942D300204959 /* HCPromisedViewController.h */,
+				C7E252661C2942D300204959 /* HCPromisedViewController.m */,
+			);
+			path = Promised;
+			sourceTree = "<group>";
+		};
+		C7E252671C2942D300204959 /* RescueCenter */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252681C2942D300204959 /* HCCaseDetailViewController.h */,
+				C7E252691C2942D300204959 /* HCCaseDetailViewController.m */,
+				C7E2526A1C2942D300204959 /* HCRescueCenterViewController.h */,
+				C7E2526B1C2942D300204959 /* HCRescueCenterViewController.m */,
+			);
+			path = RescueCenter;
+			sourceTree = "<group>";
+		};
+		C7E2526C1C2942D300204959 /* TagManager */ = {
+			isa = PBXGroup;
+			children = (
+				C7E2526D1C2942D300204959 /* HCTagManagerViewController.h */,
+				C7E2526E1C2942D300204959 /* HCTagManagerViewController.m */,
+			);
+			path = TagManager;
+			sourceTree = "<group>";
+		};
+		C7E2526F1C2942D300204959 /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252701C2942D300204959 /* HCTimeViewController.h */,
+				C7E252711C2942D300204959 /* HCTimeViewController.m */,
+			);
+			path = Time;
+			sourceTree = "<group>";
+		};
+		C7E252721C2942D300204959 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252731C2942D300204959 /* HCMoreInfo.h */,
+				C7E252741C2942D300204959 /* HCMoreInfo.m */,
+				C7E252751C2942D300204959 /* NotificationCenter */,
+				C7E252781C2942D300204959 /* ProductCenter */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C7E252751C2942D300204959 /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252761C2942D300204959 /* HCNotificationCenterInfo.h */,
+				C7E252771C2942D300204959 /* HCNotificationCenterInfo.m */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
+		C7E252781C2942D300204959 /* ProductCenter */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252791C2942D300204959 /* CustomTagInfo */,
+				C7E2527E1C2942D300204959 /* HCLogisticsInfo */,
+				C7E252811C2942D300204959 /* HCProductIntroductionInfo */,
+			);
+			path = ProductCenter;
+			sourceTree = "<group>";
+		};
+		C7E252791C2942D300204959 /* CustomTagInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C7E2527A1C2942D300204959 /* HCContactPersonInfo.h */,
+				C7E2527B1C2942D300204959 /* HCContactPersonInfo.m */,
+				C7E2527C1C2942D300204959 /* HCTagUserInfo.h */,
+				C7E2527D1C2942D300204959 /* HCTagUserInfo.m */,
+			);
+			path = CustomTagInfo;
+			sourceTree = "<group>";
+		};
+		C7E2527E1C2942D300204959 /* HCLogisticsInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C7E2527F1C2942D300204959 /* HCLogisticsInfo.h */,
+				C7E252801C2942D300204959 /* HCLogisticsInfo.m */,
+			);
+			path = HCLogisticsInfo;
+			sourceTree = "<group>";
+		};
+		C7E252811C2942D300204959 /* HCProductIntroductionInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252821C2942D300204959 /* HCProductIntroductionInfo.h */,
+				C7E252831C2942D300204959 /* HCProductIntroductionInfo.m */,
+			);
+			path = HCProductIntroductionInfo;
+			sourceTree = "<group>";
+		};
+		C7E252841C2942D300204959 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252851C2942D300204959 /* HCMoreCollectionViewCell.h */,
+				C7E252861C2942D300204959 /* HCMoreCollectionViewCell.m */,
+				C7E252871C2942D300204959 /* NotificationCenter */,
+				C7E2528C1C2942D300204959 /* ProductCenter */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C7E252871C2942D300204959 /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252881C2942D300204959 /* HCButtonItem.h */,
+				C7E252891C2942D300204959 /* HCButtonItem.m */,
+				C7E2528A1C2942D300204959 /* HCNotificationCenterTableViewCell.h */,
+				C7E2528B1C2942D300204959 /* HCNotificationCenterTableViewCell.m */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
+		C7E2528C1C2942D300204959 /* ProductCenter */ = {
+			isa = PBXGroup;
+			children = (
+				C7E2528D1C2942D300204959 /* HCBuyRecordCell */,
+				C7E252951C2942D300204959 /* HCCustomer */,
+				C7E252981C2942D300204959 /* HCCustomTagCell */,
+				C7E2529F1C2942D300204959 /* HCOrderOnline */,
+				C7E252A51C2942D300204959 /* HCProductDetail */,
+			);
+			path = ProductCenter;
+			sourceTree = "<group>";
+		};
+		C7E2528D1C2942D300204959 /* HCBuyRecordCell */ = {
+			isa = PBXGroup;
+			children = (
+				C7E2528E1C2942D300204959 /* HCBuyRecordTableViewCell.h */,
+				C7E2528F1C2942D300204959 /* HCBuyRecordTableViewCell.m */,
+				C7E252901C2942D300204959 /* HCLogisticsInfoCell */,
+			);
+			path = HCBuyRecordCell;
+			sourceTree = "<group>";
+		};
+		C7E252901C2942D300204959 /* HCLogisticsInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252911C2942D300204959 /* HCLogisticsInfoTableViewCell.h */,
+				C7E252921C2942D300204959 /* HCLogisticsInfoTableViewCell.m */,
+				C7E252931C2942D300204959 /* HCLogisticsInfoTableViewCellSecond.h */,
+				C7E252941C2942D300204959 /* HCLogisticsInfoTableViewCellSecond.m */,
+			);
+			path = HCLogisticsInfoCell;
+			sourceTree = "<group>";
+		};
+		C7E252951C2942D300204959 /* HCCustomer */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252961C2942D300204959 /* HCCustomerTableViewCell.h */,
+				C7E252971C2942D300204959 /* HCCustomerTableViewCell.m */,
+			);
+			path = HCCustomer;
+			sourceTree = "<group>";
+		};
+		C7E252981C2942D300204959 /* HCCustomTagCell */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252991C2942D300204959 /* HCCustomTagContactTableViewCell.h */,
+				C7E2529A1C2942D300204959 /* HCCustomTagContactTableViewCell.m */,
+				C7E2529B1C2942D300204959 /* HCCustomTagUserInfoCell.h */,
+				C7E2529C1C2942D300204959 /* HCCustomTagUserInfoCell.m */,
+				C7E2529D1C2942D300204959 /* HCCustomTagUserMedicalCell.h */,
+				C7E2529E1C2942D300204959 /* HCCustomTagUserMedicalCell.m */,
+			);
+			path = HCCustomTagCell;
+			sourceTree = "<group>";
+		};
+		C7E2529F1C2942D300204959 /* HCOrderOnline */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252A01C2942D300204959 /* HCGoodsListTableViewCell.h */,
+				C7E252A11C2942D300204959 /* HCGoodsListTableViewCell.m */,
+				C7E252A21C2942D300204959 /* HCPayWayTableViewCell.h */,
+				C7E252A31C2942D300204959 /* HCPayWayTableViewCell.m */,
+				C7E252A41C2942D300204959 /* HCPayWayTableViewCell.xib */,
+			);
+			path = HCOrderOnline;
+			sourceTree = "<group>";
+		};
+		C7E252A51C2942D300204959 /* HCProductDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252A61C2942D300204959 /* HCProductIntroductionCell.h */,
+				C7E252A71C2942D300204959 /* HCProductIntroductionCell.m */,
+			);
+			path = HCProductDetail;
+			sourceTree = "<group>";
+		};
+		C7E252D41C29430A00204959 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252D51C29430A00204959 /* NotificationCenter */,
+				C7E252D81C29430A00204959 /* ProductCenter */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		C7E252D51C29430A00204959 /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252D61C29430A00204959 /* HCNotificationCenterApi.h */,
+				C7E252D71C29430A00204959 /* HCNotificationCenterApi.m */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
+		C7E252D81C29430A00204959 /* ProductCenter */ = {
+			isa = PBXGroup;
+			children = (
+				C7E252D91C29430A00204959 /* HCCustomTagApi.h */,
+				C7E252DA1C29430A00204959 /* HCCustomTagApi.m */,
+				C7E252DB1C29430A00204959 /* HCProductIntrodApi.h */,
+				C7E252DC1C29430A00204959 /* HCProductIntrodApi.m */,
 			);
 			path = ProductCenter;
 			sourceTree = "<group>";
@@ -1805,6 +1873,7 @@
 				0A67B2291C0D63B300FB87C8 /* bg_main@2x.png in Resources */,
 				0A67B2281C0D63B300FB87C8 /* 9.jpg in Resources */,
 				0A67B2271C0D63B300FB87C8 /* 8.jpg in Resources */,
+				C7E252D21C2942D300204959 /* HCPayWayTableViewCell.xib in Resources */,
 				0A67B2221C0D63B300FB87C8 /* 3.jpg in Resources */,
 				0A6AFD671BFBFFBE0073982C /* UMSShareListController.xib in Resources */,
 				0A67E7781C23D700005B8CD2 /* HCShareViewController.xib in Resources */,
@@ -1908,108 +1977,130 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AC89D551C28F120003EED90 /* HCBuyRecordsViewController.m in Sources */,
 				0AC89D681C28F270003EED90 /* HCHomePictureDetailApi.m in Sources */,
-				0AC89D571C28F120003EED90 /* HCOrderOnlineViewController.m in Sources */,
+				C7E252CE1C2942D300204959 /* HCCustomTagUserInfoCell.m in Sources */,
+				C7E252AD1C2942D300204959 /* HCNotificationViewController.m in Sources */,
+				C7E252BC1C2942D300204959 /* HCCaseDetailViewController.m in Sources */,
 				0A67B22B1C0D63B300FB87C8 /* MRImgShowView.m in Sources */,
-				0AC89D391C28EE44003EED90 /* HCCustomTagUserInfoCell.m in Sources */,
+				C7E252C71C2942D300204959 /* HCButtonItem.m in Sources */,
+				C7E252DD1C29430A00204959 /* HCNotificationCenterApi.m in Sources */,
 				0A67E76D1C23B837005B8CD2 /* HCEditCommentView.m in Sources */,
 				0A65918B1C0411F300E91975 /* HCUserApi.m in Sources */,
-				0A8A4F8C1C1FF71900753D65 /* HCMoreInfo.m in Sources */,
 				0A6B7F611BF1EB74008D54B3 /* HCRegistViewController.m in Sources */,
-				0A8A4FB61C20021600753D65 /* HCPromisedViewController.m in Sources */,
 				0A6B7F1F1BF1EB74008D54B3 /* UIViewController+HCAOP.m in Sources */,
+				C7E252AA1C2942D300204959 /* HCMoreViewController.m in Sources */,
 				0A6B7F661BF1EB74008D54B3 /* HCUserInfo.m in Sources */,
 				0A6B7F9D1BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m in Sources */,
-				0A8A4FBF1C2002B600753D65 /* HCTagManagerViewController.m in Sources */,
-				0AC89D3D1C28EE86003EED90 /* HCProductIntroductionCell.m in Sources */,
 				0ABAFEBE1BF346E0009ABF57 /* HCLoginApi.m in Sources */,
+				C7E252DF1C29430A00204959 /* HCProductIntrodApi.m in Sources */,
 				0AC40DBE1C226B870074AA79 /* HCHomeDetailApi.m in Sources */,
 				0AEEDDCA1C210BCF0065A8FF /* HCHomeInfo.m in Sources */,
+				C7E252B21C2942D300204959 /* HCCustomerViewController.m in Sources */,
+				C7E252D01C2942D300204959 /* HCGoodsListTableViewCell.m in Sources */,
 				0AEEDDC71C210A8F0065A8FF /* HCHomeTableViewCell.m in Sources */,
+				C7E252B11C2942D300204959 /* HCBuyRecordsViewController.m in Sources */,
 				0AC40DC11C2270E20074AA79 /* HCHomeDetailInfo.m in Sources */,
-				0A8A4FAD1C2001E000753D65 /* HClassCalendarViewController.m in Sources */,
-				0A8A4FB91C20022600753D65 /* HCRescueCenterViewController.m in Sources */,
-				0AC89D461C28EEC1003EED90 /* HCProductIntroductionInfo.m in Sources */,
 				0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */,
-				0A8A4FAA1C2001C500753D65 /* HCAddItemViewController.m in Sources */,
+				C7E252C51C2942D300204959 /* HCProductIntroductionInfo.m in Sources */,
 				0A6B7F711BF1EB74008D54B3 /* HCViewController.m in Sources */,
+				C7E252A91C2942D300204959 /* HClassCalendarViewController.m in Sources */,
 				0A6B7F6C1BF1EB74008D54B3 /* HCPickerView.m in Sources */,
+				C7E252B81C2942D300204959 /* HCProductCenterDetailViewController.m in Sources */,
 				C7C907B21C227BB90054CB7C /* HCImgViewTagList.m in Sources */,
 				0A6B7F241BF1EB74008D54B3 /* HCDictionaryMgr.m in Sources */,
 				0A6B7F9A1BF1EB74008D54B3 /* TOActivityChrome.m in Sources */,
 				0A3E57841C214E5E00AA4DB9 /* HCHomeMoreImgView.m in Sources */,
+				C7E252AB1C2942D300204959 /* HCFollowNotificationViewController.m in Sources */,
 				0A6B7F201BF1EB74008D54B3 /* HCAccountDBMgr.m in Sources */,
 				0A67E7701C23C3F3005B8CD2 /* HCEditCommentApi.m in Sources */,
+				C7E252C11C2942D300204959 /* HCNotificationCenterInfo.m in Sources */,
 				0A6B7F631BF1EB74008D54B3 /* HCAccountMgr.m in Sources */,
+				C7E252CC1C2942D300204959 /* HCCustomerTableViewCell.m in Sources */,
 				0ABAFEC51BF3470B009ABF57 /* HCRequest.m in Sources */,
+				C7E252CD1C2942D300204959 /* HCCustomTagContactTableViewCell.m in Sources */,
 				0AC89D621C28F1C6003EED90 /* HCLeftView.m in Sources */,
+				C7E252BF1C2942D300204959 /* HCTimeViewController.m in Sources */,
 				0A546D271C225F1A00AB9EDB /* HCHomeDetailTableViewCell.m in Sources */,
 				0A47AD4B1C225A8900706326 /* HCHomeDetailViewController.m in Sources */,
-				0AC89D381C28EE44003EED90 /* HCCustomTagContactTableViewCell.m in Sources */,
 				0A6B7F191BF1EB74008D54B3 /* UIAlertView+HTBlock.m in Sources */,
 				0A6B7F311BF1EB74008D54B3 /* Utils.m in Sources */,
 				0A66CBA01C22C26700530763 /* HCPublishInfo.m in Sources */,
 				0A6B7F9B1BF1EB74008D54B3 /* TOActivitySafari.m in Sources */,
 				0AF96BDD1C0ECFB4007AD92F /* CFJInputView.m in Sources */,
 				0A67E76A1C239EF3005B8CD2 /* HCEditCommentViewController.m in Sources */,
-				0A8A4F8F1C1FF7FE00753D65 /* HCMoreCollectionViewCell.m in Sources */,
 				0ABFC6281C2134BA00ED8164 /* HCFunctionTagView.m in Sources */,
 				0A8A4F7C1C1FD6C900753D65 /* HCHomeViewController.m in Sources */,
 				0A6B7F701BF1EB74008D54B3 /* HCTableViewController.m in Sources */,
-				0A8A4FC21C2002CB00753D65 /* HCTimeViewController.m in Sources */,
-				0AC89D581C28F120003EED90 /* HCProducCenterViewController.m in Sources */,
-				0AC89D311C28ED70003EED90 /* HCCustomTagApi.m in Sources */,
-				0AC89D421C28EEAA003EED90 /* HCContactPersonInfo.m in Sources */,
-				0AC89D3A1C28EE44003EED90 /* HCCustomTagUserMedicalCell.m in Sources */,
-				0A8A4FB01C2001F100753D65 /* HCNotificationViewController.m in Sources */,
+				C7E252B51C2942D300204959 /* HCLogisticsInfoViewController.m in Sources */,
+				C7E252BD1C2942D300204959 /* HCRescueCenterViewController.m in Sources */,
 				0A6B7F221BF1EB74008D54B3 /* HCAvatarMgr.m in Sources */,
+				C7E252CA1C2942D300204959 /* HCLogisticsInfoTableViewCell.m in Sources */,
+				C7E252C21C2942D300204959 /* HCContactPersonInfo.m in Sources */,
 				0ABAFEC41BF3470B009ABF57 /* HCJsonRequestApi.m in Sources */,
+				C7E252C81C2942D300204959 /* HCNotificationCenterTableViewCell.m in Sources */,
+				C7E252B71C2942D300204959 /* HCProducCenterViewController.m in Sources */,
 				0A67E7851C23FAB5005B8CD2 /* HCHomeDetailCommentTableViewCell.m in Sources */,
 				0A67E7771C23D700005B8CD2 /* HCShareViewController.m in Sources */,
 				0A6B7F6D1BF1EB74008D54B3 /* HCPopoverView.m in Sources */,
-				C7C907AF1C227B5D0054CB7C /* HCProductIntrodApi.m in Sources */,
 				0AC89D651C28F21F003EED90 /* HCHomePictureDetailViewController.m in Sources */,
 				0A6B7F651BF1EB74008D54B3 /* HCLoginInfo.m in Sources */,
 				0A80DE6C1BFB03DE00031F8A /* HCFindPwdSecondViewController.m in Sources */,
 				0A6B7F211BF1EB74008D54B3 /* HCAppMgr.m in Sources */,
+				C7E252C01C2942D300204959 /* HCMoreInfo.m in Sources */,
 				0A724EC51C06A20100E643D6 /* HCUserAlbumApi.m in Sources */,
 				0A6B7F641BF1EB74008D54B3 /* HCertificateInfo.m in Sources */,
 				0A8A4F821C1FD7FE00753D65 /* HCMessageViewController.m in Sources */,
-				0AC89D431C28EEAA003EED90 /* HCTagUserInfo.m in Sources */,
 				0A2A06C91BF4C9FB00B18497 /* HCFeedbackTextView.m in Sources */,
+				C7E252B31C2942D300204959 /* HCCustomTagViewController.m in Sources */,
 				0A6B7F231BF1EB74008D54B3 /* HCDataMgr.m in Sources */,
 				0ABAFEBF1BF346E0009ABF57 /* HCLogoutApi.m in Sources */,
 				0A6B7F1E1BF1EB74008D54B3 /* UIView+TKUtilities.m in Sources */,
 				0A67B22A1C0D63B300FB87C8 /* ImgShowViewController.m in Sources */,
+				C7E252B91C2942D300204959 /* HCTaoBaoViewController.m in Sources */,
+				C7E252DE1C29430A00204959 /* HCCustomTagApi.m in Sources */,
 				0A66CBA31C22E96500530763 /* HCHomePublishApi.m in Sources */,
+				C7E252C61C2942D300204959 /* HCMoreCollectionViewCell.m in Sources */,
 				0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */,
-				0A8A4F851C1FD81900753D65 /* HCMoreViewController.m in Sources */,
-				0AC89D591C28F120003EED90 /* HCProductCenterDetailViewController.m in Sources */,
 				0AC89D5E1C28F1B2003EED90 /* HCLeftViewController.m in Sources */,
 				0A6B7F5F1BF1EB74008D54B3 /* HCLoginViewController.m in Sources */,
+				C7E252BE1C2942D300204959 /* HCTagManagerViewController.m in Sources */,
+				C7E252BB1C2942D300204959 /* HCPromisedViewController.m in Sources */,
+				C7E252C41C2942D300204959 /* HCLogisticsInfo.m in Sources */,
+				C7E252CF1C2942D300204959 /* HCCustomTagUserMedicalCell.m in Sources */,
+				C7E252CB1C2942D300204959 /* HCLogisticsInfoTableViewCellSecond.m in Sources */,
 				0AC89D891C2932A0003EED90 /* HCSoftwareSettingViewController.m in Sources */,
 				0A6B7F671BF1EB74008D54B3 /* HCStepMoveView.m in Sources */,
 				0AAB69A31C06009800A0A2E8 /* AppDelegate.m in Sources */,
 				0AEEDDC41C2109850065A8FF /* HCPublishViewController.m in Sources */,
 				0AC40DC41C2273940074AA79 /* HCHomeDetailUserInfo.m in Sources */,
+				C7E252D11C2942D300204959 /* HCPayWayTableViewCell.m in Sources */,
 				0A6B7F9C1BF1EB74008D54B3 /* TOWebViewController.m in Sources */,
 				0A6B7F181BF1EB74008D54B3 /* NSString+MD5.m in Sources */,
+				C7E252B01C2942D300204959 /* HCAfterSalesApplyViewController.m in Sources */,
+				C7E252C91C2942D300204959 /* HCBuyRecordTableViewCell.m in Sources */,
 				0AEEDDD11C210ED50065A8FF /* HCHomeApi.m in Sources */,
 				0ABAFE961BF343F2009ABF57 /* HCTagListView.m in Sources */,
+				C7E252AF1C2942D300204959 /* HCUnReadNotificationViewController.m in Sources */,
 				0AC89D881C2932A0003EED90 /* HCJurisdictionViewController.m in Sources */,
 				0AC40DBB1C22661C0074AA79 /* HCPraiseTagListView.m in Sources */,
 				0AF9B8341BF56DFD00DCA75A /* UIImage+CFJ.m in Sources */,
 				0A47AD481C2256F500706326 /* HCHomeUserTimeViewController.m in Sources */,
+				C7E252BA1C2942D300204959 /* HCRefundSuccessViewController.m in Sources */,
+				C7E252D31C2942D300204959 /* HCProductIntroductionCell.m in Sources */,
+				C7E252A81C2942D300204959 /* HCAddItemViewController.m in Sources */,
+				C7E252B61C2942D300204959 /* HCOrderOnlineViewController.m in Sources */,
 				0AC89D701C28F427003EED90 /* YRSideViewController.m in Sources */,
 				0A6B7F6B1BF1EB74008D54B3 /* HCNavTabBar.m in Sources */,
 				0AC89D861C2932A0003EED90 /* HCAboutMTalkViewController.m in Sources */,
 				0A6B7D9D1BF1EB6A008D54B3 /* main.m in Sources */,
 				0A6B7F6A1BF1EB74008D54B3 /* HCBarButtonItem.m in Sources */,
+				C7E252AE1C2942D300204959 /* HCReadNotificationViewController.m in Sources */,
+				C7E252B41C2942D300204959 /* HCJDBuyViewController.m in Sources */,
 				0ABAFEBD1BF346E0009ABF57 /* HCChangePwdApi.m in Sources */,
 				0A6B7F6E1BF1EB74008D54B3 /* HCRootTabBarController.m in Sources */,
-				0AC89D561C28F120003EED90 /* HCCustomTagViewController.m in Sources */,
+				C7E252AC1C2942D300204959 /* HCNotificationDetailViewController.m in Sources */,
 				0AEEDDC11C21017D0065A8FF /* HCScanViewController.m in Sources */,
+				C7E252C31C2942D300204959 /* HCTagUserInfo.m in Sources */,
 				0ABAFECC1BF34726009ABF57 /* HCDictionaryApi.m in Sources */,
 				0A6B7F261BF1EB74008D54B3 /* HCVersionMgr.m in Sources */,
 				0AC89D871C2932A0003EED90 /* HCFeedbackViewController.m in Sources */,

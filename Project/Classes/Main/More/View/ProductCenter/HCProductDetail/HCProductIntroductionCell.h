@@ -13,7 +13,8 @@
 
 @optional
 
--(void)showForbidDelete;
+-(void)showForbidLabelDelete;
+-(void)showForbidHotStampingMachineDelete;
 
 @end
 

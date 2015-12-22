@@ -14,7 +14,12 @@
 /**
  *使用者头像
  */
-@property (nonatomic,strong) UIImage *userImage;
+@property (nonatomic,strong) NSString *userImageStr;
+/**
+ *使用者头像
+ */
+@property (nonatomic,strong) NSString *userImageUrlStr;
+
 /**
  *使用者姓名
  */

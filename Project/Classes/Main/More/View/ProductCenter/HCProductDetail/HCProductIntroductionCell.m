@@ -13,22 +13,56 @@
 @property (nonatomic,strong) UIScrollView *scrollView;
 
 
-@property (nonatomic,strong) UILabel *productNameLb;
-//购买方式1
-@property (nonatomic,strong) UIButton *buyWayFirstBtn;
-@property (nonatomic,strong) UILabel *buyWayFirstlb;
+//@property (nonatomic,strong) UILabel *productNameLb;
+////购买方式1
+//@property (nonatomic,strong) UIButton *buyWayFirstBtn;
+//@property (nonatomic,strong) UILabel *buyWayFirstlb;
 //购买方式2
-@property (nonatomic,strong) UIButton *buyWaySecondBtn;
-@property (nonatomic,strong) UILabel *buyWaySecondLb;
-//加减
-@property (nonatomic,strong) UILabel *numberLb;
-@property (nonatomic,strong) UIButton *addBtn ;
-@property (nonatomic,strong) UIButton *deleteBtn;
-@property (nonatomic,strong) UILabel *buyNumberLb;
+//@property (nonatomic,strong) UIButton *buyWaySecondBtn;
+//@property (nonatomic,strong) UILabel *buyWaySecondLb;
+//标签加减
+
+/**烫印机个数label*/
+@property (nonatomic,strong) UILabel* hotStampingMachineNumberLab;
+/**增加烫印机个数按钮*/
+@property (nonatomic,strong) UIButton *addHotStampingMachineNumBtn ;
+/**烫印机购买个数数量*/
+@property (nonatomic,strong) UILabel* hotStampingMachineBuyNumberLb;
+/**减少烫印机个数按钮*/
+@property (nonatomic,strong) UIButton *deleteHotStampingMachineBtn;
+/**烫印机价格label*/
+@property (nonatomic,strong) UILabel *hotStampingMachinePriceLab;
+/**烫印机价格数量*/
+@property (nonatomic,strong) UILabel *hotStampingMachinePriceNumLab;
+
+
+//标签
+/**标签张数label*/
+@property (nonatomic,strong) UILabel *labelNumberLab;
+/**增加标签张数按钮*/
+@property (nonatomic,strong) UIButton *addLabelNumBtn ;
+/**减少标签张数按钮*/
+@property (nonatomic,strong) UIButton *deleteLabelBtn;
+/**标签购买张数数量*/
+@property (nonatomic,strong) UILabel *labelBuyNumberLb;
 //价格
-@property (nonatomic,strong) UILabel *priceLab;
-@property (nonatomic,strong) UILabel *priceLb;
+/**标签价格label*/
+@property (nonatomic,strong) UILabel *labelPriceLab;
+/**标签价格数量*/
+@property (nonatomic,strong) UILabel *labelPriceNumLab;
+
+
+/**总价格*/
+@property (nonatomic,strong) UILabel *totalPriceLab;
+/**总价格数量*/
+@property (nonatomic,strong) UILabel *totalPriceNumLab;
+
+
 @property (nonatomic,strong) UIButton *tmpBtn;
+
+
+@property (nonatomic,assign)NSInteger Btntag;
+@property(nonatomic,assign)BOOL BtnSelected;
 
 @end
 
@@ -37,6 +71,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    
 }
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -57,83 +93,86 @@
         [self.contentView addSubview:self.scrollView];
     }else
     {
-            _deleteBtn.tag = 11;
-            _addBtn.tag = 12;
         
-            [self.contentView addSubview: self.productNameLb];
-            [self.contentView addSubview: self.buyWayFirstBtn];
-            [self.contentView addSubview: self.buyWayFirstlb];
-            [self.contentView addSubview: self.buyWaySecondBtn];
-            [self.contentView addSubview: self.buyWaySecondLb];
-      
+        [self.contentView
+         addSubview: self.hotStampingMachineNumberLab];
+        [self.contentView
+         addSubview: self.addHotStampingMachineNumBtn];
+        [self.contentView
+         addSubview: self.deleteHotStampingMachineBtn];
+        [self.contentView
+         addSubview: self.hotStampingMachineBuyNumberLb];
+        [self.contentView
+         addSubview: self.hotStampingMachinePriceLab];
+        [self.contentView
+         addSubview:self.hotStampingMachinePriceNumLab];
         
-            [self.contentView addSubview: self.numberLb];
-            [self.contentView addSubview: self.addBtn];
-            [self.contentView addSubview: self.buyNumberLb];
-            [self.contentView addSubview: self.deleteBtn];
+        [self.contentView addSubview: self.labelNumberLab];
+        [self.contentView addSubview: self.addLabelNumBtn];
+        [self.contentView addSubview: self.deleteLabelBtn];
+        [self.contentView addSubview: self.labelBuyNumberLb];
+        [self.contentView addSubview: self.labelPriceLab];
+        [self.contentView addSubview:self.labelPriceNumLab];
         
-            [self.contentView addSubview: self.priceLab];
-            [self.contentView addSubview: self.priceLb];
+        [self.contentView addSubview:self.totalPriceLab];
+        [self.contentView addSubview:self.totalPriceNumLab];
     }
 }
 
 #pragma mark - private methods
 
--(void)buyWayFirst
+-(void)clickAddHotStampingMachineBtn
 {
-    DLog(@"购买方式1");
+    self.info.buyHotStampingMachineNumber += 1;
+    self.hotStampingMachineBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyHotStampingMachineNumber];
+    self.hotStampingMachinePriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.buyHotStampingMachineNumber *self.info.hotStampingMachinePrice];
+    self.totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
 }
 
--(void)buyWaySecond
+-(void)clickDeleteHotStampingMachineBtn
 {
-    DLog(@"购买方式1");
-}
-
--(void)clickAddBtn
-{
-    self.info.buyNumber += 1;
-    self.buyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyNumber];
-    self.priceLb.text = [NSString stringWithFormat:@"%d元",self.info.buyNumber*self.info.price];
-}
-
--(void)clickDeleteBtn
-{
-    if (self.info.buyNumber > 10) {
-        self.info.buyNumber -= 1;
+    if (self.info.buyHotStampingMachineNumber > 0)
+    {
+        self.info.buyHotStampingMachineNumber -= 1;
     }else
     {
-        NSLog(@"%d",[self.delegate respondsToSelector:@selector(showForbidDelete)]);
-        if ([self.delegate respondsToSelector:@selector(showForbidDelete)]) {
-            [self.delegate showForbidDelete];
+        if ([self.delegate respondsToSelector:@selector(showForbidHotStampingMachineDelete)])
+        {
+            [self.delegate showForbidHotStampingMachineDelete];
 
         }
     }
 
-    self.buyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyNumber];
-    self.priceLb.text = [NSString stringWithFormat:@"%d元",self.info.buyNumber*self.info.price];
-       NSLog(@"%@",self.priceLb.text);
-   
+    self.hotStampingMachineBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyHotStampingMachineNumber];
+    self.hotStampingMachinePriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.buyHotStampingMachineNumber *self.info.hotStampingMachinePrice];
+     self.totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
 }
 
-//购买方式的单选
--(void)buyWay:(UIButton*)sender
+
+-(void)clickAddLabelBtn
 {
-    if (_tmpBtn == nil)
+    self.info.buyLabelNumber += 1;
+    self.labelBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyLabelNumber];
+    self.labelPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.buyLabelNumber *self.info.labelPrice];
+     self.totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
+}
+
+-(void)clickDeleteLabelBtn
+{
+    if (self.info.buyLabelNumber > 10) {
+        self.info.buyLabelNumber -= 1;
+    }else
     {
-        sender.selected = YES;
-        _tmpBtn = sender;
+        if ([self.delegate respondsToSelector:@selector(showForbidLabelDelete)]) {
+            [self.delegate showForbidLabelDelete];
+            
+        }
     }
-    else if (_tmpBtn != nil && _tmpBtn == sender)
-    {
-        sender.selected = YES;
-        
-    }
-    else if (_tmpBtn != sender&& _tmpBtn != nil)
-    {
-        _tmpBtn.selected = NO;
-        sender.selected = YES;
-        _tmpBtn = sender;
-    }
+    
+    self.labelBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyLabelNumber];
+    self.labelPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.buyLabelNumber *self.info.labelPrice];
+    self.totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
+    
 }
 
 #pragma mark-- Setter Or Getter
@@ -154,141 +193,160 @@
     return _scrollView;
 }
 
--(UILabel *)productNameLb
+-(UILabel *)hotStampingMachineNumberLab
 {
-    if (!_productNameLb)
+    if (!_hotStampingMachineNumberLab)
     {
-        _productNameLb = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 50, 44)];
-        _productNameLb.font = [UIFont systemFontOfSize:12];
+        _hotStampingMachineNumberLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 100, 45)];
+        _hotStampingMachineNumberLab.text = @"烫印机个数";
     }
-    return _productNameLb;
+    return _hotStampingMachineNumberLab;
 }
 
--(UIButton *)buyWayFirstBtn
+-(UIButton *)deleteHotStampingMachineBtn
 {
-    if (!_buyWayFirstBtn)
+    if (!_deleteHotStampingMachineBtn)
     {
-        _buyWayFirstBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_buyWayFirstBtn setBackgroundImage:OrigIMG(@"barItem-back") forState:UIControlStateSelected];
-        [_buyWayFirstBtn setBackgroundImage:OrigIMG(@"more_test") forState:UIControlStateNormal];
-        _buyWayFirstBtn.frame = CGRectMake(80, 5, 30, 30);
-        [_buyWayFirstBtn addTarget:self action:@selector(buyWay:) forControlEvents:UIControlEventTouchUpInside];
+        _deleteHotStampingMachineBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _deleteHotStampingMachineBtn.frame = CGRectMake(110, 10, 45, 45);
+        [_deleteHotStampingMachineBtn setBackgroundImage:OrigIMG(@"Products_but_minus") forState:UIControlStateNormal];
+        [_deleteHotStampingMachineBtn addTarget:self action:@selector(clickDeleteHotStampingMachineBtn) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _buyWayFirstBtn;
+    return _deleteHotStampingMachineBtn;
 }
 
--(UILabel *)buyWayFirstlb
+-(UILabel *)hotStampingMachineBuyNumberLb
 {
-    if (!_buyWayFirstlb)
+    if (!_hotStampingMachineBuyNumberLb)
     {
-        _buyWayFirstlb = [[UILabel alloc]initWithFrame:CGRectMake(115, 0,80, 44)];
-        _buyWayFirstlb.text = self.info.buyWayFirst;
+        _hotStampingMachineBuyNumberLb = [[UILabel alloc]initWithFrame:CGRectMake(155, 10, 55, 45)];
+        _hotStampingMachineBuyNumberLb.textAlignment = NSTextAlignmentCenter;
     }
-    return _buyWayFirstlb;
+    return _hotStampingMachineBuyNumberLb;
 }
 
--(UIButton *)buyWaySecondBtn
+-(UIButton *)addHotStampingMachineNumBtn
 {
-    if (!_buyWaySecondBtn)
+    if (!_addHotStampingMachineNumBtn)
     {
-        _buyWaySecondBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_buyWaySecondBtn setBackgroundImage:OrigIMG(@"barItem-back") forState:UIControlStateSelected];
-        [_buyWaySecondBtn setBackgroundImage:OrigIMG(@"more_test") forState:UIControlStateNormal];
-        _buyWaySecondBtn.frame = CGRectMake(210, 5, 30, 30);
-        [_buyWaySecondBtn addTarget:self action:@selector(buyWay:) forControlEvents:UIControlEventTouchUpInside];
+        _addHotStampingMachineNumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_addHotStampingMachineNumBtn setBackgroundImage:OrigIMG(@"Products_but_Plus") forState:UIControlStateNormal];
+        _addHotStampingMachineNumBtn.frame = CGRectMake(200, 10,45, 45);
+         [_addHotStampingMachineNumBtn addTarget:self action:@selector(clickAddHotStampingMachineBtn) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _buyWaySecondBtn;
+    return _addHotStampingMachineNumBtn;
 }
 
--(UILabel *)buyWaySecondLb
+-(UILabel *)hotStampingMachinePriceLab
 {
-    if (!_buyWaySecondLb)
+    if (!_hotStampingMachinePriceLab)
     {
-        
-        _buyWaySecondLb = [[UILabel alloc]initWithFrame:CGRectMake(245, 0,80, 44)];
-        _buyWaySecondLb.text = self.info.buyWaySecond;
+        _hotStampingMachinePriceLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 65, 100, 45)];
+        _hotStampingMachinePriceLab.text = @"烫印机价格";
+        _hotStampingMachinePriceLab.textAlignment= NSTextAlignmentLeft;
     }
-    return _buyWaySecondLb;
+    return _hotStampingMachinePriceLab;
 }
 
--(UILabel *)numberLb
+-(UILabel *)hotStampingMachinePriceNumLab
 {
-    if (!_numberLb)
-    {
-        _numberLb = [[UILabel alloc]initWithFrame:CGRectMake(10, 44, 50, 45)];
-        
-        _numberLb.font = [UIFont systemFontOfSize:12];
-        _numberLb.text = @"数量";
+    if (!_hotStampingMachinePriceNumLab) {
+        _hotStampingMachinePriceNumLab = [[UILabel  alloc]initWithFrame:CGRectMake(110, 65, 120, 45)];
+        _hotStampingMachinePriceNumLab.textAlignment = NSTextAlignmentLeft;
     }
-    return _numberLb;
+    return _hotStampingMachinePriceNumLab;
 }
 
--(UIButton *)addBtn
+-(UILabel *)labelNumberLab
 {
-    if (!_addBtn)
+    if (!_labelNumberLab)
     {
-        _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_addBtn setBackgroundImage:OrigIMG(@"more_test") forState:UIControlStateNormal];
-        [_addBtn addTarget:self action:@selector(clickAddBtn) forControlEvents:UIControlEventTouchUpInside];
-        _addBtn.frame = CGRectMake(150, 49,30, 30);
+        _labelNumberLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 120, 100, 45)];
+        _labelNumberLab.text = @"标签张数";
     }
-    return _addBtn;
+    return _labelNumberLab;
 }
 
--(UILabel *)buyNumberLb
+-(UIButton *)deleteLabelBtn
 {
-    if (!_buyNumberLb)
-    {
-        _buyNumberLb = [[UILabel alloc]initWithFrame:CGRectMake(115, 49, 30, 30)];
-        _buyNumberLb.textAlignment= NSTextAlignmentCenter;
+    if (!_deleteLabelBtn) {
+        _deleteLabelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _deleteLabelBtn.frame = CGRectMake(110, 120, 45, 45);
+        [_deleteLabelBtn setBackgroundImage:OrigIMG(@"Products_but_minus") forState:UIControlStateNormal];
+        [_deleteLabelBtn addTarget:self action:@selector(clickDeleteLabelBtn) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _buyNumberLb;
+    return _deleteLabelBtn;
 }
 
--(UIButton *)deleteBtn
+-(UILabel *)labelBuyNumberLb
 {
-    if (!_deleteBtn)
+    if (!_labelBuyNumberLb)
     {
-        _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_deleteBtn setBackgroundImage:OrigIMG(@"more_test") forState:UIControlStateNormal];
-        [_deleteBtn addTarget:self action:@selector(clickDeleteBtn) forControlEvents:UIControlEventTouchUpInside];
-        _deleteBtn.frame = CGRectMake(80, 49,30, 30);
+        _labelBuyNumberLb = [[UILabel alloc]initWithFrame:CGRectMake(155, 120, 55, 45)];
+        _labelBuyNumberLb.textAlignment = NSTextAlignmentCenter;
     }
-    return _deleteBtn;
+    return _labelBuyNumberLb;
 }
 
--(UILabel *)priceLab
+-(UIButton *)addLabelNumBtn
 {
-    if (!_priceLab)
+    if (!_addLabelNumBtn)
     {
-        _priceLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 83, 50, 45)];
-        _priceLab.font = [UIFont systemFontOfSize:12];
-        _priceLab.text = @"价格";
+        _addLabelNumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_addLabelNumBtn setBackgroundImage:OrigIMG(@"Products_but_Plus") forState:UIControlStateNormal];
+        [_addLabelNumBtn addTarget:self action:@selector(clickAddLabelBtn) forControlEvents:UIControlEventTouchUpInside];
+        _addLabelNumBtn.frame = CGRectMake(200, 120,45, 45);
     }
-    return _priceLab;
+    return _addLabelNumBtn;
 }
 
--(UILabel *)priceLb
+-(UILabel *)labelPriceLab
 {
-    if (!_priceLb)
+    if (!_labelPriceLab)
     {
-        _priceLb = [[UILabel alloc]initWithFrame:CGRectMake(80, 83, SCREEN_WIDTH-100, 45)];
-        _priceLb.text = [NSString stringWithFormat:@"%d",self.info.price];
+        _labelPriceLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 175, 100, 45)];
+        _labelPriceLab.text = @"标签价格";
+        _labelPriceLab.textAlignment= NSTextAlignmentLeft;
     }
-    return _priceLb;
+    return _labelPriceLab;
+}
+
+-(UILabel *)labelPriceNumLab
+{
+    if (!_labelPriceNumLab) {
+        _labelPriceNumLab = [[UILabel  alloc]initWithFrame:CGRectMake(110, 175, 100, 45)];
+        _labelPriceNumLab.textAlignment = NSTextAlignmentLeft;
+    }
+    return _labelPriceNumLab;
+}
+
+-(UILabel *)totalPriceLab
+{
+    if (!_totalPriceLab) {
+        _totalPriceLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 230, 100, 45)];
+        _totalPriceLab.textAlignment = NSTextAlignmentLeft;
+        _totalPriceLab.text = @"标签价格";
+    }
+    return _totalPriceLab;
+}
+
+-(UILabel *)totalPriceNumLab
+{
+    if (!_totalPriceNumLab) {
+        _totalPriceNumLab = [[UILabel alloc]initWithFrame:CGRectMake(110, 230, 100, 45)];
+        _totalPriceNumLab.textAlignment = NSTextAlignmentLeft;
+    }
+    return _totalPriceNumLab;
 }
 
 -(void)setInfo:(HCProductIntroductionInfo *)info
 {
     _info = info;
-    _productNameLb.text = self.info.productName;
-    _priceLb.text = [NSString stringWithFormat:@"%d元",self.info.price];
-    _buyWayFirstlb.text = self.info.buyWayFirst;
-    _buyWaySecondLb.text = self.info.buyWaySecond;
-    _buyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyNumber];
-    _priceLb.text = [NSString stringWithFormat:@"%d元",self.info.buyNumber*self.info.price];
+    _hotStampingMachineBuyNumberLb.text = [NSString stringWithFormat:@"%d" ,self.info.buyHotStampingMachineNumber];
+    _hotStampingMachinePriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber];
+    _labelBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyLabelNumber];
+    _labelPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.labelPrice*self.info.buyLabelNumber];
+    _totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
     
 }
-
-
 @end

@@ -40,7 +40,6 @@
     
 }
 
-
 #pragma mark---Setter Or Getter
 
 -(void)setIndexPath:(NSIndexPath *)indexPath
@@ -81,7 +80,6 @@
     return _titleLabel;
 }
 
-
 - (NSArray *)placeholderTitleArr
 {
     if (!_placeholderTitleArr)
@@ -99,7 +97,5 @@
     }
     return _titleArr;
 }
-
-
 
 @end

@@ -11,31 +11,33 @@
 @interface HCProductIntroductionInfo : NSObject
 
 /**
- *购买方式 1
+ *  标签购买数量
  */
-@property(nonatomic,strong) NSString *buyWayFirst;
+@property (nonatomic,assign) int buyLabelNumber;
 
 /**
- *购买方式 2
+ * 标签价格
  */
-@property(nonatomic,strong) NSString *buyWaySecond;
-/**
- *数量
- */
-@property (nonatomic,assign) int buyNumber;
+@property (nonatomic,assign) int labelPrice;
 
 /**
- * 价格
+ *  烫印机购买数量
  */
-@property (nonatomic,assign) int price;
+@property (nonatomic,assign) int buyHotStampingMachineNumber;
 
 /**
- * 产品
+ * 烫印机价格
  */
-@property (nonatomic,strong) NSString *productName;
+@property (nonatomic,assign) int hotStampingMachinePrice;
+
+/**
+ * 总价格
+ */
+@property (nonatomic,assign) int totalPrice;
 
 /**
  * 产品
  */
 @property (nonatomic,assign)BOOL   selectState;
+
 @end

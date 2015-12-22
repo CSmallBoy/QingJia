@@ -24,12 +24,14 @@
 - (id)formatResponseObject:(id)responseObject
 {
         HCProductIntroductionInfo *info = [[HCProductIntroductionInfo alloc] init];
-        info.buyWayFirst = @"不租用";
-        info.buyWaySecond = @"租用";
-        info.buyNumber = 4;
-        info.productName = @"标签";
+//    info.buyWayFirst = @"不租用";
+//    info.buyWaySecond = @"租用";
+    info.buyLabelNumber = 10;
+    info.labelPrice = 8;
+    info.buyHotStampingMachineNumber = 1;
+    info.hotStampingMachinePrice = 70;
     info.selectState = YES;
-    info.price = 89;
+    info.totalPrice = 158;
     
     return info;
 }

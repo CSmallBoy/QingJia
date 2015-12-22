@@ -82,8 +82,8 @@ static NSString * const reuseIdentifier = @"moreCollectionCell";
     {
         NSArray *titleArr = @[@"通知中心", @"时间轴", @"救助中心", @"班级日历",
                               @"标签管理", @"产品中心", @"一呼百应", @"添加"];
-        NSArray *imageNameArr = @[@"more_test", @"more_test", @"more_test", @"more_test",
-                               @"more_test", @"more_test", @"more_test", @"more_test"];
+        NSArray *imageNameArr = @[@"Notice", @"Timeline", @"Salve", @"Calendar",
+                               @"label", @"Products", @"hopne", @"Classinfo_but_plus"];
         _TagArr = [NSMutableArray arrayWithCapacity:8];
         for (NSInteger i = 0; i < 8; i++)
         {

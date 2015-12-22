@@ -4,7 +4,7 @@
 //
 //  Created by 朱宗汉 on 15/12/16.
 //  Copyright © 2015年 com.xxx. All rights reserved.
-//
+//定制标签
 
 #import "HCCustomTagViewController.h"
 #import "HCOrderOnlineViewController.h"
@@ -18,7 +18,7 @@
 #import "HCCustomTagContactTableViewCell.h"
 #import "HCCustomTagUserMedicalCell.h"
 
-@interface HCCustomTagViewController ()<HCPickerViewDelegate,ACEExpandableTableViewDelegate>
+@interface HCCustomTagViewController ()<HCPickerViewDelegate,ACEExpandableTableViewDelegate,HCCustomTagUserInfoCellDelegate>
 
 @property (nonatomic, strong) HCPickerView *datePicker;
 
@@ -45,23 +45,25 @@
 
 -(void)addUserHeaderIMG
 {
+    NSLog(@"222");
     [HCAvatarMgr manager].isUploadImage = YES;
     [HCAvatarMgr manager].noUploadImage = NO;
     //上传个人头像
     [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
-        if (!result)
-        {
-            [self showHUDText:msg];
-            [HCAvatarMgr manager].isUploadImage = NO;
-            [HCAvatarMgr manager].noUploadImage = NO;
-        }
-        else
-        {
-            [[SDImageCache sharedImageCache] clearMemory];
-            [[SDImageCache sharedImageCache] clearDisk];
-            [self.tableView reloadData];
-        }
+//        if (!result)
+//        {
+//            [self showHUDText:msg];
+//            [HCAvatarMgr manager].isUploadImage = NO;
+//            [HCAvatarMgr manager].noUploadImage = NO;
+//        }
+//        else
+//        {
+//            [[SDImageCache sharedImageCache] clearMemory];
+//            [[SDImageCache sharedImageCache] clearDisk];
+//            [self.tableView reloadData];
+//        }
     }];
+
 }
 
 #pragma mark---UITableViewDelegate
@@ -74,6 +76,7 @@
     {
            static NSString *CustomTagID = @"CustonTag";
         HCCustomTagUserInfoCell *customTagUserInfoCell = [[HCCustomTagUserInfoCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CustomTagID];
+        customTagUserInfoCell.delegate = self;
         customTagUserInfoCell.tagUserInfo = _tagUserInfo;
         customTagUserInfoCell.indexPath = indexPath;
         cell = customTagUserInfoCell;
@@ -140,6 +143,12 @@
         return self.basicInfoHeaderView;
     }else if (section == 1)
     {
+        UIButton *addContactBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        addContactBtn.frame = CGRectMake(70, 0, 30, 30);
+        ViewBorderRadius(addContactBtn, 35, 1, [UIColor blackColor]);
+        [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_contactInfoHeaderView addSubview:addContactBtn];
         return self.contactInfoHeaderView;
     }else if (section == 3)
     {
@@ -147,6 +156,12 @@
     }
     else
     {
+        UIButton *deleteContactBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        deleteContactBtn.frame = CGRectMake(70, 0, 30, 30);
+        ViewBorderRadius(deleteContactBtn, 35, 1, [UIColor blackColor]);
+        [deleteContactBtn addTarget:self action:@selector(handleDeleteContact) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_contactInfoHeaderView addSubview:deleteContactBtn];
         return nil;
     }
    
@@ -180,6 +195,14 @@
             return MAX(80, _height);
         }
         else
+        {
+            return 44;
+        }
+    }else if (indexPath.section == 0)
+    {
+        if (indexPath.row == 0) {
+            return 84;
+        }else
         {
             return 44;
         }
@@ -273,8 +296,17 @@
     [self.navigationController pushViewController:orderOnlineVC animated:YES];
 }
 
+-(void)handleAddContact
+{
+    [self showHUDText:@"增加紧急联系人"];
+}
 
 
+-(void)handleDeleteContact
+{
+    [self showHUDText:@"收起紧急联系人"];
+
+}
 #pragma mark---Setter Or Getter
 
 - (HCPickerView *)datePicker
@@ -309,12 +341,7 @@
         headerLabel.text = @"紧急联系人";
         headerLabel.font = [UIFont systemFontOfSize:12];
         
-        UIButton *addContactBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        addContactBtn.frame = CGRectMake(70, 0, 30, 30);
-        ViewBorderRadius(addContactBtn, 35, 1, [UIColor blackColor]);
-        [addContactBtn addTarget:self action:@selector(handleAddContact:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [_contactInfoHeaderView addSubview:addContactBtn];
+
         [_contactInfoHeaderView addSubview:headerLabel];
     }
     return _contactInfoHeaderView;
