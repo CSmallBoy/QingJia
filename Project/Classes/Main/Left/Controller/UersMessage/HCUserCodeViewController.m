@@ -19,6 +19,7 @@
     [super viewDidLoad];
     self.title = @"我的二维码";
     [self setupBackItem];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 

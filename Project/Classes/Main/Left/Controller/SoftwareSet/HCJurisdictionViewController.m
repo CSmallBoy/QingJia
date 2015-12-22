@@ -7,6 +7,7 @@
 // 默认权限设置
 
 #import "HCJurisdictionViewController.h"
+#import "HCFriendMessageViewController.h"
 
 @interface HCJurisdictionViewController ()
 
@@ -46,9 +47,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    _selected = indexPath.row;
-    [self.tableView reloadData];
+    if (indexPath.row != 3)
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        _selected = indexPath.row;
+        [self.tableView reloadData];
+    }else
+    {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.itemSize = CGSizeMake(WIDTH(self.view)*0.18, WIDTH(self.view)*0.23);
+        CGFloat paddingY = 10;
+        CGFloat paddingX = 20;
+        layout.sectionInset = UIEdgeInsetsMake(paddingY, paddingX, paddingY, paddingX);
+        layout.minimumInteritemSpacing = paddingY;
+        
+        HCFriendMessageViewController *friendMessage = [[HCFriendMessageViewController alloc] initWithCollectionViewLayout:layout];
+        [self.navigationController pushViewController:friendMessage animated:YES];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,7 +84,6 @@
     }
     return _titleArr;
 }
-
 
 
 @end

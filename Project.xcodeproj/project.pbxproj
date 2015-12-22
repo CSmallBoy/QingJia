@@ -111,6 +111,11 @@
 		0A8A4F821C1FD7FE00753D65 /* HCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */; };
 		0AA0EB981C1536F3007F7EAB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB971C1536F3007F7EAB /* AddressBook.framework */; };
 		0AA0EB9A1C1536FB007F7EAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */; };
+		0AA626B91C29862700EC62D9 /* HCFriendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA626B81C29862700EC62D9 /* HCFriendMessageViewController.m */; };
+		0AA626BD1C2989E800EC62D9 /* HCFriendMessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA626BC1C2989E800EC62D9 /* HCFriendMessageCollectionViewCell.m */; };
+		0AA626C11C298A9B00EC62D9 /* HCFriendMessageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA626C01C298A9B00EC62D9 /* HCFriendMessageInfo.m */; };
+		0AA626C61C298D2C00EC62D9 /* HCFriendMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA626C51C298D2C00EC62D9 /* HCFriendMessageApi.m */; };
+		0AA626C91C2998F600EC62D9 /* HCAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA626C81C2998F600EC62D9 /* HCAddFriendViewController.m */; };
 		0AAB69A31C06009800A0A2E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB69A21C06009800A0A2E8 /* AppDelegate.m */; };
 		0AAB69A51C0600D800A0A2E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAB69A41C0600D800A0A2E8 /* QuartzCore.framework */; };
 		0AAB69A71C0600E500A0A2E8 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAB69A61C0600E500A0A2E8 /* OpenGLES.framework */; };
@@ -415,6 +420,16 @@
 		0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessageViewController.m; sourceTree = "<group>"; };
 		0AA0EB971C1536F3007F7EAB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		0AA626B71C29862700EC62D9 /* HCFriendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageViewController.h; sourceTree = "<group>"; };
+		0AA626B81C29862700EC62D9 /* HCFriendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFriendMessageViewController.m; sourceTree = "<group>"; };
+		0AA626BB1C2989E800EC62D9 /* HCFriendMessageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageCollectionViewCell.h; sourceTree = "<group>"; };
+		0AA626BC1C2989E800EC62D9 /* HCFriendMessageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFriendMessageCollectionViewCell.m; sourceTree = "<group>"; };
+		0AA626BF1C298A9B00EC62D9 /* HCFriendMessageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageInfo.h; sourceTree = "<group>"; };
+		0AA626C01C298A9B00EC62D9 /* HCFriendMessageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFriendMessageInfo.m; sourceTree = "<group>"; };
+		0AA626C41C298D2C00EC62D9 /* HCFriendMessageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageApi.h; sourceTree = "<group>"; };
+		0AA626C51C298D2C00EC62D9 /* HCFriendMessageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFriendMessageApi.m; sourceTree = "<group>"; };
+		0AA626C71C2998F600EC62D9 /* HCAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddFriendViewController.h; sourceTree = "<group>"; };
+		0AA626C81C2998F600EC62D9 /* HCAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddFriendViewController.m; sourceTree = "<group>"; };
 		0AAB69A21C06009800A0A2E8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0AAB69A41C0600D800A0A2E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0AAB69A61C0600E500A0A2E8 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1219,6 +1234,7 @@
 		0A8A4F881C1FDCC900753D65 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0AA626BE1C298A8E00EC62D9 /* SoftwareSet */,
 				0AC89DA01C295B2D003EED90 /* UserMessage */,
 			);
 			path = Model;
@@ -1227,6 +1243,7 @@
 		0A8A4F891C1FDCC900753D65 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AA626BA1C2989D400EC62D9 /* SoftwareSet */,
 				0AC89DA41C295B3B003EED90 /* UserMessage */,
 				0AC89D601C28F1C6003EED90 /* HCLeftView.h */,
 				0AC89D611C28F1C6003EED90 /* HCLeftView.m */,
@@ -1234,9 +1251,45 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0AA626BA1C2989D400EC62D9 /* SoftwareSet */ = {
+			isa = PBXGroup;
+			children = (
+				0AA626BB1C2989E800EC62D9 /* HCFriendMessageCollectionViewCell.h */,
+				0AA626BC1C2989E800EC62D9 /* HCFriendMessageCollectionViewCell.m */,
+			);
+			path = SoftwareSet;
+			sourceTree = "<group>";
+		};
+		0AA626BE1C298A8E00EC62D9 /* SoftwareSet */ = {
+			isa = PBXGroup;
+			children = (
+				0AA626BF1C298A9B00EC62D9 /* HCFriendMessageInfo.h */,
+				0AA626C01C298A9B00EC62D9 /* HCFriendMessageInfo.m */,
+			);
+			path = SoftwareSet;
+			sourceTree = "<group>";
+		};
+		0AA626C21C298CDF00EC62D9 /* Left */ = {
+			isa = PBXGroup;
+			children = (
+				0AA626C31C298CDF00EC62D9 /* SoftwareSet */,
+			);
+			path = Left;
+			sourceTree = "<group>";
+		};
+		0AA626C31C298CDF00EC62D9 /* SoftwareSet */ = {
+			isa = PBXGroup;
+			children = (
+				0AA626C41C298D2C00EC62D9 /* HCFriendMessageApi.h */,
+				0AA626C51C298D2C00EC62D9 /* HCFriendMessageApi.m */,
+			);
+			path = SoftwareSet;
+			sourceTree = "<group>";
+		};
 		0ABAFE971BF34591009ABF57 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0AA626C21C298CDF00EC62D9 /* Left */,
 				C7E252D41C29430A00204959 /* More */,
 				0AEEDDCB1C210EBC0065A8FF /* Home */,
 				0AEEDDCC1C210EBC0065A8FF /* Message */,
@@ -1318,6 +1371,10 @@
 				0AC89D811C2932A0003EED90 /* HCFeedbackViewController.m */,
 				0AC89D821C2932A0003EED90 /* HCJurisdictionViewController.h */,
 				0AC89D831C2932A0003EED90 /* HCJurisdictionViewController.m */,
+				0AA626B71C29862700EC62D9 /* HCFriendMessageViewController.h */,
+				0AA626B81C29862700EC62D9 /* HCFriendMessageViewController.m */,
+				0AA626C71C2998F600EC62D9 /* HCAddFriendViewController.h */,
+				0AA626C81C2998F600EC62D9 /* HCAddFriendViewController.m */,
 			);
 			path = SoftwareSet;
 			sourceTree = "<group>";
@@ -2049,6 +2106,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AC89D681C28F270003EED90 /* HCHomePictureDetailApi.m in Sources */,
+				0AA626C91C2998F600EC62D9 /* HCAddFriendViewController.m in Sources */,
 				C7E252CE1C2942D300204959 /* HCCustomTagUserInfoCell.m in Sources */,
 				C7E252AD1C2942D300204959 /* HCNotificationViewController.m in Sources */,
 				C7E252BC1C2942D300204959 /* HCCaseDetailViewController.m in Sources */,
@@ -2080,6 +2138,7 @@
 				C7E252B81C2942D300204959 /* HCProductCenterDetailViewController.m in Sources */,
 				C7C907B21C227BB90054CB7C /* HCImgViewTagList.m in Sources */,
 				0A6B7F241BF1EB74008D54B3 /* HCDictionaryMgr.m in Sources */,
+				0AA626C11C298A9B00EC62D9 /* HCFriendMessageInfo.m in Sources */,
 				0A6B7F9A1BF1EB74008D54B3 /* TOActivityChrome.m in Sources */,
 				0A3E57841C214E5E00AA4DB9 /* HCHomeMoreImgView.m in Sources */,
 				C7E252AB1C2942D300204959 /* HCFollowNotificationViewController.m in Sources */,
@@ -2109,6 +2168,7 @@
 				0A6B7F221BF1EB74008D54B3 /* HCAvatarMgr.m in Sources */,
 				C7E252CA1C2942D300204959 /* HCLogisticsInfoTableViewCell.m in Sources */,
 				C7E252C21C2942D300204959 /* HCContactPersonInfo.m in Sources */,
+				0AA626B91C29862700EC62D9 /* HCFriendMessageViewController.m in Sources */,
 				0ABAFEC41BF3470B009ABF57 /* HCJsonRequestApi.m in Sources */,
 				C7E252C81C2942D300204959 /* HCNotificationCenterTableViewCell.m in Sources */,
 				C7E252B71C2942D300204959 /* HCProducCenterViewController.m in Sources */,
@@ -2120,6 +2180,7 @@
 				0A80DE6C1BFB03DE00031F8A /* HCFindPwdSecondViewController.m in Sources */,
 				0A6B7F211BF1EB74008D54B3 /* HCAppMgr.m in Sources */,
 				C7E252C01C2942D300204959 /* HCMoreInfo.m in Sources */,
+				0AA626C61C298D2C00EC62D9 /* HCFriendMessageApi.m in Sources */,
 				0A724EC51C06A20100E643D6 /* HCUserAlbumApi.m in Sources */,
 				0A6B7F641BF1EB74008D54B3 /* HCertificateInfo.m in Sources */,
 				0A8A4F821C1FD7FE00753D65 /* HCMessageViewController.m in Sources */,
@@ -2173,6 +2234,7 @@
 				C7E252AE1C2942D300204959 /* HCReadNotificationViewController.m in Sources */,
 				C7E252B41C2942D300204959 /* HCJDBuyViewController.m in Sources */,
 				0ABAFEBD1BF346E0009ABF57 /* HCChangePwdApi.m in Sources */,
+				0AA626BD1C2989E800EC62D9 /* HCFriendMessageCollectionViewCell.m in Sources */,
 				0A6B7F6E1BF1EB74008D54B3 /* HCRootTabBarController.m in Sources */,
 				C7E252AC1C2942D300204959 /* HCNotificationDetailViewController.m in Sources */,
 				0AEEDDC11C21017D0065A8FF /* HCScanViewController.m in Sources */,

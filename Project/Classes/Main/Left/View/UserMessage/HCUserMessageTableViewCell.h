@@ -10,6 +10,8 @@
 
 @interface HCUserMessageTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UITextField *textField;
+
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
 @end

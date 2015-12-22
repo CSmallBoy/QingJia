@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSArray *placeArr;
 
 @property (nonatomic, strong) UILabel *title;
-@property (nonatomic, strong) UITextField *textField;
+
 @property (nonatomic, strong) UIImageView *codeImgView;
 
 @end

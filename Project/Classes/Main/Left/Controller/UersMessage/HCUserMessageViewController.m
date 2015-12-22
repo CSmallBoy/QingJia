@@ -10,11 +10,13 @@
 #import "HCUserCodeViewController.h"
 #import "HCUserMessageTableViewCell.h"
 #import "HCUserMessageInfo.h"
+#import "HCPickerView.h"
 
 #define HCUserCell @"HCUserMessageTableViewCell"
 
-@interface HCUserMessageViewController ()
+@interface HCUserMessageViewController ()<HCPickerViewDelegate>
 
+@property (nonatomic, strong) HCPickerView *datePicker;
 @property (nonatomic, strong) HCUserMessageInfo *info;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 
@@ -32,6 +34,7 @@
     [super viewDidLoad];
     [self setupBackItem];
     self.title = @"个人信息";
+    self.navigationItem.rightBarButtonItem = self.rightItem;
     
     _info = [[HCUserMessageInfo alloc] init];
     
@@ -53,6 +56,14 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (indexPath.row == 4)
+    {
+        [self.datePicker show];
+        [self.view endEditing:YES];
+    }else
+    {
+        [self.datePicker remove];
+    }
     HCViewController *vc = nil;
     if (indexPath.row == 1)
     {
@@ -71,15 +82,46 @@
     return 9;
 }
 
+#pragma mark - HCPickerViewDelegate
+
+- (void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result
+{
+    NSDate *date = result[@"date"];
+//    _userInfo.birthday = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
+    HCUserMessageTableViewCell *cell = (HCUserMessageTableViewCell *)
+    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+    cell.textField.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
+}
+
+#pragma mark - private methods
+
+- (void)handleRightItem
+{
+    [self showHUDText:@"编辑用户信息"];
+}
+
 #pragma mark - setter 
 
-//- (UIBarButtonItem *)rightItem
-//{
-//    if (!_rightItem)
-//    {
-//        _rightItem = [UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(<#selector#>)
-//    }
-//}
+- (UIBarButtonItem *)rightItem
+{
+    if (!_rightItem)
+    {
+        _rightItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem)];
+    }
+    return _rightItem;
+}
+
+- (HCPickerView *)datePicker
+{
+    if (!_datePicker)
+    {
+        _datePicker = [[HCPickerView alloc] initDatePickWithDate:[NSDate date]
+                                                  datePickerMode:UIDatePickerModeDate isHaveNavControler:YES];
+        _datePicker.datePicker.maximumDate = [NSDate date];
+        _datePicker.delegate = self;
+    }
+    return _datePicker;
+}
 
 - (UIImageView *)headBackground
 {
