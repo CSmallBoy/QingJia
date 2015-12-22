@@ -9,6 +9,7 @@
 #import "HCLeftViewController.h"
 #import "AppDelegate.h"
 #import "HCSoftwareSettingViewController.h"
+#import "HCUserMessageViewController.h"
 #import "HCLeftView.h"
 
 @interface HCLeftViewController ()<HCLeftViewDelegate>
@@ -51,7 +52,7 @@
     HCViewController *vc = nil;
     if (type == HCLeftViewButtonTypeHead)
     {
-        DLog(@"点击了头像");
+        vc  = [[HCUserMessageViewController alloc] init];
     }else if (type == HCLeftViewButtonTypeCreateGrade)
     {
         DLog(@"创建班级");
@@ -63,8 +64,6 @@
         vc = [[HCSoftwareSettingViewController alloc] init];
     }
     
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    DLog(<#fmt, ...#>)
     
     [self.navigationController pushViewController:vc animated:YES];
 }

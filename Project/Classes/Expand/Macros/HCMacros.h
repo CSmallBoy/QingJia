@@ -11,7 +11,8 @@
 /* ********************系统配置********************* */
 
 //定义一个API
-#define kAPIURL          @"http://zp.ysrlin.com/api"            //外网
+//#define kAPIURL          @"http://zp.ysrlin.com/api"            //外网
+#define kAPIURL             @"https://baidu.com"
 
 #define kIMGURL        @"http://172.16.171.62:8080/hcn-web-0.1/"
 

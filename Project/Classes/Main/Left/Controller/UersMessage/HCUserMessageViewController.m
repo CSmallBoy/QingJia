@@ -1,0 +1,138 @@
+//
+//  HCUserMessageViewController.m
+//  Project
+//
+//  Created by 陈福杰 on 15/12/22.
+//  Copyright © 2015年 com.xxx. All rights reserved.
+//
+
+#import "HCUserMessageViewController.h"
+#import "HCUserCodeViewController.h"
+#import "HCUserMessageTableViewCell.h"
+#import "HCUserMessageInfo.h"
+
+#define HCUserCell @"HCUserMessageTableViewCell"
+
+@interface HCUserMessageViewController ()
+
+@property (nonatomic, strong) HCUserMessageInfo *info;
+@property (nonatomic, strong) UIBarButtonItem *rightItem;
+
+@property (nonatomic, strong) UIImageView *headBackground;
+@property (nonatomic, strong) UIButton *headButton;
+@property (nonatomic, strong) UILabel *nickName;
+@property (nonatomic, strong) UILabel *markLabel;
+
+@end
+
+@implementation HCUserMessageViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setupBackItem];
+    self.title = @"个人信息";
+    
+    _info = [[HCUserMessageInfo alloc] init];
+    
+    self.tableView.tableHeaderView = self.headBackground;
+    [self.tableView registerClass:[HCUserMessageTableViewCell class] forCellReuseIdentifier:HCUserCell];
+}
+
+#pragma mark - UITableView
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HCUserMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HCUserCell];
+    cell.indexPath = indexPath;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    HCViewController *vc = nil;
+    if (indexPath.row == 1)
+    {
+        vc = [[HCUserCodeViewController alloc] init];
+    }
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 9;
+}
+
+#pragma mark - setter 
+
+//- (UIBarButtonItem *)rightItem
+//{
+//    if (!_rightItem)
+//    {
+//        _rightItem = [UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(<#selector#>)
+//    }
+//}
+
+- (UIImageView *)headBackground
+{
+    if (!_headBackground)
+    {
+        _headBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), WIDTH(self.view)*0.45)];
+        _headBackground.image = OrigIMG(@"2Dbarcode_message_Background");
+        
+        [_headBackground addSubview:self.headButton];
+        [_headBackground addSubview:self.nickName];
+        [_headBackground addSubview:self.markLabel];
+    }
+    return _headBackground;
+}
+
+- (UIButton *)headButton
+{
+    if (!_headButton)
+    {
+        _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _headButton.frame = CGRectMake(0, 30, WIDTH(self.view)*0.2, WIDTH(self.view)*0.2);
+        _headButton.center = CGPointMake(self.view.center.x, _headButton.center.y);
+        [_headButton setImage:OrigIMG(@"2Dbarcode_message_HeadPortraits") forState:UIControlStateNormal];
+        ViewRadius(_headButton, WIDTH(_headButton)*0.5);
+    }
+    return _headButton;
+}
+
+- (UILabel *)nickName
+{
+    if (!_nickName)
+    {
+        _nickName = [[UILabel alloc] initWithFrame:CGRectMake(0, MaxY(self.headButton)+5, WIDTH(self.view), 20)];
+        _nickName.text = @"名字昵称";
+        _nickName.textAlignment = NSTextAlignmentCenter;
+        _nickName.textColor = [UIColor whiteColor];
+    }
+    return _nickName;
+}
+
+- (UILabel *)markLabel
+{
+    if (!_markLabel)
+    {
+        _markLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, MaxY(self.nickName)+5, WIDTH(self.view), 20)];
+        _markLabel.textColor = [UIColor whiteColor];
+        _markLabel.textAlignment = NSTextAlignmentCenter;
+        _markLabel.text = @"To mark each day count.";
+        _markLabel.font = [UIFont systemFontOfSize:15];
+    }
+    return _markLabel;
+}
+
+
+
+@end

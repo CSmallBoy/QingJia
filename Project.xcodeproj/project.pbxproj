@@ -139,6 +139,10 @@
 		0AC89D871C2932A0003EED90 /* HCFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D811C2932A0003EED90 /* HCFeedbackViewController.m */; };
 		0AC89D881C2932A0003EED90 /* HCJurisdictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D831C2932A0003EED90 /* HCJurisdictionViewController.m */; };
 		0AC89D891C2932A0003EED90 /* HCSoftwareSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D851C2932A0003EED90 /* HCSoftwareSettingViewController.m */; };
+		0AC89D9E1C295B22003EED90 /* HCUserCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D9B1C295B22003EED90 /* HCUserCodeViewController.m */; };
+		0AC89D9F1C295B22003EED90 /* HCUserMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D9D1C295B22003EED90 /* HCUserMessageViewController.m */; };
+		0AC89DA31C295B2D003EED90 /* HCUserMessageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89DA21C295B2D003EED90 /* HCUserMessageInfo.m */; };
+		0AC89DA71C295B3B003EED90 /* HCUserMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89DA61C295B3B003EED90 /* HCUserMessageTableViewCell.m */; };
 		0AEEDDC11C21017D0065A8FF /* HCScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEDDC01C21017D0065A8FF /* HCScanViewController.m */; };
 		0AEEDDC41C2109850065A8FF /* HCPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEDDC31C2109850065A8FF /* HCPublishViewController.m */; };
 		0AEEDDC71C210A8F0065A8FF /* HCHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEDDC61C210A8F0065A8FF /* HCHomeTableViewCell.m */; };
@@ -464,6 +468,14 @@
 		0AC89D831C2932A0003EED90 /* HCJurisdictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCJurisdictionViewController.m; sourceTree = "<group>"; };
 		0AC89D841C2932A0003EED90 /* HCSoftwareSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSoftwareSettingViewController.h; sourceTree = "<group>"; };
 		0AC89D851C2932A0003EED90 /* HCSoftwareSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSoftwareSettingViewController.m; sourceTree = "<group>"; };
+		0AC89D9A1C295B22003EED90 /* HCUserCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserCodeViewController.h; sourceTree = "<group>"; };
+		0AC89D9B1C295B22003EED90 /* HCUserCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserCodeViewController.m; sourceTree = "<group>"; };
+		0AC89D9C1C295B22003EED90 /* HCUserMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserMessageViewController.h; sourceTree = "<group>"; };
+		0AC89D9D1C295B22003EED90 /* HCUserMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserMessageViewController.m; sourceTree = "<group>"; };
+		0AC89DA11C295B2D003EED90 /* HCUserMessageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserMessageInfo.h; sourceTree = "<group>"; };
+		0AC89DA21C295B2D003EED90 /* HCUserMessageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserMessageInfo.m; sourceTree = "<group>"; };
+		0AC89DA51C295B3B003EED90 /* HCUserMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserMessageTableViewCell.h; sourceTree = "<group>"; };
+		0AC89DA61C295B3B003EED90 /* HCUserMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserMessageTableViewCell.m; sourceTree = "<group>"; };
 		0AEEDDBF1C21017D0065A8FF /* HCScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCScanViewController.h; sourceTree = "<group>"; };
 		0AEEDDC01C21017D0065A8FF /* HCScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCScanViewController.m; sourceTree = "<group>"; };
 		0AEEDDC21C2109850065A8FF /* HCPublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPublishViewController.h; sourceTree = "<group>"; };
@@ -1198,6 +1210,7 @@
 			children = (
 				0AC89D5A1C28F1B2003EED90 /* HCLeftViewController.h */,
 				0AC89D5B1C28F1B2003EED90 /* HCLeftViewController.m */,
+				0AC89D991C295B22003EED90 /* UersMessage */,
 				0AC89D7D1C2932A0003EED90 /* SoftwareSet */,
 			);
 			path = Controller;
@@ -1206,6 +1219,7 @@
 		0A8A4F881C1FDCC900753D65 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0AC89DA01C295B2D003EED90 /* UserMessage */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1213,6 +1227,7 @@
 		0A8A4F891C1FDCC900753D65 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AC89DA41C295B3B003EED90 /* UserMessage */,
 				0AC89D601C28F1C6003EED90 /* HCLeftView.h */,
 				0AC89D611C28F1C6003EED90 /* HCLeftView.m */,
 			);
@@ -1305,6 +1320,35 @@
 				0AC89D831C2932A0003EED90 /* HCJurisdictionViewController.m */,
 			);
 			path = SoftwareSet;
+			sourceTree = "<group>";
+		};
+		0AC89D991C295B22003EED90 /* UersMessage */ = {
+			isa = PBXGroup;
+			children = (
+				0AC89D9A1C295B22003EED90 /* HCUserCodeViewController.h */,
+				0AC89D9B1C295B22003EED90 /* HCUserCodeViewController.m */,
+				0AC89D9C1C295B22003EED90 /* HCUserMessageViewController.h */,
+				0AC89D9D1C295B22003EED90 /* HCUserMessageViewController.m */,
+			);
+			path = UersMessage;
+			sourceTree = "<group>";
+		};
+		0AC89DA01C295B2D003EED90 /* UserMessage */ = {
+			isa = PBXGroup;
+			children = (
+				0AC89DA11C295B2D003EED90 /* HCUserMessageInfo.h */,
+				0AC89DA21C295B2D003EED90 /* HCUserMessageInfo.m */,
+			);
+			path = UserMessage;
+			sourceTree = "<group>";
+		};
+		0AC89DA41C295B3B003EED90 /* UserMessage */ = {
+			isa = PBXGroup;
+			children = (
+				0AC89DA51C295B3B003EED90 /* HCUserMessageTableViewCell.h */,
+				0AC89DA61C295B3B003EED90 /* HCUserMessageTableViewCell.m */,
+			);
+			path = UserMessage;
 			sourceTree = "<group>";
 		};
 		0AEEDDBB1C21016A0065A8FF /* Scan */ = {
@@ -2031,6 +2075,7 @@
 				C7E252C51C2942D300204959 /* HCProductIntroductionInfo.m in Sources */,
 				0A6B7F711BF1EB74008D54B3 /* HCViewController.m in Sources */,
 				C7E252A91C2942D300204959 /* HClassCalendarViewController.m in Sources */,
+				0AC89DA31C295B2D003EED90 /* HCUserMessageInfo.m in Sources */,
 				0A6B7F6C1BF1EB74008D54B3 /* HCPickerView.m in Sources */,
 				C7E252B81C2942D300204959 /* HCProductCenterDetailViewController.m in Sources */,
 				C7C907B21C227BB90054CB7C /* HCImgViewTagList.m in Sources */,
@@ -2038,6 +2083,7 @@
 				0A6B7F9A1BF1EB74008D54B3 /* TOActivityChrome.m in Sources */,
 				0A3E57841C214E5E00AA4DB9 /* HCHomeMoreImgView.m in Sources */,
 				C7E252AB1C2942D300204959 /* HCFollowNotificationViewController.m in Sources */,
+				0AC89DA71C295B3B003EED90 /* HCUserMessageTableViewCell.m in Sources */,
 				0A6B7F201BF1EB74008D54B3 /* HCAccountDBMgr.m in Sources */,
 				0A67E7701C23C3F3005B8CD2 /* HCEditCommentApi.m in Sources */,
 				C7E252C11C2942D300204959 /* HCNotificationCenterInfo.m in Sources */,
@@ -2116,6 +2162,7 @@
 				C7E252BA1C2942D300204959 /* HCRefundSuccessViewController.m in Sources */,
 				C7E252D31C2942D300204959 /* HCProductIntroductionCell.m in Sources */,
 				C7E252E71C294C4300204959 /* HCRescueCenterApi.m in Sources */,
+				0AC89D9F1C295B22003EED90 /* HCUserMessageViewController.m in Sources */,
 				C7E252A81C2942D300204959 /* HCAddItemViewController.m in Sources */,
 				C7E252B61C2942D300204959 /* HCOrderOnlineViewController.m in Sources */,
 				0AC89D701C28F427003EED90 /* YRSideViewController.m in Sources */,
@@ -2133,6 +2180,7 @@
 				0ABAFECC1BF34726009ABF57 /* HCDictionaryApi.m in Sources */,
 				0A6B7F261BF1EB74008D54B3 /* HCVersionMgr.m in Sources */,
 				0AC89D871C2932A0003EED90 /* HCFeedbackViewController.m in Sources */,
+				0AC89D9E1C295B22003EED90 /* HCUserCodeViewController.m in Sources */,
 				0AC89D6C1C28F32A003EED90 /* OTCover.m in Sources */,
 				0AC40DC71C22B71D0074AA79 /* HCPublishTableViewCell.m in Sources */,
 				0ABAFECD1BF34726009ABF57 /* HCGetUserInfoByDeviceApi.m in Sources */,
