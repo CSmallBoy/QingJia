@@ -218,7 +218,7 @@
     {
         _praiseTag = [[HCPraiseTagListView alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 20)];
         _praiseTag.delegate = self;
-        _praiseTag.backgroundColor = [UIColor lightGrayColor];
+//        _praiseTag.backgroundColor = [UIColor lightGrayColor];
     }
     return _praiseTag;
 }

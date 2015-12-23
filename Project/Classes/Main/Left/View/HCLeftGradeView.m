@@ -1,24 +1,22 @@
 //
-//  HCLeftView.m
+//  HCLeftGradeView.m
 //  Project
 //
-//  Created by 陈福杰 on 15/12/19.
+//  Created by 陈福杰 on 15/12/23.
 //  Copyright © 2015年 com.xxx. All rights reserved.
-//   没有班级图片
+//
 
-#import "HCLeftView.h"
+#import "HCLeftGradeView.h"
+#import "UIButton+WebCache.h"
 
-@interface HCLeftView()
-
-@property (nonatomic, strong) UIButton *createGradeBtn;
-@property (nonatomic, strong) UIButton *joinGradeBtn;
+@interface HCLeftGradeView()
 
 @property (nonatomic, strong) UIButton *sofewareSetBtn;
 @property (nonatomic, strong) UIImageView *setImgView;
 
 @end
 
-@implementation HCLeftView
+@implementation HCLeftGradeView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -26,10 +24,10 @@
     if (self)
     {
         self.backgroundColor = RGB(34, 35, 37);
+        [self addSubview:self.gradeHeadButton];
+        [self addSubview:self.gradeName];
         [self addSubview:self.headButton];
         [self addSubview:self.nickName];
-        [self addSubview:self.createGradeBtn];
-        [self addSubview:self.joinGradeBtn];
         [self addSubview:self.sofewareSetBtn];
     }
     return self;
@@ -37,11 +35,37 @@
 
 #pragma mark - private methods
 
+- (UIButton *)gradeHeadButton
+{
+    if (!_gradeHeadButton)
+    {
+        _gradeHeadButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _gradeHeadButton.tag = HCLeftGradeViewButtonTypeGradeButton;
+        _gradeHeadButton.frame = CGRectMake(30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3);
+        [_gradeHeadButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
+        ViewRadius(_gradeHeadButton, 5);
+        [_gradeHeadButton setImage:OrigIMG(@"2Dbarcode_message_Background") forState:UIControlStateNormal];
+    }
+    return _gradeHeadButton;
+}
+
+- (UILabel *)gradeName
+{
+    if (!_gradeName)
+    {
+        _gradeName = [[UILabel alloc] initWithFrame:CGRectMake(0, MaxY(self.gradeHeadButton)+20, WIDTH(self)*0.7, 20)];
+        _gradeName.textAlignment = NSTextAlignmentCenter;
+        _gradeName.textColor = [UIColor whiteColor];
+        _gradeName.text = @"班级名称";
+    }
+    return _gradeName;
+}
+
 - (void)handleButton:(UIButton *)button
 {
-    if ([self.delegate respondsToSelector:@selector(hcleftViewSelectedButtonType:)])
+    if ([self.delegate respondsToSelector:@selector(hcleftGradeViewSelectedButtonType:)])
     {
-        [self.delegate hcleftViewSelectedButtonType:(HCLeftViewButtonType)button.tag];
+        [self.delegate hcleftGradeViewSelectedButtonType:(HCLeftGradeViewButtonType)button.tag];
     }
 }
 
@@ -52,10 +76,11 @@
     if (!_headButton)
     {
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _headButton.tag = HCLeftViewButtonTypeHead;
+        _headButton.tag = HCLeftGradeViewButtonTypeHead;
         [_headButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
-        _headButton.frame = CGRectMake(WIDTH(self)*0.2, 50, 100, 100);
+        _headButton.frame = CGRectMake(WIDTH(self)*0.2, 0, 100, 100);
         ViewRadius(_headButton, 50);
+        _headButton.center = CGPointMake(_headButton.center.x, self.center.y+30);
         [_headButton setImage:OrigIMG(@"Circle-of-Friends") forState:UIControlStateNormal];
     }
     return _headButton;
@@ -74,46 +99,12 @@
     return _nickName;
 }
 
-- (UIButton *)createGradeBtn
-{
-    if (!_createGradeBtn)
-    {
-        _createGradeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _createGradeBtn.tag = HCLeftViewButtonTypeCreateGrade;
-        [_createGradeBtn addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
-        [_createGradeBtn setTitle:@"创建班级" forState:UIControlStateNormal];
-        _createGradeBtn.frame = CGRectMake(WIDTH(self)*0.2, HEIGHT(self)*0.5, 90, 60);
-        
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 59, 90, 1)];
-        line.backgroundColor = RGB(50, 51, 52);
-        [_createGradeBtn addSubview:line];
-    }
-    return _createGradeBtn;
-}
-
-- (UIButton *)joinGradeBtn
-{
-    if (!_joinGradeBtn)
-    {
-        _joinGradeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _joinGradeBtn.tag = HCLeftViewButtonTypeJoinGrade;
-        [_joinGradeBtn addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
-        [_joinGradeBtn setTitle:@"加入班级" forState:UIControlStateNormal];
-        _joinGradeBtn.frame = CGRectMake(WIDTH(self)*0.2, MaxY(self.createGradeBtn), 90, 60);
-        
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 59, 90, 1)];
-        line.backgroundColor = RGB(50, 51, 52);
-        [_joinGradeBtn addSubview:line];
-    }
-    return _joinGradeBtn;
-}
-
 - (UIButton *)sofewareSetBtn
 {
     if (!_sofewareSetBtn)
     {
         _sofewareSetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _sofewareSetBtn.tag = HCLeftViewButtonTypeSoftwareSet;
+        _sofewareSetBtn.tag = HCLeftGradeViewButtonTypeSoftwareSet;
         [_sofewareSetBtn addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         [_sofewareSetBtn setTitle:@"软件设置" forState:UIControlStateNormal];
         _sofewareSetBtn.frame = CGRectMake(WIDTH(self)*0.2, HEIGHT(self)-80, 120, 40);

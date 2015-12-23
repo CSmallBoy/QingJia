@@ -10,11 +10,14 @@
 #import "AppDelegate.h"
 #import "HCSoftwareSettingViewController.h"
 #import "HCUserMessageViewController.h"
+#import "HCGradeManagerViewController.h"
 #import "HCLeftView.h"
+#import "HCLeftGradeView.h"
 
-@interface HCLeftViewController ()<HCLeftViewDelegate>
+@interface HCLeftViewController ()<HCLeftViewDelegate, HCLeftGradeViewDelegate>
 
 @property (nonatomic, strong) HCLeftView *leftView;
+@property (nonatomic, strong) HCLeftGradeView *leftGradeView;
 
 @end
 
@@ -24,25 +27,20 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = RGB(34, 35, 37);
-    [self.view addSubview:self.leftView];
+//    [self.view addSubview:self.leftView];
+    [self.view addSubview:self.leftGradeView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-    
-//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    [app.sideViewController showHomeView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
-    
-//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    [app.sideViewController hideHomeView];
 }
 
 #pragma mark - HCLeftViewDelegate
@@ -63,7 +61,38 @@
     {
         vc = [[HCSoftwareSettingViewController alloc] init];
     }
-    
+    [self pushViewController:vc];
+}
+
+#pragma mark - HCLeftGradeViewDelegate
+
+- (void)hcleftGradeViewSelectedButtonType:(HCLeftGradeViewButtonType)type
+{
+    HCViewController *vc = nil;
+    if (type == HCLeftGradeViewButtonTypeGradeButton)
+    {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.itemSize = CGSizeMake(WIDTH(self.view)*0.18, WIDTH(self.view)*0.23);
+        CGFloat paddingY = 10;
+        CGFloat paddingX = 20;
+        layout.sectionInset = UIEdgeInsetsMake(paddingY, paddingX, paddingY, paddingX);
+        layout.minimumInteritemSpacing = paddingY;
+        
+        vc = (HCViewController *)[[HCGradeManagerViewController alloc] initWithCollectionViewLayout:layout];
+    }else if (type == HCLeftGradeViewButtonTypeHead)
+    {
+        vc  = [[HCUserMessageViewController alloc] init];
+    }else if (type == HCLeftGradeViewButtonTypeSoftwareSet)
+    {
+        vc = [[HCSoftwareSettingViewController alloc] init];
+    }
+    [self pushViewController:vc];
+}
+
+#pragma mark - private methods
+
+- (void)pushViewController:(HCViewController *)vc
+{
     UIViewController *control = self.view.window.rootViewController.childViewControllers[0];
     vc.hidesBottomBarWhenPushed = YES;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -83,6 +112,17 @@
     }
     return _leftView;
 }
+
+- (HCLeftGradeView *)leftGradeView
+{
+    if (!_leftGradeView)
+    {
+        _leftGradeView = [[HCLeftGradeView alloc] initWithFrame:self.view.frame];
+        _leftGradeView.delegate = self;
+    }
+    return _leftGradeView;
+}
+
 
 
 @end

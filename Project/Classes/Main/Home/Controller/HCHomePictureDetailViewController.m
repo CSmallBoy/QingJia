@@ -8,12 +8,10 @@
 
 #import "HCHomePictureDetailViewController.h"
 #import "UIImageView+WebCache.h"
-#import "UIImage+MultiFormat.h"
+#import "UIImage+MultiFormat.h" // 同步加载图片了
 #import "HCHomeInfo.h"
 #import "OTCover.h"
-
 #import "HCHomeDetailCommentTableViewCell.h"
-
 #import "HCHomePictureDetailApi.h"
 
 #define HCHomeDetailComment @"HCHomeDetailCommentTableViewCell"
