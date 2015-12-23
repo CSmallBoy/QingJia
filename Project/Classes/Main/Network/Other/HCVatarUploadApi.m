@@ -43,7 +43,7 @@
 {
     if (IsEmpty(self.Argument))
     {
-        return @{@"t": @"User,uploadAvatar", @"uid": [HCAccountMgr manager].loginInfo.uid};
+        return @{@"t": @"User,logout", @"token": @"23"};
     }
     return self.Argument;
 }

@@ -112,12 +112,12 @@
 -(void)handleheaderIMG
 {
 //    [self ]
-//    if ([self.delegate respondsToSelector:@selector(addUserHeaderIMG)])
-//    {
+    if ([self.delegate respondsToSelector:@selector(addUserHeaderIMG)])
+    {
      NSLog(@"1111");
         [self.delegate addUserHeaderIMG];
         
-//    }
+    }
    
 }
 

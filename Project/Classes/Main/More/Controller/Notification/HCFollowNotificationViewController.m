@@ -9,10 +9,11 @@
 
 #import "HCFollowNotificationViewController.h"
 #import "HCButtonItem.h"
+#import "HCNotificationCenterFollowTableViewCell.h"
+#import "HCNotificationCenterFollowAPI.h"
+#import "HCNotificationCenterInfo.h"
 
 @interface HCFollowNotificationViewController ()
-
-@property (nonatomic,strong) NSMutableArray *mutableArray;
 
 
 @end
@@ -21,38 +22,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self requestHomeData];
     
     
 }
 
-
-
-
+#pragma mark----UITableViewDelegate
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *followNotificationID = @"followNotification";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:followNotificationID];
-    if (!cell)
-    {  
-        cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:followNotificationID];
-        UIView *deletView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 44)];
-        HCButtonItem *deleteBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 0, 44, 44) WithImageName:@"Settings_icon_Cache_dis" WithImageWidth:44 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:-5];
+    static NSString *followID = @"FollowNotificationID";
+    HCNotificationCenterFollowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:followID];
+    if (!cell) {
+        
+        cell = [[HCNotificationCenterFollowTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:followID];
+        
+        //修改删除按钮
+        UIView *deletView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 60)];
+        HCButtonItem *deleteBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 0, 45, 60) WithImageName:@"Settings_icon_Cache_dis" WithImageWidth:80 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:-5];
         deletView.backgroundColor = [UIColor whiteColor];
         [deletView addSubview:deleteBtn];
         [cell.contentView addSubview:deletView];
+        
+        cell.info = self.dataSource[indexPath.section];
     }
-    
-    UILabel * timeLab = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width-180, 0, 170, 20)];
-    timeLab.textAlignment = NSTextAlignmentRight;
-    timeLab.font = [UIFont systemFontOfSize:12];
-    timeLab.text = @"2015年08月23日 12:10";
-    timeLab.textColor = [UIColor lightGrayColor];
-    
-    cell.textLabel.text = @"M-Talk";
-    cell.detailTextLabel.text = @"过将随机核苷酸编码的寡肽插入编码包被蛋白基因的开放读框末端，即可构建含有大量的具有不同结构和组成信息的噬菌体呈现表位文库";
-    [cell.contentView addSubview:timeLab];
-    
     return cell;
     
     
@@ -66,7 +59,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 60;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -87,7 +80,8 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.mutableArray.count;
+    return self.dataSource.count;
+    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -101,18 +95,27 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.mutableArray removeObjectAtIndex:indexPath.section];
+    [self.dataSource removeObjectAtIndex:indexPath.section];
     [tableView reloadData];
 }
 
+#pragma mark - network
 
--(NSMutableArray *)mutableArray
+- (void)requestHomeData
 {
-    if (!_mutableArray) {
-        _mutableArray = [[NSMutableArray alloc]initWithArray:@[@"1",@"2",@"3"]];
-        
-    }
-    return _mutableArray;
+    HCNotificationCenterFollowAPI *api = [[HCNotificationCenterFollowAPI alloc] init];
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:array];
+            [self.tableView reloadData];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
 }
 
 @end

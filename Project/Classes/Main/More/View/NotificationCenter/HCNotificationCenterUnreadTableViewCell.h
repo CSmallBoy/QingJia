@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HCNotificationCenterInfo.h"
-@interface HCNotificationCenterTableViewCell : UITableViewCell
+@interface HCNotificationCenterUnreadTableViewCell : UITableViewCell
 @property (nonatomic,strong) HCNotificationCenterInfo *info;
 
 @property (nonatomic,strong) NSIndexPath *indexPath;

@@ -4,17 +4,17 @@
 //
 //  Created by 朱宗汉 on 15/12/21.
 //  Copyright © 2015年 com.xxx. All rights reserved.
-//
+//未读信息
 
 #import "HCUnReadNotificationViewController.h"
 #import "HCButtonItem.h"
-#import "HCNotificationCenterTableViewCell.h"
+#import "HCNotificationCenterUnreadTableViewCell.h"
 #import "HCNotificationCenterApi.h"
 #import "HCNotificationCenterInfo.h"
+#import "HCNotificationDetailViewController.h"
+
 @interface HCUnReadNotificationViewController ()
 
-
-@property (nonatomic,strong) NSMutableArray *mutableArray;
 @end
 
 @implementation HCUnReadNotificationViewController
@@ -32,16 +32,31 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *unreadID = @"unread";
-    HCNotificationCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:unreadID];
+    HCNotificationCenterUnreadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:unreadID];
     if (!cell) {
         
-        cell = [[HCNotificationCenterTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:unreadID];
+        cell = [[HCNotificationCenterUnreadTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:unreadID];
+        
+        //修改删除按钮
+        UIView *deletView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 60)];
+        HCButtonItem *deleteBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 0, 45, 60) WithImageName:@"Settings_icon_Cache_dis" WithImageWidth:80 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:-5];
+        deletView.backgroundColor = [UIColor whiteColor];
+        [deletView addSubview:deleteBtn];
+        [cell.contentView addSubview:deletView];
+        
         cell.info = self.dataSource[indexPath.section];
+        
 
     }
     return cell;
-   
     
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HCNotificationDetailViewController *detailVC = [[HCNotificationDetailViewController alloc]init];
+    detailVC.info = self.dataSource[indexPath.section];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 
@@ -52,7 +67,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 60;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -88,22 +103,9 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [self.mutableArray removeObjectAtIndex:indexPath.section];
     [self.dataSource removeObjectAtIndex:indexPath.section];
     [tableView reloadData];
 }
-
-
--(NSMutableArray *)mutableArray
-{
-    if (!_mutableArray) {
-        _mutableArray = [[NSMutableArray alloc]initWithArray:@[@"1",@"2",@"3",@"4",@"5"]];
-        
-    }
-    return _mutableArray;
-}
-
-
 
 #pragma mark - network
 

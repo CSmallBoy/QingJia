@@ -8,6 +8,10 @@
 
 #import "HCViewController.h"
 
+#import "HCNotificationCenterInfo.h"
+
 @interface HCNotificationDetailViewController : HCViewController
+
+@property (nonatomic,strong) HCNotificationCenterInfo *info;
 
 @end

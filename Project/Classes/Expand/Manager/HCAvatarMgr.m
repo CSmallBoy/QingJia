@@ -141,7 +141,7 @@ static HCAvatarMgr *_sharedManager = nil;
 - (void)uploadPhotoImage:(UIImage *)image
 {
     HCVatarUploadApi *api = [[HCVatarUploadApi alloc] init];
-    api.Argument = @{@"t": @"Frame,file", @"uid": [HCAccountMgr manager].loginInfo.uid};
+    api.Argument = @{@"t": @"User,logout", @"token": @"23"};
     api.image = image;
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *data) {
@@ -163,8 +163,8 @@ static HCAvatarMgr *_sharedManager = nil;
         
         if (requestStatus == HCRequestStatusSuccess) {
             //保存到数据库
-            [HCAccountMgr manager].loginInfo.avatar = data[@"url"];
-            [[HCAccountMgr manager] updateLoginInfoToDB];
+//            [HCAccountMgr manager].loginInfo.avatar = data[@"url"];
+//            [[HCAccountMgr manager] updateLoginInfoToDB];
         }
         self.uploadCompletionBlock(YES,self.headImage,message);
     }];

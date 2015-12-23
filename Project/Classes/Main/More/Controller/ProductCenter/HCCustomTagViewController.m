@@ -50,18 +50,18 @@
     [HCAvatarMgr manager].noUploadImage = NO;
     //上传个人头像
     [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
-//        if (!result)
-//        {
-//            [self showHUDText:msg];
-//            [HCAvatarMgr manager].isUploadImage = NO;
-//            [HCAvatarMgr manager].noUploadImage = NO;
-//        }
-//        else
-//        {
-//            [[SDImageCache sharedImageCache] clearMemory];
-//            [[SDImageCache sharedImageCache] clearDisk];
-//            [self.tableView reloadData];
-//        }
+        if (!result)
+        {
+            [self showHUDText:msg];
+            [HCAvatarMgr manager].isUploadImage = NO;
+            [HCAvatarMgr manager].noUploadImage = NO;
+        }
+        else
+        {
+            [[SDImageCache sharedImageCache] clearMemory];
+            [[SDImageCache sharedImageCache] clearDisk];
+            [self.tableView reloadData];
+        }
     }];
 
 }

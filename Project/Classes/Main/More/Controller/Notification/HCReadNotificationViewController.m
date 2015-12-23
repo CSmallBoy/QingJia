@@ -8,6 +8,9 @@
 
 #import "HCReadNotificationViewController.h"
 #import "HCButtonItem.h"
+#import "HCNotificationCentereReadTableViewCell.h"
+#import "HCNotificationCenterReadApi.h"
+#import "HCNotificationCenterInfo.h"
 
 @interface HCReadNotificationViewController ()
 
@@ -19,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self requestHomeData];
     
     
 }
@@ -28,36 +32,22 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *readNotificationID = @"readNotificationID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:readNotificationID];
+    HCNotificationCentereReadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:readNotificationID];
     if (!cell) {
         
-        cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:readNotificationID];
-        UIView *deletView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 44)];
-        HCButtonItem *deleteBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 0, 44, 44) WithImageName:@"Settings_icon_Cache_dis" WithImageWidth:44 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:-5];
+        cell = [[HCNotificationCentereReadTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:readNotificationID];
+        
+        //修改删除按钮
+        UIView *deletView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 60)];
+        HCButtonItem *deleteBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 0, 45, 60) WithImageName:@"Settings_icon_Cache_dis" WithImageWidth:80 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:-5];
         deletView.backgroundColor = [UIColor whiteColor];
         [deletView addSubview:deleteBtn];
         [cell.contentView addSubview:deletView];
+        
+        cell.info = self.dataSource[indexPath.section];
     }
-    
-    UILabel * timeLab = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width-180, 0,170, 20)];
-    timeLab.textAlignment = NSTextAlignmentRight;
-    timeLab.font = [UIFont systemFontOfSize:12];
-     timeLab.textColor = [UIColor lightGrayColor];
-    
-    timeLab.text = @"2015年08月23日 12:10";
-    cell.textLabel.text = @"M-Talk";
-    cell.detailTextLabel.text = @"r通过将随机核苷酸编码的寡肽插入编码包被蛋白基因的开放读框末端，即可构建含有大量的具有不同结构和组成信息的噬菌体呈现表位文库";
-    
-    [cell.contentView addSubview:timeLab];
-    
     return cell;
     
-    
-}
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
     
 }
 
@@ -69,7 +59,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 60;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -90,7 +80,8 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.mutableArray.count;
+    return self.dataSource.count;
+    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -104,18 +95,28 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.mutableArray removeObjectAtIndex:indexPath.section];
+    [self.dataSource removeObjectAtIndex:indexPath.section];
     [tableView reloadData];
 }
 
+#pragma mark - network
 
--(NSMutableArray *)mutableArray
+- (void)requestHomeData
 {
-    if (!_mutableArray) {
-        _mutableArray = [[NSMutableArray alloc]initWithArray:@[@"1",@"2",@"3",@"5"]];
-        
-    }
-    return _mutableArray;
+    HCNotificationCenterReadApi *api = [[HCNotificationCenterReadApi alloc] init];
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:array];
+            [self.tableView reloadData];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
 }
+
 
 @end
