@@ -7,6 +7,7 @@
 //
 
 #import "YRSideViewController.h"
+#import "HCRootTabBarController.h"
 
 @interface YRSideViewController ()<UIGestureRecognizerDelegate>
 {
@@ -189,7 +190,9 @@
         [self showShadow:_showBoundsShadow];
     }];
 }
-- (void)hideSideViewController:(BOOL)animated{
+- (void)hideSideViewController:(BOOL)animated
+{
+    self.showStatus = NO;
     [self showShadow:false];
     NSTimeInterval animatedTime = 0;
     if (animated) {
@@ -203,8 +206,8 @@
         [_leftViewController.view removeFromSuperview];
     }];
 }
-- (void)hideSideViewController{
-    self.showStatus = NO;
+- (void)hideSideViewController
+{
     [self hideSideViewController:true];
 }
 
@@ -221,7 +224,15 @@
     }
     return YES;
 }
-- (void)pan:(UIPanGestureRecognizer*)pan{
+- (void)pan:(UIPanGestureRecognizer*)pan
+{
+    HCRootTabBarController *tab = (HCRootTabBarController *)_rootViewController;
+    UINavigationController *nav = _rootViewController.childViewControllers[tab.selectedIndex];
+    
+    if (![nav.visibleViewController.view isEqual:_homeView])
+    {
+        return;
+    }
     if (_panGestureRecognizer.state==UIGestureRecognizerStateBegan) {
         _startPanPoint=_currentView.frame.origin;
         if (_currentView.frame.origin.x==0) {
@@ -319,17 +330,6 @@
     //*/
 }
 
-- (void)hideHomeView
-{
-    [_baseView insertSubview:_leftViewController.view aboveSubview:_currentView];
-    [self layoutCurrentViewWithOffset:0];
-}
-
-- (void)showHomeView
-{
-    [_baseView insertSubview:_leftViewController.view belowSubview:_currentView];
-    [self layoutCurrentViewWithOffset:0];
-}
 
 
 @end

@@ -10,6 +10,7 @@
 
 @interface HCFeedbackViewController ()
 
+
 @end
 
 @implementation HCFeedbackViewController
@@ -17,7 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.title = @"意见反馈";
     [self setupBackItem];
 }

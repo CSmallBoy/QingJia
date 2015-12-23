@@ -26,7 +26,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
 {
     [super viewDidLoad];
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    self.title = @"制定好友不可见";
+    self.title = @"指定好友不可见";
     [self setupBackItem];
     
     [self requestFriendMessage];

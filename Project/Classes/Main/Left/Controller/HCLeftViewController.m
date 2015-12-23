@@ -32,8 +32,8 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app.sideViewController showHomeView];
+//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    [app.sideViewController showHomeView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -41,8 +41,8 @@
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
     
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app.sideViewController hideHomeView];
+//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    [app.sideViewController hideHomeView];
 }
 
 #pragma mark - HCLeftViewDelegate
@@ -64,8 +64,12 @@
         vc = [[HCSoftwareSettingViewController alloc] init];
     }
     
-    
-    [self.navigationController pushViewController:vc animated:YES];
+    UIViewController *control = self.view.window.rootViewController.childViewControllers[0];
+    vc.hidesBottomBarWhenPushed = YES;
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app.sideViewController hideSideViewController:YES];
+    UINavigationController *nav = control.childViewControllers[0];
+    [nav.visibleViewController.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - setter or getter

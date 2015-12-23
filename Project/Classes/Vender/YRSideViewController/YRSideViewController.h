@@ -31,10 +31,9 @@ typedef void(^RootViewMoveBlock)(UIView *rootView,CGRect orginFrame,CGFloat xoff
 
 @property (nonatomic, assign) BOOL showStatus; // 是否显示左视图
 
-- (void)setRootViewMoveBlock:(RootViewMoveBlock)rootViewMoveBlock;
+@property (nonatomic, strong) UIView *homeView;
 
-- (void)hideHomeView;
-- (void)showHomeView;
+- (void)setRootViewMoveBlock:(RootViewMoveBlock)rootViewMoveBlock;
 
 - (void)showLeftViewController:(BOOL)animated;//展示左边栏
 - (void)showRightViewController:(BOOL)animated;//展示右边栏

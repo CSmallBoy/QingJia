@@ -50,14 +50,15 @@
         HCLeftViewController *left = [[HCLeftViewController alloc] init];
         UINavigationController *leftNav = [[UINavigationController alloc] initWithRootViewController:left];
         
+        UINavigationController *nav = main.childViewControllers[0];
+        UIView *homeView = nav.visibleViewController.view;
+        
         _sideViewController=[[YRSideViewController alloc]init];
+        _sideViewController.homeView = homeView;
         _sideViewController.rootViewController= main;
         _sideViewController.leftViewController=leftNav;
         _sideViewController.leftViewShowWidth= [UIScreen mainScreen].bounds.size.width*0.7;
         _sideViewController.needSwipeShowMenu=true;//默认开启的可滑动展示
-        
-        self.window.rootViewController = _sideViewController;
-        
         
         self.window.rootViewController = _sideViewController;
     }

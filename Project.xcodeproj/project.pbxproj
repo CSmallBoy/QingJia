@@ -105,6 +105,7 @@
 		0A6B7F9D1BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7F151BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m */; };
 		0A724EC51C06A20100E643D6 /* HCUserAlbumApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A724EC41C06A20100E643D6 /* HCUserAlbumApi.m */; };
 		0A79B2831BF313DD00788A66 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A79B2821BF313DD00788A66 /* CoreLocation.framework */; };
+		0A7ED6251C2A3A18002E2ED5 /* HCFeedbackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7ED6241C2A3A18002E2ED5 /* HCFeedbackView.m */; };
 		0A80DE6C1BFB03DE00031F8A /* HCFindPwdSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A80DE6A1BFB03DE00031F8A /* HCFindPwdSecondViewController.m */; };
 		0A80DE6D1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A80DE6B1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib */; };
 		0A8A4F7C1C1FD6C900753D65 /* HCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */; };
@@ -411,6 +412,8 @@
 		0A724EC31C06A20100E643D6 /* HCUserAlbumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserAlbumApi.h; sourceTree = "<group>"; };
 		0A724EC41C06A20100E643D6 /* HCUserAlbumApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserAlbumApi.m; sourceTree = "<group>"; };
 		0A79B2821BF313DD00788A66 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0A7ED6231C2A3A18002E2ED5 /* HCFeedbackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFeedbackView.h; sourceTree = "<group>"; };
+		0A7ED6241C2A3A18002E2ED5 /* HCFeedbackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFeedbackView.m; sourceTree = "<group>"; };
 		0A80DE691BFB03DE00031F8A /* HCFindPwdSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFindPwdSecondViewController.h; sourceTree = "<group>"; };
 		0A80DE6A1BFB03DE00031F8A /* HCFindPwdSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFindPwdSecondViewController.m; sourceTree = "<group>"; };
 		0A80DE6B1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCFindPwdSecondViewController.xib; sourceTree = "<group>"; };
@@ -1243,10 +1246,12 @@
 		0A8A4F891C1FDCC900753D65 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AA626BA1C2989D400EC62D9 /* SoftwareSet */,
-				0AC89DA41C295B3B003EED90 /* UserMessage */,
 				0AC89D601C28F1C6003EED90 /* HCLeftView.h */,
 				0AC89D611C28F1C6003EED90 /* HCLeftView.m */,
+				0A7ED6231C2A3A18002E2ED5 /* HCFeedbackView.h */,
+				0A7ED6241C2A3A18002E2ED5 /* HCFeedbackView.m */,
+				0AA626BA1C2989D400EC62D9 /* SoftwareSet */,
+				0AC89DA41C295B3B003EED90 /* UserMessage */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2236,6 +2241,7 @@
 				0ABAFEBD1BF346E0009ABF57 /* HCChangePwdApi.m in Sources */,
 				0AA626BD1C2989E800EC62D9 /* HCFriendMessageCollectionViewCell.m in Sources */,
 				0A6B7F6E1BF1EB74008D54B3 /* HCRootTabBarController.m in Sources */,
+				0A7ED6251C2A3A18002E2ED5 /* HCFeedbackView.m in Sources */,
 				C7E252AC1C2942D300204959 /* HCNotificationDetailViewController.m in Sources */,
 				0AEEDDC11C21017D0065A8FF /* HCScanViewController.m in Sources */,
 				C7E252C31C2942D300204959 /* HCTagUserInfo.m in Sources */,

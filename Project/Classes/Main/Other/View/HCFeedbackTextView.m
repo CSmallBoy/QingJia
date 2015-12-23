@@ -123,7 +123,7 @@
 {
     if (!_maxTextLength)
     {
-        return 200;
+        return 500;
     }
     return _maxTextLength;
 }

@@ -6,8 +6,8 @@
 //  Copyright © 2015年 com.xxx. All rights reserved.
 //
 
-#import "HCTableViewController.h"
+#import "HCViewController.h"
 
-@interface HCAddFriendViewController : HCTableViewController
+@interface HCAddFriendViewController : HCViewController
 
 @end

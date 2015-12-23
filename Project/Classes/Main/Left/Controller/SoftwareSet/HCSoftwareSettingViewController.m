@@ -9,6 +9,7 @@
 #import "HCSoftwareSettingViewController.h"
 #import "HCJurisdictionViewController.h"
 #import "HCFeedbackViewController.h"
+#import "HCFeedbackView.h"
 #import "HCAboutMTalkViewController.h"
 
 @interface HCSoftwareSettingViewController ()
