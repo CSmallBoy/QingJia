@@ -1,12 +1,13 @@
 //
-//  PMRegistViewController.m
-//  PMedical
+//  HCRegistViewController.m
+//  Project
 //
-//  Created by Vincent on 15-1-13.
-//  Copyright (c) 2015年 Vincent. All rights reserved.
+//  Created by 陈福杰 on 15/12/23.
+//  Copyright © 2015年 com.xxx. All rights reserved.
 //
 
 #import "HCRegistViewController.h"
+#import "HCPerfectMessageViewController.h"
 #import "TOWebViewController.h"
 
 @interface HCRegistViewController ()
@@ -15,19 +16,14 @@
 
 @implementation HCRegistViewController
 {
-    __weak IBOutlet UIButton    *_registBtn;
+    __weak IBOutlet UIButton    *_nextBtn;
     
     __weak IBOutlet UITextField *_mobileTextField;
-    __weak IBOutlet UITextField *_pwdTextField;
     __weak IBOutlet UITextField *_checkNumTextField;
     
     __weak IBOutlet UILabel     *_timeNumLabel;
     __weak IBOutlet UIButton    *_timeBtn;
     
-    __weak IBOutlet UIView      *_mobileView;
-    __weak IBOutlet UIView      *_checkNumView;
-    __weak IBOutlet UIView      *_pwdView;
-
     NSTimer  *_timer;
     long     _timeNum;
 }
@@ -36,25 +32,17 @@
     [super viewDidLoad];
     self.title = @"注册";
     [self setupBackItem];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     //设置圆角
-    ViewBorderRadius(_mobileView, 4, 1, RGB(220, 220, 220));
-    ViewBorderRadius(_checkNumView, 4, 1, RGB(220, 220, 220));
-    ViewBorderRadius(_pwdView, 4, 1, RGB(220, 220, 220));
-    ViewRadius(_registBtn, 4.0f);
-    _registBtn.backgroundColor = kHCNavBarColor;
+    ViewRadius(_nextBtn, 4.0f);
     ViewRadius(_timeNumLabel, 3.0f);
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - NSTimer
 //启动心跳
 - (void)startTimer
 {
+    _timeNumLabel.backgroundColor = [UIColor lightGrayColor];
     if ([_timer isValid] || _timer != nil) {
         [_timer invalidate];
         _timer = nil;
@@ -71,7 +59,7 @@
     if (_timeNum == 0) {
         [_timer invalidate];
         _timer = nil;
-        
+        _timeNumLabel.backgroundColor = RGB(251, 25, 53);
         _timeNumLabel.text = @"重新获取";
         _timeBtn.enabled = YES;
     }
@@ -94,7 +82,7 @@
 - (IBAction)showRegistrationAgreement:(id)sender
 {
     TOWebViewController *web = [[TOWebViewController alloc] initWithURLString:@"http://172.16.171.62/app/registerLaw.html"];
-    web.title = @"注册协议";
+    web.title = @"服务协议";
     web.navigationButtonsHidden = YES;
     [self.navigationController pushViewController:web animated:YES];
 }
@@ -102,33 +90,25 @@
 - (IBAction)showRegistPrivacyAgreement:(id)sender
 {
     TOWebViewController *web = [[TOWebViewController alloc] initWithURLString:@"http://172.16.171.62/app/registerLaw.html"];
-    web.title = @"隐私协议";
+    web.title = @"隐私政策";
     web.navigationButtonsHidden = YES;
     [self.navigationController pushViewController:web animated:YES];
 }
 
-//点击 注册
--(IBAction)registBtnClick:(id)sender
+//点击 下一步
+-(IBAction)nextBtnClick:(id)sender
 {
-    if (![Utils checkPhoneNum:_mobileTextField.text]) {
-        [self showHUDText:@"输入正确的手机号"];
-        return;
-    }
-    if (_pwdTextField.text.length < 6 ||
-        _pwdTextField.text.length > 20 ||
-        [_pwdTextField.text rangeOfString:@" "].location != NSNotFound) {
-        [self showHUDText:@"密码必须由6-20位数字、字母或符号组成"];
-        return;
-    }
-    if (![Utils checkPassWord:_pwdTextField.text]) {
-        [self showHUDText:@"不允许设置连续密码"];
-        return;
-    }
-    if (_checkNumTextField.text.length < 4) {
-        [self showHUDText:@"输入正确的验证码"];
-        return;
-    }
-    [self registNewAccount];
+//    if (![Utils checkPhoneNum:_mobileTextField.text]) {
+//        [self showHUDText:@"输入正确的手机号"];
+//        return;
+//    }
+//    if (_checkNumTextField.text.length < 4) {
+//        [self showHUDText:@"输入正确的验证码"];
+//        return;
+//    }
+#warning 发送验证码到服务器
+    HCPerfectMessageViewController *perfect = [[HCPerfectMessageViewController alloc] init];
+    [self.navigationController pushViewController:perfect animated:YES];
 }
 
 #pragma mark - network
@@ -157,47 +137,11 @@
     int code = [data[@"data"] intValue];
     NSString *msg = data[@"msg"];
     if (code == 1) {
-        _registBtn.enabled = YES;
-        [_registBtn setBackgroundColor:kHCNavBarColor];
         [self showHUDSuccess:@"发送成功"];
     }else {
         [self showHUDError:msg];
     }
 }
 
-//注册
-- (void)registNewAccount
-{
-    [self showHUDView:nil];
-    
-    NSDictionary *dic = @{@"t": @"User,register", @"phone": _mobileTextField.text,@"password": _pwdTextField.text, @"msgcode": _checkNumTextField.text};
-    
-    _baseRequest = [[HCJsonRequestApi alloc] initWithBody:dic];
-    
-    [_baseRequest startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request){
-        NSDictionary *data = (NSDictionary *)request.responseJSONObject;
-        [self parseRegistResult:data];
-        
-    } failure:^(YTKBaseRequest *request){
-        DLog(@"error:%@",request.requestOperation.error);
-        [self showErrorHint:request.requestOperation.error];
-    }];
-}
-//解析注册结果
-- (void)parseRegistResult:(NSDictionary *)dic
-{
-    int code = [dic[@"state"] intValue];
-    NSString *msg = dic[@"msg"];
-    if (code == 1) {
-        [self showHUDSuccess:@"注册成功"];
-        [UIView animateKeyframesWithDuration:1 delay:2 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
-        } completion:^(BOOL finished) {
-            [self backBtnClick];
-        }];
-        
-    }else {
-        [self showHUDError:msg];
-    }
-}
 
 @end

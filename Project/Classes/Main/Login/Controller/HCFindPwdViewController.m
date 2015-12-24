@@ -8,25 +8,21 @@
 
 #import "HCFindPwdViewController.h"
 #import "HCFindPwdSecondViewController.h"
+#import "TOWebViewController.h"
 
 @interface HCFindPwdViewController ()
 {
+    __weak IBOutlet UIButton    *_nextBtn;
     
-    NSTimer        *_timer;
-    long           _timeNum;
+    __weak IBOutlet UITextField *_mobileTextField;
+    __weak IBOutlet UITextField *_checkNumTextField;
     
-    __weak  IBOutlet  UITextField *_mobileTextField;
-    __weak  IBOutlet  UITextField *_checkNumTextField;
+    __weak IBOutlet UILabel     *_timeNumLabel;
+    __weak IBOutlet UIButton    *_timeBtn;
     
-    __weak  IBOutlet  UILabel     *_timeNumLabel;
-    __weak  IBOutlet  UIButton    *_timeBtn;
-    
-    __weak IBOutlet   UIView      *_mobileView;
-    __weak IBOutlet   UIView      *_checkNumView;
-    
-    __weak IBOutlet   UIButton    *_nextBtn;
+    NSTimer  *_timer;
+    long     _timeNum;
 }
-
 @end
 
 @implementation HCFindPwdViewController
@@ -36,28 +32,16 @@
     self.title = @"密码找回";
     
     [self setupBackItem];
-    
-    [self setupCustomView];
-}
-
-
-#pragma mark - layout
-
-- (void)setupCustomView
-{
     //设置圆角
+    ViewRadius(_nextBtn, 4.0f);
     ViewRadius(_timeNumLabel, 3.0f);
-    ViewRadius(_nextBtn, 4);
-    _nextBtn.backgroundColor = kHCNavBarColor;
-    _nextBtn.enabled = NO;
-    ViewBorderRadius(_mobileView, 4, 1, RGB(220, 220, 220));
-    ViewBorderRadius(_checkNumView, 4, 1, RGB(220, 220, 220));
 }
 
 #pragma mark - NSTimer
 //启动心跳
 - (void)startTimer
 {
+    _timeNumLabel.backgroundColor = [UIColor lightGrayColor];
     if ([_timer isValid] || _timer != nil) {
         [_timer invalidate];
         _timer = nil;
@@ -74,25 +58,13 @@
     if (_timeNum == 0) {
         [_timer invalidate];
         _timer = nil;
-        
+        _timeNumLabel.backgroundColor = RGB(251, 25, 53);
         _timeNumLabel.text = @"重新获取";
         _timeBtn.enabled = YES;
     }
 }
-- (IBAction)nextButton:(UIButton *)sender
-{
-    if (![Utils checkPhoneNum:_mobileTextField.text])
-    {
-        [self showHUDText:@"请输入手机"];
-        return;
-    }
-    if (IsEmpty(_checkNumTextField.text))
-    {
-        [self showHUDText:@"请输入验证码"];
-        return;
-    }
-    [self requestCheckCodeTure];
-}
+
+#pragma mark - IBAction
 
 //点击获取 验证码
 -(IBAction)getCheckNumBtnClick:(id)sender
@@ -105,6 +77,38 @@
     [self requestCheckCode];
 }
 
+//显示注册协议详情
+- (IBAction)showRegistrationAgreement:(id)sender
+{
+    TOWebViewController *web = [[TOWebViewController alloc] initWithURLString:@"http://172.16.171.62/app/registerLaw.html"];
+    web.title = @"服务协议";
+    web.navigationButtonsHidden = YES;
+    [self.navigationController pushViewController:web animated:YES];
+}
+//显示注册隐私协议详情
+- (IBAction)showRegistPrivacyAgreement:(id)sender
+{
+    TOWebViewController *web = [[TOWebViewController alloc] initWithURLString:@"http://172.16.171.62/app/registerLaw.html"];
+    web.title = @"隐私政策";
+    web.navigationButtonsHidden = YES;
+    [self.navigationController pushViewController:web animated:YES];
+}
+
+//点击 下一步
+-(IBAction)nextBtnClick:(id)sender
+{
+    //    if (![Utils checkPhoneNum:_mobileTextField.text]) {
+    //        [self showHUDText:@"输入正确的手机号"];
+    //        return;
+    //    }
+    //    if (_checkNumTextField.text.length < 4) {
+    //        [self showHUDText:@"输入正确的验证码"];
+    //        return;
+    //    }
+#pragma mark - 请求对验证码进行验证
+    HCFindPwdSecondViewController *pwdsecond = [[HCFindPwdSecondViewController alloc] init];
+    [self.navigationController pushViewController:pwdsecond animated:YES];
+}
 
 #pragma mark - network
 
@@ -115,47 +119,28 @@
     
     NSDictionary *dic = @{@"t": @"User,msgCode", @"phone": _mobileTextField.text};
     _baseRequest = [[HCJsonRequestApi alloc] initWithBody:dic];
-    [_baseRequest startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-        NSInteger code = [request.responseJSONObject[@"state"] integerValue];
-        if (code == 1)
-        {
-            [self showHUDSuccess:@"获取成功"];
-            _nextBtn.enabled = YES;
-        }else
-        {
-            [self showHUDError:@"获取失败，请稍后再试"];
-        }
-    } failure:^(YTKBaseRequest *request) {
-        [self showErrorHint:request.requestOperation.error];
-    }];
-}
-
-- (void)requestCheckCodeTure
-{
-    [self showHUDView:nil];
     
-    NSDictionary *dic = @{@"t": @"User,forgetpassword", @"phone": _mobileTextField.text, @"msgcode": _checkNumTextField.text};
-    _baseRequest = [[HCJsonRequestApi alloc] initWithBody:dic];
-    [_baseRequest startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-        NSInteger code = [request.responseJSONObject[@"state"] integerValue];
-        if (code == 1)
-        {
-            [self hideHUDView];
-            // 验证码正确，跳转
-            HCFindPwdSecondViewController *second = [[HCFindPwdSecondViewController alloc] init];
-            NSDictionary *dic = request.responseJSONObject[@"data"];
-            second.data = @{@"token": dic[@"token"]};
-            [self.navigationController pushViewController:second animated:YES];
-        }else
-        {
-            [self showHUDError:request.responseJSONObject[@"msg"]];
-        }
-    } failure:^(YTKBaseRequest *request) {
+    [_baseRequest startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request){
+        NSDictionary *data = (NSDictionary *)request.responseJSONObject;
+        [self parseCheckCode:data];
+        
+    } failure:^(YTKBaseRequest *request){
+        DLog(@"error:%@",request.requestOperation.error);
         [self showErrorHint:request.requestOperation.error];
     }];
-
 }
 
+//解析验证码
+- (void)parseCheckCode:(NSDictionary *)data
+{
+    int code = [data[@"data"] intValue];
+    NSString *msg = data[@"msg"];
+    if (code == 1) {
+        [self showHUDSuccess:@"发送成功"];
+    }else {
+        [self showHUDError:msg];
+    }
+}
 
 
 

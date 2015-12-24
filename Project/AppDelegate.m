@@ -11,6 +11,7 @@
 #import "HCVersionMgr.h"
 #import "YTKNetworkConfig.h"
 #import "HCRootTabBarController.h"
+#import "HCLoginViewController.h"
 #import "HCLeftViewController.h"
 #import "APService.h"
 
@@ -38,9 +39,11 @@
 //设置主控制器
 - (void)setupRootViewController
 {
-    if ([HCAppMgr manager].showInstroView)
+    if (![HCAppMgr manager].showInstroView)
     {
-//        self.window.rootViewController = [[HCWelcomViewController alloc]
+        HCLoginViewController *login = [[HCLoginViewController alloc]init];
+        UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:login];
+        self.window.rootViewController = loginNav;
     }else
     {
         [[HCAccountMgr manager] getLoginInfoData];

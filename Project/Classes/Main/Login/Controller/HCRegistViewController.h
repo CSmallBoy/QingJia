@@ -1,11 +1,10 @@
 //
-//  PMRegistViewController.h
-//  PMedical
+//  HCRegistViewController.h
+//  Project
 //
-//  Created by Vincent on 15-1-13.
-//  Copyright (c) 2015年 Vincent. All rights reserved.
+//  Created by 陈福杰 on 15/12/23.
+//  Copyright © 2015年 com.xxx. All rights reserved.
 //
-//  注册页面
 
 #import "HCViewController.h"
 

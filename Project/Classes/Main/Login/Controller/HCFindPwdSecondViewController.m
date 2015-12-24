@@ -8,16 +8,14 @@
 
 #import "HCFindPwdSecondViewController.h"
 #import "HCLoginViewController.h"
-#import "YTKNetworkAgent.h"
+#import "TOWebViewController.h"
 #import "HCChangePwdApi.h"
 
 @interface HCFindPwdSecondViewController ()
 {
- 
-    __weak IBOutlet UIView *_pwdVeiw;
-    
     __weak IBOutlet UITextField *_pwdTextField;
     
+    __weak IBOutlet UITextField *_repwdTextField;
     __weak IBOutlet UIButton *_submitBtn;
 }
 @end
@@ -27,12 +25,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"密码找回";
+    self.title = @"设置新密码";
     [self setupBackItem];
-    
-    ViewBorderRadius(_pwdVeiw, 4, 1, RGB(220, 220, 220));
     ViewRadius(_submitBtn, 4);
-    _submitBtn.backgroundColor = kHCNavBarColor;
+}
+
+//显示注册协议详情
+- (IBAction)showRegistrationAgreement:(id)sender
+{
+    TOWebViewController *web = [[TOWebViewController alloc] initWithURLString:@"http://172.16.171.62/app/registerLaw.html"];
+    web.title = @"服务协议";
+    web.navigationButtonsHidden = YES;
+    [self.navigationController pushViewController:web animated:YES];
+}
+//显示注册隐私协议详情
+- (IBAction)showRegistPrivacyAgreement:(id)sender
+{
+    TOWebViewController *web = [[TOWebViewController alloc] initWithURLString:@"http://172.16.171.62/app/registerLaw.html"];
+    web.title = @"隐私政策";
+    web.navigationButtonsHidden = YES;
+    [self.navigationController pushViewController:web animated:YES];
 }
 
 - (IBAction)submitButton:(UIButton *)sender
@@ -42,24 +54,9 @@
         [self showHUDText:@"请输入密码"];
         return;
     }
-    [self requestChangePwd];
+//    [self requestChangePwd];
 }
 
-- (void)backLoginView
-{
-    //销毁当前网络请求
-    [[YTKNetworkAgent sharedInstance] cancelRequest:_baseRequest];
-    HCViewController *viewController = nil;
-    for (HCViewController *vc in self.navigationController.viewControllers)
-    {
-        if ([vc isKindOfClass:[HCLoginViewController class]])
-        {
-            viewController = vc;
-        }
-    }
-    [self.navigationController popToViewController:viewController animated:YES];
-    
-}
 
 #pragma mark - network
 

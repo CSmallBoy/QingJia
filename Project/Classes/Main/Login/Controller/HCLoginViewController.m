@@ -7,14 +7,13 @@
 //
 
 #import "HCLoginViewController.h"
-
-//注册修改密码
 #import "HCRegistViewController.h"
 #import "HCFindPwdViewController.h"
-//网络api
 #import "HCLoginApi.h"
 #import "HCUserApi.h"
 #import "HCAppMgr.h"
+
+#import "AppDelegate.h"
 
 
 @interface HCLoginViewController ()
@@ -22,8 +21,7 @@
     __weak IBOutlet UITextField *_accountTextField;
     __weak IBOutlet UITextField *_keyTextField;
     __weak IBOutlet UIButton    *_loginBtn;
-    __weak IBOutlet UIView      *_accountView;
-    __weak IBOutlet UIView      *_keyView;
+    __weak IBOutlet UIView      *_contentView;
 }
 
 @end
@@ -34,12 +32,9 @@
     [super viewDidLoad];
     
     self.title = @"登录";
-    [self setupBackItem];
     self.view.backgroundColor = [UIColor whiteColor];
-    ViewBorderRadius(_accountView, 4, 1, RGB(220, 220, 220));
-    ViewBorderRadius(_keyView, 4, 1, RGB(220, 220, 220));
     ViewRadius(_loginBtn, 4);
-    _loginBtn.backgroundColor = kHCNavBarColor;
+    ViewRadius(_contentView, 4);
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _accountTextField.text = [defaults objectForKey:kHCLoginAccount];
@@ -48,12 +43,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBarHidden = YES;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 #pragma mark - IBAction
@@ -66,8 +62,8 @@
 }
 
 //注册
-- (IBAction)registBtnClick:(id)sender {
-    
+- (IBAction)registBtnClick:(id)sender
+{
     HCRegistViewController *regist = [[HCRegistViewController alloc] init];
     [self.navigationController pushViewController:regist animated:YES];
 }
@@ -75,27 +71,28 @@
 //登录
 - (IBAction)loginBtnClick:(id)sender {
     
-    if (![Utils checkPhoneNum:_accountTextField.text])
-    {
-        [self showHUDText:@"输入正确的手机号"];
-        return;
-    }
-    
-    if (_keyTextField.text.length == 0)
-    {
-        [self showHUDText:@"请输入正确的密码"];
-        return;
-    }
-    
-    if (_keyTextField.text.length < 6 ||
-        _keyTextField.text.length > 20 ||
-        [_keyTextField.text rangeOfString:@" "].location != NSNotFound)
-    {
-        [self showHUDText:@"密码必须由6-20位数字、字母或符号组成"];
-        return;
-    }
-    
-    [self requestLogin];
+//    if (![Utils checkPhoneNum:_accountTextField.text])
+//    {
+//        [self showHUDText:@"输入正确的手机号"];
+//        return;
+//    }
+//    
+//    if (_keyTextField.text.length == 0)
+//    {
+//        [self showHUDText:@"请输入正确的密码"];
+//        return;
+//    }
+//    
+//    if (_keyTextField.text.length < 6 ||
+//        _keyTextField.text.length > 20 ||
+//        [_keyTextField.text rangeOfString:@" "].location != NSNotFound)
+//    {
+//        [self showHUDText:@"密码必须由6-20位数字、字母或符号组成"];
+//        return;
+//    }
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app setupRootViewController];
+//    [self requestLogin];
 }
 
 #pragma amrk - network
