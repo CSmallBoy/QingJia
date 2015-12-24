@@ -11,6 +11,7 @@
 #import "HCVersionMgr.h"
 #import "YTKNetworkConfig.h"
 #import "HCRootTabBarController.h"
+#import "HCHomeViewController.h"
 #import "HCLoginViewController.h"
 #import "HCLeftViewController.h"
 #import "APService.h"
@@ -39,7 +40,7 @@
 //设置主控制器
 - (void)setupRootViewController
 {
-    if (![HCAppMgr manager].showInstroView)
+    if ([HCAppMgr manager].showInstroView)
     {
         HCLoginViewController *login = [[HCLoginViewController alloc]init];
         UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:login];
@@ -64,6 +65,12 @@
         _sideViewController.needSwipeShowMenu=true;//默认开启的可滑动展示
         
         self.window.rootViewController = _sideViewController;
+        
+        HCHomeViewController *home = (HCHomeViewController *)nav.visibleViewController;
+        if (!IsEmpty(_showWelcomeJoinGradeID))
+        {
+            home.gradeId = _showWelcomeJoinGradeID;
+        }
     }
 }
 

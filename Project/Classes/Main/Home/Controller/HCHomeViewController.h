@@ -10,4 +10,6 @@
 
 @interface HCHomeViewController : HCTableViewController
 
+@property (nonatomic, strong) NSString *gradeId;
+
 @end

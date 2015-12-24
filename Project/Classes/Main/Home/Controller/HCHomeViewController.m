@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "AppDelegate.h"
 #import "HCPublishViewController.h"
+#import "HCWelcomeJoinGradeViewController.h"
 #import "HCHomeTableViewCell.h"
 #import "HCHomeInfo.h"
 #import "HCHomeApi.h"
@@ -25,6 +26,8 @@
 
 @property (nonatomic, strong) UIBarButtonItem *leftItem;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
+
+@property (nonatomic, strong) HCWelcomeJoinGradeViewController *welcomJoinGrade;
 
 @end
 
@@ -48,8 +51,11 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
-    
-    DLog(@"home--self---%@", self);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 #pragma mark - UITableView
@@ -221,6 +227,28 @@
 }
 
 #pragma mark - setter or getter
+
+- (void)setGradeId:(NSString *)gradeId
+{
+    if (!IsEmpty(gradeId))
+    {
+        _welcomJoinGrade = [[HCWelcomeJoinGradeViewController alloc] init];
+        _welcomJoinGrade.gradeId = [NSString stringWithFormat:@"欢迎加入%@班级", gradeId];
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        UIViewController *rootController = window.rootViewController;
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+        {
+          _welcomJoinGrade.modalPresentationStyle=
+          UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+        }else
+        {
+          rootController.modalPresentationStyle=
+          UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+        }
+      [_welcomJoinGrade setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+      [rootController presentViewController:_welcomJoinGrade animated:YES completion:nil];
+    }
+}
 
 - (UIBarButtonItem *)leftItem
 {

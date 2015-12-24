@@ -234,6 +234,9 @@
 		0A5491DA1C2BC32D0085F50D /* ZXQRCodeWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5490FB1C2BC32D0085F50D /* ZXQRCodeWriter.m */; };
 		0A5491DB1C2BC32D0085F50D /* ZXMultiFormatReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5490FE1C2BC32D0085F50D /* ZXMultiFormatReader.m */; };
 		0A5491DC1C2BC32D0085F50D /* ZXMultiFormatWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5491001C2BC32D0085F50D /* ZXMultiFormatWriter.m */; };
+		0A5491DF1C2BCC3D0085F50D /* HCJoinGradeFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5491DE1C2BCC3D0085F50D /* HCJoinGradeFunctionView.m */; };
+		0A5491E91C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5491E71C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.m */; };
+		0A5491EA1C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5491E81C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.xib */; };
 		0A65918B1C0411F300E91975 /* HCUserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65918A1C0411F300E91975 /* HCUserApi.m */; };
 		0A66CBA01C22C26700530763 /* HCPublishInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A66CB9F1C22C26700530763 /* HCPublishInfo.m */; };
 		0A66CBA31C22E96500530763 /* HCHomePublishApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A66CBA21C22E96500530763 /* HCHomePublishApi.m */; };
@@ -948,6 +951,11 @@
 		0A5490FE1C2BC32D0085F50D /* ZXMultiFormatReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMultiFormatReader.m; sourceTree = "<group>"; };
 		0A5490FF1C2BC32D0085F50D /* ZXMultiFormatWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMultiFormatWriter.h; sourceTree = "<group>"; };
 		0A5491001C2BC32D0085F50D /* ZXMultiFormatWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMultiFormatWriter.m; sourceTree = "<group>"; };
+		0A5491DD1C2BCC3D0085F50D /* HCJoinGradeFunctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCJoinGradeFunctionView.h; sourceTree = "<group>"; };
+		0A5491DE1C2BCC3D0085F50D /* HCJoinGradeFunctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCJoinGradeFunctionView.m; sourceTree = "<group>"; };
+		0A5491E61C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCWelcomeJoinGradeViewController.h; sourceTree = "<group>"; };
+		0A5491E71C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCWelcomeJoinGradeViewController.m; sourceTree = "<group>"; };
+		0A5491E81C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCWelcomeJoinGradeViewController.xib; sourceTree = "<group>"; };
 		0A5EFC211C11746D008B3548 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		0A5EFC231C117474008B3548 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		0A6591891C0411F300E91975 /* HCUserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserApi.h; sourceTree = "<group>"; };
@@ -2223,6 +2231,8 @@
 				0A6970EE1C2B8EBF0078BCC4 /* HCCreateGradeTableViewCell.m */,
 				0AFE6B891C2BA7400066D3E8 /* HCFooterView.h */,
 				0AFE6B8A1C2BA7400066D3E8 /* HCFooterView.m */,
+				0A5491DD1C2BCC3D0085F50D /* HCJoinGradeFunctionView.h */,
+				0A5491DE1C2BCC3D0085F50D /* HCJoinGradeFunctionView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2686,6 +2696,9 @@
 				0A67E7741C23D700005B8CD2 /* HCShareViewController.h */,
 				0A67E7751C23D700005B8CD2 /* HCShareViewController.m */,
 				0A67E7761C23D700005B8CD2 /* HCShareViewController.xib */,
+				0A5491E61C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.h */,
+				0A5491E71C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.m */,
+				0A5491E81C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3546,7 +3559,6 @@
 				TargetAttributes = {
 					0A6B7D971BF1EB6A008D54B3 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 2CF2K69ZFQ;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3622,6 +3634,7 @@
 				0A67B2201C0D63B300FB87C8 /* 11.jpg in Resources */,
 				0A418C1F1C148E9C0024DAC3 /* PushConfig.plist in Resources */,
 				0A67B2261C0D63B300FB87C8 /* 7.jpg in Resources */,
+				0A5491EA1C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.xib in Resources */,
 				0A6AFD5E1BFBFFBE0073982C /* UMSocialLocalizable.strings in Resources */,
 				0A6B7DA81BF1EB6A008D54B3 /* Assets.xcassets in Resources */,
 				C7829AD31C2BC730006FFFFB /* scanLine@3x.png in Resources */,
@@ -3875,6 +3888,7 @@
 				0A6970EF1C2B8EBF0078BCC4 /* HCCreateGradeTableViewCell.m in Sources */,
 				0A47AD4B1C225A8900706326 /* HCHomeDetailViewController.m in Sources */,
 				0A6B7F191BF1EB74008D54B3 /* UIAlertView+HTBlock.m in Sources */,
+				0A5491DF1C2BCC3D0085F50D /* HCJoinGradeFunctionView.m in Sources */,
 				0A5491881C2BC32D0085F50D /* ZXAbstractRSSReader.m in Sources */,
 				0A5491261C2BC32D0085F50D /* ZXTelResultParser.m in Sources */,
 				0A6B7F311BF1EB74008D54B3 /* Utils.m in Sources */,
@@ -3892,6 +3906,7 @@
 				0A67E76A1C239EF3005B8CD2 /* HCEditCommentViewController.m in Sources */,
 				0A5491271C2BC32D0085F50D /* ZXTextParsedResult.m in Sources */,
 				0ABFC6281C2134BA00ED8164 /* HCFunctionTagView.m in Sources */,
+				0A5491E91C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.m in Sources */,
 				0A5491241C2BC32D0085F50D /* ZXSMTPResultParser.m in Sources */,
 				0A8A4F7C1C1FD6C900753D65 /* HCHomeViewController.m in Sources */,
 				0A6B7F701BF1EB74008D54B3 /* HCTableViewController.m in Sources */,

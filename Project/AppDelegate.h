@@ -16,6 +16,9 @@
 //设置主控制器
 - (void)setupRootViewController;
 
+@property (nonatomic, strong) NSString *showWelcomeJoinGradeID;
+
+
 // 选择下面按钮
 - (void)setupSelectedIndex:(NSInteger)index;
 
