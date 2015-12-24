@@ -25,6 +25,7 @@
 
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
+    self.textLabel.font = [UIFont systemFontOfSize:14];
     
     if (indexPath.row == 0)
     {
@@ -33,6 +34,8 @@
         UILabel* timeLab = [[UILabel  alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-10, 50)];
         timeLab.text = @"2015-08-01 12:30";
         timeLab.textAlignment = NSTextAlignmentRight;
+        timeLab.font = [UIFont systemFontOfSize:14];
+        
         [self.contentView addSubview:self.textLabel];
         [self.contentView addSubview:timeLab];
     }else if(indexPath.row == 1)

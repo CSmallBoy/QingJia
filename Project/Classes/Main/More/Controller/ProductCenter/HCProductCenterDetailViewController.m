@@ -14,6 +14,8 @@
 #import <MJExtension/MJExtension.h>
 #import "HCProductIntroductionInfo.h"
 #import "HCProductIntrodApi.h"
+
+
 static NSString *IDCellF = @"introduction";
 
 @interface HCProductCenterDetailViewController ()<HCProductIntroductionInfoDelegate>
@@ -84,7 +86,7 @@ static NSString *IDCellF = @"introduction";
 {
     if (section == 1)
     {
-        return 74;
+        return 64;
     }
     else
     {
@@ -103,11 +105,26 @@ static NSString *IDCellF = @"introduction";
         return self.footerView;
     }else
     {
-        return nil;
+        UIView *footerViewZero = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+        footerViewZero.backgroundColor = CLEARCOLOR;
+        return footerViewZero;
     }
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 1;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+  
+    UIView *headerViewZero = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+    
+    return headerViewZero;
+     
+}
 #pragma mark - private methods
 
 -(void)handleBuyBtn
@@ -151,7 +168,7 @@ static NSString *IDCellF = @"introduction";
     _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 64)];
         
     UIButton *buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyBtn.frame = CGRectMake(20, 20, WIDTH(self.view)-40, 45);
+    buyBtn.frame = CGRectMake(15, 10, WIDTH(self.view)-30, 30);
     [buyBtn setTitle:@"购买" forState:UIControlStateNormal];
     [buyBtn addTarget:self action:@selector(handleBuyBtn) forControlEvents:UIControlEventTouchUpInside];
     ViewRadius(buyBtn, 4);

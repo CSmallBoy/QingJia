@@ -11,7 +11,7 @@
 
 @class HCNotificationCenterInfo;
 
-typedef void(^HCNotificationCenterFollowBlock)(HCRequestStatus requestStatus, NSString *message, NSArray *array);
+typedef void(^HCNotificationCenterFollowBlock)(HCRequestStatus requestStatus, NSString *message, HCNotificationCenterInfo *info);
 
 
 @interface HCNotificationCenterFollowAPI : HCRequest

@@ -2,12 +2,15 @@
 //  HCScanViewController.h
 //  Project
 //
-//  Created by 陈福杰 on 15/12/16.
+//  Created by 朱宗汉 on 15/12/23.
 //  Copyright © 2015年 com.xxx. All rights reserved.
 //
 
-#import "HCViewController.h"
+#import "HCTableViewController.h"
 
-@interface HCScanViewController : HCViewController
+@interface HCScanViewController : HCTableViewController
+
+@property (nonatomic,strong) NSString *scanInfo;
+
 
 @end

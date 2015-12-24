@@ -8,13 +8,13 @@
 //
 
 #import "HCFollowNotificationViewController.h"
-#import "HCButtonItem.h"
 #import "HCNotificationCenterFollowTableViewCell.h"
 #import "HCNotificationCenterFollowAPI.h"
 #import "HCNotificationCenterInfo.h"
 
 @interface HCFollowNotificationViewController ()
 
+@property (nonatomic,strong) HCNotificationCenterInfo *info;
 
 @end
 
@@ -23,8 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self requestHomeData];
-    
-    
 }
 
 #pragma mark----UITableViewDelegate
@@ -33,70 +31,70 @@
 {
     static NSString *followID = @"FollowNotificationID";
     HCNotificationCenterFollowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:followID];
-    if (!cell) {
-        
+    if (!cell)
+    {
         cell = [[HCNotificationCenterFollowTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:followID];
-        
-        //修改删除按钮
-        UIView *deletView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 60)];
-        HCButtonItem *deleteBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 0, 45, 60) WithImageName:@"Settings_icon_Cache_dis" WithImageWidth:80 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:-5];
-        deletView.backgroundColor = [UIColor whiteColor];
-        [deletView addSubview:deleteBtn];
-        [cell.contentView addSubview:deletView];
-        
-        cell.info = self.dataSource[indexPath.section];
+        cell.info = self.info;
+        cell.indexPath = indexPath;
     }
     return cell;
-    
-    
-}
-
-
--(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @"  ";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0)
+    {
+        return 75;
+    }else
+    {
     return 60;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0;
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 1;
+    return 5;
 }
 
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+    view.backgroundColor = CLEARCOLOR;
+    return view;
+}
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return nil;
+    UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
+    view.backgroundColor = CLEARCOLOR;
+    return view;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.dataSource.count;
+    return 2;
     
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
-}
-
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.dataSource removeObjectAtIndex:indexPath.section];
-    [tableView reloadData];
+    if (IsEmpty(_info))
+    {
+        return 0;
+    }
+    if (section == 0)
+    {
+        return 1;
+    }else
+    {
+        
+        return 17;
+    }
 }
 
 #pragma mark - network
@@ -105,11 +103,11 @@
 {
     HCNotificationCenterFollowAPI *api = [[HCNotificationCenterFollowAPI alloc] init];
     
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCNotificationCenterInfo *info)
+    {
         if (requestStatus == HCRequestStatusSuccess)
         {
-            [self.dataSource removeAllObjects];
-            [self.dataSource addObjectsFromArray:array];
+            _info = info;
             [self.tableView reloadData];
         }else
         {

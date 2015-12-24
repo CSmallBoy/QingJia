@@ -14,6 +14,8 @@
 @property (nonatomic,strong) UISegmentedControl *segmented;
 
 @property (nonatomic,strong) UIScrollView *scrollView;
+@property (nonatomic,strong) UIView *footerView;
+@property (nonatomic,strong) UIButton *closeFollowBtn;
 
 @property (nonatomic,strong) HCUnReadNotificationViewController *unreadVC;
 @property (nonatomic,strong) HCReadNotificationViewController *readVC;
@@ -32,26 +34,39 @@
     
 }
 
+#pragma mark -----私有方法
 
-
+-(void)clickCloseFollowBtn
+{
+    [self showHUDText:@"已找到孩子，关闭跟进"];
+}
 
 - (void)handleSegmentedControl:(UISegmentedControl *)segment
 {
     if (segment.selectedSegmentIndex == 0)
     {
+        [self.followVC.view removeFromSuperview];
         [self.unreadVC.view removeFromSuperview];
         [self.view addSubview:self.unreadVC.view];
     }
     else if (segment.selectedSegmentIndex == 1)
     {
+        
+        [self.followVC.view removeFromSuperview];
         [self.readVC.view removeFromSuperview];
         [self.view addSubview:self.readVC.view];
     }else if (segment.selectedSegmentIndex == 2)
     {
+        
         [self.followVC.view removeFromSuperview];
+        [self.footerView removeFromSuperview];
         [self.view addSubview:self.followVC.view];
+        [self.view addSubview:self.footerView];
     }
 }
+
+
+#pragma mark----Setter Or Getter
 
 -(UISegmentedControl *)segmented
 {
@@ -91,11 +106,36 @@
 {
     if (!_followVC) {
         _followVC = [[HCFollowNotificationViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        _followVC.view.frame = CGRectMake(10, 114, SCREEN_WIDTH-20, SCREEN_HEIGHT);
+        _followVC.view.frame = CGRectMake(10, 114, SCREEN_WIDTH-20, SCREEN_HEIGHT-50);
         [self addChildViewController:_followVC];
     }
     return _followVC;
 }
 
 
+-(UIView *)footerView
+{
+    if (!_footerView)
+    {
+        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50, SCREEN_WIDTH, 50)];
+        _footerView.backgroundColor = RGB(236, 236, 236);
+        [_footerView addSubview:self.closeFollowBtn];
+    }
+    return _footerView;
+}
+
+-(UIButton *)closeFollowBtn
+{
+    if (!_closeFollowBtn) {
+        _closeFollowBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _closeFollowBtn.frame = CGRectMake(20, 10, SCREEN_WIDTH-40, 30);
+        _closeFollowBtn.backgroundColor = [UIColor redColor];
+        [_closeFollowBtn setTitle:@"已找到孩子，关闭跟进" forState:UIControlStateNormal];
+        [_closeFollowBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        ViewRadius(_closeFollowBtn, 10);
+        _closeFollowBtn.titleLabel.font = FONT(14);
+        [_closeFollowBtn addTarget:self action:@selector(clickCloseFollowBtn) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _closeFollowBtn;
+}
 @end

@@ -33,7 +33,7 @@
     [self setupBackItem];
     
     UIImageView *shoppingCarView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-70,100, 140, 140)];
-    shoppingCarView.image = [UIImage imageNamed:@"Products_but_shopping cart1"];
+    shoppingCarView.image = [UIImage imageNamed:@"shopping-cart1"];
 
     
     [self.view addSubview:shoppingCarView];
@@ -91,7 +91,7 @@
     if (!_imageViewList) {
         _imageViewList = [[HCImgViewTagList alloc]initWithFrame:CGRectMake(0, 280, SCREEN_WIDTH, 80)];
         _imageViewList.delegate = self;
-        _imageViewList.array = @[@[@"Products_but_shopping cart2", @"京东购买"], @[@"Products_but_shopping cart3", @"M-Talk购买"], @[@"Products_but_shopping cart4", @"淘宝购买"]];
+        _imageViewList.array = @[@[@"shopping-cart2", @"京东购买"], @[@"shopping-cart3", @"M-Talk购买"], @[@"shopping-cart4", @"淘宝购买"]];
         
     }
     return _imageViewList;

@@ -8,7 +8,7 @@
 
 #import "HCBuyRecordsViewController.h"
 #import "HCCustomerViewController.h"
-#import "HCOrderOnlineViewController.h"
+#import "HCPaymentViewController.h"
 #import "HCLogisticsInfoViewController.h"
 #import "HCAfterSalesApplyViewController.h"
 
@@ -44,8 +44,8 @@
 {
     if (indexPath.section == 0)
     {
-        //在线订购
-        HCOrderOnlineViewController *VC = [[HCOrderOnlineViewController alloc]init];
+        //支付
+        HCPaymentViewController *VC = [[HCPaymentViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.section == 1)
     {
@@ -93,7 +93,29 @@
     }
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 1;
+}
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 5;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+    view.backgroundColor = CLEARCOLOR;
+    return view;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
+    view.backgroundColor = CLEARCOLOR;
+    return view;
+}
 
 -(void)handleCustomer
 {

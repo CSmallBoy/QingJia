@@ -111,7 +111,6 @@
 
 -(void)handleheaderIMG
 {
-//    [self ]
     if ([self.delegate respondsToSelector:@selector(addUserHeaderIMG)])
     {
      NSLog(@"1111");
@@ -127,7 +126,6 @@
     if (!_headerIMGBtn) {
         _headerIMGBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 2, 80, 80)];
         [_headerIMGBtn setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
-//        [self.headerIMGBtn sd_setBackgroundImageWithURL:self.tagUserInfo.userImageUrlStr forState:UIControlEventTouchUpInside completed:nil];
         [_headerIMGBtn addTarget:self action:@selector(handleheaderIMG) forControlEvents:UIControlEventTouchUpInside];
     }
     return _headerIMGBtn;
@@ -138,7 +136,7 @@
     if (!_textField)
     {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 200, 2, 180, 40)];
-        _textField.textAlignment = NSTextAlignmentRight;
+        _textField.textAlignment = NSTextAlignmentLeft;
         _textField.textColor = RGB(120, 120, 120);
     }
     return _textField;

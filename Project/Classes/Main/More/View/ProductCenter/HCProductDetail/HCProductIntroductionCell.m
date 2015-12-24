@@ -93,6 +93,11 @@
         [self.contentView addSubview:self.scrollView];
     }else
     {
+        self.hotStampingMachineNumberLab.font = [UIFont systemFontOfSize:15];
+        self.hotStampingMachinePriceLab.font = [UIFont systemFontOfSize:15];
+        self.labelNumberLab.font = [UIFont systemFontOfSize:15];
+        self.labelPriceLab.font = [UIFont systemFontOfSize:15];
+        self.totalPriceLab.font = [UIFont systemFontOfSize:15];
         
         [self.contentView
          addSubview: self.hotStampingMachineNumberLab];
@@ -208,7 +213,7 @@
     if (!_deleteHotStampingMachineBtn)
     {
         _deleteHotStampingMachineBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _deleteHotStampingMachineBtn.frame = CGRectMake(110, 10, 45, 45);
+        _deleteHotStampingMachineBtn.frame = CGRectMake(110, 18,  30, 30);
         [_deleteHotStampingMachineBtn setBackgroundImage:OrigIMG(@"Products_but_minus") forState:UIControlStateNormal];
         [_deleteHotStampingMachineBtn addTarget:self action:@selector(clickDeleteHotStampingMachineBtn) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -219,7 +224,7 @@
 {
     if (!_hotStampingMachineBuyNumberLb)
     {
-        _hotStampingMachineBuyNumberLb = [[UILabel alloc]initWithFrame:CGRectMake(155, 10, 55, 45)];
+        _hotStampingMachineBuyNumberLb = [[UILabel alloc]initWithFrame:CGRectMake(140, 10, 55, 45)];
         _hotStampingMachineBuyNumberLb.textAlignment = NSTextAlignmentCenter;
     }
     return _hotStampingMachineBuyNumberLb;
@@ -231,7 +236,7 @@
     {
         _addHotStampingMachineNumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_addHotStampingMachineNumBtn setBackgroundImage:OrigIMG(@"Products_but_Plus") forState:UIControlStateNormal];
-        _addHotStampingMachineNumBtn.frame = CGRectMake(200, 10,45, 45);
+        _addHotStampingMachineNumBtn.frame = CGRectMake(195, 18, 30, 30);
          [_addHotStampingMachineNumBtn addTarget:self action:@selector(clickAddHotStampingMachineBtn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addHotStampingMachineNumBtn;
@@ -271,7 +276,7 @@
 {
     if (!_deleteLabelBtn) {
         _deleteLabelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _deleteLabelBtn.frame = CGRectMake(110, 120, 45, 45);
+        _deleteLabelBtn.frame = CGRectMake(110, 128, 30, 30);
         [_deleteLabelBtn setBackgroundImage:OrigIMG(@"Products_but_minus") forState:UIControlStateNormal];
         [_deleteLabelBtn addTarget:self action:@selector(clickDeleteLabelBtn) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -282,7 +287,7 @@
 {
     if (!_labelBuyNumberLb)
     {
-        _labelBuyNumberLb = [[UILabel alloc]initWithFrame:CGRectMake(155, 120, 55, 45)];
+        _labelBuyNumberLb = [[UILabel alloc]initWithFrame:CGRectMake(140, 120, 55, 45)];
         _labelBuyNumberLb.textAlignment = NSTextAlignmentCenter;
     }
     return _labelBuyNumberLb;
@@ -295,7 +300,7 @@
         _addLabelNumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_addLabelNumBtn setBackgroundImage:OrigIMG(@"Products_but_Plus") forState:UIControlStateNormal];
         [_addLabelNumBtn addTarget:self action:@selector(clickAddLabelBtn) forControlEvents:UIControlEventTouchUpInside];
-        _addLabelNumBtn.frame = CGRectMake(200, 120,45, 45);
+        _addLabelNumBtn.frame = CGRectMake(195, 128, 30, 30);
     }
     return _addLabelNumBtn;
 }
@@ -325,7 +330,7 @@
     if (!_totalPriceLab) {
         _totalPriceLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 230, 100, 45)];
         _totalPriceLab.textAlignment = NSTextAlignmentLeft;
-        _totalPriceLab.text = @"标签价格";
+        _totalPriceLab.text = @"总价格";
     }
     return _totalPriceLab;
 }

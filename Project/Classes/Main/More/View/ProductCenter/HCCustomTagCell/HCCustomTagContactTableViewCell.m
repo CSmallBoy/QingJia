@@ -82,7 +82,7 @@
     if (!_textField)
     {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 200, 2, 180, 40)];
-        _textField.textAlignment = NSTextAlignmentRight;
+        _textField.textAlignment = NSTextAlignmentLeft;
         _textField.textColor = RGB(120, 120, 120);
     }
     return _textField;

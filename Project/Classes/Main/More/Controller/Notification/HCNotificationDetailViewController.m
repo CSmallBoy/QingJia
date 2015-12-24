@@ -9,6 +9,7 @@
 #import "HCNotificationDetailViewController.h"
 #import "UILabel+HCLabelContentSize.h"
 #import "HCButtonItem.h"
+#import "HCPromisedViewController.h"
 
 @interface HCNotificationDetailViewController ()
 
@@ -16,6 +17,9 @@
 @property (nonatomic,strong) UILabel *timeLab;
 @property (nonatomic,strong) UILabel *notificationMessLab;
 @property (nonatomic,strong) UIView  *footerView;
+@property (nonatomic,strong) HCButtonItem *promisedBtn;
+@property (nonatomic,strong) HCButtonItem *MTalkBtn;
+@property (nonatomic,strong) HCButtonItem *policeBtn;
 
 @end
 
@@ -35,6 +39,24 @@
     [self.view addSubview: self.footerView];
 }
 
+
+#pragma mark -- 私有方法
+
+-(void)pushTOPromised
+{
+    HCPromisedViewController *promisedVC = [[HCPromisedViewController alloc]init];
+    [self.navigationController pushViewController:promisedVC animated:YES];
+}
+
+-(void)ContactCustomerService
+{
+    [self showHUDText:@"拨打客服电话"];
+}
+
+-(void)ContactWithPolice
+{
+    [self showHUDText:@"拨打110"];
+}
 
 #pragma mark----Settet OR Getter
 -(UILabel *)userNameLab
@@ -77,10 +99,10 @@
     return _notificationMessLab;
 }
 
-
 -(UIView *)footerView
 {
-    if (!_footerView) {
+    if (!_footerView)
+    {
         CGFloat footerViewY = MAX(SCREEN_HEIGHT-61,self.notificationMessLab.frame.size.height+120);
         _footerView = [[UIView alloc]initWithFrame:CGRectMake(0,footerViewY , SCREEN_WIDTH, 60)];
         
@@ -88,11 +110,48 @@
         topView.backgroundColor = [UIColor lightGrayColor];
         [_footerView addSubview:topView];
         
+        UIView *lineViewOne = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3-1, 10, 1, 40)];
+        lineViewOne.backgroundColor = LightGraryColor;
+        [_footerView addSubview:lineViewOne];
+       
+        UIView *lineViewTwo = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3*2-2, 10, 1, 40)];
+        lineViewTwo.backgroundColor = LightGraryColor;
+        [_footerView addSubview:lineViewTwo];
         
-        HCButtonItem *deleteBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 2, SCREEN_WIDTH/3-1, 60) WithImageName:@"E-mail Messages_but_hopne" WithImageWidth:44 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"一呼百应", nil) WithFontSize:14 WithFontColor:OrangeColor WithGap:-5];
-        [_footerView addSubview: deleteBtn];
+        [_footerView addSubview: self.promisedBtn];
+        [_footerView addSubview: self.MTalkBtn];
+        [_footerView addSubview: self.policeBtn];
     }
     return _footerView;
 }
 
+-(HCButtonItem *)promisedBtn
+{
+    if (!_promisedBtn)
+    {
+        _promisedBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"message_phone" WithImageWidth:30 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"一呼百应", nil) WithFontSize:14 WithFontColor:OrangeColor WithGap:10];
+        [_promisedBtn addTarget:self action:@selector(pushTOPromised) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _promisedBtn;
+}
+
+-(HCButtonItem *)MTalkBtn
+{
+    if (!_MTalkBtn)
+    {
+        _MTalkBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"m-talk_Customer-Services" WithImageWidth:30 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"M-Talk客服", nil) WithFontSize:14 WithFontColor:OrangeColor WithGap:10];
+        [_MTalkBtn addTarget:self action:@selector(ContactCustomerService) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _MTalkBtn;
+}
+
+-(HCButtonItem *)policeBtn
+{
+    if (!_policeBtn)
+    {
+        _policeBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3*2, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"110" WithImageWidth:30 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"快速报警", nil) WithFontSize:14 WithFontColor:OrangeColor WithGap:10];
+        [_policeBtn addTarget:self action:@selector(ContactWithPolice) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _policeBtn;
+}
 @end

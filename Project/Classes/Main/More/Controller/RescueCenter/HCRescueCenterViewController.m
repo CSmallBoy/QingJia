@@ -51,7 +51,7 @@
     }
     
     HCRescueCenterInfo *info ;
-    info = self.dataSource[indexPath.row];
+    info = self.dataSource[indexPath.section];
     NSURL *imageViewUrl = [NSURL URLWithString:info.headerImageStr];
 
     [cell.imageView sd_setImageWithURL:imageViewUrl placeholderImage:OrigIMG(@"Salve_mtalk")];
@@ -61,15 +61,25 @@
     return  cell;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.dataSource.count;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 60;
 }
+
+
+
+
+
+
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -79,18 +89,34 @@
     }
     else
     {
-        return 0;
+        return 1;
     }
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 5;
+}
+
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 0)
+    {
         return self.searchBarView;
     }
     else
     {
-        return nil;
+        UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+        view.backgroundColor = CLEARCOLOR;
+        return view;
     }
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
+    view.backgroundColor = CLEARCOLOR;
+    return view;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

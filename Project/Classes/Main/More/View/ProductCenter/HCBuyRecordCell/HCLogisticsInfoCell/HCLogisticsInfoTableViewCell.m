@@ -45,10 +45,9 @@
         }else if (indexPath.row == 1)
         {
             self.textLabel.text = @"订购商品: M-Talk二维码(定制版)";
-        }else{
+        }else
+        {
         KWFormViewQuickBuilder *builder = [[KWFormViewQuickBuilder alloc]init];
-        
-        
         [builder addRecord: @[@"数量",@"价格",@"订单状态"]];
         [builder addRecord:@[@"1",@"88元",@""]];
         CGFloat width = SCREEN_WIDTH*0.33;
