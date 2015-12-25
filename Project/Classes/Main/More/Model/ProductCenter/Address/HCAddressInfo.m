@@ -15,8 +15,8 @@
     HCAddressInfo *AddressInfo = [[[self class]allocWithZone:zone]init];
     
     AddressInfo.consigneeName = [_consigneeName mutableCopy];
-    AddressInfo.phoneNumb = _phoneNumb;
-    AddressInfo.postcode = _postcode;
+    AddressInfo.phoneNumb = [_phoneNumb mutableCopy];
+    AddressInfo.postcode = [_postcode mutableCopy];
     AddressInfo.receivingStreet = [_receivingStreet mutableCopy];
     AddressInfo.receivingCity = [_receivingCity mutableCopy];
     

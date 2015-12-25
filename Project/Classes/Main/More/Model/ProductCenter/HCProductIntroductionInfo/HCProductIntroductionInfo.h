@@ -36,8 +36,19 @@
 @property (nonatomic,assign) int totalPrice;
 
 /**
- * 产品
+ * 订单编号
  */
-@property (nonatomic,assign)BOOL   selectState;
+@property (nonatomic,strong) NSString* orderID;;
+
+/**
+ *订单时间
+ */
+@property (nonatomic,strong) NSString* orderTime;
+
+/**
+ *订单状态
+ */
+@property (nonatomic,assign) int orderState;
+
 
 @end

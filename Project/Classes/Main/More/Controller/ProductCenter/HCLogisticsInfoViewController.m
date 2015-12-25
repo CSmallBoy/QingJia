@@ -8,9 +8,20 @@
 
 #import "HCLogisticsInfoViewController.h"
 #import "HCLogisticsInfo.h"
+#import "HCLogisticsApi.h"
+
+#import "HCProductIntroductionInfo.h"
+
 #import "HCLogisticsInfoTableViewCell.h"
 #import "HCLogisticsInfoTableViewCellSecond.h"
+
+#import "HCBuyRecordTableViewCell.h"
 @interface HCLogisticsInfoViewController ()
+
+@property (nonatomic,strong) HCProductIntroductionInfo *info;
+
+@property (nonatomic,strong) UIView *footerView;
+@property (nonatomic,strong) UIButton *beSureReceiveBtn;
 
 @end
 
@@ -19,25 +30,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"物流信息";
+    self.title = @"已发货";
     [self setupBackItem];
-    [self setupData];
-    
+    [self requestHomeData];
+    _info = self.data[@"data"];
+    if (_info.orderState == 3) {
+        self.beSureReceiveBtn.hidden = NO;
+    }else
+    {
+        self.beSureReceiveBtn.hidden = YES;
+    }
 }
 
 #pragma mark ----UITableViewDelegate
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"lodisticsInfo";
     UITableViewCell* cell;
-    if (indexPath.section == 0) {
-        HCLogisticsInfoTableViewCell *cellF ;
+    if (indexPath.section == 0)
+    {
+        static NSString *RecordID = @"record";
+        HCBuyRecordTableViewCell *buyRecordcell = [tableView dequeueReusableCellWithIdentifier:RecordID];
         
-        cellF = [tableView dequeueReusableCellWithIdentifier:cellID];
-        cellF = [[HCLogisticsInfoTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-        cellF.indexPath = indexPath;
-        cell = cellF;
+        buyRecordcell = [[HCBuyRecordTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RecordID];
+        buyRecordcell.info = _info;
+        buyRecordcell.indexPath= indexPath;
+        buyRecordcell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell = buyRecordcell;
     }else
     {
         if (indexPath.row == 0)
@@ -51,7 +70,6 @@
             cellS = [[HCLogisticsInfoTableViewCellSecond alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"lodisticsInfoSecond"];
             cellS.info = self.dataSource[indexPath.row-1];
             cellS.indexPath = indexPath;
-            
             cell = cellS;
         }
         
@@ -63,6 +81,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+   
     return 2;
 }
 
@@ -82,9 +101,12 @@
 {
     if (indexPath.section == 0)
     {
-        if (indexPath.row != 2)
+        if (indexPath.row == 0)
         {
             return 44;
+        }else if (indexPath.row == 1)
+        {
+            return 88;
         }else
         {
             return 100;
@@ -95,21 +117,91 @@
     }
 }
 
-
-- (void)setupData
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    NSArray *imageNameArr = @[@"Notice", @"Notice", @"label", @"label", @"label"];
-    NSArray *titleArr = @[@"我的推荐", @"我的简历", @"我申请的工作", @"我的收藏", @"我的足迹"];
-    NSArray *timeArr = @[@"2015-01-14 08:00:20",@"2015-02-14 08:12:20",@"2015-03-14 08:00:20",@"2015-04-14 08:00:20",@"2015-05-14 08:00:20"];
-    
-    for (NSInteger i = 0; i < 5; i++)
+    return 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == 0)
     {
-        HCLogisticsInfo *info = [[HCLogisticsInfo alloc] init];
-        info.imageName = imageNameArr[i];
-        info.titleText = titleArr[i];
-        info.detailText = timeArr[i];
-        [self.dataSource addObject:info];
+        return 5;
+    }else
+    {
+        return 60;
     }
 }
 
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+    view.backgroundColor = CLEARCOLOR;
+    return view;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
+        view.backgroundColor = CLEARCOLOR;
+        return view;
+    }else
+    {
+        [_footerView addSubview:self.beSureReceiveBtn];
+        return self.footerView;
+    }
+
+}
+
+#pragma mark---Private method
+
+-(void)clickBeSureBtn
+{
+    [self showHUDText:@"完成支付"];
+}
+
+#pragma mark---Setter OR Getter
+
+-(UIView *)footerView
+{
+    if (!_footerView) {
+        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60)];
+        _footerView.backgroundColor = CLEARCOLOR;
+    }
+    return _footerView;
+}
+
+-(UIButton *)beSureReceiveBtn
+{
+    if (!_beSureReceiveBtn) {
+        _beSureReceiveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _beSureReceiveBtn.backgroundColor = [UIColor redColor];
+        [_beSureReceiveBtn setTitle:@"确认收货" forState:UIControlStateNormal];
+        _beSureReceiveBtn.titleLabel.textColor = [UIColor whiteColor];
+        _beSureReceiveBtn.frame = CGRectMake(10, 10, SCREEN_WIDTH-20, 44);
+        [_beSureReceiveBtn addTarget:self action:@selector(clickBeSureBtn) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _beSureReceiveBtn;
+}
+
+#pragma mark---network
+
+- (void)requestHomeData
+{
+    HCLogisticsApi *api = [[HCLogisticsApi alloc] init];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:array];
+            [self.tableView reloadData];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
+    _baseRequest = api;
+}
 @end

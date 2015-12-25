@@ -14,6 +14,11 @@
 
 #import "HCBuyRecordTableViewCell.h"
 
+#import "HCBuyRecordApi.h"
+#import "HCProductIntroductionInfo.h"
+
+#import "HCWaitingDeliverGoodsViewController.h"
+
 
 @interface HCBuyRecordsViewController ()
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
@@ -26,6 +31,7 @@
     self.title = @"购买记录";
     [self setupBackItem];
     self.navigationItem.rightBarButtonItem = self.rightItem;
+    [self requestHomeData];
 }
 
 #pragma mark--Delegate
@@ -33,39 +39,46 @@
 {
     static NSString *RecordID = @"record";
     HCBuyRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RecordID];
+//    if (!cell)
+//    {
         cell = [[HCBuyRecordTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RecordID];
-
-            cell.indexPath = indexPath;
+//    }
+    cell.info = self.dataSource[indexPath.section];
+    cell.indexPath = indexPath;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
+    HCProductIntroductionInfo *info = self.dataSource[indexPath.section];
+    if (info.orderState == 0)//待付款
     {
         //支付
         HCPaymentViewController *VC = [[HCPaymentViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.section == 1)
+    }else if (info.orderState == 1)//订单已取消
     {
-        //物流信息
-        HCLogisticsInfoViewController *VC = [[HCLogisticsInfoViewController alloc]init];
-        [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.section == 2)
-    {
-        //物流信息
-        HCLogisticsInfoViewController *VC = [[HCLogisticsInfoViewController alloc]init];
-        [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.section == 3)
-    {
-        //售后申请
         HCAfterSalesApplyViewController *VC = [[HCAfterSalesApplyViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
-    }else
+        
+    }else if (info.orderState == 2)//待发货
     {
-        HCViewController *VC = [[HCViewController alloc]init];
-        VC.title = @"待付款";
+        HCWaitingDeliverGoodsViewController *VC = [[HCWaitingDeliverGoodsViewController alloc]init];
+        VC.data = @{@"data": info};
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (info.orderState == 3)//已发货
+    {
+        //物流信息
+        HCLogisticsInfoViewController *VC = [[HCLogisticsInfoViewController alloc]init];
+        VC.data = @{@"data":info};
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if(info.orderState == 4)//已签收
+    {
+        //物流信息
+        HCLogisticsInfoViewController *VC = [[HCLogisticsInfoViewController alloc]init];
+        VC.data = @{@"data":info};
         [self.navigationController pushViewController:VC animated:YES];
     }
     
@@ -79,14 +92,18 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return self.dataSource.count;
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row != 2) {
-        return 50;
+    if (indexPath.row == 0)
+    {
+        return 44;
+    }else if (indexPath.row == 1)
+    {
+        return 88;
     }else
     {
         return 100;
@@ -124,7 +141,6 @@
 
 #pragma mark --- Setter Or  Getter
 
-
 - (UIBarButtonItem *)rightItem
 {
     if (!_rightItem)
@@ -136,4 +152,24 @@
     }
     return _rightItem;
 }
+
+
+#pragma mark---network
+- (void)requestHomeData
+{
+    HCBuyRecordApi *api = [[HCBuyRecordApi alloc] init];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:array];
+            [self.tableView reloadData];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
+    _baseRequest = api;
+}
+
 @end

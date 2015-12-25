@@ -8,9 +8,12 @@
 
 #import "HCAddNewAddressViewController.h"
 #import "HCAddNewAddressTableViewCell.h"
+#import "HCAddressApi.h"
+#import "HCAddressInfo.h"
+
 @interface HCAddNewAddressViewController ()
 
-
+@property (nonatomic,strong) HCAddressInfo *info;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 
 @end
@@ -22,6 +25,7 @@
     
     self.title  = @"新增地址";
      self.navigationItem.rightBarButtonItem = self.rightItem;
+    [self requestHomeData];
     
 }
 
@@ -67,6 +71,7 @@
 }
 
 #pragma mark----private methods
+
 -(void)clickUseBtn
 {
     [self showHUDText:@"保存成功"];
@@ -85,4 +90,25 @@
     }
     return _rightItem;
 }
+
+
+#pragma mark --Network
+
+- (void)requestHomeData
+{
+    HCAddressApi *api = [[HCAddressApi alloc] init];
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCAddressInfo *info)
+     {
+         if (requestStatus == HCRequestStatusSuccess)
+         {
+             _info = info;
+             [self.tableView reloadData];
+         }else
+         {
+             [self showHUDError:message];
+         }
+     }];
+}
+
 @end

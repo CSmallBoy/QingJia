@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class HCProductIntroductionInfo;
 @interface HCBuyRecordTableViewCell : UITableViewCell
 
 
 
 @property (nonatomic,strong) NSIndexPath *indexPath;
+@property (nonatomic,strong) HCProductIntroductionInfo *info;
 
 @end

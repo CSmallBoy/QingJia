@@ -17,11 +17,11 @@
 /**
  *手机号码
  */
-@property (nonatomic,assign)NSInteger  phoneNumb;
+@property (nonatomic,strong)NSString*  phoneNumb;
 /**
  *邮政编码
  */
-@property (nonatomic,assign) int postcode;
+@property (nonatomic,strong) NSString* postcode;
 /**
  *收货省市区
  */

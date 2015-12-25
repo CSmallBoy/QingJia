@@ -363,8 +363,8 @@
 -(UIView*)medicalInfoHeaderView
 {
     if (!_medicalInfoHeaderView) {
-        _medicalInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 30)];
-        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 30)];
+        _medicalInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-10, 30)];
+        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-10, 30)];
         headerLabel.text = @"医疗救助信息";
         headerLabel.font = [UIFont systemFontOfSize:12];
         [_medicalInfoHeaderView addSubview:headerLabel];
@@ -379,12 +379,12 @@
         _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 64)];
         
         UIButton *completeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        completeBtn.frame = CGRectMake(15,15, WIDTH(self.view)-30, 30);
+        completeBtn.frame = CGRectMake(15,10, WIDTH(self.view)-30, 44);
         completeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [completeBtn setTitle:@"完成" forState:UIControlStateNormal];
         [completeBtn addTarget:self action:@selector(handleCompeleteButton) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(completeBtn, 4);
-        completeBtn.backgroundColor = RGB(253, 89, 83);
+        completeBtn.backgroundColor = [UIColor redColor];
         [_footerView addSubview:completeBtn];
     }
     return _footerView;
@@ -401,6 +401,8 @@
     }
     return _titleLabel;
 }
+
+#pragma mark---network
 
 - (void)requestSaveResumeData
 {

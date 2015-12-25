@@ -8,6 +8,8 @@
 
 #import "HCPaymentViewController.h"
 #import "HCAddNewAddressViewController.h"
+#import "HCAddressInfo.h"
+#import "HCAddressApi.h"
 
 #import "KWFormViewQuickBuilder.h"
 #import "HCTagUserInfo.h"
@@ -28,6 +30,9 @@
 //商品清单表头
 @property (nonatomic,strong) NSArray* listTitleArr;
 
+@property (nonatomic,strong) HCAddressInfo *info;
+
+@property (nonatomic, strong) UIBarButtonItem *rightItem;
 @end
 
 @implementation HCPaymentViewController
@@ -36,6 +41,10 @@
     [super viewDidLoad];
      self.title = @"支付";
     [self setupBackItem];
+    self.tableView.separatorStyle = NO;
+    [self requestHomeData];
+     self.navigationItem.rightBarButtonItem = self.rightItem;
+    
 }
 
 #pragma mark----UITableViewDelegate
@@ -47,10 +56,9 @@
     {
         if (indexPath.section == 0)
         {
-            UITableViewCell* Tcell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"acceptGoodsAddress"];
-            
-                [Tcell.contentView addSubview:self.acceptGoodsAddressTextView];
-            cell = Tcell;
+            UITableViewCell* acceptCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"acceptGoodsAddress"];
+                [acceptCell.contentView addSubview:self.acceptGoodsAddressTextView];
+            cell = acceptCell;
             
         }else if (indexPath.section == 1)
         {
@@ -63,6 +71,7 @@
         cell = payCell;
     }
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -74,17 +83,11 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
+    if (IsEmpty(_info))
     {
-        return 1;
-    }else if (section == 1)
-    {
-        return 1;
+        return 0;
     }
-    else
-    {
-        return 3;
-    }
+    return 1;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -104,27 +107,25 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
-    _headerViewLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, WIDTH(self.view)-10, 200)];
+    _headerViewLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, WIDTH(self.view)-20, 30)];
+    _headerViewLable.numberOfLines = 0;
+    _headerViewLable.font = [UIFont systemFontOfSize:15];
     if (section == 0)
     {
         self.headerViewLable.text = @"1.选择收货地址";
-
     }else if (section == 1)
     {
         self.headerViewLable.attributedText =  [self changeStringColorAndFontWithStart:@"2.商品清单" smallString:@"(预印板预计三天内送达，定制版十五天后发货)" end:@""];
+        CGSize size = CGSizeMake(WIDTH(self.view)-20,2000);
+        CGSize labelsize = [_headerViewLable.text sizeWithFont:_headerViewLable.font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+        [_headerViewLable setFrame:CGRectMake(10,0, labelsize.width, labelsize.height)];
+        _labelHeight = labelsize.height + 10;
     }else
     {
        self.headerViewLable.text = @"3.选择支付方式";
     }
-    _headerViewLable.numberOfLines = 0;
-    _headerViewLable.font = [UIFont systemFontOfSize:15];
-    CGSize size = CGSizeMake(WIDTH(self.view)-20,2000);
-    CGSize labelsize = [_headerViewLable.text sizeWithFont:_headerViewLable.font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-    
-    [_headerViewLable setFrame:CGRectMake(10,0, labelsize.width, labelsize.height)];
-    _labelHeight = labelsize.height + 10;
     _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), _labelHeight)];
-    
+    _headerView.backgroundColor = [UIColor whiteColor];
     [self.headerView addSubview:self.headerViewLable];
     
     return self.headerView;
@@ -141,7 +142,7 @@
     }
     else
     {
-        return 44;
+        return 180;
     }
 }
 
@@ -155,16 +156,27 @@
         return 64;
     }else
     {
-        return 10;
+        return 1;
     }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return MAX(44, _labelHeight);
+    if (section == 2)
+    {
+        return 40;
+    }else
+    {
+        return MAX(44, _labelHeight);
+    }
 }
 
 #pragma mark - private methods
+
+-(void)clickGiveUpBtn
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)handleBeSureToPay
 {
@@ -194,18 +206,30 @@
 
 #pragma mark---Setter Or Getter
 
+- (UIBarButtonItem *)rightItem
+{
+    if (!_rightItem)
+    {
+        _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"") style:UIBarButtonItemStylePlain target:self action:@selector(clickGiveUpBtn)];
+        _rightItem.title = @"取消订单";
+        
+    }
+    return _rightItem;
+}
+
 -(UIView *)useNewAddressView
 {
     if (!_useNewAddressView)
     {
-        _useNewAddressView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 44)];
+        _useNewAddressView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
         UIButton *useNewAddressbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        useNewAddressbtn.frame = CGRectMake(20, 5, WIDTH(self.view)/2+20,30);
+        useNewAddressbtn.frame = CGRectMake(20, 5, SCREEN_WIDTH/2+20,30);
         [useNewAddressbtn setTitle:@"使用新地址" forState:UIControlStateNormal];
         useNewAddressbtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [useNewAddressbtn addTarget:self action:@selector(handleUseNewAddress) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(useNewAddressbtn, 4);
         useNewAddressbtn.backgroundColor = [UIColor redColor];
+        _useNewAddressView.backgroundColor = [UIColor whiteColor];
         [_useNewAddressView addSubview:useNewAddressbtn];
     }
     return _useNewAddressView;
@@ -218,12 +242,13 @@
         _beSureToPayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 64)];
         
         UIButton *completeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        completeBtn.frame = CGRectMake(12, 15, WIDTH(self.view)-24, 30);
+        completeBtn.frame = CGRectMake(12, 10, WIDTH(self.view)-24, 44);
         [completeBtn setTitle:@"完成" forState:UIControlStateNormal];
         completeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [completeBtn addTarget:self action:@selector(handleBeSureToPay) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(completeBtn, 4);
-        completeBtn.backgroundColor = RGB(253, 89, 83);
+        completeBtn.backgroundColor = [UIColor redColor];
+        _beSureToPayView.backgroundColor = [UIColor whiteColor];
         [_beSureToPayView addSubview:completeBtn];
     }
     return _beSureToPayView;
@@ -232,17 +257,16 @@
 
 -(UITextView*)acceptGoodsAddressTextView
 {
-    if (!_acceptGoodsAddressTextView)
-    {
         _acceptGoodsAddressTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 5, WIDTH(self.view)-50, 100) ];
         _acceptGoodsAddressTextView.font = [UIFont systemFontOfSize:16];
         _acceptGoodsAddressTextView.delegate = self;
         _acceptGoodsAddressTextView.backgroundColor = [UIColor clearColor];
         ViewBorderRadius(_acceptGoodsAddressTextView,0, 1, [UIColor lightGrayColor]);
         _acceptGoodsAddressTextView.scrollEnabled = NO;
-        _acceptGoodsAddressTextView.text =@"   Tim\n 上海市闵行区解放路168号5号楼507 \n 15847841241";
+        NSString *addressStr = [NSString stringWithFormat:@"  %@\n  %@ %@\n  %@",self.info.consigneeName,self.info.receivingCity,self.info.receivingStreet,self.info.phoneNumb];
+
+        _acceptGoodsAddressTextView.text = addressStr;
         _acceptGoodsAddressTextView.editable = NO;
-    }
     return _acceptGoodsAddressTextView;
 }
 
@@ -254,4 +278,24 @@
     }
     return _listTitleArr;
 }
+
+#pragma mark---network
+
+- (void)requestHomeData
+{
+    HCAddressApi *api = [[HCAddressApi alloc] init];
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCAddressInfo *info)
+     {
+         if (requestStatus == HCRequestStatusSuccess)
+         {
+             _info = info;
+             [self.tableView reloadData];
+         }else
+         {
+             [self showHUDError:message];
+         }
+     }];
+}
+
 @end

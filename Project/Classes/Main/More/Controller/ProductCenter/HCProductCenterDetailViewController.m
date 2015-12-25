@@ -168,11 +168,11 @@ static NSString *IDCellF = @"introduction";
     _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 64)];
         
     UIButton *buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyBtn.frame = CGRectMake(15, 10, WIDTH(self.view)-30, 30);
+    buyBtn.frame = CGRectMake(15, 10, WIDTH(self.view)-30, 44);
     [buyBtn setTitle:@"购买" forState:UIControlStateNormal];
     [buyBtn addTarget:self action:@selector(handleBuyBtn) forControlEvents:UIControlEventTouchUpInside];
     ViewRadius(buyBtn, 4);
-    buyBtn.backgroundColor = RGB(253, 89, 83);
+        buyBtn.backgroundColor = [UIColor redColor];
         
     [_footerView addSubview:buyBtn];
     }

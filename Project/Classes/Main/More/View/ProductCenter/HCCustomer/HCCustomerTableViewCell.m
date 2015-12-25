@@ -9,7 +9,39 @@
 #import "HCCustomerTableViewCell.h"
 #import "KWFormViewQuickBuilder.h"
 #import "KWFormView.h"
+#import "HCCustomerInfo.h"
 
+@interface HCCustomerTableViewCell ()
+
+/**
+ *订单编号
+ */
+@property (nonatomic,strong) UILabel *orderIDLab;
+/**
+ *订单时间
+ */
+@property (nonatomic,strong) UILabel *orderTimeLab;
+/**
+ *补/退货商品
+ */
+@property (nonatomic,strong) UILabel *goodsNameLab;
+
+/**
+ *订单状态
+ */
+@property (nonatomic,strong) UILabel *orderCustomerStateLab;
+
+/**
+ *表格
+ */
+@property (nonatomic,strong) KWFormView *formView;
+
+/**
+ *灰线
+ */
+@property (nonatomic,strong) UIView *lineView;
+
+@end
 
 @implementation HCCustomerTableViewCell
 
@@ -18,75 +50,109 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
+       
         
     }
     return self;
 }
 
+
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
-    self.textLabel.font = [UIFont systemFontOfSize:14];
+
+   self.orderIDLab.text = [NSString stringWithFormat:@"订单编号:%@",self.info.orderID ];
+    self.orderTimeLab.text = [NSString stringWithFormat:@"%@",self.info.orderTime];
+    self.goodsNameLab.text = [NSString stringWithFormat:@"%@",self.info.goodsName];
     
-    if (indexPath.row == 0)
-    {
-        self.textLabel.text = @"订单编号：132380507";
+    [self.contentView addSubview:self.orderIDLab];
+    [self.contentView addSubview:self.orderTimeLab];
+    [self.contentView addSubview:self.goodsNameLab];
+    [self.contentView addSubview:self.lineView];
         
-        UILabel* timeLab = [[UILabel  alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-10, 50)];
-        timeLab.text = @"2015-08-01 12:30";
-        timeLab.textAlignment = NSTextAlignmentRight;
-        timeLab.font = [UIFont systemFontOfSize:14];
-        
-        [self.contentView addSubview:self.textLabel];
-        [self.contentView addSubview:timeLab];
-    }else if(indexPath.row == 1)
-    {
-        self.textLabel.text = @"订购商品:M-Talk二维码（定制版）";
-        [self.contentView addSubview:self.textLabel];
-    }else
-    {
         KWFormViewQuickBuilder *builder = [[KWFormViewQuickBuilder alloc]init];
-        
-        
-        [builder addRecord: @[@"数量",@"价格",@"订单状态"]];
-        [builder addRecord:@[@"1",@"88元",@""]];
-        CGFloat width = SCREEN_WIDTH*0.33;
-        KWFormView *formView = [builder startCreatWithWidths:@[@(width), @(width), @(width), @(width)] startPoint:CGPointMake(0, 0)];
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        
-        
+        [builder addRecord: @[
+                              self.info.goodsTotalNumb,
+                              self.info.goodsNeedNumb,
+                              @"订单总价",
+                              @"订单状态"]];
+        [builder addRecord:@[
+                             self.info.detailOrderGoodsNum,
+                             self.info.detailNeedGoodsNum,
+                             self.info.orderTotalPrice,
+                             @""]];
+        CGFloat width = SCREEN_WIDTH*0.25;
+        _formView = [builder startCreatWithWidths:@[@(width), @(width), @(width), @(width)] startPoint:CGPointMake(0, 100)];
+    [self.contentView addSubview:self.formView];
+    
         NSString *orderStateStr ;
-        
-        if (indexPath.section == 0)
+        if (self.info.orderCustomerState == 0)
         {
             orderStateStr = @"待审核";
-        }else if (indexPath.section == 1)
+        }else if(self.info.orderCustomerState == 1)
         {
             orderStateStr = @"审核通过";
-        }else if (indexPath.section == 2)
+        }else if(self.info.orderCustomerState == 2)
         {
             orderStateStr = @"审核不通过";
-        }else if (indexPath.section == 3)
+        }else if(self.info.orderCustomerState == 3)
         {
             orderStateStr = @"退款成功";
         }
-        else{
-            orderStateStr = @"退款中";
-        }
-        
-        UILabel  *orderStateLb = [[UILabel alloc] initWithFrame:CGRectMake(width*2,50, width,  50)];
-        NSAttributedString *attriString = [[NSAttributedString alloc] initWithString: orderStateStr attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor redColor]}];
+        UILabel  *orderStateLb = [[UILabel alloc] initWithFrame:CGRectMake(width*3,50, width,  50)];
+        NSAttributedString *attriString = [[NSAttributedString alloc] initWithString: orderStateStr attributes:@{
+                                                                                                                 NSFontAttributeName: [UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor redColor]
+                                                                                                                 }];
         orderStateLb.attributedText = attriString;
         orderStateLb.textAlignment = NSTextAlignmentCenter;
-        
-        
-        [self.contentView addSubview:formView];
-        [formView addSubview:orderStateLb];
-        
-    }
+     [_formView addSubview:orderStateLb];
+    
 }
 
 
+-(UILabel *)orderIDLab
+{
+    if (!_orderIDLab)
+    {
+        _orderIDLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 160, 50)];
+        _orderIDLab.textAlignment = NSTextAlignmentLeft;
+        _orderIDLab.font = [UIFont systemFontOfSize:14];
+    }
+    return _orderIDLab;
+}
+
+-(UILabel *)orderTimeLab
+{
+    if (!_orderTimeLab )
+    {
+        _orderTimeLab = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-150, 0, 140, 50)];
+        _orderTimeLab.font = [UIFont systemFontOfSize:14];
+        _orderTimeLab.textAlignment = NSTextAlignmentRight;
+    }
+    return _orderTimeLab;
+}
+
+-(UILabel *)goodsNameLab
+{
+    if (!_goodsNameLab )
+    {
+        _goodsNameLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 50, SCREEN_WIDTH-20, 50)];
+        _goodsNameLab.font = [UIFont systemFontOfSize:14];
+        _goodsNameLab.textAlignment = NSTextAlignmentLeft;
+    }
+    return _goodsNameLab;
+}
+
+-(UIView *)lineView
+{
+    if (!_lineView)
+    {
+        _lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, 0.5)];
+        _lineView.backgroundColor = LightGraryColor;
+    }
+    return _lineView;
+}
+
+#pragma mark--Private method
 
 -(NSMutableAttributedString *)changeStringColorAndFontWithStart:(NSString *)start smallString:(NSString *)smallStr end:(NSString *)end
 {

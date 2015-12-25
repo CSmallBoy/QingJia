@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class HCCustomerInfo;
 @interface HCCustomerTableViewCell : UITableViewCell
 
 
 @property (nonatomic,strong) NSIndexPath *indexPath;
 
+@property (nonatomic,strong) HCCustomerInfo *info;
 @end

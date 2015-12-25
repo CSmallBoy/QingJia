@@ -26,8 +26,8 @@
 {
     HCAddressInfo *info = [[HCAddressInfo alloc] init];
     info.consigneeName = @"Tom";
-    info.phoneNumb = 12345678907 ;
-    info.postcode = 100000;
+    info.phoneNumb = @"12345678907 ";
+    info.postcode = @"100000";
     info.receivingCity = @"江苏省南京市玄武区";
     info.receivingStreet = @"XX镇北京东路XXXX号XX楼XX室";
   
