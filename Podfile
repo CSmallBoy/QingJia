@@ -16,3 +16,5 @@ pod 'SDCycleScrollView'
 pod 'UITableView+FDTemplateLayoutCell'
 
 pod 'MLEmojiLabel'
+
+pod 'EaseMobSDKFull', :git => 'https://github.com/easemob/sdk-ios-cocoapods-integration.git'

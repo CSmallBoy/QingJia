@@ -345,6 +345,8 @@
 		0A80DE6D1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A80DE6B1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib */; };
 		0A8A4F7C1C1FD6C900753D65 /* HCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */; };
 		0A8A4F821C1FD7FE00753D65 /* HCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */; };
+		0A8A98E61C2CF06200D979B6 /* HCMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A98E51C2CF06200D979B6 /* HCMessageListViewController.m */; };
+		0A8A98E91C2CF07E00D979B6 /* HCContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A98E81C2CF07E00D979B6 /* HCContactsViewController.m */; };
 		0AA0EB981C1536F3007F7EAB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB971C1536F3007F7EAB /* AddressBook.framework */; };
 		0AA0EB9A1C1536FB007F7EAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */; };
 		0AA626B91C29862700EC62D9 /* HCFriendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA626B81C29862700EC62D9 /* HCFriendMessageViewController.m */; };
@@ -1157,6 +1159,10 @@
 		0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeViewController.m; sourceTree = "<group>"; };
 		0A8A4F801C1FD7FE00753D65 /* HCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessageViewController.h; sourceTree = "<group>"; };
 		0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessageViewController.m; sourceTree = "<group>"; };
+		0A8A98E41C2CF06200D979B6 /* HCMessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessageListViewController.h; sourceTree = "<group>"; };
+		0A8A98E51C2CF06200D979B6 /* HCMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessageListViewController.m; sourceTree = "<group>"; };
+		0A8A98E71C2CF07E00D979B6 /* HCContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCContactsViewController.h; sourceTree = "<group>"; };
+		0A8A98E81C2CF07E00D979B6 /* HCContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCContactsViewController.m; sourceTree = "<group>"; };
 		0AA0EB971C1536F3007F7EAB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		0AA626B71C29862700EC62D9 /* HCFriendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageViewController.h; sourceTree = "<group>"; };
@@ -2756,6 +2762,8 @@
 		0A8A4F731C1FD65C00753D65 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0A8A98E21C2CF06200D979B6 /* Contacts */,
+				0A8A98E31C2CF06200D979B6 /* MessageList */,
 				0A8A4F801C1FD7FE00753D65 /* HCMessageViewController.h */,
 				0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */,
 			);
@@ -2821,6 +2829,24 @@
 				0AC89DA41C295B3B003EED90 /* UserMessage */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0A8A98E21C2CF06200D979B6 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				0A8A98E71C2CF07E00D979B6 /* HCContactsViewController.h */,
+				0A8A98E81C2CF07E00D979B6 /* HCContactsViewController.m */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		0A8A98E31C2CF06200D979B6 /* MessageList */ = {
+			isa = PBXGroup;
+			children = (
+				0A8A98E41C2CF06200D979B6 /* HCMessageListViewController.h */,
+				0A8A98E51C2CF06200D979B6 /* HCMessageListViewController.m */,
+			);
+			path = MessageList;
 			sourceTree = "<group>";
 		};
 		0AA626BA1C2989D400EC62D9 /* SoftwareSet */ = {
@@ -3914,6 +3940,7 @@
 				C7829AED1C2BC753006FFFFB /* HCProductIntrodApi.m in Sources */,
 				0A6B7F221BF1EB74008D54B3 /* HCAvatarMgr.m in Sources */,
 				0A54911D1C2BC32D0085F50D /* ZXParsedResult.m in Sources */,
+				0A8A98E91C2CF07E00D979B6 /* HCContactsViewController.m in Sources */,
 				0AA626B91C29862700EC62D9 /* HCFriendMessageViewController.m in Sources */,
 				0A5491291C2BC32D0085F50D /* ZXURIResultParser.m in Sources */,
 				0A5491CF1C2BC32D0085F50D /* ZXQRCodeFinderPatternFinder.m in Sources */,
@@ -4098,6 +4125,7 @@
 				0A54912D1C2BC32D0085F50D /* ZXVINParsedResult.m in Sources */,
 				0A5491181C2BC32D0085F50D /* ZXExpandedProductResultParser.m in Sources */,
 				0A5491951C2BC32D0085F50D /* ZXEAN13Reader.m in Sources */,
+				0A8A98E61C2CF06200D979B6 /* HCMessageListViewController.m in Sources */,
 				0ABAFECD1BF34726009ABF57 /* HCGetUserInfoByDeviceApi.m in Sources */,
 				0A5491491C2BC32D0085F50D /* ZXStringUtils.m in Sources */,
 				C7829A9B1C2BC71F006FFFFB /* HCCustomerViewController.m in Sources */,

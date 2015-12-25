@@ -25,6 +25,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DZNEmptyDataSet (1.7.2)
+  - EaseMobSDKFull (2.2.1)
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
@@ -50,6 +51,7 @@ PODS:
 DEPENDENCIES:
   - ACEExpandableTextCell
   - DZNEmptyDataSet
+  - EaseMobSDKFull (from `https://github.com/easemob/sdk-ios-cocoapods-integration.git`)
   - FMDB
   - IQKeyboardManager
   - MBProgressHUD
@@ -61,11 +63,21 @@ DEPENDENCIES:
   - UITableView+FDTemplateLayoutCell
   - YTKNetwork
 
+EXTERNAL SOURCES:
+  EaseMobSDKFull:
+    :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
+
+CHECKOUT OPTIONS:
+  EaseMobSDKFull:
+    :commit: c4a63a69518d396309e8d6c267f2756cac3877ee
+    :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
+
 SPEC CHECKSUMS:
   ACEExpandableTextCell: 5fadb1461c7f48b8d97e1d5257eeff5c1ec93a0f
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
   AFNetworking: 7f317038a9710cabfa43ec56396b307b45df72ab
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
+  EaseMobSDKFull: 4a18d6ad47b4ccca564833963511bddd151e1654
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   IQKeyboardManager: ac803e61e5b50efae6b3aeedd95a02c7c7d3b2b3
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
