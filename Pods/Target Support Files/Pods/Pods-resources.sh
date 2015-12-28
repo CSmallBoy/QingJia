@@ -65,6 +65,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "MLEmojiLabel/Classes/MLEmoji_ExpressionImage.plist"
   install_resource "MLEmojiLabel/Classes/MLEmoji_Expression.bundle"
   install_resource "MLEmojiLabel/Classes/MLEmoji_Expression.bundle/gifexpression.bundle"
+  install_resource "Parse/Parse/Resources/en.lproj"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "EaseMobSDKFull/EaseMobSDKFull/resources/EaseMob.bundle"
@@ -74,6 +75,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "MLEmojiLabel/Classes/MLEmoji_ExpressionImage.plist"
   install_resource "MLEmojiLabel/Classes/MLEmoji_Expression.bundle"
   install_resource "MLEmojiLabel/Classes/MLEmoji_Expression.bundle/gifexpression.bundle"
+  install_resource "Parse/Parse/Resources/en.lproj"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

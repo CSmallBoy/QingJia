@@ -7,8 +7,9 @@
 //
 
 #import "HCMessageViewController.h"
-#import "HCMessageListViewController.h"
-#import "HCContactsViewController.h"
+#import "ConversationListController.h"
+#import "ContactListViewController.h"
+#import "AddFriendViewController.h"
 
 @interface HCMessageViewController ()
 
@@ -16,30 +17,42 @@
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 
 @property (nonatomic, strong) UIScrollView *mainView;
-@property (nonatomic, strong) HCMessageListViewController *messageListVC;
-@property (nonatomic, strong) HCContactsViewController *contactsVC;
+@property (nonatomic, strong) ConversationListController *messageListVC;
+@property (nonatomic, strong) ContactListViewController *contactsVC;
 
 @end
 
 @implementation HCMessageViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        [self addChildViewController:self.messageListVC];
+        [self addChildViewController:self.contactsVC];
+        self.segmentedControl.selectedSegmentIndex = 0;
+        self.navigationItem.titleView = self.segmentedControl;
+        self.navigationItem.rightBarButtonItem = self.rightItem;
+        
+        [self.view addSubview:self.mainView];
+        [self handleSegmentedControl:self.segmentedControl];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.segmentedControl.selectedSegmentIndex = 0;
-    self.navigationItem.titleView = self.segmentedControl;
-    self.navigationItem.rightBarButtonItem = self.rightItem;
-    
-    [self.view addSubview:self.mainView];
-    [self handleSegmentedControl:self.segmentedControl];
 }
 
 #pragma mark - private methods
 
 - (void)handleRightItem
 {
-    DLog(@"添加好友");
+    AddFriendViewController *addController = [[AddFriendViewController alloc] initWithStyle:UITableViewStylePlain];
+    addController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:addController animated:YES];
 }
 
 - (void)handleSegmentedControl:(UISegmentedControl *)segmentedControl
@@ -90,24 +103,22 @@
 }
 
 
-- (HCMessageListViewController *)messageListVC
+- (ConversationListController *)messageListVC
 {
     if (!_messageListVC)
     {
-        _messageListVC = [[HCMessageListViewController alloc] init];
+        _messageListVC = [[ConversationListController alloc] init];
         _messageListVC.view.frame = CGRectMake(0, 0, WIDTH(self.view), HEIGHT(self.view)-104);
-        [self addChildViewController:_messageListVC];
     }
     return _messageListVC;
 }
 
-- (HCContactsViewController *)contactsVC
+- (ContactListViewController *)contactsVC
 {
     if (!_contactsVC)
     {
-        _contactsVC = [[HCContactsViewController alloc] init];
+        _contactsVC = [[ContactListViewController alloc] init];
         _contactsVC.view.frame = CGRectMake(WIDTH(self.view), 0, WIDTH(self.view), HEIGHT(self.view)-64);
-        [self addChildViewController:_contactsVC];
     }
     return _contactsVC;
 }

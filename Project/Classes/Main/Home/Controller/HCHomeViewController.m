@@ -210,12 +210,12 @@
 - (void)handleLeftItem
 {
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.sideViewController.showStatus)
+    if (app.mainController.showStatus)
     {
-        [app.sideViewController hideSideViewController:YES];
+        [app.mainController hideSideViewController:YES];
     }else
     {
-        [app.sideViewController showLeftViewController:YES];
+        [app.mainController showLeftViewController:YES];
     }
 }
 

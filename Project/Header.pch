@@ -23,4 +23,8 @@
 #import "MJExtension.h"
 #import "SDImageCache.h"
 
+#import "EaseUI.h"
+#import "EMAlertView.h"
+#import "EaseMob.h"
+
 #endif /* Header_pch */

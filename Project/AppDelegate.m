@@ -10,11 +10,13 @@
 #import "HCAvatarMgr.h"
 #import "HCVersionMgr.h"
 #import "YTKNetworkConfig.h"
-#import "HCRootTabBarController.h"
 #import "HCHomeViewController.h"
 #import "HCLoginViewController.h"
 #import "HCLeftViewController.h"
 #import "APService.h"
+
+#import "AppDelegate+EaseMob.h"
+#import "AppDelegate+Parse.h"
 
 @interface AppDelegate ()
 
@@ -22,13 +24,14 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     //设置网络参数
     [self setupCustomProperty];
+    // 环信
+    [self setupEaseWithApplication:application Options:launchOptions];
     //设置主控制器
-    [self setupRootViewController];
-    
+    //    [self setupRootViewController];
     //版本更新
     [[HCVersionMgr manager] checkFirVersion];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -40,7 +43,11 @@
 //设置主控制器
 - (void)setupRootViewController
 {
-    if ([HCAppMgr manager].showInstroView)
+    //    if (![HCAppMgr manager].showInstroView)
+    //    {
+    //        DLog(@"加载欢迎页面,测试的取反");
+    //    }
+    if ([HCAccountMgr manager].isLogined)
     {
         HCLoginViewController *login = [[HCLoginViewController alloc]init];
         UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:login];
@@ -57,14 +64,14 @@
         UINavigationController *nav = main.childViewControllers[0];
         UIView *homeView = nav.visibleViewController.view;
         
-        _sideViewController=[[YRSideViewController alloc]init];
-        _sideViewController.homeView = homeView;
-        _sideViewController.rootViewController= main;
-        _sideViewController.leftViewController=leftNav;
-        _sideViewController.leftViewShowWidth= [UIScreen mainScreen].bounds.size.width*0.7;
-        _sideViewController.needSwipeShowMenu=true;//默认开启的可滑动展示
+        _mainController=[[YRSideViewController alloc]init];
+        _mainController.homeView = homeView;
+        _mainController.rootViewController= main;
+        _mainController.leftViewController=leftNav;
+        _mainController.leftViewShowWidth= [UIScreen mainScreen].bounds.size.width*0.7;
+        _mainController.needSwipeShowMenu=true;//默认开启的可滑动展示
         
-        self.window.rootViewController = _sideViewController;
+        self.window.rootViewController = _mainController;
         
         HCHomeViewController *home = (HCHomeViewController *)nav.visibleViewController;
         if (!IsEmpty(_showWelcomeJoinGradeID))
@@ -74,10 +81,41 @@
     }
 }
 
-- (void)setupSelectedIndex:(NSInteger)index
+- (void)setupEaseWithApplication:(UIApplication *)application Options:(NSDictionary *)launchOptions
 {
-    HCRootTabBarController *root = (HCRootTabBarController *)self.window.rootViewController;
-    root.selIndex = index;
+    _connectionState = eEMConnectionConnected;
+#warning 初始化环信SDK，详细内容在AppDelegate+EaseMob.m 文件中
+#warning SDK注册 APNS文件的名字, 需要与后台上传证书时的名字一一对应
+    NSString *apnsCertName = nil;
+#if DEBUG
+    apnsCertName = @"chatdemoui_dev";
+#else
+    apnsCertName = @"chatdemoui";
+#endif
+    [self easemobApplication:application
+didFinishLaunchingWithOptions:launchOptions
+                      appkey:@"easemob-demo#chatdemoui"
+                apnsCertName:apnsCertName
+                 otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    if (_mainController)
+    {
+        HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
+        [rootTabBar jumpToChatList];
+    }
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    if (_mainController)
+    {
+        HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
+        [rootTabBar didReceiveLocalNotification:notification];
+    }
 }
 
 - (void)setupCustomProperty
@@ -88,18 +126,6 @@
     config.cdnUrl =  kIMGURL;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-}
-
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-}
 
 
 @end

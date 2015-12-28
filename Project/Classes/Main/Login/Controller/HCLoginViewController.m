@@ -52,6 +52,29 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
+
+#pragma  mark - private
+
+- (void)saveLastLoginUsername
+{
+    NSString *username = [[[EaseMob sharedInstance].chatManager loginInfo] objectForKey:kSDKUsername];
+    if (username && username.length > 0) {
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        [ud setObject:username forKey:[NSString stringWithFormat:@"em_lastLogin_%@",kSDKUsername]];
+        [ud synchronize];
+    }
+}
+
+- (NSString*)lastLoginUsername
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *username = [ud objectForKey:[NSString stringWithFormat:@"em_lastLogin_%@",kSDKUsername]];
+    if (username && username.length > 0) {
+        return username;
+    }
+    return nil;
+}
+
 #pragma mark - IBAction
 
 //忘记密码
@@ -71,28 +94,28 @@
 //登录
 - (IBAction)loginBtnClick:(id)sender {
     
-//    if (![Utils checkPhoneNum:_accountTextField.text])
-//    {
-//        [self showHUDText:@"输入正确的手机号"];
-//        return;
-//    }
-//    
-//    if (_keyTextField.text.length == 0)
-//    {
-//        [self showHUDText:@"请输入正确的密码"];
-//        return;
-//    }
-//    
-//    if (_keyTextField.text.length < 6 ||
-//        _keyTextField.text.length > 20 ||
-//        [_keyTextField.text rangeOfString:@" "].location != NSNotFound)
-//    {
-//        [self showHUDText:@"密码必须由6-20位数字、字母或符号组成"];
-//        return;
-//    }
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app setupRootViewController];
-//    [self requestLogin];
+    //    if (![Utils checkPhoneNum:_accountTextField.text])
+    //    {
+    //        [self showHUDText:@"输入正确的手机号"];
+    //        return;
+    //    }
+    //
+    //    if (_keyTextField.text.length == 0)
+    //    {
+    //        [self showHUDText:@"请输入正确的密码"];
+    //        return;
+    //    }
+    //
+    //    if (_keyTextField.text.length < 6 ||
+    //        _keyTextField.text.length > 20 ||
+    //        [_keyTextField.text rangeOfString:@" "].location != NSNotFound)
+    //    {
+    //        [self showHUDText:@"密码必须由6-20位数字、字母或符号组成"];
+    //        return;
+    //    }
+    //    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    //    [app setupRootViewController];
+    [self requestLogin];
 }
 
 #pragma amrk - network
@@ -100,30 +123,87 @@
 //登录
 - (void)requestLogin
 {
-    [self showHUDView:@"正在登录"];
-
-    HCLoginApi *api = [[HCLoginApi alloc] init];
-    api.mobile = _accountTextField.text;
-    api.password = _keyTextField.text;
+    //    [self showHUDView:@"正在登录"];
+    //
+    //    HCLoginApi *api = [[HCLoginApi alloc] init];
+    //    api.mobile = _accountTextField.text;
+    //    api.password = _keyTextField.text;
+    //
+    //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo){
+    //
+    //        if (requestStatus == HCRequestStatusSuccess)
+    //        {
+    //            [HCAccountMgr manager].loginInfo = loginInfo;
+    //
+    //            //登录信息存数据库
+    //            [[HCAccountMgr manager] saveLoginInfoToDB];
     
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo){
-        
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [HCAccountMgr manager].loginInfo = loginInfo;
-            
-            //登录信息存数据库
-            [[HCAccountMgr manager] saveLoginInfoToDB];
-            [HCAccountMgr manager].isLogined = YES;
-            [self requestUserData];
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:loginInfo.phone forKey:kHCLoginAccount];
-            
-        }else {
-            [self showHUDError:message];
-        }
-    }];
+    
+    //            [self requestUserData];
+    //            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //            [defaults setObject:loginInfo.phone forKey:kHCLoginAccount];
+    [self loginWithUsername:_accountTextField.text password:_keyTextField.text];
+    //        }else {
+    //            [self showHUDError:message];
+    //        }
+    //    }];
 }
+
+//点击登陆后的操作
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password
+{
+    [self showHudInView:self.view hint:NSLocalizedString(@"login.ongoing", @"Is Login...")];
+    //异步登陆账号
+    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username
+                                                        password:password
+                                                      completion:
+     ^(NSDictionary *loginInfo, EMError *error) {
+         [self hideHud];
+         if (loginInfo && !error) {
+             //设置是否自动登录
+             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+             
+             //获取数据库中数据
+             [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+             
+             //获取群组列表
+             [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+             
+             [HCAccountMgr manager].isLogined = YES;
+             //发送自动登陆状态通知
+             [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+             
+             //保存最近一次登录用户名
+             [self saveLastLoginUsername];
+         }
+         else
+         {
+             switch (error.errorCode)
+             {
+                 case EMErrorNotFound:
+                     TTAlertNoTitle(error.description);
+                     break;
+                 case EMErrorNetworkNotConnected:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
+                     break;
+                 case EMErrorServerNotReachable:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+                     break;
+                 case EMErrorServerAuthenticationFailure:
+                     TTAlertNoTitle(error.description);
+                     break;
+                 case EMErrorServerTimeout:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+                     break;
+                 default:
+                     TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Login failure"));
+                     break;
+             }
+         }
+     } onQueue:nil];
+}
+
+
 
 - (void)requestUserData
 {

@@ -96,7 +96,7 @@
     UIViewController *control = self.view.window.rootViewController.childViewControllers[0];
     vc.hidesBottomBarWhenPushed = YES;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app.sideViewController hideSideViewController:YES];
+    [app.mainController hideSideViewController:YES];
     UINavigationController *nav = control.childViewControllers[0];
     [nav.visibleViewController.navigationController pushViewController:vc animated:YES];
 }

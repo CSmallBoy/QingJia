@@ -129,6 +129,8 @@
 //建议使用前两种宏定义,性能高于后者
 /* ********************图片********************* */
 
+// EaseUI
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 //----------------------其他----------------------------
 

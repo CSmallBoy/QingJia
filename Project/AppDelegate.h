@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "YRSideViewController.h"
+#import "HCRootTabBarController.h"
+#import "ApplyViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, IChatManagerDelegate>
+{
+    EMConnectionState _connectionState;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -18,11 +23,7 @@
 
 @property (nonatomic, strong) NSString *showWelcomeJoinGradeID;
 
-
-// 选择下面按钮
-- (void)setupSelectedIndex:(NSInteger)index;
-
-@property (strong,nonatomic) YRSideViewController *sideViewController;
+@property (strong,nonatomic) YRSideViewController *mainController;
 
 @end
 
