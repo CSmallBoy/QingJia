@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"售后列表";
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
     [self requestHomeData];
     

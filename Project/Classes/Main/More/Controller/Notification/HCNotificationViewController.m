@@ -10,7 +10,8 @@
 #import "HCUnReadNotificationViewController.h"
 #import "HCReadNotificationViewController.h"
 #import "HCFollowNotificationViewController.h"
-@interface HCNotificationViewController ()
+@interface HCNotificationViewController ()<UIGestureRecognizerDelegate>
+
 @property (nonatomic,strong) UISegmentedControl *segmented;
 
 @property (nonatomic,strong) UIScrollView *scrollView;
@@ -20,6 +21,9 @@
 @property (nonatomic,strong) HCUnReadNotificationViewController *unreadVC;
 @property (nonatomic,strong) HCReadNotificationViewController *readVC;
 @property (nonatomic,strong) HCFollowNotificationViewController *followVC;
+
+@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
+@property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGestureRecognizer;
 @end
 
 @implementation HCNotificationViewController
@@ -28,13 +32,49 @@
 {
     [super viewDidLoad];
     self.title = @"通知中心";
-    [self.view addSubview:self.unreadVC.view];
+    [self.view addSubview:self.readVC.view];
     [self.view addSubview:self.segmented];
     [self setupBackItem];
     
+    //添加左右滑动手势
+    self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
+    self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
+    self.leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    self.rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
+    [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
 }
 
 #pragma mark -----私有方法
+
+/**********左右滑动切换视图************/
+- (void)handleSwipes:(UISwipeGestureRecognizer *)sender
+{
+    if (sender.direction == UISwipeGestureRecognizerDirectionLeft)
+    {
+        if (self.segmented.selectedSegmentIndex != 2)
+        {
+            self.segmented.selectedSegmentIndex ++;
+        }
+        else if (self.segmented.selectedSegmentIndex == 2)
+        {
+            self.segmented.selectedSegmentIndex -= 2;
+        }
+    }
+    
+    if (sender.direction == UISwipeGestureRecognizerDirectionRight)
+    {
+        if (self.segmented.selectedSegmentIndex != 0)
+        {
+            self.segmented.selectedSegmentIndex --;
+        }
+        else if (self.segmented.selectedSegmentIndex == 0)
+        {
+            self.segmented.selectedSegmentIndex +=2;
+        }
+    }
+    [self handleSegmentedControl:self.segmented];
+}
 
 -(void)clickCloseFollowBtn
 {
@@ -48,6 +88,7 @@
         [self.followVC.view removeFromSuperview];
         [self.unreadVC.view removeFromSuperview];
         [self.view addSubview:self.unreadVC.view];
+        [self.footerView removeFromSuperview];
     }
     else if (segment.selectedSegmentIndex == 1)
     {
@@ -55,6 +96,7 @@
         [self.followVC.view removeFromSuperview];
         [self.readVC.view removeFromSuperview];
         [self.view addSubview:self.readVC.view];
+        [self.footerView removeFromSuperview];
     }else if (segment.selectedSegmentIndex == 2)
     {
         
@@ -73,8 +115,8 @@
         if (!_segmented)
         {
             _segmented = [[UISegmentedControl alloc] initWithItems:@[@"未读信息", @"已读信息",@"跟进信息"]];
-            _segmented.selectedSegmentIndex = 0;
-            _segmented.frame = CGRectMake(20, 84, SCREEN_WIDTH-40, 30);
+            _segmented.selectedSegmentIndex = 1;
+            _segmented.frame = CGRectMake(20, 74, SCREEN_WIDTH-40, 30);
             _segmented.backgroundColor = [UIColor whiteColor];
             _segmented.tintColor = [UIColor redColor];
             [_segmented addTarget:self action:@selector(handleSegmentedControl:) forControlEvents:UIControlEventValueChanged];
@@ -86,7 +128,7 @@
 {
     if (!_unreadVC) {
         _unreadVC = [[HCUnReadNotificationViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        _unreadVC.view.frame = CGRectMake(10, 114, SCREEN_WIDTH-20, SCREEN_HEIGHT);
+        _unreadVC.view.frame = CGRectMake(10, 114, SCREEN_WIDTH-20, SCREEN_HEIGHT-114);
         [self addChildViewController:_unreadVC];
     }
     return _unreadVC;
@@ -96,7 +138,7 @@
 {
     if (!_readVC) {
         _readVC = [[HCReadNotificationViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        _readVC.view.frame = CGRectMake(10, 114, SCREEN_WIDTH-20, SCREEN_HEIGHT);
+        _readVC.view.frame = CGRectMake(10, 114, SCREEN_WIDTH-20, SCREEN_HEIGHT-114);
         [self addChildViewController:_readVC];
     }
     return _readVC;
@@ -106,7 +148,7 @@
 {
     if (!_followVC) {
         _followVC = [[HCFollowNotificationViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        _followVC.view.frame = CGRectMake(10, 114, SCREEN_WIDTH-20, SCREEN_HEIGHT-50);
+        _followVC.view.frame = CGRectMake(10, 114, SCREEN_WIDTH-20, SCREEN_HEIGHT-164);
         [self addChildViewController:_followVC];
     }
     return _followVC;

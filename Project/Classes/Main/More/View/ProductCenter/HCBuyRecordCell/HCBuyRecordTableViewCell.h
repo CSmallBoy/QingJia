@@ -8,11 +8,26 @@
 
 #import <UIKit/UIKit.h>
 @class HCProductIntroductionInfo;
+
+
+@protocol HCBuyRecordCellDelegate <NSObject>
+
+@optional
+
+-(void)handleApplyReissue:(HCProductIntroductionInfo*)info;
+
+-(void)handleApplyReturn:(HCProductIntroductionInfo*)info;
+
+@end
+
 @interface HCBuyRecordTableViewCell : UITableViewCell
 
 
 
 @property (nonatomic,strong) NSIndexPath *indexPath;
 @property (nonatomic,strong) HCProductIntroductionInfo *info;
+
+
+@property (nonatomic, weak) id<HCBuyRecordCellDelegate>delegate;
 
 @end

@@ -38,6 +38,7 @@ static NSString *IDCellF = @"introduction";
     [super viewDidLoad];
     self.title = @"产品详情";
     [self setupBackItem];
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self requestHomeData];
     self.navigationItem.rightBarButtonItem = self.rightItem;
     

@@ -22,6 +22,7 @@
 {
     [super viewDidLoad];
     [self setupBackItem];
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.title = @"待发货";
     _info = self.data[@"data"];
 }
@@ -32,6 +33,7 @@
 {
     static NSString *waitingID = @"waitingDeliverGood";
     HCBuyRecordTableViewCell *waitingCell = [tableView dequeueReusableCellWithIdentifier:waitingID];
+    
         waitingCell = [[HCBuyRecordTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:waitingID];
 
     waitingCell.info = _info;
@@ -42,16 +44,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0)
-    {
-        return 44;
-    }else if (indexPath.row == 1)
-    {
-        return 88;
-    }else
-    {
-        return 100;
-    }
+    return 250;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -60,7 +53,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 1;
 }
 
 @end

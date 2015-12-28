@@ -80,7 +80,7 @@
             info.orderState = 4;//已签收
             info.orderTime = @"2015-12-23 22:30";
         }
-        else
+        else if(i == 5)
         {
             info.buyLabelNumber = 10;
             info.labelPrice = 8;
@@ -88,6 +88,17 @@
             info.hotStampingMachinePrice = 70;
             info.totalPrice = 158;
             info.orderID = @"66666666";
+            info.orderState = 4;//已签收
+            info.orderTime = @"2015-12-23 22:30";
+        }
+        else
+        {
+            info.buyLabelNumber = 11;
+            info.labelPrice = 3;
+            info.buyHotStampingMachineNumber = 1;
+            info.hotStampingMachinePrice = 70;
+            info.totalPrice = 158;
+            info.orderID = [NSString stringWithFormat:@"%ld%ld%ld%ld%ld%ld%ld%ld",(long)i,(long)i,(long)i,(long)i,(long)i,(long)i,(long)i,(long)i];
             info.orderState = 4;//已签收
             info.orderTime = @"2015-12-23 22:30";
         }

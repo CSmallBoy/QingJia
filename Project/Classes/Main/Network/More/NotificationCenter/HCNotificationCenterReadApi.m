@@ -24,7 +24,7 @@
 - (id)formatResponseObject:(id)responseObject
 {
     NSMutableArray *NotificationArr = [NSMutableArray array];
-    for (NSInteger i = 0; i < 5; i++)
+    for (NSInteger i = 0; i < 11; i++)
     {
         HCNotificationCenterInfo *info = [[HCNotificationCenterInfo alloc] init];
         info.userName = @"哈哈昵称";

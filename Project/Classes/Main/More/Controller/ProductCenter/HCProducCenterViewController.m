@@ -30,6 +30,7 @@
 {
     [super viewDidLoad];
     self.title = @"产品中心";
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
     
     UIImageView *shoppingCarView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-70,100, 140, 140)];

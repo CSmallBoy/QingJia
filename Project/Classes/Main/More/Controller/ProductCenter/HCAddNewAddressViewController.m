@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.title  = @"新增地址";
      self.navigationItem.rightBarButtonItem = self.rightItem;
     [self requestHomeData];

@@ -42,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"定制标签";
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
 }
 

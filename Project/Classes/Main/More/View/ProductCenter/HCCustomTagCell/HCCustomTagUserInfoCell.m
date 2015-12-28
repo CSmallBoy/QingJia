@@ -113,9 +113,7 @@
 {
     if ([self.delegate respondsToSelector:@selector(addUserHeaderIMG)])
     {
-     NSLog(@"1111");
         [self.delegate addUserHeaderIMG];
-        
     }
    
 }

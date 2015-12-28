@@ -7,7 +7,6 @@
 //
 
 #import "HCTableViewController.h"
-@class HCProductIntroductionInfo;
 
 @interface HCWaitingDeliverGoodsViewController : HCTableViewController
 

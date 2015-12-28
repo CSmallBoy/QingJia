@@ -50,24 +50,24 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-       
-        
+        [self.contentView addSubview:self.orderIDLab];
+        [self.contentView addSubview:self.orderTimeLab];
+        [self.contentView addSubview:self.goodsNameLab];
+        [self.contentView addSubview:self.lineView];
     }
     return self;
 }
 
+-(void)setInfo:(HCCustomerInfo *)info
+{
+    _info = info;
+    self.orderIDLab.text = [NSString stringWithFormat:@"订单编号:%@",self.info.orderID ];
+    self.orderTimeLab.text = [NSString stringWithFormat:@"%@",self.info.orderTime];
+    self.goodsNameLab.text = [NSString stringWithFormat:@"%@",self.info.goodsName];
+}
 
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
-
-   self.orderIDLab.text = [NSString stringWithFormat:@"订单编号:%@",self.info.orderID ];
-    self.orderTimeLab.text = [NSString stringWithFormat:@"%@",self.info.orderTime];
-    self.goodsNameLab.text = [NSString stringWithFormat:@"%@",self.info.goodsName];
-    
-    [self.contentView addSubview:self.orderIDLab];
-    [self.contentView addSubview:self.orderTimeLab];
-    [self.contentView addSubview:self.goodsNameLab];
-    [self.contentView addSubview:self.lineView];
         
         KWFormViewQuickBuilder *builder = [[KWFormViewQuickBuilder alloc]init];
         [builder addRecord: @[

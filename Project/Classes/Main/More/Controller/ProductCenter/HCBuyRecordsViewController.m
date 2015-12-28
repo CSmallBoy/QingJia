@@ -10,17 +10,18 @@
 #import "HCCustomerViewController.h"
 #import "HCPaymentViewController.h"
 #import "HCLogisticsInfoViewController.h"
-#import "HCAfterSalesApplyViewController.h"
+#import "HCWaitingDeliverGoodsViewController.h"
+#import "HCApplyReissueViewController.h"
 
 #import "HCBuyRecordTableViewCell.h"
 
 #import "HCBuyRecordApi.h"
 #import "HCProductIntroductionInfo.h"
 
-#import "HCWaitingDeliverGoodsViewController.h"
 
 
-@interface HCBuyRecordsViewController ()
+
+@interface HCBuyRecordsViewController ()<HCBuyRecordCellDelegate>
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @end
 
@@ -29,12 +30,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"购买记录";
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
     self.navigationItem.rightBarButtonItem = self.rightItem;
     [self requestHomeData];
 }
 
 #pragma mark--Delegate
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *RecordID = @"record";
@@ -43,6 +46,7 @@
 //    {
         cell = [[HCBuyRecordTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RecordID];
 //    }
+    cell.delegate = self;
     cell.info = self.dataSource[indexPath.section];
     cell.indexPath = indexPath;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -60,7 +64,7 @@
         [self.navigationController pushViewController:VC animated:YES];
     }else if (info.orderState == 1)//订单已取消
     {
-        HCAfterSalesApplyViewController *VC = [[HCAfterSalesApplyViewController alloc]init];
+        HCPaymentViewController *VC = [[HCPaymentViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
         
     }else if (info.orderState == 2)//待发货
@@ -87,7 +91,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 1;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -98,16 +102,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0)
-    {
-        return 44;
-    }else if (indexPath.row == 1)
-    {
-        return 88;
-    }else
-    {
-        return 100;
-    }
+    return 250;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -134,11 +129,30 @@
     return view;
 }
 
+#pragma mark----private methods
+
 -(void)handleCustomer
 {
     [self.navigationController pushViewController:[HCCustomerViewController new] animated:YES];
 }
 
+
+#pragma mark----HCBuyRecordCellDelegate
+
+-(void)handleApplyReissue:(HCProductIntroductionInfo*)info
+{
+    HCApplyReissueViewController *VC = [HCApplyReissueViewController new];
+    VC.data = @{@"data":info};
+    [self.navigationController pushViewController:VC animated:YES];
+}
+
+-(void)handleApplyReturn:(HCProductIntroductionInfo*)info
+{
+    HCViewController *VC = [HCViewController new];
+    VC.title = @"申请退货";
+    VC.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:VC animated:YES];
+}
 #pragma mark --- Setter Or  Getter
 
 - (UIBarButtonItem *)rightItem

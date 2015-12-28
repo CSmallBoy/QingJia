@@ -42,6 +42,7 @@
      self.title = @"支付";
     [self setupBackItem];
     self.tableView.separatorStyle = NO;
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self requestHomeData];
      self.navigationItem.rightBarButtonItem = self.rightItem;
     

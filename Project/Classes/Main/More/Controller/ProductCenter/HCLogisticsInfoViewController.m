@@ -29,16 +29,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"已发货";
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
     [self requestHomeData];
+    
     _info = self.data[@"data"];
     if (_info.orderState == 3) {
         self.beSureReceiveBtn.hidden = NO;
+        self.title = @"已发货";
     }else
     {
         self.beSureReceiveBtn.hidden = YES;
+        self.title = @"已签收";
     }
 }
 
@@ -89,7 +91,7 @@
 {
     if (section == 0)
     {
-        return 3;
+        return 1;
     }else
     {
         return self.dataSource.count+1;
@@ -101,16 +103,7 @@
 {
     if (indexPath.section == 0)
     {
-        if (indexPath.row == 0)
-        {
-            return 44;
-        }else if (indexPath.row == 1)
-        {
-            return 88;
-        }else
-        {
-            return 100;
-        }
+        return 250;
     }else
     {
         return 50;

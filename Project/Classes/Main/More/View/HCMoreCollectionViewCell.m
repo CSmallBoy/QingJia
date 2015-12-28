@@ -34,8 +34,10 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.imgView.frame = CGRectMake(10, 0, WIDTH(self)-20, WIDTH(self)-20);
-    self.titleLabel.frame = CGRectMake(0, MaxY(self.imgView)+5, WIDTH(self), 20);
+//    self.imgView.frame = CGRectMake(10, 0, WIDTH(self)-20, WIDTH(self)-20);
+//    self.titleLabel.frame = CGRectMake(0, MaxY(self.imgView)+5, WIDTH(self), 20);
+    self.imgView.frame = CGRectMake(15, 0, WIDTH(self)-30, WIDTH(self)-30);
+    self.titleLabel.frame = CGRectMake(5, MaxY(self.imgView)+5, WIDTH(self)-10, 15);
 }
 
 #pragma mark - setter or getter
@@ -65,7 +67,7 @@
     if (!_titleLabel)
     {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont systemFontOfSize:16];
+        _titleLabel.font = [UIFont systemFontOfSize:15];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;

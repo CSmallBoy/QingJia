@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self requestHomeData];
     
 }
