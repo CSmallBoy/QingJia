@@ -1,5 +1,5 @@
 //
-//  HCTagManagerDetailViewController.h
+//  HCTagClosedDetailViewControllwe.h
 //  Project
 //
 //  Created by 朱宗汉 on 15/12/28.
@@ -8,7 +8,8 @@
 
 #import "HCTableViewController.h"
 
-@interface HCTagManagerDetailViewController : HCTableViewController
+@interface HCTagClosedDetailViewControllwe : HCTableViewController
 
 @property (nonatomic,assign)NSInteger index;
+
 @end

@@ -33,7 +33,7 @@
             info.imgArr = @[@"time_picture",@"time_picture",@"time_picture",@"time_picture"];
             info.tagNameArr = @[@"衬衣上的1号标签",@"书包上的2号标签",@"裤子上的3号标签",@"帽子上的4号标签"];
             info.tagIDArr = @[@"111111",@"222222",@"333333",@"444444"];
-            info.contactImgArr = @[@"label",@"hopne"];
+            info.contactImgArr = @[@"cards_but_phone",@"cards_but_phone"];
             info.contactNameArr = @[@"周一",@"王大"];
             info.contactRelationShipArr = @[@"母亲",@"父亲"];
             info.contactPhoneArr = @[@"11111111111",@"22222222222"];
@@ -52,7 +52,7 @@
                 info.imgArr = @[@"time_picture",@"time_picture",@"time_picture"];
                 info.tagNameArr = @[@"书包上的2号标签",@"裤子上的3号标签",@"帽子上的4号标签"];
                 info.tagIDArr = @[@"222222",@"333333",@"444444"];
-                info.contactImgArr = @[@"label",@"hopne"];
+                info.contactImgArr = @[@"cards_but_phone"];
                 info.contactNameArr = @[@"张大"];
                 info.contactRelationShipArr = @[@"父亲"];
                 info.contactPhoneArr = @[@"22222222222"];
@@ -71,7 +71,7 @@
                     info.imgArr = @[@"time_picture",@"time_picture"];
                     info.tagNameArr = @[@"裤子上的3号标签",@"帽子上的4号标签"];
                     info.tagIDArr = @[@"333333",@"444444"];
-                    info.contactImgArr = @[@"label",@"hopne"];
+                    info.contactImgArr = @[@"cards_but_phone",@"cards_but_phone"];
                     info.contactNameArr = @[@"周一",@"王大"];
                     info.contactRelationShipArr = @[@"母亲",@"父亲"];
                     info.contactPhoneArr = @[@"11111111111",@"22222222222"];
@@ -90,10 +90,10 @@
                 info.imgArr = @[@"label"];
                 info.tagNameArr = @[@"衬衣上的1号标签"];
                 info.tagIDArr = @[@"111111"];
-                info.contactImgArr = @[@"time_picture",@"time_picture"];
-                info.contactNameArr = @[@"周一",@"王大"];
-                info.contactRelationShipArr = @[@"母亲",@"父亲"];
-                info.contactPhoneArr = @[@"11111111111",@"22222222222"];
+                info.contactImgArr = @[@"time_picture"];
+                info.contactNameArr = @[@"周一"];
+                info.contactRelationShipArr = @[@"母亲"];
+                info.contactPhoneArr = @[@"11111111111"];
                 info.cardName = @"我是谁";
                 info.cardImg = @"label";
                 info.userGender = @"男";

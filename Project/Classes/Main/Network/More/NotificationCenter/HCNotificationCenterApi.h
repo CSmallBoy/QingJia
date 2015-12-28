@@ -9,8 +9,6 @@
 #import "HCRequest.h"
 
 
-@class HCNotificationCenterInfo;
-
 typedef void(^HCNotificationCenterBlock)(HCRequestStatus requestStatus, NSString *message, NSArray *array);
 
 @interface HCNotificationCenterApi : HCRequest

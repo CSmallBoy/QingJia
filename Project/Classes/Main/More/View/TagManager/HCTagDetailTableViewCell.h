@@ -13,9 +13,6 @@
 
 @property (nonatomic,strong) NSIndexPath *indexPath;
 @property (nonatomic,strong) HCTagManagerInfo *info;
-/**
- *第几张标签
- */
-@property (nonatomic,assign) NSInteger  tagNumb;
+
 
 @end

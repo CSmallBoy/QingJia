@@ -50,9 +50,9 @@
     self.button1.frame = CGRectMake(MaxX(self.button0)+20, 10, buttonW, buttonW);
     self.button2.frame = CGRectMake(MaxX(self.button1)+20, 10, buttonW, buttonW);
     
-    self.label0.frame = CGRectMake(0, MaxY(self.button0), buttonW+20, 50);
-    self.label1.frame = CGRectMake(MaxX(self.label0), MaxY(self.button1), buttonW+20, 50);
-    self.label2.frame = CGRectMake(MaxX(self.label1), MaxY(self.button2), buttonW+20, 50);
+    self.label0.frame = CGRectMake(0, MaxY(self.button0), buttonW+20, 40);
+    self.label1.frame = CGRectMake(MaxX(self.label0), MaxY(self.button1), buttonW+20, 40);
+    self.label2.frame = CGRectMake(MaxX(self.label1), MaxY(self.button2), buttonW+20, 40);
 }
 
 - (void)handleButton:(UIButton *)button

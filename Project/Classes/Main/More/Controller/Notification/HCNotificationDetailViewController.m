@@ -59,6 +59,7 @@
 }
 
 #pragma mark----Settet OR Getter
+
 -(UILabel *)userNameLab
 {
     if (!_userNameLab) {

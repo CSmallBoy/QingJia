@@ -180,4 +180,5 @@
     }
     return _closeFollowBtn;
 }
+
 @end

@@ -38,9 +38,13 @@ rightSwipeGestureRecognizer;
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.view addSubview:self.segmented];
     [self.view addSubview:self.activatedTagVC.view];
-    
-    
     //添加左右滑动手势
+    [self setUpSwipe];
+}
+
+#pragma mark -----私有方法
+-(void)setUpSwipe
+{
     self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
     self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
     self.leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
@@ -48,8 +52,6 @@ rightSwipeGestureRecognizer;
     [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
     [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
 }
-
-#pragma mark -----私有方法
 
 /**********左右滑动切换视图************/
 - (void)handleSwipes:(UISwipeGestureRecognizer *)sender
@@ -79,7 +81,6 @@ rightSwipeGestureRecognizer;
     }
     [self handleSegmentedControl:self.segmented];
 }
-
 
 -(void)handleRightItem
 {

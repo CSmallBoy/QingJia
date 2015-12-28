@@ -10,6 +10,8 @@
 #import "HCTagManagerInfo.h"
 #import "HCTagManagerApi.h"
 #import "HCTagManagerHeader.h"
+#import "HCTagClosedDetailViewControllwe.h"
+
 
 #import "HCTagManagerTableViewCell.h"
 
@@ -101,7 +103,11 @@
 {
     NSInteger index = tag+indexPath.row*3;
     HCTagManagerInfo *info = self.dataSource[indexPath.section];
-    NSLog(@"%@",info.tagNameArr[index]);
+    
+    HCTagClosedDetailViewControllwe *detailVC = [[HCTagClosedDetailViewControllwe alloc]init];
+    detailVC.data = @{@"data":info};
+    detailVC.index = index;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark - private methods
