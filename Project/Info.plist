@@ -47,6 +47,7 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>iosamap</string>
 		<string>wechat</string>
 		<string>weixin</string>
 		<string>sinaweibohd</string>

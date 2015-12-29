@@ -712,7 +712,6 @@
 		0A8A4F7C1C1FD6C900753D65 /* HCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */; };
 		0A8A4F821C1FD7FE00753D65 /* HCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */; };
 		0A8FFD3C1C322993001B2527 /* EaseUIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FFD3B1C322993001B2527 /* EaseUIResource.bundle */; };
-		0A8FFD3F1C323F3A001B2527 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FFD3D1C323F3A001B2527 /* back.png */; };
 		0A8FFD401C323F3A001B2527 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FFD3E1C323F3A001B2527 /* back@2x.png */; };
 		0AA0EB981C1536F3007F7EAB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB971C1536F3007F7EAB /* AddressBook.framework */; };
 		0AA0EB9A1C1536FB007F7EAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */; };
@@ -2079,7 +2078,6 @@
 		0A8A4F801C1FD7FE00753D65 /* HCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessageViewController.h; sourceTree = "<group>"; };
 		0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessageViewController.m; sourceTree = "<group>"; };
 		0A8FFD3B1C322993001B2527 /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
-		0A8FFD3D1C323F3A001B2527 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		0A8FFD3E1C323F3A001B2527 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		0AA0EB971C1536F3007F7EAB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -4737,7 +4735,6 @@
 		0A7CBF391C315FB80051DD58 /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				0A8FFD3D1C323F3A001B2527 /* back.png */,
 				0A8FFD3E1C323F3A001B2527 /* back@2x.png */,
 				0A7CBF3A1C315FB80051DD58 /* add@2x.png */,
 				0A7CBF3D1C315FB80051DD58 /* delete@2x.png */,
@@ -6027,7 +6024,6 @@
 				0A7CBFC61C315FB80051DD58 /* chat_receiver_audio_playing003@2x.png in Resources */,
 				0A7CBF7F1C315FB80051DD58 /* chat_video_play.png in Resources */,
 				0A7CBFCF1C315FB80051DD58 /* chat_sender_bg.png in Resources */,
-				0A8FFD3F1C323F3A001B2527 /* back.png in Resources */,
 				0A7CBD311C31294E0051DD58 /* chatBar_colorMore_audioCall@2x.png in Resources */,
 				0A7CBD331C31294E0051DD58 /* chatBar_colorMore_camera@2x.png in Resources */,
 				0A7CBFB41C315FB80051DD58 /* chatBar_colorMore_videoCallSelected@2x.png in Resources */,
