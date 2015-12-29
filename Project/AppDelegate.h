@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+
 //设置主控制器
 - (void)setupRootViewController;
 

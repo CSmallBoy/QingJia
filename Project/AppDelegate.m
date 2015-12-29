@@ -18,7 +18,12 @@
 #import "AppDelegate+EaseMob.h"
 #import "AppDelegate+Parse.h"
 
-@interface AppDelegate ()
+#import <AMapLocationKit/AMapLocationKit.h>
+
+@interface AppDelegate ()<AMapLocationManagerDelegate>
+
+
+@property (nonatomic, strong) AMapLocationManager *locationManager;
 
 @end
 
@@ -34,6 +39,9 @@
     //    [self setupRootViewController];
     //版本更新
     [[HCVersionMgr manager] checkFirVersion];
+    // 地图
+    [self setupMAMap];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
@@ -124,6 +132,41 @@ didFinishLaunchingWithOptions:launchOptions
     config.cdnUrl =  kIMGURL;
 }
 
+- (void)setupMAMap
+{
+    [AMapLocationServices sharedServices].apiKey = @"2068adf060e2dd5d56bc0626e6232c82";;
+    self.locationManager = [[AMapLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置
+    
+    [self startUpdatingLocation];
+    [self setupTimeLocation];
+}
 
+- (void)setupTimeLocation
+{
+     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(startUpdatingLocation) userInfo:nil repeats:YES];
+}
+
+- (void)startUpdatingLocation
+{
+    [self.locationManager startUpdatingLocation];
+}
+
+#pragma mark - AMapLocationManager Delegate
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error
+{
+    DLog(@"%s, amapLocationManager = %@, error = %@", __func__, [manager class], error);
+}
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
+{
+    DLog(@"%s, didUpdateLocation = {lat:%f; lon:%f;}", __func__, location.coordinate.latitude, location.coordinate.longitude);
+    [HCAppMgr manager].latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+    [HCAppMgr manager].longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    
+    [self.locationManager stopUpdatingLocation];
+}
 
 @end
