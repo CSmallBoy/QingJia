@@ -60,37 +60,46 @@
 
 - (void)setShowRefreshHeader:(BOOL)showRefreshHeader
 {
-//    if (_showRefreshHeader != showRefreshHeader) {
-//        _showRefreshHeader = showRefreshHeader;
-//        if (_showRefreshHeader) {
-//            __weak EaseRefreshTableViewController *weakSelf = self;
+    if (_showRefreshHeader != showRefreshHeader) {
+        _showRefreshHeader = showRefreshHeader;
+        if (_showRefreshHeader)
+        {
+            MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(tableViewDidTriggerHeaderRefresh)];
+            header.lastUpdatedTimeLabel.hidden = YES;
+            header.stateLabel.hidden = YES;
+            self.tableView.mj_header = header;
 //            MJRefreshLegendHeader *header = [self.tableView addLegendHeaderWithRefreshingBlock:^{
 //                [weakSelf tableViewDidTriggerHeaderRefresh];
 //                [weakSelf.tableView.header beginRefreshing];
 //            }];
 //            header.updatedTimeHidden = YES;
-//        }
-//        else{
+        }else
+        {
 //            [self.tableView removeHeader];
-//        }
-//    }
+            [self.tableView.mj_header endRefreshing];
+        }
+    }
 }
 
 - (void)setShowRefreshFooter:(BOOL)showRefreshFooter
 {
-//    if (_showRefreshFooter != showRefreshFooter) {
-//        _showRefreshFooter = showRefreshFooter;
-//        if (_showRefreshFooter) {
+    if (_showRefreshFooter != showRefreshFooter) {
+        _showRefreshFooter = showRefreshFooter;
+        if (_showRefreshFooter) {
+            MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(tableViewDidTriggerFooterRefresh)];
+            footer.stateLabel.hidden = YES;
+            self.tableView.mj_footer = footer;
 //            __weak EaseRefreshTableViewController *weakSelf = self;
 //            [self.tableView addLegendFooterWithRefreshingBlock:^{
 //                [weakSelf tableViewDidTriggerFooterRefresh];
 //                [weakSelf.tableView.footer beginRefreshing];
 //            }];
-//        }
-//        else{
+        }
+        else{
 //            [self.tableView removeFooter];
-//        }
-//    }
+            [self.tableView.mj_footer endRefreshing];
+        }
+    }
 }
 
 - (void)setShowTableBlankView:(BOOL)showTableBlankView
