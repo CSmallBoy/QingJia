@@ -14,6 +14,9 @@
 @property (nonatomic,strong) UILabel *timeLab;
 @property (nonatomic,strong) UILabel *notificationMessageLab;
 
+@property (nonatomic,strong) UIImageView *deleteIMGV;
+@property (nonatomic,strong) UIView *redVIew;
+
 @end
 @implementation HCNotificationCentereReadTableViewCell
 
@@ -25,17 +28,52 @@
         [self.contentView addSubview:self.userNameLab];
         [self.contentView addSubview:self.notificationMessageLab];
         [self.contentView addSubview:self.timeLab];
+        [self.contentView addSubview:self.redVIew];
+        [self.redVIew addSubview:self.deleteIMGV];
     }
     return self;
 }
 
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.redVIew.frame = CGRectMake(WIDTH(self), 0,WIDTH(self.contentView), self.contentView.frame.size.height);
+    self.deleteIMGV.frame = CGRectMake(0, 0, 75 , HEIGHT(self.redVIew));
+    self.userNameLab.frame = CGRectMake(10, 0, 120, 30);
+    self.notificationMessageLab.frame = CGRectMake(10, 35, WIDTH(self)-20, 40);
+    self.timeLab.frame = CGRectMake(self.contentView.frame.size.width-150, 5, 140, 20);
+}
+
+
+-(UIView *)redVIew
+{
+    if (!_redVIew)
+    {
+        _redVIew = [[UIView alloc]init];
+        _redVIew.backgroundColor = [UIColor redColor];
+    }
+    return  _redVIew;
+}
+
+-(UIImageView *)deleteIMGV
+{
+    if (!_deleteIMGV)
+    {
+        _deleteIMGV = [[UIImageView alloc]init];
+        [_deleteIMGV setImage:OrigIMG(@"Notification-Center_delete")];
+    }
+    return _deleteIMGV;
+    
+}
+
 -(UILabel *)userNameLab
 {
-    if (!_userNameLab) {
-        _userNameLab = [[UILabel alloc]initWithFrame:CGRectMake(12, 0, 120, 30)];
+    if (!_userNameLab)
+    {
+        _userNameLab = [[UILabel alloc]init];
         _userNameLab.textAlignment = NSTextAlignmentLeft;
         _userNameLab.font = [UIFont systemFontOfSize:15];
-        _userNameLab.text = @"清海浮生";
         _userNameLab.textColor  = [UIColor blackColor];
     }
     return _userNameLab;
@@ -44,10 +82,9 @@
 -(UILabel*)timeLab
 {
     if (!_timeLab) {
-        _timeLab = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-200, 5,170, 20)];
+        _timeLab = [[UILabel alloc]init];
         _timeLab.textAlignment = NSTextAlignmentRight;
-        _timeLab.font = [UIFont systemFontOfSize:10];
-        _timeLab.text = [NSString stringWithFormat:@"2015年08月23日 12:10"];
+        _timeLab.font =  [UIFont systemFontOfSize:10];
         _timeLab.textColor = [UIColor lightGrayColor];
     }
     return _timeLab;
@@ -55,11 +92,11 @@
 
 -(UILabel *)notificationMessageLab
 {
-    if (!_notificationMessageLab) {
-        _notificationMessageLab = [[UILabel alloc]initWithFrame:CGRectMake(10,35 , SCREEN_WIDTH-40, 40)];
+    if (!_notificationMessageLab)
+    {
+        _notificationMessageLab = [[UILabel alloc]init];
         _notificationMessageLab.textAlignment = NSTextAlignmentLeft;
         _notificationMessageLab.textColor = [UIColor blackColor];
-        _notificationMessageLab.text = @"阿福口角是非将卡双方就开始大部分建设步伐加快双边说";
         _notificationMessageLab.font = [UIFont systemFontOfSize:15];
     }
     return _notificationMessageLab;
@@ -68,7 +105,6 @@
 -(void)setInfo:(HCNotificationCenterInfo *)info
 {
     _info = info;
-    
     self.userNameLab.text = info.userName;
     self.notificationMessageLab.text = info.notificationMessage;
     self.timeLab.text = info.time;

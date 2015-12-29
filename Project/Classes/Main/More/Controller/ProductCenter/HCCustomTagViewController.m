@@ -49,11 +49,11 @@
 
 -(void)addUserHeaderIMG
 {
-    NSLog(@"222");
     [HCAvatarMgr manager].isUploadImage = YES;
     [HCAvatarMgr manager].noUploadImage = NO;
     //上传个人头像
-    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
+    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg)
+    {
         if (!result)
         {
             [self showHUDText:msg];
@@ -74,7 +74,6 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     UITableViewCell *cell = nil;
     if (indexPath.section == 0)
     {
@@ -206,7 +205,8 @@
         }
     }else if (indexPath.section == 0)
     {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 0)
+        {
             return 84;
         }else
         {
@@ -226,7 +226,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 3) {
+    if (section == 3)
+    {
         return 64;
     }
     else
@@ -329,7 +330,8 @@
 
 -(UIView*)basicInfoHeaderView
 {
-    if (!_basicInfoHeaderView) {
+    if (!_basicInfoHeaderView)
+    {
         _basicInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 30)];
        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, WIDTH(self.view), 30)];
         headerLabel.text = @"基本信息";

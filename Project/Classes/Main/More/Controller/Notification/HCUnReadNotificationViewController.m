@@ -19,11 +19,11 @@
 
 @implementation HCUnReadNotificationViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self requestHomeData];
-    
 }
 
 
@@ -34,20 +34,10 @@
 {
     static NSString *unreadID = @"unread";
     HCNotificationCenterUnreadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:unreadID];
-    if (!cell) {
-        
+    if (!cell)
+    {
         cell = [[HCNotificationCenterUnreadTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:unreadID];
-        
-        //修改删除按钮
-        UIView *deletView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 60)];
-        HCButtonItem *deleteBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 0, 45, 60) WithImageName:@"Notification-Center_delete" WithImageWidth:80 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:-5];
-        deletView.backgroundColor = [UIColor whiteColor];
-        [deletView addSubview:deleteBtn];
-     //   [cell.contentView addSubview:deletView];
-        
         cell.info = self.dataSource[indexPath.section];
-        
-
     }
     return cell;
     
@@ -63,7 +53,7 @@
 
 -(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"  ";
+    return @"          ";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

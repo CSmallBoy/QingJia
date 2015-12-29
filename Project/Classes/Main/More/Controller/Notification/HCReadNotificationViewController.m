@@ -38,14 +38,6 @@
     if (!cell) {
         
         cell = [[HCNotificationCentereReadTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:readNotificationID];
-        
-        //修改删除按钮
-        UIView *deletView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 60)];
-        HCButtonItem *deleteBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(0, 0, 45, 60) WithImageName:@"Notification-Center_delete" WithImageWidth:80 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:-5];
-        deletView.backgroundColor = [UIColor whiteColor];
-        [deletView addSubview:deleteBtn];
-        [cell.contentView addSubview:deletView];
-        
         cell.info = self.dataSource[indexPath.section];
     }
     return cell;
@@ -61,10 +53,10 @@
 }
 
 
--(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @"  ";
-}
+//-(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return @"         ";
+//}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -53,7 +53,7 @@
     {
         self.detailInfoLab.text = self.info.cardName;
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-70, 0, 50, 50)];
-        imageView.image = OrigIMG(self.info.cardImg);
+        imageView.image = OrigIMG(@"person-message_2D-barcode");//(self.info.cardImg);
         [self.contentView addSubview:imageView];
     }else if (indexPath.row == 2)
     {

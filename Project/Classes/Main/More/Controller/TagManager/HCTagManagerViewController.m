@@ -51,6 +51,7 @@ rightSwipeGestureRecognizer;
     self.rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
     [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
+    
 }
 
 /**********左右滑动切换视图************/

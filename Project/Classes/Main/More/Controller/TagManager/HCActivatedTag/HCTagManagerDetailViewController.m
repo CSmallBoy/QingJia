@@ -95,7 +95,7 @@
         view2.tagIMGView.image = OrigIMG(_info.contactImgArr[0]);
         view2.tagNameLab.text = [NSString stringWithFormat:@"%@(紧急联系人)",_info.contactNameArr[0]];
         view2.tagNameLab.numberOfLines = 0;
-        view2.tagIDLab.text = [NSString stringWithFormat:@"电话：%@",_info.contactPhoneArr[0]];
+        view2.tagIDLab.text = [NSString stringWithFormat:@"电话：\n%@",_info.contactPhoneArr[0]];
         view2.tagIMGView.frame = CGRectMake(10, 10, 60, 60);
         view2.tagNameLab.frame = CGRectMake(75, 0, view2.bounds.size.width-75, 50);
         view2.tagNameLab.font = [UIFont systemFontOfSize:14];
@@ -110,9 +110,9 @@
             view3.tagIMGView.image = OrigIMG(_info.contactImgArr[1]);
             view3.tagNameLab.text = [NSString stringWithFormat:@"%@(紧急联系人)",_info.contactNameArr[1]];
             view3.tagNameLab.numberOfLines = 0;
-            view3.tagIDLab.text = [NSString stringWithFormat:@"电话：%@",_info.contactPhoneArr[1]];
+            view3.tagIDLab.text = [NSString stringWithFormat:@"电话：\n%@",_info.contactPhoneArr[1]];
             view3.tagIMGView.frame = CGRectMake(10, 10, 60, 60);
-            view3.tagNameLab.frame = CGRectMake(75, 10, view2.bounds.size.width-75, 50);
+            view3.tagNameLab.frame = CGRectMake(75, 0, view2.bounds.size.width-75, 50);
             view3.tagNameLab.font = [UIFont systemFontOfSize:14];
             view3.tagIDLab.frame = CGRectMake(75, 50, view2.bounds.size.width-75, 50);
             view3.tagIDLab.font = [UIFont systemFontOfSize:12];

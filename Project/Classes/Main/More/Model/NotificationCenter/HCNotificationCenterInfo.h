@@ -23,4 +23,14 @@
  *具体通知信息
  */
 @property (nonatomic,strong) NSString *notificationMessage;
+
+/**
+ *跟进信息内容
+ */
+@property (nonatomic,strong) NSArray *followInfoArr;
+/**
+ *跟进时间
+ */
+@property (nonatomic,strong) NSArray *followTimeArr;
+
 @end
