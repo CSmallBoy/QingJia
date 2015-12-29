@@ -145,7 +145,7 @@ didFinishLaunchingWithOptions:launchOptions
 
 - (void)setupTimeLocation
 {
-     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(startUpdatingLocation) userInfo:nil repeats:YES];
+     [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(startUpdatingLocation) userInfo:nil repeats:YES];
 }
 
 - (void)startUpdatingLocation
