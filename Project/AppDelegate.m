@@ -47,7 +47,7 @@
     //    {
     //        DLog(@"加载欢迎页面,测试的取反");
     //    }
-    if (![HCAccountMgr manager].isLogined)
+    if ([HCAccountMgr manager].isLogined)
     {
         HCLoginViewController *login = [[HCLoginViewController alloc]init];
         UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:login];
