@@ -494,7 +494,6 @@
 		0A7CBD271C31294E0051DD58 /* EaseChatBarMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CBC461C31294D0051DD58 /* EaseChatBarMoreView.m */; };
 		0A7CBD281C31294E0051DD58 /* EaseRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CBC491C31294D0051DD58 /* EaseRecordView.m */; };
 		0A7CBD291C31294E0051DD58 /* EaseConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CBC4C1C31294D0051DD58 /* EaseConversationCell.m */; };
-		0A7CBD2A1C31294E0051DD58 /* EaseUIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBC4D1C31294D0051DD58 /* EaseUIResource.bundle */; };
 		0A7CBD2B1C31294E0051DD58 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBC4F1C31294D0051DD58 /* arrow@2x.png */; };
 		0A7CBD2C1C31294E0051DD58 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBC501C31294D0051DD58 /* back@2x.png */; };
 		0A7CBD2D1C31294E0051DD58 /* chat_item_file@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBC511C31294D0051DD58 /* chat_item_file@2x.png */; };
@@ -684,8 +683,6 @@
 		0A7CBFCF1C315FB80051DD58 /* chat_sender_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBF371C315FB80051DD58 /* chat_sender_bg.png */; };
 		0A7CBFD01C315FB80051DD58 /* chat_sender_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBF381C315FB80051DD58 /* chat_sender_bg@2x.png */; };
 		0A7CBFD11C315FB80051DD58 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBF3A1C315FB80051DD58 /* add@2x.png */; };
-		0A7CBFD21C315FB80051DD58 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBF3B1C315FB80051DD58 /* back.png */; };
-		0A7CBFD31C315FB80051DD58 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBF3C1C315FB80051DD58 /* back@2x.png */; };
 		0A7CBFD41C315FB80051DD58 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBF3D1C315FB80051DD58 /* delete@2x.png */; };
 		0A7CBFD51C315FB80051DD58 /* group_detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBF3E1C315FB80051DD58 /* group_detail@2x.png */; };
 		0A7CBFD61C315FB80051DD58 /* titleBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBF3F1C315FB80051DD58 /* titleBar.png */; };
@@ -714,6 +711,9 @@
 		0A80DE6D1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A80DE6B1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib */; };
 		0A8A4F7C1C1FD6C900753D65 /* HCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */; };
 		0A8A4F821C1FD7FE00753D65 /* HCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */; };
+		0A8FFD3C1C322993001B2527 /* EaseUIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FFD3B1C322993001B2527 /* EaseUIResource.bundle */; };
+		0A8FFD3F1C323F3A001B2527 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FFD3D1C323F3A001B2527 /* back.png */; };
+		0A8FFD401C323F3A001B2527 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FFD3E1C323F3A001B2527 /* back@2x.png */; };
 		0AA0EB981C1536F3007F7EAB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB971C1536F3007F7EAB /* AddressBook.framework */; };
 		0AA0EB9A1C1536FB007F7EAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */; };
 		0AA626B91C29862700EC62D9 /* HCFriendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA626B81C29862700EC62D9 /* HCFriendMessageViewController.m */; };
@@ -1850,7 +1850,6 @@
 		0A7CBC491C31294D0051DD58 /* EaseRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseRecordView.m; sourceTree = "<group>"; };
 		0A7CBC4B1C31294D0051DD58 /* EaseConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationCell.h; sourceTree = "<group>"; };
 		0A7CBC4C1C31294D0051DD58 /* EaseConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationCell.m; sourceTree = "<group>"; };
-		0A7CBC4D1C31294D0051DD58 /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
 		0A7CBC4F1C31294D0051DD58 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		0A7CBC501C31294D0051DD58 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		0A7CBC511C31294D0051DD58 /* chat_item_file@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_item_file@2x.png"; sourceTree = "<group>"; };
@@ -2040,8 +2039,6 @@
 		0A7CBF371C315FB80051DD58 /* chat_sender_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_sender_bg.png; sourceTree = "<group>"; };
 		0A7CBF381C315FB80051DD58 /* chat_sender_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_sender_bg@2x.png"; sourceTree = "<group>"; };
 		0A7CBF3A1C315FB80051DD58 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
-		0A7CBF3B1C315FB80051DD58 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
-		0A7CBF3C1C315FB80051DD58 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		0A7CBF3D1C315FB80051DD58 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		0A7CBF3E1C315FB80051DD58 /* group_detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_detail@2x.png"; sourceTree = "<group>"; };
 		0A7CBF3F1C315FB80051DD58 /* titleBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleBar.png; sourceTree = "<group>"; };
@@ -2081,6 +2078,9 @@
 		0A8A4F7B1C1FD6C900753D65 /* HCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeViewController.m; sourceTree = "<group>"; };
 		0A8A4F801C1FD7FE00753D65 /* HCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessageViewController.h; sourceTree = "<group>"; };
 		0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessageViewController.m; sourceTree = "<group>"; };
+		0A8FFD3B1C322993001B2527 /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
+		0A8FFD3D1C323F3A001B2527 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		0A8FFD3E1C323F3A001B2527 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		0AA0EB971C1536F3007F7EAB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		0AA626B71C29862700EC62D9 /* HCFriendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageViewController.h; sourceTree = "<group>"; };
@@ -3614,6 +3614,7 @@
 		0A7CBABE1C3128F80051DD58 /* EaseUI */ = {
 			isa = PBXGroup;
 			children = (
+				0A8FFD3B1C322993001B2527 /* EaseUIResource.bundle */,
 				0A7CBFE61C31606A0051DD58 /* Localizable.strings */,
 				0A7CBEA81C315FB60051DD58 /* Resources */,
 				0A7CBABF1C31294D0051DD58 /* 3rdparty */,
@@ -3621,7 +3622,6 @@
 				0A7CBAE41C31294D0051DD58 /* Class */,
 				0A7CBB471C31294D0051DD58 /* Custom */,
 				0A7CBB5C1C31294D0051DD58 /* EaseUI */,
-				0A7CBC4D1C31294D0051DD58 /* EaseUIResource.bundle */,
 				0A7CBC4E1C31294D0051DD58 /* Resource */,
 			);
 			path = EaseUI;
@@ -4737,9 +4737,9 @@
 		0A7CBF391C315FB80051DD58 /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
+				0A8FFD3D1C323F3A001B2527 /* back.png */,
+				0A8FFD3E1C323F3A001B2527 /* back@2x.png */,
 				0A7CBF3A1C315FB80051DD58 /* add@2x.png */,
-				0A7CBF3B1C315FB80051DD58 /* back.png */,
-				0A7CBF3C1C315FB80051DD58 /* back@2x.png */,
 				0A7CBF3D1C315FB80051DD58 /* delete@2x.png */,
 				0A7CBF3E1C315FB80051DD58 /* group_detail@2x.png */,
 				0A7CBF3F1C315FB80051DD58 /* titleBar.png */,
@@ -5784,7 +5784,7 @@
 				TargetAttributes = {
 					0A6B7D971BF1EB6A008D54B3 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 2CF2K69ZFQ;
+						DevelopmentTeam = QBHLBK5BV2;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -5832,13 +5832,11 @@
 				0A7CBFE41C31606A0051DD58 /* Localizable.strings in Resources */,
 				0A67B2281C0D63B300FB87C8 /* 9.jpg in Resources */,
 				0A67B2271C0D63B300FB87C8 /* 8.jpg in Resources */,
-				0A7CBFD31C315FB80051DD58 /* back@2x.png in Resources */,
 				0A67B2221C0D63B300FB87C8 /* 3.jpg in Resources */,
 				0A7CBFB61C315FB80051DD58 /* chatBar_more_camera.png in Resources */,
 				0A7CBF901C315FB80051DD58 /* chat_location_preview.png in Resources */,
 				0A7CBF8A1C315FB80051DD58 /* chat_location_annotation_someone.png in Resources */,
 				0A6AFD671BFBFFBE0073982C /* UMSShareListController.xib in Resources */,
-				0A7CBFD21C315FB80051DD58 /* back.png in Resources */,
 				0A7CBF6B1C315FB80051DD58 /* VoiceSearchFeedback015@2x.png in Resources */,
 				0A7CBFDF1C315FB80051DD58 /* groupPublicHeader@2x.png in Resources */,
 				0A7CBD5A1C31294E0051DD58 /* VoiceSearchFeedback014@2x.png in Resources */,
@@ -5857,7 +5855,6 @@
 				0A7CBFAF1C315FB80051DD58 /* chatBar_colorMore_locationSelected@2x.png in Resources */,
 				0A7CBFB91C315FB80051DD58 /* chatBar_more_cameraSelected@2x.png in Resources */,
 				0A7CBFDD1C315FB80051DD58 /* group_participant_addHL@2x.png in Resources */,
-				0A7CBD2A1C31294E0051DD58 /* EaseUIResource.bundle in Resources */,
 				0A7CBF7A1C315FB80051DD58 /* call_silence.png in Resources */,
 				0A7CBF8F1C315FB80051DD58 /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				0A6AFD661BFBFFBE0073982C /* UMSnsAccountViewController.xib in Resources */,
@@ -6030,6 +6027,7 @@
 				0A7CBFC61C315FB80051DD58 /* chat_receiver_audio_playing003@2x.png in Resources */,
 				0A7CBF7F1C315FB80051DD58 /* chat_video_play.png in Resources */,
 				0A7CBFCF1C315FB80051DD58 /* chat_sender_bg.png in Resources */,
+				0A8FFD3F1C323F3A001B2527 /* back.png in Resources */,
 				0A7CBD311C31294E0051DD58 /* chatBar_colorMore_audioCall@2x.png in Resources */,
 				0A7CBD331C31294E0051DD58 /* chatBar_colorMore_camera@2x.png in Resources */,
 				0A7CBFB41C315FB80051DD58 /* chatBar_colorMore_videoCallSelected@2x.png in Resources */,
@@ -6038,6 +6036,7 @@
 				0A7CBF8B1C315FB80051DD58 /* chat_location_annotation_someone@2x.png in Resources */,
 				0A6B7DA61BF1EB6A008D54B3 /* Main.storyboard in Resources */,
 				0A80DE6D1BFB03DE00031F8A /* HCFindPwdSecondViewController.xib in Resources */,
+				0A8FFD401C323F3A001B2527 /* back@2x.png in Resources */,
 				0A7CBF911C315FB80051DD58 /* chat_location_preview@2x.png in Resources */,
 				0A7ED63D1C2AC5F4002E2ED5 /* HCPerfectMessageViewController.xib in Resources */,
 				0A7CBF8E1C315FB80051DD58 /* chat_location_detail_disclosureHL.png in Resources */,
@@ -6060,6 +6059,7 @@
 				0A7CBFD41C315FB80051DD58 /* delete@2x.png in Resources */,
 				0A7CBF9E1C315FB80051DD58 /* chatBar_more.png in Resources */,
 				0A7CBF6C1C315FB80051DD58 /* VoiceSearchFeedback016.png in Resources */,
+				0A8FFD3C1C322993001B2527 /* EaseUIResource.bundle in Resources */,
 				0A7CBD481C31294E0051DD58 /* messageToolbarBg@2x.png in Resources */,
 				0A67B21D1C0D63B300FB87C8 /* 0.jpg in Resources */,
 				0A7CBD471C31294E0051DD58 /* faceDelete@2x.png in Resources */,
@@ -6904,7 +6904,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.xiaodaohang11;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.xiaodaohang.cfj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6938,7 +6938,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.xiaodaohang11;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.xiaodaohang.cfj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

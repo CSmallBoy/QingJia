@@ -59,16 +59,16 @@
     UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
     addButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
     [addButton setTitle:NSLocalizedString(@"group.create.addOccupant", @"add members") forState:UIControlStateNormal];
-    [addButton setTitleColor:[UIColor colorWithRed:32 / 255.0 green:134 / 255.0 blue:158 / 255.0 alpha:1.0] forState:UIControlStateNormal];
-    [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addButton addTarget:self action:@selector(addContacts:) forControlEvents:UIControlEventTouchUpInside];
     _rightItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
     [self.navigationItem setRightBarButtonItem:_rightItem];
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    HCBarButtonItem *backItem = [[HCBarButtonItem alloc] initWithBackTarget:self.navigationController action:@selector(popViewControllerAnimated:)];
     [self.navigationItem setLeftBarButtonItem:backItem];
     
     [self.view addSubview:self.textField];

@@ -29,7 +29,7 @@ static NSString *kGroupName = @"GroupName";
 
 @interface HCRootTabBarController ()<UIAlertViewDelegate, IChatManagerDelegate, EMCallManagerDelegate>
 
-@property (nonatomic, strong) HCMessageViewController *messageRootVC;
+@property (nonatomic, strong) UINavigationController *messageRootVC;
 @property (nonatomic, strong) ConversationListController *messageListVC;
 @property (nonatomic, strong) ContactListViewController *contactsVC;
 
@@ -49,6 +49,8 @@ static NSString *kGroupName = @"GroupName";
     [self.tabBar insertSubview:redTabBarView atIndex:0];
     self.tabBar.layer.masksToBounds = YES; // 超出部分不显示
     self.tabBar.opaque = YES;
+    
+    [self setupEase];
 }
 
 - (void)setupChildControllers
@@ -100,22 +102,21 @@ static NSString *kGroupName = @"GroupName";
         rootVC = [[rootViewControllerClass alloc] init];
     }
     
-    if ([rootViewControllerClass isSubclassOfClass:[HCMessageViewController class]])
-    {
-        _messageRootVC = (HCMessageViewController *)rootVC;
-        _messageListVC = rootVC.childViewControllers[0];
-        _contactsVC = rootVC.childViewControllers[1];
-    }
-    
     rootVC.title = title;
     
     UINavigationController *navVc = [[class  alloc] initWithRootViewController:rootVC];
     navVc.tabBarItem.image = OrigIMG(name);
-    
     NSString *selectedImage = [NSString stringWithFormat:@"%@_sel",name];
     navVc.tabBarItem.selectedImage = OrigIMG(selectedImage);
     // 设置字体颜色
     [navVc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
+    
+    if ([rootViewControllerClass isSubclassOfClass:[HCMessageViewController class]])
+    {
+        _messageRootVC = (UINavigationController *)navVc;
+        _messageListVC = rootVC.childViewControllers[0];
+        _contactsVC = rootVC.childViewControllers[1];
+    }
     
     [self addChildViewController:navVc];
 }
@@ -164,8 +165,8 @@ static NSString *kGroupName = @"GroupName";
 - (void)setupEase
 {
     //获取未读消息数，此时并没有把self注册为SDK的delegate，读取出的未读数是上次退出程序时的
-    //    [self didUnreadMessagesCountChanged];
-#warning 把self注册为SDK的delegate
+    [self didUnreadMessagesCountChanged];
+    
     [self registerNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUntreatedApplyCount) name:@"setupUntreatedApplyCount" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callOutWithChatter:) name:@"callOutWithChatter" object:nil];
@@ -201,11 +202,11 @@ static NSString *kGroupName = @"GroupName";
 - (void)setupUntreatedApplyCount
 {
     NSInteger unreadCount = [[[ApplyViewController shareController] dataSource] count];
-    if (_contactsVC) {
+    if (_messageRootVC) {
         if (unreadCount > 0) {
-            _contactsVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];
+            _messageRootVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];
         }else{
-            _contactsVC.tabBarItem.badgeValue = nil;
+            _messageRootVC.tabBarItem.badgeValue = nil;
         }
     }
 }
@@ -444,7 +445,7 @@ static NSString *kGroupName = @"GroupName";
         notification.alertBody = NSLocalizedString(@"receiveMessage", @"you have a new message");
     }
     
-#warning 去掉注释会显示[本地]开头, 方便在开发中区分是否为本地推送
+//#warning 去掉注释会显示[本地]开头, 方便在开发中区分是否为本地推送
     //notification.alertBody = [[NSString alloc] initWithFormat:@"[本地]%@", notification.alertBody];
     
     notification.alertAction = NSLocalizedString(@"open", @"Open");
@@ -740,7 +741,7 @@ static NSString *kGroupName = @"GroupName";
                 break;
             }
             
-#warning 在后台不能进行视频通话
+
             if(callSession.type == eCallSessionTypeVideo && ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive || ![CallViewController canVideo])){
                 error = [EMError errorWithCode:EMErrorInitFailure andDescription:NSLocalizedString(@"call.initFailed", @"Establish call failure")];
                 break;
@@ -771,7 +772,7 @@ static NSString *kGroupName = @"GroupName";
 - (void)jumpToChatList
 {
     if ([self.navigationController.topViewController isKindOfClass:[ChatViewController class]]) {
-        ChatViewController *chatController = (ChatViewController *)self.navigationController.topViewController;
+//        ChatViewController *chatController = (ChatViewController *)self.navigationController.topViewController;
         //        [chatController hideImagePicker];
     }
     else if(_messageRootVC)
@@ -806,7 +807,7 @@ static NSString *kGroupName = @"GroupName";
     if (userInfo)
     {
         if ([self.navigationController.topViewController isKindOfClass:[ChatViewController class]]) {
-            ChatViewController *chatController = (ChatViewController *)self.navigationController.topViewController;
+//            ChatViewController *chatController = (ChatViewController *)self.navigationController.topViewController;
             //            [chatController hideImagePicker];
         }
         

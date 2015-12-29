@@ -84,17 +84,15 @@
 - (void)setupEaseWithApplication:(UIApplication *)application Options:(NSDictionary *)launchOptions
 {
     _connectionState = eEMConnectionConnected;
-#warning 初始化环信SDK，详细内容在AppDelegate+EaseMob.m 文件中
-#warning SDK注册 APNS文件的名字, 需要与后台上传证书时的名字一一对应
-    NSString *apnsCertName = nil;
+    NSString *apnsCertName = EaseDeveloperApnsCertName;
 #if DEBUG
-    apnsCertName = @"chatdemoui_dev";
+    apnsCertName = EaseDeveloperApnsCertName;
 #else
-    apnsCertName = @"chatdemoui";
+    apnsCertName = EaseApnsCerName;
 #endif
     [self easemobApplication:application
 didFinishLaunchingWithOptions:launchOptions
-                      appkey:@"easemob-demo#chatdemoui"
+                      appkey:EaseAppKey
                 apnsCertName:apnsCertName
                  otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
 }

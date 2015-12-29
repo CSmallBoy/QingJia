@@ -68,6 +68,7 @@
             header.lastUpdatedTimeLabel.hidden = YES;
             header.stateLabel.hidden = YES;
             self.tableView.mj_header = header;
+//            [header beginRefreshing];
 //            MJRefreshLegendHeader *header = [self.tableView addLegendHeaderWithRefreshingBlock:^{
 //                [weakSelf tableViewDidTriggerHeaderRefresh];
 //                [weakSelf.tableView.header beginRefreshing];
@@ -89,6 +90,7 @@
             MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(tableViewDidTriggerFooterRefresh)];
             footer.stateLabel.hidden = YES;
             self.tableView.mj_footer = footer;
+            [footer beginRefreshing];
 //            __weak EaseRefreshTableViewController *weakSelf = self;
 //            [self.tableView addLegendFooterWithRefreshingBlock:^{
 //                [weakSelf tableViewDidTriggerFooterRefresh];

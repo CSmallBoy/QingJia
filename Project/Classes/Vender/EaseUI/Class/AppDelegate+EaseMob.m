@@ -28,7 +28,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[EaseSDKHelper shareHelper] easemobApplication:application
                     didFinishLaunchingWithOptions:launchOptions
-                                           appkey:@"easemob-demo#chatdemoui"
+                                           appkey:appkey
                                      apnsCertName:apnsCertName
                                       otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
     
@@ -93,8 +93,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void)loginStateChange:(NSNotification *)notification
 {
-    UINavigationController *navigationController = nil;
-    
     BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
     BOOL loginSuccess = [notification.object boolValue];
     

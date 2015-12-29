@@ -20,7 +20,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
               apnsCertName:(NSString *)apnsCertName
                otherConfig:(NSDictionary *)otherConfig;
 
-- (void)easemobApplication:(UIApplication *)application
-didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
+//- (void)easemobApplication:(UIApplication *)application
+//didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 
 @end

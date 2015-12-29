@@ -52,10 +52,7 @@ static ApplyViewController *controller = nil;
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    HCBarButtonItem *backItem = [[HCBarButtonItem alloc] initWithBackTarget:self action:@selector(back)];
     [self.navigationItem setLeftBarButtonItem:backItem];
     
     [self loadDataSourceFromLocalDB];

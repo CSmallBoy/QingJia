@@ -131,7 +131,11 @@
 
 // EaseUI
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+#define EaseAppKey @"yinyichen#mtalk"
+#define EaseDeveloperApnsCertName  @"mtalk"
+#define EaseApnsCerName @"mtalk"
 
+#define Ease
 //----------------------其他----------------------------
 
 #define HCTabelHeadView(h) [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, h)]

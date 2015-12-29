@@ -174,7 +174,7 @@
 {
     // Return the number of rows in the section.
     if (section == 0) {
-        return 4;
+        return 2;
     }
     
     return [[self.dataArray objectAtIndex:(section - 1)] count];
@@ -207,14 +207,14 @@
             cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
             cell.titleLabel.text = NSLocalizedString(@"title.group", @"Group");
         }
-        else if (indexPath.row == 2) {
-            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
-            cell.titleLabel.text = NSLocalizedString(@"title.chatroomlist",@"chatroom list");
-        }
-        else if (indexPath.row == 3) {
-            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
-            cell.titleLabel.text = NSLocalizedString(@"title.robotlist",@"robot list");
-        }
+//        else if (indexPath.row == 2) {
+//            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
+//            cell.titleLabel.text = NSLocalizedString(@"title.chatroomlist",@"chatroom list");
+//        }
+//        else if (indexPath.row == 3) {
+//            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
+//            cell.titleLabel.text = NSLocalizedString(@"title.robotlist",@"robot list");
+//        }
     }
     else{
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
