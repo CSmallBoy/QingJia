@@ -18,5 +18,6 @@ pod 'UITableView+FDTemplateLayoutCell'
 pod 'MLEmojiLabel'
 
 
+pod 'AMap2DMap'
 pod 'Parse'
 pod 'EaseMobSDKFull', :git => 'https://github.com/easemob/sdk-ios-cocoapods-integration.git'

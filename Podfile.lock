@@ -24,6 +24,7 @@ PODS:
   - AFNetworking/UIKit (2.6.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AMap2DMap (3.2.0)
   - Bolts/Tasks (1.5.0)
   - DZNEmptyDataSet (1.7.2)
   - EaseMobSDKFull (2.2.1)
@@ -53,6 +54,7 @@ PODS:
 
 DEPENDENCIES:
   - ACEExpandableTextCell
+  - AMap2DMap
   - DZNEmptyDataSet
   - EaseMobSDKFull (from `https://github.com/easemob/sdk-ios-cocoapods-integration.git`)
   - FMDB
@@ -80,6 +82,7 @@ SPEC CHECKSUMS:
   ACEExpandableTextCell: 5fadb1461c7f48b8d97e1d5257eeff5c1ec93a0f
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
   AFNetworking: 7f317038a9710cabfa43ec56396b307b45df72ab
+  AMap2DMap: 02c73a3e55ac033e3b0b8ec35d3d21ffcac5aae3
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   EaseMobSDKFull: 4a18d6ad47b4ccca564833963511bddd151e1654
