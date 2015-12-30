@@ -35,8 +35,6 @@
     [self setupCustomProperty];
     // 环信
     [self setupEaseWithApplication:application Options:launchOptions];
-    //设置主控制器
-    //    [self setupRootViewController];
     //版本更新
     [[HCVersionMgr manager] checkFirVersion];
     // 地图
@@ -55,7 +53,7 @@
     //    {
     //        DLog(@"加载欢迎页面,测试的取反");
     //    }
-    if ([HCAccountMgr manager].isLogined)
+    if ([HCAccountMgr manager].isLogined || [HCAppMgr manager].showInstroView)
     {
         HCLoginViewController *login = [[HCLoginViewController alloc]init];
         UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:login];
@@ -92,6 +90,10 @@
 - (void)setupEaseWithApplication:(UIApplication *)application Options:(NSDictionary *)launchOptions
 {
     _connectionState = eEMConnectionConnected;
+    
+    // 环信UIdemo中有用到Parse，您的项目中不需要添加，可忽略此处。
+    [self parseApplication:application didFinishLaunchingWithOptions:launchOptions];
+    
     NSString *apnsCertName = EaseDeveloperApnsCertName;
 #if DEBUG
     apnsCertName = EaseDeveloperApnsCertName;
@@ -134,7 +136,7 @@ didFinishLaunchingWithOptions:launchOptions
 
 - (void)setupMAMap
 {
-    [AMapLocationServices sharedServices].apiKey = @"2068adf060e2dd5d56bc0626e6232c82";;
+    [AMapLocationServices sharedServices].apiKey = @"2068adf060e2dd5d56bc0626e6232c82";
     self.locationManager = [[AMapLocationManager alloc] init];
     self.locationManager.delegate = self;
     [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置

@@ -55,7 +55,7 @@
     _contactsSource = [NSMutableArray array];
     _sectionTitles = [NSMutableArray array];
     
-    //    [self tableViewDidTriggerHeaderRefresh];
+    //
     
     [self searchController];
     self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
@@ -66,6 +66,9 @@
     [self reloadDataSource];
     // 环信UIdemo中有用到Parse, 加载用户好友个人信息
     [[UserProfileManager sharedInstance] loadUserProfileInBackgroundWithBuddy:self.contactsSource saveToLoacal:YES completion:NULL];
+    
+    
+    [self tableViewDidTriggerHeaderRefresh];
 }
 
 - (void)viewWillAppear:(BOOL)animated

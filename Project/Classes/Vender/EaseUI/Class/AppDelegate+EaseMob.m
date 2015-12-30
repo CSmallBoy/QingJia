@@ -108,7 +108,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         
         // 环信UIdemo中有用到Parse，您的项目中不需要添加，可忽略此处
         [self setupRootViewController];
-//        [self initParse];
+        [self initParse];
         
     }
     else{//登陆失败加载登陆页面控制器
@@ -118,7 +118,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 //        navigationController = [[UINavigationController alloc] initWithRootViewController:loginController];
         [HCAccountMgr manager].isLogined = NO;
         [self setupRootViewController];
-//        [self clearParse];
+        [self clearParse];
     }
 }
 
