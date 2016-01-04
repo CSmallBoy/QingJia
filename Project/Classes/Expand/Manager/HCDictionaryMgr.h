@@ -12,6 +12,8 @@
 @interface HCDictionaryMgr : NSObject <NSXMLParserDelegate>
 
 
++ (NSString *)applyReissueReason:(NSString *)key;
++ (NSString *)applyReturnReason:(NSString *)key;
 
 
 @end

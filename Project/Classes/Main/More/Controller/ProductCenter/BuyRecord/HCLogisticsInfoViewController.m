@@ -4,7 +4,7 @@
 //
 //  Created by 朱宗汉 on 15/12/19.
 //  Copyright © 2015年 com.xxx. All rights reserved.
-//物流信息
+//已发货，已收货
 
 #import "HCLogisticsInfoViewController.h"
 #import "HCLogisticsInfo.h"
@@ -59,14 +59,17 @@
         buyRecordcell.indexPath= indexPath;
         buyRecordcell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell = buyRecordcell;
-    }else
+    }
+    else
     {
         if (indexPath.row == 0)
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"followInfo"];
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"followInfo"];
             cell.textLabel.text = @"跟进信息";
-        }else{
+        }
+        else
+        {
             HCLogisticsInfoTableViewCellSecond *cellS;
             cellS = [tableView dequeueReusableCellWithIdentifier:@"lodisticsInfoSecond"];
             cellS = [[HCLogisticsInfoTableViewCellSecond alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"lodisticsInfoSecond"];
@@ -140,7 +143,8 @@
         UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
         view.backgroundColor = CLEARCOLOR;
         return view;
-    }else
+    }
+    else
     {
         [_footerView addSubview:self.beSureReceiveBtn];
         return self.footerView;
@@ -159,7 +163,8 @@
 
 -(UIView *)footerView
 {
-    if (!_footerView) {
+    if (!_footerView)
+    {
         _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60)];
         _footerView.backgroundColor = CLEARCOLOR;
     }
@@ -168,7 +173,8 @@
 
 -(UIButton *)beSureReceiveBtn
 {
-    if (!_beSureReceiveBtn) {
+    if (!_beSureReceiveBtn)
+    {
         _beSureReceiveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _beSureReceiveBtn.backgroundColor = [UIColor redColor];
         [_beSureReceiveBtn setTitle:@"确认收货" forState:UIControlStateNormal];
@@ -184,7 +190,8 @@
 - (void)requestHomeData
 {
     HCLogisticsApi *api = [[HCLogisticsApi alloc] init];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array)
+    {
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource removeAllObjects];
@@ -194,7 +201,8 @@
         {
             [self showHUDError:message];
         }
-    }];
+    }
+     ];
     _baseRequest = api;
 }
 @end

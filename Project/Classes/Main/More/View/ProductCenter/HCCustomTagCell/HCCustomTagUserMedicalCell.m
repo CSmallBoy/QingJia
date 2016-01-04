@@ -7,64 +7,89 @@
 //
 
 #import "HCCustomTagUserMedicalCell.h"
+#import "HCFeedbackTextView.h"
 
-@interface HCCustomTagUserMedicalCell ()<UITextFieldDelegate>
+@interface HCCustomTagUserMedicalCell ()<UITextFieldDelegate,HCFeedbackTextViewDelegate>
+@property (nonatomic,strong) NSArray *placeholderTitleArr;
+@property (nonatomic,strong) NSArray *titleArr;
 
-
-@property (nonatomic, strong) NSArray *titleArr;
-@property (nonatomic, strong) NSArray *placeholderTitleArr;
 @property (nonatomic, strong) UILabel *titleLabel;
 
+@property (nonatomic,strong) HCFeedbackTextView *textView;
 @end
 
 @implementation HCCustomTagUserMedicalCell
+
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        self.textLabel.textColor = RGB(46, 46, 46);
-        self.textLabel.font = DefaultFontSize;
         [self.contentView addSubview:self.titleLabel];
+        
     }
     return self;
 }
+#pragma mark---UITextfieldDelegate
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+-(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField.tag == 0)
+    if ([self.delegate respondsToSelector:@selector(dismissDatePicker2)])
     {
-        _tagUserInfo.userBloodType = textField.text;
+        [self.delegate dismissDatePicker2];
     }
-    
+}
+
+#pragma mark ----HCFeedbackTextViewDelegate
+
+-(void)feedbackTextViewdidBeginEditing
+{
+    if ([self.delegate respondsToSelector:@selector(dismissDatePicker2)])
+    {
+        [self.delegate dismissDatePicker2];
+    }
 }
 
 #pragma mark---Setter Or Getter
 
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
-    self.titleLabel.text = self.titleArr[indexPath.row];
-    
-    NSAttributedString *attriString = [[NSAttributedString alloc] initWithString:self.placeholderTitleArr[indexPath.row] attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]}];
-    self.textField.attributedPlaceholder = attriString;
-    
+    _indexPath = indexPath;
+    _titleLabel.text = self.titleArr[indexPath.row];
     if (indexPath.row == 0)
     {
-        self.textField.text = _tagUserInfo.contactPersonInfo.contactName;
-          [self.contentView addSubview:self.textField];
+        NSAttributedString *attriString = [[NSAttributedString alloc] initWithString: self.placeholderTitleArr[indexPath.row] attributes:
+  @{                                                                           NSFontAttributeName: [UIFont systemFontOfSize:14],                                                                   NSForegroundColorAttributeName:[UIColor lightGrayColor]                                                                         }];
+        self.textField.attributedPlaceholder = attriString;
+        [self.contentView addSubview:self.textField];
     }
-    self.textField.delegate = self;
-    self.textField.tag = indexPath.row;
+    else
+    {
+        [self.contentView addSubview:self.textView];
+    }
+}
+
+
+-(HCFeedbackTextView *)textView
+{
+    if (!_textView)
+    {
+        _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(90, 0, SCREEN_WIDTH-100, 88)];
+        _textView.placeholder = @"如果标签使用者有药物过敏史，点击输入过敏药物名称";
+        _textView.maxTextLength = SCREEN_WIDTH-100;
+    }
+    return _textView;
 }
 
 - (UITextField *)textField
 {
     if (!_textField)
     {
-        _textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 2, SCREEN_WIDTH-100, 40)];
+        _textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 4, SCREEN_WIDTH-100, 40)];
         _textField.textAlignment = NSTextAlignmentLeft;
         _textField.textColor = RGB(120, 120, 120);
+        _textField.font = FONT(15);
     }
     return _textField;
 }
@@ -73,7 +98,7 @@
 {
     if (!_titleLabel)
     {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 60, 20)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 4, 60, 40)];
         _titleLabel.font = [UIFont systemFontOfSize:15];
         _titleLabel.textColor = RGB(46, 46, 46);
     }
@@ -84,7 +109,7 @@
 {
     if (!_placeholderTitleArr)
     {
-        _placeholderTitleArr = @[@"请输入标签使用者的血型",@""];
+        _placeholderTitleArr = @[@"点击输入标签使用者的血型",@""];
     }
     return _placeholderTitleArr;
 }

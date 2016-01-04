@@ -31,59 +31,118 @@
         {
             info.orderID = @"11111111";
             info.orderTime = @"2015-12-19 22:30";
-            info.goodsName = @"退货商品:M-Talk二维码标签";
-            info.goodsTotalNumb = @"订单张数";
-            info.goodsNeedNumb = @"补货张数";
+            info.goodsName = @"1";
             info.detailOrderGoodsNum = @"10";
             info.detailNeedGoodsNum = @"1";
             info.orderTotalPrice = @"88";
             info.orderCustomerState = 0;//待审核
+            info.reason = @"0";
+            info.detailReason = @"这张标签有问题，扫描不出来0";
+            info.imgArr = @[@"label",@"label",@"label"];
             
-        }else if ( i==1 )
+        }
+        else if ( i==1 )
         {
             info.orderID = @"2222222";
             info.orderTime = @"2015-12-19 22:30";
-            info.goodsName = @"退货商品:M-Talk二维码标签";
-            info.goodsTotalNumb = @"订单张数";
-            info.goodsNeedNumb = @"补货张数";
+            info.goodsName = @"1";
             info.detailOrderGoodsNum = @"10";
             info.detailNeedGoodsNum = @"1";
             info.orderTotalPrice = @"88";
             info.orderCustomerState = 1;//审核通过
-        }else if (i == 2)
+            info.reason = @"1";
+            info.detailReason = @"这张标签有问题，扫描不出来1";
+            info.imgArr = @[@"label",@"label",@"label"];
+        }
+        else if (i == 2)
         {
             info.orderID = @"333333";
             info.orderTime = @"2015-12-19 22:30";
-            info.goodsName = @"补货商品:M-Talk烫印机";
-            info.goodsTotalNumb = @"订单个数";
-            info.goodsNeedNumb = @"补货个数";
+            info.goodsName = @"1";
             info.detailOrderGoodsNum = @"4";
             info.detailNeedGoodsNum = @"2";
             info.orderTotalPrice = @"88";
             info.orderCustomerState = 2;//审核不通过
-        }else if (i == 3)
+            info.reason = @"1";
+            info.detailReason = @"这张标签有问题，扫描不出来2";
+            info.auditNotPassReason = @"您好，给您发的标签用我们的app是可以扫描出信息的，所以该补发申请审核未能通过";
+            info.imgArr = @[@"label",@"label",@"label"];
+        }
+        else if (i == 3)
         {
             info.orderID = @"44444444";
             info.orderTime = @"2015-12-19 22:30";
-            info.goodsName = @"补货商品:M-Talk二维码标签";
-            info.goodsTotalNumb = @"订单张数";
-            info.goodsNeedNumb = @"退货张数";
+            info.goodsName = @"1";
             info.detailOrderGoodsNum = @"10";
             info.detailNeedGoodsNum = @"1";
             info.orderTotalPrice = @"88";
-            info.orderCustomerState = 0;//退款成功
-        }else
+            info.orderCustomerState = 3;//退款成功
+            info.reason = @"1";
+            info.detailReason = @"这张标签有问题，扫描不出来3";
+            info.imgArr = @[@"label",@"label",@"label"];
+            info.RefundWhereabouts = @"0";//支付宝
+        }
+        else if (i == 4)
         {
-            info.orderID = @"55555555";
+            info.orderID = @"11111111";
             info.orderTime = @"2015-12-19 22:30";
-            info.goodsName = @"补货商品:M-Talk二维码标签";
-            info.goodsTotalNumb = @"订单张数";
-            info.goodsNeedNumb = @"补货张数";
+            info.goodsName = @"0";
             info.detailOrderGoodsNum = @"10";
             info.detailNeedGoodsNum = @"1";
             info.orderTotalPrice = @"88";
             info.orderCustomerState = 0;//待审核
-        
+            info.reason = @"1";
+            info.detailReason = @"这个烫印机有问题0";
+            info.imgArr = @[@"label",@"label",@"label"];
+            
+        }
+        else if (i == 5)
+        {
+            info.orderID = @"2222222";
+            info.orderTime = @"2015-12-19 22:30";
+            info.goodsName = @"0";
+            info.detailOrderGoodsNum = @"10";
+            info.detailNeedGoodsNum = @"1";
+            info.orderTotalPrice = @"88";
+            info.orderCustomerState = 1;//审核通过
+            info.detailReason = @"这个烫印机有问题1";
+            info.imgArr = @[@"label",@"label",@"label"];
+        }
+        else if (i == 6)
+        {
+            info.orderID = @"333333";
+            info.orderTime = @"2015-12-19 22:30";
+            info.goodsName = @"0";
+            info.detailOrderGoodsNum = @"4";
+            info.detailNeedGoodsNum = @"2";
+            info.orderTotalPrice = @"88";
+            info.orderCustomerState = 2;//审核不通过
+            info.detailReason = @"这个烫印机有问题2";
+            info.imgArr = @[@"label",@"label",@"label"];
+        }
+        else if (i == 7)
+        {
+            info.orderID = @"44444444";
+            info.orderTime = @"2015-12-19 22:30";
+            info.goodsName = @"0";
+            info.detailOrderGoodsNum = @"10";
+            info.detailNeedGoodsNum = @"1";
+            info.orderTotalPrice = @"88";
+            info.orderCustomerState = 0;//退款成功
+            info.detailReason = @"这个烫印机有问题4";
+            info.imgArr = @[@"label",@"label",@"label"];
+        }
+        else
+        {
+            info.orderID = @"44444444";
+            info.orderTime = @"2015-12-19 22:30";
+            info.goodsName = @"0";
+            info.detailOrderGoodsNum = @"10";
+            info.detailNeedGoodsNum = @"1";
+            info.orderTotalPrice = @"88";
+            info.orderCustomerState = 0;//退款成功
+            info.detailReason = @"这个烫印机有问题5";
+            info.imgArr = @[@"label",@"label",@"label"];
         }
         
         [arrayM addObject:info];

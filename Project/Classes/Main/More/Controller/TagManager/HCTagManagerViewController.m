@@ -10,6 +10,7 @@
 #import "HCActivatedTableViewController.h"
 #import "HCUnactivatedTagViewController.h"
 #import "HCClosedTagViewController.h"
+#import "HCCourseViewController.h"
 
 @interface HCTagManagerViewController ()<UIGestureRecognizerDelegate>
 
@@ -85,7 +86,21 @@ rightSwipeGestureRecognizer;
 
 -(void)handleRightItem
 {
-    [self showHUDText:@"教程"];
+    
+    HCCourseViewController *courcesVC = [[HCCourseViewController alloc] init];
+    UIViewController *rootController = self.view.window.rootViewController;
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        courcesVC.modalPresentationStyle=
+        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+    }else
+    {
+        rootController.modalPresentationStyle=
+        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+    }
+    courcesVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [rootController presentViewController:courcesVC animated:YES completion:nil];
+    
 }
 
 - (void)handleSegmentedControl:(UISegmentedControl *)segment

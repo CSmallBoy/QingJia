@@ -21,12 +21,11 @@
 
 @implementation HCReadNotificationViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self requestHomeData];
-    
-    
 }
 
 #pragma mark----UITableViewDelegate
@@ -51,12 +50,6 @@
     detailVC.info = self.dataSource[indexPath.section];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
-
-
-//-(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return @"         ";
-//}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

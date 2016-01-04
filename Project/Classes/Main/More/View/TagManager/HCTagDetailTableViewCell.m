@@ -27,7 +27,6 @@
     if (self)
     {
         self.contentView.backgroundColor = [UIColor lightTextColor];
-
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.detailInfoLab];
     }
@@ -49,37 +48,42 @@
     if (indexPath.row == 0)
     {
         self.detailInfoLab.text = self.info.tagUserName;
-    }else if (indexPath.row == 1)
+    }
+    else if (indexPath.row == 1)
     {
         self.detailInfoLab.text = self.info.cardName;
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-70, 0, 50, 50)];
-        imageView.image = OrigIMG(@"person-message_2D-barcode");//(self.info.cardImg);
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-50, 5, 35, 35)];
+        imageView.image = OrigIMG(@"person-message_2D-barcode");
         [self.contentView addSubview:imageView];
-    }else if (indexPath.row == 2)
+    }
+    else if (indexPath.row == 2)
     {
         self.detailInfoLab.text = self.info.userGender;
-    }else if (indexPath.row == 3)
+    }
+    else if (indexPath.row == 3)
     {
         self.detailInfoLab.text = self.info.userAge;
-    }else if (indexPath.row == 4)
+    }
+    else if (indexPath.row == 4)
     {
         self.detailInfoLab.text = self.info.userBrithday;
-    }else if (indexPath.row == 5)
+    }
+    else if (indexPath.row == 5)
     {
         self.detailInfoLab.text = self.info.userAddress;
-    }else if (indexPath.row == 6)
+    }
+    else if (indexPath.row == 6)
     {
         self.detailInfoLab.text = self.info.userSchool;
-    }else if (indexPath.row == 7)
+    }
+    else if (indexPath.row == 7)
     {
         self.detailInfoLab.text = self.info.userJob;
-    }else if (indexPath.row == 8)
+    }
+    else if (indexPath.row == 8)
     {
         self.detailInfoLab.text = self.info.userHealth;
-        
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-30, 9, 19, 32)];
-        imageView.image = OrigIMG(@"icon_drop_down");
-        [self.contentView addSubview:imageView];
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 }
 
@@ -119,8 +123,11 @@
 
 -(NSArray *)titleArr
 {
-    if (!_titleArr) {
-        _titleArr = @[@"姓名",@"名片",@"性别",@"年龄",@"生日",@"住址",@"学校",@"职业",@"健康"];
+    if (!_titleArr)
+    {
+        _titleArr = @[@"姓名",@"名片",@"性别",
+                      @"年龄",@"生日",@"住址",
+                      @"学校",@"职业",@"健康"];
     }
     return _titleArr;
 }

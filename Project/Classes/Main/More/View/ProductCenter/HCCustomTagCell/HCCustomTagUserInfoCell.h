@@ -14,7 +14,7 @@
 @optional
 
 -(void)addUserHeaderIMG;
-
+-(void)dismissDatePicker;
 @end
 
 @interface HCCustomTagUserInfoCell : UITableViewCell

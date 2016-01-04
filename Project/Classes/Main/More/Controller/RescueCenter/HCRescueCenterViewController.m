@@ -21,20 +21,24 @@
 @end
 
 @implementation HCRescueCenterViewController
+
 -(UISearchBar *)searchBar
 {
-    if (!_searchBar) {
+    if (!_searchBar)
+    {
         _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
         _searchBar.delegate = self;
         _searchBar.placeholder = @"请输入关键词快速搜索内容";
     }
     return _searchBar;
 }
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = @"求助中心";
     [self requestHomeData];
-
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
 
 }
@@ -76,21 +80,10 @@
 }
 
 
-
-
-
-
-
-
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 44;
-    }
-    else
-    {
-        return 1;
-    }
+
+    return (section == 0) ? 44 :1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -100,16 +93,7 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return self.searchBarView;
-    }
-    else
-    {
-        UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-        view.backgroundColor = CLEARCOLOR;
-        return view;
-    }
+    return (section == 0) ? self.searchBarView : nil;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -132,7 +116,8 @@
 
 -(UIView *)searchBarView
 {
-    if (!_searchBarView) {
+    if (!_searchBarView)
+    {
         _searchBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
         [_searchBarView addSubview:self.searchBar];
     }
@@ -146,7 +131,8 @@
 {
     HCRescueCenterApi *api = [[HCRescueCenterApi alloc] init];
     
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array)
+    {
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource removeAllObjects];

@@ -8,17 +8,17 @@
 
 #import "HCCustomTagViewController.h"
 #import "HCPaymentViewController.h"
-#import "ACEExpandableTextCell.h"
+
 #import "HCAvatarMgr.h"
 #import "HCCustomTagApi.h"
 #import "HCTagUserInfo.h"
-#import "HCCustomTagUserInfoCell.h"
-#import "HCPickerView.h"
 
+#import "HCPickerView.h"
+#import "HCCustomTagUserInfoCell.h"
 #import "HCCustomTagContactTableViewCell.h"
 #import "HCCustomTagUserMedicalCell.h"
 
-@interface HCCustomTagViewController ()<HCPickerViewDelegate,ACEExpandableTableViewDelegate,HCCustomTagUserInfoCellDelegate>
+@interface HCCustomTagViewController ()<HCPickerViewDelegate,HCCustomTagUserInfoCellDelegate,HCCustomTagContactTableViewCellDelegate,HCCustomTagUserMedicalCellDelegate>
 
 @property (nonatomic, strong) HCPickerView *datePicker;
 
@@ -46,30 +46,6 @@
     [self setupBackItem];
 }
 
-
--(void)addUserHeaderIMG
-{
-    [HCAvatarMgr manager].isUploadImage = YES;
-    [HCAvatarMgr manager].noUploadImage = NO;
-    //上传个人头像
-    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg)
-    {
-        if (!result)
-        {
-            [self showHUDText:msg];
-            [HCAvatarMgr manager].isUploadImage = NO;
-            [HCAvatarMgr manager].noUploadImage = NO;
-        }
-        else
-        {
-            [[SDImageCache sharedImageCache] clearMemory];
-            [[SDImageCache sharedImageCache] clearDisk];
-            [self.tableView reloadData];
-        }
-    }];
-
-}
-
 #pragma mark---UITableViewDelegate
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,28 +60,21 @@
         customTagUserInfoCell.indexPath = indexPath;
         cell = customTagUserInfoCell;
         
-    }else if (indexPath.section == 3)
+    }
+    else if (indexPath.section == 3)
     {
-        if (indexPath.row != 2)
-        {
-            HCCustomTagUserMedicalCell *customTagUserMedicalCell = [[HCCustomTagUserMedicalCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Medical"];
-            customTagUserMedicalCell.tagUserInfo = _tagUserInfo;
-            customTagUserMedicalCell.indexPath = indexPath;
+        HCCustomTagUserMedicalCell *customTagUserMedicalCell = [[HCCustomTagUserMedicalCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Medical"];
+        customTagUserMedicalCell.tagUserInfo = _tagUserInfo;
+        customTagUserMedicalCell.indexPath = indexPath;
+        customTagUserMedicalCell.delegate = self;
             cell = customTagUserMedicalCell;
-            
-        }else
-        {
-        ACEExpandableTextCell *textCell = [tableView expandableTextCellWithId:@"cellId"];
-        textCell.textView.placeholder = @"如果标签使用者有药物过敏史，点击输入过敏药物名称";
-        textCell.textView.font = [UIFont systemFontOfSize:15];
-        cell = textCell;
-            
-        }
-    }else
+    }
+    else
     {
         HCCustomTagContactTableViewCell *contactCell = [[HCCustomTagContactTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"contactCell"];
         contactCell.tagUserInfo = _tagUserInfo;
         contactCell.indexPath = indexPath;
+        contactCell.delegate = self;
         cell = contactCell;
         
     }
@@ -119,14 +88,15 @@
     {
         if (indexPath.row == 3)
         {
+            [self.view endEditing:YES];
             [self.datePicker show];
-        }else
+        }
+        else
         {
             [self.datePicker remove];
         }
     }
 }
-
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -138,11 +108,13 @@
     if (section == 0)
     {
         return  8;
-    }else if (section == 3)
-    {
-        return 3;
     }
-    else{
+    else if (section == 3)
+    {
+        return 2;
+    }
+    else
+    {
         return 4;
     }
 }
@@ -195,15 +167,16 @@
 {
     if (indexPath.section == 3)
     {
-        if (indexPath.row == 2)
-        {
-            return MAX(80, _height);
-        }
-        else
+        if (indexPath.row == 0)
         {
             return 44;
         }
-    }else if (indexPath.section == 0)
+        else
+        {
+            return 88;
+        }
+    }
+    else if (indexPath.section == 0)
     {
         if (indexPath.row == 0)
         {
@@ -236,6 +209,50 @@
     }
 }
 
+
+#pragma mark---HCCustomTagUserInfoCellDelegate,HCCustomTagContactTableViewCellDelegate,HCCustomTagUserMedicalCellDelegate
+
+-(void)addUserHeaderIMG
+{
+    [self.datePicker remove];
+    [self.view endEditing:YES];
+    
+    [HCAvatarMgr manager].isUploadImage = YES;
+    [HCAvatarMgr manager].noUploadImage = NO;
+    //上传个人头像
+    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg)
+     {
+         if (!result)
+         {
+             [self showHUDText:msg];
+             [HCAvatarMgr manager].isUploadImage = NO;
+             [HCAvatarMgr manager].noUploadImage = NO;
+         }
+         else
+         {
+             [[SDImageCache sharedImageCache] clearMemory];
+             [[SDImageCache sharedImageCache] clearDisk];
+             [self.tableView reloadData];
+         }
+     }];
+    
+}
+
+-(void)dismissDatePicker
+{
+    [self.datePicker remove];
+}
+
+-(void)dismissDatePicker0
+{
+    [self.datePicker remove];
+}
+
+-(void)dismissDatePicker2
+{
+    [self.datePicker remove];
+}
+
 #pragma mark - HCPickerViewDelegate
 
 - (void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result
@@ -247,17 +264,6 @@
     cell.textField.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
 }
 
-#pragma mark - ACEExpandableTableViewDelegate
-
-- (void)tableView:(UITableView *)tableView updatedHeight:(CGFloat)height atIndexPath:(NSIndexPath *)indexPath
-{
-    _height = height;
-}
-
-- (void)tableView:(UITableView *)tableView updatedText:(NSString *)text atIndexPath:(NSIndexPath *)indexPath
-{
-    _history = text;
-}
 
 #pragma mark - private methods
 

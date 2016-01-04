@@ -11,6 +11,12 @@
 #import "HCCustomerInfo.h"
 #import "HCCustomerApi.h"
 
+
+#import "HCWaitReissueAuditViewController.h"
+#import "HCReissueAuditPassViewController.h"
+#import "HCReissueAuditNotPassViewController.h"
+#import "HCRefundSuccessViewController.h"
+
 @interface HCCustomerViewController ()
 
 @end
@@ -61,23 +67,30 @@
     HCCustomerInfo *info = self.dataSource[indexPath.section];
     if (info.orderCustomerState == 0)
     {
-        HCViewController *VC = [[HCViewController alloc]init];
-        VC.title = @"待审核";  VC.hidesBottomBarWhenPushed = YES;
+        HCWaitReissueAuditViewController *VC = [[HCWaitReissueAuditViewController alloc]init];
+        VC.title = @"待审核";
+        VC.data = @{@"data":info};
         [self.navigationController pushViewController:VC animated:YES];
-    }else if(info.orderCustomerState == 1)
+    }
+    else if(info.orderCustomerState == 1)
     {
-        HCViewController *VC = [[HCViewController alloc]init];
+        HCReissueAuditPassViewController *VC = [[HCReissueAuditPassViewController alloc]init];
         VC.title = @"审核通过";
+        VC.data = @{@"data":info};
         [self.navigationController pushViewController:VC animated:YES];
-    }else if(info.orderCustomerState == 2)
+    }
+    else if(info.orderCustomerState == 2)
     {
-        HCViewController *VC = [[HCViewController alloc]init];
+        HCReissueAuditNotPassViewController *VC = [[HCReissueAuditNotPassViewController alloc]init];
         VC.title = @"审核不通过";
+        VC.data = @{@"data":info};
         [self.navigationController pushViewController:VC animated:YES];
-    }else if(info.orderCustomerState == 3)
+    }
+    else if(info.orderCustomerState == 3)
     {
-        HCViewController *VC = [[HCViewController alloc]init];
+        HCRefundSuccessViewController *VC = [[HCRefundSuccessViewController alloc]init];
         VC.title = @"退款成功";
+        VC.data = @{@"data":info};
         [self.navigationController pushViewController:VC animated:YES];
     }
 }
@@ -111,17 +124,20 @@
 - (void)requestHomeData
 {
     HCCustomerApi *api = [[HCCustomerApi alloc] init];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array)
+     {
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource removeAllObjects];
             [self.dataSource addObjectsFromArray:array];
             [self.tableView reloadData];
-        }else
+        }
+        else
         {
             [self showHUDError:message];
         }
-    }];
+    }
+     ];
     _baseRequest = api;
 }
 

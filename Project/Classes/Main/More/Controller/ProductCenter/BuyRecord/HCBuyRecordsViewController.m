@@ -11,8 +11,9 @@
 #import "HCPaymentViewController.h"
 #import "HCLogisticsInfoViewController.h"
 #import "HCWaitingDeliverGoodsViewController.h"
-#import "HCApplyReissueViewController.h"
 
+#import "HCApplyReissueViewController.h"
+#import "HCApplyReturnViewController.h"
 #import "HCBuyRecordTableViewCell.h"
 
 #import "HCBuyRecordApi.h"
@@ -42,10 +43,8 @@
 {
     static NSString *RecordID = @"record";
     HCBuyRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RecordID];
-//    if (!cell)
-//    {
-        cell = [[HCBuyRecordTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RecordID];
-//    }
+
+    cell = [[HCBuyRecordTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RecordID];
     cell.delegate = self;
     cell.info = self.dataSource[indexPath.section];
     cell.indexPath = indexPath;
@@ -62,23 +61,27 @@
         //支付
         HCPaymentViewController *VC = [[HCPaymentViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
-    }else if (info.orderState == 1)//订单已取消
+    }
+    else if (info.orderState == 1)//订单已取消
     {
         HCPaymentViewController *VC = [[HCPaymentViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
         
-    }else if (info.orderState == 2)//待发货
+    }
+    else if (info.orderState == 2)//待发货
     {
         HCWaitingDeliverGoodsViewController *VC = [[HCWaitingDeliverGoodsViewController alloc]init];
         VC.data = @{@"data": info};
         [self.navigationController pushViewController:VC animated:YES];
-    }else if (info.orderState == 3)//已发货
+    }
+    else if (info.orderState == 3)//已发货
     {
         //物流信息
         HCLogisticsInfoViewController *VC = [[HCLogisticsInfoViewController alloc]init];
         VC.data = @{@"data":info};
         [self.navigationController pushViewController:VC animated:YES];
-    }else if(info.orderState == 4)//已签收
+    }
+    else if(info.orderState == 4)//已签收
     {
         //物流信息
         HCLogisticsInfoViewController *VC = [[HCLogisticsInfoViewController alloc]init];
@@ -148,9 +151,8 @@
 
 -(void)handleApplyReturn:(HCProductIntroductionInfo*)info
 {
-    HCViewController *VC = [HCViewController new];
-    VC.title = @"申请退货";
-    VC.view.backgroundColor = [UIColor whiteColor];
+    HCApplyReturnViewController *VC = [[HCApplyReturnViewController alloc]init];
+    VC.data = @{@"data":info};
     [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark --- Setter Or  Getter
@@ -161,8 +163,6 @@
     {
         _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"") style:UIBarButtonItemStylePlain target:self action:@selector(handleCustomer)];
         _rightItem.title = @"售后";
-        
-        
     }
     return _rightItem;
 }

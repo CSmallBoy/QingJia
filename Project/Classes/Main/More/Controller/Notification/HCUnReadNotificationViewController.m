@@ -50,12 +50,6 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
-
--(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @"          ";
-}
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 75;

@@ -36,6 +36,14 @@
 
 #pragma mark - UITextFieldDelegate
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(dismissDatePicker)])
+    {
+        [self.delegate dismissDatePicker];
+    }
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField.tag == 1)
@@ -115,13 +123,14 @@
     {
         [self.delegate addUserHeaderIMG];
     }
-   
 }
 
 #pragma mark --  Setter Or Getter
+
 -(UIButton *)headerIMGBtn
 {
-    if (!_headerIMGBtn) {
+    if (!_headerIMGBtn)
+    {
         _headerIMGBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 2, 80, 80)];
         [_headerIMGBtn setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
         [_headerIMGBtn addTarget:self action:@selector(handleheaderIMG) forControlEvents:UIControlEventTouchUpInside];

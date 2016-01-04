@@ -36,8 +36,9 @@
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
         _titleLabel.text = self.titleArr[indexPath.row];
-    if (indexPath.row !=4) {
-        NSAttributedString *attriString = [[NSAttributedString alloc] initWithString: self.placeholderTitleArr[indexPath.row] attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14],NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+    if (indexPath.row !=4)
+    {
+        NSAttributedString *attriString = [[NSAttributedString alloc] initWithString: self.placeholderTitleArr[indexPath.row] attributes:@{                                                                           NSFontAttributeName: [UIFont systemFontOfSize:14],                                                                   NSForegroundColorAttributeName:[UIColor lightGrayColor]                                                                         }];
         self.textField.attributedPlaceholder = attriString;
         [self.contentView addSubview:self.textField];
     }

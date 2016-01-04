@@ -128,7 +128,17 @@
 
 -(void)clickAddHotStampingMachineBtn
 {
-    self.info.buyHotStampingMachineNumber += 1;
+    if (self.info.buyHotStampingMachineNumber <5)
+    {
+           self.info.buyHotStampingMachineNumber += 1;
+    }
+    else
+    {
+        if ([self.delegate respondsToSelector:@selector(showForbidHotStampingMachineAdd)])
+        {
+            [self.delegate showForbidHotStampingMachineAdd];
+        }
+    }
     self.hotStampingMachineBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyHotStampingMachineNumber];
     self.hotStampingMachinePriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.buyHotStampingMachineNumber *self.info.hotStampingMachinePrice];
     self.totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
@@ -147,7 +157,6 @@
 
         }
     }
-
     self.hotStampingMachineBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyHotStampingMachineNumber];
     self.hotStampingMachinePriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.buyHotStampingMachineNumber *self.info.hotStampingMachinePrice];
      self.totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
@@ -156,7 +165,17 @@
 
 -(void)clickAddLabelBtn
 {
-    self.info.buyLabelNumber += 1;
+    if (self.info.buyLabelNumber < 50)
+    {
+         self.info.buyLabelNumber += 5;
+    }
+   else
+   {
+       if ([self.delegate respondsToSelector:@selector(showForbidLabelAdd)])
+       {
+           [self.delegate showForbidLabelAdd];
+       }
+   }
     self.labelBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyLabelNumber];
     self.labelPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.buyLabelNumber *self.info.labelPrice];
      self.totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];

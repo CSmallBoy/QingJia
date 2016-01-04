@@ -71,21 +71,6 @@
 
 #pragma mark---private methods
 
--(NSMutableAttributedString *)changeStringColorAndFontWithStart:(NSString *)start smallString:(NSString *)smallStr end:(NSString *)end
-{
-    NSMutableAttributedString *startString = [[NSMutableAttributedString alloc] initWithString:start];
-    
-    NSMutableAttributedString *smallString = [[NSMutableAttributedString alloc] initWithString:smallStr];
-    [smallString addAttributes:@{NSForegroundColorAttributeName: [UIColor grayColor],NSFontAttributeName:[UIFont systemFontOfSize:10]} range:NSMakeRange(0, smallStr.length)];
-    
-    
-    NSMutableAttributedString *endString= [[NSMutableAttributedString alloc] initWithString:end];
-    
-    [startString appendAttributedString:smallString];
-    [startString appendAttributedString:endString];
-    return startString;
-}
-
 -(void)clickApplyReissueBtn
 {
     if ([self.delegate respondsToSelector:@selector(handleApplyReissue:)])

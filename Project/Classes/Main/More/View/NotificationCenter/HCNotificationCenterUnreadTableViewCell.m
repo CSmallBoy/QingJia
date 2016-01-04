@@ -30,9 +30,6 @@
         [self.contentView addSubview:self.userNameLab];
         [self.contentView addSubview:self.notificationMessageLab];
         [self.contentView addSubview:self.timeLab];
-        
-        [self.contentView addSubview:self.redVIew];
-        [self.redVIew addSubview:self.deleteIMGV];
     }
     return self;
 }

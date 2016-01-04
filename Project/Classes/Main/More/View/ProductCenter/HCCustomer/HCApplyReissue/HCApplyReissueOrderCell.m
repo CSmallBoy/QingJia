@@ -70,18 +70,23 @@
     KWFormView *formView = [builder startCreatWithWidths:@[@(width), @(width), @(width)] startPoint:CGPointMake(0, 100)];
     
     NSString *orderStateStr ;
-    if (self.info.orderState == 0) {
+    if (self.info.orderState == 0)
+    {
         orderStateStr = @"待付款";
-    }else if(self.info.orderState == 1)
+    }
+    else if(self.info.orderState == 1)
     {
         orderStateStr = @"订单已取消";
-    }else if(self.info.orderState == 2)
+    }
+    else if(self.info.orderState == 2)
     {
         orderStateStr = @"待发货";
-    }else if(self.info.orderState == 3)
+    }
+    else if(self.info.orderState == 3)
     {
         orderStateStr = @"已发货";
-    }else if(self.info.orderState == 4)
+    }
+    else if(self.info.orderState == 4)
     {
         orderStateStr = @"已签收";
     }
@@ -99,20 +104,6 @@
 
 #pragma mark---private methods
 
--(NSMutableAttributedString *)changeStringColorAndFontWithStart:(NSString *)start smallString:(NSString *)smallStr end:(NSString *)end
-{
-    NSMutableAttributedString *startString = [[NSMutableAttributedString alloc] initWithString:start];
-    
-    NSMutableAttributedString *smallString = [[NSMutableAttributedString alloc] initWithString:smallStr];
-    [smallString addAttributes:@{NSForegroundColorAttributeName: [UIColor grayColor],NSFontAttributeName:[UIFont systemFontOfSize:10]} range:NSMakeRange(0, smallStr.length)];
-    
-    
-    NSMutableAttributedString *endString= [[NSMutableAttributedString alloc] initWithString:end];
-    
-    [startString appendAttributedString:smallString];
-    [startString appendAttributedString:endString];
-    return startString;
-}
 
 #pragma mark---Setter Or Getter
 
@@ -142,7 +133,8 @@
 
 -(UIView *)lightViewOne
 {
-    if (!_lightViewOne) {
+    if (!_lightViewOne)
+    {
         _lightViewOne = [[UIView alloc]initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, 0.25)];
         _lightViewOne.backgroundColor = LightGraryColor;
     }
@@ -151,7 +143,8 @@
 
 -(UILabel *)orderGoodsNameLab
 {
-    if (!_orderGoodsNameLab) {
+    if (!_orderGoodsNameLab)
+    {
         _orderGoodsNameLab = [[UILabel alloc]initWithFrame:CGRectMake(10,50 , SCREEN_WIDTH-10, 50)];
         _orderGoodsNameLab.textColor = [UIColor blackColor];
         _orderGoodsNameLab.font = [UIFont systemFontOfSize:14];
@@ -159,4 +152,5 @@
     }
     return _orderGoodsNameLab;
 }
+
 @end

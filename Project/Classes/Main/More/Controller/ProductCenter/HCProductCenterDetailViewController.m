@@ -75,7 +75,8 @@ static NSString *IDCellF = @"introduction";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0)
+    {
         return 300;
     }else
     {
@@ -130,7 +131,6 @@ static NSString *IDCellF = @"introduction";
 
 -(void)handleBuyBtn
 {
-    DLog(@"----%@", _info);
     [self.navigationController pushViewController:[HCCustomTagViewController new] animated:YES];
 }
 
@@ -143,6 +143,16 @@ static NSString *IDCellF = @"introduction";
 {
     [self showHUDText:@"标签最小购买数为10"];
 
+}
+
+-(void)showForbidLabelAdd
+{
+    [self showHUDText:@"标签最大购买数为50"];
+}
+
+-(void)showForbidHotStampingMachineAdd
+{
+    [self showHUDText:@"烫印机最大购买数为5"];
 }
 
 -(void)showForbidHotStampingMachineDelete

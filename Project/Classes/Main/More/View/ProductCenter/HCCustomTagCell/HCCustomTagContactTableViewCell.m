@@ -32,6 +32,16 @@
     return self;
 }
 
+#pragma mark---UITextfieldDelegate
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(dismissDatePicker0)])
+    {
+        [self.delegate dismissDatePicker0];
+    }
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField.tag == 0)

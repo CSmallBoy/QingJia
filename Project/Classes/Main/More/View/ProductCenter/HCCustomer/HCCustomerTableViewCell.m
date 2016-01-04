@@ -58,21 +58,43 @@
     return self;
 }
 
+#pragma mark---Setter  Or Getter
+
 -(void)setInfo:(HCCustomerInfo *)info
 {
     _info = info;
     self.orderIDLab.text = [NSString stringWithFormat:@"订单编号:%@",self.info.orderID ];
     self.orderTimeLab.text = [NSString stringWithFormat:@"%@",self.info.orderTime];
-    self.goodsNameLab.text = [NSString stringWithFormat:@"%@",self.info.goodsName];
+    
+    if ([self.info.goodsName integerValue] == 1)
+    {
+        self.goodsNameLab.text = [NSString stringWithFormat:@"补货商品:M-Talk二维码"];//,self.info.goodsName];
+    }else
+    {
+        self.goodsNameLab.text = [NSString stringWithFormat:@"退货商品:M-Talk烫印机"];
+    }
+   
 }
 
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
-        
-        KWFormViewQuickBuilder *builder = [[KWFormViewQuickBuilder alloc]init];
+    _indexPath = indexPath;
+    KWFormViewQuickBuilder *builder = [[KWFormViewQuickBuilder alloc]init];
+    NSString *orderNum ;
+    NSString *needNum ;
+    if ([self.info.goodsName integerValue] == 1)
+    {
+        orderNum = @"订单张数";
+        needNum = @"补货张数";
+    }
+    else
+    {
+        orderNum = @"订单个数";
+        needNum = @"退货个数";
+    }// self.info.goodsNeedNumb,
         [builder addRecord: @[
-                              self.info.goodsTotalNumb,
-                              self.info.goodsNeedNumb,
+                              orderNum,
+                             needNum,
                               @"订单总价",
                               @"订单状态"]];
         [builder addRecord:@[
@@ -80,8 +102,8 @@
                              self.info.detailNeedGoodsNum,
                              self.info.orderTotalPrice,
                              @""]];
-        CGFloat width = SCREEN_WIDTH*0.25;
-        _formView = [builder startCreatWithWidths:@[@(width), @(width), @(width), @(width)] startPoint:CGPointMake(0, 100)];
+    CGFloat width = SCREEN_WIDTH*0.25;
+    _formView = [builder startCreatWithWidths:@[@(width), @(width), @(width), @(width)] startPoint:CGPointMake(0, 100)];
     [self.contentView addSubview:self.formView];
     
         NSString *orderStateStr ;
@@ -153,20 +175,5 @@
 }
 
 #pragma mark--Private method
-
--(NSMutableAttributedString *)changeStringColorAndFontWithStart:(NSString *)start smallString:(NSString *)smallStr end:(NSString *)end
-{
-    NSMutableAttributedString *startString = [[NSMutableAttributedString alloc] initWithString:start];
-    
-    NSMutableAttributedString *smallString = [[NSMutableAttributedString alloc] initWithString:smallStr];
-    [smallString addAttributes:@{NSForegroundColorAttributeName: [UIColor grayColor],NSFontAttributeName:[UIFont systemFontOfSize:10]} range:NSMakeRange(0, smallStr.length)];
-    
-    
-    NSMutableAttributedString *endString= [[NSMutableAttributedString alloc] initWithString:end];
-    
-    [startString appendAttributedString:smallString];
-    [startString appendAttributedString:endString];
-    return startString;
-}
 
 @end

@@ -47,4 +47,27 @@
  */
 @property (nonatomic,assign) int orderCustomerState;
 
+/**
+ *退货原因
+ */
+@property (nonatomic,strong) NSString *reason;
+/**
+ *具体原因
+ */
+@property (nonatomic,strong) NSString *detailReason;
+/**
+ *退货图片
+ */
+@property (nonatomic,strong) NSArray *imgArr;
+
+/**
+ *审核不通过原因
+ */
+@property (nonatomic,strong) NSString *auditNotPassReason;
+
+/**
+ *退款去向
+ */
+@property (nonatomic,strong) NSString *RefundWhereabouts;
+
 @end

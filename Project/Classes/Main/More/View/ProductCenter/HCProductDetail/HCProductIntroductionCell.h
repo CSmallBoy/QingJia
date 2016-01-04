@@ -16,6 +16,9 @@
 -(void)showForbidLabelDelete;
 -(void)showForbidHotStampingMachineDelete;
 
+-(void)showForbidLabelAdd;
+-(void)showForbidHotStampingMachineAdd;
+
 @end
 
 @interface HCProductIntroductionCell : UITableViewCell
