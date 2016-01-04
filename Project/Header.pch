@@ -6,8 +6,10 @@
 //  Copyright © 2015年 com.xxx. All rights reserved.
 //
 
-#ifndef Header_pch
-#define Header_pch
+//#ifndef Header_pch
+//#define Header_pch
+
+#ifdef __OBJC__
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
@@ -19,7 +21,7 @@
 #import "HCAccountMgr.h"
 #import "HCAppMgr.h"
 #import "HCDataMgr.h"
-//#import "HCDictionaryMgr.h"
+#import "HCDictionaryMgr.h"
 #import "MJExtension.h"
 #import "SDImageCache.h"
 
@@ -27,4 +29,6 @@
 #import "EMAlertView.h"
 #import "EaseMob.h"
 
-#endif /* Header_pch */
+#endif
+
+//#endif /* Header_pch */

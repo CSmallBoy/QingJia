@@ -701,6 +701,7 @@
 		0A8A4F821C1FD7FE00753D65 /* HCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */; };
 		0A8FFD3C1C322993001B2527 /* EaseUIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FFD3B1C322993001B2527 /* EaseUIResource.bundle */; };
 		0A8FFD401C323F3A001B2527 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FFD3E1C323F3A001B2527 /* back@2x.png */; };
+		0AA064A21C34E0730043AA58 /* FixFopen.c in Sources */ = {isa = PBXBuildFile; fileRef = 0AA064A11C34E0730043AA58 /* FixFopen.c */; };
 		0AA0EB981C1536F3007F7EAB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB971C1536F3007F7EAB /* AddressBook.framework */; };
 		0AA0EB9A1C1536FB007F7EAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */; };
 		0AA626B91C29862700EC62D9 /* HCFriendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA626B81C29862700EC62D9 /* HCFriendMessageViewController.m */; };
@@ -2055,6 +2056,7 @@
 		0A8A4F811C1FD7FE00753D65 /* HCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessageViewController.m; sourceTree = "<group>"; };
 		0A8FFD3B1C322993001B2527 /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
 		0A8FFD3E1C323F3A001B2527 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		0AA064A11C34E0730043AA58 /* FixFopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FixFopen.c; sourceTree = "<group>"; };
 		0AA0EB971C1536F3007F7EAB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		0AA626B71C29862700EC62D9 /* HCFriendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageViewController.h; sourceTree = "<group>"; };
@@ -3292,6 +3294,7 @@
 				0A6B7DAC1BF1EB6A008D54B3 /* Info.plist */,
 				0A418C1E1C148E9C0024DAC3 /* PushConfig.plist */,
 				0A6B7D9C1BF1EB6A008D54B3 /* main.m */,
+				0AA064A11C34E0730043AA58 /* FixFopen.c */,
 				0A6B7F9E1BF1EBA0008D54B3 /* Header.pch */,
 			);
 			name = "Supporting Files";
@@ -6607,6 +6610,7 @@
 				0AC40DC71C22B71D0074AA79 /* HCPublishTableViewCell.m in Sources */,
 				0A7CBCE91C31294E0051DD58 /* NSData+EMImageContentType.m in Sources */,
 				0A54912F1C2BC32D0085F50D /* ZXWifiParsedResult.m in Sources */,
+				0AA064A21C34E0730043AA58 /* FixFopen.c in Sources */,
 				0A5491871C2BC32D0085F50D /* ZXRSSExpandedRow.m in Sources */,
 				0A7CBD061C31294E0051DD58 /* NSString+Valid.m in Sources */,
 				0A6970EC1C2B8E820078BCC4 /* HCJoinGradeViewController.m in Sources */,

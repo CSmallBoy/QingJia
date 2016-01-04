@@ -101,7 +101,7 @@
 		25241F7AE9684266299A59930154C3AD /* PFFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B36C564274BFC9663FEC0ACDB5BAEA4 /* PFFileManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		25DA95FD68254285A1338C92D0B93867 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D3E52B5D20DE688D2081BAD70F71C4 /* TAAbstractDotView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		26562D7C85F2B89DC57359E62C46F141 /* PFMultiProcessFileLockController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DD903A5B0171E39FD43869B78391DD1 /* PFMultiProcessFileLockController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		265D40AC22A333B0E49C8F12E5A3AF3C /* MLEmojiLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 57DD22163B920D18990A52E90740F4E5 /* MLEmojiLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		265D40AC22A333B0E49C8F12E5A3AF3C /* MLEmojiLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3404FE27211484E09084277A37D382 /* MLEmojiLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2707730B6DB56F4F6525FFB7DD333F2D /* PFRESTPushCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = ED542102F5E8B6FBFB3A16FCC1338578 /* PFRESTPushCommand.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		273D55E4361D07CACFEFAE4ED1B58331 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45FCAFB17DCF4F2CD4A03045CDC991 /* AFURLResponseSerialization.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		27AC6FE955811DC15F0B468062CAACF2 /* YTKRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 37DB165323A2FDB2A68570287CE07B64 /* YTKRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -113,7 +113,7 @@
 		2989492A1A182744E36FD61DF1746D94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323FE7ACAE31818BD1D582E11D8FA21F /* Foundation.framework */; };
 		29E3A74FABB045121E8FD157EC74674A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CC2D7B1A0773D62DA01AD4B8DA5B79 /* CoreGraphics.framework */; };
 		2A39CE66C7973F15AD64DCE52F0AE3C4 /* PFUserController.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C9213FEEED2706CACBEC26BC58095 /* PFUserController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2A49EEFAFF9DFAFCD7B9867521F88A16 /* MLEmojiLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4710823662D0926189561C4D77467892 /* MLEmojiLabel.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2A49EEFAFF9DFAFCD7B9867521F88A16 /* MLEmojiLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6E9D6490EB22FE878AEC8DEE69D5F5 /* MLEmojiLabel.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		2AAE07E1B1BF8A301D825672143DC578 /* PFCommandCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 48D65319534BE4A629333DE10E36C086 /* PFCommandCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2BDD29CA0D42FCCCEA9FE8E4AAF0F8E9 /* PFConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 5505DFCD245853287166B40F153E4957 /* PFConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C1C388502EBFE4212DE311CE5C98C21 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 718343FECF9503C8C703B29BD4078DF9 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -423,7 +423,7 @@
 		AF0678651C447B9FABCBD51E7EB0A496 /* PFCloudCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA44C4A9B38E0767F132F9F4E4DCD95A /* PFCloudCodeController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		AF4B8A751CC7F2B67D024D4BF5945184 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE7C1354D2A0F1321FF835BAC785FC3 /* NSObject+MJProperty.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		AF6A02718537796173D59125A3271138 /* UIView+WebCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B060AC3856787A4241C8E8EFEC8B394 /* UIView+WebCacheOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AFCE6BB7FA5292B0CCF2DBC6E8ECC532 /* MLEmojiLabel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E07B4E198470EB6B27F38A0DAAB369BA /* MLEmojiLabel-dummy.m */; };
+		AFCE6BB7FA5292B0CCF2DBC6E8ECC532 /* MLEmojiLabel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C660E21C2EC3502B1B19177F4597B45F /* MLEmojiLabel-dummy.m */; };
 		AFD31A5A8A7EEE48B0997BFE07A0B755 /* YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 08F7C92D5E5033FF8BA2F3A8A6CEFEA0 /* YTKRequest.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		B060204C8768842DD256681FFC763B09 /* PFMutableRelationState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2777CC207059B7890C70BB4D0653E613 /* PFMutableRelationState.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B105B5B83F17325A42FCAC199F2440D2 /* PFBaseState.m in Sources */ = {isa = PBXBuildFile; fileRef = 202CF5E135E24CAA43DC4ABFFF20134D /* PFBaseState.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -905,6 +905,7 @@
 		1E5E33952BAD9743905148D2CCF9FD90 /* PFQueryUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFQueryUtilities.h; path = Parse/Internal/Query/Utilities/PFQueryUtilities.h; sourceTree = "<group>"; };
 		1E6AC52D855B5C5495D4CFB625ECDFDF /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
 		1E6B6873E24AB7C53B579150ECA43B4B /* FMDatabasePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
+		1E6E9D6490EB22FE878AEC8DEE69D5F5 /* MLEmojiLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MLEmojiLabel.m; path = Classes/MLEmojiLabel.m; sourceTree = "<group>"; };
 		1EA39959FB0371290E69D2A2144A6AC8 /* PFACLPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFACLPrivate.h; path = Parse/Internal/ACL/PFACLPrivate.h; sourceTree = "<group>"; };
 		1F2A8C4A1D1B68ECAEE92BDAA1153264 /* YTKNetwork.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YTKNetwork.xcconfig; sourceTree = "<group>"; };
 		1FBD00B7F32E216539D0694482BAF489 /* PFFieldOperationDecoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFFieldOperationDecoder.h; path = Parse/Internal/FieldOperation/PFFieldOperationDecoder.h; sourceTree = "<group>"; };
@@ -954,7 +955,6 @@
 		2E94644D602EF300236CE3BDF62DF0BF /* MBProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MBProgressHUD.xcconfig; sourceTree = "<group>"; };
 		2E9E7660A41B52D8E01E5E348A639B8A /* PFRelationState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFRelationState.m; path = Parse/Internal/Relation/State/PFRelationState.m; sourceTree = "<group>"; };
 		2EDF972E5C741B8EC6A2D7963F30C37B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
-		2F93781CC7506D3BD051297E0B1AEEE4 /* MLEmojiLabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MLEmojiLabel-prefix.pch"; sourceTree = "<group>"; };
 		2FDBA2B6B43BEA0B9725A59B6F13E853 /* YTKBatchRequestAgent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YTKBatchRequestAgent.h; path = YTKNetwork/YTKBatchRequestAgent.h; sourceTree = "<group>"; };
 		2FEEE68224EFEB710D8D4D321DC7C229 /* PFUserController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFUserController.m; path = Parse/Internal/User/Controller/PFUserController.m; sourceTree = "<group>"; };
 		308E470550650FAE51379F3451D6BA6D /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
@@ -1026,12 +1026,11 @@
 		43F24257487F6508B71F1796BE53640A /* IQKeyboardManager-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IQKeyboardManager-dummy.m"; sourceTree = "<group>"; };
 		44BFAE73F48E46CFF8409094BE898255 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = AFNetworking/AFURLRequestSerialization.m; sourceTree = "<group>"; };
 		44C5D0B4F19CF9F36D2FE63579A8AED9 /* MJRefreshAutoGifFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoGifFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoGifFooter.h; sourceTree = "<group>"; };
+		45D47DBCF00B4B703477B76E0C619A34 /* MLEmojiLabel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MLEmojiLabel.xcconfig; sourceTree = "<group>"; };
 		466BED5FFAD74B6CEA3F3D8D11C99F8E /* libSDCycleScrollView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDCycleScrollView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DEF87817A69F5BABE9F61FF5DD6AFA /* PFBaseState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFBaseState.h; path = Parse/Internal/PFBaseState.h; sourceTree = "<group>"; };
-		4710823662D0926189561C4D77467892 /* MLEmojiLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MLEmojiLabel.m; path = Classes/MLEmojiLabel.m; sourceTree = "<group>"; };
 		48D2B258D1F05ADB0324E92554C04A1E /* PFDataProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFDataProvider.h; path = Parse/Internal/PFDataProvider.h; sourceTree = "<group>"; };
 		48D65319534BE4A629333DE10E36C086 /* PFCommandCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFCommandCache.h; path = Parse/Internal/PFCommandCache.h; sourceTree = "<group>"; };
-		48EE199A99DC6B7854CCD1DDB0D9C8DC /* MLEmojiLabel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MLEmojiLabel.xcconfig; sourceTree = "<group>"; };
 		4992D09B96EA32BB83CBA538EE3CBBD1 /* MJRefreshComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshComponent.m; path = MJRefresh/Base/MJRefreshComponent.m; sourceTree = "<group>"; };
 		49B8ADE9E93E7DAB32C9234900C464E0 /* SDWebImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SDWebImage.xcconfig; sourceTree = "<group>"; };
 		49C338536042A72219DC7C1DCFE317D7 /* OpenGLView20.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OpenGLView20.h; path = EaseMobSDKFull/include/CallService/EMCallManager/types/OpenGLView20.h; sourceTree = "<group>"; };
@@ -1060,7 +1059,6 @@
 		50537651703FAAB54BFF22D6A57CD1C7 /* PFKeychainStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFKeychainStore.h; path = Parse/Internal/PFKeychainStore.h; sourceTree = "<group>"; };
 		50E22352C6C3C5D6F301FD7D023E5057 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		5123B46D69CAFA1EB0E39D0B9FF3C9BC /* PFSession_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFSession_Private.h; path = Parse/Internal/Session/PFSession_Private.h; sourceTree = "<group>"; };
-		517AD10CD8448F3991F39596B7E0B91D /* MLEmoji_Expression.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = MLEmoji_Expression.plist; path = Classes/MLEmoji_Expression.plist; sourceTree = "<group>"; };
 		517FC88BE56AD7D71DA6E4A3768DEE43 /* PFNetworkCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFNetworkCommand.h; path = Parse/Internal/PFNetworkCommand.h; sourceTree = "<group>"; };
 		522C669AC870B6237B641EABCDE1A92A /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImagePrefetcher.m; path = SDWebImage/SDWebImagePrefetcher.m; sourceTree = "<group>"; };
 		52AF354DFF43DCC09807CC8D96075AE0 /* PFHTTPURLRequestConstructor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFHTTPURLRequestConstructor.h; path = Parse/Internal/HTTPRequest/PFHTTPURLRequestConstructor.h; sourceTree = "<group>"; };
@@ -1089,7 +1087,6 @@
 		569B0B8CAC279A8E108D4443A6EFCCEE /* PFDefaultACLController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFDefaultACLController.m; path = Parse/Internal/ACL/DefaultACLController/PFDefaultACLController.m; sourceTree = "<group>"; };
 		5746188AA7B74F9930922B9BD216A93B /* PFCurrentInstallationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFCurrentInstallationController.m; path = Parse/Internal/Installation/CurrentInstallationController/PFCurrentInstallationController.m; sourceTree = "<group>"; };
 		576CBA5B34F6BA2C377FBFC89FD09049 /* PFObjectLocalIdStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFObjectLocalIdStore.h; path = Parse/Internal/Object/LocalIdStore/PFObjectLocalIdStore.h; sourceTree = "<group>"; };
-		57DD22163B920D18990A52E90740F4E5 /* MLEmojiLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MLEmojiLabel.h; path = Classes/MLEmojiLabel.h; sourceTree = "<group>"; };
 		57E1F18980B298D97D0A126D2AB8E3F6 /* PFDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFDevice.h; path = Parse/Internal/PFDevice.h; sourceTree = "<group>"; };
 		588BC3E1598CB5CFDD105F6B62F1C754 /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIProgressView+AFNetworking.m"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
 		58CC2B189E8DC327C62EA8132772F961 /* PFOperationSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFOperationSet.m; path = Parse/Internal/Object/OperationSet/PFOperationSet.m; sourceTree = "<group>"; };
@@ -1156,7 +1153,6 @@
 		6AC8D7BDF37C49B3BC4CCE8B94CD00CF /* PFMutableFileState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFMutableFileState.h; path = Parse/Internal/File/State/PFMutableFileState.h; sourceTree = "<group>"; };
 		6B36C564274BFC9663FEC0ACDB5BAEA4 /* PFFileManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFFileManager.h; path = Parse/Internal/PFFileManager.h; sourceTree = "<group>"; };
 		6B8A79939A861C5C701F6BC61A19B658 /* UIView+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+MJExtension.h"; path = "MJRefresh/UIView+MJExtension.h"; sourceTree = "<group>"; };
-		6BB65D2F5D65E30FD64FC0968FF070D8 /* MLEmoji_ExpressionImage.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = MLEmoji_ExpressionImage.plist; path = Classes/MLEmoji_ExpressionImage.plist; sourceTree = "<group>"; };
 		6BD3FD01B88B423F70DC6FBCD1841036 /* PFCurrentObjectControlling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFCurrentObjectControlling.h; path = Parse/Internal/Object/CurrentController/PFCurrentObjectControlling.h; sourceTree = "<group>"; };
 		6C7BE0E81DACD21D523F2694E85D98DE /* SDWebImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SDWebImage-dummy.m"; sourceTree = "<group>"; };
 		6CA6A3FE81D57749D3C18F7AD075E363 /* libMJRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMJRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1208,6 +1204,7 @@
 		7E2C35CB0B71BBD1278A42522A879FD1 /* EMGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EMGroup.h; path = EaseMobSDKFull/include/ChatService/EMChatManager/types/EMGroup.h; sourceTree = "<group>"; };
 		7E4A7C0F4D71817C35D28ADCA3171B08 /* PFSessionController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFSessionController.m; path = Parse/Internal/Session/Controller/PFSessionController.m; sourceTree = "<group>"; };
 		7E500EF2AE40337C6C4E6D01BF0127F9 /* PFFilePersistenceGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFFilePersistenceGroup.h; path = Parse/Internal/Persistence/Group/PFFilePersistenceGroup.h; sourceTree = "<group>"; };
+		7E9224A660168033180CF2D2DA5C055E /* MLEmoji_Expression.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = MLEmoji_Expression.bundle; path = Classes/MLEmoji_Expression.bundle; sourceTree = "<group>"; };
 		7EBCE68E57772FF82D610AFD992F69D6 /* FMDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
 		805696A2F8B2870C6BD0A78A52510BD5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		8110C290C275EF55EFEDFDB92554455F /* PFMutablePushState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFMutablePushState.m; path = Parse/Internal/Push/State/PFMutablePushState.m; sourceTree = "<group>"; };
@@ -1222,7 +1219,6 @@
 		84C97C5730B26F9C18026A9CD9839833 /* PFOfflineObjectController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFOfflineObjectController.h; path = Parse/Internal/Object/Controller/OfflineController/PFOfflineObjectController.h; sourceTree = "<group>"; };
 		84E970214B8AF01437327826E837EFC7 /* NSObject+MJCoding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MJCoding.h"; path = "MJExtension/NSObject+MJCoding.h"; sourceTree = "<group>"; };
 		854101E3C5DF4C4DAAA2F83A83E7886D /* NSString+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+MJExtension.h"; path = "MJExtension/NSString+MJExtension.h"; sourceTree = "<group>"; };
-		85AF7962E4278B1FDBA7847B457BA826 /* MLEmoji_Expression.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = MLEmoji_Expression.bundle; path = Classes/MLEmoji_Expression.bundle; sourceTree = "<group>"; };
 		85BC98B35B87934DB548FE685A938C5C /* PFACLState_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFACLState_Private.h; path = Parse/Internal/ACL/State/PFACLState_Private.h; sourceTree = "<group>"; };
 		85DF35630E4A9525238599DCAD574A7E /* NSObject+MJProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MJProperty.h"; path = "MJExtension/NSObject+MJProperty.h"; sourceTree = "<group>"; };
 		85F4C10A6FAFF24E637315850B0E3EF8 /* MJRefreshStateHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshStateHeader.m; path = MJRefresh/Custom/Header/MJRefreshStateHeader.m; sourceTree = "<group>"; };
@@ -1268,7 +1264,6 @@
 		91DC8178A0103338DBB9DCD0A12C8432 /* EMChatVideo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EMChatVideo.h; path = EaseMobSDKFull/include/ChatService/EMChatManager/types/EMChatVideo.h; sourceTree = "<group>"; };
 		92D934A5F5E0D106B0AA63CB4CE280A3 /* PFPush.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFPush.m; path = Parse/PFPush.m; sourceTree = "<group>"; };
 		93030F6AA5F75A9D9FA3BCDB71CA8C57 /* PFUserDefaultsPersistenceGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFUserDefaultsPersistenceGroup.m; path = Parse/Internal/Persistence/Group/PFUserDefaultsPersistenceGroup.m; sourceTree = "<group>"; };
-		9326881AC3DD9673FDDC36C95035A770 /* gifexpression.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = gifexpression.bundle; path = Classes/MLEmoji_Expression.bundle/gifexpression.bundle; sourceTree = "<group>"; };
 		93C1DFDE9C99593A9267D58803E341BE /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableView+FDTemplateLayoutCell.h"; path = "Classes/UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
 		93CF61F160FC20718C4593DF6DA5FC45 /* PFThreadsafety.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFThreadsafety.h; path = Parse/Internal/ThreadSafety/PFThreadsafety.h; sourceTree = "<group>"; };
 		93D01D77DBDF742FADE947EA8D5F7AE3 /* PFErrorUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFErrorUtilities.h; path = Parse/Internal/PFErrorUtilities.h; sourceTree = "<group>"; };
@@ -1373,6 +1368,7 @@
 		B312142F99D1203E1915217420F5F02C /* BFCancellationToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFCancellationToken.h; path = Bolts/Common/BFCancellationToken.h; sourceTree = "<group>"; };
 		B339C11DFD00709AC05BF85BFCF482CC /* PFMutableUserState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFMutableUserState.h; path = Parse/Internal/User/State/PFMutableUserState.h; sourceTree = "<group>"; };
 		B45C78579598F3BD20277A30A245A324 /* IEMChatCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IEMChatCryptor.h; path = EaseMobSDKFull/include/ChatService/EMChatManager/types/IEMChatCryptor.h; sourceTree = "<group>"; };
+		B4B53D26E6D25E492D2E0677685A72F8 /* MLEmojiLabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MLEmojiLabel-prefix.pch"; sourceTree = "<group>"; };
 		B4CE314701C9FB9AB59C792689CE327C /* PFObjectPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFObjectPrivate.h; path = Parse/Internal/Object/PFObjectPrivate.h; sourceTree = "<group>"; };
 		B57F6691084206D1D247ABCAA86C6DBF /* PFAnalyticsController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFAnalyticsController.m; path = Parse/Internal/Analytics/Controller/PFAnalyticsController.m; sourceTree = "<group>"; };
 		B66C08638C45569BD95EFEB9F0C0AEF1 /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
@@ -1423,6 +1419,7 @@
 		C6151DF00443D2B50E7CC42E03FB807A /* PFObjectController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFObjectController.h; path = Parse/Internal/Object/Controller/PFObjectController.h; sourceTree = "<group>"; };
 		C6307F791E482BD69E495FBF06547649 /* YTKNetworkPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YTKNetworkPrivate.h; path = YTKNetwork/YTKNetworkPrivate.h; sourceTree = "<group>"; };
 		C64EA14371C9EDB07A7A0E10F86DBE5B /* PFUser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFUser.m; path = Parse/PFUser.m; sourceTree = "<group>"; };
+		C660E21C2EC3502B1B19177F4597B45F /* MLEmojiLabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MLEmojiLabel-dummy.m"; sourceTree = "<group>"; };
 		C6A4767BAAFF589F883905AEDF063045 /* SDWebImageDecoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDecoder.m; path = SDWebImage/SDWebImageDecoder.m; sourceTree = "<group>"; };
 		C6F5C82228BB3FE691C41BECF774AF4C /* MJRefresh.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MJRefresh.xcconfig; sourceTree = "<group>"; };
 		C75EA134660C7179D44CE8074E97025A /* libTTTAttributedLabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTTTAttributedLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1475,6 +1472,7 @@
 		D582823F028E4E2E78BDD80BCB8C0E92 /* PFUserAuthenticationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFUserAuthenticationController.h; path = Parse/Internal/User/AuthenticationProviders/Controller/PFUserAuthenticationController.h; sourceTree = "<group>"; };
 		D5BCBC09E21720173F65D6F3E6387443 /* Parse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Parse.m; path = Parse/Parse.m; sourceTree = "<group>"; };
 		D5DAE2AD037CA9211A15F0F1B229D4EC /* Bolts-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bolts-prefix.pch"; sourceTree = "<group>"; };
+		D61C2FDF191F30399C2D0B330F279D05 /* MLEmoji_ExpressionImage.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = MLEmoji_ExpressionImage.plist; path = Classes/MLEmoji_ExpressionImage.plist; sourceTree = "<group>"; };
 		D6532805A7996CFFBBC1F052217ED720 /* PFRESTFileCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFRESTFileCommand.h; path = Parse/Internal/Commands/PFRESTFileCommand.h; sourceTree = "<group>"; };
 		D66AD44791812ABDF9880DFDC065585A /* MJDictionaryCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJDictionaryCache.h; path = MJExtension/MJDictionaryCache.h; sourceTree = "<group>"; };
 		D6BAD32AE7BA34E5948DE9B0E99D08D2 /* IChatManagerPushNotification.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IChatManagerPushNotification.h; path = EaseMobSDKFull/include/ChatService/EMChatManager/internal/IChatManagerPushNotification.h; sourceTree = "<group>"; };
@@ -1496,6 +1494,7 @@
 		DB5B2643BC7591E25373F563AD84F0BA /* PFUserState_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFUserState_Private.h; path = Parse/Internal/User/State/PFUserState_Private.h; sourceTree = "<group>"; };
 		DB8C1127B61B0C998A8E39DA011AE24C /* PFFileState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFFileState.h; path = Parse/Internal/File/State/PFFileState.h; sourceTree = "<group>"; };
 		DD1D313658D1D4D4DCEBDFD461D2B502 /* PFEncoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFEncoder.m; path = Parse/Internal/PFEncoder.m; sourceTree = "<group>"; };
+		DE01F6EBB7C699E124F7AA7751009301 /* gifexpression.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = gifexpression.bundle; path = Classes/MLEmoji_Expression.bundle/gifexpression.bundle; sourceTree = "<group>"; };
 		DE3D5B4D0DBBCA738FD2B28F399C5614 /* PFCommandRunningConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFCommandRunningConstants.m; path = Parse/Internal/Commands/CommandRunner/PFCommandRunningConstants.m; sourceTree = "<group>"; };
 		DE70B7D1719BE93C67DAAD8DFD38323C /* PFInstallationIdentifierStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFInstallationIdentifierStore.h; path = Parse/Internal/Installation/InstallationIdentifierStore/PFInstallationIdentifierStore.h; sourceTree = "<group>"; };
 		DE7D8CA8D7EFC4C0EB9EBF10D20454AF /* PFAsyncTaskQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFAsyncTaskQueue.h; path = Parse/Internal/PFAsyncTaskQueue.h; sourceTree = "<group>"; };
@@ -1508,7 +1507,6 @@
 		DFE998E45ED5A747D9336D159429DCE4 /* PFRESTCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFRESTCommand.h; path = Parse/Internal/Commands/PFRESTCommand.h; sourceTree = "<group>"; };
 		E002E26BC0A45104B7DE8823715E5DC6 /* YTKBaseRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YTKBaseRequest.m; path = YTKNetwork/YTKBaseRequest.m; sourceTree = "<group>"; };
 		E01B2AA5273111DA84A6023FAA71D26A /* EMRobot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EMRobot.h; path = EaseMobSDKFull/include/ChatService/EMChatManager/types/EMRobot.h; sourceTree = "<group>"; };
-		E07B4E198470EB6B27F38A0DAAB369BA /* MLEmojiLabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MLEmojiLabel-dummy.m"; sourceTree = "<group>"; };
 		E0F1DBDFFC114780644EB9A6CF4DB00C /* PFFieldOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFFieldOperation.m; path = Parse/Internal/FieldOperation/PFFieldOperation.m; sourceTree = "<group>"; };
 		E140FD0D83339C6DDB2AD720DECB90B7 /* PFMutableUserState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFMutableUserState.m; path = Parse/Internal/User/State/PFMutableUserState.m; sourceTree = "<group>"; };
 		E21B2AD5CC74DEC3A360E7CCB568988E /* IChatManagerChatroom.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IChatManagerChatroom.h; path = EaseMobSDKFull/include/ChatService/EMChatManager/internal/IChatManagerChatroom.h; sourceTree = "<group>"; };
@@ -1533,6 +1531,7 @@
 		E9033865CD8B00B42CAF9E90BC679EAF /* EMChatManagerDefs.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EMChatManagerDefs.h; path = EaseMobSDKFull/include/ChatService/EMChatManager/EMChatManagerDefs.h; sourceTree = "<group>"; };
 		E97B130940C8BA43F01845745DADEB6F /* SDWebImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloader.h; path = SDWebImage/SDWebImageDownloader.h; sourceTree = "<group>"; };
 		E988C33C42562BC633EBCE15D468BA7C /* PFMutableRelationState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFMutableRelationState.m; path = Parse/Internal/Relation/State/PFMutableRelationState.m; sourceTree = "<group>"; };
+		EA3404FE27211484E09084277A37D382 /* MLEmojiLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MLEmojiLabel.h; path = Classes/MLEmojiLabel.h; sourceTree = "<group>"; };
 		EA3428670A7F67ABE49D51C844EAE43B /* SZTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SZTextView.m; path = Classes/SZTextView.m; sourceTree = "<group>"; };
 		EAAC1D31801008D312CAF07C64160AC5 /* IQKeyboardManagerConstantsInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQKeyboardManagerConstantsInternal.h; path = IQKeyBoardManager/Constants/IQKeyboardManagerConstantsInternal.h; sourceTree = "<group>"; };
 		EAB6728333978F612599C8BB5E777043 /* PFRESTObjectBatchCommand.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFRESTObjectBatchCommand.m; path = Parse/Internal/Commands/PFRESTObjectBatchCommand.m; sourceTree = "<group>"; };
@@ -1905,17 +1904,6 @@
 				A8DFCF19AB848BC1FD79E715B9B9E30C /* MAMapKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1F694010576AD5A70BFA0585881CE961 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				9326881AC3DD9673FDDC36C95035A770 /* gifexpression.bundle */,
-				85AF7962E4278B1FDBA7847B457BA826 /* MLEmoji_Expression.bundle */,
-				517AD10CD8448F3991F39596B7E0B91D /* MLEmoji_Expression.plist */,
-				6BB65D2F5D65E30FD64FC0968FF070D8 /* MLEmoji_ExpressionImage.plist */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		24A86FE55145BF585FDB9D18A0A013B5 /* Frameworks */ = {
@@ -2477,17 +2465,6 @@
 			path = Parse;
 			sourceTree = "<group>";
 		};
-		5A08DAC8CABD3C983B8708B07D7217B4 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				48EE199A99DC6B7854CCD1DDB0D9C8DC /* MLEmojiLabel.xcconfig */,
-				E07B4E198470EB6B27F38A0DAAB369BA /* MLEmojiLabel-dummy.m */,
-				2F93781CC7506D3BD051297E0B1AEEE4 /* MLEmojiLabel-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/MLEmojiLabel";
-			sourceTree = "<group>";
-		};
 		5DB11A7C2599320C68BFF689ED5B7505 /* IQKeyboardManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -2581,6 +2558,17 @@
 			path = "UITableView+FDTemplateLayoutCell";
 			sourceTree = "<group>";
 		};
+		7062D5BD1F6C556D12A095C24A59A126 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				45D47DBCF00B4B703477B76E0C619A34 /* MLEmojiLabel.xcconfig */,
+				C660E21C2EC3502B1B19177F4597B45F /* MLEmojiLabel-dummy.m */,
+				B4B53D26E6D25E492D2E0677685A72F8 /* MLEmojiLabel-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MLEmojiLabel";
+			sourceTree = "<group>";
+		};
 		7153DA975839B7330513BDC4168FD3F8 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -2599,17 +2587,6 @@
 				658B110615C3D2AD4DBE4761A3FD0EA0 /* AFSecurityPolicy.m */,
 			);
 			name = Security;
-			sourceTree = "<group>";
-		};
-		78E6FEBB53E7572AF17F4A4F6F17058B /* MLEmojiLabel */ = {
-			isa = PBXGroup;
-			children = (
-				57DD22163B920D18990A52E90740F4E5 /* MLEmojiLabel.h */,
-				4710823662D0926189561C4D77467892 /* MLEmojiLabel.m */,
-				1F694010576AD5A70BFA0585881CE961 /* Resources */,
-				5A08DAC8CABD3C983B8708B07D7217B4 /* Support Files */,
-			);
-			path = MLEmojiLabel;
 			sourceTree = "<group>";
 		};
 		7CF309FE3570088F22785A82D5945C42 /* Resources */ = {
@@ -3001,6 +2978,17 @@
 			name = Tasks;
 			sourceTree = "<group>";
 		};
+		C6999FEB8CEB6DCB41453C6FAC87AD8A /* MLEmojiLabel */ = {
+			isa = PBXGroup;
+			children = (
+				EA3404FE27211484E09084277A37D382 /* MLEmojiLabel.h */,
+				1E6E9D6490EB22FE878AEC8DEE69D5F5 /* MLEmojiLabel.m */,
+				F8E1EF41C27A9499CE9115C99E032F7D /* Resources */,
+				7062D5BD1F6C556D12A095C24A59A126 /* Support Files */,
+			);
+			path = MLEmojiLabel;
+			sourceTree = "<group>";
+		};
 		DB12F564DB831107012523388C21E608 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -3050,6 +3038,16 @@
 			name = Reachability;
 			sourceTree = "<group>";
 		};
+		F8E1EF41C27A9499CE9115C99E032F7D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DE01F6EBB7C699E124F7AA7751009301 /* gifexpression.bundle */,
+				7E9224A660168033180CF2D2DA5C055E /* MLEmoji_Expression.bundle */,
+				D61C2FDF191F30399C2D0B330F279D05 /* MLEmoji_ExpressionImage.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		F957F3AE0EAC54571C634B9276EB4107 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3066,7 +3064,7 @@
 				B6128BF217C630439E858E1C4D2B9C0C /* MBProgressHUD */,
 				BD36E7768B66330CC3A76F8137C1FB01 /* MJExtension */,
 				B0B858824C9DBC1A6E580669C831C5DD /* MJRefresh */,
-				78E6FEBB53E7572AF17F4A4F6F17058B /* MLEmojiLabel */,
+				C6999FEB8CEB6DCB41453C6FAC87AD8A /* MLEmojiLabel */,
 				59AA88540AF9A987932B057A35838CBF /* Parse */,
 				44BE6EE515C7A9FEE3B7BD5BE86EC585 /* SDCycleScrollView */,
 				4A4A2B7767C0F2DB1146F6E1F4DBE201 /* SDWebImage */,
@@ -4539,7 +4537,7 @@
 		};
 		0E21BAFA8BE3D2C0C4522ADC6E656EF3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48EE199A99DC6B7854CCD1DDB0D9C8DC /* MLEmojiLabel.xcconfig */;
+			baseConfigurationReference = 45D47DBCF00B4B703477B76E0C619A34 /* MLEmojiLabel.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/MLEmojiLabel/MLEmojiLabel-prefix.pch";
@@ -4575,7 +4573,7 @@
 		};
 		1C6FF530CC03039E9F950BDB5BFAB45E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48EE199A99DC6B7854CCD1DDB0D9C8DC /* MLEmojiLabel.xcconfig */;
+			baseConfigurationReference = 45D47DBCF00B4B703477B76E0C619A34 /* MLEmojiLabel.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/MLEmojiLabel/MLEmojiLabel-prefix.pch";
