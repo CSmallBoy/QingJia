@@ -74,7 +74,7 @@
                                 <constraint firstAttribute="height" constant="44" id="qXA-hc-lJi"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="qXA-hc-lJi"/>

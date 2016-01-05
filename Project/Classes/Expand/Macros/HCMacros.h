@@ -11,10 +11,10 @@
 /* ********************系统配置********************* */
 
 //定义一个API
-#define kAPIURL          @"http://zp.ysrlin.com/api"            //外网
+#define kAPIURL          @"http://192.168.10.199:8010/"            //外网
 //#define kAPIURL             @"https://baidu.com"
 
-#define kIMGURL        @"http://172.16.171.62:8080/hcn-web-0.1/"
+#define kIMGURL        @"http://192.168.10.199:8010/"
 
 //appstore更新地址
 #define APP_STORE_URL   @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=890849784"

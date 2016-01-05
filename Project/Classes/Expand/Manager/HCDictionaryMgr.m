@@ -27,5 +27,11 @@
     return dic[key];
 }
 
++ (NSString *)getSexStringWithKey:(NSString *)key
+{
+    NSDictionary *dic = @{@"0": @"男", @"1": @"女"};
+    return dic[key];
+}
+
 
 @end

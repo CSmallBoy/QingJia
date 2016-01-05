@@ -149,17 +149,17 @@
                         </mask>
                         <mask key="constraints">
                             <exclude reference="MB3-29-7yz"/>
-                            <exclude reference="1ik-dK-2E3"/>
-                            <exclude reference="r00-MG-ZRw"/>
+                            <exclude reference="MNG-ap-CFE"/>
+                            <exclude reference="Rgf-7B-BT0"/>
+                            <exclude reference="YMl-92-oU0"/>
                             <exclude reference="Nun-nj-wEp"/>
                             <exclude reference="jzz-fX-pNG"/>
                             <exclude reference="mVs-q2-GVY"/>
                             <exclude reference="FOU-3m-2Yd"/>
                             <exclude reference="bsz-qL-6IX"/>
                             <exclude reference="wsl-Lf-XSe"/>
-                            <exclude reference="MNG-ap-CFE"/>
-                            <exclude reference="Rgf-7B-BT0"/>
-                            <exclude reference="YMl-92-oU0"/>
+                            <exclude reference="1ik-dK-2E3"/>
+                            <exclude reference="r00-MG-ZRw"/>
                             <exclude reference="9gE-CO-zUy"/>
                             <exclude reference="M5p-4f-Yxz"/>
                         </mask>
@@ -174,17 +174,17 @@
                         </mask>
                         <mask key="constraints">
                             <include reference="MB3-29-7yz"/>
-                            <include reference="1ik-dK-2E3"/>
-                            <include reference="r00-MG-ZRw"/>
+                            <include reference="MNG-ap-CFE"/>
+                            <include reference="Rgf-7B-BT0"/>
+                            <include reference="YMl-92-oU0"/>
                             <include reference="Nun-nj-wEp"/>
                             <include reference="jzz-fX-pNG"/>
                             <include reference="mVs-q2-GVY"/>
                             <include reference="FOU-3m-2Yd"/>
                             <include reference="bsz-qL-6IX"/>
                             <include reference="wsl-Lf-XSe"/>
-                            <include reference="MNG-ap-CFE"/>
-                            <include reference="Rgf-7B-BT0"/>
-                            <include reference="YMl-92-oU0"/>
+                            <include reference="1ik-dK-2E3"/>
+                            <include reference="r00-MG-ZRw"/>
                             <include reference="9gE-CO-zUy"/>
                             <include reference="M5p-4f-Yxz"/>
                         </mask>
@@ -326,6 +326,9 @@
                     <exclude reference="Pmg-cA-snM"/>
                     <exclude reference="VXo-DM-lXH"/>
                     <exclude reference="j4U-Yf-ca8"/>
+                    <exclude reference="3vD-bC-eg4"/>
+                    <exclude reference="gsF-56-0V3"/>
+                    <exclude reference="mle-ap-IoN"/>
                     <exclude reference="2vp-5V-2ax"/>
                     <exclude reference="b2n-W9-eg7"/>
                     <exclude reference="9lW-Ix-GZi"/>
@@ -333,12 +336,9 @@
                     <exclude reference="TLG-95-ujD"/>
                     <exclude reference="bax-hK-LJZ"/>
                     <exclude reference="v56-8Y-bGX"/>
-                    <exclude reference="n7M-Gn-IF6"/>
                     <exclude reference="ho8-tZ-bbK"/>
                     <exclude reference="tji-AL-BqD"/>
-                    <exclude reference="3vD-bC-eg4"/>
-                    <exclude reference="gsF-56-0V3"/>
-                    <exclude reference="mle-ap-IoN"/>
+                    <exclude reference="n7M-Gn-IF6"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -355,6 +355,9 @@
                     <include reference="Pmg-cA-snM"/>
                     <include reference="VXo-DM-lXH"/>
                     <include reference="j4U-Yf-ca8"/>
+                    <include reference="3vD-bC-eg4"/>
+                    <include reference="gsF-56-0V3"/>
+                    <include reference="mle-ap-IoN"/>
                     <include reference="2vp-5V-2ax"/>
                     <include reference="b2n-W9-eg7"/>
                     <include reference="9lW-Ix-GZi"/>
@@ -362,12 +365,9 @@
                     <exclude reference="TLG-95-ujD"/>
                     <include reference="bax-hK-LJZ"/>
                     <include reference="v56-8Y-bGX"/>
-                    <include reference="n7M-Gn-IF6"/>
                     <include reference="ho8-tZ-bbK"/>
                     <include reference="tji-AL-BqD"/>
-                    <include reference="3vD-bC-eg4"/>
-                    <include reference="gsF-56-0V3"/>
-                    <include reference="mle-ap-IoN"/>
+                    <include reference="n7M-Gn-IF6"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="351" y="430"/>

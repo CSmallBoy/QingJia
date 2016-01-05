@@ -577,6 +577,12 @@
     return @"";
 }
 
++ (NSDictionary *)getRequestHeadWithAction:(NSString *)action
+{
+    NSDictionary *dic = @{@"Action": action, @"UUID": [HCAppMgr manager].uuid, @"PlatForm": [HCAppMgr manager].systemVersion};
+    return dic;
+}
+
 
 // 得到中间显示200为橘色的文字
 + (NSMutableAttributedString *)changeStringColorWithStart:(NSString *)start colorString:(NSString *)colorStr end:(NSString *)end

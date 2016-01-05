@@ -53,7 +53,7 @@
     //    {
     //        DLog(@"加载欢迎页面,测试的取反");
     //    }
-    if ([HCAccountMgr manager].isLogined || [HCAppMgr manager].showInstroView)
+    if (![HCAccountMgr manager].isLogined)
     {
         HCLoginViewController *login = [[HCLoginViewController alloc]init];
         UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:login];
@@ -165,6 +165,14 @@ didFinishLaunchingWithOptions:launchOptions
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
 {
     DLog(@"%s, didUpdateLocation = {lat:%f; lon:%f;}", __func__, location.coordinate.latitude, location.coordinate.longitude);
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (!IsEmpty(placemarks))
+        {
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            [HCAppMgr manager].address = placemark.name;
+        }
+    }];
     [HCAppMgr manager].latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
     [HCAppMgr manager].longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
     

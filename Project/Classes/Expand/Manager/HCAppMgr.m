@@ -55,6 +55,24 @@ static HCAppMgr *_sharedManager = nil;
 
 #pragma mark - Setters & Getters
 
+- (NSString *)uuid
+{
+    if (!_uuid)
+    {
+        _uuid = [UIDevice currentDevice].identifierForVendor.UUIDString;
+    }
+    return _uuid;
+}
+
+- (NSString *)systemVersion
+{
+    if (!_systemVersion)
+    {
+        _systemVersion = [NSString stringWithFormat:@"IOS%@", [Utils getDeviceVersion]];
+    }
+    return _systemVersion;
+}
+
 /**
  *  是否首次启动程序，启动加载页
  *

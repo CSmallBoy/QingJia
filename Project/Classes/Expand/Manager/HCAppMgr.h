@@ -20,6 +20,10 @@
 @property (nonatomic, strong) NSString *latitude; // 纬度
 @property (nonatomic, strong) NSString *longitude; // 经度
 
+// Device
+@property (nonatomic, strong) NSString *uuid;
+@property (nonatomic, strong) NSString *systemVersion;
+
 
 //创建单例
 + (instancetype)manager;

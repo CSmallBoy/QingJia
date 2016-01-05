@@ -8,6 +8,7 @@
 
 #import "HCPerfectMessageViewController.h"
 #import "HCGradeViewController.h"
+#import "HCPerfectMessageApi.h"
 
 @interface HCPerfectMessageViewController ()
 
@@ -46,21 +47,21 @@
 }
 - (IBAction)registerButton:(UIButton *)sender
 {
-//    if (IsEmpty(_nameTextField.text))
-//    {
-//        [self showHUDText:@"请输入姓名"];
-//        return;
-//    }
-//    if (IsEmpty(_password.text) || IsEmpty(_repassword.text))
-//    {
-//        [self showHUDText:@"请输入密码"];
-//        return;
-//    }
-//    if ([_password.text isEqualToString:_repassword.text])
-//    {
-//        [self showHUDText:@"输入的密码不一致"];
-//        return;
-//    }
+    if (IsEmpty(_nameTextField.text))
+    {
+        [self showHUDText:@"请输入姓名"];
+        return;
+    }
+    if (IsEmpty(_password.text) || IsEmpty(_repassword.text))
+    {
+        [self showHUDText:@"请输入密码"];
+        return;
+    }
+    if (![_password.text isEqualToString:_repassword.text])
+    {
+        [self showHUDText:@"输入的密码不一致"];
+        return;
+    }
     [self requestPerfectMessage];
 }
 
@@ -80,9 +81,32 @@
 
 - (void)requestPerfectMessage
 {
-#warning 请求成功后执行
-    HCGradeViewController *grade = [[HCGradeViewController alloc] init];
-    [self.navigationController pushViewController:grade animated:YES];
+    [self showHUDView:nil];
+    
+    HCPerfectMessageApi *api = [[HCPerfectMessageApi alloc] init];
+    api.UserName = self.data[@"phonenumber"];
+    api.Token = self.data[@"token"];
+    api.TrueName = _nameTextField.text;
+    api.UserPWD = _password.text;
+    api.Address = [HCAppMgr manager].address;
+    NSString *key = @"0";
+    if (_womenBtn.selected)
+    {
+        key = @"1";
+    }
+    api.Sex = [HCDictionaryMgr getSexStringWithKey:key];
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *data) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self hideHUDView];
+            HCGradeViewController *grade = [[HCGradeViewController alloc] init];
+            [self.navigationController pushViewController:grade animated:YES];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
 }
 
 @end

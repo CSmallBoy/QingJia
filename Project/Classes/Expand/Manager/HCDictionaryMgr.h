@@ -14,7 +14,7 @@
 
 + (NSString *)applyReissueReason:(NSString *)key;
 + (NSString *)applyReturnReason:(NSString *)key;
-
++ (NSString *)getSexStringWithKey:(NSString *)key;
 
 @end
 

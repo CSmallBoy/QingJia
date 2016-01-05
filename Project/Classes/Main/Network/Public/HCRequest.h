@@ -11,7 +11,7 @@
 typedef NS_ENUM(NSInteger , HCRequestStatus) {
     /*来自服务器定义*/
     //正常
-    HCRequestStatusSuccess                   = 1,
+    HCRequestStatusSuccess                   = 100,
     HCRequestStatusLoginUserNotFound         = 404,
     HCRequestStatusLoginUserPasswordNotRight = 501,
     HCRequestStatusLoginInOtherDevice        = 615,     //账号在其他设备登录

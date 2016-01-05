@@ -9,6 +9,8 @@
 #import "HCRegistViewController.h"
 #import "HCPerfectMessageViewController.h"
 #import "TOWebViewController.h"
+#import "HCGetCodeApi.h"
+#import "HCCheckCodeApi.h"
 
 @interface HCRegistViewController ()
 
@@ -75,7 +77,7 @@
         return;
     }
     [self startTimer];
-    [self requestCheckCode];
+    [self requestGetCode];
 }
 
 //显示注册协议详情
@@ -98,49 +100,64 @@
 //点击 下一步
 -(IBAction)nextBtnClick:(id)sender
 {
-//    if (![Utils checkPhoneNum:_mobileTextField.text]) {
-//        [self showHUDText:@"输入正确的手机号"];
-//        return;
-//    }
-//    if (_checkNumTextField.text.length < 4) {
-//        [self showHUDText:@"输入正确的验证码"];
-//        return;
-//    }
-#warning 发送验证码到服务器
-    HCPerfectMessageViewController *perfect = [[HCPerfectMessageViewController alloc] init];
-    [self.navigationController pushViewController:perfect animated:YES];
+    if (![Utils checkPhoneNum:_mobileTextField.text]) {
+        [self showHUDText:@"输入正确的手机号"];
+        return;
+    }
+    if (_checkNumTextField.text.length < 4) {
+        [self showHUDText:@"输入正确的验证码"];
+        return;
+    }
+    [self requestCheckCode];
 }
 
 #pragma mark - network
 
 //获取验证码
+
+- (void)requestGetCode
+{
+    [self showHUDView:nil];
+    
+    HCGetCodeApi *api = [[HCGetCodeApi alloc] init];
+    api.phoneNumber = _mobileTextField.text;
+    api.thetype = 1000;
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data)
+    {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self showHUDSuccess:@"获取成功"];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
+}
+
+// 校验验证码
+
 - (void)requestCheckCode
 {
     [self showHUDView:nil];
     
-    NSDictionary *dic = @{@"t": @"User,msgCode", @"phone": _mobileTextField.text};
-    _baseRequest = [[HCJsonRequestApi alloc] initWithBody:dic];
+    HCCheckCodeApi *api = [[HCCheckCodeApi alloc] init];
+    api.PhoneNumber = _mobileTextField.text;
+    api.theCode = [_checkNumTextField.text integerValue];
+    api.theType = 1000;
     
-    [_baseRequest startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request){
-        NSDictionary *data = (NSDictionary *)request.responseJSONObject;
-        [self parseCheckCode:data];
-        
-    } failure:^(YTKBaseRequest *request){
-        DLog(@"error:%@",request.requestOperation.error);
-        [self showErrorHint:request.requestOperation.error];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self hideHUDView];
+            HCPerfectMessageViewController *perfect = [[HCPerfectMessageViewController alloc] init];
+            perfect.data = @{@"phonenumber": _mobileTextField.text, @"token": data[@"Token"]};
+            [self.navigationController pushViewController:perfect animated:YES];
+        }else
+        {
+            [self showHUDError:message];
+        }
     }];
-}
-
-//解析验证码
-- (void)parseCheckCode:(NSDictionary *)data
-{
-    int code = [data[@"data"] intValue];
-    NSString *msg = data[@"msg"];
-    if (code == 1) {
-        [self showHUDSuccess:@"发送成功"];
-    }else {
-        [self showHUDError:msg];
-    }
 }
 
 

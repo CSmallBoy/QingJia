@@ -12,8 +12,8 @@
 
 //私有定义
 //来自服务端定义
-#define KCodeStatus           @"state"
-#define KMessage              @"msg"
+#define KCodeStatus           @"Code"
+#define KMessage              @"Message"
 #define KBody                 @"data"
 //#define kXAuthFailedCode      @"X-Auth-Failed-Code"
 
@@ -30,7 +30,6 @@
 - (YTKRequestMethod)requestMethod
 {
     return YTKRequestMethodGet;
-    return YTKRequestMethodPost;
 }
 
 - (YTKRequestSerializerType)requestSerializerType
@@ -61,8 +60,14 @@
     
     [self startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
         
+        NSData *jsonData = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&err];
+        
         [self handleSuccess:requestBlock
-             responseObject:request.responseJSONObject
+             responseObject:dic
             responseHeaders:request.responseHeaders];
         
     } failure:^(YTKBaseRequest *request) {
@@ -92,8 +97,7 @@
             // 返回错误时, 需要解析message。服务器返回的错误没有用, 因为客户端需要显示中文。
             NSString *message = @"";
             if (status != HCRequestStatusSuccess) {
-//                message = [self formatMessage:status];
-                message = responseObject[@"msg"];
+                message = responseObject[@"Message"];
             }
             id object = [self formatResponseObject:responseObject];
             

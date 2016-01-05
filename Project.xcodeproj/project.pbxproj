@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A00860B1C3A6EF200E2BCF2 /* HCGetCodeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A00860A1C3A6EF200E2BCF2 /* HCGetCodeApi.m */; };
 		0A2A06C91BF4C9FB00B18497 /* HCFeedbackTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2A06C81BF4C9FB00B18497 /* HCFeedbackTextView.m */; };
 		0A3E57841C214E5E00AA4DB9 /* HCHomeMoreImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3E57831C214E5E00AA4DB9 /* HCHomeMoreImgView.m */; };
 		0A418C1D1C147D4B0024DAC3 /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A418C1C1C147D4B0024DAC3 /* libPushSDK-1.8.8.a */; };
@@ -332,6 +333,8 @@
 		0A6B7F9D1BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7F151BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m */; };
 		0A724EC51C06A20100E643D6 /* HCUserAlbumApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A724EC41C06A20100E643D6 /* HCUserAlbumApi.m */; };
 		0A79B2831BF313DD00788A66 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A79B2821BF313DD00788A66 /* CoreLocation.framework */; };
+		0A7BE9C01C3B723500173139 /* HCCheckCodeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7BE9BF1C3B723500173139 /* HCCheckCodeApi.m */; };
+		0A7BE9C31C3B802C00173139 /* HCPerfectMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7BE9C21C3B802C00173139 /* HCPerfectMessageApi.m */; };
 		0A7CBC881C31294D0051DD58 /* EMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CBAC21C31294D0051DD58 /* EMAlertView.m */; };
 		0A7CBC891C31294D0051DD58 /* EMGifImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CBAC51C31294D0051DD58 /* EMGifImage.m */; };
 		0A7CBC8A1C31294D0051DD58 /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBAC81C31294D0051DD58 /* sr_refresh.png */; };
@@ -876,6 +879,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A0086091C3A6EF200E2BCF2 /* HCGetCodeApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGetCodeApi.h; sourceTree = "<group>"; };
+		0A00860A1C3A6EF200E2BCF2 /* HCGetCodeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGetCodeApi.m; sourceTree = "<group>"; };
 		0A2A06C71BF4C9FB00B18497 /* HCFeedbackTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFeedbackTextView.h; sourceTree = "<group>"; };
 		0A2A06C81BF4C9FB00B18497 /* HCFeedbackTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFeedbackTextView.m; sourceTree = "<group>"; };
 		0A3E57821C214E5E00AA4DB9 /* HCHomeMoreImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeMoreImgView.h; sourceTree = "<group>"; };
@@ -1518,6 +1523,10 @@
 		0A724EC31C06A20100E643D6 /* HCUserAlbumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserAlbumApi.h; sourceTree = "<group>"; };
 		0A724EC41C06A20100E643D6 /* HCUserAlbumApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserAlbumApi.m; sourceTree = "<group>"; };
 		0A79B2821BF313DD00788A66 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0A7BE9BE1C3B723500173139 /* HCCheckCodeApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCheckCodeApi.h; sourceTree = "<group>"; };
+		0A7BE9BF1C3B723500173139 /* HCCheckCodeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCheckCodeApi.m; sourceTree = "<group>"; };
+		0A7BE9C11C3B802C00173139 /* HCPerfectMessageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPerfectMessageApi.h; sourceTree = "<group>"; };
+		0A7BE9C21C3B802C00173139 /* HCPerfectMessageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPerfectMessageApi.m; sourceTree = "<group>"; };
 		0A7CBAC11C31294D0051DD58 /* EMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAlertView.h; sourceTree = "<group>"; };
 		0A7CBAC21C31294D0051DD58 /* EMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAlertView.m; sourceTree = "<group>"; };
 		0A7CBAC41C31294D0051DD58 /* EMGifImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGifImage.h; sourceTree = "<group>"; };
@@ -5044,6 +5053,12 @@
 				0A65918A1C0411F300E91975 /* HCUserApi.m */,
 				0A724EC31C06A20100E643D6 /* HCUserAlbumApi.h */,
 				0A724EC41C06A20100E643D6 /* HCUserAlbumApi.m */,
+				0A0086091C3A6EF200E2BCF2 /* HCGetCodeApi.h */,
+				0A00860A1C3A6EF200E2BCF2 /* HCGetCodeApi.m */,
+				0A7BE9BE1C3B723500173139 /* HCCheckCodeApi.h */,
+				0A7BE9BF1C3B723500173139 /* HCCheckCodeApi.m */,
+				0A7BE9C11C3B802C00173139 /* HCPerfectMessageApi.h */,
+				0A7BE9C21C3B802C00173139 /* HCPerfectMessageApi.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -6475,6 +6490,7 @@
 				0AF96BDD1C0ECFB4007AD92F /* CFJInputView.m in Sources */,
 				0A67E76A1C239EF3005B8CD2 /* HCEditCommentViewController.m in Sources */,
 				0A7CBCD21C31294E0051DD58 /* EMCDDeviceManagerBase.m in Sources */,
+				0A7BE9C01C3B723500173139 /* HCCheckCodeApi.m in Sources */,
 				0A5491271C2BC32D0085F50D /* ZXTextParsedResult.m in Sources */,
 				0ABFC6281C2134BA00ED8164 /* HCFunctionTagView.m in Sources */,
 				0A5491E91C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.m in Sources */,
@@ -6557,6 +6573,7 @@
 				0A7CBCC11C31294E0051DD58 /* UserProfileEditViewController.m in Sources */,
 				C7692ED21C3A474D00582A10 /* HCFollowNotificationViewController.m in Sources */,
 				0A7CBCEB1C31294E0051DD58 /* UIImage+EMGIF.m in Sources */,
+				0A7BE9C31C3B802C00173139 /* HCPerfectMessageApi.m in Sources */,
 				0A54914D1C2BC32D0085F50D /* ZXDecodeHints.m in Sources */,
 				0A54919A1C2BC32D0085F50D /* ZXITFReader.m in Sources */,
 				0A5491B21C2BC32D0085F50D /* ZXPDF417DetectionResultColumn.m in Sources */,
@@ -6604,6 +6621,7 @@
 				0A5491A51C2BC32D0085F50D /* ZXUPCEANReader.m in Sources */,
 				0A54917A1C2BC32D0085F50D /* ZXAI01weightDecoder.m in Sources */,
 				0A7CBCEA1C31294E0051DD58 /* UIButton+EMWebCache.m in Sources */,
+				0A00860B1C3A6EF200E2BCF2 /* HCGetCodeApi.m in Sources */,
 				C7692EF31C3A474D00582A10 /* HCUnactivatedTagViewController.m in Sources */,
 				0A7CBD1D1C31294E0051DD58 /* EaseBubbleView+Text.m in Sources */,
 				0A5491541C2BC32D0085F50D /* ZXResult.m in Sources */,
