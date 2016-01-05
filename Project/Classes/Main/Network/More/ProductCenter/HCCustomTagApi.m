@@ -23,7 +23,7 @@
     
     [jsonDic setValue:[_info.contactInfoArr componentsJoinedByString:@","] forKey:@"contactInfo"];
     
-    NSDictionary *dic = @{@"t": @"User,info", @"uid": [HCAccountMgr manager].loginInfo.uid, @"update": jsonDic};
+    NSDictionary *dic = @{@"t": @"User,info", @"uid": [HCAccountMgr manager].loginInfo.Token, @"update": jsonDic};
     return dic;
 }
 

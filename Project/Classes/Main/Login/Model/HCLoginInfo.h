@@ -11,12 +11,18 @@
 @interface HCLoginInfo : NSObject
 
 
-@property (nonatomic, strong) NSString      *phone;
-@property (nonatomic, strong) NSString      *uid;
-@property (nonatomic, strong) NSString      *password;
-@property (nonatomic, strong) NSString      *token;
-@property (nonatomic, strong) NSString      *avatar;
-@property (nonatomic, strong) NSString      *username;
+@property (nonatomic, strong) NSString      *Token;
+@property (nonatomic, strong) NSString      *UUID;
+@property (nonatomic, strong) NSString      *PhoneNo;
+@property (nonatomic, strong) NSString      *UserName;
+@property (nonatomic, strong) NSString      *TrueName;
+@property (nonatomic, strong) NSString      *NickName;
+@property (nonatomic, strong) NSString      *Sex;
+@property (nonatomic, strong) NSString      *Age;
+@property (nonatomic, strong) NSString      *IsFMA;
+@property (nonatomic, strong) NSString      *DefaultFamilyID;
+@property (nonatomic, strong) NSString      *UserDescription;
+@property (nonatomic, strong) NSString      *UserPhoto;
 
 
 @end

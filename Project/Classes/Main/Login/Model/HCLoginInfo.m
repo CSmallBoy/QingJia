@@ -10,14 +10,5 @@
 
 @implementation HCLoginInfo
 
-//+ (NSDictionary *)replacedKeyFromPropertyName
-//{
-//    return @{
-//             @"userId" :        @"body.userId",
-//             @"userName" :      @"body.userName",
-//             @"avatar"  :   @"body.userAvatar",
-//             @"accessToken" :   @"properties.accessToken",
-//             };
-//}
 
 @end

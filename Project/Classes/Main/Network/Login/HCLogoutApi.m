@@ -12,7 +12,7 @@
 
 - (id)requestArgument
 {
-    return @{@"t": @"User,logout", @"token": [HCAccountMgr manager].loginInfo.token};
+    return @{@"t": @"User,logout", @"token": [HCAccountMgr manager].loginInfo.Token};
 }
 
 
