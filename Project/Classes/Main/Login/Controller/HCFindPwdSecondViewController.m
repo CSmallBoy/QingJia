@@ -9,6 +9,7 @@
 #import "HCFindPwdSecondViewController.h"
 #import "HCLoginViewController.h"
 #import "TOWebViewController.h"
+#import "AppDelegate.h"
 #import "HCChangePwdApi.h"
 
 @interface HCFindPwdSecondViewController ()
@@ -54,7 +55,18 @@
         [self showHUDText:@"请输入密码"];
         return;
     }
-//    [self requestChangePwd];
+    if (![_pwdTextField.text isEqualToString:_repwdTextField.text])
+    {
+        [self showHUDText:@"两次输入的密码不相同"];
+        return;
+    }
+    [self requestChangePwd];
+}
+
+- (void)backLoginView
+{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app setupRootViewController];
 }
 
 
@@ -65,8 +77,10 @@
     [self showHUDView:nil];
     
     HCChangePwdApi *api = [[HCChangePwdApi alloc] init];
-    api.password = _pwdTextField.text;
-    api.token = self.data[@"token"];
+    api.UserPWD = _pwdTextField.text;
+    api.Token = self.data[@"token"];
+    api.UserName = self.data[@"phonenumber"];
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
         if (requestStatus == HCRequestStatusSuccess)
         {

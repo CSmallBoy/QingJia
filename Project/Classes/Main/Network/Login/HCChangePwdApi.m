@@ -2,7 +2,7 @@
 //  HCChangePwdRequest.m
 //  HealthCloud
 //
-//  Created by Jessie on 15/10/9.
+//  Created by 陈福杰 on 15/11/17.
 //  Copyright © 2015年 www.bsoft.com. All rights reserved.
 //
 
@@ -15,14 +15,22 @@
     [super startRequest:requestBlock];
 }
 
+- (NSString *)requestUrl
+{
+    return @"User/ForgetPwd.ashx";
+}
+
 - (id)requestArgument
 {
-    return @{@"t": @"User,restpassword", @"token": self.token, @"password": self.password};
+    NSDictionary *head = @{@"Action": @"FindPwd", @"UserName":_UserName, @"Token": _Token, @"UUID": [HCAppMgr manager].uuid, @"PlatForm": [HCAppMgr manager].systemVersion};
+    NSDictionary *para = @{@"UserPWD": _UserPWD};
+    NSDictionary *body = @{@"Head": head, @"Para": para};
+    return @{@"json": [Utils stringWithObject:body]};
 }
 
 - (id)formatResponseObject:(id)responseObject
 {
-    return responseObject[@"data"];
+    return responseObject[@"Data"];
 }
 
 @end

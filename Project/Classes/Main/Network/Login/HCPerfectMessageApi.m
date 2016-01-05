@@ -22,7 +22,12 @@
 
 - (id)requestArgument
 {
-    NSDictionary *head = @{@"Action": @"REG", @"UserName": _UserName, @"Token": _Token, @"UUID": [HCAppMgr manager].uuid, @"Address": [HCAppMgr manager].address, @"PlatForm": [HCAppMgr manager].systemVersion};
+    NSString *address = [HCAppMgr manager].address;
+    if (IsEmpty(address))
+    {
+        address = @"上海市闵行区";
+    }
+    NSDictionary *head = @{@"Action": @"REG", @"UserName": _UserName, @"Token": _Token, @"UUID": [HCAppMgr manager].uuid, @"Address": address, @"PlatForm": [HCAppMgr manager].systemVersion};
     
     NSDictionary *entity = @{@"TrueName": _TrueName, @"UserPWD": _UserPWD, @"Sex": _Sex, @"NickName": _UserName};
     NSDictionary *body = @{@"Head": head, @"Entity": entity};

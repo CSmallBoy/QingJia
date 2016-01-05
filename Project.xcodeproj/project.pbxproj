@@ -331,6 +331,7 @@
 		0A79B2831BF313DD00788A66 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A79B2821BF313DD00788A66 /* CoreLocation.framework */; };
 		0A7BE9C01C3B723500173139 /* HCCheckCodeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7BE9BF1C3B723500173139 /* HCCheckCodeApi.m */; };
 		0A7BE9C31C3B802C00173139 /* HCPerfectMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7BE9C21C3B802C00173139 /* HCPerfectMessageApi.m */; };
+		0A7BE9C61C3BEE4900173139 /* HCLoginoutApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7BE9C51C3BEE4900173139 /* HCLoginoutApi.m */; };
 		0A7CBC881C31294D0051DD58 /* EMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CBAC21C31294D0051DD58 /* EMAlertView.m */; };
 		0A7CBC891C31294D0051DD58 /* EMGifImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CBAC51C31294D0051DD58 /* EMGifImage.m */; };
 		0A7CBC8A1C31294D0051DD58 /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CBAC81C31294D0051DD58 /* sr_refresh.png */; };
@@ -1522,6 +1523,8 @@
 		0A7BE9BF1C3B723500173139 /* HCCheckCodeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCheckCodeApi.m; sourceTree = "<group>"; };
 		0A7BE9C11C3B802C00173139 /* HCPerfectMessageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPerfectMessageApi.h; sourceTree = "<group>"; };
 		0A7BE9C21C3B802C00173139 /* HCPerfectMessageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPerfectMessageApi.m; sourceTree = "<group>"; };
+		0A7BE9C41C3BEE4900173139 /* HCLoginoutApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLoginoutApi.h; sourceTree = "<group>"; };
+		0A7BE9C51C3BEE4900173139 /* HCLoginoutApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLoginoutApi.m; sourceTree = "<group>"; };
 		0A7CBAC11C31294D0051DD58 /* EMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAlertView.h; sourceTree = "<group>"; };
 		0A7CBAC21C31294D0051DD58 /* EMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAlertView.m; sourceTree = "<group>"; };
 		0A7CBAC41C31294D0051DD58 /* EMGifImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGifImage.h; sourceTree = "<group>"; };
@@ -5002,6 +5005,8 @@
 			children = (
 				0AA626C41C298D2C00EC62D9 /* HCFriendMessageApi.h */,
 				0AA626C51C298D2C00EC62D9 /* HCFriendMessageApi.m */,
+				0A7BE9C41C3BEE4900173139 /* HCLoginoutApi.h */,
+				0A7BE9C51C3BEE4900173139 /* HCLoginoutApi.m */,
 			);
 			path = SoftwareSet;
 			sourceTree = "<group>";
@@ -6753,6 +6758,7 @@
 				C73BCB9A1C3BAEA1005048C5 /* HCCustomerInfo.m in Sources */,
 				0A5491381C2BC32D0085F50D /* ZXGenericGFPoly.m in Sources */,
 				C73BCB901C3BAEA1005048C5 /* HCUnactivatedTagViewController.m in Sources */,
+				0A7BE9C61C3BEE4900173139 /* HCLoginoutApi.m in Sources */,
 				0A6B7F6B1BF1EB74008D54B3 /* HCNavTabBar.m in Sources */,
 				0AC89D861C2932A0003EED90 /* HCAboutMTalkViewController.m in Sources */,
 				0A7CBCA51C31294D0051DD58 /* GroupListViewController.m in Sources */,

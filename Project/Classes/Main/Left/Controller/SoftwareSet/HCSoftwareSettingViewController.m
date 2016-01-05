@@ -11,6 +11,7 @@
 #import "HCFeedbackViewController.h"
 #import "HCFeedbackView.h"
 #import "HCAboutMTalkViewController.h"
+#import "HCLoginoutApi.h"
 
 @interface HCSoftwareSettingViewController ()
 
@@ -67,6 +68,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (indexPath.section == 1 && indexPath.row == 3)
+    {
+        [self handleLogoutButton];
+    }
+    
     HCViewController *vc = nil;
     if (indexPath.section == 0 && indexPath.row == 3)
     {
@@ -107,13 +113,32 @@
     return array.count;
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self showHUDView:@"正在退出"];
+        [self requestLoginout];
+        [self performSelector:@selector(backBtnClick) withObject:self afterDelay:0.5];
+    }
+}
+
+#pragma private methods
+
+- (void)handleLogoutButton
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"您确定要退出当前账号吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.delegate = self;
+    [alertView show];
+}
+
 #pragma mark - setter or getter
 
 - (NSDictionary *)imageNameDic
 {
     if (!_imageNameDic)
     {
-        _imageNameDic = @{@"1":@[@"airplane", @"seting_Locate", @"Network", @"permission", @"delete"], @"2": @[@"Feedback", @"Recommend", @"about_mtalk"]};
+        _imageNameDic = @{@"1":@[@"airplane", @"seting_Locate", @"Network", @"permission", @"delete"], @"2": @[@"Feedback", @"Recommend", @"about_mtalk", @"Exit"]};
     }
     return _imageNameDic;
 }
@@ -122,7 +147,7 @@
 {
     if (!_titleDic)
     {
-        _titleDic = @{@"1": @[@"消息推送提醒", @"默认定位设置", @"允许2G/3G/4G网络上传图片", @"默认权限设置", @"清除缓存"], @"2": @[@"反馈建议", @"推荐给好友", @"关于M-Talk"]};
+        _titleDic = @{@"1": @[@"消息推送提醒", @"默认定位设置", @"允许2G/3G/4G网络上传图片", @"默认权限设置", @"清除缓存"], @"2": @[@"反馈建议", @"推荐给好友", @"关于M-Talk", @"退出登录"]};
     }
     return _titleDic;
 }
@@ -131,6 +156,25 @@
 {
     _switchs = [[UISwitch alloc] initWithFrame:CGRectMake(WIDTH(self.view)-60, 10, 30, 30)];
     return _switchs;
+}
+
+#pragma mark - network
+
+- (void)requestLoginout
+{
+    [self showHUDView:nil];
+    
+    HCLoginoutApi *api = [[HCLoginoutApi alloc] init];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self hideHUDView];
+            
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
 }
 
 
