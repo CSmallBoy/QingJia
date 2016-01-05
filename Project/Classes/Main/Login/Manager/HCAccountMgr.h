@@ -8,13 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "HCLoginInfo.h"
-#import "HCUserInfo.h"
-#import "HCertificateInfo.h"
 
 @interface HCAccountMgr : NSObject
 
 @property (nonatomic, strong) HCLoginInfo       *loginInfo; //登陆信息
-@property (nonatomic, strong) HCUserInfo        *userInfo;
 
 @property (nonatomic, assign) BOOL  isLogined;
 

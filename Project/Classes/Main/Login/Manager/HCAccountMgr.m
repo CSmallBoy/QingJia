@@ -48,7 +48,7 @@ static HCAccountMgr *_sharedManager = nil;
 //更新数据库的用户信息
 - (void)updateUserInfoToDB
 {
-    [[HCAccountDBMgr manager] updateUserInfo:self.userInfo];
+//    [[HCAccountDBMgr manager] updateUserInfo:self.userInfo];
 }
 
 //保存用户登录信息
@@ -62,9 +62,9 @@ static HCAccountMgr *_sharedManager = nil;
 - (void)getLoginInfoData
 {
     WEAKSELF
-    [[HCAccountDBMgr manager] queryLastUserInfo:^(HCLoginInfo *loginInfo, HCUserInfo *userInfo) {
+    [[HCAccountDBMgr manager] queryLastUserInfo:^(HCLoginInfo *loginInfo) {
         weakSelf.loginInfo = loginInfo;
-        weakSelf.userInfo = userInfo;
+//        weakSelf.userInfo = userInfo;
         weakSelf.isLogined = YES;
     }];
 }

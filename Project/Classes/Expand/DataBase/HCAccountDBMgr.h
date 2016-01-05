@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HCUserInfo.h"
 
-typedef void (^HCAccountInfo)(HCLoginInfo *loginInfo, HCUserInfo *userInfo);
+typedef void (^HCAccountInfo)(HCLoginInfo *loginInfo);
 
 @interface HCAccountDBMgr : NSObject
 {
@@ -33,14 +32,6 @@ typedef void (^HCAccountInfo)(HCLoginInfo *loginInfo, HCUserInfo *userInfo);
  *读取
  */
 - (void)queryLastUserInfo:(HCAccountInfo)accountInfo;
-/**
- *  更新用户信息
- *
- *  @param 用户信息
- *
- *  @return 更新语句的执行结果
- */
-- (BOOL)updateUserInfo:(HCUserInfo *)info;
 
 
 /**

@@ -238,7 +238,6 @@
 		0A5491DF1C2BCC3D0085F50D /* HCJoinGradeFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5491DE1C2BCC3D0085F50D /* HCJoinGradeFunctionView.m */; };
 		0A5491E91C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5491E71C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.m */; };
 		0A5491EA1C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5491E81C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.xib */; };
-		0A65918B1C0411F300E91975 /* HCUserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65918A1C0411F300E91975 /* HCUserApi.m */; };
 		0A66CBA01C22C26700530763 /* HCPublishInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A66CB9F1C22C26700530763 /* HCPublishInfo.m */; };
 		0A66CBA31C22E96500530763 /* HCHomePublishApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A66CBA21C22E96500530763 /* HCHomePublishApi.m */; };
 		0A67B21D1C0D63B300FB87C8 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A67B20C1C0D63B300FB87C8 /* 0.jpg */; };
@@ -315,9 +314,7 @@
 		0A6B7F5F1BF1EB74008D54B3 /* HCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7E7F1BF1EB74008D54B3 /* HCLoginViewController.m */; };
 		0A6B7F601BF1EB74008D54B3 /* HCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6B7E801BF1EB74008D54B3 /* HCLoginViewController.xib */; };
 		0A6B7F631BF1EB74008D54B3 /* HCAccountMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7E861BF1EB74008D54B3 /* HCAccountMgr.m */; };
-		0A6B7F641BF1EB74008D54B3 /* HCertificateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7E891BF1EB74008D54B3 /* HCertificateInfo.m */; };
 		0A6B7F651BF1EB74008D54B3 /* HCLoginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7E8B1BF1EB74008D54B3 /* HCLoginInfo.m */; };
-		0A6B7F661BF1EB74008D54B3 /* HCUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7E8D1BF1EB74008D54B3 /* HCUserInfo.m */; };
 		0A6B7F671BF1EB74008D54B3 /* HCStepMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7E901BF1EB74008D54B3 /* HCStepMoveView.m */; };
 		0A6B7F6A1BF1EB74008D54B3 /* HCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7E9B1BF1EB74008D54B3 /* HCBarButtonItem.m */; };
 		0A6B7F6B1BF1EB74008D54B3 /* HCNavTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7E9D1BF1EB74008D54B3 /* HCNavTabBar.m */; };
@@ -331,7 +328,6 @@
 		0A6B7F9B1BF1EB74008D54B3 /* TOActivitySafari.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7F111BF1EB74008D54B3 /* TOActivitySafari.m */; };
 		0A6B7F9C1BF1EB74008D54B3 /* TOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7F131BF1EB74008D54B3 /* TOWebViewController.m */; };
 		0A6B7F9D1BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7F151BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m */; };
-		0A724EC51C06A20100E643D6 /* HCUserAlbumApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A724EC41C06A20100E643D6 /* HCUserAlbumApi.m */; };
 		0A79B2831BF313DD00788A66 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A79B2821BF313DD00788A66 /* CoreLocation.framework */; };
 		0A7BE9C01C3B723500173139 /* HCCheckCodeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7BE9BF1C3B723500173139 /* HCCheckCodeApi.m */; };
 		0A7BE9C31C3B802C00173139 /* HCPerfectMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7BE9C21C3B802C00173139 /* HCPerfectMessageApi.m */; };
@@ -1365,8 +1361,6 @@
 		0A5491E81C2C0FEC0085F50D /* HCWelcomeJoinGradeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCWelcomeJoinGradeViewController.xib; sourceTree = "<group>"; };
 		0A5EFC211C11746D008B3548 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		0A5EFC231C117474008B3548 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
-		0A6591891C0411F300E91975 /* HCUserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserApi.h; sourceTree = "<group>"; };
-		0A65918A1C0411F300E91975 /* HCUserApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserApi.m; sourceTree = "<group>"; };
 		0A66CB9E1C22C26700530763 /* HCPublishInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPublishInfo.h; sourceTree = "<group>"; };
 		0A66CB9F1C22C26700530763 /* HCPublishInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPublishInfo.m; sourceTree = "<group>"; };
 		0A66CBA11C22E96500530763 /* HCHomePublishApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomePublishApi.h; sourceTree = "<group>"; };
@@ -1495,12 +1489,8 @@
 		0A6B7E801BF1EB74008D54B3 /* HCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCLoginViewController.xib; sourceTree = "<group>"; };
 		0A6B7E851BF1EB74008D54B3 /* HCAccountMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAccountMgr.h; sourceTree = "<group>"; };
 		0A6B7E861BF1EB74008D54B3 /* HCAccountMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAccountMgr.m; sourceTree = "<group>"; };
-		0A6B7E881BF1EB74008D54B3 /* HCertificateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCertificateInfo.h; sourceTree = "<group>"; };
-		0A6B7E891BF1EB74008D54B3 /* HCertificateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCertificateInfo.m; sourceTree = "<group>"; };
 		0A6B7E8A1BF1EB74008D54B3 /* HCLoginInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLoginInfo.h; sourceTree = "<group>"; };
 		0A6B7E8B1BF1EB74008D54B3 /* HCLoginInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLoginInfo.m; sourceTree = "<group>"; };
-		0A6B7E8C1BF1EB74008D54B3 /* HCUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserInfo.h; sourceTree = "<group>"; };
-		0A6B7E8D1BF1EB74008D54B3 /* HCUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserInfo.m; sourceTree = "<group>"; };
 		0A6B7E8F1BF1EB74008D54B3 /* HCStepMoveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCStepMoveView.h; sourceTree = "<group>"; };
 		0A6B7E901BF1EB74008D54B3 /* HCStepMoveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCStepMoveView.m; sourceTree = "<group>"; };
 		0A6B7E9A1BF1EB74008D54B3 /* HCBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBarButtonItem.h; sourceTree = "<group>"; };
@@ -1527,8 +1517,6 @@
 		0A6B7F141BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TOWebViewControllerIcons.h"; sourceTree = "<group>"; };
 		0A6B7F151BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TOWebViewControllerIcons.m"; sourceTree = "<group>"; };
 		0A6B7F9E1BF1EBA0008D54B3 /* Header.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.pch; sourceTree = "<group>"; };
-		0A724EC31C06A20100E643D6 /* HCUserAlbumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserAlbumApi.h; sourceTree = "<group>"; };
-		0A724EC41C06A20100E643D6 /* HCUserAlbumApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserAlbumApi.m; sourceTree = "<group>"; };
 		0A79B2821BF313DD00788A66 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0A7BE9BE1C3B723500173139 /* HCCheckCodeApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCheckCodeApi.h; sourceTree = "<group>"; };
 		0A7BE9BF1C3B723500173139 /* HCCheckCodeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCheckCodeApi.m; sourceTree = "<group>"; };
@@ -3582,12 +3570,8 @@
 		0A6B7E871BF1EB74008D54B3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0A6B7E881BF1EB74008D54B3 /* HCertificateInfo.h */,
-				0A6B7E891BF1EB74008D54B3 /* HCertificateInfo.m */,
 				0A6B7E8A1BF1EB74008D54B3 /* HCLoginInfo.h */,
 				0A6B7E8B1BF1EB74008D54B3 /* HCLoginInfo.m */,
-				0A6B7E8C1BF1EB74008D54B3 /* HCUserInfo.h */,
-				0A6B7E8D1BF1EB74008D54B3 /* HCUserInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5070,10 +5054,6 @@
 				0ABAFEBA1BF346E0009ABF57 /* HCLoginApi.m */,
 				0ABAFEBB1BF346E0009ABF57 /* HCLogoutApi.h */,
 				0ABAFEBC1BF346E0009ABF57 /* HCLogoutApi.m */,
-				0A6591891C0411F300E91975 /* HCUserApi.h */,
-				0A65918A1C0411F300E91975 /* HCUserApi.m */,
-				0A724EC31C06A20100E643D6 /* HCUserAlbumApi.h */,
-				0A724EC41C06A20100E643D6 /* HCUserAlbumApi.m */,
 				0A0086091C3A6EF200E2BCF2 /* HCGetCodeApi.h */,
 				0A00860A1C3A6EF200E2BCF2 /* HCGetCodeApi.m */,
 				0A7BE9BE1C3B723500173139 /* HCCheckCodeApi.h */,
@@ -6333,7 +6313,6 @@
 				0A7CBD1C1C31294E0051DD58 /* EaseBubbleView+Location.m in Sources */,
 				0A54918D1C2BC32D0085F50D /* ZXRSSUtils.m in Sources */,
 				0A67E76D1C23B837005B8CD2 /* HCEditCommentView.m in Sources */,
-				0A65918B1C0411F300E91975 /* HCUserApi.m in Sources */,
 				0A5491CE1C2BC32D0085F50D /* ZXQRCodeFinderPattern.m in Sources */,
 				C73BCBE41C3BAEBD005048C5 /* HCCustomerApi.m in Sources */,
 				C73BCBE01C3BAEBD005048C5 /* HCNotificationCenterReadApi.m in Sources */,
@@ -6355,7 +6334,6 @@
 				C73BCB7E1C3BAEA1005048C5 /* HCReturnAuditPassViewController.m in Sources */,
 				0A5491DB1C2BC32D0085F50D /* ZXMultiFormatReader.m in Sources */,
 				C73BCBA11C3BAEA1005048C5 /* HCMoreCollectionViewCell.m in Sources */,
-				0A6B7F661BF1EB74008D54B3 /* HCUserInfo.m in Sources */,
 				C73BCBEA1C3BAEBD005048C5 /* HCTagManagerApi.m in Sources */,
 				0A7CBD0E1C31294E0051DD58 /* EaseEmotionEscape.m in Sources */,
 				0A5491371C2BC32D0085F50D /* ZXGenericGF.m in Sources */,
@@ -6620,12 +6598,10 @@
 				0AA626C61C298D2C00EC62D9 /* HCFriendMessageApi.m in Sources */,
 				C73BCB8D1C3BAEA1005048C5 /* HCTagClosedDetailViewControllwe.m in Sources */,
 				C73BCB711C3BAEA1005048C5 /* HCApplyReturnViewController.m in Sources */,
-				0A724EC51C06A20100E643D6 /* HCUserAlbumApi.m in Sources */,
 				0A5491791C2BC32D0085F50D /* ZXAI01decoder.m in Sources */,
 				0A54911F1C2BC32D0085F50D /* ZXProductResultParser.m in Sources */,
 				C73BCBBA1C3BAEA1005048C5 /* HCTagDetailTableViewCell.m in Sources */,
 				0A7CBCA01C31294D0051DD58 /* ChatGroupDetailViewController.m in Sources */,
-				0A6B7F641BF1EB74008D54B3 /* HCertificateInfo.m in Sources */,
 				C73BCB9E1C3BAEA1005048C5 /* HCRescueCenterInfo.m in Sources */,
 				0A7CBC931C31294D0051DD58 /* UIImageView+HeadImage.m in Sources */,
 				0A5491761C2BC32D0085F50D /* ZXAI013x0x1xDecoder.m in Sources */,

@@ -10,7 +10,6 @@
 #import "HCRegistViewController.h"
 #import "HCFindPwdViewController.h"
 #import "HCLoginApi.h"
-#import "HCUserApi.h"
 #import "HCAppMgr.h"
 
 #import "AppDelegate.h"
@@ -203,20 +202,5 @@
      } onQueue:nil];
 }
 
-
-
-- (void)requestUserData
-{
-    HCUserApi *api = [[HCUserApi alloc] init];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCUserInfo *userinfo) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [HCAccountMgr manager].userInfo = userinfo;
-            [[HCAccountMgr manager] updateUserInfoToDB];
-            
-            [self backBtnClick];
-        }
-    }];
-}
 
 @end

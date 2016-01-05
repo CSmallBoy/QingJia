@@ -178,32 +178,6 @@ static HCAccountDBMgr *_sharedManager = nil;
  *
  *  @return 更新语句的执行结果
  */
-- (BOOL)updateUserInfo:(HCUserInfo *)info
-{
-    if (info.name) {
-        NSString *modifySql = [NSString stringWithFormat:@"UPDATE '%@' SET \
-                               name = '%@', \
-                               complete = '%@', \
-                               birthday = '%@', \
-                               educational = '%@', \
-                               wechat = '%@', \
-                               signature = '%@', \
-                               hometown = '%@' \
-                               WHERE uid = '%@';",
-                               kHCDBTableUser,
-                               info.name,
-                               info.complete,
-                               info.birthday,
-                               info.educational,
-                               info.wechat,
-                               info.signature,
-                               info.hometown,
-                               [HCAccountMgr manager].loginInfo.uid];
-        
-        return [self executeUpdate:modifySql];
-    }
-    return NO;
-}
 
 - (void)queryLastUserInfo:(HCAccountInfo)accountInfo
 {
@@ -221,19 +195,9 @@ static HCAccountDBMgr *_sharedManager = nil;
             loginInfo.token = StringFromObject([set stringForColumn:@"token"]);
             loginInfo.password = StringFromObject([set stringForColumn:@"password"]);
             loginInfo.avatar = StringFromObject([set stringForColumn:@"avatar"]);
-            
-            HCUserInfo *userInfo = [[HCUserInfo alloc] init];
-            
-            userInfo.name = StringFromObject([set stringForColumn:@"name"]);
-            userInfo.complete = StringFromObject([set stringForColumn:@"complete"]);
-            userInfo.phone = StringFromObject([set stringForColumn:@"phone"]);
-            userInfo.birthday = StringFromObject([set stringForColumn:@"birthday"]);
-            userInfo.educational = StringFromObject([set stringForColumn:@"educational"]);
-            userInfo.wechat = StringFromObject([set stringForColumn:@"wechat"]);
-            userInfo.signature = StringFromObject([set stringForColumn:@"signature"]);
-            userInfo.hometown = StringFromObject([set stringForColumn:@"hometown"]);
+    
 
-            accountInfo(loginInfo, userInfo);
+            accountInfo(loginInfo);
             
             return;
         }
