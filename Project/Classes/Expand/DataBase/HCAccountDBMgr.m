@@ -187,8 +187,6 @@ static HCAccountDBMgr *_sharedManager = nil;
  *
  *  @return 更新语句的执行结果
  */
-//Token TEXT, \UUID TEXT,\PhoneNo TEXT,\UserName TEXT,\TrueName TEXT,\NickName TEXT,\
-//Sex TEXT,\Age TEXT,\IsFMA TEXT,\DefaultFamilyID TEXT,\UserDescription TEXT,\UserPhoto TEXT
 - (void)queryLastUserInfo:(HCAccountInfo)accountInfo
 {
     [self.queue inDatabase:^(FMDatabase *db) {
@@ -212,9 +210,9 @@ static HCAccountDBMgr *_sharedManager = nil;
             loginInfo.DefaultFamilyID = StringFromObject([set stringForColumn:@"DefaultFamilyID"]);
             loginInfo.UserDescription = StringFromObject([set stringForColumn:@"UserDescription"]);
             loginInfo.UserPhoto = StringFromObject([set stringForColumn:@"UserPhoto"]);
-    
 
             accountInfo(loginInfo);
+            [set close];
             
             return;
         }

@@ -35,8 +35,7 @@
     ViewRadius(_loginBtn, 4);
     ViewRadius(_contentView, 4);
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _accountTextField.text = [defaults objectForKey:kHCLoginAccount];
+    _accountTextField.text = [self lastLoginUsername];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -91,29 +90,21 @@
 }
 
 //登录
-- (IBAction)loginBtnClick:(id)sender {
+- (IBAction)loginBtnClick:(id)sender
+{
+        if (![Utils checkPhoneNum:_accountTextField.text])
+        {
+            [self showHUDText:@"输入正确的手机号"];
+            return;
+        }
     
-    //    if (![Utils checkPhoneNum:_accountTextField.text])
-    //    {
-    //        [self showHUDText:@"输入正确的手机号"];
-    //        return;
-    //    }
-    //
-    //    if (_keyTextField.text.length == 0)
-    //    {
-    //        [self showHUDText:@"请输入正确的密码"];
-    //        return;
-    //    }
-    //
-    //    if (_keyTextField.text.length < 6 ||
-    //        _keyTextField.text.length > 20 ||
-    //        [_keyTextField.text rangeOfString:@" "].location != NSNotFound)
-    //    {
-    //        [self showHUDText:@"密码必须由6-20位数字、字母或符号组成"];
-    //        return;
-    //    }
-    //    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    //    [app setupRootViewController];
+        if (_keyTextField.text.length < 6 ||
+            _keyTextField.text.length > 20 ||
+            [_keyTextField.text rangeOfString:@" "].location != NSNotFound)
+        {
+            [self showHUDText:@"密码必须由6-20位数字、字母或符号组成"];
+            return;
+        }
     [self requestLogin];
 }
 
@@ -122,43 +113,41 @@
 //登录
 - (void)requestLogin
 {
-    //    [self showHUDView:@"正在登录"];
-    //
-    //    HCLoginApi *api = [[HCLoginApi alloc] init];
-    //    api.mobile = _accountTextField.text;
-    //    api.password = _keyTextField.text;
-    //
-    //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo){
-    //
-    //        if (requestStatus == HCRequestStatusSuccess)
-    //        {
-    //            [HCAccountMgr manager].loginInfo = loginInfo;
-    //
-    //            //登录信息存数据库
-    //            [[HCAccountMgr manager] saveLoginInfoToDB];
-    
-    
-    //            [self requestUserData];
-    //            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //            [defaults setObject:loginInfo.phone forKey:kHCLoginAccount];
-    [self loginWithUsername:_accountTextField.text password:_keyTextField.text];
-    //        }else {
-    //            [self showHUDError:message];
-    //        }
-    //    }];
+    [self showHUDView:@"正在登录"];
+
+    HCLoginApi *api = [[HCLoginApi alloc] init];
+    api.UserName = _accountTextField.text;
+    api.UserPWD = _keyTextField.text;
+
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo){
+
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self loginWithUsername:_accountTextField.text password:_keyTextField.text loginInfo:loginInfo];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
 }
 
 //点击登陆后的操作
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password loginInfo:(HCLoginInfo *)info
 {
-    [self showHudInView:self.view hint:NSLocalizedString(@"login.ongoing", @"Is Login...")];
     //异步登陆账号
     [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username
                                                         password:password
                                                       completion:
      ^(NSDictionary *loginInfo, EMError *error) {
-         [self hideHud];
-         if (loginInfo && !error) {
+         [self hideHUDView];
+         if (loginInfo && !error)
+         {
+             [HCAccountMgr manager].loginInfo = info;
+             [HCAccountMgr manager].isLogined = YES;
+             //登录信息存数据库
+             [[HCAccountMgr manager] saveLoginInfoToDB];
+             
+             // 环信数据
              //设置是否自动登录
              [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
              
@@ -167,11 +156,8 @@
              
              //获取群组列表
              [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
-             
-             [HCAccountMgr manager].isLogined = YES;
              //发送自动登陆状态通知
              [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
-             
              //保存最近一次登录用户名
              [self saveLastLoginUsername];
          }

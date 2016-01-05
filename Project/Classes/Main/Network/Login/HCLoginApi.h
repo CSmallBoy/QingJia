@@ -14,7 +14,7 @@ typedef void (^HCLoginBlock)(HCRequestStatus requestStatus, NSString *message, H
 
 - (void)startRequest:(HCLoginBlock)requestBlock;
 
-@property (nonatomic, strong) NSString *mobile;
-@property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSString *UserName;
+@property (nonatomic, strong) NSString *UserPWD;
 
 @end

@@ -49,6 +49,7 @@
 //设置主控制器
 - (void)setupRootViewController
 {
+    [[HCAccountMgr manager] getLoginInfoData];
     //    if (![HCAppMgr manager].showInstroView)
     //    {
     //        DLog(@"加载欢迎页面,测试的取反");
@@ -60,8 +61,6 @@
         self.window.rootViewController = loginNav;
     }else
     {
-        [[HCAccountMgr manager] getLoginInfoData];
-        
         HCRootTabBarController *main = [[HCRootTabBarController alloc] init];
         
         HCLeftViewController *left = [[HCLeftViewController alloc] init];

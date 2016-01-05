@@ -64,7 +64,6 @@ static HCAccountMgr *_sharedManager = nil;
     WEAKSELF
     [[HCAccountDBMgr manager] queryLastUserInfo:^(HCLoginInfo *loginInfo) {
         weakSelf.loginInfo = loginInfo;
-//        weakSelf.userInfo = userInfo;
         weakSelf.isLogined = YES;
     }];
 }

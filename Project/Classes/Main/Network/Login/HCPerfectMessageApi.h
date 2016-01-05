@@ -8,7 +8,7 @@
 
 #import "HCRequest.h"
 
-typedef void(^HCPerfectMessageBlock)(HCRequestStatus requestStatus, NSString *message, NSDictionary *data);
+typedef void(^HCPerfectMessageBlock)(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo);
 
 @interface HCPerfectMessageApi : HCRequest
 

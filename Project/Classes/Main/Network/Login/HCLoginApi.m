@@ -15,16 +15,25 @@
     [super startRequest:requestBlock];
 }
 
+- (NSString *)requestUrl
+{
+    return @"User/Login.ashx";
+}
 
 - (id)formatResponseObject:(id)responseObject
 {
-    
-    HCLoginInfo *loginInfo = [HCLoginInfo mj_objectWithKeyValues:responseObject[@"data"]];
+    NSDictionary *dic = responseObject[@"Data"];
+    HCLoginInfo *loginInfo = [HCLoginInfo mj_objectWithKeyValues:dic[@"UserInf"]];
+    loginInfo.Token = dic[@"Token"];
     return loginInfo;
 }
 - (id)requestArgument
 {
-    return @{@"t": @"User,login", @"username": _mobile, @"password": _password};
+    NSDictionary *head = [Utils getRequestHeadWithAction:@"Login"];
+    NSDictionary *para = @{@"UserName": _UserName, @"UserPWD": _UserPWD};
+    NSDictionary *body = @{@"Head": head, @"Para": para};
+    
+    return @{@"json": [Utils stringWithObject:body]};
 }
 
 

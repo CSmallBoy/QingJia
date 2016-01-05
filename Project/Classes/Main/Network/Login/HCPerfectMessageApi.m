@@ -32,7 +32,10 @@
 
 - (id)formatResponseObject:(id)responseObject
 {
-    return responseObject[@"Data"];
+    NSDictionary *dic = responseObject[@"Data"];
+    HCLoginInfo *loginInfo = [HCLoginInfo mj_objectWithKeyValues:dic[@"UserEntity"]];
+    loginInfo.Token = dic[@"Token"];
+    return loginInfo;
 }
 
 

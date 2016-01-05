@@ -96,10 +96,16 @@
     }
     api.Sex = [HCDictionaryMgr getSexStringWithKey:key];
     
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *data) {
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo) {
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self hideHUDView];
+            
+            [HCAccountMgr manager].loginInfo = loginInfo;
+            
+            [[HCAccountMgr manager] saveLoginInfoToDB];
+            [HCAccountMgr manager].isLogined = YES;
+            
             HCGradeViewController *grade = [[HCGradeViewController alloc] init];
             [self.navigationController pushViewController:grade animated:YES];
         }else
