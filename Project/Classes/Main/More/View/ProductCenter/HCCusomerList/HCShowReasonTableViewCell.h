@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 @class HCCustomerInfo;
+
+@protocol HCShowReasonTableViewCellDelegate <NSObject>
+
+@optional
+
+-(void)passcellHight:(CGFloat)cellheight;
+
+@end
 @interface HCShowReasonTableViewCell : UITableViewCell
 @property (nonatomic,strong) HCCustomerInfo *info;
+
+@property(nonatomic, weak)id<HCShowReasonTableViewCellDelegate>delegate;
 @end

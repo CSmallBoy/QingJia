@@ -38,8 +38,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.redVIew.frame = CGRectMake(WIDTH(self), 0,WIDTH(self.contentView), self.contentView.frame.size.height);
-    self.deleteIMGV.frame = CGRectMake(0, 0, 75 , HEIGHT(self.redVIew));
+//    self.redVIew.frame = CGRectMake(WIDTH(self), 0,WIDTH(self.contentView), self.contentView.frame.size.height);
+//    self.deleteIMGV.frame = CGRectMake(0, 0, 75 , HEIGHT(self.redVIew));
     self.userNameLab.frame = CGRectMake(10, 0, 120, 30);
     self.notificationMessageLab.frame = CGRectMake(10, 35, WIDTH(self)-20, 40);
     self.timeLab.frame = CGRectMake(self.contentView.frame.size.width-150, 5, 140, 20);

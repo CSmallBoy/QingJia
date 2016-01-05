@@ -1,39 +1,43 @@
 //
-//  HCWaitReissueAuditViewController.m
+//  HCWaitReturnAuditViewController.m
 //  Project
 //
-//  Created by 朱宗汉 on 15/12/31.
-//  Copyright © 2015年 com.xxx. All rights reserved.
+//  Created by 朱宗汉 on 16/1/5.
+//  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "HCWaitReissueAuditViewController.h"
+#import "HCWaitReturnAuditViewController.h"
 #import "HCCustomerTableViewCell.h"
 #import "HCShowReasonTableViewCell.h"
 
 #import "HCCustomerInfo.h"
-@interface HCWaitReissueAuditViewController ()
+@interface HCWaitReturnAuditViewController ()<HCShowReasonTableViewCellDelegate>
+
 @property (nonatomic,strong) HCCustomerInfo *info;
+@property (nonatomic,assign) CGFloat cellHight;
 
 @end
 
-@implementation HCWaitReissueAuditViewController
+@implementation HCWaitReturnAuditViewController
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   self.title = @"补发审核";
+    self.title = @"退货审核";
+    [self setupBackItem];
     self.tableView.tableHeaderView = HCTabelHeadView(1.0);
     _info = self.data[@"data"];
 }
 
 #pragma mark---UITableViewDelegate
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    
     if (indexPath.section == 0)
     {
-        static NSString *RecordID = @"waitAuditOrder";
+        static NSString *RecordID = @"WaitReturnAudit";
         HCCustomerTableViewCell *orderCell = [tableView dequeueReusableCellWithIdentifier:RecordID];
         orderCell = [[HCCustomerTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RecordID];
         orderCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -45,39 +49,36 @@
     {
         if (indexPath.row == 0)
         {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"reissueReason"];
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"returnReason"];
             cell.textLabel.text = @"补发原因";
-            if ([self.info.reason integerValue] == 0)
-            {
-                cell.detailTextLabel.text = @"标签残缺";
-            }
-            else if([self.info.reason integerValue] == 1)
-            {
-                cell.detailTextLabel.text = @"二维码标签扫不出信息";
-            }
-            else
-            {
-                cell.detailTextLabel.text = @"其他";
-            }
+            cell.detailTextLabel.text = [HCDictionaryMgr applyReturnReason:self.info.reason];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         if (indexPath.row == 1)
         {
             HCShowReasonTableViewCell *showCell = [[HCShowReasonTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"show"];
+            showCell.delegate = self;
             showCell.info = self.info;
             cell = showCell;
         }
     }
     else
     {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reissueReason"];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"returnReason"];
         if (indexPath.row == 0)
         {
-            cell.textLabel.text = [NSString stringWithFormat:@"补发内容: %@",self.info.goodsName];
+            if ([self.info.goodsName integerValue] == 0)
+            {
+                cell.textLabel.text = [NSString stringWithFormat:@"补发内容: M-Talk烫印机"];
+            }
+        }
+        else if (indexPath.row == 1)
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"补发数量: %@",self.info.detailNeedGoodsNum];
         }
         else
         {
-            cell.textLabel.text = [NSString stringWithFormat:@"补发数量: %@",self.info.detailNeedGoodsNum];
+            cell.textLabel.text = [NSString stringWithFormat:@"退货金额:%@元",self.info.orderTotalPrice];
         }
     }
     cell.textLabel.font = [UIFont systemFontOfSize:15];
@@ -92,7 +93,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return (section == 0)?1:2;
+    return (section == 0)?1:(section == 1)?2:3;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,7 +104,7 @@
     }
     else if (indexPath.section == 1&&indexPath.row == 1)
     {
-        return 120+SCREEN_WIDTH/3;
+        return _cellHight;
     }
     else
     {
@@ -119,6 +120,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 1;
+}
+
+#pragma mark---HCShowReasonTableViewCellDelegate
+
+-(void)passcellHight:(CGFloat)cellheight
+{
+    _cellHight = cellheight;
 }
 
 @end

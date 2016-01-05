@@ -54,63 +54,39 @@ static NSString *IDCellF = @"introduction";
     ProductIntroductionCell.delegate = self;
     ProductIntroductionCell.indexPath = indexPath;
     ProductIntroductionCell.info = self.info;
+    ProductIntroductionCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return ProductIntroductionCell;
     
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (IsEmpty(_info))
+    {
+        return 0;
+    }
     return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (IsEmpty(_info))
-    {
-        return 0;
-    }
     return 1;
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-    {
-        return 300;
-    }else
-    {
-        return 275;
-    }
+    return (indexPath.section == 0) ? 300 : 275;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 1)
-    {
-        return 64;
-    }
-    else
-    {
-        return 10;
-    }
+    return (section == 1) ? 120 :10;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (IsEmpty(_info))
-    {
-        return nil;
-    }
-    if (section == 1)
-    {
-        return self.footerView;
-    }else
-    {
-        UIView *footerViewZero = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-        footerViewZero.backgroundColor = CLEARCOLOR;
-        return footerViewZero;
-    }
+    return (section == 1) ? self.footerView : nil;
     
 }
 
@@ -119,14 +95,6 @@ static NSString *IDCellF = @"introduction";
     return 1;
 }
 
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-  
-    UIView *headerViewZero = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-    
-    return headerViewZero;
-     
-}
 #pragma mark - private methods
 
 -(void)handleBuyBtn
@@ -176,10 +144,10 @@ static NSString *IDCellF = @"introduction";
 {
     if(!_footerView)
     {
-    _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 64)];
+    _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 120)];
         
     UIButton *buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyBtn.frame = CGRectMake(15, 10, WIDTH(self.view)-30, 44);
+    buyBtn.frame = CGRectMake(15, 40, WIDTH(self.view)-30, 44);
     [buyBtn setTitle:@"购买" forState:UIControlStateNormal];
     [buyBtn addTarget:self action:@selector(handleBuyBtn) forControlEvents:UIControlEventTouchUpInside];
     ViewRadius(buyBtn, 4);
@@ -190,7 +158,6 @@ static NSString *IDCellF = @"introduction";
     return _footerView;
     
 }
-
 
 #pragma mark - network
 

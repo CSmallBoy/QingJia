@@ -38,7 +38,9 @@
             info.orderCustomerState = 0;//待审核
             info.reason = @"0";
             info.detailReason = @"这张标签有问题，扫描不出来0";
-            info.imgArr = @[@"label",@"label",@"label"];
+            info.imgArr = @[@"time_picture",
+                            @"time_picture"
+                            ];
             
         }
         else if ( i==1 )
@@ -52,7 +54,9 @@
             info.orderCustomerState = 1;//审核通过
             info.reason = @"1";
             info.detailReason = @"这张标签有问题，扫描不出来1";
-            info.imgArr = @[@"label",@"label",@"label"];
+            info.imgArr = @[@"time_picture",
+                            @"time_picture",
+                            @"time_picture"];
         }
         else if (i == 2)
         {
@@ -66,7 +70,9 @@
             info.reason = @"1";
             info.detailReason = @"这张标签有问题，扫描不出来2";
             info.auditNotPassReason = @"您好，给您发的标签用我们的app是可以扫描出信息的，所以该补发申请审核未能通过";
-            info.imgArr = @[@"label",@"label",@"label"];
+            info.imgArr = @[@"time_picture",
+                            @"time_picture",
+                            @"time_picture"];
         }
         else if (i == 3)
         {
@@ -76,11 +82,13 @@
             info.detailOrderGoodsNum = @"10";
             info.detailNeedGoodsNum = @"1";
             info.orderTotalPrice = @"88";
-            info.orderCustomerState = 3;//退款成功
-            info.reason = @"1";
+            info.orderCustomerState = 2;//审核不通过
+            info.reason = @"2";
             info.detailReason = @"这张标签有问题，扫描不出来3";
-            info.imgArr = @[@"label",@"label",@"label"];
-            info.RefundWhereabouts = @"0";//支付宝
+            info.auditNotPassReason = @"您好，给您发的标签用我们的app是可以扫描出信息的，所以该补发申请审核未能通过";
+            info.imgArr = @[@"label",
+                            @"label",
+                            @"label"];
         }
         else if (i == 4)
         {
@@ -93,7 +101,9 @@
             info.orderCustomerState = 0;//待审核
             info.reason = @"1";
             info.detailReason = @"这个烫印机有问题0";
-            info.imgArr = @[@"label",@"label",@"label"];
+            info.imgArr = @[@"label",
+                            @"label",
+                            @"label"];
             
         }
         else if (i == 5)
@@ -118,6 +128,7 @@
             info.orderTotalPrice = @"88";
             info.orderCustomerState = 2;//审核不通过
             info.detailReason = @"这个烫印机有问题2";
+            info.auditNotPassReason = @"您好，给您发的烫印机是可以烫印标签的，所以该退货申请审核未能通过";
             info.imgArr = @[@"label",@"label",@"label"];
         }
         else if (i == 7)
@@ -128,9 +139,10 @@
             info.detailOrderGoodsNum = @"10";
             info.detailNeedGoodsNum = @"1";
             info.orderTotalPrice = @"88";
-            info.orderCustomerState = 0;//退款成功
+            info.orderCustomerState = 3;//退款成功
             info.detailReason = @"这个烫印机有问题4";
             info.imgArr = @[@"label",@"label",@"label"];
+            info.RefundWhereabouts = @"0";//支付宝
         }
         else
         {
@@ -140,7 +152,7 @@
             info.detailOrderGoodsNum = @"10";
             info.detailNeedGoodsNum = @"1";
             info.orderTotalPrice = @"88";
-            info.orderCustomerState = 0;//退款成功
+            info.orderCustomerState = 0;//待审核
             info.detailReason = @"这个烫印机有问题5";
             info.imgArr = @[@"label",@"label",@"label"];
         }

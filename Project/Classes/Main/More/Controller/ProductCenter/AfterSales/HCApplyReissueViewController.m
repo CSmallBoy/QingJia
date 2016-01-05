@@ -55,7 +55,8 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell ;
-    if (cell == nil) {
+    if (cell == nil)
+    {
         if (indexPath.section == 0)
         {
             HCApplyReissueOrderCell *applyReissueOrderCell = [tableView dequeueReusableCellWithIdentifier:@"orderInfo"];
@@ -137,7 +138,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return (section == 2)?50:5;
+    return (section == 2) ? 50 : 5;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

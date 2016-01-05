@@ -24,10 +24,9 @@
 
 @property (nonatomic,strong) UIView *footerView;
 @property (nonatomic,strong) UIView *basicInfoHeaderView;
-/**
- *添加紧急联系人
- */
+/***添加紧急联系人*/
 @property (nonatomic,strong) UIView *contactInfoHeaderView;
+@property (nonatomic,strong) UIView *deleteContactInfoView;
 @property (nonatomic,strong) UIView *medicalInfoHeaderView;
 @property (nonatomic, assign) CGFloat height; // 药物史的高度
 @property (nonatomic,strong) UILabel *titleLabel;
@@ -39,7 +38,8 @@
 
 @implementation HCCustomTagViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = @"定制标签";
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
@@ -121,15 +121,7 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 3)
-    {
-        return self.footerView;
-    }else
-    {
-        UIView *footerView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-        footerView.backgroundColor = CLEARCOLOR;
-        return footerView;
-    }
+    return (section == 3) ? self.footerView : nil;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -137,28 +129,18 @@
     if (section == 0)
     {
         return self.basicInfoHeaderView;
-    }else if (section == 1)
+    }
+    else if (section == 1)
     {
         return self.contactInfoHeaderView;
-    }else if (section == 3)
+    }
+    else if (section == 3)
     {
         return self.medicalInfoHeaderView;
     }
     else
     {
-        UIView *contactInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 30)];
-        UIButton *deleteContactBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [deleteContactBtn setBackgroundImage:OrigIMG(@"Products_but_minus") forState:UIControlStateNormal];
-        deleteContactBtn.frame = CGRectMake(70, 0, 30, 30);
-        ViewBorderRadius(deleteContactBtn, 35, 1, [UIColor blackColor]);
-        [deleteContactBtn addTarget:self action:@selector(handleDeleteContact) forControlEvents:UIControlEventTouchUpInside];
-        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 30)];
-        headerLabel.text = @"紧急联系人";
-        headerLabel.font = [UIFont systemFontOfSize:12];
-        [contactInfoHeaderView addSubview:headerLabel];
-
-        [contactInfoHeaderView addSubview:deleteContactBtn];
-        return contactInfoHeaderView;
+        return self.deleteContactInfoView;
     }
     
 }
@@ -167,24 +149,11 @@
 {
     if (indexPath.section == 3)
     {
-        if (indexPath.row == 0)
-        {
-            return 44;
-        }
-        else
-        {
-            return 88;
-        }
+        return (indexPath.row == 0) ? 44 : 88;
     }
     else if (indexPath.section == 0)
     {
-        if (indexPath.row == 0)
-        {
-            return 84;
-        }else
-        {
-            return 44;
-        }
+        return (indexPath.row == 0) ? 84 : 44;
     }
     else
     {
@@ -199,14 +168,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 3)
-    {
-        return 64;
-    }
-    else
-    {
-        return 1;
-    }
+    return (section == 3) ? 120 : 1 ;
 }
 
 
@@ -269,7 +231,6 @@
 
 -(void)handleCompeleteButton
 {
-    
 //    if (IsEmpty(_tagUserInfo.userName))
 //    {
 //        [self showHUDText:@"请输入姓名"];
@@ -369,9 +330,30 @@
     return _contactInfoHeaderView;
 }
 
+-(UIView *)deleteContactInfoView
+{
+    if (!_deleteContactInfoView)
+    {
+        _deleteContactInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 30)];
+        UIButton *deleteContactBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        [deleteContactBtn setBackgroundImage:OrigIMG(@"Products_but_minus") forState:UIControlStateNormal];
+        deleteContactBtn.frame = CGRectMake(70, 0, 30, 30);
+        ViewBorderRadius(deleteContactBtn, 35, 1, [UIColor blackColor]);
+        [deleteContactBtn addTarget:self action:@selector(handleDeleteContact) forControlEvents:UIControlEventTouchUpInside];
+        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 30)];
+        headerLabel.text = @"紧急联系人";
+        headerLabel.font = [UIFont systemFontOfSize:12];
+        [_deleteContactInfoView addSubview:headerLabel];
+        
+        [_deleteContactInfoView addSubview:deleteContactBtn];
+    }
+    return _deleteContactInfoView;
+}
+
 -(UIView*)medicalInfoHeaderView
 {
-    if (!_medicalInfoHeaderView) {
+    if (!_medicalInfoHeaderView)
+    {
         _medicalInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-10, 30)];
         UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-10, 30)];
         headerLabel.text = @"医疗救助信息";
@@ -385,10 +367,10 @@
 {
     if(!_footerView)
     {
-        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 64)];
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 120)];
         
         UIButton *completeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        completeBtn.frame = CGRectMake(15,10, WIDTH(self.view)-30, 44);
+        completeBtn.frame = CGRectMake(15,40, WIDTH(self.view)-30, 44);
         completeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [completeBtn setTitle:@"完成" forState:UIControlStateNormal];
         [completeBtn addTarget:self action:@selector(handleCompeleteButton) forControlEvents:UIControlEventTouchUpInside];

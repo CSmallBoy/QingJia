@@ -1,32 +1,38 @@
 //
-//  HCRefundSuccessViewController.m
+//  HCReissueAuditPassViewController.m
 //  Project
 //
 //  Created by 朱宗汉 on 16/1/4.
 //  Copyright © 2016年 com.xxx. All rights reserved.
-//退款成功
+//补发审核通过
 
-#import "HCRefundSuccessViewController.h"
+#import "HCReissueAuditPassViewController.h"
+#import "HCCustomerInfo.h"
+#import "HCLogisticsInfo.h"
+#import "HCLogisticsApi.h"
+
+#import "HCLogisticsInfoTableViewCellSecond.h"
+
 #import "HCCustomerTableViewCell.h"
 #import "HCShowReasonTableViewCell.h"
 
-#import "HCCustomerInfo.h"
-@interface HCRefundSuccessViewController ()
+@interface HCReissueAuditPassViewController ()<HCShowReasonTableViewCellDelegate>
 
 @property (nonatomic,strong) HCCustomerInfo *info;
-
-@property (nonatomic,strong) NSArray *RefundWhereaboutsArr;
+@property (nonatomic,assign) CGFloat cellHight;
 @end
 
-@implementation HCRefundSuccessViewController
+@implementation HCReissueAuditPassViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"补发审核";
+    self.title  = @"审核通过";
+    [self setupBackItem];
     self.tableView.tableHeaderView = HCTabelHeadView(1.0);
     _info = self.data[@"data"];
+    [self requestHomeData];
 }
+
 
 #pragma mark---UITableViewDelegate
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -49,54 +55,35 @@
         {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"reissueReason"];
             cell.textLabel.text = @"补发原因";
-            if ([self.info.reason integerValue] == 0)
-            {
-                cell.detailTextLabel.text = @"标签残缺";
-            }
-            else if([self.info.reason integerValue] == 1)
-            {
-                cell.detailTextLabel.text = @"二维码标签扫不出信息";
-            }
-            else
-            {
-                cell.detailTextLabel.text = @"其他";
-            }
+            cell.detailTextLabel.text = [HCDictionaryMgr applyReissueReason:self.info.reason];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         if (indexPath.row == 1)
         {
             HCShowReasonTableViewCell *showCell = [[HCShowReasonTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"show"];
+            showCell.delegate = self;
             showCell.info = self.info;
             cell = showCell;
         }
     }
-    else if (indexPath.section == 2)
+    else
     {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reissueReason"];
         if (indexPath.row == 0)
         {
-            if ([self.info.goodsName integerValue]== 0)
-            {
-                cell.textLabel.text = @"补发内容: M-Talk烫印机";
-            }
-            else  if ([self.info.goodsName integerValue] == 1)
-            {
-                cell.textLabel.text = @"补发内容: M-Talk标签";
-            }
-        }
-        else if (indexPath.row == 1)
-        {
-            cell.textLabel.text = [NSString stringWithFormat:@"补发数量: %@",self.info.detailNeedGoodsNum];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"followInfo"];
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"followInfo"];
+            cell.textLabel.text = @"补发物流信息";
+            cell.detailTextLabel.text = @"XCSCF14242342";
         }
         else
         {
-            cell.textLabel.text = [NSString stringWithFormat:@"退款金额: %@",self.info.orderTotalPrice];
+            HCLogisticsInfoTableViewCellSecond *cellS;
+            cellS = [tableView dequeueReusableCellWithIdentifier:@"lodisticsInfoSecond"];
+            cellS = [[HCLogisticsInfoTableViewCellSecond alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"lodisticsInfoSecond"];
+            cellS.info = self.dataSource[indexPath.row-1];
+            cellS.indexPath = indexPath;
+            cell = cellS;
         }
-    }
-    else if (indexPath.section == 3)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"reissueReason"];
-        cell.textLabel.text = [NSString stringWithFormat:@"退款去向：%@",self.RefundWhereaboutsArr[[self.info.RefundWhereabouts integerValue]]];
     }
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     return cell;
@@ -105,22 +92,22 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 3;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 1)
+    if (section == 0)
+    {
+        return 1;
+    }
+    else if (section == 1)
     {
         return 2;
     }
-    else if (section == 2)
-    {
-        return 3;
-    }
     else
     {
-        return 1;
+        return self.dataSource.count + 1;
     }
 }
 
@@ -132,7 +119,7 @@
     }
     else if (indexPath.section == 1&&indexPath.row == 1)
     {
-        return 120+SCREEN_WIDTH/3;
+        return _cellHight;
     }
     else
     {
@@ -150,13 +137,31 @@
     return 1;
 }
 
-#pragma mark ---Setter Or Getter
+#pragma mark---HCShowReasonTableViewCellDelegate
 
--(NSArray *)RefundWhereaboutsArr
+-(void)passcellHight:(CGFloat)cellheight
 {
-    if (!_RefundWhereaboutsArr) {
-        _RefundWhereaboutsArr = @[@"支付宝",@"微信钱包"];
-    }
-    return _RefundWhereaboutsArr;
+    _cellHight = cellheight;
+}
+
+#pragma mark---network
+
+- (void)requestHomeData
+{
+    HCLogisticsApi *api = [[HCLogisticsApi alloc] init];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array)
+     {
+         if (requestStatus == HCRequestStatusSuccess)
+         {
+             [self.dataSource removeAllObjects];
+             [self.dataSource addObjectsFromArray:array];
+             [self.tableView reloadData];
+         }else
+         {
+             [self showHUDError:message];
+         }
+     }
+     ];
+    _baseRequest = api;
 }
 @end

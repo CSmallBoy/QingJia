@@ -37,7 +37,8 @@
 
 @implementation HCPaymentViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
      self.title = @"支付";
     [self setupBackItem];
@@ -61,11 +62,13 @@
                 [acceptCell.contentView addSubview:self.acceptGoodsAddressTextView];
             cell = acceptCell;
             
-        }else if (indexPath.section == 1)
+        }
+        else if (indexPath.section == 1)
         {
             HCGoodsListTableViewCell *goodsListcell = [[HCGoodsListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"goodsList"];
             cell = goodsListcell;
-        }else
+        }
+        else
         {
         HCPayWayTableViewCell* payCell = [[HCPayWayTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"payway"];
             payCell.indexPath = indexPath;
@@ -93,10 +96,15 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    if (IsEmpty(_info))
+    {
+        return nil;
+    }
     if (section == 2)
     {
         return self.beSureToPayView;
-    }else if(section == 0)
+    }
+    else if(section == 0)
     {
         return self.useNewAddressView;
     }else
@@ -107,21 +115,28 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
+    if (IsEmpty(_info))
+    {
+        return nil;
+    }
     _headerViewLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, WIDTH(self.view)-20, 30)];
     _headerViewLable.numberOfLines = 0;
     _headerViewLable.font = [UIFont systemFontOfSize:15];
+    
+    
     if (section == 0)
     {
         self.headerViewLable.text = @"1.选择收货地址";
-    }else if (section == 1)
+    }
+    else if (section == 1)
     {
         self.headerViewLable.attributedText =  [self changeStringColorAndFontWithStart:@"2.商品清单" smallString:@"(预印板预计三天内送达，定制版十五天后发货)" end:@""];
         CGSize size = CGSizeMake(WIDTH(self.view)-20,2000);
         CGSize labelsize = [_headerViewLable.text sizeWithFont:_headerViewLable.font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
         [_headerViewLable setFrame:CGRectMake(10,0, labelsize.width, labelsize.height)];
         _labelHeight = labelsize.height + 10;
-    }else
+    }
+    else
     {
        self.headerViewLable.text = @"3.选择支付方式";
     }
@@ -137,7 +152,8 @@
     if (indexPath.section == 0)
     {
         return 120;
-    }else if(indexPath.section  == 1)
+    }
+    else if(indexPath.section  == 1)
     {
         return 240;
     }
@@ -154,7 +170,7 @@
         return 44;
     }if (section == 2)
     {
-        return 64;
+        return 120;
     }else
     {
         return 1;
@@ -166,7 +182,8 @@
     if (section == 2)
     {
         return 40;
-    }else
+    }
+    else
     {
         return MAX(44, _labelHeight);
     }
@@ -240,10 +257,10 @@
 {
     if(!_beSureToPayView)
     {
-        _beSureToPayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 64)];
+        _beSureToPayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 120)];
         
         UIButton *completeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        completeBtn.frame = CGRectMake(12, 10, WIDTH(self.view)-24, 44);
+        completeBtn.frame = CGRectMake(12, 40, WIDTH(self.view)-24, 44);
         [completeBtn setTitle:@"完成" forState:UIControlStateNormal];
         completeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [completeBtn addTarget:self action:@selector(handleBeSureToPay) forControlEvents:UIControlEventTouchUpInside];

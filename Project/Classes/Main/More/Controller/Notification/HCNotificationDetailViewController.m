@@ -28,10 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"信息详情";
-    
-    
-  
- 
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview: self.userNameLab];
     [self.view addSubview: self.timeLab];

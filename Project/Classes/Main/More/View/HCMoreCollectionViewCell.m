@@ -36,8 +36,8 @@
     [super layoutSubviews];
 //    self.imgView.frame = CGRectMake(10, 0, WIDTH(self)-20, WIDTH(self)-20);
 //    self.titleLabel.frame = CGRectMake(0, MaxY(self.imgView)+5, WIDTH(self), 20);
-    self.imgView.frame = CGRectMake(15, 0, WIDTH(self)-30, WIDTH(self)-30);
-    self.titleLabel.frame = CGRectMake(5, MaxY(self.imgView)+5, WIDTH(self)-10, 15);
+    self.imgView.frame = CGRectMake(20, 0, WIDTH(self)-40, WIDTH(self)-40);
+    self.titleLabel.frame = CGRectMake(10, MaxY(self.imgView)+10, WIDTH(self)-18, 15);
 }
 
 #pragma mark - setter or getter

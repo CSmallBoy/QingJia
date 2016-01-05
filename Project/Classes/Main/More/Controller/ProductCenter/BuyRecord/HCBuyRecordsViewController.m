@@ -155,6 +155,7 @@
     VC.data = @{@"data":info};
     [self.navigationController pushViewController:VC animated:YES];
 }
+
 #pragma mark --- Setter Or  Getter
 
 - (UIBarButtonItem *)rightItem

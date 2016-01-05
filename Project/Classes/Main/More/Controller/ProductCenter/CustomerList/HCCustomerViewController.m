@@ -17,21 +17,25 @@
 #import "HCReissueAuditNotPassViewController.h"
 #import "HCRefundSuccessViewController.h"
 
+#import "HCWaitReturnAuditViewController.h"
+#import "HCReturnAuditPassViewController.h"
+#import "HCReturnAuditNotPassViewController.h"
+
 @interface HCCustomerViewController ()
 
 @end
 
 @implementation HCCustomerViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = @"售后列表";
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
     [self requestHomeData];
-    
-    
 }
+
 #pragma mark--Delegate
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,34 +69,62 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCCustomerInfo *info = self.dataSource[indexPath.section];
-    if (info.orderCustomerState == 0)
+    if ([info.goodsName integerValue] == 1)
     {
-        HCWaitReissueAuditViewController *VC = [[HCWaitReissueAuditViewController alloc]init];
-        VC.title = @"待审核";
-        VC.data = @{@"data":info};
-        [self.navigationController pushViewController:VC animated:YES];
+        if (info.orderCustomerState == 0)
+        {
+            HCWaitReissueAuditViewController *VC = [[HCWaitReissueAuditViewController alloc]init];
+            VC.title = @"待审核";
+            VC.data = @{@"data":info};
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+        else if(info.orderCustomerState == 1)
+        {
+            HCReissueAuditPassViewController *VC = [[HCReissueAuditPassViewController alloc]init];
+            VC.title = @"审核通过";
+            VC.data = @{@"data":info};
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+        else if(info.orderCustomerState == 2)
+        {
+            HCReissueAuditNotPassViewController *VC = [[HCReissueAuditNotPassViewController alloc]init];
+            VC.title = @"审核不通过";
+            VC.data = @{@"data":info};
+            [self.navigationController pushViewController:VC animated:YES];
+        }
     }
-    else if(info.orderCustomerState == 1)
+    else
     {
-        HCReissueAuditPassViewController *VC = [[HCReissueAuditPassViewController alloc]init];
-        VC.title = @"审核通过";
-        VC.data = @{@"data":info};
-        [self.navigationController pushViewController:VC animated:YES];
+        if (info.orderCustomerState == 0)
+        {
+            HCWaitReturnAuditViewController *VC = [[HCWaitReturnAuditViewController alloc]init];
+            VC.title = @"待审核";
+            VC.data = @{@"data":info};
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+        else if(info.orderCustomerState == 1)
+        {
+            HCReturnAuditPassViewController *VC = [[HCReturnAuditPassViewController alloc]init];
+            VC.title = @"审核通过";
+            VC.data = @{@"data":info};
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+        else if(info.orderCustomerState == 2)
+        {
+            HCReturnAuditNotPassViewController *VC = [[HCReturnAuditNotPassViewController alloc]init];
+            VC.title = @"审核不通过";
+            VC.data = @{@"data":info};
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+        else if(info.orderCustomerState == 3)
+        {
+            HCRefundSuccessViewController *VC = [[HCRefundSuccessViewController alloc]init];
+            VC.title = @"退款成功";
+            VC.data = @{@"data":info};
+            [self.navigationController pushViewController:VC animated:YES];
+        }
     }
-    else if(info.orderCustomerState == 2)
-    {
-        HCReissueAuditNotPassViewController *VC = [[HCReissueAuditNotPassViewController alloc]init];
-        VC.title = @"审核不通过";
-        VC.data = @{@"data":info};
-        [self.navigationController pushViewController:VC animated:YES];
-    }
-    else if(info.orderCustomerState == 3)
-    {
-        HCRefundSuccessViewController *VC = [[HCRefundSuccessViewController alloc]init];
-        VC.title = @"退款成功";
-        VC.data = @{@"data":info};
-        [self.navigationController pushViewController:VC animated:YES];
-    }
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

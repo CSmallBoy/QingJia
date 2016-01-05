@@ -11,17 +11,6 @@
 @interface HCProductIntroductionCell()
 
 @property (nonatomic,strong) UIScrollView *scrollView;
-
-
-//@property (nonatomic,strong) UILabel *productNameLb;
-////购买方式1
-//@property (nonatomic,strong) UIButton *buyWayFirstBtn;
-//@property (nonatomic,strong) UILabel *buyWayFirstlb;
-//购买方式2
-//@property (nonatomic,strong) UIButton *buyWaySecondBtn;
-//@property (nonatomic,strong) UILabel *buyWaySecondLb;
-//标签加减
-
 /**烫印机个数label*/
 @property (nonatomic,strong) UILabel* hotStampingMachineNumberLab;
 /**增加烫印机个数按钮*/
@@ -80,6 +69,12 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
+        for (int i = 0; i <4; i++)
+        {
+            UIView *lightView = [[UIView alloc]initWithFrame:CGRectMake(0, 55*(i+1), SCREEN_WIDTH, 0.5)];
+            lightView.backgroundColor = LightGraryColor;
+            [self.contentView addSubview:lightView];
+        }
     }
     return self;
 }
@@ -200,6 +195,7 @@
 }
 
 #pragma mark-- Setter Or Getter
+
 -(UIScrollView *)scrollView
 {
     if (!_scrollView)
