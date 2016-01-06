@@ -13,4 +13,8 @@ typedef void(^HCResCueCenterBlock)(HCRequestStatus requestStatus, NSString *mess
 @interface HCRescueCenterApi : HCRequest
 
 - (void)startRequest:(HCResCueCenterBlock)requestBlock;
+
+@property (nonatomic, assign) int Start;
+@property (nonatomic, assign) int Count;
+
 @end

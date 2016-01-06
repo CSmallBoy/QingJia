@@ -9,31 +9,30 @@
 #import "HCNotificationCenterApi.h"
 #import "HCNotificationCenterInfo.h"
 @implementation HCNotificationCenterApi
+
 - (void)startRequest:(HCNotificationCenterBlock)requestBlock
 {
     [super startRequest:requestBlock];
 }
 
+- (NSString *)requestUrl
+{
+    return @"Notice/Notice.ashx";
+}
+
 - (id)requestArgument
 {
-    return @{@"t": @"User,logout", @"token": @"23"};
+    NSDictionary *head = @{@"Action" : @"GetList" , @"Token":[HCAccountMgr manager].loginInfo.Token , @"UUID":[HCAccountMgr manager].loginInfo.UUID};
+
+    NSDictionary *para = @{@"NociteType": @(_NoticeType), @"theStatus": _theStatus};
+    NSDictionary *result = @{@"Start" : @(_Start), @"Count" : @(_Count)};
+    NSDictionary *bodyDic = @{@"Head" : head, @"Para" : para, @"Result" : result};
+    
+    return @{@"json": [Utils stringWithObject:bodyDic]};
 }
 
 - (id)formatResponseObject:(id)responseObject
-{ 
-    NSMutableArray *NotificationArr = [NSMutableArray array];
-    for (NSInteger i = 0; i < 5; i++)
-    {
-        HCNotificationCenterInfo *info = [[HCNotificationCenterInfo alloc] init];
-        info.userName = @"测试昵称";
-        info.time = @"2015年10月20日 18:30";
-        info.notificationMessage = @"#李嬷嬷#回复:TableViewgithu@撒旦 哈哈哈哈#九歌#九邮m旦旦/:dsad旦/::)sss/::~啊是大三的拉了/::B/::|/:8-)/::</::$/链接:http://baidu.com dudl@qq.com";
-        [NotificationArr addObject:info];
-    }
-    
-   
-    
-    return NotificationArr;
+{
+    return responseObject[@"Data"];
 }
-
 @end

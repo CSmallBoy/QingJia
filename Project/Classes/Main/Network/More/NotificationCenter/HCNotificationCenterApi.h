@@ -14,4 +14,11 @@ typedef void(^HCNotificationCenterBlock)(HCRequestStatus requestStatus, NSString
 @interface HCNotificationCenterApi : HCRequest
 
 - (void)startRequest:(HCNotificationCenterBlock)requestBlock;
+
+@property (nonatomic, assign) int NoticeType;
+@property (nonatomic, strong) NSString *theStatus;
+
+@property (nonatomic, assign) int Start;
+@property (nonatomic, assign) int Count;
+
 @end

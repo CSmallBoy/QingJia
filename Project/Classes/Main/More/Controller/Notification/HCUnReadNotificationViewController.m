@@ -106,14 +106,18 @@
 - (void)requestHomeData
 {
     HCNotificationCenterApi *api = [[HCNotificationCenterApi alloc] init];
-    
+    api.NoticeType = 100;
+    api.theStatus = @"未读";
+    api.Start = 1000;
+    api.Count = 20;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource removeAllObjects];
             [self.dataSource addObjectsFromArray:array];
             [self.tableView reloadData];
-        }else
+        }
+        else
         {
             [self showHUDError:message];
         }

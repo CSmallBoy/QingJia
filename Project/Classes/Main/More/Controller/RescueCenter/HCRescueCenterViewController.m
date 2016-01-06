@@ -131,6 +131,8 @@
 {
     HCRescueCenterApi *api = [[HCRescueCenterApi alloc] init];
     
+    api.Start = 1000;
+    api.Count = 20;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array)
     {
         if (requestStatus == HCRequestStatusSuccess)

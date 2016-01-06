@@ -9,7 +9,8 @@
 #import "HCReadNotificationViewController.h"
 #import "HCButtonItem.h"
 #import "HCNotificationCentereReadTableViewCell.h"
-#import "HCNotificationCenterReadApi.h"
+//#import "HCNotificationCenterReadApi.h"
+#import "HCNotificationCenterApi.h"
 #import "HCNotificationCenterInfo.h"
 #import "HCNotificationDetailViewController.h"
 
@@ -105,20 +106,23 @@
 
 - (void)requestHomeData
 {
-    HCNotificationCenterReadApi *api = [[HCNotificationCenterReadApi alloc] init];
-    
+    HCNotificationCenterApi *api = [[HCNotificationCenterApi alloc] init];
+    api.NoticeType = 100;
+    api.theStatus = @"已读";
+    api.Start = 1000;
+    api.Count = 20;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource removeAllObjects];
             [self.dataSource addObjectsFromArray:array];
             [self.tableView reloadData];
-        }else
+        }
+        else
         {
             [self showHUDError:message];
         }
     }];
+
 }
-
-
 @end
