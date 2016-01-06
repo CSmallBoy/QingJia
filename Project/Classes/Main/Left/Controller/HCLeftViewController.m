@@ -119,6 +119,8 @@
     {
         _leftGradeView = [[HCLeftGradeView alloc] initWithFrame:self.view.frame];
         _leftGradeView.delegate = self;
+
+        
     }
     return _leftGradeView;
 }

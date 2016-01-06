@@ -212,9 +212,15 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (app.mainController.showStatus)
     {
+
+        
+        
+        
         [app.mainController hideSideViewController:YES];
     }else
     {
+     
+        
         [app.mainController showLeftViewController:YES];
     }
 }

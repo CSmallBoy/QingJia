@@ -753,6 +753,12 @@
 		0AFE6B8F1C2BBD0D0066D3E8 /* HCGradeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE6B8D1C2BBD0D0066D3E8 /* HCGradeSuccessViewController.m */; };
 		0AFE6B901C2BBD0D0066D3E8 /* HCGradeSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFE6B8E1C2BBD0D0066D3E8 /* HCGradeSuccessViewController.xib */; };
 		3AA0DCFA47C83622EEE93AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9376B27D02CD20170277F57 /* libPods.a */; };
+		8D1A91DB1C3CA78600C920EE /* HCAddPromiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91D81C3CA78600C920EE /* HCAddPromiseViewController.m */; };
+		8D1A91DC1C3CA78600C920EE /* HCPromisedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91DA1C3CA78600C920EE /* HCPromisedViewController.m */; };
+		8D1A91E81C3CA7A900C920EE /* HCPromisedAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91E01C3CA7A900C920EE /* HCPromisedAddCell.m */; };
+		8D1A91E91C3CA7A900C920EE /* HCPromisedHeaderIVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91E31C3CA7A900C920EE /* HCPromisedHeaderIVCell.m */; };
+		8D1A91EA1C3CA7A900C920EE /* HCPromisedNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91E61C3CA7A900C920EE /* HCPromisedNormalCell.m */; };
+		8D1A91EB1C3CA7A900C920EE /* HCPromisedNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D1A91E71C3CA7A900C920EE /* HCPromisedNormalCell.xib */; };
 		C73BCB681C3BAEA1005048C5 /* HCAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA971C3BAEA1005048C5 /* HCAddItemViewController.m */; };
 		C73BCB691C3BAEA1005048C5 /* HClassCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA9A1C3BAEA1005048C5 /* HClassCalendarViewController.m */; };
 		C73BCB6A1C3BAEA1005048C5 /* HCMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA9C1C3BAEA1005048C5 /* HCMoreViewController.m */; };
@@ -784,7 +790,6 @@
 		C73BCB841C3BAEA1005048C5 /* HCProductCenterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCAD71C3BAEA1005048C5 /* HCProductCenterDetailViewController.m */; };
 		C73BCB851C3BAEA1005048C5 /* HCJDBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCADA1C3BAEA1005048C5 /* HCJDBuyViewController.m */; };
 		C73BCB861C3BAEA1005048C5 /* HCTaoBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCADC1C3BAEA1005048C5 /* HCTaoBaoViewController.m */; };
-		C73BCB871C3BAEA1005048C5 /* HCPromisedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCADF1C3BAEA1005048C5 /* HCPromisedViewController.m */; };
 		C73BCB881C3BAEA1005048C5 /* HCCaseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCAE21C3BAEA1005048C5 /* HCCaseDetailViewController.m */; };
 		C73BCB891C3BAEA1005048C5 /* HCRescueCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCAE41C3BAEA1005048C5 /* HCRescueCenterViewController.m */; };
 		C73BCB8A1C3BAEA1005048C5 /* HCActivatedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCAE81C3BAEA1005048C5 /* HCActivatedTableViewController.m */; };
@@ -2179,6 +2184,17 @@
 		0AFE6B8D1C2BBD0D0066D3E8 /* HCGradeSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGradeSuccessViewController.m; sourceTree = "<group>"; };
 		0AFE6B8E1C2BBD0D0066D3E8 /* HCGradeSuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCGradeSuccessViewController.xib; sourceTree = "<group>"; };
 		6ACE64504D5E86E87CC78BEE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8D1A91D71C3CA78600C920EE /* HCAddPromiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddPromiseViewController.h; sourceTree = "<group>"; };
+		8D1A91D81C3CA78600C920EE /* HCAddPromiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddPromiseViewController.m; sourceTree = "<group>"; };
+		8D1A91D91C3CA78600C920EE /* HCPromisedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedViewController.h; sourceTree = "<group>"; };
+		8D1A91DA1C3CA78600C920EE /* HCPromisedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedViewController.m; sourceTree = "<group>"; };
+		8D1A91DF1C3CA7A900C920EE /* HCPromisedAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedAddCell.h; sourceTree = "<group>"; };
+		8D1A91E01C3CA7A900C920EE /* HCPromisedAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedAddCell.m; sourceTree = "<group>"; };
+		8D1A91E21C3CA7A900C920EE /* HCPromisedHeaderIVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedHeaderIVCell.h; sourceTree = "<group>"; };
+		8D1A91E31C3CA7A900C920EE /* HCPromisedHeaderIVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedHeaderIVCell.m; sourceTree = "<group>"; };
+		8D1A91E51C3CA7A900C920EE /* HCPromisedNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedNormalCell.h; sourceTree = "<group>"; };
+		8D1A91E61C3CA7A900C920EE /* HCPromisedNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedNormalCell.m; sourceTree = "<group>"; };
+		8D1A91E71C3CA7A900C920EE /* HCPromisedNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCPromisedNormalCell.xib; sourceTree = "<group>"; };
 		C73BCA961C3BAEA1005048C5 /* HCAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddItemViewController.h; sourceTree = "<group>"; };
 		C73BCA971C3BAEA1005048C5 /* HCAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddItemViewController.m; sourceTree = "<group>"; };
 		C73BCA991C3BAEA1005048C5 /* HClassCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClassCalendarViewController.h; sourceTree = "<group>"; };
@@ -2241,8 +2257,6 @@
 		C73BCADA1C3BAEA1005048C5 /* HCJDBuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCJDBuyViewController.m; sourceTree = "<group>"; };
 		C73BCADB1C3BAEA1005048C5 /* HCTaoBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTaoBaoViewController.h; sourceTree = "<group>"; };
 		C73BCADC1C3BAEA1005048C5 /* HCTaoBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTaoBaoViewController.m; sourceTree = "<group>"; };
-		C73BCADE1C3BAEA1005048C5 /* HCPromisedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedViewController.h; sourceTree = "<group>"; };
-		C73BCADF1C3BAEA1005048C5 /* HCPromisedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedViewController.m; sourceTree = "<group>"; };
 		C73BCAE11C3BAEA1005048C5 /* HCCaseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCaseDetailViewController.h; sourceTree = "<group>"; };
 		C73BCAE21C3BAEA1005048C5 /* HCCaseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCaseDetailViewController.m; sourceTree = "<group>"; };
 		C73BCAE31C3BAEA1005048C5 /* HCRescueCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCRescueCenterViewController.h; sourceTree = "<group>"; };
@@ -5204,6 +5218,55 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8D1A91D61C3CA78600C920EE /* Promised */ = {
+			isa = PBXGroup;
+			children = (
+				8D1A91D71C3CA78600C920EE /* HCAddPromiseViewController.h */,
+				8D1A91D81C3CA78600C920EE /* HCAddPromiseViewController.m */,
+				8D1A91D91C3CA78600C920EE /* HCPromisedViewController.h */,
+				8D1A91DA1C3CA78600C920EE /* HCPromisedViewController.m */,
+			);
+			path = Promised;
+			sourceTree = "<group>";
+		};
+		8D1A91DD1C3CA7A900C920EE /* Promised */ = {
+			isa = PBXGroup;
+			children = (
+				8D1A91DE1C3CA7A900C920EE /* HCPromiseAddCell */,
+				8D1A91DF1C3CA7A900C920EE /* HCPromisedAddCell.h */,
+				8D1A91E01C3CA7A900C920EE /* HCPromisedAddCell.m */,
+				8D1A91E11C3CA7A900C920EE /* HCPromiseDetailCell */,
+				8D1A91E41C3CA7A900C920EE /* HCPromiseNormalCell */,
+			);
+			path = Promised;
+			sourceTree = "<group>";
+		};
+		8D1A91DE1C3CA7A900C920EE /* HCPromiseAddCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HCPromiseAddCell;
+			sourceTree = "<group>";
+		};
+		8D1A91E11C3CA7A900C920EE /* HCPromiseDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				8D1A91E21C3CA7A900C920EE /* HCPromisedHeaderIVCell.h */,
+				8D1A91E31C3CA7A900C920EE /* HCPromisedHeaderIVCell.m */,
+			);
+			path = HCPromiseDetailCell;
+			sourceTree = "<group>";
+		};
+		8D1A91E41C3CA7A900C920EE /* HCPromiseNormalCell */ = {
+			isa = PBXGroup;
+			children = (
+				8D1A91E51C3CA7A900C920EE /* HCPromisedNormalCell.h */,
+				8D1A91E61C3CA7A900C920EE /* HCPromisedNormalCell.m */,
+				8D1A91E71C3CA7A900C920EE /* HCPromisedNormalCell.xib */,
+			);
+			path = HCPromiseNormalCell;
+			sourceTree = "<group>";
+		};
 		B3F788F61B430EBC07B60CDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -5244,9 +5307,9 @@
 				C73BCA981C3BAEA1005048C5 /* ClassCalendar */,
 				C73BCA9B1C3BAEA1005048C5 /* HCMoreViewController.h */,
 				C73BCA9C1C3BAEA1005048C5 /* HCMoreViewController.m */,
+				8D1A91D61C3CA78600C920EE /* Promised */,
 				C73BCA9D1C3BAEA1005048C5 /* Notification */,
 				C73BCAA81C3BAEA1005048C5 /* ProductCenter */,
-				C73BCADD1C3BAEA1005048C5 /* Promised */,
 				C73BCAE01C3BAEA1005048C5 /* RescueCenter */,
 				C73BCAE51C3BAEA1005048C5 /* TagManager */,
 				C73BCAF71C3BAEA1005048C5 /* Time */,
@@ -5388,15 +5451,6 @@
 				C73BCADC1C3BAEA1005048C5 /* HCTaoBaoViewController.m */,
 			);
 			path = TaobaoAndJD;
-			sourceTree = "<group>";
-		};
-		C73BCADD1C3BAEA1005048C5 /* Promised */ = {
-			isa = PBXGroup;
-			children = (
-				C73BCADE1C3BAEA1005048C5 /* HCPromisedViewController.h */,
-				C73BCADF1C3BAEA1005048C5 /* HCPromisedViewController.m */,
-			);
-			path = Promised;
 			sourceTree = "<group>";
 		};
 		C73BCAE01C3BAEA1005048C5 /* RescueCenter */ = {
@@ -5578,6 +5632,7 @@
 				C73BCB221C3BAEA1005048C5 /* HCLightGrayLineView.m */,
 				C73BCB231C3BAEA1005048C5 /* HCMoreCollectionViewCell.h */,
 				C73BCB241C3BAEA1005048C5 /* HCMoreCollectionViewCell.m */,
+				8D1A91DD1C3CA7A900C920EE /* Promised */,
 				C73BCB251C3BAEA1005048C5 /* NotificationCenter */,
 				C73BCB301C3BAEA1005048C5 /* ProductCenter */,
 				C73BCB5F1C3BAEA1005048C5 /* TagManager */,
@@ -6014,6 +6069,7 @@
 				0A7CBF6E1C315FB80051DD58 /* VoiceSearchFeedback017.png in Resources */,
 				0A7CBF511C315FB80051DD58 /* VoiceSearchFeedback002@2x.png in Resources */,
 				0A7CBF681C315FB80051DD58 /* VoiceSearchFeedback014.png in Resources */,
+				8D1A91EB1C3CA7A900C920EE /* HCPromisedNormalCell.xib in Resources */,
 				0A7CBF6A1C315FB80051DD58 /* VoiceSearchFeedback015.png in Resources */,
 				0A67B2211C0D63B300FB87C8 /* 2.jpg in Resources */,
 				0A7CBF801C315FB80051DD58 /* chatBar_more_card.png in Resources */,
@@ -6374,6 +6430,7 @@
 				0A7CBCCA1C31294E0051DD58 /* XHMessageTextView.m in Sources */,
 				0A5491031C2BC32D0085F50D /* ZXAztecBinaryShiftToken.m in Sources */,
 				C73BCB751C3BAEA1005048C5 /* HCLogisticsInfoViewController.m in Sources */,
+				8D1A91EA1C3CA7A900C920EE /* HCPromisedNormalCell.m in Sources */,
 				0AC40DC11C2270E20074AA79 /* HCHomeDetailInfo.m in Sources */,
 				0A54915E1C2BC32D0085F50D /* ZXDataMatrixBase256Encoder.m in Sources */,
 				0A54916C1C2BC32D0085F50D /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
@@ -6559,6 +6616,7 @@
 				0A7CBC911C31294D0051DD58 /* NSDateFormatter+Category.m in Sources */,
 				0AA626B91C29862700EC62D9 /* HCFriendMessageViewController.m in Sources */,
 				0A5491291C2BC32D0085F50D /* ZXURIResultParser.m in Sources */,
+				8D1A91DB1C3CA78600C920EE /* HCAddPromiseViewController.m in Sources */,
 				0A5491CF1C2BC32D0085F50D /* ZXQRCodeFinderPatternFinder.m in Sources */,
 				0A7CBCB11C31294D0051DD58 /* ApplyFriendCell.m in Sources */,
 				0A5491131C2BC32D0085F50D /* ZXCalendarParsedResult.m in Sources */,
@@ -6593,6 +6651,7 @@
 				C7692F561C3A4B2200582A10 /* MDCFocalPointView.m in Sources */,
 				0AC89D651C28F21F003EED90 /* HCHomePictureDetailViewController.m in Sources */,
 				0A7CBC9F1C31294D0051DD58 /* EMBubbleView+Gif.m in Sources */,
+				8D1A91DC1C3CA78600C920EE /* HCPromisedViewController.m in Sources */,
 				0A5491191C2BC32D0085F50D /* ZXGeoParsedResult.m in Sources */,
 				0A6B7F651BF1EB74008D54B3 /* HCLoginInfo.m in Sources */,
 				0A5491741C2BC32D0085F50D /* ZXAI01392xDecoder.m in Sources */,
@@ -6789,6 +6848,7 @@
 				0A5491CB1C2BC32D0085F50D /* ZXQRCodeAlignmentPattern.m in Sources */,
 				0A7CBCDC1C31294E0051DD58 /* MWPhotoBrowser.m in Sources */,
 				C73BCB8F1C3BAEA1005048C5 /* HCTagManagerViewController.m in Sources */,
+				8D1A91E81C3CA7A900C920EE /* HCPromisedAddCell.m in Sources */,
 				0A5491641C2BC32D0085F50D /* ZXDataMatrixHighLevelEncoder.m in Sources */,
 				0A5491021C2BC32D0085F50D /* ZXAztecDetector.m in Sources */,
 				C73BCBAC1C3BAEA1005048C5 /* HCApplyReissueDetailCell.m in Sources */,
@@ -6800,11 +6860,11 @@
 				0A54910E1C2BC32D0085F50D /* ZXAddressBookAUResultParser.m in Sources */,
 				C73BCB6F1C3BAEA1005048C5 /* HCUnReadNotificationViewController.m in Sources */,
 				C73BCBB71C3BAEA1005048C5 /* HCPayWayTableViewCell.m in Sources */,
+				8D1A91E91C3CA7A900C920EE /* HCPromisedHeaderIVCell.m in Sources */,
 				0A5491D41C2BC32D0085F50D /* ZXQRCodeMaskUtil.m in Sources */,
 				0A5491C61C2BC32D0085F50D /* ZXQRCodeDecoderMetaData.m in Sources */,
 				0A5491BF1C2BC32D0085F50D /* ZXPDF417ResultMetadata.m in Sources */,
 				C73BCB931C3BAEA1005048C5 /* HCNotificationCenterInfo.m in Sources */,
-				C73BCB871C3BAEA1005048C5 /* HCPromisedViewController.m in Sources */,
 				0AC89D871C2932A0003EED90 /* HCFeedbackViewController.m in Sources */,
 				0A5491531C2BC32D0085F50D /* ZXPlanarYUVLuminanceSource.m in Sources */,
 				0A5491A31C2BC32D0085F50D /* ZXUPCEANExtension5Support.m in Sources */,
