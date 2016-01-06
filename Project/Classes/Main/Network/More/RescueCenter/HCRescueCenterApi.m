@@ -34,18 +34,7 @@
 
 - (id)formatResponseObject:(id)responseObject
 {
-//    NSMutableArray *newsArr = [NSMutableArray array];
-//    for (NSInteger i = 0; i < 5; i++)
-//    {
-//        HCRescueCenterInfo *info = [[HCRescueCenterInfo alloc] init];
-//        info.headerImageStr = @"http://www.xiaodaohang.cn/1.jpg";
-//        info.newsTitle = @"啊是大三的拉";
-//        info.detailNews = @"#李嬷嬷#回复:TableViewgithu@撒旦 哈哈哈哈#九歌#九邮m旦旦/:dsad旦/::)sss/::~啊是大三的拉了/::B/::|/:8-)/::</::$/链接:http://baidu.com dudl@qq.com";
-//        info.urlStr = @"https://www.baidu.com";
-//        [newsArr addObject:info];
-//    }
-//
-//    return newsArr;
-      return responseObject[@"Data"];
+//    return responseObject;
+    return responseObject[@"rows"];
 }
 @end

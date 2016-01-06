@@ -91,6 +91,7 @@
     
 }
 
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -101,7 +102,6 @@
 {
     return self.dataSource.count;
 }
-
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -132,14 +132,6 @@
     return view;
 }
 
-#pragma mark----private methods
-
--(void)handleCustomer
-{
-    [self.navigationController pushViewController:[HCCustomerViewController new] animated:YES];
-}
-
-
 #pragma mark----HCBuyRecordCellDelegate
 
 -(void)handleApplyReissue:(HCProductIntroductionInfo*)info
@@ -154,6 +146,13 @@
     HCApplyReturnViewController *VC = [[HCApplyReturnViewController alloc]init];
     VC.data = @{@"data":info};
     [self.navigationController pushViewController:VC animated:YES];
+}
+
+#pragma mark----private methods
+
+-(void)handleCustomer
+{
+    [self.navigationController pushViewController:[HCCustomerViewController new] animated:YES];
 }
 
 #pragma mark --- Setter Or  Getter

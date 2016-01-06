@@ -46,7 +46,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCNotificationDetailViewController *detailVC = [[HCNotificationDetailViewController alloc]init];
-    detailVC.info = self.dataSource[indexPath.section];
+//    detailVC.info = self.dataSource[indexPath.section];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -119,6 +119,9 @@
         }
         else
         {
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:array];
+            [self.tableView reloadData];
             [self showHUDError:message];
         }
     }];

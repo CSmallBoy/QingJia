@@ -17,9 +17,24 @@
     [super startRequest:requestBlock];
 }
 
+//- (id)requestArgument
+//{
+//    return @{@"t": @"User,logout", @"token": @"23"};
+//}
+- (NSString *)requestUrl
+{
+    return @"User/AuthCode.ashx";// 测试
+    return @"FamilyTimes/FamilyTimes.ashx";
+}
+
 - (id)requestArgument
 {
-    return @{@"t": @"User,logout", @"token": @"23"};
+    //测试
+    NSDictionary *cshead = @{@"Action": @"ReGet", @"UUID": [HCAppMgr manager].uuid, @"PlatForm": [HCAppMgr manager].systemVersion};
+    NSDictionary *cspara = @{@"PhoneNumber": @(18012345678), @"theType": @(1000)};
+    NSDictionary *csbody = @{@"Head": cshead, @"Para": cspara};
+    return @{@"json": [Utils stringWithObject:csbody]};
+    
 }
 
 - (id)formatResponseObject:(id)responseObject

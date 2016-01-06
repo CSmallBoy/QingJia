@@ -61,10 +61,10 @@ static NSString *IDCellF = @"introduction";
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (IsEmpty(_info))
-    {
-        return 0;
-    }
+//    if (IsEmpty(_info))
+//    {
+//        return 0;
+//    }
     return 2;
 }
 

@@ -866,6 +866,8 @@
 		C7829AD31C2BC730006FFFFB /* scanLine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7829ACB1C2BC730006FFFFB /* scanLine@3x.png */; };
 		C7829AD41C2BC730006FFFFB /* scanscanBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C7829ACC1C2BC730006FFFFB /* scanscanBg.png */; };
 		C7829AD51C2BC730006FFFFB /* HCScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7829ACE1C2BC730006FFFFB /* HCScanViewController.m */; };
+		C7AE59E61C3D039300EF5549 /* HCNotificationDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AE59E51C3D039300EF5549 /* HCNotificationDetailApi.m */; };
+		C7AE59E91C3D03A600EF5549 /* HCNotificationDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AE59E81C3D03A600EF5549 /* HCNotificationDetailInfo.m */; };
 		C7C907B21C227BB90054CB7C /* HCImgViewTagList.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C907B11C227BB90054CB7C /* HCImgViewTagList.m */; };
 /* End PBXBuildFile section */
 
@@ -2404,6 +2406,10 @@
 		C7829ACC1C2BC730006FFFFB /* scanscanBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanscanBg.png; sourceTree = "<group>"; };
 		C7829ACD1C2BC730006FFFFB /* HCScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCScanViewController.h; sourceTree = "<group>"; };
 		C7829ACE1C2BC730006FFFFB /* HCScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCScanViewController.m; sourceTree = "<group>"; };
+		C7AE59E41C3D039300EF5549 /* HCNotificationDetailApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationDetailApi.h; sourceTree = "<group>"; };
+		C7AE59E51C3D039300EF5549 /* HCNotificationDetailApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationDetailApi.m; sourceTree = "<group>"; };
+		C7AE59E71C3D03A600EF5549 /* HCNotificationDetailInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationDetailInfo.h; sourceTree = "<group>"; };
+		C7AE59E81C3D03A600EF5549 /* HCNotificationDetailInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationDetailInfo.m; sourceTree = "<group>"; };
 		C7C907B01C227BB90054CB7C /* HCImgViewTagList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCImgViewTagList.h; sourceTree = "<group>"; };
 		C7C907B11C227BB90054CB7C /* HCImgViewTagList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCImgViewTagList.m; sourceTree = "<group>"; };
 		C95F998133825127EECF22B1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -5529,6 +5535,8 @@
 		C73BCAFD1C3BAEA1005048C5 /* NotificationCenter */ = {
 			isa = PBXGroup;
 			children = (
+				C7AE59E71C3D03A600EF5549 /* HCNotificationDetailInfo.h */,
+				C7AE59E81C3D03A600EF5549 /* HCNotificationDetailInfo.m */,
 				C73BCAFE1C3BAEA1005048C5 /* HCNotificationCenterInfo.h */,
 				C73BCAFF1C3BAEA1005048C5 /* HCNotificationCenterInfo.m */,
 			);
@@ -5810,6 +5818,8 @@
 				C73BCBC21C3BAEBD005048C5 /* HCNotificationCenterFollowAPI.m */,
 				C73BCBC31C3BAEBD005048C5 /* HCNotificationCenterReadApi.h */,
 				C73BCBC41C3BAEBD005048C5 /* HCNotificationCenterReadApi.m */,
+				C7AE59E41C3D039300EF5549 /* HCNotificationDetailApi.h */,
+				C7AE59E51C3D039300EF5549 /* HCNotificationDetailApi.m */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -6414,6 +6424,7 @@
 				0A5491CD1C2BC32D0085F50D /* ZXQRCodeDetector.m in Sources */,
 				C73BCB801C3BAEA1005048C5 /* HCAddNewAddressViewController.m in Sources */,
 				0AEEDDC71C210A8F0065A8FF /* HCHomeTableViewCell.m in Sources */,
+				C7AE59E91C3D03A600EF5549 /* HCNotificationDetailInfo.m in Sources */,
 				0A54917E1C2BC32D0085F50D /* ZXRSSExpandedDecodedChar.m in Sources */,
 				0A54916E1C2BC32D0085F50D /* ZXMaxiCodeReader.m in Sources */,
 				0A5491051C2BC32D0085F50D /* ZXAztecEncoder.m in Sources */,
@@ -6564,6 +6575,7 @@
 				0A7CBCC51C31294E0051DD58 /* EMRemarkImageView.m in Sources */,
 				0A54915F1C2BC32D0085F50D /* ZXDataMatrixC40Encoder.m in Sources */,
 				C73BCBE91C3BAEBD005048C5 /* HCRescueCenterApi.m in Sources */,
+				C7AE59E61C3D039300EF5549 /* HCNotificationDetailApi.m in Sources */,
 				0A7CBCE31C31294E0051DD58 /* EMSDWebImageDecoder.m in Sources */,
 				0A5491691C2BC32D0085F50D /* ZXDataMatrixReader.m in Sources */,
 				0A5491501C2BC32D0085F50D /* ZXErrors.m in Sources */,

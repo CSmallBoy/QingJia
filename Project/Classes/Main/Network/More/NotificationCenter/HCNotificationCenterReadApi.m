@@ -32,9 +32,6 @@
         info.notificationMessage = @"啦啦啦德玛西亚文化分别将发布舒服https://baidu.com个必胜客当局包括世界杯赛捷克队比赛的";
         [NotificationArr addObject:info];
     }
-    
-    
-    
     return NotificationArr;
 }
 

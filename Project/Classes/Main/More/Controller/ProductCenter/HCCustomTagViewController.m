@@ -46,6 +46,12 @@
     [self setupBackItem];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.datePicker remove];
+}
+
 #pragma mark---UITableViewDelegate
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -317,10 +323,9 @@
         headerLabel.text = @"紧急联系人";
         headerLabel.font = [UIFont systemFontOfSize:12];
         
-        UIButton *addContactBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        addContactBtn.frame = CGRectMake(70, 0, 30, 30);
-        ViewBorderRadius(addContactBtn, 35, 1, [UIColor blackColor]);
-        [addContactBtn setBackgroundImage:OrigIMG(@"Products_but_Plus") forState:UIControlStateNormal];
+        UIButton *addContactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        addContactBtn.frame = CGRectMake(70, 5, 20, 20);
+        [addContactBtn setBackgroundImage:OrigIMG(@"yihubaiying_but_Plus") forState:UIControlStateNormal];
         [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
         
         [_contactInfoHeaderView addSubview:addContactBtn];
@@ -335,10 +340,9 @@
     if (!_deleteContactInfoView)
     {
         _deleteContactInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 30)];
-        UIButton *deleteContactBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [deleteContactBtn setBackgroundImage:OrigIMG(@"Products_but_minus") forState:UIControlStateNormal];
-        deleteContactBtn.frame = CGRectMake(70, 0, 30, 30);
-        ViewBorderRadius(deleteContactBtn, 35, 1, [UIColor blackColor]);
+        UIButton *deleteContactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [deleteContactBtn setBackgroundImage:OrigIMG(@"yihubaiying_but_reduce") forState:UIControlStateNormal];
+        deleteContactBtn.frame = CGRectMake(70, 5, 20, 20);
         [deleteContactBtn addTarget:self action:@selector(handleDeleteContact) forControlEvents:UIControlEventTouchUpInside];
         UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 30)];
         headerLabel.text = @"紧急联系人";

@@ -75,7 +75,7 @@
 {
     if (!_textView)
     {
-        _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(90, 0, SCREEN_WIDTH-100, 88)];
+        _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(85, 0, SCREEN_WIDTH-100, 88)];
         _textView.placeholder = @"如果标签使用者有药物过敏史，点击输入过敏药物名称";
         _textView.maxTextLength = SCREEN_WIDTH-100;
     }

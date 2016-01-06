@@ -16,6 +16,7 @@
 #import "HCLogisticsInfoTableViewCellSecond.h"
 
 #import "HCBuyRecordTableViewCell.h"
+
 @interface HCLogisticsInfoViewController ()
 
 @property (nonatomic,strong) HCProductIntroductionInfo *info;
@@ -27,14 +28,16 @@
 
 @implementation HCLogisticsInfoViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
     [self requestHomeData];
     
     _info = self.data[@"data"];
-    if (_info.orderState == 3) {
+    if (_info.orderState == 3)
+    {
         self.beSureReceiveBtn.hidden = NO;
         self.title = @"已发货";
     }else
@@ -77,16 +80,14 @@
             cellS.indexPath = indexPath;
             cell = cellS;
         }
-        
     }
-    
     return cell;
 }
 
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-   
     return 2;
 }
 

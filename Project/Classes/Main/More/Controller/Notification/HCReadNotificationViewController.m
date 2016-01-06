@@ -48,7 +48,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCNotificationDetailViewController *detailVC = [[HCNotificationDetailViewController alloc]init];
-    detailVC.info = self.dataSource[indexPath.section];
+//    detailVC.info = self.dataSource[indexPath.section];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -111,7 +111,8 @@
     api.theStatus = @"已读";
     api.Start = 1000;
     api.Count = 20;
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array)
+    {
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource removeAllObjects];
@@ -120,6 +121,9 @@
         }
         else
         {
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:array];
+            [self.tableView reloadData];
             [self showHUDError:message];
         }
     }];

@@ -16,9 +16,19 @@
     [super startRequest:requestBlock];
 }
 
+- (NSString *)requestUrl
+{
+    return @"Notice/Notice.ashx";
+}
+
 - (id)requestArgument
 {
-    return @{@"t": @"User,logout", @"token": @"23"};
+    NSDictionary *head = @{@"Action" : @"GetDeepList" , @"Token":[HCAccountMgr manager].loginInfo.Token , @"UUID":[HCAccountMgr manager].loginInfo.UUID};
+    NSDictionary *para = @{@"NoticeId": @(_NoticeId)};
+    NSDictionary *result = @{@"Start" : @(_Start), @"Count" : @(_Count)};
+    NSDictionary *bodyDic = @{@"Head" : head, @"Para" : para, @"Result" : result};
+    
+    return @{@"json": [Utils stringWithObject:bodyDic]};
 }
 
 - (id)formatResponseObject:(id)responseObject
@@ -35,10 +45,9 @@
                            @"2015年10月20日 18:30",@"2015年10月20日 18:30",
                            @"2015年10月20日 18:30",@"2015年10月20日 18:30"];
     
-    
-    
-    
-    return info;
+       return info;
+    return responseObject;//[@"Data"];
+
 }
 
 

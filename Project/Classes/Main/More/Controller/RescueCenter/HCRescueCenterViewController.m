@@ -142,6 +142,9 @@
             [self.tableView reloadData];
         }else
         {
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:array];
+//            [self.tableView reloadData];
             [self showHUDError:message];
         }
     }];

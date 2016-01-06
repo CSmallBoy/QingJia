@@ -12,6 +12,6 @@
 
 @interface HCNotificationDetailViewController : HCViewController
 
-@property (nonatomic,strong) HCNotificationCenterInfo *info;
+//@property (nonatomic,strong) HCNotificationCenterInfo *info;
 
 @end

@@ -11,6 +11,9 @@
 #import "HCButtonItem.h"
 #import "HCPromisedViewController.h"
 
+#import "HCNotificationDetailInfo.h"
+#import "HCNotificationDetailApi.h"
+
 @interface HCNotificationDetailViewController ()
 
 @property (nonatomic,strong) UILabel *userNameLab;
@@ -21,13 +24,17 @@
 @property (nonatomic,strong) HCButtonItem *MTalkBtn;
 @property (nonatomic,strong) HCButtonItem *policeBtn;
 
+@property (nonatomic,strong) HCNotificationDetailInfo *info;
+
 @end
 
 @implementation HCNotificationDetailViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = @"信息详情";
+    [self requestHomeData];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview: self.userNameLab];
     [self.view addSubview: self.timeLab];
@@ -36,7 +43,7 @@
 }
 
 
-#pragma mark -- 私有方法
+#pragma mark -- private method
 
 -(void)pushTOPromised
 {
@@ -46,11 +53,15 @@
 
 -(void)ContactCustomerService
 {
+    NSString *tel = [NSString stringWithFormat:@"tel://02134537916"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel]];
     [self showHUDText:@"拨打客服电话"];
 }
 
 -(void)ContactWithPolice
 {
+    NSString *tel = [NSString stringWithFormat:@"tel://10086"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel]];
     [self showHUDText:@"拨打110"];
 }
 
@@ -58,10 +69,12 @@
 
 -(UILabel *)userNameLab
 {
-    if (!_userNameLab) {
+    if (!_userNameLab)
+    {
         _userNameLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 74, 120, 44)];
         _userNameLab.textAlignment = NSTextAlignmentLeft;
-        _userNameLab.text = self.info.userName;
+//        _userNameLab.text = self.info.userName;
+        _userNameLab.text = self.info.SendUser;
         _userNameLab.textColor = [UIColor blackColor];
         _userNameLab.font = [UIFont systemFontOfSize:16];
     }
@@ -70,10 +83,12 @@
 
 -(UILabel *)timeLab
 {
-    if (!_timeLab) {
+    if (!_timeLab)
+    {
         _timeLab = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-200, 74, 190, 44)];
         _timeLab.textAlignment = NSTextAlignmentRight;
-          _timeLab.text = self.info.time;
+//          _timeLab.text = self.info.time;
+        _timeLab.text = self.info.AddTime;
         _timeLab.textColor = [UIColor lightGrayColor];
         _timeLab.font = [UIFont systemFontOfSize:14];
     }
@@ -82,9 +97,11 @@
 
 -(UILabel *)notificationMessLab
 {
-    if (!_notificationMessLab) {
+    if (!_notificationMessLab)
+    {
         _notificationMessLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 120, SCREEN_WIDTH-20, 1000)];
-           _notificationMessLab.text = self.info.notificationMessage;
+//           _notificationMessLab.text = self.info.notificationMessage;
+        _notificationMessLab.text = self.info.NContent;
         _notificationMessLab.textAlignment = NSTextAlignmentLeft;
         _notificationMessLab.textColor = [UIColor blackColor];
         _notificationMessLab.numberOfLines = 0;
@@ -150,5 +167,24 @@
         [_policeBtn addTarget:self action:@selector(ContactWithPolice) forControlEvents:UIControlEventTouchUpInside];
     }
     return _policeBtn;
+}
+
+#pragma mark - network
+
+- (void)requestHomeData
+{
+    HCNotificationDetailApi *api = [[HCNotificationDetailApi alloc] init];
+    api.NoticeId = 1000000004;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCNotificationDetailInfo *info)
+     {
+         if (requestStatus == HCRequestStatusSuccess)
+         {
+             _info = info;
+         }else
+         {
+             _info = info;
+             [self showHUDError:message];
+         }
+     }];
 }
 @end

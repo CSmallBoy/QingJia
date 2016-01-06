@@ -17,6 +17,9 @@ typedef void(^HCNotificationCenterFollowBlock)(HCRequestStatus requestStatus, NS
 @interface HCNotificationCenterFollowAPI : HCRequest
 
 - (void)startRequest:(HCNotificationCenterFollowBlock)requestBlock;
+@property (nonatomic, assign) int NoticeId;
+@property (nonatomic, strong) NSString *theStatus;
 
-
+@property (nonatomic, assign) int Start;
+@property (nonatomic, assign) int Count;
 @end
