@@ -89,6 +89,7 @@ static HCAccountDBMgr *_sharedManager = nil;
  *  创建表结构
  *  @return 更新语句的执行结果
  */
+
 - (BOOL)createAccountTable
 {
     __block BOOL createRes = NO;
@@ -109,6 +110,10 @@ static HCAccountDBMgr *_sharedManager = nil;
                          IsFMA TEXT,\
                          DefaultFamilyID TEXT,\
                          UserDescription TEXT,\
+                         UserId TEXT, \
+                         HomeAddress TEXT, \
+                         Company TEXT, \
+                         Career TEXT, \
                          UserPhoto TEXT);",
                          kHCDBTableUser];
         createRes = [db executeUpdate:sql];
@@ -116,7 +121,6 @@ static HCAccountDBMgr *_sharedManager = nil;
     
     return createRes;
 }
-
 
 /**
  *  插入一条数据库
@@ -142,8 +146,12 @@ static HCAccountDBMgr *_sharedManager = nil;
                            IsFMA,\
                            DefaultFamilyID,\
                            UserDescription,\
+                           UserId,\
+                           HomeAddress,\
+                           Company,\
+                           Career,\
                            UserPhoto)\
-                           VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');",
+                           VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');",
                            kHCDBTableUser,
                            loginInfo.Token,
                            loginInfo.UUID,
@@ -156,6 +164,10 @@ static HCAccountDBMgr *_sharedManager = nil;
                            loginInfo.IsFMA,
                            loginInfo.DefaultFamilyID,
                            loginInfo.UserDescription,
+                           loginInfo.UserId,
+                           loginInfo.HomeAddress,
+                           loginInfo.Company,
+                           loginInfo.Career,
                            loginInfo.UserPhoto];
     BOOL res = [self executeUpdate:insertSql];
     return res;
@@ -172,7 +184,7 @@ static HCAccountDBMgr *_sharedManager = nil;
 {
     if (info.Token) {
         
-        NSString *modifySql = [NSString stringWithFormat:@"UPDATE '%@' SET UUID = '%@',PhoneNo = '%@',UserName = '%@',TrueName = '%@',NickName = '%@',Sex = '%@',Age = '%@',IsFMA = '%@',DefaultFamilyID = '%@',UserDescription = '%@', UserPhoto = '%@' WHERE Token = '%@';",kHCDBTableUser,info.UUID,info.PhoneNo,info.UserName,info.TrueName,info.NickName,info.Sex,info.Age,info.IsFMA,info.DefaultFamilyID,info.UserDescription,info.UserPhoto, info.Token];
+        NSString *modifySql = [NSString stringWithFormat:@"UPDATE '%@' SET UUID = '%@',PhoneNo = '%@',UserName = '%@',TrueName = '%@',NickName = '%@',Sex = '%@',Age = '%@',IsFMA = '%@',DefaultFamilyID = '%@',UserDescription = '%@', UserPhoto = '%@',HomeAddress = '%@',Company = '%@',Career = '%@',Token = '%@' WHERE UserId = '%@';",kHCDBTableUser,info.UUID,info.PhoneNo,info.UserName,info.TrueName,info.NickName,info.Sex,info.Age,info.IsFMA,info.DefaultFamilyID,info.UserDescription,info.UserPhoto, info.HomeAddress, info.Company, info.Career, info.Token, info.UserId];
         
         return [self executeUpdate:modifySql];
     }
@@ -210,6 +222,11 @@ static HCAccountDBMgr *_sharedManager = nil;
             loginInfo.DefaultFamilyID = StringFromObject([set stringForColumn:@"DefaultFamilyID"]);
             loginInfo.UserDescription = StringFromObject([set stringForColumn:@"UserDescription"]);
             loginInfo.UserPhoto = StringFromObject([set stringForColumn:@"UserPhoto"]);
+            
+            loginInfo.UserId = StringFromObject([set stringForColumn:@"UserId"]);
+            loginInfo.HomeAddress = StringFromObject([set stringForColumn:@"HomeAddress"]);
+            loginInfo.Company = StringFromObject([set stringForColumn:@"Company"]);
+            loginInfo.Career = StringFromObject([set stringForColumn:@"Career"]);
 
             accountInfo(loginInfo);
             [set close];

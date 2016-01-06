@@ -30,17 +30,16 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (self)
+    {
         _leftViewShowWidth = 267;
-        _rightViewShowWidth = 267;
         _animationDuration = 0.35;
         _showBoundsShadow = true;
 
         _panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
         [_panGestureRecognizer setDelegate:self];
 
-        _panMovingRightOrLeft = false;
+        _panMovingRightOrLeft = true;
         _lastPanPoint = CGPointZero;
 
         _coverButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -129,8 +128,7 @@
     {
         return;
     }
-//    _leftViewController.view.frame=_baseView.bounds;
-    _leftViewController.view.frame = CGRectMake(0, 0, 0, _baseView.frame.size.height);
+    _leftViewController.view.frame=_baseView.bounds;
     
     [_baseView insertSubview:_leftViewController.view belowSubview:_currentView];
 }
@@ -249,13 +247,7 @@
 
 //重写此方法可以改变动画效果,PS._currentView就是RootViewController.view
 - (void)layoutCurrentViewWithOffset:(CGFloat)xoffset{
-    if (_showBoundsShadow) {
-        _currentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:_currentView.bounds].CGPath;
-    }
-    if (self.rootViewMoveBlock) {//如果有自定义动画，使用自定义的效果
-        self.rootViewMoveBlock(_currentView,_baseView.bounds,xoffset);
-        return;
-    }
+
     /*平移的动画
      [_currentView setFrame:CGRectMake(xoffset, _baseView.bounds.origin.y, _baseView.frame.size.width, _baseView.frame.size.height)];
     return;
@@ -279,8 +271,6 @@
     
     if (xoffset>0) {//向右滑的
         [_currentView setFrame:CGRectMake(xoffset, _baseView.bounds.origin.y + (totalHeight * (1 - scale) / 2), totalWidth * scale, totalHeight * scale)];
-        
-        _leftViewController.view.frame = CGRectMake(0, 0, _baseView.frame.size.width*scale, _baseView.frame.size.height);
     }else{//向左滑的
         [_currentView setFrame:CGRectMake(_baseView.frame.size.width * (1 - scale) + xoffset, _baseView.bounds.origin.y + (totalHeight*(1 - scale) / 2), totalWidth * scale, totalHeight * scale)];
     }
