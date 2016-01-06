@@ -170,10 +170,12 @@
 
 
 #pragma mark---network
+
 - (void)requestHomeData
 {
     HCBuyRecordApi *api = [[HCBuyRecordApi alloc] init];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array)
+    {
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource removeAllObjects];
