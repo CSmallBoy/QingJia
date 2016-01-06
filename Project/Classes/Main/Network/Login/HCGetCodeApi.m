@@ -23,7 +23,7 @@
 - (id)requestArgument
 {
     
-    NSDictionary *head = [Utils getRequestHeadWithAction:@"Get"];
+    NSDictionary *head = [Utils getRequestHeadWithAction:@"ReGet"];
     NSDictionary *para = @{@"PhoneNumber": _phoneNumber, @"theType": @(_thetype)};
     NSDictionary *bodyDic = @{@"Head": head, @"Para": para};
     

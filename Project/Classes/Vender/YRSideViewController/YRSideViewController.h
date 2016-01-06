@@ -19,7 +19,6 @@ typedef void(^RootViewMoveBlock)(UIView *rootView,CGRect orginFrame,CGFloat xoff
 
 @property (retain,nonatomic) UIViewController *rootViewController;
 @property (retain,nonatomic) UIViewController *leftViewController NS_AVAILABLE_IOS(5_0);
-@property (retain,nonatomic) UIViewController *rightViewController NS_AVAILABLE_IOS(5_0);
 
 @property (assign,nonatomic) CGFloat leftViewShowWidth;//左侧栏的展示大小
 @property (assign,nonatomic) CGFloat rightViewShowWidth;//右侧栏的展示大小
@@ -36,7 +35,6 @@ typedef void(^RootViewMoveBlock)(UIView *rootView,CGRect orginFrame,CGFloat xoff
 - (void)setRootViewMoveBlock:(RootViewMoveBlock)rootViewMoveBlock;
 
 - (void)showLeftViewController:(BOOL)animated;//展示左边栏
-- (void)showRightViewController:(BOOL)animated;//展示右边栏
 - (void)hideSideViewController:(BOOL)animated;//恢复正常位置
 
 @end

@@ -12,7 +12,6 @@
 #import "HCFunctionTagView.h"
 #import "HCHomeInfo.h"
 #import "HCHomeMoreImgView.h"
-#import "HCHomeMoreImgView.h"
 
 @interface HCHomeTableViewCell()<HCHomeMoreImgViewDelegate, HCFunctionTagViewDelegate>
 
@@ -166,7 +165,6 @@
     NSString *commentNum = ([info.comments integerValue]) ? info.comments : @"评论";
     
     NSArray *functionArr = @[@[@"Like_nor", zanNum],
-                             @[@"label_nor", @"标记"],
                              @[@"Share_nor", @"分享"],
                              @[@"Bubble_nor", commentNum]];
     [self.functionTagView functionTagWithArrary:functionArr];

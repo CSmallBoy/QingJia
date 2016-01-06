@@ -35,7 +35,7 @@
         [self addSubview:button];
         
         NSArray *valueArr = array[i];
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 8, 15, 15)];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH(button)*0.25, 8, 15, 15)];
         imgView.image = OrigIMG(valueArr[0]);
         [button addSubview:imgView];
         

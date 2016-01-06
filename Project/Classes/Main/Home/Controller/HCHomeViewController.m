@@ -127,7 +127,8 @@
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath functionIndex:(NSInteger)index
 {
     HCHomeInfo *info = self.dataSource[indexPath.section];
-    if (index == 3)
+
+    if (index == 2)
     {
         HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
         UIViewController *rootController = self.view.window.rootViewController;
@@ -141,13 +142,10 @@
             UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
         }
         [rootController presentViewController:editComment animated:YES completion:nil];
-    }else if (index == 2)
+    }else if (index == 1)
     {
         HCShareViewController  *shareVC = [[HCShareViewController alloc] init];
         [self presentViewController:shareVC animated:YES completion:nil];
-    }else if (index == 1)
-    {
-        [self showHUDText:@"标记成功！"];
     }else if (index == 0)
     {
         [self showHUDText:@"点赞成功!"];

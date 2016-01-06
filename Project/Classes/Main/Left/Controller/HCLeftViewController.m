@@ -11,6 +11,7 @@
 #import "HCSoftwareSettingViewController.h"
 #import "HCUserMessageViewController.h"
 #import "HCGradeManagerViewController.h"
+
 #import "HCLeftView.h"
 #import "HCLeftGradeView.h"
 

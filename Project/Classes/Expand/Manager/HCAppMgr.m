@@ -18,6 +18,7 @@ static HCAppMgr *_sharedManager = nil;
 @implementation HCAppMgr
 
 //创建单例
+
 + (instancetype)manager
 {
     static dispatch_once_t onceToken;
@@ -30,8 +31,8 @@ static HCAppMgr *_sharedManager = nil;
 
 - (id)init
 {
-    if (self = [super init]) {
-    
+    if (self = [super init])
+    {
         //token失效
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(loginTokenInvalided)
@@ -51,7 +52,6 @@ static HCAppMgr *_sharedManager = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _sharedManager = nil;
 }
-
 
 #pragma mark - Setters & Getters
 
@@ -73,11 +73,8 @@ static HCAppMgr *_sharedManager = nil;
     return _systemVersion;
 }
 
-/**
- *  是否首次启动程序，启动加载页
- *
- *  @return
- */
+// 是否首次启动程序，启动加载页
+
 - (BOOL)showInstroView
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -96,6 +93,7 @@ static HCAppMgr *_sharedManager = nil;
 #pragma mark - Public Methods
 
 //登录
+
 - (void)login
 {
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -103,17 +101,16 @@ static HCAppMgr *_sharedManager = nil;
 }
 
 //注销
+
 - (void)logout
 {
-    //想服务端发送注销请求
     [self requestLogout];
     
     [[HCAccountMgr manager] clean];
 }
 
-/**
- *  token失效，提醒用户重新登录
- */
+// token失效，提醒用户重新登录
+
 - (void)loginTokenInvalided
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"您的登录会话已失效，请重新登录。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -121,20 +118,33 @@ static HCAppMgr *_sharedManager = nil;
     [alert handlerClickedButton:^(UIAlertView *alert, NSInteger index){
         //清空数据，返回登录
         [[HCAccountMgr manager] clean];
-        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [app setupRootViewController];
+        [self login];
     }];
     
     [alert show];
 }
 
-/**
- *  登出
-// */
+// 登出
+
 - (void)requestLogout
 {
     HCLogoutApi *api = [[HCLogoutApi alloc] init];
-    [api startRequest:nil];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self login];
+        }
+    }];
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+        if (error && error.errorCode != EMErrorServerNotLogin) {
+        }
+        else
+        {
+            [[ApplyViewController shareController] clear];
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+        }
+    } onQueue:nil];
 }
 
 

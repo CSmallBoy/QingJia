@@ -104,18 +104,6 @@
         }
     }
 }
--(void)setRightViewController:(UIViewController *)rightViewController{
-    if (_rightViewController!=rightViewController) {
-        if (_rightViewController) {
-            [_rightViewController removeFromParentViewController];
-        }
-        _rightViewController=rightViewController;
-        if (_rightViewController) {
-            [self addChildViewController:_rightViewController];
-        }
-    }
-}
-
 
 - (void)setNeedSwipeShowMenu:(BOOL)needSwipeShowMenu{
     _needSwipeShowMenu = needSwipeShowMenu;
@@ -141,23 +129,12 @@
     {
         return;
     }
-    _leftViewController.view.frame=_baseView.bounds;
+//    _leftViewController.view.frame=_baseView.bounds;
+    _leftViewController.view.frame = CGRectMake(0, 0, 0, _baseView.frame.size.height);
+    
     [_baseView insertSubview:_leftViewController.view belowSubview:_currentView];
-    if (_rightViewController && _rightViewController.view.superview)
-    {
-        [_rightViewController.view removeFromSuperview];
-    }
 }
-- (void)willShowRightViewController{
-    if (!_rightViewController || _rightViewController.view.superview) {
-        return;
-    }
-    _rightViewController.view.frame=_baseView.bounds;
-    [_baseView insertSubview:_rightViewController.view belowSubview:_currentView];
-    if (_leftViewController && _leftViewController.view.superview) {
-        [_leftViewController.view removeFromSuperview];
-    }
-}
+
 - (void)showLeftViewController:(BOOL)animated{
     if (!_leftViewController) {
         return;
@@ -174,22 +151,7 @@
         [self showShadow:_showBoundsShadow];
     }];
 }
-- (void)showRightViewController:(BOOL)animated{
-    if (!_rightViewController) {
-        return;
-    }
-    [self willShowRightViewController];
-    NSTimeInterval animatedTime = 0;
-    if (animated) {
-        animatedTime = ABS(_rightViewShowWidth + _currentView.frame.origin.x) / _rightViewShowWidth * _animationDuration;
-    }
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView animateWithDuration:animatedTime animations:^{
-        [self layoutCurrentViewWithOffset:-_rightViewShowWidth];
-        [_currentView addSubview:_coverButton];
-        [self showShadow:_showBoundsShadow];
-    }];
-}
+
 - (void)hideSideViewController:(BOOL)animated
 {
     self.showStatus = NO;
@@ -245,9 +207,6 @@
                 self.showStatus = YES;
             }
         }else if (velocity.x<0) {
-            if (_currentView.frame.origin.x<=0 && _rightViewController && !_rightViewController.view.superview) {
-                [self willShowRightViewController];
-            }
         }
         return;
     }
@@ -260,11 +219,7 @@
             xoffset = 0;
         }
     }else if(xoffset<0){//向左滑
-        if (_rightViewController && _rightViewController.view.superview) {
-            xoffset = xoffset<-_rightViewShowWidth?-_rightViewShowWidth:xoffset;
-        }else{
             xoffset = 0;
-        }
     }
     if (xoffset!=_currentView.frame.origin.x) {
         [self layoutCurrentViewWithOffset:xoffset];
@@ -274,7 +229,7 @@
             if (_panMovingRightOrLeft && _currentView.frame.origin.x>20) {
                 [self showLeftViewController:true];
             }else if(!_panMovingRightOrLeft && _currentView.frame.origin.x<-20){
-                [self showRightViewController:true];
+                
             }else{
                 [self hideSideViewController];
             }
@@ -324,10 +279,11 @@
     
     if (xoffset>0) {//向右滑的
         [_currentView setFrame:CGRectMake(xoffset, _baseView.bounds.origin.y + (totalHeight * (1 - scale) / 2), totalWidth * scale, totalHeight * scale)];
+        
+        _leftViewController.view.frame = CGRectMake(0, 0, _baseView.frame.size.width*scale, _baseView.frame.size.height);
     }else{//向左滑的
         [_currentView setFrame:CGRectMake(_baseView.frame.size.width * (1 - scale) + xoffset, _baseView.bounds.origin.y + (totalHeight*(1 - scale) / 2), totalWidth * scale, totalHeight * scale)];
     }
-    //*/
 }
 
 

@@ -8,6 +8,11 @@
 
 #import "HCRequest.h"
 
+typedef void(^HCLoginoutBlock)(HCRequestStatus requestStatus, NSString *message, id data);
+
 @interface HCLogoutApi : HCRequest
+
+- (void)startRequest:(HCLoginoutBlock)requestBlock;
+
 
 @end

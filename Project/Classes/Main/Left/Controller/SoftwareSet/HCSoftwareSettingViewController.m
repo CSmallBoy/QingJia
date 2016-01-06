@@ -11,7 +11,6 @@
 #import "HCFeedbackViewController.h"
 #import "HCFeedbackView.h"
 #import "HCAboutMTalkViewController.h"
-#import "HCLoginoutApi.h"
 
 @interface HCSoftwareSettingViewController ()
 
@@ -30,21 +29,20 @@
     [self setupBackItem];
     
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"sofeware"];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"sofeware"];
-    if (!cell)
-    {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"sofeware"];
-    }
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sofeware"];
     
     NSArray *imageNameArr = self.imageNameDic[[NSString stringWithFormat:@"%@", @(indexPath.section+1)]];
     cell.imageView.image = OrigIMG(imageNameArr[indexPath.row]);
     
     NSArray *titleArr = self.titleDic[[NSString stringWithFormat:@"%@", @(indexPath.section+1)]];
     cell.textLabel.text = titleArr[indexPath.row];
+    cell.textLabel.font = [UIFont systemFontOfSize:16];
     
     cell.accessoryType = UITableViewCellAccessoryNone;
     if (indexPath.section == 0)
@@ -118,8 +116,7 @@
     if (buttonIndex == 1)
     {
         [self showHUDView:@"正在退出"];
-        [self requestLoginout];
-        [self performSelector:@selector(backBtnClick) withObject:self afterDelay:0.5];
+        [[HCAppMgr manager] logout];
     }
 }
 
@@ -156,25 +153,6 @@
 {
     _switchs = [[UISwitch alloc] initWithFrame:CGRectMake(WIDTH(self.view)-60, 10, 30, 30)];
     return _switchs;
-}
-
-#pragma mark - network
-
-- (void)requestLoginout
-{
-    [self showHUDView:nil];
-    
-    HCLoginoutApi *api = [[HCLoginoutApi alloc] init];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self hideHUDView];
-            
-        }else
-        {
-            [self showHUDError:message];
-        }
-    }];
 }
 
 
