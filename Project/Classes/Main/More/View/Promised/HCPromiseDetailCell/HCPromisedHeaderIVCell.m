@@ -8,6 +8,7 @@
 
 #import "HCPromisedHeaderIVCell.h"
 
+
 @interface HCPromisedHeaderIVCell ()
 {
     UILabel      *  _label;
@@ -38,7 +39,7 @@ static NSString  *HeaderIVCellID = @"HeaderIVCell";
 
 -(void)addSubviews
 {
-    UILabel  *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, 50,40)];
+    UILabel  *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, 60,40)];
     label.textColor = [UIColor blackColor];
     label.textAlignment = NSTextAlignmentCenter;
     _label = label;
@@ -46,13 +47,16 @@ static NSString  *HeaderIVCellID = @"HeaderIVCell";
     
     _textfield = [[UITextField alloc]initWithFrame:CGRectMake(60, 50, 240, 40)];
     _textfield.borderStyle = UITextBorderStyleNone;
-    _textfield.font = [UIFont systemFontOfSize:14];
+    _textfield.font = [UIFont systemFontOfSize:15];
     [self addSubview:_textfield];
     
     _button = [UIButton buttonWithType:UIButtonTypeCustom];
     _button.frame = CGRectMake(SCREEN_WIDTH-90, 4, 80, 80);
     [_button setBackgroundImage:[UIImage imageNamed:@"label_Head-Portraits"] forState:UIControlStateNormal];
     [self addSubview:_button];
+    
+    HCLightGrayLineView *lineView = [[HCLightGrayLineView alloc]initWithFrame:CGRectMake(60, 87, SCREEN_WIDTH-70, 1)];
+    [self addSubview:lineView];
 
 }
 

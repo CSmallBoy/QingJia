@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HCLightGrayLineView.h"
 @interface HCPromisedHeaderIVCell : UITableViewCell
 
 @property(nonatomic,strong)NSString *title;

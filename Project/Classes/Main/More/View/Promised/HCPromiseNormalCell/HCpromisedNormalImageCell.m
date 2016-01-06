@@ -1,14 +1,14 @@
 //
-//  HCPromisedNormalCell.m
+//  HCpromisedNormalImageCell.m
 //  Project
 //
 //  Created by 朱宗汉 on 16/1/6.
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "HCPromisedNormalCell.h"
+#import "HCpromisedNormalImageCell.h"
 #import "HCLightGrayLineView.h"
-@interface HCPromisedNormalCell ()
+@interface HCpromisedNormalImageCell ()
 {
     UILabel      * _lable;
     UITextField  * _textField;
@@ -16,14 +16,14 @@
 }
 @end
 
-@implementation HCPromisedNormalCell
+@implementation HCpromisedNormalImageCell
 
 +(instancetype)CustomCellWithTableView:(UITableView *)tableView
 {
-   static  NSString *NCellID = @"NormalCellID";
-    HCPromisedNormalCell *cell = [tableView dequeueReusableCellWithIdentifier:NCellID];
+    static  NSString *NCellImageID = @"NormalCellImageID";
+    HCpromisedNormalImageCell *cell = [tableView dequeueReusableCellWithIdentifier:NCellImageID];
     if (!cell) {
-        cell = [[HCPromisedNormalCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NCellID];
+        cell = [[HCpromisedNormalImageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NCellImageID];
         [cell addSubviews];
     }
     return cell;
@@ -42,15 +42,19 @@
     _lable.textColor = [UIColor blackColor];
     [self addSubview:_lable];
     
-    _textField = [[UITextField alloc]initWithFrame:CGRectMake(60, 2, SCREEN_WIDTH-70, 40)];
+    _textField = [[UITextField alloc]initWithFrame:CGRectMake(60, 2, SCREEN_WIDTH-120, 40)];
     _textField.borderStyle = UITextBorderStyleNone;
     _textField.font = [UIFont systemFontOfSize:14];
     [self addSubview:_textField];
+
+    UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-40, 6, 20, 30)];
+    
+    imageView.image = OrigIMG(@"yihubaiying_but_Pointe");
+    [self addSubview:imageView];
     
     HCLightGrayLineView *lineView = [[HCLightGrayLineView alloc]initWithFrame:CGRectMake(60, 43, SCREEN_WIDTH-70, 1)];
     [self addSubview:lineView];
     
-   
 }
 
 #pragma mark --- Setter Or Getter
@@ -66,6 +70,7 @@
     _detail = detail;
     _textField.placeholder = detail;
 }
+
 
 - (void)awakeFromNib {
     // Initialization code

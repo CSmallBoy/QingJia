@@ -754,10 +754,12 @@
 		3AA0DCFA47C83622EEE93AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9376B27D02CD20170277F57 /* libPods.a */; };
 		8D1A91DB1C3CA78600C920EE /* HCAddPromiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91D81C3CA78600C920EE /* HCAddPromiseViewController.m */; };
 		8D1A91DC1C3CA78600C920EE /* HCPromisedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91DA1C3CA78600C920EE /* HCPromisedViewController.m */; };
-		8D1A91E81C3CA7A900C920EE /* HCPromisedAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91E01C3CA7A900C920EE /* HCPromisedAddCell.m */; };
-		8D1A91E91C3CA7A900C920EE /* HCPromisedHeaderIVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91E31C3CA7A900C920EE /* HCPromisedHeaderIVCell.m */; };
-		8D1A91EA1C3CA7A900C920EE /* HCPromisedNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91E61C3CA7A900C920EE /* HCPromisedNormalCell.m */; };
-		8D1A91EB1C3CA7A900C920EE /* HCPromisedNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D1A91E71C3CA7A900C920EE /* HCPromisedNormalCell.xib */; };
+		8D1A92081C3D3BAD00C920EE /* HCPromisedAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91FD1C3D3BAD00C920EE /* HCPromisedAddCell.m */; };
+		8D1A92091C3D3BAD00C920EE /* HCPromisedHeaderIVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92001C3D3BAD00C920EE /* HCPromisedHeaderIVCell.m */; };
+		8D1A920A1C3D3BAD00C920EE /* HCPromisedNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92031C3D3BAD00C920EE /* HCPromisedNormalCell.m */; };
+		8D1A920B1C3D3BAD00C920EE /* HCpromisedNormalImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92051C3D3BAD00C920EE /* HCpromisedNormalImageCell.m */; };
+		8D1A920C1C3D3BAD00C920EE /* HCPromisedTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92071C3D3BAD00C920EE /* HCPromisedTextViewCell.m */; };
+		8D1A92141C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92131C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m */; };
 		C73BCB681C3BAEA1005048C5 /* HCAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA971C3BAEA1005048C5 /* HCAddItemViewController.m */; };
 		C73BCB691C3BAEA1005048C5 /* HClassCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA9A1C3BAEA1005048C5 /* HClassCalendarViewController.m */; };
 		C73BCB6A1C3BAEA1005048C5 /* HCMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA9C1C3BAEA1005048C5 /* HCMoreViewController.m */; };
@@ -2187,13 +2189,18 @@
 		8D1A91D81C3CA78600C920EE /* HCAddPromiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddPromiseViewController.m; sourceTree = "<group>"; };
 		8D1A91D91C3CA78600C920EE /* HCPromisedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedViewController.h; sourceTree = "<group>"; };
 		8D1A91DA1C3CA78600C920EE /* HCPromisedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedViewController.m; sourceTree = "<group>"; };
-		8D1A91DF1C3CA7A900C920EE /* HCPromisedAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedAddCell.h; sourceTree = "<group>"; };
-		8D1A91E01C3CA7A900C920EE /* HCPromisedAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedAddCell.m; sourceTree = "<group>"; };
-		8D1A91E21C3CA7A900C920EE /* HCPromisedHeaderIVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedHeaderIVCell.h; sourceTree = "<group>"; };
-		8D1A91E31C3CA7A900C920EE /* HCPromisedHeaderIVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedHeaderIVCell.m; sourceTree = "<group>"; };
-		8D1A91E51C3CA7A900C920EE /* HCPromisedNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedNormalCell.h; sourceTree = "<group>"; };
-		8D1A91E61C3CA7A900C920EE /* HCPromisedNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedNormalCell.m; sourceTree = "<group>"; };
-		8D1A91E71C3CA7A900C920EE /* HCPromisedNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCPromisedNormalCell.xib; sourceTree = "<group>"; };
+		8D1A91FC1C3D3BAD00C920EE /* HCPromisedAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedAddCell.h; sourceTree = "<group>"; };
+		8D1A91FD1C3D3BAD00C920EE /* HCPromisedAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedAddCell.m; sourceTree = "<group>"; };
+		8D1A91FF1C3D3BAD00C920EE /* HCPromisedHeaderIVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedHeaderIVCell.h; sourceTree = "<group>"; };
+		8D1A92001C3D3BAD00C920EE /* HCPromisedHeaderIVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedHeaderIVCell.m; sourceTree = "<group>"; };
+		8D1A92021C3D3BAD00C920EE /* HCPromisedNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedNormalCell.h; sourceTree = "<group>"; };
+		8D1A92031C3D3BAD00C920EE /* HCPromisedNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedNormalCell.m; sourceTree = "<group>"; };
+		8D1A92041C3D3BAD00C920EE /* HCpromisedNormalImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCpromisedNormalImageCell.h; sourceTree = "<group>"; };
+		8D1A92051C3D3BAD00C920EE /* HCpromisedNormalImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCpromisedNormalImageCell.m; sourceTree = "<group>"; };
+		8D1A92061C3D3BAD00C920EE /* HCPromisedTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedTextViewCell.h; sourceTree = "<group>"; };
+		8D1A92071C3D3BAD00C920EE /* HCPromisedTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedTextViewCell.m; sourceTree = "<group>"; };
+		8D1A92121C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedAddCallMessageAPI.h; sourceTree = "<group>"; };
+		8D1A92131C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedAddCallMessageAPI.m; sourceTree = "<group>"; };
 		C73BCA961C3BAEA1005048C5 /* HCAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddItemViewController.h; sourceTree = "<group>"; };
 		C73BCA971C3BAEA1005048C5 /* HCAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddItemViewController.m; sourceTree = "<group>"; };
 		C73BCA991C3BAEA1005048C5 /* HClassCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClassCalendarViewController.h; sourceTree = "<group>"; };
@@ -5230,42 +5237,54 @@
 			path = Promised;
 			sourceTree = "<group>";
 		};
-		8D1A91DD1C3CA7A900C920EE /* Promised */ = {
+		8D1A91FA1C3D3BAD00C920EE /* Promised */ = {
 			isa = PBXGroup;
 			children = (
-				8D1A91DE1C3CA7A900C920EE /* HCPromiseAddCell */,
-				8D1A91DF1C3CA7A900C920EE /* HCPromisedAddCell.h */,
-				8D1A91E01C3CA7A900C920EE /* HCPromisedAddCell.m */,
-				8D1A91E11C3CA7A900C920EE /* HCPromiseDetailCell */,
-				8D1A91E41C3CA7A900C920EE /* HCPromiseNormalCell */,
+				8D1A91FB1C3D3BAD00C920EE /* HCPromiseAddCell */,
+				8D1A91FC1C3D3BAD00C920EE /* HCPromisedAddCell.h */,
+				8D1A91FD1C3D3BAD00C920EE /* HCPromisedAddCell.m */,
+				8D1A91FE1C3D3BAD00C920EE /* HCPromiseDetailCell */,
+				8D1A92011C3D3BAD00C920EE /* HCPromiseNormalCell */,
 			);
 			path = Promised;
 			sourceTree = "<group>";
 		};
-		8D1A91DE1C3CA7A900C920EE /* HCPromiseAddCell */ = {
+		8D1A91FB1C3D3BAD00C920EE /* HCPromiseAddCell */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = HCPromiseAddCell;
 			sourceTree = "<group>";
 		};
-		8D1A91E11C3CA7A900C920EE /* HCPromiseDetailCell */ = {
+		8D1A91FE1C3D3BAD00C920EE /* HCPromiseDetailCell */ = {
 			isa = PBXGroup;
 			children = (
-				8D1A91E21C3CA7A900C920EE /* HCPromisedHeaderIVCell.h */,
-				8D1A91E31C3CA7A900C920EE /* HCPromisedHeaderIVCell.m */,
+				8D1A91FF1C3D3BAD00C920EE /* HCPromisedHeaderIVCell.h */,
+				8D1A92001C3D3BAD00C920EE /* HCPromisedHeaderIVCell.m */,
 			);
 			path = HCPromiseDetailCell;
 			sourceTree = "<group>";
 		};
-		8D1A91E41C3CA7A900C920EE /* HCPromiseNormalCell */ = {
+		8D1A92011C3D3BAD00C920EE /* HCPromiseNormalCell */ = {
 			isa = PBXGroup;
 			children = (
-				8D1A91E51C3CA7A900C920EE /* HCPromisedNormalCell.h */,
-				8D1A91E61C3CA7A900C920EE /* HCPromisedNormalCell.m */,
-				8D1A91E71C3CA7A900C920EE /* HCPromisedNormalCell.xib */,
+				8D1A92021C3D3BAD00C920EE /* HCPromisedNormalCell.h */,
+				8D1A92031C3D3BAD00C920EE /* HCPromisedNormalCell.m */,
+				8D1A92041C3D3BAD00C920EE /* HCpromisedNormalImageCell.h */,
+				8D1A92051C3D3BAD00C920EE /* HCpromisedNormalImageCell.m */,
+				8D1A92061C3D3BAD00C920EE /* HCPromisedTextViewCell.h */,
+				8D1A92071C3D3BAD00C920EE /* HCPromisedTextViewCell.m */,
 			);
 			path = HCPromiseNormalCell;
+			sourceTree = "<group>";
+		};
+		8D1A92111C3D3C5200C920EE /* Promised  */ = {
+			isa = PBXGroup;
+			children = (
+				8D1A92121C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.h */,
+				8D1A92131C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m */,
+			);
+			path = "Promised ";
 			sourceTree = "<group>";
 		};
 		B3F788F61B430EBC07B60CDE /* Frameworks */ = {
@@ -5635,7 +5654,7 @@
 				C73BCB221C3BAEA1005048C5 /* HCLightGrayLineView.m */,
 				C73BCB231C3BAEA1005048C5 /* HCMoreCollectionViewCell.h */,
 				C73BCB241C3BAEA1005048C5 /* HCMoreCollectionViewCell.m */,
-				8D1A91DD1C3CA7A900C920EE /* Promised */,
+				8D1A91FA1C3D3BAD00C920EE /* Promised */,
 				C73BCB251C3BAEA1005048C5 /* NotificationCenter */,
 				C73BCB301C3BAEA1005048C5 /* ProductCenter */,
 				C73BCB5F1C3BAEA1005048C5 /* TagManager */,
@@ -5801,6 +5820,7 @@
 		C73BCBBD1C3BAEBD005048C5 /* More */ = {
 			isa = PBXGroup;
 			children = (
+				8D1A92111C3D3C5200C920EE /* Promised  */,
 				C73BCBBE1C3BAEBD005048C5 /* NotificationCenter */,
 				C73BCBC51C3BAEBD005048C5 /* ProductCenter */,
 				C73BCBD61C3BAEBD005048C5 /* RescueCenter */,
@@ -6074,7 +6094,6 @@
 				0A7CBF6E1C315FB80051DD58 /* VoiceSearchFeedback017.png in Resources */,
 				0A7CBF511C315FB80051DD58 /* VoiceSearchFeedback002@2x.png in Resources */,
 				0A7CBF681C315FB80051DD58 /* VoiceSearchFeedback014.png in Resources */,
-				8D1A91EB1C3CA7A900C920EE /* HCPromisedNormalCell.xib in Resources */,
 				0A7CBF6A1C315FB80051DD58 /* VoiceSearchFeedback015.png in Resources */,
 				0A67B2211C0D63B300FB87C8 /* 2.jpg in Resources */,
 				0A7CBF801C315FB80051DD58 /* chatBar_more_card.png in Resources */,
@@ -6363,6 +6382,7 @@
 				C7692F571C3A4B2200582A10 /* MDCFocusView.m in Sources */,
 				0A5491421C2BC32D0085F50D /* ZXDefaultGridSampler.m in Sources */,
 				C73BCB831C3BAEA1005048C5 /* HCProducCenterViewController.m in Sources */,
+				8D1A920B1C3D3BAD00C920EE /* HCpromisedNormalImageCell.m in Sources */,
 				0A5491BB1C2BC32D0085F50D /* ZXPDF417ErrorCorrection.m in Sources */,
 				0A5491311C2BC32D0085F50D /* ZXCapture.m in Sources */,
 				0A54913D1C2BC32D0085F50D /* ZXBitSource.m in Sources */,
@@ -6436,7 +6456,6 @@
 				0A7CBCCA1C31294E0051DD58 /* XHMessageTextView.m in Sources */,
 				0A5491031C2BC32D0085F50D /* ZXAztecBinaryShiftToken.m in Sources */,
 				C73BCB751C3BAEA1005048C5 /* HCLogisticsInfoViewController.m in Sources */,
-				8D1A91EA1C3CA7A900C920EE /* HCPromisedNormalCell.m in Sources */,
 				0AC40DC11C2270E20074AA79 /* HCHomeDetailInfo.m in Sources */,
 				0A54915E1C2BC32D0085F50D /* ZXDataMatrixBase256Encoder.m in Sources */,
 				0A54916C1C2BC32D0085F50D /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
@@ -6521,10 +6540,12 @@
 				0A3E57841C214E5E00AA4DB9 /* HCHomeMoreImgView.m in Sources */,
 				0A54919B1C2BC32D0085F50D /* ZXITFWriter.m in Sources */,
 				0A5491391C2BC32D0085F50D /* ZXReedSolomonDecoder.m in Sources */,
+				8D1A92091C3D3BAD00C920EE /* HCPromisedHeaderIVCell.m in Sources */,
 				C73BCB891C3BAEA1005048C5 /* HCRescueCenterViewController.m in Sources */,
 				0A5491321C2BC32D0085F50D /* ZXCGImageLuminanceSource.m in Sources */,
 				0AC89DA71C295B3B003EED90 /* HCUserMessageTableViewCell.m in Sources */,
 				0A5491D31C2BC32D0085F50D /* ZXQRCodeEncoder.m in Sources */,
+				8D1A920A1C3D3BAD00C920EE /* HCPromisedNormalCell.m in Sources */,
 				0A6B7F201BF1EB74008D54B3 /* HCAccountDBMgr.m in Sources */,
 				0A7CBCCE1C31294E0051DD58 /* EMCDDeviceManager+Media.m in Sources */,
 				0A7CBCB21C31294D0051DD58 /* ApplyViewController.m in Sources */,
@@ -6538,6 +6559,7 @@
 				0A5491B91C2BC32D0085F50D /* ZXPDF417BarcodeRow.m in Sources */,
 				C73BCBDF1C3BAEBD005048C5 /* HCNotificationCenterFollowAPI.m in Sources */,
 				0A5491601C2BC32D0085F50D /* ZXDataMatrixDefaultPlacement.m in Sources */,
+				8D1A920C1C3D3BAD00C920EE /* HCPromisedTextViewCell.m in Sources */,
 				0A67E7701C23C3F3005B8CD2 /* HCEditCommentApi.m in Sources */,
 				0A5491011C2BC32D0085F50D /* ZXAztecDecoder.m in Sources */,
 				0A7CBC9E1C31294D0051DD58 /* CustomMessageCell.m in Sources */,
@@ -6634,6 +6656,7 @@
 				0A67E7851C23FAB5005B8CD2 /* HCHomeDetailCommentTableViewCell.m in Sources */,
 				0A67E7771C23D700005B8CD2 /* HCShareViewController.m in Sources */,
 				0A54919C1C2BC32D0085F50D /* ZXMultiFormatOneDReader.m in Sources */,
+				8D1A92141C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m in Sources */,
 				0A7CBD271C31294E0051DD58 /* EaseChatBarMoreView.m in Sources */,
 				C73BCBE31C3BAEBD005048C5 /* HCBuyRecordApi.m in Sources */,
 				0A5491721C2BC32D0085F50D /* ZXAI013103decoder.m in Sources */,
@@ -6854,7 +6877,6 @@
 				0A5491CB1C2BC32D0085F50D /* ZXQRCodeAlignmentPattern.m in Sources */,
 				0A7CBCDC1C31294E0051DD58 /* MWPhotoBrowser.m in Sources */,
 				C73BCB8F1C3BAEA1005048C5 /* HCTagManagerViewController.m in Sources */,
-				8D1A91E81C3CA7A900C920EE /* HCPromisedAddCell.m in Sources */,
 				0A5491641C2BC32D0085F50D /* ZXDataMatrixHighLevelEncoder.m in Sources */,
 				0A5491021C2BC32D0085F50D /* ZXAztecDetector.m in Sources */,
 				C73BCBAC1C3BAEA1005048C5 /* HCApplyReissueDetailCell.m in Sources */,
@@ -6866,7 +6888,6 @@
 				0A54910E1C2BC32D0085F50D /* ZXAddressBookAUResultParser.m in Sources */,
 				C73BCB6F1C3BAEA1005048C5 /* HCUnReadNotificationViewController.m in Sources */,
 				C73BCBB71C3BAEA1005048C5 /* HCPayWayTableViewCell.m in Sources */,
-				8D1A91E91C3CA7A900C920EE /* HCPromisedHeaderIVCell.m in Sources */,
 				0A5491D41C2BC32D0085F50D /* ZXQRCodeMaskUtil.m in Sources */,
 				0A5491C61C2BC32D0085F50D /* ZXQRCodeDecoderMetaData.m in Sources */,
 				0A5491BF1C2BC32D0085F50D /* ZXPDF417ResultMetadata.m in Sources */,
@@ -6898,6 +6919,7 @@
 				0A5491251C2BC32D0085F50D /* ZXTelParsedResult.m in Sources */,
 				0A5491D01C2BC32D0085F50D /* ZXQRCodeFinderPatternInfo.m in Sources */,
 				0A5491711C2BC32D0085F50D /* ZXAbstractExpandedDecoder.m in Sources */,
+				8D1A92081C3D3BAD00C920EE /* HCPromisedAddCell.m in Sources */,
 				0A7CBCAF1C31294D0051DD58 /* AddFriendCell.m in Sources */,
 				0A5491471C2BC32D0085F50D /* ZXIntArray.m in Sources */,
 				0A7CBC961C31294D0051DD58 /* UIViewController+HUD.m in Sources */,

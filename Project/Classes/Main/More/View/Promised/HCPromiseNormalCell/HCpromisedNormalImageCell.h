@@ -1,5 +1,5 @@
 //
-//  HCPromisedNormalCell.h
+//  HCpromisedNormalImageCell.h
 //  Project
 //
 //  Created by 朱宗汉 on 16/1/6.
@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HCPromisedNormalCell : UITableViewCell
+@interface HCpromisedNormalImageCell : UITableViewCell
 
-//@property(nonatomic,assign)  BOOL  hasImage;
+
 @property(nonatomic,strong)NSString * title;
 @property(nonatomic,strong)NSString * detail;
 
