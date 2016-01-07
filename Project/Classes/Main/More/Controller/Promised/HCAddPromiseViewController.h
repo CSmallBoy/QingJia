@@ -10,4 +10,6 @@
 
 @interface HCAddPromiseViewController : HCTableViewController
 
+@property(nonatomic,assign) BOOL  isEdit;
+
 @end

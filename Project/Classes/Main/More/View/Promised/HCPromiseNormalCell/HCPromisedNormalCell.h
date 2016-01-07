@@ -13,7 +13,7 @@
 //@property(nonatomic,assign)  BOOL  hasImage;
 @property(nonatomic,strong)NSString * title;
 @property(nonatomic,strong)NSString * detail;
-
+@property(nonatomic,assign)BOOL   isBlack;
 
 +(instancetype)CustomCellWithTableView:(UITableView *)tableView;
 

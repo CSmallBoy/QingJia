@@ -47,21 +47,30 @@
     HCPromisedAddCell  *cell = [HCPromisedAddCell customCellWithTable:tableView];
     cell.backgroundColor = [UIColor clearColor];
     cell.title = self.dataArr[indexPath.row];
+    cell.buttonH = self.smallTableView.frame.size.height/5;
+    
+    
+    
     cell.block = ^(NSString  *buttonTitle)
     {
+        HCAddPromiseViewController *addVC = [[HCAddPromiseViewController alloc]init];
         if ([buttonTitle isEqualToString:@"+ 新增录入"])
         {  //跳转到添加界面
-            HCAddPromiseViewController *addVC = [[HCAddPromiseViewController alloc]init];
-            [self.navigationController pushViewController:addVC animated:YES];
+            addVC.isEdit = YES;
         }
         else
         {
             //跳转到信息界面
-            
-            
+            addVC.isEdit = NO;
         }
+        [self.navigationController pushViewController:addVC animated:YES];
     };
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.smallTableView.frame.size.height/4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -74,9 +83,9 @@
 -(void)createUI
 {
    //背景图片  距离边界个45
-    _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH-90 ,SCREEN_HEIGHT-300)];
+    _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 250,300)];
     _bgImage.userInteractionEnabled = YES;
-    _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+25);
+    _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+45);
     _bgImage.image = [UIImage imageNamed:@"yihubaiying_Background.png"];
     [self.view addSubview:_bgImage];
 
@@ -142,5 +151,9 @@
     }
     return _smallTableView;
 }
+
+
+#pragma mark --- network
+
 
 @end

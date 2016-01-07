@@ -9,7 +9,7 @@
 #import "HCRequest.h"
 
 
-typedef void(^HCPromisedCreateCallBlock)(HCRequestStatus requestStatus, NSString *message, id  responseObject);
+typedef void(^HCPromisedCreateCallBlock)(HCRequestStatus requestStatus, NSString *message, id responseObject);
 
 
 @interface HCPromisedAddCallMessageAPI : HCRequest

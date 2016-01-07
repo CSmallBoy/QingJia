@@ -761,6 +761,7 @@
 		8D1A920B1C3D3BAD00C920EE /* HCpromisedNormalImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92051C3D3BAD00C920EE /* HCpromisedNormalImageCell.m */; };
 		8D1A920C1C3D3BAD00C920EE /* HCPromisedTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92071C3D3BAD00C920EE /* HCPromisedTextViewCell.m */; };
 		8D1A92141C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92131C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m */; };
+		8D4E2EBE1C3E4E720067F627 /* HCPromisedDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E2EBD1C3E4E720067F627 /* HCPromisedDetailInfo.m */; };
 		C73BCB681C3BAEA1005048C5 /* HCAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA971C3BAEA1005048C5 /* HCAddItemViewController.m */; };
 		C73BCB691C3BAEA1005048C5 /* HClassCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA9A1C3BAEA1005048C5 /* HClassCalendarViewController.m */; };
 		C73BCB6A1C3BAEA1005048C5 /* HCMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA9C1C3BAEA1005048C5 /* HCMoreViewController.m */; };
@@ -2204,6 +2205,8 @@
 		8D1A92071C3D3BAD00C920EE /* HCPromisedTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedTextViewCell.m; sourceTree = "<group>"; };
 		8D1A92121C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedAddCallMessageAPI.h; sourceTree = "<group>"; };
 		8D1A92131C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedAddCallMessageAPI.m; sourceTree = "<group>"; };
+		8D4E2EBC1C3E4E720067F627 /* HCPromisedDetailInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedDetailInfo.h; sourceTree = "<group>"; };
+		8D4E2EBD1C3E4E720067F627 /* HCPromisedDetailInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedDetailInfo.m; sourceTree = "<group>"; };
 		C73BCA961C3BAEA1005048C5 /* HCAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddItemViewController.h; sourceTree = "<group>"; };
 		C73BCA971C3BAEA1005048C5 /* HCAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddItemViewController.m; sourceTree = "<group>"; };
 		C73BCA991C3BAEA1005048C5 /* HClassCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClassCalendarViewController.h; sourceTree = "<group>"; };
@@ -5292,6 +5295,15 @@
 			path = "Promised ";
 			sourceTree = "<group>";
 		};
+		8D4E2EBB1C3E4E720067F627 /* promised */ = {
+			isa = PBXGroup;
+			children = (
+				8D4E2EBC1C3E4E720067F627 /* HCPromisedDetailInfo.h */,
+				8D4E2EBD1C3E4E720067F627 /* HCPromisedDetailInfo.m */,
+			);
+			path = promised;
+			sourceTree = "<group>";
+		};
 		B3F788F61B430EBC07B60CDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -5548,6 +5560,7 @@
 			children = (
 				C73BCAFB1C3BAEA1005048C5 /* HCMoreInfo.h */,
 				C73BCAFC1C3BAEA1005048C5 /* HCMoreInfo.m */,
+				8D4E2EBB1C3E4E720067F627 /* promised */,
 				C73BCAFD1C3BAEA1005048C5 /* NotificationCenter */,
 				C73BCB001C3BAEA1005048C5 /* ProductCenter */,
 				C73BCB1A1C3BAEA1005048C5 /* RescueCenter */,
@@ -6511,6 +6524,7 @@
 				0AA626C11C298A9B00EC62D9 /* HCFriendMessageInfo.m in Sources */,
 				C73BCB6C1C3BAEA1005048C5 /* HCNotificationDetailViewController.m in Sources */,
 				0A5491A81C2BC32D0085F50D /* ZXModulusGF.m in Sources */,
+				8D4E2EBE1C3E4E720067F627 /* HCPromisedDetailInfo.m in Sources */,
 				0A7CBCC31C31294E0051DD58 /* EMSearchBar.m in Sources */,
 				0A54910A1C2BC32D0085F50D /* ZXAztecDetectorResult.m in Sources */,
 				0A7CBD171C31294E0051DD58 /* EaseBaseMessageCell.m in Sources */,

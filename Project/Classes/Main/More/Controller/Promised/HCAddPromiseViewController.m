@@ -13,31 +13,40 @@
 #import "HCPromisedTextViewCell.h"
 #import "HCPromisedAddCallMessageAPI.h"
 
-@interface HCAddPromiseViewController ()
+#import "HCPromisedDetailInfo.h"
+
+#import "HCAvatarMgr.h"
+#import "HCPickerView.h"
+@interface HCAddPromiseViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     BOOL   _isFive;
 }
+
+@property (nonatomic, strong) HCPickerView *datePicker;
+
+
 @property(nonatomic,strong)NSMutableArray   *BigTitleArr;  // 标题数组
 @property(nonatomic,strong)NSMutableArray   *BigDetailTitleArr; //详情标题数组
 @property(nonatomic,strong)NSMutableArray   *BigDetailDetailArr;// 详情 后面数组
 @property(nonatomic,strong)UITableView      *DetaileTableview;
 
+@property(nonatomic,strong) HCPromisedDetailInfo *promisedDetailInfo;
 
 @end
 
 @implementation HCAddPromiseViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.title = @"一呼百应";
     self.tableView.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-
+    if (!_isEdit) {
+         [self requestCallDetailData];
+    }
     [self createUI];
-    
 }
-
-
 
 #pragma mark UiTableViewDelegate
 
@@ -55,36 +64,47 @@
     {
         missIndex = 2;
         HospotilIndex = 3;
-        
     }
-    
     if(indexPath.section == 0 && indexPath.row ==0 )
     {
-        HCPromisedHeaderIVCell  *cell = [HCPromisedHeaderIVCell CustomCellWithTableView:tableView];
+        HCPromisedHeaderIVCell  *cell= [HCPromisedHeaderIVCell CustomCellWithTableView:tableView];
+        cell.isBlack = !_isEdit;
         cell.title = self.BigDetailTitleArr[indexPath.section][indexPath.row];
         cell.detail = self.BigDetailDetailArr[indexPath.section][indexPath.row];
+        cell.selectImageblock = ^{
+        
+            [self addUserHeaderIMG];
+            
+        };
         
         return cell;
     }else  if   ((indexPath.section == 0 &&(indexPath.row ==3 || indexPath.row ==4)) ||(indexPath.section == missIndex && indexPath.row == 0))
         
     {
         HCpromisedNormalImageCell *cell = [HCpromisedNormalImageCell CustomCellWithTableView:tableView];
+        cell.isBlack = !_isEdit;
         cell.title = self.BigDetailTitleArr[indexPath.section][indexPath.row];
         cell.detail = self.BigDetailDetailArr[indexPath.section][indexPath.row];
+       
+    
         return cell;
         
     }else  if  ((indexPath.section == missIndex &&(indexPath.row == 1)) ||(indexPath.section == HospotilIndex && indexPath.row == 1))
     
     {
         HCPromisedTextViewCell  *cell = [HCPromisedTextViewCell CustomCellWithTableView:tableView];
+        cell.isBlack = !_isEdit;
         cell.title = self.BigDetailTitleArr[indexPath.section][indexPath.row];
         cell.detail = self.BigDetailDetailArr[indexPath.section][indexPath.row];
+        
         return cell;
     }
     else  if (indexPath.section == HospotilIndex && indexPath.row == 2)
     {
         static NSString *finishedCellID = @"finishedCellID";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:finishedCellID];
+        
+        
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:finishedCellID];
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -94,19 +114,21 @@
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             ViewRadius(button , 5);
             button.backgroundColor = RGB(222, 35, 46);
+            if (!_isEdit) {
+                cell.hidden  = YES;
+                button.hidden = YES;
+            }
             [cell addSubview:button];
         }
         return cell;
-        
     }else
     {
         HCPromisedNormalCell  *cell = [HCPromisedNormalCell CustomCellWithTableView:tableView];
+        cell.isBlack = !_isEdit;
         cell.title = self.BigDetailTitleArr[indexPath.section][indexPath.row];
         cell.detail = self.BigDetailDetailArr[indexPath.section][indexPath.row];
         return cell;
     }
-    
-
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,19 +140,13 @@
     {
     
         if (((indexPath.section == 3 &&(indexPath.row == 1)) ||(indexPath.section == 4 && indexPath.row == 1) )) {
-            
               return 88;
-            
         }
-      
     }
     else  if  ((indexPath.section == 2 &&(indexPath.row == 1)) ||(indexPath.section == 3 && indexPath.row == 1))
-        
     {
         return 88;
-        
     }
-
     return 44;
 }
 
@@ -157,6 +173,7 @@
         [view addSubview:label];
         UIButton *button= [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame =  CGRectMake(110, 10, 20, 20);
+        button.enabled = _isEdit;
         [button addTarget:self action:@selector(AddPersonClick:) forControlEvents:UIControlEventTouchUpInside];
         if (section == 1) {
         
@@ -167,6 +184,9 @@
             [button setBackgroundImage: [UIImage imageNamed:@"yihubaiying_but_reduce"] forState:UIControlStateNormal];
         }
         view.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+        if (!_isEdit) {
+            button.hidden  = YES;
+        }
         [view addSubview:button];
         return view;
     }
@@ -179,6 +199,10 @@
         [view addSubview:label];
         UIButton *button= [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame =  CGRectMake(110, 10, 20, 20);
+        button.enabled = _isEdit;
+        if (!_isEdit) {
+            button.hidden = YES;
+        }
         [button addTarget:self action:@selector(MovePersonClick:) forControlEvents:UIControlEventTouchUpInside];
         if (section == 1) {
             
@@ -229,8 +253,8 @@
         default:
             break;
     }
-        
-        return 0;}else
+        return 0;
+    }else
     {
         switch (section) {
             case 0:
@@ -248,11 +272,8 @@
             default:
                 break;
         }
-        
         return 0;
-    
     }
-    
 }
 
 #pragma mark --- private method
@@ -298,6 +319,31 @@
 //    [self updateData];
 }
 
+-(void)addUserHeaderIMG
+{
+    [self.datePicker remove];
+    [self.view endEditing:YES];
+    
+    [HCAvatarMgr manager].isUploadImage = YES;
+    [HCAvatarMgr manager].noUploadImage = NO;
+    //上传个人头像
+    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg)
+     {
+         if (!result)
+         {
+             [self showHUDText:msg];
+             [HCAvatarMgr manager].isUploadImage = NO;
+             [HCAvatarMgr manager].noUploadImage = NO;
+         }
+         else
+         {
+             [[SDImageCache sharedImageCache] clearMemory];
+             [[SDImageCache sharedImageCache] clearDisk];
+             [self.tableView reloadData];
+         }
+     }];
+}
+
 
 #pragma mark ---Setter  Or Getter
 
@@ -337,20 +383,27 @@
 {
     if (!_BigDetailDetailArr)
     {
-        _BigDetailDetailArr = [NSMutableArray array];
-        // 基本信息的detail数组
-        
-        NSArray  *arrJiibenDetail = @[@"点击输入走失者真实姓名",@"X",@"XXXX-XX-XX",@"点击输入走失者的",@"点击输入走失者学校名称"];
-        [_BigDetailDetailArr addObject:arrJiibenDetail];
-        // 紧急联系人 detail 数组
-        NSArray  *arrJinjiDetail = @[@"点击输入紧急联系人真实姓名",@"输入紧急联系人与走失者联系，如父子",@"点击输入紧急联系人的手机号码"];
-        [_BigDetailDetailArr addObject:arrJinjiDetail];
-        // 走失信息 detaile数组
-        NSArray *arrZoushiDetail = @[@"点击输入走失地点",@"点击输入走失时的一些特点，比如：相貌特征，身高，所传衣物"];
-        [_BigDetailDetailArr addObject:arrZoushiDetail];
-        // 医疗救助detail 数组
-        NSArray  *arrYiLiaoDetail = @[@"点击输入走失者的血型",@"如果走时者有药物过敏历史,点击输入过敏药物名称",@""];
-        [_BigDetailDetailArr addObject:arrYiLiaoDetail];
+        if (_isEdit) {
+            _BigDetailDetailArr = [NSMutableArray array];
+            // 基本信息的detail数组
+            
+            NSArray  *arrJiibenDetail = @[@"点击输入走失者真实姓名",@"X",@"XXXX-XX-XX",@"点击输入走失者的学校",@"点击输入走失者学校名称"];
+            [_BigDetailDetailArr addObject:arrJiibenDetail];
+            // 紧急联系人 detail 数组
+            NSArray  *arrJinjiDetail = @[@"点击输入紧急联系人真实姓名",@"输入紧急联系人与走失者联系，如父子",@"点击输入紧急联系人的手机号码"];
+            [_BigDetailDetailArr addObject:arrJinjiDetail];
+            // 走失信息 detaile数组
+            NSArray *arrZoushiDetail = @[@"点击输入走失地点",@"点击输入走失时的一些特点，比如：相貌特征，身高，所传衣物"];
+            [_BigDetailDetailArr addObject:arrZoushiDetail];
+            // 医疗救助detail 数组
+            NSArray  *arrYiLiaoDetail = @[@"点击输入走失者的血型",@"如果走时者有药物过敏历史,点击输入过敏药物名称",@""];
+            [_BigDetailDetailArr addObject:arrYiLiaoDetail];
+        }
+        else
+        {
+          
+            _BigDetailDetailArr = [NSMutableArray array];
+        }
     }
 
     return _BigDetailDetailArr;
@@ -369,6 +422,15 @@
     return _DetaileTableview;
 }
 
+-(HCPromisedDetailInfo *)promisedDetailInfo
+{
+    if (!_promisedDetailInfo) {
+        _promisedDetailInfo  = [[HCPromisedDetailInfo alloc]init];
+    }
+     return _promisedDetailInfo;
+}
+
+
 #pragma mark --- network
 
 -(void)updateData
@@ -384,7 +446,27 @@
 }
 
 
-
+-(void)requestCallDetailData
+{
+    NSArray  *arrJiibenDetail = @[@"小明",@"男",@"1992-11-08",@"集心路",@"汪家小学"];
+    [self.BigDetailDetailArr addObject:arrJiibenDetail];
+    // 紧急联系人 detail 数组
+    NSArray  *arrJinjiDetail = @[@"张三",@"父子",@"1111"];
+    [self.BigDetailDetailArr addObject:arrJinjiDetail];
+    [self.BigDetailDetailArr addObject:arrJinjiDetail];
+    // 走失信息 detaile数组
+    NSArray *arrZoushiDetail = @[@"集心路",@"…………………………"];
+    [self.BigDetailDetailArr addObject:arrZoushiDetail];
+    // 医疗救助detail 数组
+    NSArray  *arrYiLiaoDetail = @[@"AB",@"没有",@""];
+    [self.BigDetailDetailArr addObject:arrYiLiaoDetail];
+    
+    if (self.BigDetailDetailArr.count == 5) {
+        _isFive = YES;
+       [self.BigDetailTitleArr insertObject:@[@"姓名",@"关系",@"手机号"] atIndex:1];
+       [self.BigTitleArr insertObject:@"紧急联系人" atIndex:1];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     

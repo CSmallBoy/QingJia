@@ -13,8 +13,8 @@ typedef void (^block)(NSString *title);
 
 @interface HCPromisedAddCell : UITableViewCell
 
+@property(nonatomic,assign) CGFloat  buttonH;
 @property(nonatomic,copy)NSString  *title;
-
 @property(nonatomic,strong)block  block;
 
 +(instancetype)customCellWithTable:(UITableView *)tableView;

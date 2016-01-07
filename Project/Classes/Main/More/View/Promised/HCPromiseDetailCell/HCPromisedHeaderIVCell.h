@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "HCLightGrayLineView.h"
+
+typedef void(^selectImagBlock) (void);
+
 @interface HCPromisedHeaderIVCell : UITableViewCell
 
 @property(nonatomic,strong)NSString *title;
 @property(nonatomic,strong)NSString *detail;
+@property(nonatomic,strong)selectImagBlock  selectImageblock;
+@property(nonatomic,assign)BOOL   isBlack;
 
 +(instancetype)CustomCellWithTableView:(UITableView *)tableView;
 

@@ -12,8 +12,7 @@
 
 @property(nonatomic,copy)NSString *title;
 @property(nonatomic,copy)NSString *detail;
-@property(nonatomic,strong) UITextView  *textView;
-
+@property(nonatomic,assign)BOOL   isBlack;
 +(instancetype)CustomCellWithTableView:(UITableView *)tableView;
 
 

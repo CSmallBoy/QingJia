@@ -31,6 +31,8 @@
         cell = [[HCPromisedAddCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SmallID];
         
         [cell addSubviews];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeImage:) name:@"changeImage" object:nil];
     }
     
     
@@ -47,8 +49,8 @@
     
     UIButton  *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = [UIColor whiteColor];
-    button.frame = CGRectMake(0,5, SCREEN_WIDTH-130, 40);
-    button.layer.cornerRadius = 10;
+    button.center = self.contentView.center;
+    button.layer.cornerRadius = 5;
     button.layer.masksToBounds = YES;
     //button  添加点击事件
     
@@ -60,37 +62,37 @@
     
 }
 
+-(void)changeImage:(NSNotification *)info
+{
+    UIImage *image = info.userInfo[@"image"];
+    [_button setBackgroundImage:image forState:UIControlStateNormal];
+    
+}
+
+#pragma mark --- Setter Or Getter
+
 -(void)setTitle:(NSString *)title
 {
-    
     _title = title;
     [_button setTitle:title forState:UIControlStateNormal];
     
     
     [_button setTitleColor:[UIColor colorWithRed:242/256.0 green:63/256.0 blue:68/256.0 alpha:1] forState:UIControlStateNormal];
-    
+}
+
+-(void)setButtonH:(CGFloat)buttonH
+{
+    _buttonH = buttonH;
+    _button.frame = CGRectMake(0,8, 210, _buttonH);
 }
 
 -(void)buttonClick:(UIButton *)button
 {
-    
-    
-    
-    
     _button.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
-    
     self.block(button.titleLabel.text);
-    
     _button.backgroundColor = [UIColor whiteColor];
-    
-    
-    
-    
-    
+  
 }
-
-
-
 
 - (void)awakeFromNib {
     // Initialization code

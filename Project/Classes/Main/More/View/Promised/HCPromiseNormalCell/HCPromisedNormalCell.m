@@ -8,10 +8,12 @@
 
 #import "HCPromisedNormalCell.h"
 #import "HCLightGrayLineView.h"
+
 @interface HCPromisedNormalCell ()
 {
     UILabel      * _lable;
     UITextField  * _textField;
+    UILabel      *  _blackLabel;
     
 }
 @end
@@ -45,11 +47,13 @@
     _textField = [[UITextField alloc]initWithFrame:CGRectMake(60, 2, SCREEN_WIDTH-70, 40)];
     _textField.borderStyle = UITextBorderStyleNone;
     _textField.font = [UIFont systemFontOfSize:14];
+      _textField.adjustsFontSizeToFitWidth = YES;
     [self addSubview:_textField];
     
     HCLightGrayLineView *lineView = [[HCLightGrayLineView alloc]initWithFrame:CGRectMake(60, 43, SCREEN_WIDTH-70, 1)];
     [self addSubview:lineView];
     
+  
    
 }
 
@@ -58,13 +62,30 @@
 -(void)setTitle:(NSString *)title
 {
     _title = title;
+    _lable.text = nil;
     _lable.text = title;
+    if (_isBlack) {
+        [_blackLabel removeFromSuperview];
+        _blackLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 2, SCREEN_WIDTH-70, 40)];
+        _blackLabel.textColor = [UIColor blackColor];
+        _blackLabel.font = [UIFont systemFontOfSize:15];
+        [self addSubview:_blackLabel];
+    }
+    
 }
 
 -(void)setDetail:(NSString *)detail
 {
     _detail = detail;
-    _textField.placeholder = detail;
+    if (_isBlack) {
+        _blackLabel.text = nil;
+        _blackLabel.text = detail;
+    }else
+    {
+        _textField.placeholder = nil;
+        _textField.placeholder = detail;
+
+    }
 }
 
 - (void)awakeFromNib {

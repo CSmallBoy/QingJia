@@ -12,6 +12,7 @@
 {
     UILabel      * _lable;
     UITextField  * _textField;
+    UILabel      *  _blackLabel;
     
 }
 @end
@@ -42,9 +43,9 @@
     _lable.textColor = [UIColor blackColor];
     [self addSubview:_lable];
     
-    _textField = [[UITextField alloc]initWithFrame:CGRectMake(60, 2, SCREEN_WIDTH-120, 40)];
+    _textField = [[UITextField alloc]initWithFrame:CGRectMake(60, 2, SCREEN_WIDTH-100, 40)];
     _textField.borderStyle = UITextBorderStyleNone;
-    _textField.font = [UIFont systemFontOfSize:14];
+    _textField.font = [UIFont systemFontOfSize:15];
     [self addSubview:_textField];
 
     UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-40, 6, 20, 30)];
@@ -54,6 +55,7 @@
     
     HCLightGrayLineView *lineView = [[HCLightGrayLineView alloc]initWithFrame:CGRectMake(60, 43, SCREEN_WIDTH-70, 1)];
     [self addSubview:lineView];
+
     
 }
 
@@ -63,12 +65,29 @@
 {
     _title = title;
     _lable.text = title;
+    
+    if (_isBlack) {
+        [_blackLabel removeFromSuperview];
+        _blackLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 2, SCREEN_WIDTH-100, 40)];
+        _blackLabel.textColor = [UIColor blackColor];
+        _blackLabel.font = [UIFont systemFontOfSize:15];
+        
+        [self addSubview:_blackLabel];
+    }
+    
 }
 
 -(void)setDetail:(NSString *)detail
 {
     _detail = detail;
-    _textField.placeholder = detail;
+    if (_isBlack) {
+        _blackLabel.text = detail;
+    }
+    else
+    {
+        _textField.placeholder = detail;
+
+    }
 }
 
 
