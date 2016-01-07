@@ -16,10 +16,7 @@
 
 @interface HCProducCenterViewController ()<HCImgViewTagListDelegate>
 
-
 @property(nonatomic,strong)HCImgViewTagList *imageViewList;
-
-
 @property(nonatomic,assign) CGFloat padding;
 @property(nonatomic,assign)CGFloat btnWidth;
 @end
@@ -36,17 +33,13 @@
     UIImageView *shoppingCarView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-70,100, 140, 140)];
     shoppingCarView.image = [UIImage imageNamed:@"shopping-cart1"];
 
-    
     [self.view addSubview:shoppingCarView];
-    
     self.padding = 30;
     self.btnWidth = SCREEN_WIDTH/3-30;
-    
     [self.view addSubview:self.imageViewList];
-   
-    
 }
 
+#pragma mark---private method
 
 -(void)ImgViewTagList:(NSInteger)index
 {
@@ -68,9 +61,7 @@
 //跳转京东购买页面
 -(void)pushToJDBuyVC
 {
-    
     [self.navigationController pushViewController:[HCJDBuyViewController new] animated:YES];
-
 }
 
 //跳转M-Talk购买页面
@@ -79,6 +70,7 @@
     [self.navigationController pushViewController:[[HCProductCenterDetailViewController alloc]init] animated:YES];
     
 }
+
 //跳转淘宝购买页面
 -(void)pushToTaoBaoVC
 {
@@ -89,7 +81,8 @@
 
 -(HCImgViewTagList *)imageViewList
 {
-    if (!_imageViewList) {
+    if (!_imageViewList)
+    {
         _imageViewList = [[HCImgViewTagList alloc]initWithFrame:CGRectMake(0, 280, SCREEN_WIDTH, 80)];
         _imageViewList.delegate = self;
         _imageViewList.array = @[@[@"shopping-cart2", @"京东购买"], @[@"shopping-cart3", @"M-Talk购买"], @[@"shopping-cart4", @"淘宝购买"]];

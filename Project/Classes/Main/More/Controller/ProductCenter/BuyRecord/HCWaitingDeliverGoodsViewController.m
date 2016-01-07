@@ -42,6 +42,8 @@
     return waitingCell;
 }
 
+#pragma mark--UITableViewDataSource
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 250;

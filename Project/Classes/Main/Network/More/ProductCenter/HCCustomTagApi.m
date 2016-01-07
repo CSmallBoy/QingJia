@@ -17,14 +17,23 @@
     [super startRequest:requestBlock];
 }
 
+- (NSString *)requestUrl
+{
+    return @"Shop/ObjectInf.ashx";
+}
+
+
 - (id)requestArgument
 {
+    NSDictionary *head = @{@"Action": @"Add", @"UUID": [HCAppMgr manager].uuid, @"Token": [HCAccountMgr manager].loginInfo.Token};
+    
     NSDictionary *jsonDic = [_info mj_keyValues];
+
+    NSDictionary *body = @{@"Head": head, @"Entity": jsonDic};
+    return @{@"json": [Utils stringWithObject:body]};
+    //    NSDictionary *dic = @{@"t": @"User,info", @"uid": [HCAccountMgr manager].loginInfo.Token, @"update": jsonDic};
+    //    return dic;
     
-    [jsonDic setValue:[_info.contactInfoArr componentsJoinedByString:@","] forKey:@"contactInfo"];
-    
-    NSDictionary *dic = @{@"t": @"User,info", @"uid": [HCAccountMgr manager].loginInfo.Token, @"update": jsonDic};
-    return dic;
 }
 
 - (NSString *)formatMessage:(HCRequestStatus)statusCode

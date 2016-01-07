@@ -18,9 +18,7 @@
 @interface HCTagManagerDetailViewController ()
 
 @property (nonatomic,strong) UIView *headerView;
-
 @property (nonatomic,strong) HCTagManagerInfo *info;
-
 
 @end
 
@@ -48,6 +46,8 @@
     return cell;
 }
 
+#pragma mark--UITableViewDataSource
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
         return 50;
@@ -64,7 +64,6 @@
     return 1;
 }
 
-
 #pragma mark --Setter Or Getter
 
 -(UIView *)headerView
@@ -77,11 +76,7 @@
         HCTagDetailHeaderView *view1 = [[HCTagDetailHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 110)];
         
         view1.tagIMGView.image = OrigIMG(_info.imgArr[_index]);
-        
-   
-        
         view1.tagNameLab.text = _info.tagNameArr[_index] ;
-        
         view1.tagIDLab.text = _info.tagIDArr[_index] ;
         
         view1.tagIMGView.frame = CGRectMake(10, 10, 100, 100);
@@ -118,9 +113,7 @@
             view3.tagIDLab.font = [UIFont systemFontOfSize:12];
             view3.tagIDLab.numberOfLines = 0;
             [self.headerView addSubview:view3];
-            
         }
-        
     }
     return _headerView;
 }

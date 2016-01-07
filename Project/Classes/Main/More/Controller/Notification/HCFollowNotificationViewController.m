@@ -30,7 +30,6 @@
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self requestHomeData];
-    [self.view addSubview:self.footerView];
 }
 
 #pragma mark----UITableViewDelegate
@@ -105,7 +104,6 @@
     return (section==0) ? 1 :7;
 }
 
-
 -(void)clickCloseFollowBtn
 {
     [self showHUDText:@"已找到孩子，关闭跟进"];
@@ -115,7 +113,7 @@
 {
     if (!_footerView)
     {
-        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50, SCREEN_WIDTH, 120)];
+        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0,0, WIDTH(self.tableView), 120)];
         _footerView.backgroundColor = RGB(236, 236, 236);
         [_footerView addSubview:self.closeFollowBtn];
     }
@@ -126,7 +124,7 @@
 {
     if (!_closeFollowBtn) {
         _closeFollowBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeFollowBtn.frame = CGRectMake(20, 40, SCREEN_WIDTH-40, 40);
+        _closeFollowBtn.frame = CGRectMake(20, 40, WIDTH(self.footerView)-40, 40);
         _closeFollowBtn.backgroundColor = [UIColor redColor];
         [_closeFollowBtn setTitle:@"已找到孩子，关闭跟进" forState:UIControlStateNormal];
         [_closeFollowBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

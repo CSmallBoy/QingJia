@@ -46,7 +46,6 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self requestHomeData];
      self.navigationItem.rightBarButtonItem = self.rightItem;
-    
 }
 
 #pragma mark----UITableViewDelegate
@@ -79,6 +78,7 @@
     return cell;
 }
 
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

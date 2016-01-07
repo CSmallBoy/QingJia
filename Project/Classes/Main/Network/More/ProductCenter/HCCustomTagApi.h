@@ -20,4 +20,8 @@ typedef void(^HCResumeBlock)(HCRequestStatus requestStatus, NSString *message, i
 
 - (void)startRequest:(HCRequestBlock)requestBlock;
 
+
+
+
+
 @end

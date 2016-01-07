@@ -24,7 +24,8 @@
 
 @implementation HCReissueAuditPassViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title  = @"审核通过";
     [self setupBackItem];
@@ -35,6 +36,7 @@
 
 
 #pragma mark---UITableViewDelegate
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
@@ -89,6 +91,8 @@
     return cell;
     
 }
+
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

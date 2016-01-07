@@ -14,10 +14,10 @@
 {
     HCContactPersonInfo *contactInfo = [[[self class]allocWithZone:zone]init];
     
-    contactInfo.contactName = [_contactName mutableCopy];
-    contactInfo.contactPhoneNum = [_contactPhoneNum mutableCopy];
-    contactInfo.contactIDCard = [_contactIDCard mutableCopy];
-    contactInfo.contactRelationShip = [_contactRelationShip mutableCopy];
+    contactInfo.ObjectXName = [_ObjectXName mutableCopy];
+    contactInfo.ObjectXRelative = [_ObjectXRelative mutableCopy];
+    contactInfo.PhoneNo = [_PhoneNo mutableCopy];
+    contactInfo.IDNo = [_IDNo mutableCopy];
     
     return contactInfo;
 }

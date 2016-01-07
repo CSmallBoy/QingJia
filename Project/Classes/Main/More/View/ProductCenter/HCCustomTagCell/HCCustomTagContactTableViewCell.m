@@ -7,13 +7,15 @@
 //
 
 #import "HCCustomTagContactTableViewCell.h"
-
+#import "HCContactPersonInfo.h"
 
 @interface HCCustomTagContactTableViewCell ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *titleArr;
 @property (nonatomic, strong) NSArray *placeholderTitleArr;
 @property (nonatomic, strong) UILabel *titleLabel;
+
+@property (nonatomic,strong) HCContactPersonInfo *info;
 
 @end
 
@@ -42,49 +44,52 @@
     }
 }
 
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField.tag == 0)
     {
-        _tagUserInfo.contactPersonInfo.contactName = textField.text;
-    }else if (textField.tag == 1)
+        _info.ObjectXName = textField.text;
+    }
+    else if (textField.tag == 1)
     {
-        _tagUserInfo.contactPersonInfo.contactRelationShip = textField.text;
-    }else if (textField.tag == 2)
+        _info.ObjectXRelative = textField.text;
+    }
+    else if (textField.tag == 2)
     {
-        _tagUserInfo.contactPersonInfo.contactPhoneNum= textField.text;
-    }else if (textField.tag == 3)
+        _info.PhoneNo = textField.text;
+    }
+    else if (textField.tag == 3)
     {
-        _tagUserInfo.contactPersonInfo.contactIDCard = textField.text;
+        _info.IDNo = textField.text;
     }
 }
 
 
 #pragma mark---Setter Or Getter
 
+-(void)setInfo:(HCContactPersonInfo *)info
+{
+    _info = info;
+}
+
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
-       self.titleLabel.text = self.titleArr[indexPath.row];
-    
+    _indexPath = indexPath;
+    self.titleLabel.text = self.titleArr[indexPath.row];
     NSAttributedString *attriString = [[NSAttributedString alloc] initWithString:self.placeholderTitleArr[indexPath.row] attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]}];
     self.textField.attributedPlaceholder = attriString;
-    
-    if (indexPath.row == 0)
-    {
-        self.textField.text = _tagUserInfo.contactPersonInfo.contactName;
-    }else if (indexPath.row == 1)
-    {
-        self.textField.text = _tagUserInfo.contactPersonInfo.contactRelationShip;
-    }else if (indexPath.row == 2)
-    {
-        self.textField.text = _tagUserInfo.contactPersonInfo.contactPhoneNum;
-    }else 
-    {
-        self.textField.text = _tagUserInfo.contactPersonInfo.contactIDCard;
-    }
-    
     self.textField.delegate = self;
     self.textField.tag = indexPath.row;
+}
+
+-(void)setContactArr:(NSMutableArray *)contactArr
+{
+    _contactArr = contactArr;
+    if (_indexPath.section == 1 || _indexPath.section == 2)
+    {
+        _info = contactArr[_indexPath.section-1];
+    }
 }
 
 - (UITextField *)textField

@@ -59,11 +59,13 @@
     NSURL *imageViewUrl = [NSURL URLWithString:info.headerImageStr];
 
     [cell.imageView sd_setImageWithURL:imageViewUrl placeholderImage:OrigIMG(@"Salve_mtalk")];
-    cell.textLabel.text = info.newsTitle;
-    cell.detailTextLabel.text = info.detailNews;
+    cell.textLabel.text = info.CTitle;//info.newsTitle;
+    cell.detailTextLabel.text = info.ActTime;//info.detailNews;
     
     return  cell;
 }
+
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -82,7 +84,6 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-
     return (section == 0) ? 44 :1;
 }
 
@@ -144,7 +145,7 @@
         {
             [self.dataSource removeAllObjects];
             [self.dataSource addObjectsFromArray:array];
-//            [self.tableView reloadData];
+            [self.tableView reloadData];
             [self showHUDError:message];
         }
     }];

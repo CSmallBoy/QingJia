@@ -93,25 +93,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return 1;
-    }else
-    {
-        return self.dataSource.count+1;
-    }
-    
+    return (section == 0) ? 1 :(self.dataSource.count +1);
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-    {
-        return 250;
-    }else
-    {
-        return 50;
-    }
+    return (indexPath.section == 0) ? 250 : 50;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -121,13 +108,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return 5;
-    }else
-    {
-        return 60;
-    }
+    return (section == 0) ? 5 : 60;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -139,17 +120,7 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
-        view.backgroundColor = CLEARCOLOR;
-        return view;
-    }
-    else
-    {
-        [_footerView addSubview:self.beSureReceiveBtn];
-        return self.footerView;
-    }
+    return (section == 0) ? self.footerView : nil;
 
 }
 
@@ -168,6 +139,7 @@
     {
         _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60)];
         _footerView.backgroundColor = CLEARCOLOR;
+        [_footerView addSubview:self.beSureReceiveBtn];
     }
     return _footerView;
 }

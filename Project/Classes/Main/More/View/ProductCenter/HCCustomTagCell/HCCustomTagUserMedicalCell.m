@@ -27,7 +27,6 @@
     if (self)
     {
         [self.contentView addSubview:self.titleLabel];
-        
     }
     return self;
 }
@@ -41,6 +40,12 @@
     }
 }
 
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    _tagUserInfo.BloodType = textField.text;
+}
+
+
 #pragma mark ----HCFeedbackTextViewDelegate
 
 -(void)feedbackTextViewdidBeginEditing
@@ -49,6 +54,11 @@
     {
         [self.delegate dismissDatePicker2];
     }
+}
+
+-(void)feedbackTextViewdidEndEditing
+{
+    _tagUserInfo.Allergic = self.textView.textView.text;
 }
 
 #pragma mark---Setter Or Getter
@@ -60,12 +70,16 @@
     if (indexPath.row == 0)
     {
         NSAttributedString *attriString = [[NSAttributedString alloc] initWithString: self.placeholderTitleArr[indexPath.row] attributes:
-  @{                                                                           NSFontAttributeName: [UIFont systemFontOfSize:14],                                                                   NSForegroundColorAttributeName:[UIColor lightGrayColor]                                                                         }];
+  @{                                                                           NSFontAttributeName: [UIFont systemFontOfSize:15],                                                                   NSForegroundColorAttributeName:[UIColor lightGrayColor]                                                                         }];
         self.textField.attributedPlaceholder = attriString;
+        self.textField.text = _tagUserInfo.BloodType;
+        self.textField.delegate = self;
         [self.contentView addSubview:self.textField];
     }
     else
     {
+        self.textView.textView.text = _tagUserInfo.Allergic;
+        self.textView.delegate = self;
         [self.contentView addSubview:self.textView];
     }
 }

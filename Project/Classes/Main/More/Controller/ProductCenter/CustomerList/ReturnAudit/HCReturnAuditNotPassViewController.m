@@ -24,7 +24,8 @@
 
 @implementation HCReturnAuditNotPassViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = @"审核不通过";
     [self setupBackItem];
@@ -94,6 +95,8 @@
     return cell;
     
 }
+
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

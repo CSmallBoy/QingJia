@@ -28,4 +28,22 @@
  *网址
  */
 @property (nonatomic,strong) NSString *urlStr;
+
+/**
+ *KeyId
+ */
+@property (nonatomic,strong) NSString *KeyId;
+/**
+ *CTitle
+ */
+@property (nonatomic,strong) NSString *CTitle;
+/**
+ *CImage
+ */
+@property (nonatomic,strong) NSString *CImage;
+/**
+ *ActTime
+ */
+@property (nonatomic,strong) NSString *ActTime;
+
 @end

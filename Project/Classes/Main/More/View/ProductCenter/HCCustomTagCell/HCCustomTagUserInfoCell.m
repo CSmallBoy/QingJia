@@ -48,25 +48,25 @@
 {
     if (textField.tag == 1)
     {
-        _tagUserInfo.userName = textField.text;
+        _tagUserInfo.ObjectXName = textField.text;
     }else if (textField.tag == 2)
     {
-        _tagUserInfo.userGender = textField.text;
+        _tagUserInfo.ObjectSex = textField.text;
     }else if (textField.tag == 3)
     {
-        _tagUserInfo.userBirthday = textField.text;
+        _tagUserInfo.ObjectBirthDay = textField.text;
     }else if (textField.tag == 4)
     {
-        _tagUserInfo.userAddress = textField.text;
+        _tagUserInfo.ObjectHomeAddress = textField.text;
     }else if (textField.tag == 5)
     {
-        _tagUserInfo.userSchool = textField.text;
+        _tagUserInfo.ObjectSchool = textField.text;
     }else if (textField.tag == 6)
     {
-        _tagUserInfo.userPhoneNum = textField.text;
+        _tagUserInfo.ObjectIdNo = textField.text;
     }else if (textField.tag == 7)
     {
-        _tagUserInfo.userIDCard = textField.text;
+        _tagUserInfo.ObjectCareer = textField.text;
     }
 }
 
@@ -85,25 +85,25 @@
         
         if (indexPath.row == 1)
         {
-            self.textField.text = _tagUserInfo.userName;
+            self.textField.text = _tagUserInfo.ObjectXName;
         }else if (indexPath.row == 2)
         {
-            self.textField.text = _tagUserInfo.userGender;
+            self.textField.text = _tagUserInfo.ObjectSex;
         }else if (indexPath.row == 3)
         {
-            self.textField.text = _tagUserInfo.userBirthday;
+            self.textField.text = _tagUserInfo.ObjectBirthDay;
         }else if (indexPath.row == 4)
         {
-            self.textField.text = _tagUserInfo.userAddress;
+            self.textField.text = _tagUserInfo.ObjectHomeAddress;
         }else if (indexPath.row == 5)
         {
-            self.textField.text = _tagUserInfo.userSchool;
+            self.textField.text = _tagUserInfo.ObjectSchool;
         }else if (indexPath.row == 6)
         {
-            self.textField.text = _tagUserInfo.userPhoneNum;
+            self.textField.text = _tagUserInfo.ObjectIdNo;
         }else if (indexPath.row == 7)
         {
-            self.textField.text = _tagUserInfo.userIDCard;
+            self.textField.text = _tagUserInfo.ObjectCareer;
         }
         
         if (indexPath.row == 0 || indexPath.row == 3)
@@ -164,7 +164,7 @@
 {
     if (!_placeholderTitleArr)
     {
-        _placeholderTitleArr = @[@"请输入姓名", @"请选择性别", @"请输入生日", @"请输入住址",@"请输入学校名称", @"请输入手机号", @"请输入身份证号"];
+        _placeholderTitleArr = @[@"请输入姓名", @"请选择性别", @"请输入生日", @"请输入住址",@"请输入学校名称", @"请输入身份证号", @"请输入职业"];
     }
     return _placeholderTitleArr;
 }
@@ -173,7 +173,7 @@
 {
     if (!_titleArr)
     {
-        _titleArr = @[@"头像",@"姓名", @"性别", @"生日", @"住址", @"学校", @"电话", @"身份证"];
+        _titleArr = @[@"头像",@"姓名", @"性别", @"生日", @"住址", @"学校", @"身份证", @"职业"];
     }
     return _titleArr;
 }

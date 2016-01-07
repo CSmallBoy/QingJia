@@ -16,14 +16,9 @@
     [super startRequest:requestBlock];
 }
 
-//- (id)requestArgument
-//{
-//    return @{@"t": @"User,logout", @"token": @"23"};
-//}
 - (NSString *)requestUrl
 {
     return @"User/AuthCode.ashx";// 测试
-    return @"FamilyTimes/FamilyTimes.ashx";
 }
 
 - (id)requestArgument
@@ -35,6 +30,11 @@
     return @{@"json": [Utils stringWithObject:csbody]};
     
 }
+
+//- (id)requestArgument
+//{
+//    return @{@"t": @"User,logout", @"token": @"23"};
+//}
 
 - (id)formatResponseObject:(id)responseObject
 {

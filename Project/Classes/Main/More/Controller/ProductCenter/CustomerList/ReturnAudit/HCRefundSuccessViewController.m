@@ -35,6 +35,7 @@
 }
 
 #pragma mark---UITableViewDelegate
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
@@ -107,8 +108,9 @@
     }
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     return cell;
-    
 }
+
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

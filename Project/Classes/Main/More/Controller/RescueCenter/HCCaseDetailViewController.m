@@ -14,16 +14,20 @@
 
 @implementation HCCaseDetailViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = @"案例详情";
     [self.view addSubview:self.webview];
     [self setupBackItem];
 }
 
+#pragma mark ---Setter Or Getter
+
 -(UIWebView *)webview
 {
-    if (!_webview) {
+    if (!_webview)
+    {
         _webview = [[UIWebView alloc]initWithFrame:self.view.frame];
         NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:self.urlStr]] ;
         

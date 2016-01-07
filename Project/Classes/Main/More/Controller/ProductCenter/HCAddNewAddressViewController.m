@@ -32,7 +32,6 @@
 
 #pragma mark ----UITableViewDelegate
 
-
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *addNewAddressID = @"addNewAddress";
@@ -47,6 +46,8 @@
     return cell;
     
 }
+
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

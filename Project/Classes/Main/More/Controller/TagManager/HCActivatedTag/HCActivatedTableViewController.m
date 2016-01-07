@@ -46,6 +46,8 @@
     return cell;
 }
 
+#pragma mark--UITableViewDataSource
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return (SCREEN_WIDTH - 60)/3 +50;

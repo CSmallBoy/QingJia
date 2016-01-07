@@ -26,7 +26,6 @@
 - (NSString *)requestUrl
 {
     return @"User/AuthCode.ashx";// 测试
-    return @"FamilyTimes/FamilyTimes.ashx";
 }
 
 - (id)requestArgument

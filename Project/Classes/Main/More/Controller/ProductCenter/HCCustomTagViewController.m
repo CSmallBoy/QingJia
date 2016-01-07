@@ -12,6 +12,7 @@
 #import "HCAvatarMgr.h"
 #import "HCCustomTagApi.h"
 #import "HCTagUserInfo.h"
+#import "HCContactPersonInfo.h"
 
 #import "HCPickerView.h"
 #import "HCCustomTagUserInfoCell.h"
@@ -44,6 +45,12 @@
     self.title = @"定制标签";
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
+    
+    _tagUserInfo = [[HCTagUserInfo alloc] init];
+    [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
+    [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
+
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -56,36 +63,44 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = nil;
-    if (indexPath.section == 0)
-    {
-           static NSString *CustomTagID = @"CustonTag";
-        HCCustomTagUserInfoCell *customTagUserInfoCell = [[HCCustomTagUserInfoCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CustomTagID];
-        customTagUserInfoCell.delegate = self;
-        customTagUserInfoCell.tagUserInfo = _tagUserInfo;
-        customTagUserInfoCell.indexPath = indexPath;
-        cell = customTagUserInfoCell;
-        
-    }
-    else if (indexPath.section == 3)
-    {
-        HCCustomTagUserMedicalCell *customTagUserMedicalCell = [[HCCustomTagUserMedicalCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Medical"];
-        customTagUserMedicalCell.tagUserInfo = _tagUserInfo;
-        customTagUserMedicalCell.indexPath = indexPath;
-        customTagUserMedicalCell.delegate = self;
-            cell = customTagUserMedicalCell;
-    }
+//    UITableViewCell *cell;
+        if (indexPath.section == 0)
+        {
+            HCCustomTagUserInfoCell *customTagUserInfoCell = [tableView dequeueReusableCellWithIdentifier:@"CustonTag"];
+            if (customTagUserInfoCell == nil)
+            {
+                customTagUserInfoCell =[[HCCustomTagUserInfoCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CustonTag"];
+                customTagUserInfoCell.delegate = self;
+                customTagUserInfoCell.tagUserInfo = _tagUserInfo;
+                customTagUserInfoCell.indexPath = indexPath;
+            }
+            return customTagUserInfoCell;
+        }
+        else if (indexPath.section == 3)
+        {
+            HCCustomTagUserMedicalCell *customTagUserMedicalCell = [tableView dequeueReusableCellWithIdentifier:@"Medical"];
+            if (customTagUserMedicalCell == nil)
+            {
+               customTagUserMedicalCell = [[HCCustomTagUserMedicalCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Medical"];
+                customTagUserMedicalCell.delegate = self;
+                customTagUserMedicalCell.tagUserInfo = _tagUserInfo;
+                customTagUserMedicalCell.indexPath = indexPath;
+            }
+            return customTagUserMedicalCell;
+        }
     else
     {
-        HCCustomTagContactTableViewCell *contactCell = [[HCCustomTagContactTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"contactCell"];
-        contactCell.tagUserInfo = _tagUserInfo;
-        contactCell.indexPath = indexPath;
-        contactCell.delegate = self;
-        cell = contactCell;
+        HCCustomTagContactTableViewCell *contactCell = [tableView dequeueReusableCellWithIdentifier:@"contactCell"];
         
+        if (contactCell == nil)
+        {
+            contactCell = [[HCCustomTagContactTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"contactCell"];
+            contactCell.indexPath = indexPath;
+            contactCell.contactArr = _tagUserInfo.ContactArray;
+            contactCell.delegate = self;
+        }
+        return contactCell;
     }
-    return cell;
-
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,6 +118,8 @@
         }
     }
 }
+
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -226,7 +243,7 @@
 - (void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result
 {
     NSDate *date = result[@"date"];
-    _tagUserInfo.userBirthday = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
+    _tagUserInfo.ObjectBirthDay = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
     HCCustomTagUserInfoCell *cell = (HCCustomTagUserInfoCell *)
     [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     cell.textField.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
@@ -271,7 +288,7 @@
 //        [self showHUDText:@"请输入正确的身份证号码"];
 //        return;
 //    }
-    
+    [self requestSaveResumeData];
     HCPaymentViewController *paymentVC = [[HCPaymentViewController alloc]init];
     [self.navigationController pushViewController:paymentVC animated:YES];
 }
@@ -284,7 +301,6 @@
 -(void)handleDeleteContact
 {
     [self showHUDText:@"收起紧急联系人"];
-
 }
 
 #pragma mark---Setter Or Getter

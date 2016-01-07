@@ -8,22 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HCContactPersonInfo : NSObject<NSMutableCopying>
+@interface HCContactPersonInfo : NSObject
+
+
 /**
- *紧急联系人姓名
+ *姓名
  */
-@property (nonatomic,strong) NSString *contactName;
+@property (nonatomic,strong) NSString *ObjectXName;
 /**
  *关系
  */
-@property (nonatomic,strong) NSString *contactRelationShip;
+@property (nonatomic,strong) NSString *ObjectXRelative;
 /**
- *紧急联系人姓名
+ *手机号
  */
-@property (nonatomic,strong) NSString *contactPhoneNum;
+@property (nonatomic,strong)  NSString *PhoneNo;
 /**
- *紧急联系人身份证
+ *身份证号
  */
-@property (nonatomic,strong) NSString *contactIDCard;
-
+@property (nonatomic,strong)  NSString *IDNo;
+/**
+ *联系人号
+ */
+@property (nonatomic,strong) NSString *OrderIndex;
 @end

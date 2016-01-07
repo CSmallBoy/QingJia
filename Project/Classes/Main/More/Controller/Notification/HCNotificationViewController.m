@@ -10,7 +10,7 @@
 #import "HCUnReadNotificationViewController.h"
 #import "HCReadNotificationViewController.h"
 #import "HCFollowNotificationViewController.h"
-@interface HCNotificationViewController ()<UIGestureRecognizerDelegate>
+@interface HCNotificationViewController ()
 
 @property (nonatomic,strong) UISegmentedControl *segmented;
 
@@ -20,8 +20,6 @@
 @property (nonatomic,strong) HCReadNotificationViewController *readVC;
 @property (nonatomic,strong) HCFollowNotificationViewController *followVC;
 
-@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
-@property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGestureRecognizer;
 @end
 
 @implementation HCNotificationViewController
@@ -34,46 +32,9 @@
     [self.view addSubview:self.segmented];
     [self setupBackItem];
     
-    //添加左右滑动手势
-    self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
-    self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
-    self.leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    self.rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
-    [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
 }
 
-#pragma mark -----私有方法
-
-/**********左右滑动切换视图************/
-- (void)handleSwipes:(UISwipeGestureRecognizer *)sender
-{
-    if (sender.direction == UISwipeGestureRecognizerDirectionLeft)
-    {
-        if (self.segmented.selectedSegmentIndex != 2)
-        {
-            self.segmented.selectedSegmentIndex ++;
-        }
-        else if (self.segmented.selectedSegmentIndex == 2)
-        {
-            self.segmented.selectedSegmentIndex -= 2;
-        }
-    }
-    
-    if (sender.direction == UISwipeGestureRecognizerDirectionRight)
-    {
-        if (self.segmented.selectedSegmentIndex != 0)
-        {
-            self.segmented.selectedSegmentIndex --;
-        }
-        else if (self.segmented.selectedSegmentIndex == 0)
-        {
-            self.segmented.selectedSegmentIndex +=2;
-        }
-    }
-    [self handleSegmentedControl:self.segmented];
-}
-
+#pragma mark -----private method
 
 - (void)handleSegmentedControl:(UISegmentedControl *)segment
 {
@@ -96,7 +57,6 @@
         [self.view addSubview:self.followVC.view];
     }
 }
-
 
 #pragma mark----Setter Or Getter
 
@@ -141,7 +101,7 @@
     if (!_followVC)
     {
         _followVC = [[HCFollowNotificationViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        _followVC.view.frame = CGRectMake(10, 114, SCREEN_WIDTH-20, SCREEN_HEIGHT-164);
+        _followVC.view.frame = CGRectMake(10, 114, SCREEN_WIDTH-20, SCREEN_HEIGHT-114);
         [self addChildViewController:_followVC];
     }
     return _followVC;

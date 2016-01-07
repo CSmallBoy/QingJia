@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HCTagUserInfo.h"
+
 
 @protocol HCCustomTagContactTableViewCellDelegate <NSObject>
 
@@ -19,7 +19,9 @@
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) UITextField *textField;
-@property (nonatomic, strong) HCTagUserInfo *tagUserInfo;
+
+
+@property (nonatomic,strong) NSMutableArray *contactArr;
 
 @property (nonatomic, weak) id<HCCustomTagContactTableViewCellDelegate>delegate;
 @end

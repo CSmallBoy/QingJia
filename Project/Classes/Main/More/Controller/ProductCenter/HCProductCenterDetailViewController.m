@@ -45,7 +45,6 @@ static NSString *IDCellF = @"introduction";
     [self.tableView registerClass:[HCProductIntroductionCell class] forCellReuseIdentifier:IDCellF];
 }
 
-
 #pragma mark--UITableViewDelegate
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,6 +57,8 @@ static NSString *IDCellF = @"introduction";
     return ProductIntroductionCell;
     
 }
+
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -127,6 +128,7 @@ static NSString *IDCellF = @"introduction";
 {
     [self showHUDText:@"烫印机最小购买数量为0"];
 }
+
 #pragma mark---setter or getter
 
 - (UIBarButtonItem *)rightItem

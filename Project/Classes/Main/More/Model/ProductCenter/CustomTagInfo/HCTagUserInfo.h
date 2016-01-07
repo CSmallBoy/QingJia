@@ -7,62 +7,101 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HCContactPersonInfo.h"
+
 
 @interface HCTagUserInfo : NSObject<NSMutableCopying>
 
-/**
- *使用者头像
- */
-@property (nonatomic,strong) NSString *userImageStr;
-/**
- *使用者头像
- */
-@property (nonatomic,strong) NSString *userImageUrlStr;
+///**
+// *使用者头像
+// */
+//@property (nonatomic,strong) NSString *userImageStr;
+///**
+// *使用者头像
+// */
+//@property (nonatomic,strong) NSString *userImageUrlStr;
+//
+///**
+// *使用者姓名
+// */
+//@property (nonatomic,strong) NSString *userName;
+///**
+// *使用者性别
+// */
+//@property (nonatomic,strong) NSString *userGender;
+///**
+// *使用者生日
+// */
+//@property (nonatomic,strong) NSString *userBirthday;
+///**
+// *使用者地址
+// */
+//@property (nonatomic,strong) NSString *userAddress;
+///**
+// *使用者学校
+// */
+//@property (nonatomic,strong) NSString *userSchool;
+///**
+// *使用者学校
+// */
+//@property (nonatomic,strong) NSString *userPhoneNum;
+///**
+// *使用者身份证
+// */
+//@property (nonatomic,strong) NSString *userIDCard;
+///**
+// *紧急联系人
+// */
+//@property (nonatomic,strong) NSMutableArray *contactInfoArr;
+//
+///**
+// *使用者血型
+// */
+//@property (nonatomic,strong) NSString *userBloodType;
+///**
+// *使用者过敏史
+// */
+//@property (nonatomic,strong) NSString *userAllergicHistory;
+
+
 
 /**
- *使用者姓名
+ *姓名
  */
-@property (nonatomic,strong) NSString *userName;
+@property (nonatomic,strong) NSString *ObjectXName;
 /**
- *使用者性别
+ *性别
  */
-@property (nonatomic,strong) NSString *userGender;
+@property (nonatomic,strong) NSString *ObjectSex;
 /**
- *使用者生日
+ *生日
  */
-@property (nonatomic,strong) NSString *userBirthday;
+@property (nonatomic,strong) NSString *ObjectBirthDay;
 /**
- *使用者地址
+ *地址
  */
-@property (nonatomic,strong) NSString *userAddress;
+@property (nonatomic,strong)  NSString *ObjectHomeAddress;
 /**
- *使用者学校
+ *学校
  */
-@property (nonatomic,strong) NSString *userSchool;
+@property (nonatomic,strong)  NSString *ObjectSchool;
 /**
- *使用者学校
+ *身份证号
  */
-@property (nonatomic,strong) NSString *userPhoneNum;
+@property (nonatomic,strong) NSString *ObjectIdNo;
 /**
- *使用者身份证
+ *职业
  */
-@property (nonatomic,strong) NSString *userIDCard;
+@property (nonatomic,strong)  NSString *ObjectCareer;
 /**
- *紧急联系人
+ *血型
  */
-@property (nonatomic,strong) NSMutableArray *contactInfoArr;
+@property (nonatomic,strong)  NSString *BloodType;
 /**
- *紧急联系人信息
+ *过敏史
  */
-@property (nonatomic,strong) HCContactPersonInfo *contactPersonInfo;
+@property (nonatomic,strong) NSString *Allergic;
 /**
- *使用者血型
+ *联系人
  */
-@property (nonatomic,strong) NSString *userBloodType;
-/**
- *使用者过敏史
- */
-@property (nonatomic,strong) NSString *userAllergicHistory;
-
+@property (nonatomic,strong) NSMutableArray *ContactArray;
 @end

@@ -8,7 +8,7 @@
 
 #import "HCRescueCenterApi.h"
 #import "HCRescueCenterInfo.h"
-
+#import <MJExtension/MJExtension.h>
 @implementation HCRescueCenterApi
 
 -(void)startRequest:(HCResCueCenterBlock)requestBlock
@@ -34,7 +34,9 @@
 
 - (id)formatResponseObject:(id)responseObject
 {
-//    return responseObject;
-    return responseObject[@"rows"];
+    NSArray * array = responseObject[@"rows"];
+    NSArray *infoArr = [HCRescueCenterInfo mj_objectArrayWithKeyValuesArray:array];
+    return infoArr;
+//    return responseObject[@"rows"];
 }
 @end

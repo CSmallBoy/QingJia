@@ -19,9 +19,6 @@
 #import "HCBuyRecordApi.h"
 #import "HCProductIntroductionInfo.h"
 
-
-
-
 @interface HCBuyRecordsViewController ()<HCBuyRecordCellDelegate>
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @end
@@ -88,7 +85,6 @@
         VC.data = @{@"data":info};
         [self.navigationController pushViewController:VC animated:YES];
     }
-    
 }
 
 #pragma mark--UITableViewDataSource

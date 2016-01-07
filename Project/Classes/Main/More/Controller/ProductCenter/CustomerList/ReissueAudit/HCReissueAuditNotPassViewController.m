@@ -24,7 +24,8 @@
 
 @implementation HCReissueAuditNotPassViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = @"审核不通过";
     [self setupBackItem];
@@ -78,10 +79,12 @@
             CGRect rect = CGRectInset(cellFrame, 2, 2);
             label.frame = rect;
             [label sizeToFit];
-            if (label.frame.size.height > 46) {
+            if (label.frame.size.height > 46)
+            {
                 cellFrame.size.height = 50 + label.frame.size.height - 46;
             }
-            else {
+            else
+            {
                 cellFrame.size.height = 50;
             }
             [cell setFrame:cellFrame];
@@ -93,6 +96,8 @@
     return cell;
     
 }
+
+#pragma mark--UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -158,7 +163,8 @@
     {
         editComment.modalPresentationStyle=
         UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
-    }else
+    }
+    else
     {
         rootController.modalPresentationStyle=
         UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
