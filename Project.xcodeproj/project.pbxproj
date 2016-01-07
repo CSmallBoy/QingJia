@@ -328,6 +328,8 @@
 		0A6B7F9B1BF1EB74008D54B3 /* TOActivitySafari.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7F111BF1EB74008D54B3 /* TOActivitySafari.m */; };
 		0A6B7F9C1BF1EB74008D54B3 /* TOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7F131BF1EB74008D54B3 /* TOWebViewController.m */; };
 		0A6B7F9D1BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7F151BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m */; };
+		0A72D8FB1C3E4675006D1C62 /* LeftSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A72D8F81C3E4675006D1C62 /* LeftSlideViewController.m */; };
+		0A72D8FC1C3E4675006D1C62 /* UIView_extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A72D8FA1C3E4675006D1C62 /* UIView_extra.m */; };
 		0A79B2831BF313DD00788A66 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A79B2821BF313DD00788A66 /* CoreLocation.framework */; };
 		0A7BE9C01C3B723500173139 /* HCCheckCodeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7BE9BF1C3B723500173139 /* HCCheckCodeApi.m */; };
 		0A7BE9C31C3B802C00173139 /* HCPerfectMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7BE9C21C3B802C00173139 /* HCPerfectMessageApi.m */; };
@@ -731,7 +733,6 @@
 		0AC89D651C28F21F003EED90 /* HCHomePictureDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D641C28F21F003EED90 /* HCHomePictureDetailViewController.m */; };
 		0AC89D681C28F270003EED90 /* HCHomePictureDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D671C28F270003EED90 /* HCHomePictureDetailApi.m */; };
 		0AC89D6C1C28F32A003EED90 /* OTCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D6B1C28F32A003EED90 /* OTCover.m */; };
-		0AC89D701C28F427003EED90 /* YRSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D6F1C28F427003EED90 /* YRSideViewController.m */; };
 		0AC89D861C2932A0003EED90 /* HCAboutMTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D7F1C2932A0003EED90 /* HCAboutMTalkViewController.m */; };
 		0AC89D871C2932A0003EED90 /* HCFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D811C2932A0003EED90 /* HCFeedbackViewController.m */; };
 		0AC89D881C2932A0003EED90 /* HCJurisdictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89D831C2932A0003EED90 /* HCJurisdictionViewController.m */; };
@@ -1526,6 +1527,10 @@
 		0A6B7F141BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TOWebViewControllerIcons.h"; sourceTree = "<group>"; };
 		0A6B7F151BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TOWebViewControllerIcons.m"; sourceTree = "<group>"; };
 		0A6B7F9E1BF1EBA0008D54B3 /* Header.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.pch; sourceTree = "<group>"; };
+		0A72D8F71C3E4675006D1C62 /* LeftSlideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSlideViewController.h; sourceTree = "<group>"; };
+		0A72D8F81C3E4675006D1C62 /* LeftSlideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSlideViewController.m; sourceTree = "<group>"; };
+		0A72D8F91C3E4675006D1C62 /* UIView_extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_extra.h; sourceTree = "<group>"; };
+		0A72D8FA1C3E4675006D1C62 /* UIView_extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_extra.m; sourceTree = "<group>"; };
 		0A79B2821BF313DD00788A66 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0A7BE9BE1C3B723500173139 /* HCCheckCodeApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCheckCodeApi.h; sourceTree = "<group>"; };
 		0A7BE9BF1C3B723500173139 /* HCCheckCodeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCheckCodeApi.m; sourceTree = "<group>"; };
@@ -2145,8 +2150,6 @@
 		0AC89D671C28F270003EED90 /* HCHomePictureDetailApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomePictureDetailApi.m; sourceTree = "<group>"; };
 		0AC89D6A1C28F32A003EED90 /* OTCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTCover.h; sourceTree = "<group>"; };
 		0AC89D6B1C28F32A003EED90 /* OTCover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTCover.m; sourceTree = "<group>"; };
-		0AC89D6E1C28F427003EED90 /* YRSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSideViewController.h; sourceTree = "<group>"; };
-		0AC89D6F1C28F427003EED90 /* YRSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSideViewController.m; sourceTree = "<group>"; };
 		0AC89D7E1C2932A0003EED90 /* HCAboutMTalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAboutMTalkViewController.h; sourceTree = "<group>"; };
 		0AC89D7F1C2932A0003EED90 /* HCAboutMTalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAboutMTalkViewController.m; sourceTree = "<group>"; };
 		0AC89D801C2932A0003EED90 /* HCFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFeedbackViewController.h; sourceTree = "<group>"; };
@@ -3645,11 +3648,11 @@
 		0A6B7F021BF1EB74008D54B3 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				0A72D8F61C3E4675006D1C62 /* LeftSlideViewController */,
 				C7692F4F1C3A4B2200582A10 /* MDCFocusView */,
 				0A7CBABE1C3128F80051DD58 /* EaseUI */,
 				0A548F171C2BC32C0085F50D /* ZXingObjC */,
 				0AC89D691C28F32A003EED90 /* OTCover */,
-				0AC89D471C28F007003EED90 /* YRSideViewController */,
 				0A418C1A1C147D4B0024DAC3 /* lib */,
 				0AF96BDA1C0ECFB4007AD92F /* CFJInputView */,
 				0A67B20A1C0D63B300FB87C8 /* ImgShow */,
@@ -3675,6 +3678,17 @@
 				0A6B7F151BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m */,
 			);
 			path = TOWebViewController;
+			sourceTree = "<group>";
+		};
+		0A72D8F61C3E4675006D1C62 /* LeftSlideViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0A72D8F71C3E4675006D1C62 /* LeftSlideViewController.h */,
+				0A72D8F81C3E4675006D1C62 /* LeftSlideViewController.m */,
+				0A72D8F91C3E4675006D1C62 /* UIView_extra.h */,
+				0A72D8FA1C3E4675006D1C62 /* UIView_extra.m */,
+			);
+			path = LeftSlideViewController;
 			sourceTree = "<group>";
 		};
 		0A79B28A1BF32CBB00788A66 /* View */ = {
@@ -5091,15 +5105,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		0AC89D471C28F007003EED90 /* YRSideViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0AC89D6E1C28F427003EED90 /* YRSideViewController.h */,
-				0AC89D6F1C28F427003EED90 /* YRSideViewController.m */,
-			);
-			path = YRSideViewController;
-			sourceTree = "<group>";
-		};
 		0AC89D691C28F32A003EED90 /* OTCover */ = {
 			isa = PBXGroup;
 			children = (
@@ -6367,6 +6372,7 @@
 				0A7CBCBA1C31294D0051DD58 /* RobotListViewController.m in Sources */,
 				C73BCB741C3BAEA1005048C5 /* HCBuyRecordsViewController.m in Sources */,
 				0A7CBCEE1C31294E0051DD58 /* UIImageView+EMHighlightedWebCache.m in Sources */,
+				0A72D8FC1C3E4675006D1C62 /* UIView_extra.m in Sources */,
 				0A7CBD181C31294E0051DD58 /* EaseMessageCell.m in Sources */,
 				C7829AD51C2BC730006FFFFB /* HCScanViewController.m in Sources */,
 				0A7CBCCC1C31294E0051DD58 /* EMAudioPlayerUtil.m in Sources */,
@@ -6789,6 +6795,7 @@
 				0A54912C1C2BC32D0085F50D /* ZXVEventResultParser.m in Sources */,
 				C73BCBB61C3BAEA1005048C5 /* HCGoodsListTableViewCell.m in Sources */,
 				0A7CBCBB1C31294D0051DD58 /* RobotManager.m in Sources */,
+				0A72D8FB1C3E4675006D1C62 /* LeftSlideViewController.m in Sources */,
 				0A7CBD0C1C31294E0051DD58 /* EaseEmoji.m in Sources */,
 				0A54913F1C2BC32D0085F50D /* ZXByteArray.m in Sources */,
 				C73BCB731C3BAEA1005048C5 /* HCReturnReasonViewController.m in Sources */,
@@ -6838,7 +6845,6 @@
 				0A6970E91C2B8E820078BCC4 /* HCCreateGradeViewController.m in Sources */,
 				0A7CBC891C31294D0051DD58 /* EMGifImage.m in Sources */,
 				0A5491A61C2BC32D0085F50D /* ZXUPCEANWriter.m in Sources */,
-				0AC89D701C28F427003EED90 /* YRSideViewController.m in Sources */,
 				0A7CBD261C31294E0051DD58 /* EaseFacialView.m in Sources */,
 				C7829AD11C2BC730006FFFFB /* QRCodeReaderView.m in Sources */,
 				0A7CBCDB1C31294E0051DD58 /* MWPhoto.m in Sources */,

@@ -208,18 +208,14 @@
 - (void)handleLeftItem
 {
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.mainController.showStatus)
-    {
 
-        
-        
-        
-        [app.mainController hideSideViewController:YES];
-    }else
+    if (app.leftSlideController.closed)
     {
-     
-        
-        [app.mainController showLeftViewController:YES];
+        [app.leftSlideController openLeftView];
+    }
+    else
+    {
+        [app.leftSlideController closeLeftView];
     }
 }
 

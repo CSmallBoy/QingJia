@@ -44,7 +44,7 @@
     for (NSInteger i = 0; i < 10; i ++)
     {
         HCHomeInfo *info = [[HCHomeInfo alloc] init];
-        info.imgName = @"http://www.xiaodaohang.cn/1.jpg";
+        info.imgName = @"http://www.xiaodaohang.cn/2.jpg";
         info.nickName = @"姓名测试";
         info.deviceModel = [Utils systemModel];
         info.inputtime = @"1450236588";
@@ -54,14 +54,14 @@
         
         if (i==1)
         {
-            info.imgArr = @[@"http://www.xiaodaohang.cn/1.jpg"];
+            info.imgArr = @[@"http://www.xiaodaohang.cn/2.jpg"];
             info.address = @"上海市闵行区";
         }else if (i == 2)
         {
-            info.imgArr = @[@"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/2.jpg"];
+            info.imgArr = @[@"http://www.xiaodaohang.cn/3.jpg", @"http://www.xiaodaohang.cn/2.jpg"];
         }else if (i == 3)
         {
-            info.imgArr = @[@"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/2.jpg", @"http://www.xiaodaohang.cn/3.jpg", @"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/3.jpg", @"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/1.jpg"];
+            info.imgArr = @[@"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/2.jpg", @"http://www.xiaodaohang.cn/3.jpg", @"http://www.xiaodaohang.cn/2.jpg", @"http://www.xiaodaohang.cn/3.jpg", @"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/2.jpg", @"http://www.xiaodaohang.cn/1.jpg", @"http://www.xiaodaohang.cn/3.jpg"];
             info.address = @"上海市闵行区";
         }else if (i == 6 || i == 8 || i==10)
         {

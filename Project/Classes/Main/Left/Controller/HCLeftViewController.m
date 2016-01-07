@@ -17,6 +17,7 @@
 
 @interface HCLeftViewController ()<HCLeftViewDelegate, HCLeftGradeViewDelegate>
 
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) HCLeftView *leftView;
 @property (nonatomic, strong) HCLeftGradeView *leftGradeView;
 
@@ -29,7 +30,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = RGB(34, 35, 37);
 //    [self.view addSubview:self.leftView];
-    [self.view addSubview:self.leftGradeView];
+    [self.view addSubview:self.tableView];
+    [self.tableView addSubview:self.leftGradeView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -94,15 +96,23 @@
 
 - (void)pushViewController:(HCViewController *)vc
 {
-    UIViewController *control = self.view.window.rootViewController.childViewControllers[0];
-    vc.hidesBottomBarWhenPushed = YES;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app.mainController hideSideViewController:YES];
-    UINavigationController *nav = control.childViewControllers[0];
-    [nav.visibleViewController.navigationController pushViewController:vc animated:YES];
+    vc.hidesBottomBarWhenPushed = YES;
+    [app.leftSlideController closeLeftView];
+    [app.homeNavController pushViewController:vc animated:YES];
 }
 
 #pragma mark - setter or getter
+
+- (UITableView *)tableView
+{
+    if (!_tableView)
+    {
+        _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    return _tableView;
+}
 
 - (HCLeftView *)leftView
 {

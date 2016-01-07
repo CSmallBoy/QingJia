@@ -61,24 +61,17 @@
         self.window.rootViewController = loginNav;
     }else
     {
-        HCRootTabBarController *main = [[HCRootTabBarController alloc] init];
+        _mainController = [[HCRootTabBarController alloc] init];
         
         HCLeftViewController *left = [[HCLeftViewController alloc] init];
-        UINavigationController *leftNav = [[UINavigationController alloc] initWithRootViewController:left];
         
-        UINavigationController *nav = main.childViewControllers[0];
-        UIView *homeView = nav.visibleViewController.view;
+        _homeNavController = _mainController.childViewControllers[0];
         
-        _mainController=[[YRSideViewController alloc]init];
-        _mainController.homeView = homeView;
-        _mainController.rootViewController= main;
-        _mainController.leftViewController=leftNav;
-        _mainController.leftViewShowWidth= [UIScreen mainScreen].bounds.size.width*0.7;
-        _mainController.needSwipeShowMenu=true;//默认开启的可滑动展示
+        _leftSlideController = [[LeftSlideViewController alloc] initWithLeftView:left andMainView:_mainController];
         
-        self.window.rootViewController = _mainController;
+        self.window.rootViewController = _leftSlideController;
         
-        HCHomeViewController *home = (HCHomeViewController *)nav.visibleViewController;
+        HCHomeViewController *home = (HCHomeViewController *)_homeNavController.visibleViewController;
         if (!IsEmpty(_showWelcomeJoinGradeID))
         {
             home.gradeId = _showWelcomeJoinGradeID;
@@ -111,8 +104,8 @@ didFinishLaunchingWithOptions:launchOptions
 {
     if (_mainController)
     {
-        HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
-        [rootTabBar jumpToChatList];
+//        HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
+//        [rootTabBar jumpToChatList];
     }
 }
 
@@ -120,8 +113,8 @@ didFinishLaunchingWithOptions:launchOptions
 {
     if (_mainController)
     {
-        HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
-        [rootTabBar didReceiveLocalNotification:notification];
+//        HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
+//        [rootTabBar didReceiveLocalNotification:notification];
     }
 }
 

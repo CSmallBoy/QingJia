@@ -139,10 +139,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title":username, @"username":username, @"applyMessage":message, @"applyStyle":[NSNumber numberWithInteger:ApplyStyleFriend]}];
     [[ApplyViewController shareController] addNewApply:dic];
+    
     if (self.mainController)
     {
-        HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
-        [rootTabBar setupUntreatedApplyCount];
+        [self.mainController setupUntreatedApplyCount];
     }
 }
 
@@ -209,10 +209,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     else{
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title":groupname, @"groupId":groupId, @"username":username, @"groupname":groupname, @"applyMessage":reason, @"applyStyle":[NSNumber numberWithInteger:ApplyStyleJoinGroup]}];
         [[ApplyViewController shareController] addNewApply:dic];
+        
         if (self.mainController)
         {
-            HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
-            [rootTabBar setupUntreatedApplyCount];
+            [self.mainController setupUntreatedApplyCount];
         }
     }
 }
@@ -241,8 +241,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 - (void)didConnectionStateChanged:(EMConnectionState)connectionState
 {
     _connectionState = connectionState;
-    HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
-    [rootTabBar networkChanged:connectionState];
+    
+    [self.mainController networkChanged:connectionState];
 }
 
 #pragma mark - EMPushManagerDelegateDevice

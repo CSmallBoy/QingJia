@@ -44,7 +44,8 @@
         _gradeHeadButton.frame = CGRectMake(30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3);
         [_gradeHeadButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(_gradeHeadButton, 5);
-        [_gradeHeadButton setImage:OrigIMG(@"2Dbarcode_message_Background") forState:UIControlStateNormal];
+        
+        [_gradeHeadButton sd_setImageWithURL:[NSURL URLWithString:@"http://xiaodaohang.cn/2.jpg"] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
     }
     return _gradeHeadButton;
 }
@@ -81,7 +82,8 @@
         _headButton.frame = CGRectMake(WIDTH(self)*0.2, 0, 100, 100);
         ViewRadius(_headButton, 50);
         _headButton.center = CGPointMake(_headButton.center.x, self.center.y+30);
-        [_headButton setImage:OrigIMG(@"Circle-of-Friends") forState:UIControlStateNormal];
+        
+        [_headButton sd_setImageWithURL:[NSURL URLWithString:@"http://xiaodaohang.cn/3.jpg"] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
     }
     return _headButton;
 }

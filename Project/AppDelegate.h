@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YRSideViewController.h"
+#import "LeftSlideViewController.h"
 #import "HCRootTabBarController.h"
 #import "ApplyViewController.h"
 
@@ -23,8 +23,9 @@
 - (void)setupRootViewController;
 
 @property (nonatomic, strong) NSString *showWelcomeJoinGradeID;
-
-@property (strong,nonatomic) YRSideViewController *mainController;
+@property (nonatomic, strong) LeftSlideViewController *leftSlideController;
+@property (strong, nonatomic) HCRootTabBarController *mainController;
+@property (nonatomic, strong) UINavigationController *homeNavController;
 
 @end
 
