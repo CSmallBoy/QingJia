@@ -13,8 +13,6 @@
 
 @interface HCEditCommentViewController ()<HCEditCommentViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, strong) UIButton *backButton;
-@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) HCEditCommentView *contentView;
 @property (nonatomic, strong) HCEditCommentInfo *info;
 
@@ -27,8 +25,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = RGBA(0, 0, 0, 0.6);
-    [self.view addSubview:self.backButton];
-    [self.view addSubview:self.titleLabel];
     
     [self.view addSubview:self.contentView];
     _info = [[HCEditCommentInfo alloc] init];
@@ -64,6 +60,24 @@
         UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
         [action showInView:self.view];
     }
+}
+
+- (void)hceditCommentViewFeedbackTextViewdidBeginEditing
+{
+    CGRect frame = self.contentView.frame;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentView.frame = CGRectMake(frame.origin.x, 64, WIDTH(self.view)-20, HEIGHT(self.view)*0.5);
+    }];
+    
+}
+
+- (void)hceditCommentViewFeedbackTextViewdidEndEditing
+{
+    CGRect frame = self.contentView.frame;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentView.frame = CGRectMake(frame.origin.x, 0, WIDTH(self.view)-20, HEIGHT(self.view)*0.5);
+        _contentView.center = CGPointMake(self.view.center.x, self.view.center.y);
+    }];
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -136,31 +150,6 @@
 }
 
 #pragma mark - setter or getter
-
-- (UIButton *)backButton
-{
-    if (!_backButton)
-    {
-        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backButton setImage:OrigIMG(@"barItem-back") forState:UIControlStateNormal];
-        _backButton.frame = CGRectMake(10, 25, 30, 30);
-        [_backButton addTarget:self action:@selector(handleBackButton) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _backButton;
-}
-
-- (UILabel *)titleLabel
-{
-    if (!_titleLabel)
-    {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 30, 200, 20)];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.center = CGPointMake(self.view.center.x, _titleLabel.center.y);
-        _titleLabel.text = @"评论回复";
-        _titleLabel.textColor = [UIColor whiteColor];
-    }
-    return _titleLabel;
-}
 
 - (HCEditCommentView *)contentView
 {

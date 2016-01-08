@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class HCFeedbackTextView;
+
 @protocol HCEditCommentViewDelegate <NSObject>
 
 - (void)hceditCommentViewWithButtonIndex:(NSInteger)index;
@@ -16,11 +18,16 @@
 
 - (void)hceditCommentViewWithDeleteImageButton:(NSInteger)index;
 
+- (void)hceditCommentViewFeedbackTextViewdidBeginEditing;
+
+- (void)hceditCommentViewFeedbackTextViewdidEndEditing;
+
 @end
 
 @interface HCEditCommentView : UIView
 
 @property (nonatomic, strong) UIScrollView *imageScrollView;
+@property (nonatomic, strong) HCFeedbackTextView *contentText;
 
 @property (nonatomic, strong) id<HCEditCommentViewDelegate>delegate;
 

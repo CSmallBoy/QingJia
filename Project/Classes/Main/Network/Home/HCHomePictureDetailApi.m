@@ -16,9 +16,19 @@
     [super startRequest:requestBlock];
 }
 
+- (NSString *)requestUrl
+{
+    return @"User/AuthCode.ashx";
+}
+
 - (id)requestArgument
 {
-    return @{@"t": @"User,logout", @"token": @"23"};
+    
+    NSDictionary *head = [Utils getRequestHeadWithAction:@"ReGet"];
+    NSDictionary *para = @{@"PhoneNumber": @(15612345679), @"theType": @(1001)};
+    NSDictionary *bodyDic = @{@"Head": head, @"Para": para};
+    
+    return @{@"json": [Utils stringWithObject:bodyDic]};
 }
 
 - (id)formatResponseObject:(id)responseObject

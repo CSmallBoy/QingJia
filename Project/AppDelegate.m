@@ -104,8 +104,7 @@ didFinishLaunchingWithOptions:launchOptions
 {
     if (_mainController)
     {
-//        HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
-//        [rootTabBar jumpToChatList];
+        [self.mainController jumpToChatList];
     }
 }
 
@@ -113,8 +112,7 @@ didFinishLaunchingWithOptions:launchOptions
 {
     if (_mainController)
     {
-//        HCRootTabBarController *rootTabBar = (HCRootTabBarController *)self.mainController.rootViewController;
-//        [rootTabBar didReceiveLocalNotification:notification];
+        [self.mainController didReceiveLocalNotification:notification];
     }
 }
 

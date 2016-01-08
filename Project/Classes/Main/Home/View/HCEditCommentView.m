@@ -9,12 +9,11 @@
 #import "HCEditCommentView.h"
 #import "HCFeedbackTextView.h"
 
-@interface HCEditCommentView()
+@interface HCEditCommentView()<HCFeedbackTextViewDelegate>
 
 @property (nonatomic, strong) UIView *lineView;
 
 @property (nonatomic, strong) UILabel *contentTitle;
-@property (nonatomic, strong) HCFeedbackTextView *contentText;
 
 @property (nonatomic, strong) UIButton *saveBtn;
 @property (nonatomic, strong) UIButton *cancelBtn;
@@ -36,6 +35,25 @@
         [self addSubview:self.cancelBtn];
     }
     return self;
+}
+
+#pragma mark - HCFeedbackTextViewDelegate
+
+- (void)feedbackTextViewdidBeginEditing
+{
+    if ([self.delegate respondsToSelector:@selector(hceditCommentViewFeedbackTextViewdidBeginEditing)])
+    {
+        [self.delegate hceditCommentViewFeedbackTextViewdidBeginEditing];
+    }
+}
+
+- (void)feedbackTextViewdidEndEditing
+
+{
+    if ([self.delegate respondsToSelector:@selector(hceditCommentViewFeedbackTextViewdidEndEditing)])
+    {
+        [self.delegate hceditCommentViewFeedbackTextViewdidEndEditing];
+    }
 }
 
 #pragma mark - private methods
@@ -111,6 +129,7 @@
     if (!_contentText)
     {
         _contentText = [[HCFeedbackTextView alloc] initWithFrame:CGRectMake(5, 0, WIDTH(self.lineView)-10, 60)];
+        _contentText.delegate = self;
         _contentText.placeholder = @"请输入评论...";
         _contentText.backgroundColor = [UIColor lightGrayColor];
     }
