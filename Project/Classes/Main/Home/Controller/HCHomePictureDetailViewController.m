@@ -10,18 +10,21 @@
 #import "UIImageView+WebCache.h"
 #import "UIImage+MultiFormat.h" // 同步加载图片了
 #import "HCHomeInfo.h"
-#import "OTCover.h"
+//#import "OTCover.h"
 #import "HCHomeDetailCommentTableViewCell.h"
 #import "HCHomePictureDetailApi.h"
 
 #define HCHomeDetailComment @"HCHomeDetailCommentTableViewCell"
 
-@interface HCHomePictureDetailViewController ()<HCHomeDetailCommentTableViewCellDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, HCOTCoverDelegate>
-
+@interface HCHomePictureDetailViewController ()<HCHomeDetailCommentTableViewCellDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+//, HCOTCoverDelegate>
+{
+    BOOL  _isAdd;
+    UIImage   *_image;
+}
 @property (nonatomic, assign) CGFloat commentHeight;
-
-@property (nonatomic, strong) OTCover *otcover;
-@property (nonatomic, strong) NSMutableArray *dataSource;
+@property(nonatomic,strong)UIImageView *imageView;
+//@property (nonatomic, strong) OTCover *otcover;
 
 @end
 
@@ -36,8 +39,12 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupBackItem];
     
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
+    self.tableView.contentInset =  UIEdgeInsetsMake(200, 0, 0, 0);
+    [self createHeaderView];
+    
     [self requestPictureDetail];
-    [self setupAnimationHead];
+//    [self setupAnimationHead];
 }
 
 #pragma mark - UITableView
@@ -76,6 +83,36 @@
     return _commentHeight + 70;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    NSLog(@"%lf",self.tableView.contentOffset.y);
+    
+    
+    if (self.tableView.contentOffset.y<=- SCREEN_HEIGHT/3*2) {
+        
+        self.navigationController.navigationBarHidden = YES;
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3*2)];
+        imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+        [imageView addGestureRecognizer:tap];
+        imageView.image = _image;
+        if (!_isAdd) {
+            [self.view addSubview:imageView];
+            [self bigView:imageView];
+            _isAdd = YES;
+            
+        }
+    }
+    else
+    {
+     _imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH , self.tableView.contentOffset.y);
+    }
+    
+   
+}
+
+
 #pragma mark - HCHomeDetailCommentTableViewCellDelegate
 
 - (void)hchomeDetailCommentTableViewCellCommentHeight:(CGFloat)commentHeight
@@ -93,31 +130,90 @@
 
 #pragma mark - setter or getter
 
-- (NSMutableArray *)dataSource
+-(UIImageView *)imageView
 {
-    if (!_dataSource)
-    {
-        _dataSource = [NSMutableArray array];
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/3*2)];
     }
-    return _dataSource;
+    return _imageView;
 }
+
 
 #pragma mark - Private methods
 
-- (void)setupAnimationHead
+-(void)createHeaderView
 {
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
     HCHomeInfo *info = self.data[@"data"];
     NSInteger index = [self.data[@"index"] integerValue];
-    
+     imageView.contentMode = UIViewContentModeScaleAspectFill;
     UIImage *image = [UIImage sd_imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info.imgArr[index]]]];
-    self.otcover = [[OTCover alloc] initWithTableViewWithHeaderImage:image withOTCoverHeight:WIDTH(self.view)*0.6];
-    self.otcover.delegate = self;
-    self.otcover.frame = CGRectMake(0, 64, WIDTH(self.view), HEIGHT(self.view));
-    self.otcover.tableView.frame = CGRectMake(0, 0, WIDTH(self.view), HEIGHT(self.view)-64);
-    self.otcover.tableView.delegate = self;
-    self.otcover.tableView.dataSource = self;
+    _image = image;
+    imageView.image = image;
+    self.imageView = imageView;
     
-    [self.view addSubview:self.otcover];
+    [self.tableView insertSubview:self.imageView atIndex:0];
+}
+
+
+-(void)bigView :(UIImageView *)imageView
+{
+    self.tableView.hidden = YES;
+    [UIView animateWithDuration:0.5 animations:^{
+        imageView.backgroundColor = [UIColor blackColor];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.frame = self.view.frame;
+//        self.view.backgroundColor = [UIColor blackColor];
+    }completion:^(BOOL finished) {
+        
+        UIButton  *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        saveButton.frame = CGRectMake(0, SCREEN_HEIGHT-44, SCREEN_WIDTH, 44);
+        saveButton.backgroundColor = RGBCOLOR(8, 19, 34);
+        [saveButton setTitle:@"保存到手机" forState:UIControlStateNormal];
+        [saveButton addTarget:self action:@selector(savePhoto:) forControlEvents:UIControlEventTouchUpInside];
+        [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [saveButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+        [imageView addSubview:saveButton];
+        
+    }];
+}
+
+//手势方法
+-(void)tap:(UITapGestureRecognizer *)tap
+{
+    self.navigationController.navigationBarHidden = NO;
+    [tap.view removeAllSubviews];
+
+    [UIView animateWithDuration:0.5 animations:^{
+    tap.view.frame = CGRectMake(0, 64, SCREEN_WIDTH, 200);
+    }completion:^(BOOL finished) {
+    
+        UIImageView *imageView = (UIImageView*)tap.view;
+        imageView.backgroundColor = [UIColor clearColor];
+     [tap.view removeFromSuperview];
+    }];
+    
+    _isAdd = NO;
+    self.tableView.hidden = NO;
+    
+}
+
+//保存按钮的点击方法
+-(void)savePhoto:(UIButton *)button
+{
+    UIImageView *imageView = (UIImageView *)button.superview;
+    UIImage *image = imageView.image;
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+
+}
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    if (error) {
+        [self showHUDError:@"保存失败"];
+       
+    } else  {
+        [self showHUDSuccess:@"保存成功"];
+   
+    }
 }
 
 #pragma mark - network
@@ -133,7 +229,8 @@
             [self hideHUDView];
             [self.dataSource removeAllObjects];
             [self.dataSource addObjectsFromArray:array];
-            [self.otcover.tableView reloadData];
+            [self.tableView reloadData];
+//            [self.otcover.tableView reloadData];
         }else
         {
             [self showHUDError:message];

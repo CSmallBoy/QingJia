@@ -6,8 +6,8 @@
 //  Copyright © 2015年 com.xxx. All rights reserved.
 //
 
-#import "HCViewController.h"
+#import "HCTableViewController.h"
 
-@interface HCHomePictureDetailViewController : HCViewController
+@interface HCHomePictureDetailViewController : HCTableViewController
 
 @end

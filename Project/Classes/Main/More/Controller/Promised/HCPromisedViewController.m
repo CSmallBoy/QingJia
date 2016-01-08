@@ -25,10 +25,10 @@
     [super viewDidLoad];
     self.title = @"一呼百应";
     self.view.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
-    [self setupBackItem];
+    [self  setupBackItem];
     
-    [self createData];
-    [self createUI];
+    [self  createData];
+    [self  createUI];
     [self  createTableView];
 }
 
@@ -37,7 +37,7 @@
     [ super viewWillAppear:animated];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.dataArr.count-1 inSection:0];
     [self.smallTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    
+
 }
 
 #pragma mark--UITableViewDelegate
@@ -48,9 +48,6 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.title = self.dataArr[indexPath.row];
     cell.buttonH = self.smallTableView.frame.size.height/5;
-    
-    
-    
     cell.block = ^(NSString  *buttonTitle)
     {
         HCAddPromiseViewController *addVC = [[HCAddPromiseViewController alloc]init];

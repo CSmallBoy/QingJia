@@ -42,8 +42,13 @@
     self.title = @"一呼百应";
     self.tableView.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    if (!_isEdit) {
-         [self requestCallDetailData];
+    if (_isEdit) {
+        
+        
+    }
+    else
+    {
+        [self requestCallDetailData];    
     }
     [self createUI];
 }
@@ -69,6 +74,7 @@
     {
         HCPromisedHeaderIVCell  *cell= [HCPromisedHeaderIVCell CustomCellWithTableView:tableView];
         cell.isBlack = !_isEdit;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.title = self.BigDetailTitleArr[indexPath.section][indexPath.row];
         cell.detail = self.BigDetailDetailArr[indexPath.section][indexPath.row];
         cell.selectImageblock = ^{
@@ -82,6 +88,7 @@
         
     {
         HCpromisedNormalImageCell *cell = [HCpromisedNormalImageCell CustomCellWithTableView:tableView];
+      cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.isBlack = !_isEdit;
         cell.title = self.BigDetailTitleArr[indexPath.section][indexPath.row];
         cell.detail = self.BigDetailDetailArr[indexPath.section][indexPath.row];
@@ -94,6 +101,7 @@
     {
         HCPromisedTextViewCell  *cell = [HCPromisedTextViewCell CustomCellWithTableView:tableView];
         cell.isBlack = !_isEdit;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.title = self.BigDetailTitleArr[indexPath.section][indexPath.row];
         cell.detail = self.BigDetailDetailArr[indexPath.section][indexPath.row];
         
@@ -107,8 +115,10 @@
         
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:finishedCellID];
+            cell.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(15, 7, SCREEN_WIDTH-30, 30);
+            button.frame = CGRectMake(10, 40, SCREEN_WIDTH-20, 40);
             [button setTitle:@"完成" forState:UIControlStateNormal];
             [button addTarget:self action:@selector(FinishedClick) forControlEvents:UIControlEventTouchUpInside];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -133,22 +143,53 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && indexPath.row == 0) {
+    if (indexPath.section == 0 && indexPath.row == 0) { //姓名cell
         return 88;
     }
     else  if  (_isFive)
-    {
-    
-        if (((indexPath.section == 3 &&(indexPath.row == 1)) ||(indexPath.section == 4 && indexPath.row == 1) )) {
+    { //2个了紧急联系人
+        if (((indexPath.section == 3 &&(indexPath.row == 1)) ||(indexPath.section == 4 && indexPath.row == 1) )) { //添加了textView
               return 88;
         }
     }
     else  if  ((indexPath.section == 2 &&(indexPath.row == 1)) ||(indexPath.section == 3 && indexPath.row == 1))
-    {
+    { // 1个紧急联系人
         return 88;
+    }if(_isEdit)
+    { //可以编辑
+    
+        if (_isFive) { //可以编辑而且5个
+            if ((indexPath.section == 4 && indexPath.row == 2)  ) {
+                return 120;
+            }
+        }
+        else
+        { //可以编辑   4个
+            if ((indexPath.section == 3 && indexPath.row == 2)) {
+                return 120;
+            }
+            
+        }
+    }
+    else
+    {//不可编辑
+        if (_isFive) {  //不可编辑5个
+            if ((indexPath.section == 4 && indexPath.row == 2)  ) {
+                return 0;
+            }
+        }
+        else
+        { //不可编辑  4个
+            if ((indexPath.section == 3 && indexPath.row == 2)) {
+                return 0;
+            }
+            
+        }
+       
     }
     return 44;
-}
+
+   }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -280,6 +321,7 @@
 
 -(void)createUI
 {
+    
     [self.view addSubview:self.DetaileTableview];
 }
 
@@ -343,7 +385,6 @@
          }
      }];
 }
-
 
 #pragma mark ---Setter  Or Getter
 
@@ -444,7 +485,6 @@
         
     }];
 }
-
 
 -(void)requestCallDetailData
 {

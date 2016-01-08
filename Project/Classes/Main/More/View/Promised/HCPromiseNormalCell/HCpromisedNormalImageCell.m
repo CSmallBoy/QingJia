@@ -69,6 +69,8 @@
     if (_isBlack) {
         [_blackLabel removeFromSuperview];
         _blackLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 2, SCREEN_WIDTH-100, 40)];
+        _blackLabel.userInteractionEnabled = YES;
+
         _blackLabel.textColor = [UIColor blackColor];
         _blackLabel.font = [UIFont systemFontOfSize:15];
         

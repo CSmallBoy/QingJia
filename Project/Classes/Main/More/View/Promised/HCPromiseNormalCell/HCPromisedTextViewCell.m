@@ -54,6 +54,7 @@
     _title = title;
     _label.text = title;
     if (_isBlack) {
+        _textView.userInteractionEnabled = NO;
         _textView.textView.textColor = [UIColor blackColor];
     }
 }

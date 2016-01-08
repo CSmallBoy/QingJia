@@ -30,10 +30,7 @@ static NSString  *HeaderIVCellID = @"HeaderIVCell";
         cell =[[HCPromisedHeaderIVCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HeaderIVCellID];
         [cell addSubviews];
     }
-    
-
     return cell;
-
 }
 
 -(void)addSubviews
@@ -58,44 +55,26 @@ static NSString  *HeaderIVCellID = @"HeaderIVCell";
     
     HCLightGrayLineView *lineView = [[HCLightGrayLineView alloc]initWithFrame:CGRectMake(60, 87, SCREEN_WIDTH-70, 1)];
     [self addSubview:lineView];
-    
-//    if (self.isBlack) {
-//        
-//        
-//        _blackLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 50, 240, 40)];
-//        _blackLabel.textColor = [UIColor blackColor];
-//        _blackLabel.font = [UIFont systemFontOfSize:15];
-//        [self addSubview:_blackLabel];
-//    }
-//    
-
 }
 
 -(void)selectedImage : (UIButton  *)button
 {
     _selectImageblock();
-    
 }
-
-
 - (void)setTitle:(NSString *)title
 {
-
     _title = title;
     _label.text = title;
-    
     if (self.isBlack) {
         
+        _button.enabled = NO;
         [_blackLabel removeFromSuperview];
         _blackLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 50, 240, 40)];
+        _blackLabel.userInteractionEnabled = YES;
         _blackLabel.textColor = [UIColor blackColor];
         _blackLabel.font = [UIFont systemFontOfSize:15];
-        
-        
         [self addSubview:_blackLabel];
     }
-    
-    
 }
 
 -(void)setDetail:(NSString *)detail
@@ -108,11 +87,8 @@ static NSString  *HeaderIVCellID = @"HeaderIVCell";
     else
     {
         _textfield.placeholder = detail;
-
     }
-    
 }
-
 
 - (void)awakeFromNib {
     // Initialization code

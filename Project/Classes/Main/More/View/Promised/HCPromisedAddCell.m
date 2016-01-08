@@ -11,13 +11,9 @@
 
 @interface HCPromisedAddCell ()
 {
-        
     UIButton  *  _button;
-        
 }
 @end
-
-
 
 @implementation HCPromisedAddCell
 
@@ -34,19 +30,16 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeImage:) name:@"changeImage" object:nil];
     }
-    
-    
     return cell;
 }
 
+#pragma mark --- privote method
 
 -(void)addSubviews
 {
-    
     for (UIView  *view in self.subviews) {
         [view removeFromSuperview];
     }
-    
     UIButton  *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = [UIColor whiteColor];
     button.center = self.contentView.center;
@@ -55,8 +48,6 @@
     //button  添加点击事件
     
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     _button = button;
     [self addSubview:_button];
     
@@ -97,11 +88,9 @@
 - (void)awakeFromNib {
     // Initialization code
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
-
 @end

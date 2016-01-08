@@ -25,7 +25,7 @@
 {
     
     NSDictionary *head = [Utils getRequestHeadWithAction:@"ReGet"];
-    NSDictionary *para = @{@"PhoneNumber": @(15612345679), @"theType": @(1001)};
+    NSDictionary *para = @{@"PhoneNumber": @(15612345676), @"theType": @(1001)};
     NSDictionary *bodyDic = @{@"Head": head, @"Para": para};
     
     return @{@"json": [Utils stringWithObject:bodyDic]};

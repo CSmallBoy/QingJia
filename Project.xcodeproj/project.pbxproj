@@ -6021,7 +6021,7 @@
 				TargetAttributes = {
 					0A6B7D971BF1EB6A008D54B3 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = QBHLBK5BV2;
+						DevelopmentTeam = TUQVNVJWWD;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -7166,7 +7166,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.xiaodaohang.cfj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mtalk.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7200,7 +7200,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.xiaodaohang.cfj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mtalk.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
