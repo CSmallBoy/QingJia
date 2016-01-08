@@ -86,13 +86,14 @@
     if (indexPath.section == 0)
     {
         [self.contentView addSubview:self.scrollView];
-    }else
+    }
+    else
     {
-        self.hotStampingMachineNumberLab.font = [UIFont systemFontOfSize:15];
-        self.hotStampingMachinePriceLab.font = [UIFont systemFontOfSize:15];
-        self.labelNumberLab.font = [UIFont systemFontOfSize:15];
-        self.labelPriceLab.font = [UIFont systemFontOfSize:15];
-        self.totalPriceLab.font = [UIFont systemFontOfSize:15];
+        self.hotStampingMachineNumberLab.font = SYSTEMFONT(15);
+        self.hotStampingMachinePriceLab.font = SYSTEMFONT(15);
+        self.labelNumberLab.font = SYSTEMFONT(15);
+        self.labelPriceLab.font = SYSTEMFONT(15);
+        self.totalPriceLab.font = SYSTEMFONT(15);
         
         [self.contentView
          addSubview: self.hotStampingMachineNumberLab];
@@ -113,7 +114,6 @@
         [self.contentView addSubview: self.labelBuyNumberLb];
         [self.contentView addSubview: self.labelPriceLab];
         [self.contentView addSubview:self.labelPriceNumLab];
-        
         [self.contentView addSubview:self.totalPriceLab];
         [self.contentView addSubview:self.totalPriceNumLab];
     }
@@ -144,17 +144,17 @@
     if (self.info.buyHotStampingMachineNumber > 0)
     {
         self.info.buyHotStampingMachineNumber -= 1;
-    }else
+    }
+    else
     {
         if ([self.delegate respondsToSelector:@selector(showForbidHotStampingMachineDelete)])
         {
             [self.delegate showForbidHotStampingMachineDelete];
-
         }
     }
     self.hotStampingMachineBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyHotStampingMachineNumber];
     self.hotStampingMachinePriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.buyHotStampingMachineNumber *self.info.hotStampingMachinePrice];
-     self.totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
+    self.totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
 }
 
 
@@ -178,23 +178,34 @@
 
 -(void)clickDeleteLabelBtn
 {
-    if (self.info.buyLabelNumber > 10) {
-        self.info.buyLabelNumber -= 1;
-    }else
+    if (self.info.buyLabelNumber > 10)
     {
-        if ([self.delegate respondsToSelector:@selector(showForbidLabelDelete)]) {
+        self.info.buyLabelNumber -= 1;
+    }
+    else
+    {
+        if ([self.delegate respondsToSelector:@selector(showForbidLabelDelete)])
+        {
             [self.delegate showForbidLabelDelete];
-            
         }
     }
-    
     self.labelBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyLabelNumber];
     self.labelPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.buyLabelNumber *self.info.labelPrice];
     self.totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
-    
 }
 
 #pragma mark-- Setter Or Getter
+
+-(void)setInfo:(HCProductIntroductionInfo *)info
+{
+    _info = info;
+    _hotStampingMachineBuyNumberLb.text = [NSString stringWithFormat:@"%d" ,self.info.buyHotStampingMachineNumber];
+    _hotStampingMachinePriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber];
+    _labelBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyLabelNumber];
+    _labelPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.labelPrice*self.info.buyLabelNumber];
+    _totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
+    
+}
 
 -(UIScrollView *)scrollView
 {
@@ -270,7 +281,8 @@
 
 -(UILabel *)hotStampingMachinePriceNumLab
 {
-    if (!_hotStampingMachinePriceNumLab) {
+    if (!_hotStampingMachinePriceNumLab)
+    {
         _hotStampingMachinePriceNumLab = [[UILabel  alloc]initWithFrame:CGRectMake(110, 65, 120, 45)];
         _hotStampingMachinePriceNumLab.textAlignment = NSTextAlignmentLeft;
     }
@@ -289,7 +301,8 @@
 
 -(UIButton *)deleteLabelBtn
 {
-    if (!_deleteLabelBtn) {
+    if (!_deleteLabelBtn)
+    {
         _deleteLabelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _deleteLabelBtn.frame = CGRectMake(110, 128, 30, 30);
         [_deleteLabelBtn setBackgroundImage:OrigIMG(@"Products_but_minus") forState:UIControlStateNormal];
@@ -333,7 +346,8 @@
 
 -(UILabel *)labelPriceNumLab
 {
-    if (!_labelPriceNumLab) {
+    if (!_labelPriceNumLab)
+    {
         _labelPriceNumLab = [[UILabel  alloc]initWithFrame:CGRectMake(110, 175, 100, 45)];
         _labelPriceNumLab.textAlignment = NSTextAlignmentLeft;
     }
@@ -342,7 +356,8 @@
 
 -(UILabel *)totalPriceLab
 {
-    if (!_totalPriceLab) {
+    if (!_totalPriceLab)
+    {
         _totalPriceLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 230, 100, 45)];
         _totalPriceLab.textAlignment = NSTextAlignmentLeft;
         _totalPriceLab.text = @"总价格";
@@ -352,21 +367,12 @@
 
 -(UILabel *)totalPriceNumLab
 {
-    if (!_totalPriceNumLab) {
+    if (!_totalPriceNumLab)
+    {
         _totalPriceNumLab = [[UILabel alloc]initWithFrame:CGRectMake(110, 230, 100, 45)];
         _totalPriceNumLab.textAlignment = NSTextAlignmentLeft;
     }
     return _totalPriceNumLab;
 }
 
--(void)setInfo:(HCProductIntroductionInfo *)info
-{
-    _info = info;
-    _hotStampingMachineBuyNumberLb.text = [NSString stringWithFormat:@"%d" ,self.info.buyHotStampingMachineNumber];
-    _hotStampingMachinePriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber];
-    _labelBuyNumberLb.text = [NSString stringWithFormat:@"%d",self.info.buyLabelNumber];
-    _labelPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.labelPrice*self.info.buyLabelNumber];
-    _totalPriceNumLab.text = [NSString stringWithFormat:@"%d元",self.info.hotStampingMachinePrice*self.info.buyHotStampingMachineNumber+self.info.labelPrice*self.info.buyLabelNumber];
-    
-}
 @end

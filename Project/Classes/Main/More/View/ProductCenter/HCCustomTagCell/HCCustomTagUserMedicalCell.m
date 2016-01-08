@@ -8,14 +8,17 @@
 
 #import "HCCustomTagUserMedicalCell.h"
 #import "HCFeedbackTextView.h"
+#import "HCTagUserInfo.h"
 
 @interface HCCustomTagUserMedicalCell ()<UITextFieldDelegate,HCFeedbackTextViewDelegate>
+
 @property (nonatomic,strong) NSArray *placeholderTitleArr;
 @property (nonatomic,strong) NSArray *titleArr;
 
 @property (nonatomic, strong) UILabel *titleLabel;
-
+@property (nonatomic, strong) UITextField *textField;
 @property (nonatomic,strong) HCFeedbackTextView *textView;
+
 @end
 
 @implementation HCCustomTagUserMedicalCell
@@ -30,6 +33,7 @@
     }
     return self;
 }
+
 #pragma mark---UITextfieldDelegate
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -42,9 +46,8 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    _tagUserInfo.BloodType = textField.text;
+    _tagUserInfo.BloodType = _textField.text;
 }
-
 
 #pragma mark ----HCFeedbackTextViewDelegate
 
@@ -59,6 +62,10 @@
 -(void)feedbackTextViewdidEndEditing
 {
     _tagUserInfo.Allergic = self.textView.textView.text;
+    if ([self.delegate respondsToSelector:@selector(writeAllergic)])
+    {
+        [self.delegate writeAllergic];
+    }
 }
 
 #pragma mark---Setter Or Getter
@@ -69,29 +76,34 @@
     _titleLabel.text = self.titleArr[indexPath.row];
     if (indexPath.row == 0)
     {
-        NSAttributedString *attriString = [[NSAttributedString alloc] initWithString: self.placeholderTitleArr[indexPath.row] attributes:
-  @{                                                                           NSFontAttributeName: [UIFont systemFontOfSize:15],                                                                   NSForegroundColorAttributeName:[UIColor lightGrayColor]                                                                         }];
+        NSAttributedString *attriString = [[NSAttributedString alloc] initWithString: self.placeholderTitleArr[indexPath.row] attributes:@{
+                                                                                                                                           NSFontAttributeName: [UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor lightGrayColor]                                                                         }];
         self.textField.attributedPlaceholder = attriString;
-        self.textField.text = _tagUserInfo.BloodType;
+        if(_tagUserInfo.BloodType)
+        {
+            self.textField.text = _tagUserInfo.BloodType;
+        }
         self.textField.delegate = self;
         [self.contentView addSubview:self.textField];
     }
-    else
+    else if (indexPath.row == 1)
     {
-        self.textView.textView.text = _tagUserInfo.Allergic;
-        self.textView.delegate = self;
+        self.textView.placeholder = self.placeholderTitleArr[indexPath.row];
+        if (_tagUserInfo.Allergic)
+        {
+            self.textView.textView.text = _tagUserInfo.Allergic;
+        }
         [self.contentView addSubview:self.textView];
     }
 }
-
 
 -(HCFeedbackTextView *)textView
 {
     if (!_textView)
     {
         _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(85, 0, SCREEN_WIDTH-100, 88)];
-        _textView.placeholder = @"如果标签使用者有药物过敏史，点击输入过敏药物名称";
         _textView.maxTextLength = SCREEN_WIDTH-100;
+        self.textView.delegate = self;
     }
     return _textView;
 }
@@ -123,7 +135,7 @@
 {
     if (!_placeholderTitleArr)
     {
-        _placeholderTitleArr = @[@"点击输入标签使用者的血型",@""];
+        _placeholderTitleArr = @[@"点击输入标签使用者的血型",@"如果标签使用者有药物过敏史，点击输入过敏药物名称"];
     }
     return _placeholderTitleArr;
 }

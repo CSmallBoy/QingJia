@@ -31,30 +31,35 @@
 @implementation HCPayWayTableViewCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
+    if (self)
+    {
+        [self.contentView addSubview:self.alipayBtn];
+        [self.contentView addSubview:self.weixinpayBtn];
+        [self.contentView addSubview:self.unionpayBtn];
         
-
+        [self.alipayBtn addSubview:self.alipayPointBtn];
+        [self.weixinpayBtn addSubview:self.weixinpayPointBtn];
+        [self.unionpayBtn addSubview:self.unionpayPointBtn];
     }
     return self;
 }
-
-
 
 #pragma mark----private methods
 
 -(void)clickPayBtn:(UIButton* )sender
 {
-    if (sender.tag == 0) {
+    if (sender.tag == 0)
+    {
         self.alipayBtn.selected = YES;
         self.alipayPointBtn.selected = YES;
         self.weixinpayBtn.selected = NO;
         self.weixinpayPointBtn.selected = NO;
         self.unionpayBtn.selected = NO;
         self.unionpayPointBtn.selected = NO;
-    }else if(sender.tag == 1)
+    }
+    else if(sender.tag == 1)
     {
         self.alipayBtn.selected = NO;
         self.alipayPointBtn.selected = NO;
@@ -63,7 +68,8 @@
         self.unionpayBtn.selected = NO;
         self.unionpayPointBtn.selected = NO;
         
-    }else
+    }
+    else
     {
         self.alipayBtn.selected = NO;
         self.alipayPointBtn.selected = NO;
@@ -74,25 +80,12 @@
     }
 }
 
-
-
 #pragma mark -----Setter Or Getter
-
--(void)setIndexPath:(NSIndexPath *)indexPath
-{
-
-    [self.contentView addSubview:self.alipayBtn];
-    [self.contentView addSubview:self.weixinpayBtn];
-    [self.contentView addSubview:self.unionpayBtn];
-    
-    [self.alipayBtn addSubview:self.alipayPointBtn];
-    [self.weixinpayBtn addSubview:self.weixinpayPointBtn];
-    [self.unionpayBtn addSubview:self.unionpayPointBtn];
-}
 
 -(UIButton *)alipayBtn
 {
-    if (!_alipayBtn) {
+    if (!_alipayBtn)
+    {
         _alipayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _alipayBtn.frame = CGRectMake(10, 10, SCREEN_WIDTH-20, 44);
         _alipayBtn.backgroundColor = CLEARCOLOR;
@@ -151,7 +144,8 @@
 
 -(UIButton *)alipayPointBtn
 {
-    if (!_alipayPointBtn) {
+    if (!_alipayPointBtn)
+    {
         _alipayPointBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _alipayPointBtn.frame = CGRectMake(0, 0, 44, 44);
         _alipayPointBtn.selected = YES;
@@ -165,7 +159,8 @@
 
 -(UIButton *)weixinpayPointBtn
 {
-    if (!_weixinpayPointBtn) {
+    if (!_weixinpayPointBtn)
+    {
         _weixinpayPointBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _weixinpayPointBtn.frame = CGRectMake(0, 0, 44, 44);
         [_weixinpayPointBtn setBackgroundImage:OrigIMG(@"buttonNormal") forState: UIControlStateNormal];
@@ -178,7 +173,8 @@
 
 -(UIButton *)unionpayPointBtn
 {
-    if (!_unionpayPointBtn) {
+    if (!_unionpayPointBtn)
+    {
         _unionpayPointBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _unionpayPointBtn.frame = CGRectMake(0, 0, 44, 44);
         [_unionpayPointBtn setBackgroundImage:OrigIMG(@"buttonNormal") forState: UIControlStateNormal];

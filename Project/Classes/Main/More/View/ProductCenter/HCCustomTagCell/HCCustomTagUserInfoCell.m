@@ -9,17 +9,19 @@
 #import "HCCustomTagUserInfoCell.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
+#import "HCTagUserInfo.h"
+
 @interface HCCustomTagUserInfoCell ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *titleArr;
 @property (nonatomic, strong) NSArray *placeholderTitleArr;
+
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic,strong) UIButton *headerIMGBtn;
 
 @end
 
 @implementation HCCustomTagUserInfoCell
-
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -72,12 +74,14 @@
 
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
+    _indexPath = indexPath;
     self.titleLabel.text = self.titleArr[indexPath.row];
 
         if (indexPath.row == 0)
         {
             [self.contentView addSubview: self.headerIMGBtn];
-        }else if (indexPath.row != 0)
+        }
+        else if (indexPath.row != 0)
         {
             NSAttributedString *attriString = [[NSAttributedString alloc] initWithString:self.placeholderTitleArr[indexPath.row - 1] attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]}];
             self.textField.attributedPlaceholder = attriString;
@@ -164,7 +168,13 @@
 {
     if (!_placeholderTitleArr)
     {
-        _placeholderTitleArr = @[@"请输入姓名", @"请选择性别", @"请输入生日", @"请输入住址",@"请输入学校名称", @"请输入身份证号", @"请输入职业"];
+        _placeholderTitleArr = @[@"请输入姓名",
+                                 @"请选择性别",
+                                 @"请输入生日",
+                                 @"请输入住址",
+                                 @"请输入学校名称",
+                                 @"请输入身份证号",
+                                 @"请输入职业"];
     }
     return _placeholderTitleArr;
 }
@@ -173,7 +183,14 @@
 {
     if (!_titleArr)
     {
-        _titleArr = @[@"头像",@"姓名", @"性别", @"生日", @"住址", @"学校", @"身份证", @"职业"];
+        _titleArr = @[@"头像",
+                      @"姓名",
+                      @"性别",
+                      @"生日",
+                      @"住址",
+                      @"学校",
+                      @"身份证",
+                      @"职业"];
     }
     return _titleArr;
 }

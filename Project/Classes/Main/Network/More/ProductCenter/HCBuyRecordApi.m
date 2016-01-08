@@ -7,8 +7,6 @@
 //
 
 #import "HCBuyRecordApi.h"
-
-
 #import "HCProductIntroductionInfo.h"
 
 @implementation HCBuyRecordApi
@@ -18,10 +16,6 @@
     [super startRequest:requestBlock];
 }
 
-//- (id)requestArgument
-//{
-//    return @{@"t": @"User,logout", @"token": @"23"};
-//}
 - (NSString *)requestUrl
 {
     return @"User/AuthCode.ashx";// 测试

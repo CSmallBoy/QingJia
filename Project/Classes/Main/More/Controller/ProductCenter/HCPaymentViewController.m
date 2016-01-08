@@ -70,9 +70,8 @@
         else
         {
         HCPayWayTableViewCell* payCell = [[HCPayWayTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"payway"];
-            payCell.indexPath = indexPath;
         cell = payCell;
-    }
+        }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

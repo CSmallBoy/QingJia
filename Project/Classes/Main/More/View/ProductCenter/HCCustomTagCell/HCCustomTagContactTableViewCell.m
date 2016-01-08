@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSArray *titleArr;
 @property (nonatomic, strong) NSArray *placeholderTitleArr;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UITextField *textField;
 
 @property (nonatomic,strong) HCContactPersonInfo *info;
 
@@ -63,15 +64,11 @@
     {
         _info.IDNo = textField.text;
     }
+    
 }
 
 
 #pragma mark---Setter Or Getter
-
--(void)setInfo:(HCContactPersonInfo *)info
-{
-    _info = info;
-}
 
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
@@ -81,14 +78,10 @@
     self.textField.attributedPlaceholder = attriString;
     self.textField.delegate = self;
     self.textField.tag = indexPath.row;
-}
-
--(void)setContactArr:(NSMutableArray *)contactArr
-{
-    _contactArr = contactArr;
     if (_indexPath.section == 1 || _indexPath.section == 2)
     {
-        _info = contactArr[_indexPath.section-1];
+        _info.OrderIndex = [NSString stringWithFormat:@"%ld",_indexPath.section-1];
+        _info = _contactArr[_indexPath.section-1];
     }
 }
 

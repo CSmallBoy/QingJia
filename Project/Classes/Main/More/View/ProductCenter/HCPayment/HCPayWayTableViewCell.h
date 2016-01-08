@@ -11,5 +11,4 @@
 @interface HCPayWayTableViewCell : UITableViewCell
 
 
-@property (nonatomic,strong) NSIndexPath *indexPath;
 @end

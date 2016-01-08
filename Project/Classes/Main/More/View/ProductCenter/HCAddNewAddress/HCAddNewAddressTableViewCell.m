@@ -51,7 +51,8 @@
 
 -(HCFeedbackTextView *)textView
 {
-    if (!_textView) {
+    if (!_textView)
+    {
         _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(100, 0, SCREEN_WIDTH-100, 88)];
         _textView.placeholder = @"请输入收货人的详细收货地址(街道、门牌号)";
         _textView.maxTextLength = SCREEN_WIDTH-100;
@@ -67,7 +68,7 @@
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 4, SCREEN_WIDTH-100, 40)];
         _textField.textAlignment = NSTextAlignmentLeft;
         _textField.textColor = RGB(120, 120, 120);
-        _textField.font = FONT(15);
+        _textField.font = [UIFont systemFontOfSize:14];
       
     }
     return _textField;

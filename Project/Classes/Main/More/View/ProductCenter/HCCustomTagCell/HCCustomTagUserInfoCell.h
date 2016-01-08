@@ -7,23 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HCTagUserInfo.h"
 
+@class HCTagUserInfo;
 @protocol HCCustomTagUserInfoCellDelegate <NSObject>
 
 @optional
 
 -(void)addUserHeaderIMG;
 -(void)dismissDatePicker;
+
 @end
 
 @interface HCCustomTagUserInfoCell : UITableViewCell
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
-
-@property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) HCTagUserInfo *tagUserInfo;
-
+@property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, weak) id<HCCustomTagUserInfoCellDelegate>delegate;
 
 @end

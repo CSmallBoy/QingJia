@@ -47,6 +47,7 @@
     [self setupBackItem];
     
     _tagUserInfo = [[HCTagUserInfo alloc] init];
+    _tagUserInfo.ContactArray  = [NSMutableArray arrayWithCapacity:2];
     [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
     [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
 
@@ -63,42 +64,33 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UITableViewCell *cell;
-        if (indexPath.section == 0)
-        {
-            HCCustomTagUserInfoCell *customTagUserInfoCell = [tableView dequeueReusableCellWithIdentifier:@"CustonTag"];
-            if (customTagUserInfoCell == nil)
-            {
-                customTagUserInfoCell =[[HCCustomTagUserInfoCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CustonTag"];
-                customTagUserInfoCell.delegate = self;
-                customTagUserInfoCell.tagUserInfo = _tagUserInfo;
-                customTagUserInfoCell.indexPath = indexPath;
-            }
-            return customTagUserInfoCell;
+
+    if (indexPath.section == 0)
+    {
+        HCCustomTagUserInfoCell *customTagUserInfoCell =[[HCCustomTagUserInfoCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CustonTag"];
+        customTagUserInfoCell.delegate = self;
+        customTagUserInfoCell.tagUserInfo = _tagUserInfo;
+        customTagUserInfoCell.indexPath = indexPath;
+        customTagUserInfoCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return customTagUserInfoCell;
         }
-        else if (indexPath.section == 3)
+    else if (indexPath.section == 3)
         {
-            HCCustomTagUserMedicalCell *customTagUserMedicalCell = [tableView dequeueReusableCellWithIdentifier:@"Medical"];
-            if (customTagUserMedicalCell == nil)
-            {
-               customTagUserMedicalCell = [[HCCustomTagUserMedicalCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Medical"];
-                customTagUserMedicalCell.delegate = self;
-                customTagUserMedicalCell.tagUserInfo = _tagUserInfo;
-                customTagUserMedicalCell.indexPath = indexPath;
-            }
+            HCCustomTagUserMedicalCell * customTagUserMedicalCell = [[HCCustomTagUserMedicalCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Medical"];
+            customTagUserMedicalCell.tagUserInfo = _tagUserInfo;
+            customTagUserMedicalCell.indexPath = indexPath;
+            customTagUserMedicalCell.delegate = self;
+            customTagUserMedicalCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return customTagUserMedicalCell;
         }
     else
     {
-        HCCustomTagContactTableViewCell *contactCell = [tableView dequeueReusableCellWithIdentifier:@"contactCell"];
-        
-        if (contactCell == nil)
-        {
-            contactCell = [[HCCustomTagContactTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"contactCell"];
-            contactCell.indexPath = indexPath;
-            contactCell.contactArr = _tagUserInfo.ContactArray;
-            contactCell.delegate = self;
-        }
+        NSString *DCID = [NSString stringWithFormat:@"contactCell%ld",indexPath.section];
+        HCCustomTagContactTableViewCell *contactCell = [[HCCustomTagContactTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:DCID];
+        contactCell.delegate = self;
+        contactCell.contactArr = _tagUserInfo.ContactArray;
+        contactCell.indexPath = indexPath;
+        contactCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return contactCell;
     }
 }
@@ -128,18 +120,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return  8;
-    }
-    else if (section == 3)
-    {
-        return 2;
-    }
-    else
-    {
-        return 4;
-    }
+    return  (section ==0) ? 8 : (section == 3) ? 2 : 4;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -220,7 +201,6 @@
              [self.tableView reloadData];
          }
      }];
-    
 }
 
 -(void)dismissDatePicker
@@ -236,6 +216,11 @@
 -(void)dismissDatePicker2
 {
     [self.datePicker remove];
+}
+
+-(void)writeAllergic
+{
+    [self.tableView reloadData];
 }
 
 #pragma mark - HCPickerViewDelegate
@@ -345,7 +330,6 @@
         [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
         
         [_contactInfoHeaderView addSubview:addContactBtn];
-
         [_contactInfoHeaderView addSubview:headerLabel];
     }
     return _contactInfoHeaderView;
@@ -364,7 +348,6 @@
         headerLabel.text = @"紧急联系人";
         headerLabel.font = [UIFont systemFontOfSize:12];
         [_deleteContactInfoView addSubview:headerLabel];
-        
         [_deleteContactInfoView addSubview:deleteContactBtn];
     }
     return _deleteContactInfoView;
@@ -425,9 +408,9 @@
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self showHUDSuccess:@"保存成功"];
-//            [HCAccountMgr manager].userInfo = _tagUserInfo;
             [self.tableView reloadData];
-        }else
+        }
+        else
         {
             [self showHUDError:message];
         }

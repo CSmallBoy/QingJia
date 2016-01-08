@@ -7,19 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HCTagUserInfo.h"
 
+@class HCTagUserInfo;
 @protocol HCCustomTagUserMedicalCellDelegate <NSObject>
 
 @optional
 -(void)dismissDatePicker2;
+
+-(void)writeAllergic;
 @end
 
 @interface HCCustomTagUserMedicalCell : UITableViewCell
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
-@property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) HCTagUserInfo *tagUserInfo;
 @property (nonatomic, weak) id<HCCustomTagUserMedicalCellDelegate>delegate;
+
+
 @end

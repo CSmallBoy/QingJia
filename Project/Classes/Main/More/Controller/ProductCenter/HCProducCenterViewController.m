@@ -32,8 +32,8 @@
     
     UIImageView *shoppingCarView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-70,100, 140, 140)];
     shoppingCarView.image = [UIImage imageNamed:@"shopping-cart1"];
-
     [self.view addSubview:shoppingCarView];
+    
     self.padding = 30;
     self.btnWidth = SCREEN_WIDTH/3-30;
     [self.view addSubview:self.imageViewList];
@@ -68,7 +68,6 @@
  -(void)pushToMTalkBuyVC
 {
     [self.navigationController pushViewController:[[HCProductCenterDetailViewController alloc]init] animated:YES];
-    
 }
 
 //跳转淘宝购买页面

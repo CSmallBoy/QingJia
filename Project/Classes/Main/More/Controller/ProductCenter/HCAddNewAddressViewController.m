@@ -20,7 +20,8 @@
 
 @implementation HCAddNewAddressViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.title  = @"新增地址";
@@ -36,13 +37,14 @@
 {
     static NSString *addNewAddressID = @"addNewAddress";
     UITableViewCell *cell  = nil;
-    
-    if (!cell) {
-            HCAddNewAddressTableViewCell *addNewAddCell = [tableView dequeueReusableCellWithIdentifier:addNewAddressID];
-            addNewAddCell = [[HCAddNewAddressTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:addNewAddressID];
+    if (!cell)
+    {
+        HCAddNewAddressTableViewCell *addNewAddCell = [tableView dequeueReusableCellWithIdentifier:addNewAddressID];
+        addNewAddCell = [[HCAddNewAddressTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:addNewAddressID];
         addNewAddCell.indexPath = indexPath;
             cell = addNewAddCell;
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
@@ -61,22 +63,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 4)
-    {
-        return 88;
-    }
-    else
-    {
-        return 44;
-    }
-    
+    return (indexPath.row == 4) ? 88 : 44;
 }
 
 #pragma mark----private methods
 
 -(void)clickUseBtn
 {
-    [self showHUDText:@"保存成功"];
      [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -88,7 +81,6 @@
     {
         _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"") style:UIBarButtonItemStylePlain target:self action:@selector(clickUseBtn)];
         _rightItem.title = @"使用";
-        
     }
     return _rightItem;
 }

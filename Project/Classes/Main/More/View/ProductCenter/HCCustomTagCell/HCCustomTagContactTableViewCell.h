@@ -18,9 +18,6 @@
 @interface HCCustomTagContactTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
-@property (nonatomic, strong) UITextField *textField;
-
-
 @property (nonatomic,strong) NSMutableArray *contactArr;
 
 @property (nonatomic, weak) id<HCCustomTagContactTableViewCellDelegate>delegate;
