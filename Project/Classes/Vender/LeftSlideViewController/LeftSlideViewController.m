@@ -6,7 +6,8 @@
 //  Copyright (c) 2015年 huangzhenyu. All rights reserved.
 
 #import "LeftSlideViewController.h"
-
+#import "HCRootTabBarController.h"
+#import "HCHomeViewController.h"
 
 @interface LeftSlideViewController ()<UIGestureRecognizerDelegate>
 {
@@ -62,7 +63,6 @@
         
         //获取左侧tableview
         for (UIView *obj in self.leftVC.view.subviews) {
-            DLog(@"obj----%@", obj);
             if ([obj isKindOfClass:[UITableView class]]) {
                 self.leftTableview = (UITableView *)obj;
             }
@@ -89,7 +89,14 @@
 #pragma mark - 滑动手势
 
 //滑动手势
-- (void) handlePan: (UIPanGestureRecognizer *)rec{
+- (void) handlePan: (UIPanGestureRecognizer *)rec
+{
+    HCRootTabBarController *rootTabBar = (HCRootTabBarController *)_mainVC;
+    UINavigationController *navigationController = (UINavigationController *)rootTabBar.selectedViewController;
+    if (![navigationController.visibleViewController isKindOfClass:[HCHomeViewController class]])
+    {
+        return;
+    }
     
     CGPoint point = [rec translationInView:self.view];
     _scalef = (point.x * self.speedf + _scalef);
