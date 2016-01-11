@@ -49,11 +49,8 @@
     [self setupBackItem];
     _isAdd  = YES;
     _tagUserInfo = [[HCTagUserInfo alloc] init];
-//    _tagUserInfo.ContactArray  = [NSMutableArray arrayWithCapacity:2];
     _tagUserInfo.ContactArray  = [NSMutableArray array];
     [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
-//    [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
-
 
 }
 
@@ -219,11 +216,6 @@
 -(void)dismissDatePicker2
 {
     [self.datePicker remove];
-}
-
--(void)writeAllergic
-{
-    [self.tableView reloadData];
 }
 
 #pragma mark - HCPickerViewDelegate

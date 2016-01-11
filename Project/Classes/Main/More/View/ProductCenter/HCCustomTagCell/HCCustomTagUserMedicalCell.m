@@ -62,11 +62,6 @@
 -(void)feedbackTextViewdidEndEditing
 {
     _tagUserInfo.Allergic = self.textView.textView.text;
-    if ([self.delegate respondsToSelector:@selector(writeAllergic)])
-    {
-        [self.delegate writeAllergic];
-    }
-    self.textView.textView.textColor = [UIColor blackColor];
 }
 
 #pragma mark---Setter Or Getter
@@ -99,7 +94,6 @@
     {
         _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(85, 0, SCREEN_WIDTH-100, 88)];
         _textView.maxTextLength = SCREEN_WIDTH-100;
-//        _textView.textView.textColor = [UIColor blackColor];
         self.textView.delegate = self;
     }
     return _textView;
@@ -111,7 +105,6 @@
     {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 4, SCREEN_WIDTH-100, 40)];
         _textField.textAlignment = NSTextAlignmentLeft;
-//        _textField.textColor = [UIColor blackColor];
         _textField.font = SYSTEMFONT(15);
     }
     return _textField;

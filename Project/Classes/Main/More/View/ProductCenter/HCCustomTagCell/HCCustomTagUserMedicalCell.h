@@ -14,7 +14,6 @@
 @optional
 -(void)dismissDatePicker2;
 
--(void)writeAllergic;
 @end
 
 @interface HCCustomTagUserMedicalCell : UITableViewCell
