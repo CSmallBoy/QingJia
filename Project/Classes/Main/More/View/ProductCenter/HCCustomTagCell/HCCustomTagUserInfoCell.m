@@ -148,7 +148,7 @@
     {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 2, SCREEN_WIDTH-100, 40)];
         _textField.textAlignment = NSTextAlignmentLeft;
-        _textField.textColor = RGB(120, 120, 120);
+        _textField.textColor = [UIColor blackColor];
     }
     return _textField;
 }

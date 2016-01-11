@@ -60,7 +60,7 @@
     if ([textView.text isEqualToString:_placeholder])
     {
         textView.text = @"";
-        textView.textColor = RGB(46, 46, 46);
+        textView.textColor =[UIColor blackColor];// RGB(46, 46, 46);
     }
 
 }
@@ -73,6 +73,7 @@
         textView.text = _placeholder;
         textView.textColor = [UIColor grayColor];
     }
+
     if ([self.delegate respondsToSelector:@selector(feedbackTextViewdidEndEditing)])
     {
         [self.delegate feedbackTextViewdidEndEditing];

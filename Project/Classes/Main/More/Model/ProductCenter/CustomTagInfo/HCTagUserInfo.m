@@ -22,6 +22,7 @@
     tagUserInfo.ObjectCareer = [_ObjectCareer mutableCopy];
     tagUserInfo.BloodType = [_BloodType mutableCopy];
     tagUserInfo.Allergic = [_Allergic mutableCopy];
+    tagUserInfo.ContactArray  = [_ContactArray mutableCopy];
     
     return tagUserInfo;
 }

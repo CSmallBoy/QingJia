@@ -104,9 +104,9 @@
 -(void)setInfo:(HCNotificationCenterInfo *)info
 {
     _info = info;
-    self.userNameLab.text = info.userName;
-    self.notificationMessageLab.text = info.notificationMessage;
-    self.timeLab.text = info.time;
+    self.userNameLab.text = info.SendUser;
+    self.notificationMessageLab.text = info.NTitle;
+    self.timeLab.text = info.AddTime;
 }
 
 @end

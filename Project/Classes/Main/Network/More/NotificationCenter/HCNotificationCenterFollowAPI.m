@@ -35,9 +35,9 @@
 {
 
         HCNotificationCenterInfo *info = [[HCNotificationCenterInfo alloc] init];
-        info.userName = @"清海浮生";
-        info.time = @"2015年10月20日 18:30";
-        info.notificationMessage = @"德玛西亚发布舒服https://baidu.com个必胜客当局包括世界杯赛捷克队比赛的";
+        info.SendUser = @"清海浮生";
+        info.AddTime = @"2015年10月20日 18:30";
+        info.NTitle = @"德玛西亚发布舒服https://baidu.com个必胜客当局包括世界杯赛捷克队比赛的";
     info.followInfoArr = @[@"已经跟进信息",@"已经跟进信息",
                            @"已经跟进信息",@"已经跟进信息",
                            @"已经跟进信息",@"已经跟进信息"];

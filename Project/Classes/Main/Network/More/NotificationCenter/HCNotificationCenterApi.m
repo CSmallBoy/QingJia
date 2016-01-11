@@ -39,9 +39,9 @@
     for (NSInteger i = 0; i < 11; i++)
     {
         HCNotificationCenterInfo *info = [[HCNotificationCenterInfo alloc] init];
-        info.userName = @"哈哈昵称";
-        info.time = @"2015年10月20日 18:30";
-        info.notificationMessage = @"啦啦啦德玛西亚文化分别将发布舒服https://baidu.com个必胜客当局包括世界杯赛捷克队比赛的";
+        info.SendUser = @"哈哈昵称";
+        info.AddTime = @"2015年10月20日 18:30";
+        info.NTitle = @"啦啦啦德玛西亚文化分别将发布舒服https://baidu.com个必胜客当局包括世界杯赛捷克队比赛的";
         [NotificationArr addObject:info];
     }
     return NotificationArr;

@@ -12,17 +12,26 @@
 /**
  *姓名
  */
-@property (nonatomic,strong) NSString *userName;
+@property (nonatomic,strong) NSString *SendUser;
+
+@property (nonatomic,strong) NSString *SysLevel;
+@property (nonatomic,strong) NSString *NoticeType;
+@property (nonatomic,strong) NSString *NTitle;
+@property (nonatomic,strong) NSString *NContent;
 
 /**
  *时间
  */
-@property (nonatomic,strong) NSString *time;
+@property (nonatomic,strong) NSString *AddTime;
+@property (nonatomic,strong) NSString *Address;
+@property (nonatomic,strong) NSString *AddressCode;
 
-/**
- *具体通知信息
- */
-@property (nonatomic,strong) NSString *notificationMessage;
+
+
+///**
+// *具体通知信息
+// */
+//@property (nonatomic,strong) NSString *notificationMessage;
 
 /**
  *跟进信息内容

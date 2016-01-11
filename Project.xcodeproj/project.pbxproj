@@ -870,6 +870,7 @@
 		C7829AD31C2BC730006FFFFB /* scanLine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7829ACB1C2BC730006FFFFB /* scanLine@3x.png */; };
 		C7829AD41C2BC730006FFFFB /* scanscanBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C7829ACC1C2BC730006FFFFB /* scanscanBg.png */; };
 		C7829AD51C2BC730006FFFFB /* HCScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7829ACE1C2BC730006FFFFB /* HCScanViewController.m */; };
+		C79100471C4384DC004472A7 /* HCNotificationDeleteApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C79100461C4384DC004472A7 /* HCNotificationDeleteApi.m */; };
 		C7AE59E61C3D039300EF5549 /* HCNotificationDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AE59E51C3D039300EF5549 /* HCNotificationDetailApi.m */; };
 		C7AE59E91C3D03A600EF5549 /* HCNotificationDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AE59E81C3D03A600EF5549 /* HCNotificationDetailInfo.m */; };
 		C7C907B21C227BB90054CB7C /* HCImgViewTagList.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C907B11C227BB90054CB7C /* HCImgViewTagList.m */; };
@@ -2419,6 +2420,8 @@
 		C7829ACC1C2BC730006FFFFB /* scanscanBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanscanBg.png; sourceTree = "<group>"; };
 		C7829ACD1C2BC730006FFFFB /* HCScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCScanViewController.h; sourceTree = "<group>"; };
 		C7829ACE1C2BC730006FFFFB /* HCScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCScanViewController.m; sourceTree = "<group>"; };
+		C79100451C4384DC004472A7 /* HCNotificationDeleteApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationDeleteApi.h; sourceTree = "<group>"; };
+		C79100461C4384DC004472A7 /* HCNotificationDeleteApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationDeleteApi.m; sourceTree = "<group>"; };
 		C7AE59E41C3D039300EF5549 /* HCNotificationDetailApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationDetailApi.h; sourceTree = "<group>"; };
 		C7AE59E51C3D039300EF5549 /* HCNotificationDetailApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationDetailApi.m; sourceTree = "<group>"; };
 		C7AE59E71C3D03A600EF5549 /* HCNotificationDetailInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationDetailInfo.h; sourceTree = "<group>"; };
@@ -5858,6 +5861,8 @@
 				C73BCBC41C3BAEBD005048C5 /* HCNotificationCenterReadApi.m */,
 				C7AE59E41C3D039300EF5549 /* HCNotificationDetailApi.h */,
 				C7AE59E51C3D039300EF5549 /* HCNotificationDetailApi.m */,
+				C79100451C4384DC004472A7 /* HCNotificationDeleteApi.h */,
+				C79100461C4384DC004472A7 /* HCNotificationDeleteApi.m */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -6700,6 +6705,7 @@
 				C73BCB8B1C3BAEA1005048C5 /* HCTagManagerDetailViewController.m in Sources */,
 				C7692F561C3A4B2200582A10 /* MDCFocalPointView.m in Sources */,
 				0AC89D651C28F21F003EED90 /* HCHomePictureDetailViewController.m in Sources */,
+				C79100471C4384DC004472A7 /* HCNotificationDeleteApi.m in Sources */,
 				0A7CBC9F1C31294D0051DD58 /* EMBubbleView+Gif.m in Sources */,
 				8D1A91DC1C3CA78600C920EE /* HCPromisedViewController.m in Sources */,
 				0A5491191C2BC32D0085F50D /* ZXGeoParsedResult.m in Sources */,
@@ -7166,7 +7172,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mtalk.www;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mtalk.ww;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7200,7 +7206,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/Project/Classes/Vender/EaseUI/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mtalk.www;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mtalk.ww;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

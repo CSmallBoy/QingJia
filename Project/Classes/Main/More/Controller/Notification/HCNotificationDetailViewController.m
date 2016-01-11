@@ -34,6 +34,7 @@
 {
     [super viewDidLoad];
     self.title = @"信息详情";
+    [self setupBackItem];
     [self requestHomeData];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview: self.userNameLab];

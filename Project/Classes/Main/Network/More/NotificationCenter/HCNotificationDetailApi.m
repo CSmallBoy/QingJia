@@ -45,5 +45,33 @@
 }
 
 
+//- (NSString *)requestUrl
+//{
+//    return @"Shop/ObjectInf.ashx";
+//}
+//
+//- (id)requestArgument
+//{
+//    NSDictionary *head = @{@"Action" : @"GetList" ,
+//                           @"Token":[HCAccountMgr manager].loginInfo.Token ,
+//                           @"UUID":[HCAccountMgr manager].loginInfo.UUID};
+//    NSDictionary *Result = @{@"Start":@(1000),@"Count":@(20)};
+//    NSDictionary *bodyDic = @{@"Head" : head, @"Result" : Result};
+//
+//    return @{@"json": [Utils stringWithObject:bodyDic]};
+//}
+//
+//- (id)formatResponseObject:(id)responseObject
+//{
+//    HCNotificationDetailInfo *info = [[HCNotificationDetailInfo alloc] init];
+//    info.SendUser = @"M-Talk";
+//    info.NTitle = @"测试消息[紧急通知]";
+//    info.NContent = @"测试内容,可放图片测试内容";
+//    info.AddTime = @"2015-08-18 23:08:52";
+//    info.Address = @"上海市闵行区莲花南路 1500 弄-5 号-101";
+//    info.AddressCode = @"31.102218,121.419388";
+//    return responseObject;//[@"Data"];
+//
+//}
 
 @end

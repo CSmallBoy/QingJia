@@ -83,6 +83,22 @@
         _info.OrderIndex = [NSString stringWithFormat:@"%ld",_indexPath.section-1];
         _info = _contactArr[_indexPath.section-1];
     }
+    if (indexPath.row == 0)
+    {
+        self.textField.text = _info.ObjectXName;
+    }
+    else if (indexPath.row == 1)
+    {
+        self.textField.text = _info.ObjectXRelative ;
+    }
+    else if (indexPath.row  == 2)
+    {
+        self.textField.text = _info.PhoneNo;
+    }
+    else if (indexPath.row == 3)
+    {
+       self.textField.text =  _info.IDNo;
+    }
 }
 
 - (UITextField *)textField
@@ -91,7 +107,7 @@
     {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 2, SCREEN_WIDTH - 100, 40)];
         _textField.textAlignment = NSTextAlignmentLeft;
-        _textField.textColor = RGB(120, 120, 120);
+        _textField.textColor = [UIColor blackColor];
     }
     return _textField;
 }

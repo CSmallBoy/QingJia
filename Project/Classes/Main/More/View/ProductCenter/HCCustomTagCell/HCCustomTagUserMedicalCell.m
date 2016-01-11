@@ -66,6 +66,7 @@
     {
         [self.delegate writeAllergic];
     }
+    self.textView.textView.textColor = [UIColor blackColor];
 }
 
 #pragma mark---Setter Or Getter
@@ -76,13 +77,8 @@
     _titleLabel.text = self.titleArr[indexPath.row];
     if (indexPath.row == 0)
     {
-        NSAttributedString *attriString = [[NSAttributedString alloc] initWithString: self.placeholderTitleArr[indexPath.row] attributes:@{
-                                                                                                                                           NSFontAttributeName: [UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor lightGrayColor]                                                                         }];
-        self.textField.attributedPlaceholder = attriString;
-        if(_tagUserInfo.BloodType)
-        {
-            self.textField.text = _tagUserInfo.BloodType;
-        }
+        self.textField.placeholder = self.placeholderTitleArr[indexPath.row];
+        self.textField.text = _tagUserInfo.BloodType;
         self.textField.delegate = self;
         [self.contentView addSubview:self.textField];
     }
@@ -103,6 +99,7 @@
     {
         _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(85, 0, SCREEN_WIDTH-100, 88)];
         _textView.maxTextLength = SCREEN_WIDTH-100;
+//        _textView.textView.textColor = [UIColor blackColor];
         self.textView.delegate = self;
     }
     return _textView;
@@ -114,8 +111,8 @@
     {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 4, SCREEN_WIDTH-100, 40)];
         _textField.textAlignment = NSTextAlignmentLeft;
-        _textField.textColor = RGB(120, 120, 120);
-        _textField.font = FONT(15);
+//        _textField.textColor = [UIColor blackColor];
+        _textField.font = SYSTEMFONT(15);
     }
     return _textField;
 }

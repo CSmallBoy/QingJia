@@ -33,6 +33,8 @@
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) NSString *history;
 
+@property (nonatomic,assign) BOOL isAdd;
+
 @property (nonatomic,strong) HCTagUserInfo *tagUserInfo;
 
 @end
@@ -45,11 +47,12 @@
     self.title = @"定制标签";
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
-    
+    _isAdd  = YES;
     _tagUserInfo = [[HCTagUserInfo alloc] init];
-    _tagUserInfo.ContactArray  = [NSMutableArray arrayWithCapacity:2];
+//    _tagUserInfo.ContactArray  = [NSMutableArray arrayWithCapacity:2];
+    _tagUserInfo.ContactArray  = [NSMutableArray array];
     [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
-    [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
+//    [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
 
 
 }
@@ -74,7 +77,7 @@
         customTagUserInfoCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return customTagUserInfoCell;
         }
-    else if (indexPath.section == 3)
+    else if (indexPath.section == (_isAdd ? 2 :3))
         {
             HCCustomTagUserMedicalCell * customTagUserMedicalCell = [[HCCustomTagUserMedicalCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Medical"];
             customTagUserMedicalCell.tagUserInfo = _tagUserInfo;
@@ -115,17 +118,17 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return _isAdd ? 3 : 4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return  (section ==0) ? 8 : (section == 3) ? 2 : 4;
+    return  (section ==0) ? 8 : (section == (_isAdd ? 2 : 3)) ? 2 : 4;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return (section == 3) ? self.footerView : nil;
+    return (section == (_isAdd ? 2 : 3)) ? self.footerView : nil;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -138,7 +141,7 @@
     {
         return self.contactInfoHeaderView;
     }
-    else if (section == 3)
+    else if (section == (_isAdd ? 2 : 3))
     {
         return self.medicalInfoHeaderView;
     }
@@ -151,7 +154,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 3)
+    if (indexPath.section == (_isAdd ? 2 : 3))
     {
         return (indexPath.row == 0) ? 44 : 88;
     }
@@ -172,7 +175,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return (section == 3) ? 120 : 1 ;
+    return (section == (_isAdd ? 2 : 3)) ? 120 : 1 ;
 }
 
 
@@ -280,12 +283,20 @@
 
 -(void)handleAddContact
 {
-    [self showHUDText:@"增加紧急联系人"];
+    if (_isAdd  == YES)
+    {
+        _isAdd  = !_isAdd;
+        [self.tableView reloadData];
+         [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
+    }
+  
 }
 
 -(void)handleDeleteContact
 {
-    [self showHUDText:@"收起紧急联系人"];
+    _isAdd  = !_isAdd;
+    [_tagUserInfo.ContactArray removeObjectAtIndex:1];
+    [self.tableView reloadData];
 }
 
 #pragma mark---Setter Or Getter
@@ -326,9 +337,16 @@
         
         UIButton *addContactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         addContactBtn.frame = CGRectMake(70, 5, 20, 20);
+        if (_isAdd)
+        {
+                    [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else
+        {
+            return nil;
+        }
         [addContactBtn setBackgroundImage:OrigIMG(@"yihubaiying_but_Plus") forState:UIControlStateNormal];
-        [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
-        
+
         [_contactInfoHeaderView addSubview:addContactBtn];
         [_contactInfoHeaderView addSubview:headerLabel];
     }

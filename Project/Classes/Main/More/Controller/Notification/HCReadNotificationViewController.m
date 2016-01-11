@@ -7,12 +7,13 @@
 //
 
 #import "HCReadNotificationViewController.h"
-#import "HCButtonItem.h"
 #import "HCNotificationCentereReadTableViewCell.h"
-//#import "HCNotificationCenterReadApi.h"
+#import "HCNotificationDetailViewController.h"
+#import "HCButtonItem.h"
+
 #import "HCNotificationCenterApi.h"
 #import "HCNotificationCenterInfo.h"
-#import "HCNotificationDetailViewController.h"
+#import "HCNotificationDeleteApi.h"
 
 @interface HCReadNotificationViewController ()
 
@@ -51,6 +52,8 @@
 //    detailVC.info = self.dataSource[indexPath.section];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
+
+#pragma mark ---UITableViewDataSource
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -98,11 +101,28 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.dataSource removeObjectAtIndex:indexPath.section];
-    [tableView reloadData];
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [self.dataSource removeObjectAtIndex:indexPath.section];
+        
+        [self requestDelete:indexPath];
+        
+        [tableView reloadData];
+    }
 }
 
 #pragma mark - network
+-(void)requestDelete:(NSIndexPath *)indexPath
+{
+    HCNotificationDeleteApi *api = [[HCNotificationDeleteApi alloc]init];
+    api.NoticeId = 1000000004;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id info) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            
+        }
+    }];
+}
 
 - (void)requestHomeData
 {
