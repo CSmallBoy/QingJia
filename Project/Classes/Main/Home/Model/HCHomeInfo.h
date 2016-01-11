@@ -29,7 +29,6 @@
 @property (nonatomic, strong) NSString *HeadImg;
 @property (nonatomic, strong) NSArray  *FTImages;
 @property (nonatomic, strong) NSString *FTContent;
-@property (nonatomic, strong) NSString *FTFlag;
 @property (nonatomic, strong) NSString *FTReplyCount;
 @property (nonatomic, strong) NSString *FTLikeCount;
 @property (nonatomic, strong) NSString *CreateTime;

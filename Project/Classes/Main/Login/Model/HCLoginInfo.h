@@ -10,10 +10,10 @@
 
 @interface HCLoginInfo : NSObject
 
-@property (nonatomic, strong) NSString *UserId;
-@property (nonatomic, strong) NSString *HomeAddress;
-@property (nonatomic, strong) NSString *Company;
-@property (nonatomic, strong) NSString *Career;
+@property (nonatomic, strong) NSString      *UserId;
+@property (nonatomic, strong) NSString      *HomeAddress;
+@property (nonatomic, strong) NSString      *Company;
+@property (nonatomic, strong) NSString      *Career;
 
 @property (nonatomic, strong) NSString      *Token;
 @property (nonatomic, strong) NSString      *UUID;

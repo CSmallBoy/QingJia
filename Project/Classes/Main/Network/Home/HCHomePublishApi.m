@@ -15,9 +15,29 @@
     [super startRequest:requestBlock];
 }
 
+- (NSString *)requestUrl
+{
+    return @"FamilyTimes/FamilyTimes.ashx";
+}
+
 - (id)requestArgument
 {
-    return @{};
+    NSString *imagesString = [_FTImages componentsJoinedByString:@","];
+    NSString *permitUserString = [_PermitUserArr componentsJoinedByString:@","];
+    
+    NSDictionary *head = @{@"Action": @"Publish", @"Token": [HCAccountMgr manager].loginInfo.Token, @"UUID": [HCAppMgr manager].uuid, @"PlatForm": [HCAppMgr manager].systemVersion};
+    NSDictionary *entity = @{@"FamilyID": @([_FamilyID integerValue]),
+                             @"FTImages": imagesString,
+                             @"FTContent": _FTContent,
+                             @"OpenAddress": @([_OpenAddress integerValue]),
+                             @"PermitType": _PermitType,
+                             @"PermitUserArr": permitUserString,
+                             @"CreateLocation": [NSString stringWithFormat:@"%@,%@", [HCAppMgr manager].longitude, [HCAppMgr manager].latitude],
+                             @"CreateAddrSmall": [HCAppMgr manager].addressSmall,
+                              @"CreateAddr": [HCAppMgr manager].address
+                                 };
+    NSDictionary *body = @{@"Head": head, @"Entity": entity};
+    return @{@"json": [Utils stringWithObject:body]};
 }
 
 - (id)formatResponseObject:(id)responseObject
