@@ -59,17 +59,17 @@
     
     self.times.frame = CGRectMake(WIDTH(self)-120, MinY(self.nickName), 110, 20);
     
-    CGFloat contentsHeight = [Utils detailTextHeight:_info.contents lineSpage:4 width:WIDTH(self)-20 font:14];
+    CGFloat contentsHeight = [Utils detailTextHeight:_info.FTContent lineSpage:4 width:WIDTH(self)-20 font:14];
     self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
     
     // 图片
-    if (!IsEmpty(_info.imgArr))
+    if (!IsEmpty(_info.FTImages))
     {
         CGFloat height = (WIDTH(self)-30) / 3;
         self.moreImgView.frame = CGRectMake(0, MaxY(self.contents)+10, WIDTH(self), height);
     }
     
-    if (!IsEmpty(_info.imgArr))
+    if (!IsEmpty(_info.FTImages))
     {
         if (!IsEmpty(_praiseArr))
         {
@@ -110,30 +110,31 @@
 {
     _info = info;
     
-    if (!IsEmpty(info.imgName))
+    if (!IsEmpty(info.HeadImg))
     {
-        [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.imgName] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
+        [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.HeadImg] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
     }else
     {
         [self.headButton setImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
     }
     
-    self.nickName.text = info.nickName;
-    self.times.text = [Utils transformServerDate:[info.inputtime integerValue]];
-    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
+    self.nickName.text = info.NickName;
+    self.times.text = [Utils transformServerDate:[info.CreateTime integerValue]];
+    // 设备型号
+//    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
     
     // 内容设置行间距
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:info.contents];;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:info.FTContent];;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
     [paragraphStyle setLineSpacing:4];
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, info.contents.length)];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, info.FTContent.length)];
     self.contents.attributedText = attributedString;
     
     // 图片
-    if (!IsEmpty(info.imgArr))
+    if (!IsEmpty(info.FTImages))
     {
         self.moreImgView.hidden = NO;
-        [self.moreImgView hchomeMoreImgViewWithUrlStringArray:info.imgArr];
+        [self.moreImgView hchomeMoreImgViewWithUrlStringArray:info.FTImages];
     }else
     {
         self.moreImgView.hidden = YES;

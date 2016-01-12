@@ -15,6 +15,8 @@
 
 @property (nonatomic, assign) NSInteger selected;
 
+@property (nonatomic, strong) NSMutableArray *permitUserArr; // 不可见好友数组
+
 @end
 
 @implementation HCJurisdictionViewController
@@ -42,14 +44,20 @@
         cell.imageView.image = OrigIMG(@"left_white");
     }
     
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    if (indexPath.row == self.titleArr.count-1)
+    {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row != 3)
     {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         _selected = indexPath.row;
         [self.tableView reloadData];
     }else
@@ -63,6 +71,12 @@
         
         HCFriendMessageViewController *friendMessage = [[HCFriendMessageViewController alloc] initWithCollectionViewLayout:layout];
         [self.navigationController pushViewController:friendMessage animated:YES];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(hcJurisdictionViewControllerWithPermitType:permitUserArr:)])
+    {
+        NSString *permitType = [NSString stringWithFormat:@"%@", @(indexPath.row+100)];
+        [self.delegate hcJurisdictionViewControllerWithPermitType:permitType permitUserArr:_permitUserArr];
     }
 }
 

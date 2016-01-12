@@ -19,6 +19,7 @@
 #import "HCHomeTableViewCell.h"
 #import "HCHomeInfo.h"
 #import "HCHomeApi.h"
+#import "HCHomeLikeCountApi.h"
 
 #define HCHomeCell @"HCHomeTableViewCell"
 
@@ -26,6 +27,7 @@
 
 @property (nonatomic, strong) UIBarButtonItem *leftItem;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
+@property (nonatomic, strong) NSString *start;
 
 @property (nonatomic, strong) HCWelcomeJoinGradeViewController *welcomJoinGrade;
 
@@ -56,6 +58,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableView
@@ -87,14 +90,14 @@
     
     HCHomeInfo *info = self.dataSource[indexPath.section];
     
-    height = height + [Utils detailTextHeight:info.contents lineSpage:4 width:WIDTH(self.view)-20 font:14];
+    height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
     
-    if (!IsEmpty(info.imgArr))
+    if (!IsEmpty(info.FTImages))
     {
         height = height + (WIDTH(self.view)-30)/3;
     }
     
-    if (!IsEmpty(info.address))
+    if (!IsEmpty(info.CreateAddrSmall))
     {
         height = height + 30;
     }
@@ -148,7 +151,7 @@
         [self presentViewController:shareVC animated:YES completion:nil];
     }else if (index == 0)
     {
-        [self showHUDText:@"点赞成功!"];
+        [self requestLikeCount:info indexPath:indexPath];
     }
 }
 
@@ -175,14 +178,10 @@
 {
     NSString *path = [self getSaveLocationDataPath];
     NSArray *arrayData = [NSArray arrayWithContentsOfFile:path];
-    if (IsEmpty(arrayData))
-    {
-        [self requestHomeData];
-    }else
-    {
-        [self.dataSource addObjectsFromArray:[HCHomeInfo mj_objectArrayWithKeyValuesArray:arrayData]];
-        [self.tableView reloadData];
-    }
+
+    [self.dataSource addObjectsFromArray:[HCHomeInfo mj_objectArrayWithKeyValuesArray:arrayData]];
+    [self.tableView reloadData];
+    [self requestHomeData];
 }
 
 - (NSString *)getSaveLocationDataPath
@@ -221,7 +220,23 @@
 
 - (void)handleRightItem
 {
+    // 测试
+//    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
+//    UIViewController *rootController = self.view.window.rootViewController;
+//    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+//    {
+//        editComment.modalPresentationStyle=
+//        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+//    }else
+//    {
+//        rootController.modalPresentationStyle=
+//        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+//    }
+//    [rootController presentViewController:editComment animated:YES completion:nil];
+//    return;
+    
     HCPublishViewController *publish = [[HCPublishViewController alloc] init];
+    publish.data = @{@"data": self.dataSource};
     publish.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:publish animated:YES];
 }
@@ -273,12 +288,17 @@
 - (void)requestHomeData
 {
     HCHomeApi *api = [[HCHomeApi alloc] init];
+    api.Start = @"0";
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         [self.tableView.mj_header endRefreshing];
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource removeAllObjects];
             [self.dataSource addObjectsFromArray:array];
+            
+            HCHomeInfo *lastInfo = [array lastObject];
+            api.Start = lastInfo.KeyId;
+            
             [self writeLocationData:array];
             [self.tableView reloadData];
         }else
@@ -291,7 +311,42 @@
 
 - (void)requestMoreHomeData
 {
+    HCHomeApi *api = [[HCHomeApi alloc] init];
+    api.Start = _start;
     
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        [self.tableView.mj_footer endRefreshing];
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self.dataSource addObjectsFromArray:array];
+            
+            HCHomeInfo *lastInfo = [array lastObject];
+            api.Start = lastInfo.KeyId;
+            
+            [self writeLocationData:array];
+            [self.tableView reloadData];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
+}
+
+// 请求点赞
+- (void)requestLikeCount:(HCHomeInfo *)info indexPath:(NSIndexPath *)indexPath
+{
+    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
+    api.TimesId = info.KeyId;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            info.FTLikeCount = [NSString stringWithFormat:@"%@", @([info.FTLikeCount integerValue]+1)];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
 }
 
 

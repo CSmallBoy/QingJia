@@ -50,9 +50,9 @@
 - (void)feedbackTextViewdidEndEditing
 
 {
-    if ([self.delegate respondsToSelector:@selector(hceditCommentViewFeedbackTextViewdidEndEditing)])
+    if ([self.delegate respondsToSelector:@selector(hceditCommentViewFeedbackTextViewdidEndEditingWithText:)])
     {
-        [self.delegate hceditCommentViewFeedbackTextViewdidEndEditing];
+        [self.delegate hceditCommentViewFeedbackTextViewdidEndEditingWithText:self.contentText.textView.text];
     }
 }
 

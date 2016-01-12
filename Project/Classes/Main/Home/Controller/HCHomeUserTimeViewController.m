@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     HCHomeInfo *info = self.data[@"data"];
-    self.navigationItem.title = [NSString stringWithFormat:@"%@的时光", info.nickName];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@的时光", info.NickName];
     [self setupBackItem];
     [self readLocationData];
     
@@ -73,14 +73,14 @@
     
     HCHomeInfo *info = self.dataSource[indexPath.section];
     
-    height = height + [Utils detailTextHeight:info.contents lineSpage:4 width:WIDTH(self.view)-20 font:14];
+    height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
     
-    if (!IsEmpty(info.imgArr))
+    if (!IsEmpty(info.FTImages))
     {
         height = height + (WIDTH(self.view)-30)/3;
     }
     
-    if (!IsEmpty(info.address))
+    if (!IsEmpty(info.CreateAddrSmall))
     {
         height = height + 30;
     }

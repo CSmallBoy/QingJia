@@ -7,6 +7,7 @@
 //
 
 #import "HCPublishViewController.h"
+#import "HCJurisdictionViewController.h"
 #import "HCHomePublishApi.h"
 #import "HCPublishTableViewCell.h"
 #import "ACEExpandableTextCell.h"
@@ -14,7 +15,7 @@
 
 #define HCPublishCell @"HCPublishCell"
 
-@interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate>
 
 @property (nonatomic, strong) HCPublishInfo *info;
 @property (nonatomic, strong) UIBarButtonItem *publishBtnItem;
@@ -31,6 +32,8 @@
     [self setupBackItem];
     self.navigationItem.rightBarButtonItem = self.publishBtnItem;
     _info = [[HCPublishInfo alloc] init];
+    _info.OpenAddress = @"1";
+    _info.PermitType = @"100";
     
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -60,6 +63,16 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section)
+    {
+        HCJurisdictionViewController *jurisdictionVC = [[HCJurisdictionViewController alloc] init];
+        jurisdictionVC.delegate = self;
+        [self.navigationController pushViewController:jurisdictionVC animated:YES];
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return (section) ? 1 : 3;
@@ -78,8 +91,8 @@
         return MAX(80, _editHeight);
     }else if (indexPath.row == 1)
     {
-        NSInteger rows = _info.imageArray.count / 3;
-        rows += (_info.imageArray.count%3) ? 1 : 0;
+        NSInteger rows = _info.FTImages.count / 3;
+        rows += (_info.FTImages.count%3) ? 1 : 0;
         return (WIDTH(self.view)/3) *MIN(rows, 3);
     }
     return height;
@@ -100,12 +113,20 @@
     [self.view endEditing:YES];
 }
 
+#pragma mark - HCJurisdictionVCDelegate
+
+- (void)hcJurisdictionViewControllerWithPermitType:(NSString *)PermitType permitUserArr:(NSMutableArray *)permitUserArr
+{
+    _info.PermitType = PermitType;
+    _info.PermitUserArr = permitUserArr;
+}
+
 #pragma mark - HCPublishTableViewCellDelegate
 
 - (void)hcpublishTableViewCellImageViewIndex:(NSInteger)index
 {
     [self.view endEditing:YES];
-    if (_info.imageArray.count == index)
+    if (_info.FTImages.count == index)
     {
        UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
         [action showInView:self.view];
@@ -114,7 +135,7 @@
 
 - (void)hcpublishTableViewCellDeleteImageViewIndex:(NSInteger)index
 {
-    [_info.imageArray removeObjectAtIndex:index-1];
+    [_info.FTImages removeObjectAtIndex:index-1];
     [self.tableView reloadData];
 }
 
@@ -146,14 +167,14 @@
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     
-    if (_info.imageArray.count >= 10)
+    if (_info.FTImages.count >= 10)
     {
         [self showHUDText:@"最多只能发布9张图片"];
         [picker dismissViewControllerAnimated:YES completion:nil];
         return;
     }
     
-    [_info.imageArray insertObject:image atIndex:_info.imageArray.count-1];
+    [_info.FTImages insertObject:image atIndex:_info.FTImages.count-1];
     [self.tableView reloadData];
     
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -168,14 +189,14 @@
 
 - (void)tableView:(UITableView *)tableView updatedText:(NSString *)text atIndexPath:(NSIndexPath *)indexPath
 {
-    _info.contents = text;
+    _info.FTContent= text;
 }
 
 #pragma mark - private methods
 
 - (void)handlePublishBarButtonItem
 {
-    if (IsEmpty(_info.contents) || _info.imageArray.count == 1)
+    if (IsEmpty(_info.FTContent))
     {
         [self showHUDText:@"发布内容不能为空"];
         return;
@@ -198,8 +219,28 @@
 
 - (void)requestPublistData
 {
+    [self showHUDView:nil];
+    
     HCHomePublishApi *api = [[HCHomePublishApi alloc] init];
     
+    api.FTImages = _info.FTImages;
+    api.FTContent = _info.FTContent;
+    api.OpenAddress = _info.OpenAddress;
+    api.PermitType = _info.PermitType;
+    api.PermitUserArr = _info.PermitUserArr;
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeInfo *homeInfo) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self hideHUDView];
+            
+            NSMutableArray *arrayM = self.data[@"data"];
+            [arrayM insertObject:homeInfo atIndex:0];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
 }
 
 

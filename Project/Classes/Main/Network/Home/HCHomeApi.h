@@ -12,8 +12,7 @@ typedef void(^HCHomeBlock)(HCRequestStatus requestStatus, NSString *message, NSA
 
 @interface HCHomeApi : HCRequest
 
-@property (nonatomic, assign) NSInteger Start;
-@property (nonatomic, assign) NSInteger Count;
+@property (nonatomic, strong) NSString *Start;
 
 - (void)startRequest:(HCHomeBlock)requestBlock;
 

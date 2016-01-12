@@ -147,7 +147,7 @@
     HCHomeInfo *info = self.data[@"data"];
     NSInteger index = [self.data[@"index"] integerValue];
      imageView.contentMode = UIViewContentModeScaleAspectFill;
-    UIImage *image = [UIImage sd_imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info.imgArr[index]]]];
+    UIImage *image = [UIImage sd_imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info.FTImages[index]]]];
     _image = image;
     imageView.image = image;
     self.imageView = imageView;

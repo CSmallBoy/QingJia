@@ -149,7 +149,10 @@ didFinishLaunchingWithOptions:launchOptions
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error
 {
-    DLog(@"%s, amapLocationManager = %@, error = %@", __func__, [manager class], error);
+    [HCAppMgr manager].address = [NSString stringWithFormat:@"%@,%@,%@,%@",@"上海",@"上海市",@"闵行区",@"集心路37号"];
+    [HCAppMgr manager].addressSmall = @"上海市";
+    [HCAppMgr manager].latitude = @"31.232";
+    [HCAppMgr manager].longitude = @"37.2242";
 }
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
@@ -159,14 +162,10 @@ didFinishLaunchingWithOptions:launchOptions
         if (!IsEmpty(placemarks))
         {
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
-            [HCAppMgr manager].address = placemark.name;
+            [HCAppMgr manager].address = [NSString stringWithFormat:@"%@,%@,%@,%@",placemark.administrativeArea,placemark.locality,placemark.thoroughfare,placemark.subThoroughfare];
             [HCAppMgr manager].addressSmall = placemark.locality;
-            DLog(@"城市---%@", placemark.locality);
         }
     }];
-    
-    [HCAppMgr manager].latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-    [HCAppMgr manager].longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
     
     [self.locationManager stopUpdatingLocation];
 }

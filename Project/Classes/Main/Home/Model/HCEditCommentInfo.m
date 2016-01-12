@@ -10,14 +10,14 @@
 
 @implementation HCEditCommentInfo
 
-- (NSMutableArray *)imageArr
+- (NSMutableArray *)FTImages
 {
-    if (!_imageArr)
+    if (!_FTImages)
     {
-        _imageArr = [NSMutableArray array];
-        [_imageArr addObject:OrigIMG(@"Add-Images")];
+        _FTImages = [NSMutableArray array];
+        [_FTImages addObject:OrigIMG(@"Add-Images")];
     }
-    return _imageArr;
+    return _FTImages;
 }
 
 @end

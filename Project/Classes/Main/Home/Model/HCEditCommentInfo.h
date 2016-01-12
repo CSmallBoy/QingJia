@@ -10,7 +10,10 @@
 
 @interface HCEditCommentInfo : NSObject
 
-@property (nonatomic, strong) NSString *comments;
-@property (nonatomic, strong) NSMutableArray *imageArr;
+@property (nonatomic, strong) NSString *FTID;
+@property (nonatomic, strong) NSMutableArray *FTImages;
+@property (nonatomic, strong) NSString *FTContent;
+
+
 
 @end

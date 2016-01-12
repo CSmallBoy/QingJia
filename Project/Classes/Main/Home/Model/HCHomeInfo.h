@@ -10,22 +10,10 @@
 
 @interface HCHomeInfo : NSObject
 
-// 测试
-@property (nonatomic, strong) NSString *imgName;
-@property (nonatomic, strong) NSString *nickName;
-@property (nonatomic, strong) NSString *deviceModel;
-@property (nonatomic, strong) NSString *inputtime;
-@property (nonatomic, strong) NSString *contents;
-@property (nonatomic, strong) NSString *address;
-@property (nonatomic, strong) NSString *zan;
-@property (nonatomic, strong) NSString *biaoji;
-@property (nonatomic, strong) NSString *comments;
-@property (nonatomic, strong) NSArray *imgArr;
-
 @property (nonatomic, strong) NSString *KeyId;
 @property (nonatomic, strong) NSString *FamilyID;
 @property (nonatomic, strong) NSString *UserID;
-//@property (nonatomic, strong) NSString *NickName;
+@property (nonatomic, strong) NSString *NickName;
 @property (nonatomic, strong) NSString *HeadImg;
 @property (nonatomic, strong) NSArray  *FTImages;
 @property (nonatomic, strong) NSString *FTContent;

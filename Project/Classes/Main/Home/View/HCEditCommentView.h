@@ -20,7 +20,7 @@
 
 - (void)hceditCommentViewFeedbackTextViewdidBeginEditing;
 
-- (void)hceditCommentViewFeedbackTextViewdidEndEditing;
+- (void)hceditCommentViewFeedbackTextViewdidEndEditingWithText:(NSString *)text;
 
 @end
 

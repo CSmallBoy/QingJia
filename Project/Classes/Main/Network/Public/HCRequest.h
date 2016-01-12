@@ -14,12 +14,12 @@ typedef NS_ENUM(NSInteger , HCRequestStatus) {
     HCRequestStatusSuccess                   = 100,
     HCRequestStatusLoginUserNotFound         = 404,
     HCRequestStatusLoginUserPasswordNotRight = 501,
-    HCRequestStatusLoginInOtherDevice        = 615,     //账号在其他设备登录
+    HCRequestStatusLoginInOtherDevice        = 615,     //账号在其他设备登录90004
 
     /*本地定义*/
     //网络失败
     HCRequestStatusFailure,
-    HCRequestStatusAccessTokenExpired
+    HCRequestStatusAccessTokenExpired = 90004
 };
 
 //使用此类时,ZLRequestBlock始终被传递

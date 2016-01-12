@@ -96,8 +96,8 @@
     {
         CGFloat height = 30 + WIDTH(self.view)*0.15;
         HCHomeInfo *info = self.data[@"data"];
-        height = height + [Utils detailTextHeight:info.contents lineSpage:4 width:WIDTH(self.view)-20 font:14];
-        if (!IsEmpty(info.imgArr))
+        height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
+        if (!IsEmpty(info.FTImages))
         {
             height = height + (WIDTH(self.view)-40)/3 + 13;
         }

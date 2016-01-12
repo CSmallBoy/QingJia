@@ -37,10 +37,10 @@
     for (NSInteger i = 0; i < 5; i++)
     {
         HCHomeInfo *info = [[HCHomeInfo alloc] init];
-        info.imgName = @"http://xiaodaohang.cn/2.jpg";
-        info.nickName = @"姓名";
-        info.inputtime = [NSString stringWithFormat:@"%@", [Utils transformServerDate:1450430935]];
-        info.comments = @"#李嬷嬷#回复:TableViewgithu@撒旦 哈哈哈哈#九歌#九邮m旦旦/:dsad旦/::)sss/::~啊是大三的拉了/::B/::|/:8-)/::</::$/链接:http://baidu.com dudl@qq.com";
+        info.HeadImg = @"http://xiaodaohang.cn/2.jpg";
+        info.NickName = @"姓名";
+        info.CreateTime = [NSString stringWithFormat:@"%@", [Utils transformServerDate:1450430935]];
+        info.FTContent = @"#李嬷嬷#回复:TableViewgithu@撒旦 哈哈哈哈#九歌#九邮m旦旦/:dsad旦/::)sss/::~啊是大三的拉了/::B/::|/:8-)/::</::$/链接:http://baidu.com dudl@qq.com";
         [commentsArr addObject:info];
     }
     

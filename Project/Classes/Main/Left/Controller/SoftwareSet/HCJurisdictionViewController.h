@@ -8,6 +8,19 @@
 
 #import "HCTableViewController.h"
 
+@protocol HCJurisdictionVCDelegate <NSObject>
+
+/*
+ PermitType 权限类型 permitUserArr 不可见人的数组
+ */
+
+@optional
+- (void)hcJurisdictionViewControllerWithPermitType:(NSString *)PermitType permitUserArr:(NSMutableArray *)permitUserArr;
+
+@end
+
 @interface HCJurisdictionViewController : HCTableViewController
+
+@property (nonatomic, weak) id<HCJurisdictionVCDelegate>delegate;
 
 @end

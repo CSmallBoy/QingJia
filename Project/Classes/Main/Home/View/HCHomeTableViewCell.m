@@ -61,19 +61,19 @@
     
     self.times.frame = CGRectMake(WIDTH(self)-120, MinY(self.nickName), 110, 20);
     
-    CGFloat contentsHeight = [Utils detailTextHeight:_info.contents lineSpage:4 width:WIDTH(self)-20 font:14];
+    CGFloat contentsHeight = [Utils detailTextHeight:_info.FTContent lineSpage:4 width:WIDTH(self)-20 font:14];
     self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
     
     // 图片
-    if (!IsEmpty(_info.imgArr))
+    if (!IsEmpty(_info.FTImages))
     {
         CGFloat height = (WIDTH(self)-30) / 3;
         self.moreImgView.frame = CGRectMake(0, MaxY(self.contents)+10, WIDTH(self), height);
     }
     // 地址
-    if (!IsEmpty(_info.imgArr))
+    if (!IsEmpty(_info.FTImages))
     {
-        if (!IsEmpty(_info.address))
+        if (!IsEmpty(_info.CreateAddrSmall))
         {
             self.addressImgView.frame = CGRectMake(10, MaxY(self.moreImgView)+5, 15, 20);
             self.address.frame = CGRectMake(MaxX(self.addressImgView)+5, MaxY(self.moreImgView)+5, WIDTH(self)-40, 20);
@@ -123,46 +123,50 @@
 {
     _info = info;
     
-    if (!IsEmpty(info.imgName))
+    if (!IsEmpty(info.HeadImg))
     {
-        [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.imgName] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
+        [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.HeadImg] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
     }
     
-    self.nickName.text = info.nickName;
-    self.times.text = [Utils transformServerDate:[info.inputtime integerValue]];
-    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
+    self.nickName.text = info.NickName;
+    self.times.text = [Utils transformServerDate:[info.CreateTime integerValue]];
+    // 手机来源
+//    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
     
     // 内容设置行间距
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:info.contents];;
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-    [paragraphStyle setLineSpacing:4];
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, info.contents.length)];
-    self.contents.attributedText = attributedString;
+    if (!IsEmpty(info.FTContent))
+    {
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:info.FTContent];;
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+        [paragraphStyle setLineSpacing:4];
+        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, info.FTContent.length)];
+        self.contents.attributedText = attributedString;
+    }
     
     // 图片
-    if (!IsEmpty(info.imgArr))
+    if (!IsEmpty(info.FTImages))
     {
         self.moreImgView.hidden = NO;
-        [self.moreImgView hchomeMoreImgViewWithUrlStringArray:info.imgArr];
+        [self.moreImgView hchomeMoreImgViewWithUrlStringArray:info.FTImages];
     }else
     {
         self.moreImgView.hidden = YES;
     }
     
     // 地址
-    if (!IsEmpty(info.address))
+    if (!IsEmpty(info.CreateAddrSmall))
     {
         self.address.hidden = NO;
         self.addressImgView.hidden = NO;
-        self.address.text = info.address;
+        self.address.text = info.CreateAddrSmall;
     }else
     {
         self.address.hidden = YES;
         self.addressImgView.hidden = YES;
     }
     
-    NSString *zanNum = ([info.zan integerValue]) ? info.zan : @"点赞";
-    NSString *commentNum = ([info.comments integerValue]) ? info.comments : @"评论";
+    NSString *zanNum = ([info.FTLikeCount integerValue]) ? info.FTLikeCount : @"点赞";
+    NSString *commentNum = ([info.FTReplyCount integerValue]) ? info.FTReplyCount : @"评论";
     
     NSArray *functionArr = @[@[@"Like_nor", zanNum],
                              @[@"Share_nor", @"分享"],

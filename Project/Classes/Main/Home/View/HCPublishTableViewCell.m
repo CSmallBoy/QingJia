@@ -32,7 +32,7 @@
 
 - (void)handleSwitch:(UISwitch *)switchs
 {
-    _info.publishAddress = [NSString stringWithFormat:@"%@", @(switchs.on)];
+    _info.OpenAddress = [NSString stringWithFormat:@"%@", @(switchs.on)];
 }
 
 - (void)handleDeleteButton:(UIButton *)button
@@ -95,7 +95,7 @@
     
     if (indexPath.section == 0 && indexPath.row == 1)
     {
-        [self setupImageView:_info.imageArray];
+        [self setupImageView:_info.FTImages];
     }else if (indexPath.row == 2)
     {
         self.textLabel.text = @"位置是否公开";

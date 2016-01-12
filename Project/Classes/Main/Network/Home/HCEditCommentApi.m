@@ -7,7 +7,34 @@
 //
 
 #import "HCEditCommentApi.h"
+#import "HCEditCommentInfo.h"
 
 @implementation HCEditCommentApi
+
+- (void)startRequest:(HCEditCommentBlock)requestBlock
+{
+    [super startRequest:requestBlock];
+}
+
+- (NSString *)requestUrl
+{
+    return @"FamilyTimes/FamilyTimesReply.ashx";
+}
+
+- (id)requestArgument
+{
+    NSString *locationf = [NSString stringWithFormat:@"%@,%@", [HCAppMgr manager].latitude, [HCAppMgr manager].longitude];
+    NSDictionary *head = @{@"Action": @"CommonPublish", @"Token": [HCAccountMgr manager].loginInfo.Token, @"UUID": [HCAccountMgr manager].loginInfo.UUID, @"PlatForm": [HCAppMgr manager].systemVersion};
+    
+    NSDictionary *entity = @{@"FTID": _commentInfo.FTID, @"FTContent": _commentInfo.FTContent, @"CreateLocationf": locationf, @"CreateAddrSmall": [HCAppMgr manager].addressSmall, @"CreateAddr": [HCAppMgr manager].address};
+    NSDictionary *body = @{@"Head": head, @"Entity": entity};
+    return @{@"json": [Utils stringWithObject:body]};
+}
+
+- (id)formatResponseObject:(id)responseObject
+{
+    return responseObject[@"Data"];
+}
+
 
 @end

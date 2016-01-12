@@ -79,17 +79,17 @@
 {
     _info = info;
     
-    if (!IsEmpty(info.imgName))
+    if (!IsEmpty(info.HeadImg))
     {
-        [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.imgName] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
+        [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.HeadImg] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
     }else
     {
         [self.headButton setImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
     }
     
-    self.nickName.text = info.nickName;
-    self.times.text = info.inputtime;
-    self.commentLable.text = info.comments;
+    self.nickName.text = info.NickName;
+    self.times.text = info.CreateTime;
+    self.commentLable.text = info.FTContent;
     
     self.headButton.frame = CGRectMake(10, 10, 40, 40);
     ViewRadius(self.headButton, 20);

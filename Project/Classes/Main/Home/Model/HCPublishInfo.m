@@ -11,14 +11,14 @@
 @implementation HCPublishInfo
 
 
-- (NSMutableArray *)imageArray
+- (NSMutableArray *)FTImages
 {
-    if (!_imageArray)
+    if (!_FTImages)
     {
-        _imageArray = [NSMutableArray array];
-        [_imageArray addObject:[UIImage imageNamed:@"Add-Images"]];
+        _FTImages = [NSMutableArray array];
+        [_FTImages addObject:[UIImage imageNamed:@"Add-Images"]];
     }
-    return _imageArray;
+    return _FTImages;
 }
 
 - (NSMutableArray *)showPeopleArr

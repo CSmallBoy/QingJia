@@ -15,7 +15,7 @@
 #define KCodeStatus           @"Code"
 #define KMessage              @"Message"
 #define KBody                 @"data"
-//#define kXAuthFailedCode      @"X-Auth-Failed-Code"
+#define kXAuthFailedCode      @"X-Auth-Failed-Code"
 
 
 @implementation HCRequest
@@ -94,6 +94,12 @@
             // message不可用时为@"", responseObject不可用时为nil
             HCRequestStatus status = [[responseObject objectForKey:KCodeStatus] integerValue];
             
+            // 判断accessToken是否过期
+            if (status == HCRequestStatusAccessTokenExpired)
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kHCAccessTokenExpiredNotification object:nil];
+                return;
+            }
             // 返回错误时, 需要解析message。服务器返回的错误没有用, 因为客户端需要显示中文。
             NSString *message = @"";
             if (status != HCRequestStatusSuccess) {
@@ -114,12 +120,6 @@
         if (requestBlock) {
             
             DLog(@"\n error: \n %@", error);
-            
-            // 判断accessToken是否过期
-//            if (!IsEmpty(responseHeaders[kXAuthFailedCode])) {
-//                [[NSNotificationCenter defaultCenter] postNotificationName:kHCAccessTokenExpiredNotification object:nil];
-//                return;
-//            }
             
             NSString *msg = @"服务器异常，请稍候再试!";
             switch (error.code) {

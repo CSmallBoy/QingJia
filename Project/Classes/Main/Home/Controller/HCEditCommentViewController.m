@@ -28,7 +28,7 @@
     
     [self.view addSubview:self.contentView];
     _info = [[HCEditCommentInfo alloc] init];
-    [self.contentView setImageArr:_info.imageArr];
+    [self.contentView setImageArr:_info.FTImages];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestureRecognizer:)];
     [self.view addGestureRecognizer:tap];
@@ -49,13 +49,13 @@
 
 - (void)hceditCommentViewWithDeleteImageButton:(NSInteger)index
 {
-    [_info.imageArr removeObjectAtIndex:index];
-    [self.contentView setImageArr:_info.imageArr];
+    [_info.FTImages removeObjectAtIndex:index];
+    [self.contentView setImageArr:_info.FTImages];
 }
 
 - (void)hceditCommentViewWithimageButton:(NSInteger)index
 {
-    if (_info.imageArr.count == index + 1)
+    if (_info.FTImages.count == index + 1)
     {
         UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
         [action showInView:self.view];
@@ -71,8 +71,9 @@
     
 }
 
-- (void)hceditCommentViewFeedbackTextViewdidEndEditing
+- (void)hceditCommentViewFeedbackTextViewdidEndEditingWithText:(NSString *)text
 {
+    _info.FTContent = text;
     CGRect frame = self.contentView.frame;
     [UIView animateWithDuration:0.3 animations:^{
         self.contentView.frame = CGRectMake(frame.origin.x, 0, WIDTH(self.view)-20, HEIGHT(self.view)*0.5);
@@ -109,16 +110,16 @@
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     
-    if (_info.imageArr.count >= 4)
+    if (_info.FTImages.count >= 4)
     {
         [self showHUDText:@"最多只能发布3张图片"];
         [picker dismissViewControllerAnimated:YES completion:nil];
         return;
     }
     
-    [_info.imageArr insertObject:image atIndex:_info.imageArr.count-1];
+    [_info.FTImages insertObject:image atIndex:_info.FTImages.count-1];
     
-    [self.contentView setImageArr:_info.imageArr];
+    [self.contentView setImageArr:_info.FTImages];
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -136,7 +137,7 @@
 
 - (void)checkCommentData
 {
-    if (IsEmpty(_info.comments))
+    if (IsEmpty(_info.FTContent))
     {
         [self showHUDText:@"评论内容不能为空！"];
         return;
@@ -168,11 +169,16 @@
 
 - (void)requestEditComment
 {
+    [self showHUDView:nil];
+    
     HCEditCommentApi *api = [[HCEditCommentApi alloc] init];
+    api.commentInfo = _info;
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
         if (requestStatus == HCRequestStatusSuccess)
         {
-            [self hideHUDView];
+            [self showHUDSuccess:@"评论成功"];
+            [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
         }else
         {
             [self showHUDError:message];

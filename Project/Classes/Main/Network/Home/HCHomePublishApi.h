@@ -7,8 +7,8 @@
 //
 
 #import "HCRequest.h"
-
-typedef void(^HCHomePublishBlock)(HCRequestStatus requestStatus, NSString *message, id data);
+@class HCHomeInfo;
+typedef void(^HCHomePublishBlock)(HCRequestStatus requestStatus, NSString *message, HCHomeInfo *homeInfo);
 
 @interface HCHomePublishApi : HCRequest
 
@@ -20,8 +20,5 @@ typedef void(^HCHomePublishBlock)(HCRequestStatus requestStatus, NSString *messa
 @property (nonatomic, strong) NSString *OpenAddress; // 是否公开地址
 @property (nonatomic, assign) NSString *PermitType; // 权限类型
 @property (nonatomic, strong) NSArray  *PermitUserArr; // 不可见好友数组
-@property (nonatomic, strong) NSString *CreateLocation; // 经纬度
-@property (nonatomic, strong) NSString *CreateAddrSmall; // 简要地点
-@property (nonatomic, strong) NSString *CreateAddr; // 发表地点
 
 @end
