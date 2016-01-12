@@ -204,6 +204,8 @@
     [self showHUDView:nil];
     
     HCHomeDetailApi *api = [[HCHomeDetailApi alloc] init];
+    api.FTID = @"1000000014";
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info) {
         if (requestStatus == HCRequestStatusSuccess)
         {

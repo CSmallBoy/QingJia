@@ -14,7 +14,7 @@
 #define kAPIURL          @"http://192.168.10.199:8010/"            //外网
 //#define kAPIURL             @"https://baidu.com"
 
-#define kIMGURL        @"http://192.168.10.199:8010/"
+#define kIMGURL        @"http://192.168.10.199:8008/"
 
 //appstore更新地址
 #define APP_STORE_URL   @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=890849784"

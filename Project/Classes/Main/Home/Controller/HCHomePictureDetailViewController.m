@@ -10,21 +10,18 @@
 #import "UIImageView+WebCache.h"
 #import "UIImage+MultiFormat.h" // 同步加载图片了
 #import "HCHomeInfo.h"
-//#import "OTCover.h"
 #import "HCHomeDetailCommentTableViewCell.h"
 #import "HCHomePictureDetailApi.h"
 
 #define HCHomeDetailComment @"HCHomeDetailCommentTableViewCell"
 
 @interface HCHomePictureDetailViewController ()<HCHomeDetailCommentTableViewCellDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-//, HCOTCoverDelegate>
 {
     BOOL  _isAdd;
     UIImage   *_image;
 }
 @property (nonatomic, assign) CGFloat commentHeight;
 @property(nonatomic,strong)UIImageView *imageView;
-//@property (nonatomic, strong) OTCover *otcover;
 
 @end
 
@@ -44,7 +41,6 @@
     [self createHeaderView];
     
     [self requestPictureDetail];
-//    [self setupAnimationHead];
 }
 
 #pragma mark - UITableView
@@ -230,7 +226,6 @@
             [self.dataSource removeAllObjects];
             [self.dataSource addObjectsFromArray:array];
             [self.tableView reloadData];
-//            [self.otcover.tableView reloadData];
         }else
         {
             [self showHUDError:message];

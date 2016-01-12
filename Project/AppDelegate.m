@@ -150,7 +150,7 @@ didFinishLaunchingWithOptions:launchOptions
 - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error
 {
     [HCAppMgr manager].address = [NSString stringWithFormat:@"%@,%@,%@,%@",@"上海",@"上海市",@"闵行区",@"集心路37号"];
-    [HCAppMgr manager].addressSmall = @"上海市";
+    [HCAppMgr manager].addressSmall = @"上海市,闵行区";
     [HCAppMgr manager].latitude = @"31.232";
     [HCAppMgr manager].longitude = @"37.2242";
 }

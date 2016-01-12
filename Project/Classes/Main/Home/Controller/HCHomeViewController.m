@@ -21,6 +21,8 @@
 #import "HCHomeApi.h"
 #import "HCHomeLikeCountApi.h"
 
+#import "HCCreateGradeViewController.h"
+
 #define HCHomeCell @"HCHomeTableViewCell"
 
 @interface HCHomeViewController ()<HCHomeTableViewCellDelegate>
@@ -221,6 +223,13 @@
 - (void)handleRightItem
 {
     // 测试
+//    HCCreateGradeViewController *createGrade = [[HCCreateGradeViewController alloc] init];
+//    createGrade.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:createGrade animated:YES];
+//    return;
+//    HCHomeDetailViewController *detail = [[HCHomeDetailViewController alloc] init];
+//    [self.navigationController pushViewController:detail animated:YES];
+//    return;
 //    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
 //    UIViewController *rootController = self.view.window.rootViewController;
 //    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)

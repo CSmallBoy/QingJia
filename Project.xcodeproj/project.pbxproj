@@ -15,6 +15,9 @@
 		0A33731A1C44A777004F7550 /* HCHomeLikeCountApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3373121C44A777004F7550 /* HCHomeLikeCountApi.m */; };
 		0A33731B1C44A777004F7550 /* HCHomePictureDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3373141C44A777004F7550 /* HCHomePictureDetailApi.m */; };
 		0A33731C1C44A777004F7550 /* HCHomePublishApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3373161C44A777004F7550 /* HCHomePublishApi.m */; };
+		0A33731F1C44BCDA004F7550 /* HCImageUploadApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A33731E1C44BCDA004F7550 /* HCImageUploadApi.m */; };
+		0A3373231C44BE82004F7550 /* HCImageUploadInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3373221C44BE82004F7550 /* HCImageUploadInfo.m */; };
+		0A3373271C44E1F0004F7550 /* HCCreateGradeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3373261C44E1F0004F7550 /* HCCreateGradeApi.m */; };
 		0A3E57841C214E5E00AA4DB9 /* HCHomeMoreImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3E57831C214E5E00AA4DB9 /* HCHomeMoreImgView.m */; };
 		0A418C1D1C147D4B0024DAC3 /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A418C1C1C147D4B0024DAC3 /* libPushSDK-1.8.8.a */; };
 		0A418C1F1C148E9C0024DAC3 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A418C1E1C148E9C0024DAC3 /* PushConfig.plist */; };
@@ -911,6 +914,12 @@
 		0A3373141C44A777004F7550 /* HCHomePictureDetailApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomePictureDetailApi.m; sourceTree = "<group>"; };
 		0A3373151C44A777004F7550 /* HCHomePublishApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomePublishApi.h; sourceTree = "<group>"; };
 		0A3373161C44A777004F7550 /* HCHomePublishApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomePublishApi.m; sourceTree = "<group>"; };
+		0A33731D1C44BCDA004F7550 /* HCImageUploadApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCImageUploadApi.h; sourceTree = "<group>"; };
+		0A33731E1C44BCDA004F7550 /* HCImageUploadApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCImageUploadApi.m; sourceTree = "<group>"; };
+		0A3373211C44BE82004F7550 /* HCImageUploadInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCImageUploadInfo.h; sourceTree = "<group>"; };
+		0A3373221C44BE82004F7550 /* HCImageUploadInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCImageUploadInfo.m; sourceTree = "<group>"; };
+		0A3373251C44E1F0004F7550 /* HCCreateGradeApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateGradeApi.h; sourceTree = "<group>"; };
+		0A3373261C44E1F0004F7550 /* HCCreateGradeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateGradeApi.m; sourceTree = "<group>"; };
 		0A3E57821C214E5E00AA4DB9 /* HCHomeMoreImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeMoreImgView.h; sourceTree = "<group>"; };
 		0A3E57831C214E5E00AA4DB9 /* HCHomeMoreImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeMoreImgView.m; sourceTree = "<group>"; };
 		0A418C1B1C147D4B0024DAC3 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
@@ -2501,6 +2510,24 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		0A3373201C44BDD7004F7550 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A3373211C44BE82004F7550 /* HCImageUploadInfo.h */,
+				0A3373221C44BE82004F7550 /* HCImageUploadInfo.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A3373241C44E1D6004F7550 /* Grade */ = {
+			isa = PBXGroup;
+			children = (
+				0A3373251C44E1F0004F7550 /* HCCreateGradeApi.h */,
+				0A3373261C44E1F0004F7550 /* HCCreateGradeApi.m */,
+			);
+			path = Grade;
+			sourceTree = "<group>";
+		};
 		0A418C1A1C147D4B0024DAC3 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -3655,6 +3682,7 @@
 		0A6B7E991BF1EB74008D54B3 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				0A3373201C44BDD7004F7550 /* Model */,
 				0A6B7E9A1BF1EB74008D54B3 /* HCBarButtonItem.h */,
 				0A6B7E9B1BF1EB74008D54B3 /* HCBarButtonItem.m */,
 				0A6B7E9C1BF1EB74008D54B3 /* HCNavTabBar.h */,
@@ -5078,6 +5106,7 @@
 		0ABAFE971BF34591009ABF57 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0A3373241C44E1D6004F7550 /* Grade */,
 				0A33730A1C44A777004F7550 /* Home */,
 				C73BCBBD1C3BAEBD005048C5 /* More */,
 				0AA626C21C298CDF00EC62D9 /* Left */,
@@ -5097,6 +5126,8 @@
 				0ABAFEC11BF3470B009ABF57 /* HCJsonRequestApi.m */,
 				0ABAFEC21BF3470B009ABF57 /* HCRequest.h */,
 				0ABAFEC31BF3470B009ABF57 /* HCRequest.m */,
+				0A33731D1C44BCDA004F7550 /* HCImageUploadApi.h */,
+				0A33731E1C44BCDA004F7550 /* HCImageUploadApi.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -6427,6 +6458,7 @@
 				0A7CBD1C1C31294E0051DD58 /* EaseBubbleView+Location.m in Sources */,
 				0A54918D1C2BC32D0085F50D /* ZXRSSUtils.m in Sources */,
 				0A67E76D1C23B837005B8CD2 /* HCEditCommentView.m in Sources */,
+				0A3373231C44BE82004F7550 /* HCImageUploadInfo.m in Sources */,
 				0A5491CE1C2BC32D0085F50D /* ZXQRCodeFinderPattern.m in Sources */,
 				C73BCBE41C3BAEBD005048C5 /* HCCustomerApi.m in Sources */,
 				C73BCBE01C3BAEBD005048C5 /* HCNotificationCenterReadApi.m in Sources */,
@@ -6539,6 +6571,7 @@
 				0A54910A1C2BC32D0085F50D /* ZXAztecDetectorResult.m in Sources */,
 				0A7CBD171C31294E0051DD58 /* EaseBaseMessageCell.m in Sources */,
 				C73BCB991C3BAEA1005048C5 /* HCBuyRecordInfo.m in Sources */,
+				0A33731F1C44BCDA004F7550 /* HCImageUploadApi.m in Sources */,
 				0A54917B1C2BC32D0085F50D /* ZXAnyAIDecoder.m in Sources */,
 				C73BCBB81C3BAEA1005048C5 /* HCProductIntroductionCell.m in Sources */,
 				0A7CBCD11C31294E0051DD58 /* EMCDDeviceManager+Remind.m in Sources */,
@@ -6977,6 +7010,7 @@
 				0A5491941C2BC32D0085F50D /* ZXCode93Reader.m in Sources */,
 				0A7ED6331C2A8E2D002E2ED5 /* HCRefreshHeader.m in Sources */,
 				0A6970F21C2B91380078BCC4 /* HCCreateGradeInfo.m in Sources */,
+				0A3373271C44E1F0004F7550 /* HCCreateGradeApi.m in Sources */,
 				0A67E7731C23C49D005B8CD2 /* HCEditCommentInfo.m in Sources */,
 				0A7CBCC41C31294E0051DD58 /* EMTextView.m in Sources */,
 				0A5491571C2BC32D0085F50D /* ZXDataMatrixBitMatrixParser.m in Sources */,

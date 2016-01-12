@@ -18,9 +18,28 @@
     [super startRequest:requestBlock];
 }
 
+- (NSString *)requestUrl
+{
+    return @"FamilyTimes/FamilyTimesReply.ashx";
+}
+
 - (id)requestArgument
 {
-    return @{@"t": @"User,logout", @"token": @"23"};
+    NSString *ParentId = @"";
+    NSString *ItemId = @"";
+    if (!IsEmpty(_ParentId))
+    {
+        ParentId = _ParentId;
+    }
+    if (!IsEmpty(_ItemId))
+    {
+        ItemId = _ItemId;
+    }
+    
+    NSDictionary *head = @{@"Action": @"GetList",@"Token": [HCAccountMgr manager].loginInfo.Token, @"UUID": [HCAccountMgr manager].loginInfo.UUID, @"PlatForm": [HCAppMgr manager].systemVersion};
+    NSDictionary *para = @{@"FTID": _FTID, @"ParentId": ParentId, @"ItemId": ItemId};
+    NSDictionary *body = @{@"Head": head, @"Para": para};
+    return @{@"json": [Utils stringWithObject:body]};
 }
 
 - (id)formatResponseObject:(id)responseObject

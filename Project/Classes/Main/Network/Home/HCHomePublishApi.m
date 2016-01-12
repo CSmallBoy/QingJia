@@ -32,8 +32,7 @@
     NSDictionary *head = @{@"Action": @"Publish", @"Token": [HCAccountMgr manager].loginInfo.Token, @"UUID": [HCAppMgr manager].uuid, @"PlatForm": [HCAppMgr manager].systemVersion};
     
     NSDictionary *entity = @{
-//                             @"FamilyID": @([[HCAccountMgr manager].loginInfo.DefaultFamilyID integerValue]),
-                             @"FamilyID": @(1000000015),
+                             @"FamilyID": @([[HCAccountMgr manager].loginInfo.DefaultFamilyID integerValue]),
                              @"FTContent": _FTContent,
                              @"OpenAddress": @([_OpenAddress integerValue]),
                              @"PermitType": _PermitType,
@@ -51,26 +50,5 @@
     NSDictionary *dic = responseObject[@"Data"][@"TimeInf"];
     return [HCHomeInfo mj_objectWithKeyValues:dic];
 }
-
-- (YTKRequestMethod)requestMethod {
-    return YTKRequestMethodPost;
-}
-
-- (AFConstructingBlock)constructingBodyBlock {
-    return ^(id<AFMultipartFormData> formData) {
-        
-        for (NSInteger i = 0; i < self.FTImages.count; i++)
-        {
-            NSString *name = @"file.jpg";
-            NSString *type = @"image/jpeg";
-            NSString *formKey = @"file[]";
-            
-            UIImage *image = self.FTImages[i];
-            NSData *data = UIImageJPEGRepresentation(image, 1.0);
-            [formData appendPartWithFileData:data name:formKey fileName:name mimeType:type];
-        }
-    };
-}
-
 
 @end

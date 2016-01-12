@@ -14,6 +14,10 @@ typedef void(^HCHomeDetailBlock)(HCRequestStatus requestStatus, NSString *messag
 
 @interface HCHomeDetailApi : HCRequest
 
+@property (nonatomic, strong) NSString *FTID;
+@property (nonatomic, strong) NSString *ParentId;
+@property (nonatomic, strong) NSString *ItemId;
+
 - (void)startRequest:(HCHomeDetailBlock)requestBlock;
 
 @end

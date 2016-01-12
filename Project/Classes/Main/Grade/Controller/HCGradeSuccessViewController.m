@@ -7,6 +7,8 @@
 //
 
 #import "HCGradeSuccessViewController.h"
+#import "HCCreateGradeInfo.h"
+#import "AppDelegate.h"
 #import "ZXingObjC.h" // 二维码
 
 @interface HCGradeSuccessViewController ()
@@ -16,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 @property (weak, nonatomic) IBOutlet UIButton *codingBtn;
 @property (weak, nonatomic) IBOutlet UILabel *gradeIdNum;
+
+@property (nonatomic, strong) HCCreateGradeInfo *info;
 
 @end
 
@@ -30,10 +34,10 @@
     ViewRadius(_joinMemberBtn, 4);
     ViewRadius(_nextBtn, 4);
     
-    
+    _info = self.data[@"data"];
     NSError *error = nil;
     ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
-    ZXBitMatrix* result = [writer encode:@"1234567890"
+    ZXBitMatrix* result = [writer encode:_info.FamilyCode
                                   format:kBarcodeFormatQRCode
                                    width:WIDTH(self.view)
                                   height:WIDTH(self.view)
@@ -43,6 +47,16 @@
         CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];
         [_codingBtn setImage:[UIImage imageWithCGImage:image] forState:UIControlStateNormal];
     }
+}
+
+- (IBAction)joinMemberButton:(UIButton *)sender
+{
+}
+
+- (IBAction)nextButton:(UIButton *)sender
+{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app setupRootViewController];
 }
 
 

@@ -37,6 +37,9 @@
                             <include reference="Jrb-vc-mjT"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="joinMemberButton:" destination="-1" eventType="touchUpInside" id="CsO-vK-zYz"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99d-D4-dFo">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -57,6 +60,9 @@
                             <include reference="nUB-fu-Sye"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="nextButton:" destination="-1" eventType="touchUpInside" id="4PC-vP-rys"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扫描二维码进入班级" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlZ-Ri-VWj">
                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -166,23 +172,23 @@
                     <exclude reference="8GH-NG-a8Q"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="VLZ-V5-pXG"/>
+                    <exclude reference="nck-kB-QaB"/>
+                    <exclude reference="PBN-QT-cHl"/>
+                    <exclude reference="Xni-9m-4I8"/>
+                    <exclude reference="wGC-mK-Msf"/>
+                    <exclude reference="xYD-9v-y5M"/>
+                    <exclude reference="5QG-i6-vit"/>
+                    <exclude reference="Iim-ox-pjB"/>
+                    <exclude reference="vOZ-mY-gEW"/>
                     <exclude reference="I4T-lU-fdv"/>
                     <exclude reference="rEu-Bv-g7t"/>
                     <exclude reference="80G-NA-U6p"/>
                     <exclude reference="de4-6v-yfL"/>
                     <exclude reference="pvf-0Z-QNd"/>
-                    <exclude reference="VLZ-V5-pXG"/>
-                    <exclude reference="nck-kB-QaB"/>
                     <exclude reference="Cmk-je-MNF"/>
                     <exclude reference="T5Y-yH-d01"/>
                     <exclude reference="UnJ-zx-gbO"/>
-                    <exclude reference="5QG-i6-vit"/>
-                    <exclude reference="Iim-ox-pjB"/>
-                    <exclude reference="vOZ-mY-gEW"/>
-                    <exclude reference="PBN-QT-cHl"/>
-                    <exclude reference="Xni-9m-4I8"/>
-                    <exclude reference="wGC-mK-Msf"/>
-                    <exclude reference="xYD-9v-y5M"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -195,23 +201,23 @@
                     <include reference="8GH-NG-a8Q"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="VLZ-V5-pXG"/>
+                    <include reference="nck-kB-QaB"/>
+                    <include reference="PBN-QT-cHl"/>
+                    <include reference="Xni-9m-4I8"/>
+                    <include reference="wGC-mK-Msf"/>
+                    <include reference="xYD-9v-y5M"/>
+                    <include reference="5QG-i6-vit"/>
+                    <include reference="Iim-ox-pjB"/>
+                    <include reference="vOZ-mY-gEW"/>
                     <include reference="I4T-lU-fdv"/>
                     <include reference="rEu-Bv-g7t"/>
                     <include reference="80G-NA-U6p"/>
                     <include reference="de4-6v-yfL"/>
                     <include reference="pvf-0Z-QNd"/>
-                    <include reference="VLZ-V5-pXG"/>
-                    <include reference="nck-kB-QaB"/>
                     <include reference="Cmk-je-MNF"/>
                     <include reference="T5Y-yH-d01"/>
                     <include reference="UnJ-zx-gbO"/>
-                    <include reference="5QG-i6-vit"/>
-                    <include reference="Iim-ox-pjB"/>
-                    <include reference="vOZ-mY-gEW"/>
-                    <include reference="PBN-QT-cHl"/>
-                    <include reference="Xni-9m-4I8"/>
-                    <include reference="wGC-mK-Msf"/>
-                    <include reference="xYD-9v-y5M"/>
                 </mask>
             </variation>
         </view>

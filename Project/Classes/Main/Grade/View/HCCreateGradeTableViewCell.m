@@ -59,16 +59,16 @@
 {
     if (textField.tag == 0)
     {
-        _info.gradeName = textField.text;
+        _info.FamilyName = textField.text;
     }else if (textField.tag == 1)
     {
-        _info.gradeMark = textField.text;
+        _info.FamilyNickName = textField.text;
     }else if (textField.tag == 2)
     {
-        _info.address = textField.text;
+        _info.ContactAddr = textField.text;
     }else if (textField.tag == 3)
     {
-        _info.password = textField.text;
+        _info.VisitPassWord = textField.text;
     }else if (textField.tag == 4)
     {
         _info.repassword = textField.text;
@@ -98,10 +98,10 @@
     {
         self.title.text = @"请点击上传您的班级照片";
         [self.contentView addSubview:self.selectedImgView];
-        if (!IsEmpty(_info.gradeImage))
+        if (!IsEmpty(_info.uploadImage))
         {
             self.title.hidden = YES;
-            self.selectedImgView.image = _info.gradeImage;
+            self.selectedImgView.image = _info.uploadImage;
         }
     }
 }
@@ -124,6 +124,7 @@
     {
         _textField = [[UITextField alloc] init];
         _textField.font = [UIFont systemFontOfSize:14];
+        _textField.delegate = self;
     }
     return _textField;
 }

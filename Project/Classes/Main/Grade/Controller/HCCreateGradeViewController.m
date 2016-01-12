@@ -12,6 +12,9 @@
 #import "HCCreateGradeTableViewCell.h"
 #import "HCCreateGradeInfo.h"
 #import "HCFooterView.h"
+#import "HCImageUploadApi.h"
+#import "HCImageUploadInfo.h"
+#import "HCCreateGradeApi.h"
 
 #define HCCreateGrade @"HCCreateGrade"
 
@@ -55,7 +58,7 @@
         [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
             if (result)
             {
-                _info.gradeImage = image;
+                _info.uploadImage = image;
                 [self.tableView reloadData];
             }
         }];
@@ -106,8 +109,32 @@
 
 - (void)checkCreateGradeData
 {
-    HCGradeSuccessViewController *success = [[HCGradeSuccessViewController alloc] init];
-    [self.navigationController pushViewController:success animated:YES];
+    if (IsEmpty(_info.FamilyName))
+    {
+        [self showHUDText:@"班级名字不能为空!"];
+        return;
+    }
+    if (IsEmpty(_info.FamilyNickName))
+    {
+        [self showHUDText:@"班级签名不能为空!"];
+        return;
+    }
+    if (IsEmpty(_info.ContactAddr))
+    {
+        [self showHUDText:@"学校地址不能为空!"];
+        return;
+    }
+    if (IsEmpty(_info.VisitPassWord))
+    {
+        [self showHUDText:@"密码不能为空!"];
+        return;
+    }
+    if (![_info.VisitPassWord isEqualToString:_info.repassword])
+    {
+        [self showHUDText:@"两次密码输入不相同!"];
+        return;
+    }
+    [self requestImageUpload];
 }
 
 #pragma mark - setter or getter
@@ -126,7 +153,45 @@
 
 - (void)requestCreateGrade
 {
+    HCCreateGradeApi *api = [[HCCreateGradeApi alloc] init];
+    api.gradeInfo = _info;
     
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCCreateGradeInfo *info) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self hideHUDView];
+            HCGradeSuccessViewController *gradeSuccess = [[HCGradeSuccessViewController alloc] init];
+            gradeSuccess.data = @{@"data": info};
+            [HCAccountMgr manager].loginInfo.DefaultFamilyID = info.KeyId;
+            [[HCAccountMgr manager] updateLoginInfoToDB];
+            [self.navigationController pushViewController:gradeSuccess animated:YES];
+        }else
+        {
+            [self showHUDError:@"班级创建失败!"];
+        }
+    }];
+}
+
+- (void)requestImageUpload
+{
+    [self showHUDView:nil];
+    
+    HCImageUploadApi *api = [[HCImageUploadApi alloc] init];
+    api.FTImages = @[_info.uploadImage];
+    api.fileType = @"FamilyPhoto";
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            HCImageUploadInfo *info = [array lastObject];
+//            _info.FamilyPhoto = info.FileUrl;
+            _info.FamilyPhoto = info.FileName;
+            [self requestCreateGrade];
+        }else
+        {
+            [self showHUDError:@"头像上传失败!"];
+        }
+    }];
 }
 
 
