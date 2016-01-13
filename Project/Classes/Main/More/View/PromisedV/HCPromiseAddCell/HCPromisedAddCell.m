@@ -74,7 +74,7 @@
 -(void)setButtonH:(CGFloat)buttonH
 {
     _buttonH = buttonH;
-    _button.frame = CGRectMake(0,8, 210, _buttonH);
+    _button.frame = CGRectMake(0,8, 230, _buttonH);
 }
 
 -(void)buttonClick:(UIButton *)button

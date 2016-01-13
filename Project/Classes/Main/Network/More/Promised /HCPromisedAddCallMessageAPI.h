@@ -8,13 +8,17 @@
 
 #import "HCRequest.h"
 
-
-typedef void(^HCPromisedCreateCallBlock)(HCRequestStatus requestStatus, NSString *message, id responseObject);
+@class HCPromisedDetailInfo;
+@class HCPromisedMissInfo;
+typedef void(^HCPromisedAddCallMessageBlock)(HCRequestStatus requestStatus, NSString *message, id data);
 
 
 @interface HCPromisedAddCallMessageAPI : HCRequest
 @property (nonatomic, strong) NSString *Token;
+@property(nonatomic,strong) HCPromisedDetailInfo  *info;
+@property(nonatomic,strong) HCPromisedMissInfo    *missInfo;
 
--(void)startRequest:(HCPromisedCreateCallBlock)requestBlock;
+-(void)startRequest:(HCPromisedAddCallMessageBlock)requestBlock;
 
 @end
+

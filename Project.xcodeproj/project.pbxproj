@@ -757,15 +757,30 @@
 		0AFE6B8F1C2BBD0D0066D3E8 /* HCGradeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE6B8D1C2BBD0D0066D3E8 /* HCGradeSuccessViewController.m */; };
 		0AFE6B901C2BBD0D0066D3E8 /* HCGradeSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFE6B8E1C2BBD0D0066D3E8 /* HCGradeSuccessViewController.xib */; };
 		3AA0DCFA47C83622EEE93AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9376B27D02CD20170277F57 /* libPods.a */; };
-		8D1A91DB1C3CA78600C920EE /* HCAddPromiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91D81C3CA78600C920EE /* HCAddPromiseViewController.m */; };
-		8D1A91DC1C3CA78600C920EE /* HCPromisedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91DA1C3CA78600C920EE /* HCPromisedViewController.m */; };
-		8D1A92081C3D3BAD00C920EE /* HCPromisedAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A91FD1C3D3BAD00C920EE /* HCPromisedAddCell.m */; };
-		8D1A92091C3D3BAD00C920EE /* HCPromisedHeaderIVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92001C3D3BAD00C920EE /* HCPromisedHeaderIVCell.m */; };
-		8D1A920A1C3D3BAD00C920EE /* HCPromisedNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92031C3D3BAD00C920EE /* HCPromisedNormalCell.m */; };
-		8D1A920B1C3D3BAD00C920EE /* HCpromisedNormalImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92051C3D3BAD00C920EE /* HCpromisedNormalImageCell.m */; };
-		8D1A920C1C3D3BAD00C920EE /* HCPromisedTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92071C3D3BAD00C920EE /* HCPromisedTextViewCell.m */; };
-		8D1A92141C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A92131C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m */; };
-		8D4E2EBE1C3E4E720067F627 /* HCPromisedDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E2EBD1C3E4E720067F627 /* HCPromisedDetailInfo.m */; };
+		8D030F971C463B3B003B7255 /* HCAddPromiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030F8B1C463B3B003B7255 /* HCAddPromiseViewController.m */; };
+		8D030F981C463B3B003B7255 /* HCAddPromiseViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030F8D1C463B3B003B7255 /* HCAddPromiseViewController1.m */; };
+		8D030F991C463B3B003B7255 /* HCPromiseDetailViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030F8F1C463B3B003B7255 /* HCPromiseDetailViewController1.m */; };
+		8D030F9A1C463B3B003B7255 /* HCPromisedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030F911C463B3B003B7255 /* HCPromisedViewController.m */; };
+		8D030F9B1C463B3B003B7255 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030F941C463B3B003B7255 /* UUDatePicker.m */; };
+		8D030F9C1C463B3B003B7255 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030F961C463B3B003B7255 /* UUDatePicker_DateModel.m */; };
+		8D030FA61C463B63003B7255 /* HCPromisedContractPersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030F9F1C463B63003B7255 /* HCPromisedContractPersonInfo.m */; };
+		8D030FA71C463B63003B7255 /* HCPromisedDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FA11C463B63003B7255 /* HCPromisedDetailInfo.m */; };
+		8D030FA81C463B63003B7255 /* HCPromisedListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FA31C463B63003B7255 /* HCPromisedListInfo.m */; };
+		8D030FA91C463B63003B7255 /* HCPromisedMissInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FA51C463B63003B7255 /* HCPromisedMissInfo.m */; };
+		8D030FC31C463B84003B7255 /* HCBaseDetailUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FAD1C463B84003B7255 /* HCBaseDetailUserInfoCell.m */; };
+		8D030FC41C463B84003B7255 /* HCBaseUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FAF1C463B84003B7255 /* HCBaseUserInfoCell.m */; };
+		8D030FC51C463B84003B7255 /* HCPromisedContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FB11C463B84003B7255 /* HCPromisedContactTableViewCell.m */; };
+		8D030FC61C463B84003B7255 /* HCPromisedMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FB31C463B84003B7255 /* HCPromisedMedicalCell.m */; };
+		8D030FC71C463B84003B7255 /* HCPromisedMissCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FB51C463B84003B7255 /* HCPromisedMissCell.m */; };
+		8D030FC81C463B84003B7255 /* HCPromisedAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FB81C463B84003B7255 /* HCPromisedAddCell.m */; };
+		8D030FC91C463B84003B7255 /* HCPromisedHeaderIVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FBB1C463B84003B7255 /* HCPromisedHeaderIVCell.m */; };
+		8D030FCA1C463B84003B7255 /* HCPromisedNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FBE1C463B84003B7255 /* HCPromisedNormalCell.m */; };
+		8D030FCB1C463B84003B7255 /* HCpromisedNormalImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FC01C463B84003B7255 /* HCpromisedNormalImageCell.m */; };
+		8D030FCC1C463B84003B7255 /* HCPromisedTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FC21C463B84003B7255 /* HCPromisedTextViewCell.m */; };
+		8D030FD61C463BA6003B7255 /* HCPromisedAddCallMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FCF1C463BA6003B7255 /* HCPromisedAddCallMessageAPI.m */; };
+		8D030FD71C463BA6003B7255 /* HCPromisedAddSelectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FD11C463BA6003B7255 /* HCPromisedAddSelectAPI.m */; };
+		8D030FD81C463BA6003B7255 /* HCPromisedDetailAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FD31C463BA6003B7255 /* HCPromisedDetailAPI.m */; };
+		8D030FD91C463BA6003B7255 /* HCPromisedListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D030FD51C463BA6003B7255 /* HCPromisedListAPI.m */; };
 		C73BCB681C3BAEA1005048C5 /* HCAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA971C3BAEA1005048C5 /* HCAddItemViewController.m */; };
 		C73BCB691C3BAEA1005048C5 /* HClassCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA9A1C3BAEA1005048C5 /* HClassCalendarViewController.m */; };
 		C73BCB6A1C3BAEA1005048C5 /* HCMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C73BCA9C1C3BAEA1005048C5 /* HCMoreViewController.m */; };
@@ -2204,24 +2219,54 @@
 		0AFE6B8D1C2BBD0D0066D3E8 /* HCGradeSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGradeSuccessViewController.m; sourceTree = "<group>"; };
 		0AFE6B8E1C2BBD0D0066D3E8 /* HCGradeSuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCGradeSuccessViewController.xib; sourceTree = "<group>"; };
 		6ACE64504D5E86E87CC78BEE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		8D1A91D71C3CA78600C920EE /* HCAddPromiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddPromiseViewController.h; sourceTree = "<group>"; };
-		8D1A91D81C3CA78600C920EE /* HCAddPromiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddPromiseViewController.m; sourceTree = "<group>"; };
-		8D1A91D91C3CA78600C920EE /* HCPromisedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedViewController.h; sourceTree = "<group>"; };
-		8D1A91DA1C3CA78600C920EE /* HCPromisedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedViewController.m; sourceTree = "<group>"; };
-		8D1A91FC1C3D3BAD00C920EE /* HCPromisedAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedAddCell.h; sourceTree = "<group>"; };
-		8D1A91FD1C3D3BAD00C920EE /* HCPromisedAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedAddCell.m; sourceTree = "<group>"; };
-		8D1A91FF1C3D3BAD00C920EE /* HCPromisedHeaderIVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedHeaderIVCell.h; sourceTree = "<group>"; };
-		8D1A92001C3D3BAD00C920EE /* HCPromisedHeaderIVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedHeaderIVCell.m; sourceTree = "<group>"; };
-		8D1A92021C3D3BAD00C920EE /* HCPromisedNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedNormalCell.h; sourceTree = "<group>"; };
-		8D1A92031C3D3BAD00C920EE /* HCPromisedNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedNormalCell.m; sourceTree = "<group>"; };
-		8D1A92041C3D3BAD00C920EE /* HCpromisedNormalImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCpromisedNormalImageCell.h; sourceTree = "<group>"; };
-		8D1A92051C3D3BAD00C920EE /* HCpromisedNormalImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCpromisedNormalImageCell.m; sourceTree = "<group>"; };
-		8D1A92061C3D3BAD00C920EE /* HCPromisedTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedTextViewCell.h; sourceTree = "<group>"; };
-		8D1A92071C3D3BAD00C920EE /* HCPromisedTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedTextViewCell.m; sourceTree = "<group>"; };
-		8D1A92121C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedAddCallMessageAPI.h; sourceTree = "<group>"; };
-		8D1A92131C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedAddCallMessageAPI.m; sourceTree = "<group>"; };
-		8D4E2EBC1C3E4E720067F627 /* HCPromisedDetailInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedDetailInfo.h; sourceTree = "<group>"; };
-		8D4E2EBD1C3E4E720067F627 /* HCPromisedDetailInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedDetailInfo.m; sourceTree = "<group>"; };
+		8D030F8A1C463B3B003B7255 /* HCAddPromiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddPromiseViewController.h; sourceTree = "<group>"; };
+		8D030F8B1C463B3B003B7255 /* HCAddPromiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddPromiseViewController.m; sourceTree = "<group>"; };
+		8D030F8C1C463B3B003B7255 /* HCAddPromiseViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddPromiseViewController1.h; sourceTree = "<group>"; };
+		8D030F8D1C463B3B003B7255 /* HCAddPromiseViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddPromiseViewController1.m; sourceTree = "<group>"; };
+		8D030F8E1C463B3B003B7255 /* HCPromiseDetailViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromiseDetailViewController1.h; sourceTree = "<group>"; };
+		8D030F8F1C463B3B003B7255 /* HCPromiseDetailViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromiseDetailViewController1.m; sourceTree = "<group>"; };
+		8D030F901C463B3B003B7255 /* HCPromisedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedViewController.h; sourceTree = "<group>"; };
+		8D030F911C463B3B003B7255 /* HCPromisedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedViewController.m; sourceTree = "<group>"; };
+		8D030F931C463B3B003B7255 /* UUDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker.h; sourceTree = "<group>"; };
+		8D030F941C463B3B003B7255 /* UUDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker.m; sourceTree = "<group>"; };
+		8D030F951C463B3B003B7255 /* UUDatePicker_DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker_DateModel.h; sourceTree = "<group>"; };
+		8D030F961C463B3B003B7255 /* UUDatePicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker_DateModel.m; sourceTree = "<group>"; };
+		8D030F9E1C463B63003B7255 /* HCPromisedContractPersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedContractPersonInfo.h; sourceTree = "<group>"; };
+		8D030F9F1C463B63003B7255 /* HCPromisedContractPersonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedContractPersonInfo.m; sourceTree = "<group>"; };
+		8D030FA01C463B63003B7255 /* HCPromisedDetailInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedDetailInfo.h; sourceTree = "<group>"; };
+		8D030FA11C463B63003B7255 /* HCPromisedDetailInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedDetailInfo.m; sourceTree = "<group>"; };
+		8D030FA21C463B63003B7255 /* HCPromisedListInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedListInfo.h; sourceTree = "<group>"; };
+		8D030FA31C463B63003B7255 /* HCPromisedListInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedListInfo.m; sourceTree = "<group>"; };
+		8D030FA41C463B63003B7255 /* HCPromisedMissInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedMissInfo.h; sourceTree = "<group>"; };
+		8D030FA51C463B63003B7255 /* HCPromisedMissInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedMissInfo.m; sourceTree = "<group>"; };
+		8D030FAC1C463B84003B7255 /* HCBaseDetailUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBaseDetailUserInfoCell.h; sourceTree = "<group>"; };
+		8D030FAD1C463B84003B7255 /* HCBaseDetailUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBaseDetailUserInfoCell.m; sourceTree = "<group>"; };
+		8D030FAE1C463B84003B7255 /* HCBaseUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBaseUserInfoCell.h; sourceTree = "<group>"; };
+		8D030FAF1C463B84003B7255 /* HCBaseUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBaseUserInfoCell.m; sourceTree = "<group>"; };
+		8D030FB01C463B84003B7255 /* HCPromisedContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedContactTableViewCell.h; sourceTree = "<group>"; };
+		8D030FB11C463B84003B7255 /* HCPromisedContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedContactTableViewCell.m; sourceTree = "<group>"; };
+		8D030FB21C463B84003B7255 /* HCPromisedMedicalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedMedicalCell.h; sourceTree = "<group>"; };
+		8D030FB31C463B84003B7255 /* HCPromisedMedicalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedMedicalCell.m; sourceTree = "<group>"; };
+		8D030FB41C463B84003B7255 /* HCPromisedMissCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedMissCell.h; sourceTree = "<group>"; };
+		8D030FB51C463B84003B7255 /* HCPromisedMissCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedMissCell.m; sourceTree = "<group>"; };
+		8D030FB71C463B84003B7255 /* HCPromisedAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedAddCell.h; sourceTree = "<group>"; };
+		8D030FB81C463B84003B7255 /* HCPromisedAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedAddCell.m; sourceTree = "<group>"; };
+		8D030FBA1C463B84003B7255 /* HCPromisedHeaderIVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedHeaderIVCell.h; sourceTree = "<group>"; };
+		8D030FBB1C463B84003B7255 /* HCPromisedHeaderIVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedHeaderIVCell.m; sourceTree = "<group>"; };
+		8D030FBD1C463B84003B7255 /* HCPromisedNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedNormalCell.h; sourceTree = "<group>"; };
+		8D030FBE1C463B84003B7255 /* HCPromisedNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedNormalCell.m; sourceTree = "<group>"; };
+		8D030FBF1C463B84003B7255 /* HCpromisedNormalImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCpromisedNormalImageCell.h; sourceTree = "<group>"; };
+		8D030FC01C463B84003B7255 /* HCpromisedNormalImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCpromisedNormalImageCell.m; sourceTree = "<group>"; };
+		8D030FC11C463B84003B7255 /* HCPromisedTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedTextViewCell.h; sourceTree = "<group>"; };
+		8D030FC21C463B84003B7255 /* HCPromisedTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedTextViewCell.m; sourceTree = "<group>"; };
+		8D030FCE1C463BA6003B7255 /* HCPromisedAddCallMessageAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedAddCallMessageAPI.h; sourceTree = "<group>"; };
+		8D030FCF1C463BA6003B7255 /* HCPromisedAddCallMessageAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedAddCallMessageAPI.m; sourceTree = "<group>"; };
+		8D030FD01C463BA6003B7255 /* HCPromisedAddSelectAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedAddSelectAPI.h; sourceTree = "<group>"; };
+		8D030FD11C463BA6003B7255 /* HCPromisedAddSelectAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedAddSelectAPI.m; sourceTree = "<group>"; };
+		8D030FD21C463BA6003B7255 /* HCPromisedDetailAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedDetailAPI.h; sourceTree = "<group>"; };
+		8D030FD31C463BA6003B7255 /* HCPromisedDetailAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedDetailAPI.m; sourceTree = "<group>"; };
+		8D030FD41C463BA6003B7255 /* HCPromisedListAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedListAPI.h; sourceTree = "<group>"; };
+		8D030FD51C463BA6003B7255 /* HCPromisedListAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedListAPI.m; sourceTree = "<group>"; };
 		C73BCA961C3BAEA1005048C5 /* HCAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddItemViewController.h; sourceTree = "<group>"; };
 		C73BCA971C3BAEA1005048C5 /* HCAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddItemViewController.m; sourceTree = "<group>"; };
 		C73BCA991C3BAEA1005048C5 /* HClassCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClassCalendarViewController.h; sourceTree = "<group>"; };
@@ -5279,74 +5324,120 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		8D1A91D61C3CA78600C920EE /* Promised */ = {
+		8D030F891C463B3B003B7255 /* PromisedC */ = {
 			isa = PBXGroup;
 			children = (
-				8D1A91D71C3CA78600C920EE /* HCAddPromiseViewController.h */,
-				8D1A91D81C3CA78600C920EE /* HCAddPromiseViewController.m */,
-				8D1A91D91C3CA78600C920EE /* HCPromisedViewController.h */,
-				8D1A91DA1C3CA78600C920EE /* HCPromisedViewController.m */,
+				8D030F8A1C463B3B003B7255 /* HCAddPromiseViewController.h */,
+				8D030F8B1C463B3B003B7255 /* HCAddPromiseViewController.m */,
+				8D030F8C1C463B3B003B7255 /* HCAddPromiseViewController1.h */,
+				8D030F8D1C463B3B003B7255 /* HCAddPromiseViewController1.m */,
+				8D030F8E1C463B3B003B7255 /* HCPromiseDetailViewController1.h */,
+				8D030F8F1C463B3B003B7255 /* HCPromiseDetailViewController1.m */,
+				8D030F901C463B3B003B7255 /* HCPromisedViewController.h */,
+				8D030F911C463B3B003B7255 /* HCPromisedViewController.m */,
+				8D030F921C463B3B003B7255 /* UUDatePicker_Block */,
 			);
-			path = Promised;
+			path = PromisedC;
 			sourceTree = "<group>";
 		};
-		8D1A91FA1C3D3BAD00C920EE /* Promised */ = {
+		8D030F921C463B3B003B7255 /* UUDatePicker_Block */ = {
 			isa = PBXGroup;
 			children = (
-				8D1A91FB1C3D3BAD00C920EE /* HCPromiseAddCell */,
-				8D1A91FC1C3D3BAD00C920EE /* HCPromisedAddCell.h */,
-				8D1A91FD1C3D3BAD00C920EE /* HCPromisedAddCell.m */,
-				8D1A91FE1C3D3BAD00C920EE /* HCPromiseDetailCell */,
-				8D1A92011C3D3BAD00C920EE /* HCPromiseNormalCell */,
+				8D030F931C463B3B003B7255 /* UUDatePicker.h */,
+				8D030F941C463B3B003B7255 /* UUDatePicker.m */,
+				8D030F951C463B3B003B7255 /* UUDatePicker_DateModel.h */,
+				8D030F961C463B3B003B7255 /* UUDatePicker_DateModel.m */,
 			);
-			path = Promised;
+			path = UUDatePicker_Block;
 			sourceTree = "<group>";
 		};
-		8D1A91FB1C3D3BAD00C920EE /* HCPromiseAddCell */ = {
+		8D030F9D1C463B63003B7255 /* promisedM */ = {
 			isa = PBXGroup;
 			children = (
+				8D030F9E1C463B63003B7255 /* HCPromisedContractPersonInfo.h */,
+				8D030F9F1C463B63003B7255 /* HCPromisedContractPersonInfo.m */,
+				8D030FA01C463B63003B7255 /* HCPromisedDetailInfo.h */,
+				8D030FA11C463B63003B7255 /* HCPromisedDetailInfo.m */,
+				8D030FA21C463B63003B7255 /* HCPromisedListInfo.h */,
+				8D030FA31C463B63003B7255 /* HCPromisedListInfo.m */,
+				8D030FA41C463B63003B7255 /* HCPromisedMissInfo.h */,
+				8D030FA51C463B63003B7255 /* HCPromisedMissInfo.m */,
+			);
+			path = promisedM;
+			sourceTree = "<group>";
+		};
+		8D030FAA1C463B84003B7255 /* PromisedV */ = {
+			isa = PBXGroup;
+			children = (
+				8D030FAB1C463B84003B7255 /* HCNewCell */,
+				8D030FB61C463B84003B7255 /* HCPromiseAddCell */,
+				8D030FB91C463B84003B7255 /* HCPromiseDetailCell */,
+				8D030FBC1C463B84003B7255 /* HCPromiseNormalCell */,
+			);
+			path = PromisedV;
+			sourceTree = "<group>";
+		};
+		8D030FAB1C463B84003B7255 /* HCNewCell */ = {
+			isa = PBXGroup;
+			children = (
+				8D030FAC1C463B84003B7255 /* HCBaseDetailUserInfoCell.h */,
+				8D030FAD1C463B84003B7255 /* HCBaseDetailUserInfoCell.m */,
+				8D030FAE1C463B84003B7255 /* HCBaseUserInfoCell.h */,
+				8D030FAF1C463B84003B7255 /* HCBaseUserInfoCell.m */,
+				8D030FB01C463B84003B7255 /* HCPromisedContactTableViewCell.h */,
+				8D030FB11C463B84003B7255 /* HCPromisedContactTableViewCell.m */,
+				8D030FB21C463B84003B7255 /* HCPromisedMedicalCell.h */,
+				8D030FB31C463B84003B7255 /* HCPromisedMedicalCell.m */,
+				8D030FB41C463B84003B7255 /* HCPromisedMissCell.h */,
+				8D030FB51C463B84003B7255 /* HCPromisedMissCell.m */,
+			);
+			path = HCNewCell;
+			sourceTree = "<group>";
+		};
+		8D030FB61C463B84003B7255 /* HCPromiseAddCell */ = {
+			isa = PBXGroup;
+			children = (
+				8D030FB71C463B84003B7255 /* HCPromisedAddCell.h */,
+				8D030FB81C463B84003B7255 /* HCPromisedAddCell.m */,
 			);
 			path = HCPromiseAddCell;
 			sourceTree = "<group>";
 		};
-		8D1A91FE1C3D3BAD00C920EE /* HCPromiseDetailCell */ = {
+		8D030FB91C463B84003B7255 /* HCPromiseDetailCell */ = {
 			isa = PBXGroup;
 			children = (
-				8D1A91FF1C3D3BAD00C920EE /* HCPromisedHeaderIVCell.h */,
-				8D1A92001C3D3BAD00C920EE /* HCPromisedHeaderIVCell.m */,
+				8D030FBA1C463B84003B7255 /* HCPromisedHeaderIVCell.h */,
+				8D030FBB1C463B84003B7255 /* HCPromisedHeaderIVCell.m */,
 			);
 			path = HCPromiseDetailCell;
 			sourceTree = "<group>";
 		};
-		8D1A92011C3D3BAD00C920EE /* HCPromiseNormalCell */ = {
+		8D030FBC1C463B84003B7255 /* HCPromiseNormalCell */ = {
 			isa = PBXGroup;
 			children = (
-				8D1A92021C3D3BAD00C920EE /* HCPromisedNormalCell.h */,
-				8D1A92031C3D3BAD00C920EE /* HCPromisedNormalCell.m */,
-				8D1A92041C3D3BAD00C920EE /* HCpromisedNormalImageCell.h */,
-				8D1A92051C3D3BAD00C920EE /* HCpromisedNormalImageCell.m */,
-				8D1A92061C3D3BAD00C920EE /* HCPromisedTextViewCell.h */,
-				8D1A92071C3D3BAD00C920EE /* HCPromisedTextViewCell.m */,
+				8D030FBD1C463B84003B7255 /* HCPromisedNormalCell.h */,
+				8D030FBE1C463B84003B7255 /* HCPromisedNormalCell.m */,
+				8D030FBF1C463B84003B7255 /* HCpromisedNormalImageCell.h */,
+				8D030FC01C463B84003B7255 /* HCpromisedNormalImageCell.m */,
+				8D030FC11C463B84003B7255 /* HCPromisedTextViewCell.h */,
+				8D030FC21C463B84003B7255 /* HCPromisedTextViewCell.m */,
 			);
 			path = HCPromiseNormalCell;
 			sourceTree = "<group>";
 		};
-		8D1A92111C3D3C5200C920EE /* Promised  */ = {
+		8D030FCD1C463BA6003B7255 /* Promised  */ = {
 			isa = PBXGroup;
 			children = (
-				8D1A92121C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.h */,
-				8D1A92131C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m */,
+				8D030FCE1C463BA6003B7255 /* HCPromisedAddCallMessageAPI.h */,
+				8D030FCF1C463BA6003B7255 /* HCPromisedAddCallMessageAPI.m */,
+				8D030FD01C463BA6003B7255 /* HCPromisedAddSelectAPI.h */,
+				8D030FD11C463BA6003B7255 /* HCPromisedAddSelectAPI.m */,
+				8D030FD21C463BA6003B7255 /* HCPromisedDetailAPI.h */,
+				8D030FD31C463BA6003B7255 /* HCPromisedDetailAPI.m */,
+				8D030FD41C463BA6003B7255 /* HCPromisedListAPI.h */,
+				8D030FD51C463BA6003B7255 /* HCPromisedListAPI.m */,
 			);
 			path = "Promised ";
-			sourceTree = "<group>";
-		};
-		8D4E2EBB1C3E4E720067F627 /* promised */ = {
-			isa = PBXGroup;
-			children = (
-				8D4E2EBC1C3E4E720067F627 /* HCPromisedDetailInfo.h */,
-				8D4E2EBD1C3E4E720067F627 /* HCPromisedDetailInfo.m */,
-			);
-			path = promised;
 			sourceTree = "<group>";
 		};
 		B3F788F61B430EBC07B60CDE /* Frameworks */ = {
@@ -5385,11 +5476,11 @@
 		C73BCA941C3BAEA1005048C5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8D030F891C463B3B003B7255 /* PromisedC */,
 				C73BCA951C3BAEA1005048C5 /* AddItem */,
 				C73BCA981C3BAEA1005048C5 /* ClassCalendar */,
 				C73BCA9B1C3BAEA1005048C5 /* HCMoreViewController.h */,
 				C73BCA9C1C3BAEA1005048C5 /* HCMoreViewController.m */,
-				8D1A91D61C3CA78600C920EE /* Promised */,
 				C73BCA9D1C3BAEA1005048C5 /* Notification */,
 				C73BCAA81C3BAEA1005048C5 /* ProductCenter */,
 				C73BCAE01C3BAEA1005048C5 /* RescueCenter */,
@@ -5605,7 +5696,7 @@
 			children = (
 				C73BCAFB1C3BAEA1005048C5 /* HCMoreInfo.h */,
 				C73BCAFC1C3BAEA1005048C5 /* HCMoreInfo.m */,
-				8D4E2EBB1C3E4E720067F627 /* promised */,
+				8D030F9D1C463B63003B7255 /* promisedM */,
 				C73BCAFD1C3BAEA1005048C5 /* NotificationCenter */,
 				C73BCB001C3BAEA1005048C5 /* ProductCenter */,
 				C73BCB1A1C3BAEA1005048C5 /* RescueCenter */,
@@ -5717,7 +5808,7 @@
 				C73BCB221C3BAEA1005048C5 /* HCLightGrayLineView.m */,
 				C73BCB231C3BAEA1005048C5 /* HCMoreCollectionViewCell.h */,
 				C73BCB241C3BAEA1005048C5 /* HCMoreCollectionViewCell.m */,
-				8D1A91FA1C3D3BAD00C920EE /* Promised */,
+				8D030FAA1C463B84003B7255 /* PromisedV */,
 				C73BCB251C3BAEA1005048C5 /* NotificationCenter */,
 				C73BCB301C3BAEA1005048C5 /* ProductCenter */,
 				C73BCB5F1C3BAEA1005048C5 /* TagManager */,
@@ -5883,8 +5974,8 @@
 		C73BCBBD1C3BAEBD005048C5 /* More */ = {
 			isa = PBXGroup;
 			children = (
+				8D030FCD1C463BA6003B7255 /* Promised  */,
 				C7CCE87A1C45F5C000DB37CA /* NotificationCenter */,
-				8D1A92111C3D3C5200C920EE /* Promised  */,
 				C73BCBC51C3BAEBD005048C5 /* ProductCenter */,
 				C73BCBD61C3BAEBD005048C5 /* RescueCenter */,
 				C73BCBD91C3BAEBD005048C5 /* TagManager */,
@@ -6434,6 +6525,7 @@
 				C73BCBA31C3BAEA1005048C5 /* HCNotificationCentereReadTableViewCell.m in Sources */,
 				0A7CBCBA1C31294D0051DD58 /* RobotListViewController.m in Sources */,
 				C73BCB741C3BAEA1005048C5 /* HCBuyRecordsViewController.m in Sources */,
+				8D030FC91C463B84003B7255 /* HCPromisedHeaderIVCell.m in Sources */,
 				0A7CBCEE1C31294E0051DD58 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				0A72D8FC1C3E4675006D1C62 /* UIView_extra.m in Sources */,
 				0A7CBD181C31294E0051DD58 /* EaseMessageCell.m in Sources */,
@@ -6451,7 +6543,6 @@
 				C7692F571C3A4B2200582A10 /* MDCFocusView.m in Sources */,
 				0A5491421C2BC32D0085F50D /* ZXDefaultGridSampler.m in Sources */,
 				C73BCB831C3BAEA1005048C5 /* HCProducCenterViewController.m in Sources */,
-				8D1A920B1C3D3BAD00C920EE /* HCpromisedNormalImageCell.m in Sources */,
 				0A5491BB1C2BC32D0085F50D /* ZXPDF417ErrorCorrection.m in Sources */,
 				0A5491311C2BC32D0085F50D /* ZXCapture.m in Sources */,
 				0A54913D1C2BC32D0085F50D /* ZXBitSource.m in Sources */,
@@ -6459,6 +6550,7 @@
 				0A5491341C2BC32D0085F50D /* ZXMathUtils.m in Sources */,
 				0A5491461C2BC32D0085F50D /* ZXHybridBinarizer.m in Sources */,
 				0A54910F1C2BC32D0085F50D /* ZXAddressBookDoCoMoResultParser.m in Sources */,
+				8D030FC81C463B84003B7255 /* HCPromisedAddCell.m in Sources */,
 				0A7CBCE01C31294E0051DD58 /* DACircularProgressView.m in Sources */,
 				0A7CBCAC1C31294D0051DD58 /* MyChatroomListViewController.m in Sources */,
 				0A5491661C2BC32D0085F50D /* ZXDataMatrixSymbolInfo144.m in Sources */,
@@ -6487,9 +6579,11 @@
 				0A54916D1C2BC32D0085F50D /* ZXMaxiCodeDecoder.m in Sources */,
 				0A5491161C2BC32D0085F50D /* ZXEmailDoCoMoResultParser.m in Sources */,
 				C73BCBAD1C3BAEA1005048C5 /* HCApplyReissueOrderCell.m in Sources */,
+				8D030FC41C463B84003B7255 /* HCBaseUserInfoCell.m in Sources */,
 				0A5491921C2BC32D0085F50D /* ZXCode39Reader.m in Sources */,
 				C73BCB7E1C3BAEA1005048C5 /* HCReturnAuditPassViewController.m in Sources */,
 				0A5491DB1C2BC32D0085F50D /* ZXMultiFormatReader.m in Sources */,
+				8D030F9B1C463B3B003B7255 /* UUDatePicker.m in Sources */,
 				C73BCBA11C3BAEA1005048C5 /* HCMoreCollectionViewCell.m in Sources */,
 				C73BCBEA1C3BAEBD005048C5 /* HCTagManagerApi.m in Sources */,
 				0A7CBD0E1C31294E0051DD58 /* EaseEmotionEscape.m in Sources */,
@@ -6519,6 +6613,7 @@
 				0A54916E1C2BC32D0085F50D /* ZXMaxiCodeReader.m in Sources */,
 				0A5491051C2BC32D0085F50D /* ZXAztecEncoder.m in Sources */,
 				0A5491331C2BC32D0085F50D /* ZXImage.m in Sources */,
+				8D030FA91C463B63003B7255 /* HCPromisedMissInfo.m in Sources */,
 				0A54916A1C2BC32D0085F50D /* ZXDataMatrixWriter.m in Sources */,
 				C73BCBE81C3BAEBD005048C5 /* HCReturnAddressApi.m in Sources */,
 				0A5491071C2BC32D0085F50D /* ZXAztecSimpleToken.m in Sources */,
@@ -6532,6 +6627,7 @@
 				0A54916C1C2BC32D0085F50D /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
 				0A7CBCF21C31294E0051DD58 /* PSTCollectionView.m in Sources */,
 				0A54910C1C2BC32D0085F50D /* ZXAztecWriter.m in Sources */,
+				8D030F971C463B3B003B7255 /* HCAddPromiseViewController.m in Sources */,
 				0A5491701C2BC32D0085F50D /* ZXGenericMultipleBarcodeReader.m in Sources */,
 				0A7ED63C1C2AC5F4002E2ED5 /* HCPerfectMessageViewController.m in Sources */,
 				0A54911E1C2BC32D0085F50D /* ZXProductParsedResult.m in Sources */,
@@ -6577,7 +6673,6 @@
 				0AA626C11C298A9B00EC62D9 /* HCFriendMessageInfo.m in Sources */,
 				C73BCB6C1C3BAEA1005048C5 /* HCNotificationDetailViewController.m in Sources */,
 				0A5491A81C2BC32D0085F50D /* ZXModulusGF.m in Sources */,
-				8D4E2EBE1C3E4E720067F627 /* HCPromisedDetailInfo.m in Sources */,
 				0A7CBCC31C31294E0051DD58 /* EMSearchBar.m in Sources */,
 				0A54910A1C2BC32D0085F50D /* ZXAztecDetectorResult.m in Sources */,
 				0A7CBD171C31294E0051DD58 /* EaseBaseMessageCell.m in Sources */,
@@ -6615,17 +6710,16 @@
 				0A54919B1C2BC32D0085F50D /* ZXITFWriter.m in Sources */,
 				0A33731B1C44A777004F7550 /* HCHomePictureDetailApi.m in Sources */,
 				0A5491391C2BC32D0085F50D /* ZXReedSolomonDecoder.m in Sources */,
-				8D1A92091C3D3BAD00C920EE /* HCPromisedHeaderIVCell.m in Sources */,
 				C73BCB891C3BAEA1005048C5 /* HCRescueCenterViewController.m in Sources */,
 				0A5491321C2BC32D0085F50D /* ZXCGImageLuminanceSource.m in Sources */,
 				0AC89DA71C295B3B003EED90 /* HCUserMessageTableViewCell.m in Sources */,
 				C7CCE8791C45F55600DB37CA /* HCActivateTagApi.m in Sources */,
 				0A5491D31C2BC32D0085F50D /* ZXQRCodeEncoder.m in Sources */,
-				8D1A920A1C3D3BAD00C920EE /* HCPromisedNormalCell.m in Sources */,
 				0A6B7F201BF1EB74008D54B3 /* HCAccountDBMgr.m in Sources */,
 				0A7CBCCE1C31294E0051DD58 /* EMCDDeviceManager+Media.m in Sources */,
 				0A7CBCB21C31294D0051DD58 /* ApplyViewController.m in Sources */,
 				0A7CBCD91C31294E0051DD58 /* MWGridCell.m in Sources */,
+				8D030F991C463B3B003B7255 /* HCPromiseDetailViewController1.m in Sources */,
 				0A5491A01C2BC32D0085F50D /* ZXUPCAReader.m in Sources */,
 				0A54911B1C2BC32D0085F50D /* ZXISBNParsedResult.m in Sources */,
 				0A5491D21C2BC32D0085F50D /* ZXQRCodeBlockPair.m in Sources */,
@@ -6634,7 +6728,6 @@
 				0A5491441C2BC32D0085F50D /* ZXGlobalHistogramBinarizer.m in Sources */,
 				0A5491B91C2BC32D0085F50D /* ZXPDF417BarcodeRow.m in Sources */,
 				0A5491601C2BC32D0085F50D /* ZXDataMatrixDefaultPlacement.m in Sources */,
-				8D1A920C1C3D3BAD00C920EE /* HCPromisedTextViewCell.m in Sources */,
 				0A5491011C2BC32D0085F50D /* ZXAztecDecoder.m in Sources */,
 				0A7CBC9E1C31294D0051DD58 /* CustomMessageCell.m in Sources */,
 				0A7CBC901C31294D0051DD58 /* NSDate+Category.m in Sources */,
@@ -6708,6 +6801,7 @@
 				0A8A4F7C1C1FD6C900753D65 /* HCHomeViewController.m in Sources */,
 				0A6B7F701BF1EB74008D54B3 /* HCTableViewController.m in Sources */,
 				0A5491821C2BC32D0085F50D /* ZXRSSExpandedFieldParser.m in Sources */,
+				8D030FC71C463B84003B7255 /* HCPromisedMissCell.m in Sources */,
 				0A7CBD251C31294E0051DD58 /* EaseFaceView.m in Sources */,
 				C73BCB971C3BAEA1005048C5 /* HCApplyReissueResonInfo.m in Sources */,
 				0A7CBCCF1C31294E0051DD58 /* EMCDDeviceManager+Microphone.m in Sources */,
@@ -6720,7 +6814,6 @@
 				0A7CBC911C31294D0051DD58 /* NSDateFormatter+Category.m in Sources */,
 				0AA626B91C29862700EC62D9 /* HCFriendMessageViewController.m in Sources */,
 				0A5491291C2BC32D0085F50D /* ZXURIResultParser.m in Sources */,
-				8D1A91DB1C3CA78600C920EE /* HCAddPromiseViewController.m in Sources */,
 				0A5491CF1C2BC32D0085F50D /* ZXQRCodeFinderPatternFinder.m in Sources */,
 				0A7CBCB11C31294D0051DD58 /* ApplyFriendCell.m in Sources */,
 				0A5491131C2BC32D0085F50D /* ZXCalendarParsedResult.m in Sources */,
@@ -6731,7 +6824,6 @@
 				0A67E7851C23FAB5005B8CD2 /* HCHomeDetailCommentTableViewCell.m in Sources */,
 				0A67E7771C23D700005B8CD2 /* HCShareViewController.m in Sources */,
 				0A54919C1C2BC32D0085F50D /* ZXMultiFormatOneDReader.m in Sources */,
-				8D1A92141C3D3C5200C920EE /* HCPromisedAddCallMessageAPI.m in Sources */,
 				0A7CBD271C31294E0051DD58 /* EaseChatBarMoreView.m in Sources */,
 				C73BCBE31C3BAEBD005048C5 /* HCBuyRecordApi.m in Sources */,
 				0A5491721C2BC32D0085F50D /* ZXAI013103decoder.m in Sources */,
@@ -6740,6 +6832,7 @@
 				0A5491A11C2BC32D0085F50D /* ZXUPCAWriter.m in Sources */,
 				C73BCBB11C3BAEA1005048C5 /* HCApplyReturnReasonCell.m in Sources */,
 				0A5491281C2BC32D0085F50D /* ZXURIParsedResult.m in Sources */,
+				8D030FD71C463BA6003B7255 /* HCPromisedAddSelectAPI.m in Sources */,
 				C73BCB9D1C3BAEA1005048C5 /* HCReturnAddressInfo.m in Sources */,
 				0A7CBCCB1C31294E0051DD58 /* EaseUI.m in Sources */,
 				0A6B7F6D1BF1EB74008D54B3 /* HCPopoverView.m in Sources */,
@@ -6749,6 +6842,7 @@
 				0A7CBCFA1C31294E0051DD58 /* PSTGridLayoutInfo.m in Sources */,
 				0A7ED62C1C2A70B5002E2ED5 /* HCGradeManagerViewController.m in Sources */,
 				C73BCBA61C3BAEA1005048C5 /* UILabel+HCLabelContentSize.m in Sources */,
+				8D030FCC1C463B84003B7255 /* HCPromisedTextViewCell.m in Sources */,
 				0A3373181C44A777004F7550 /* HCHomeApi.m in Sources */,
 				C73BCB881C3BAEA1005048C5 /* HCCaseDetailViewController.m in Sources */,
 				0A7CBCB91C31294D0051DD58 /* RobotChatViewController.m in Sources */,
@@ -6757,11 +6851,12 @@
 				0AC89D651C28F21F003EED90 /* HCHomePictureDetailViewController.m in Sources */,
 				C7CCE8871C45F5C000DB37CA /* HCNotificationCenterApi.m in Sources */,
 				0A7CBC9F1C31294D0051DD58 /* EMBubbleView+Gif.m in Sources */,
-				8D1A91DC1C3CA78600C920EE /* HCPromisedViewController.m in Sources */,
 				0A5491191C2BC32D0085F50D /* ZXGeoParsedResult.m in Sources */,
 				0A6B7F651BF1EB74008D54B3 /* HCLoginInfo.m in Sources */,
 				0A5491741C2BC32D0085F50D /* ZXAI01392xDecoder.m in Sources */,
 				0A80DE6C1BFB03DE00031F8A /* HCFindPwdSecondViewController.m in Sources */,
+				8D030FCB1C463B84003B7255 /* HCpromisedNormalImageCell.m in Sources */,
+				8D030FA81C463B63003B7255 /* HCPromisedListInfo.m in Sources */,
 				0A7CBD291C31294E0051DD58 /* EaseConversationCell.m in Sources */,
 				0A54913E1C2BC32D0085F50D /* ZXBoolArray.m in Sources */,
 				0A6B7F211BF1EB74008D54B3 /* HCAppMgr.m in Sources */,
@@ -6769,6 +6864,7 @@
 				C73BCB8D1C3BAEA1005048C5 /* HCTagClosedDetailViewControllwe.m in Sources */,
 				C73BCB711C3BAEA1005048C5 /* HCApplyReturnViewController.m in Sources */,
 				0A5491791C2BC32D0085F50D /* ZXAI01decoder.m in Sources */,
+				8D030FA61C463B63003B7255 /* HCPromisedContractPersonInfo.m in Sources */,
 				0A54911F1C2BC32D0085F50D /* ZXProductResultParser.m in Sources */,
 				C73BCBBA1C3BAEA1005048C5 /* HCTagDetailTableViewCell.m in Sources */,
 				0A7CBCA01C31294D0051DD58 /* ChatGroupDetailViewController.m in Sources */,
@@ -6776,6 +6872,7 @@
 				0A7CBC931C31294D0051DD58 /* UIImageView+HeadImage.m in Sources */,
 				0A5491761C2BC32D0085F50D /* ZXAI013x0x1xDecoder.m in Sources */,
 				0A7CBC8F1C31294D0051DD58 /* TTGlobalUICommon.m in Sources */,
+				8D030FCA1C463B84003B7255 /* HCPromisedNormalCell.m in Sources */,
 				0A7CBCF61C31294E0051DD58 /* PSTCollectionViewFlowLayout.m in Sources */,
 				C73BCB7C1C3BAEA1005048C5 /* HCRefundSuccessViewController.m in Sources */,
 				0A5491081C2BC32D0085F50D /* ZXAztecState.m in Sources */,
@@ -6791,8 +6888,10 @@
 				0A54914D1C2BC32D0085F50D /* ZXDecodeHints.m in Sources */,
 				C73BCBB91C3BAEA1005048C5 /* HCTagDetailHeaderView.m in Sources */,
 				C73BCBE71C3BAEBD005048C5 /* HCProductIntrodApi.m in Sources */,
+				8D030FD91C463BA6003B7255 /* HCPromisedListAPI.m in Sources */,
 				0A54919A1C2BC32D0085F50D /* ZXITFReader.m in Sources */,
 				0A5491B21C2BC32D0085F50D /* ZXPDF417DetectionResultColumn.m in Sources */,
+				8D030FC31C463B84003B7255 /* HCBaseDetailUserInfoCell.m in Sources */,
 				0A5491931C2BC32D0085F50D /* ZXCode39Writer.m in Sources */,
 				0A8A4F821C1FD7FE00753D65 /* HCMessageViewController.m in Sources */,
 				0A5491981C2BC32D0085F50D /* ZXEAN8Writer.m in Sources */,
@@ -6830,6 +6929,7 @@
 				0A7CBC9C1C31294D0051DD58 /* ConversationListController.m in Sources */,
 				0A5491A51C2BC32D0085F50D /* ZXUPCEANReader.m in Sources */,
 				0A54917A1C2BC32D0085F50D /* ZXAI01weightDecoder.m in Sources */,
+				8D030FD61C463BA6003B7255 /* HCPromisedAddCallMessageAPI.m in Sources */,
 				0A7CBCEA1C31294E0051DD58 /* UIButton+EMWebCache.m in Sources */,
 				0A00860B1C3A6EF200E2BCF2 /* HCGetCodeApi.m in Sources */,
 				0A7CBD1D1C31294E0051DD58 /* EaseBubbleView+Text.m in Sources */,
@@ -6838,6 +6938,7 @@
 				0A7CBCB01C31294D0051DD58 /* AddFriendViewController.m in Sources */,
 				0A5491C51C2BC32D0085F50D /* ZXQRCodeDecoder.m in Sources */,
 				0AC89D5E1C28F1B2003EED90 /* HCLeftViewController.m in Sources */,
+				8D030FD81C463BA6003B7255 /* HCPromisedDetailAPI.m in Sources */,
 				0A5491781C2BC32D0085F50D /* ZXAI01AndOtherAIs.m in Sources */,
 				0A5491431C2BC32D0085F50D /* ZXDetectorResult.m in Sources */,
 				0A7CBD131C31294E0051DD58 /* EaseRefreshTableViewController.m in Sources */,
@@ -6868,8 +6969,10 @@
 				0A72D8FB1C3E4675006D1C62 /* LeftSlideViewController.m in Sources */,
 				0A7CBD0C1C31294E0051DD58 /* EaseEmoji.m in Sources */,
 				0A54913F1C2BC32D0085F50D /* ZXByteArray.m in Sources */,
+				8D030FC61C463B84003B7255 /* HCPromisedMedicalCell.m in Sources */,
 				C73BCB731C3BAEA1005048C5 /* HCReturnReasonViewController.m in Sources */,
 				0A7CBD0D1C31294E0051DD58 /* EaseEmojiEmoticons.m in Sources */,
+				8D030F981C463B3B003B7255 /* HCAddPromiseViewController1.m in Sources */,
 				C73BCBAB1C3BAEA1005048C5 /* HCShowReasonTableViewCell.m in Sources */,
 				0A7CBD101C31294E0051DD58 /* EaseConversationListViewController.m in Sources */,
 				0AFE6B8B1C2BA7400066D3E8 /* HCFooterView.m in Sources */,
@@ -6914,6 +7017,7 @@
 				0A6970E91C2B8E820078BCC4 /* HCCreateGradeViewController.m in Sources */,
 				0A7CBC891C31294D0051DD58 /* EMGifImage.m in Sources */,
 				0A5491A61C2BC32D0085F50D /* ZXUPCEANWriter.m in Sources */,
+				8D030F9A1C463B3B003B7255 /* HCPromisedViewController.m in Sources */,
 				0A7CBD261C31294E0051DD58 /* EaseFacialView.m in Sources */,
 				C7829AD11C2BC730006FFFFB /* QRCodeReaderView.m in Sources */,
 				0A7CBCDB1C31294E0051DD58 /* MWPhoto.m in Sources */,
@@ -6982,6 +7086,7 @@
 				0A7CBCE91C31294E0051DD58 /* NSData+EMImageContentType.m in Sources */,
 				C73BCBA71C3BAEA1005048C5 /* HCAddNewAddressTableViewCell.m in Sources */,
 				0A54912F1C2BC32D0085F50D /* ZXWifiParsedResult.m in Sources */,
+				8D030FC51C463B84003B7255 /* HCPromisedContactTableViewCell.m in Sources */,
 				0AA064A21C34E0730043AA58 /* FixFopen.c in Sources */,
 				0A5491871C2BC32D0085F50D /* ZXRSSExpandedRow.m in Sources */,
 				0A7CBD061C31294E0051DD58 /* NSString+Valid.m in Sources */,
@@ -6992,11 +7097,12 @@
 				0A5491801C2BC32D0085F50D /* ZXRSSExpandedDecodedNumeric.m in Sources */,
 				0A5491411C2BC32D0085F50D /* ZXDecoderResult.m in Sources */,
 				0A7CBCB81C31294D0051DD58 /* EMRotbotChatViewCell.m in Sources */,
+				8D030F9C1C463B3B003B7255 /* UUDatePicker_DateModel.m in Sources */,
 				0A5491251C2BC32D0085F50D /* ZXTelParsedResult.m in Sources */,
 				0A5491D01C2BC32D0085F50D /* ZXQRCodeFinderPatternInfo.m in Sources */,
 				0A5491711C2BC32D0085F50D /* ZXAbstractExpandedDecoder.m in Sources */,
-				8D1A92081C3D3BAD00C920EE /* HCPromisedAddCell.m in Sources */,
 				0A7CBCAF1C31294D0051DD58 /* AddFriendCell.m in Sources */,
+				8D030FA71C463B63003B7255 /* HCPromisedDetailInfo.m in Sources */,
 				0A5491471C2BC32D0085F50D /* ZXIntArray.m in Sources */,
 				0A7CBC961C31294D0051DD58 /* UIViewController+HUD.m in Sources */,
 				0A7CBD231C31294E0051DD58 /* EaseImageView.m in Sources */,

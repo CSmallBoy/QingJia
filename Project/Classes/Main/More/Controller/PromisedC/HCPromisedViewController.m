@@ -9,7 +9,9 @@
 #import "HCPromisedViewController.h"
 #import "HCPromisedAddCell.h"
 #import "HCAddPromiseViewController.h"
-
+#import "HCAddPromiseViewController1.h"
+#import "HCPromisedListAPI.h"
+#import "HCPromisedListInfo.h"
 @interface HCPromisedViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)UITableView     *smallTableView;
@@ -26,18 +28,16 @@
     self.title = @"一呼百应";
     self.view.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
     [self  setupBackItem];
-    
-    [self  createData];
+    [self requestData];
     [self  createUI];
     [self  createTableView];
 }
-
+//
 -(void)viewWillAppear:(BOOL)animated
 {
     [ super viewWillAppear:animated];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.dataArr.count-1 inSection:0];
-    [self.smallTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-
+    [self requestData];
+    [self.smallTableView reloadData];
 }
 
 #pragma mark--UITableViewDelegate
@@ -46,20 +46,22 @@
 {
     HCPromisedAddCell  *cell = [HCPromisedAddCell customCellWithTable:tableView];
     cell.backgroundColor = [UIColor clearColor];
-    cell.title = self.dataArr[indexPath.row];
+    HCPromisedListInfo *info =self.dataArr[indexPath.row];
+    cell.title = info.name;
     cell.buttonH = self.smallTableView.frame.size.height/5;
     cell.block = ^(NSString  *buttonTitle)
     {
-        HCAddPromiseViewController *addVC = [[HCAddPromiseViewController alloc]init];
-        if ([buttonTitle isEqualToString:@"+ 新增录入"])
-        {  //跳转到添加界面
-            addVC.isEdit = YES;
-        }
-        else
-        {
-            //跳转到信息界面
-            addVC.isEdit = NO;
-        }
+        HCAddPromiseViewController1  *addVC = [[HCAddPromiseViewController1 alloc]init];
+        addVC.ObjectId = info.ObjectId;
+//        if ([buttonTitle isEqualToString:@"+ 新增录入"])
+//        {  //跳转到添加界面
+//            addVC.isEdit = YES;
+//        }
+//        else
+//        {
+//            //跳转到信息界面
+//            addVC.isEdit = NO;
+//        }
         [self.navigationController pushViewController:addVC animated:YES];
     };
     return cell;
@@ -79,8 +81,14 @@
 
 -(void)createUI
 {
+//    300/375
+//    
+//    350/667
+//    CGFloat sizeW = 300/375;
+//    CGFloat sizeH = 350/667;
+    
    //背景图片  距离边界个45
-    _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 250,300)];
+    _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 270,360)];
     _bgImage.userInteractionEnabled = YES;
     _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+45);
     _bgImage.image = [UIImage imageNamed:@"yihubaiying_Background.png"];
@@ -89,7 +97,7 @@
     //顶部图片
     CGFloat  headerViewW = _bgImage.frame.size.width/3;
     UIImageView *headerView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, headerViewW , headerViewW)];
-    CGFloat  headerViewY = _bgImage.frame.origin.y-15;
+    CGFloat  headerViewY = _bgImage.frame.origin.y-20;
     headerView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
     headerView.image = [UIImage imageNamed:@"yihubaiying_icon_m-talk logo_dis.png"];
     [self.view addSubview:headerView];
@@ -115,16 +123,6 @@
     
 }
 
--(void)createData
-{
-    for (int i = 0; i<4; i++)
-    {
-        NSString  *str = [NSString stringWithFormat:@"Tom %d",i];
-        [self.dataArr addObject:str];
-    }
-    [self.dataArr addObject:@"+ 新增录入"];
-}
-
 #pragma mark ---Setter Or Getter
 
 -(NSMutableArray *)dataArr
@@ -146,11 +144,24 @@
         _smallTableView.delegate = self;
         _smallTableView.dataSource = self;
     }
+    _smallTableView.showsVerticalScrollIndicator = NO;
     return _smallTableView;
 }
 
 
 #pragma mark --- network
 
+-(void)requestData
+{
+    HCPromisedListAPI  *api = [[HCPromisedListAPI alloc]init];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSMutableArray *array) {
+        
+        self.dataArr = array;
+        HCPromisedListInfo *info = [[HCPromisedListInfo alloc]init];
+        info.name=@"+ 新增录入 ";
+        [self.dataArr addObject:info];
+        [self.smallTableView reloadData];
+    }];
+}
 
 @end
