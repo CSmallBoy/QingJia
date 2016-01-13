@@ -9,9 +9,12 @@
 #import "HCUnReadNotificationViewController.h"
 #import "HCButtonItem.h"
 #import "HCNotificationCenterUnreadTableViewCell.h"
+#import "HCNotificationDetailViewController.h"
+
 #import "HCNotificationCenterApi.h"
 #import "HCNotificationCenterInfo.h"
-#import "HCNotificationDetailViewController.h"
+#import "HCNotificationDeleteApi.h"
+#import "HCNotificationUnreadChangeApi.h"
 
 @interface HCUnReadNotificationViewController ()
 
@@ -46,7 +49,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCNotificationDetailViewController *detailVC = [[HCNotificationDetailViewController alloc]init];
-//    detailVC.info = self.dataSource[indexPath.section];
+    [self changeReadState:indexPath];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -97,11 +100,41 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.dataSource removeObjectAtIndex:indexPath.section];
-    [tableView reloadData];
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [self.dataSource removeObjectAtIndex:indexPath.section];
+        
+        [self requestDelete:indexPath];
+        
+        [tableView reloadData];
+    }
 }
 
 #pragma mark - network
+
+-(void)requestDelete:(NSIndexPath *)indexPath
+{
+    HCNotificationDeleteApi *api = [[HCNotificationDeleteApi alloc]init];
+    api.NoticeId = 1000000004;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id info) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            
+        }
+    }];
+}
+
+-(void)changeReadState:(NSIndexPath *)indexPath
+{
+    HCNotificationUnreadChangeApi *api = [[HCNotificationUnreadChangeApi alloc]init];
+    api.NoticeId = 1000000004;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id info) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            
+        }
+    }];
+}
 
 - (void)requestHomeData
 {

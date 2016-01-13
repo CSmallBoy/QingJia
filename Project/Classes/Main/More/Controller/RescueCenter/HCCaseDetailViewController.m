@@ -29,7 +29,7 @@
     if (!_webview)
     {
         _webview = [[UIWebView alloc]initWithFrame:self.view.frame];
-        NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:self.urlStr]] ;
+        NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]] ;
         
         [_webview loadRequest:request];
     }

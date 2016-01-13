@@ -34,7 +34,7 @@
 
 - (id)formatResponseObject:(id)responseObject
 {
-    NSArray * array = responseObject[@"rows"];
+    NSArray * array = responseObject[@"Data"][@"rows"];
     NSArray *infoArr = [HCRescueCenterInfo mj_objectArrayWithKeyValuesArray:array];
     return infoArr;
 //    return responseObject[@"rows"];

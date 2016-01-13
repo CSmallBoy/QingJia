@@ -310,6 +310,8 @@
              [self.tableView reloadData];
          }else
          {
+             _info = info;
+             [self.tableView reloadData];
              [self showHUDError:message];
          }
      }];

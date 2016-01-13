@@ -16,4 +16,8 @@ typedef void(^HCTagManagerBlock)(HCRequestStatus requestStatus, NSString *messag
 - (void)startRequest:(HCTagManagerBlock)requestBlock;
 
 
+@property (nonatomic,strong) NSString *LabelStatus;
+@property (nonatomic,assign) int Start;
+@property (nonatomic,assign) int Count;
+
 @end

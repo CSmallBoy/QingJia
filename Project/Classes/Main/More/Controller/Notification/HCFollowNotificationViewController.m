@@ -52,7 +52,8 @@
         {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"follow0"];
             cell.textLabel.text = @"跟进信息";
-        }else if (indexPath.row != 0 )
+        }
+        else if (indexPath.row != 0 )
         {
            HCNotificationCenterFollowTableViewCell * followInfoCell = [[HCNotificationCenterFollowTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"follow"];
             followInfoCell.info = _info;
@@ -60,6 +61,7 @@
             cell = followInfoCell;
         }
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -122,7 +124,8 @@
 
 -(UIButton *)closeFollowBtn
 {
-    if (!_closeFollowBtn) {
+    if (!_closeFollowBtn)
+    {
         _closeFollowBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _closeFollowBtn.frame = CGRectMake(20, 40, WIDTH(self.footerView)-40, 40);
         _closeFollowBtn.backgroundColor = [UIColor redColor];
@@ -141,7 +144,7 @@
 {
     HCNotificationCenterFollowAPI *api = [[HCNotificationCenterFollowAPI alloc] init];
     api.NoticeId = 1000000004;
-    api.Start = 0;
+    api.Start = 1000;
     api.Count = 20;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCNotificationCenterInfo *info)
     {

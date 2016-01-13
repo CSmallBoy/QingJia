@@ -134,6 +134,10 @@
 {
     HCTagManagerApi *api = [[HCTagManagerApi alloc] init];
     
+    api.LabelStatus = @"已停用";
+    api.Start = 1000;
+    api.Count = 20;
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         if (requestStatus == HCRequestStatusSuccess)
         {

@@ -112,6 +112,7 @@
 }
 
 #pragma mark - network
+
 -(void)requestDelete:(NSIndexPath *)indexPath
 {
     HCNotificationDeleteApi *api = [[HCNotificationDeleteApi alloc]init];

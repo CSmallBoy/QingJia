@@ -12,7 +12,7 @@
 #import "HCClosedTagViewController.h"
 #import "HCCourseViewController.h"
 
-@interface HCTagManagerViewController ()<UIGestureRecognizerDelegate>
+@interface HCTagManagerViewController ()
 
 @property (nonatomic,strong) UISegmentedControl *segmented;
 
@@ -22,14 +22,9 @@
 
 @property (nonatomic,strong) UIBarButtonItem *rightItem;
 
-@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
-@property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGestureRecognizer;
 @end
 
 @implementation HCTagManagerViewController
-@synthesize
-leftSwipeGestureRecognizer,
-rightSwipeGestureRecognizer;
 
 - (void)viewDidLoad
 {
@@ -39,50 +34,9 @@ rightSwipeGestureRecognizer;
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.view addSubview:self.segmented];
     [self.view addSubview:self.activatedTagVC.view];
-    //添加左右滑动手势
-    [self setUpSwipe];
 }
 
-#pragma mark -----私有方法
--(void)setUpSwipe
-{
-    self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
-    self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
-    self.leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    self.rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
-    [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
-    
-}
-
-/**********左右滑动切换视图************/
-- (void)handleSwipes:(UISwipeGestureRecognizer *)sender
-{
-    if (sender.direction == UISwipeGestureRecognizerDirectionLeft)
-    {
-        if (self.segmented.selectedSegmentIndex != 2)
-        {
-            self.segmented.selectedSegmentIndex ++;
-        }
-        else if (self.segmented.selectedSegmentIndex == 2)
-        {
-            self.segmented.selectedSegmentIndex -= 2;
-        }
-    }
-    
-    if (sender.direction == UISwipeGestureRecognizerDirectionRight)
-    {
-        if (self.segmented.selectedSegmentIndex != 0)
-        {
-            self.segmented.selectedSegmentIndex --;
-        }
-        else if (self.segmented.selectedSegmentIndex == 0)
-        {
-            self.segmented.selectedSegmentIndex +=2;
-        }
-    }
-    [self handleSegmentedControl:self.segmented];
-}
+#pragma mark -----private methods
 
 -(void)handleRightItem
 {
@@ -160,7 +114,7 @@ rightSwipeGestureRecognizer;
     if (!_unactivatedTagVC)
     {
         _unactivatedTagVC = [[HCUnactivatedTagViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        _unactivatedTagVC.view.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-150);
+        _unactivatedTagVC.view.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-114);
         [self addChildViewController:_unactivatedTagVC];
     }
     return _unactivatedTagVC;
@@ -171,7 +125,7 @@ rightSwipeGestureRecognizer;
     if (!_closedTagVC)
     {
         _closedTagVC = [[HCClosedTagViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        _closedTagVC.view.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-150);
+        _closedTagVC.view.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-114);
         [self addChildViewController:_closedTagVC];
     }
     return _closedTagVC;

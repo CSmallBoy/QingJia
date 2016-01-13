@@ -35,6 +35,7 @@
     [super viewDidLoad];
     self.title = @"信息详情";
     [self setupBackItem];
+    
     [self requestHomeData];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview: self.userNameLab];
@@ -74,8 +75,7 @@
     {
         _userNameLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 74, 120, 44)];
         _userNameLab.textAlignment = NSTextAlignmentLeft;
-//        _userNameLab.text = self.info.userName;
-        _userNameLab.text = self.info.SendUser;
+//        _userNameLab.text = self.info.SendUser;
         _userNameLab.textColor = [UIColor blackColor];
         _userNameLab.font = [UIFont systemFontOfSize:16];
     }
@@ -88,8 +88,7 @@
     {
         _timeLab = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-200, 74, 190, 44)];
         _timeLab.textAlignment = NSTextAlignmentRight;
-//          _timeLab.text = self.info.time;
-        _timeLab.text = self.info.AddTime;
+//        _timeLab.text = self.info.AddTime;
         _timeLab.textColor = [UIColor lightGrayColor];
         _timeLab.font = [UIFont systemFontOfSize:14];
     }
@@ -100,16 +99,12 @@
 {
     if (!_notificationMessLab)
     {
-        _notificationMessLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 120, SCREEN_WIDTH-20, 1000)];
-//           _notificationMessLab.text = self.info.notificationMessage;
-        _notificationMessLab.text = self.info.NContent;
+        _notificationMessLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 120, SCREEN_WIDTH-20, 10)];
         _notificationMessLab.textAlignment = NSTextAlignmentLeft;
         _notificationMessLab.textColor = [UIColor blackColor];
         _notificationMessLab.numberOfLines = 0;
         _notificationMessLab.lineBreakMode = NSLineBreakByCharWrapping;
         _notificationMessLab.font = [UIFont systemFontOfSize:14];
-        
-        [_notificationMessLab setFrame:CGRectMake(10, 120, SCREEN_WIDTH-20, [_notificationMessLab contentSize].height)];
     }
     return _notificationMessLab;
 }
@@ -181,6 +176,10 @@
          if (requestStatus == HCRequestStatusSuccess)
          {
              _info = info;
+             _userNameLab.text = self.info.SendUser;
+             _timeLab.text = self.info.AddTime;
+             _notificationMessLab.text = self.info.NContent;
+             [_notificationMessLab setFrame:CGRectMake(10, 120, SCREEN_WIDTH-20, [_notificationMessLab contentSize].height)];
          }else
          {
              _info = info;

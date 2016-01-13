@@ -9,9 +9,5 @@
 #import "HCViewController.h"
 
 @interface HCCaseDetailViewController : HCViewController
-/**
- *新闻网址
- */
-@property (nonatomic,strong) NSString *urlStr;
 
 @end

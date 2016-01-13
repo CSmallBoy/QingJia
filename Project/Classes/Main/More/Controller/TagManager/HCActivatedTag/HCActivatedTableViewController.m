@@ -134,6 +134,9 @@
 - (void)requestHomeData
 {
     HCTagManagerApi *api = [[HCTagManagerApi alloc] init];
+    api.Start = 1000;
+    api.Count = 20;
+    api.LabelStatus = @"已激活";
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         if (requestStatus == HCRequestStatusSuccess)

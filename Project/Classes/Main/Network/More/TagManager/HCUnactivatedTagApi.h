@@ -18,4 +18,9 @@ typedef void(^HCUnactivatedTagBlock)(HCRequestStatus requestStatus, NSString *me
 
 - (void)startRequest:(HCUnactivatedTagBlock)requestBlock;
 
+@property (nonatomic,strong) NSString *LabelStatus;
+@property (nonatomic,assign) int Start;
+@property (nonatomic,assign) int Count;
+
+
 @end

@@ -15,10 +15,24 @@
     [super startRequest:requestBlock];
 }
 
+- (NSString *)requestUrl
+{
+    return @"Label/Label.ashx";
+}
+
 - (id)requestArgument
 {
-    return @{@"t": @"User,logout", @"token": @"23"};
+    NSDictionary *head = @{@"Action" : @"GetList" ,
+                           @"Token":[HCAccountMgr manager].loginInfo.Token ,
+                           @"UUID":[HCAccountMgr manager].loginInfo.UUID};
+    
+    NSDictionary *para = @{@"LabelStatus": _LabelStatus};
+    NSDictionary *result = @{@"Start" : @(_Start), @"Count" : @(_Count)};
+    NSDictionary *bodyDic = @{@"Head" : head, @"Para" : para, @"Result" : result};
+    
+    return @{@"json": [Utils stringWithObject:bodyDic]};
 }
+
 
 - (id)formatResponseObject:(id)responseObject
 {

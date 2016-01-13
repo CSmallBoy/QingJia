@@ -12,6 +12,7 @@
 #import "HCTagManagerTableViewCell.h"
 
 #import "lhScanQCodeViewController.h"
+#import "HCActivateTagApi.h"
 
 #define UnactivatedTagcell @"UnactivatedTagcell"
 
@@ -102,14 +103,16 @@
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
   
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action)
+    {
         
     }];
     
     UIAlertAction *otherAction = [UIAlertAction actionWithTitle:otherButtonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-        lhScanQCodeViewController *scanVC = [[lhScanQCodeViewController alloc]init];
-        [self.navigationController pushViewController:scanVC animated:YES];
+//        lhScanQCodeViewController *scanVC = [[lhScanQCodeViewController alloc]init];
+//        [self.navigationController pushViewController:scanVC animated:YES];
+                [self requestActivateTag];
     }];
     
     [alertController addAction:cancelAction];
@@ -120,9 +123,29 @@
 
 #pragma mark - network
 
+-(void)requestActivateTag
+{
+    HCActivateTagApi *api = [[HCActivateTagApi alloc]init];
+    api.LabelGUID = @"d52fb7c5-462d-458d-94bd-35904889a95d";
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data)
+     {
+         if (requestStatus == HCRequestStatusSuccess)
+         {
+             [self.tableView reloadData];
+         }else
+         {
+             [self showHUDError:message];
+         }
+     }];
+}
+
 - (void)requestHomeData
 {
     HCUnactivatedTagApi *api = [[HCUnactivatedTagApi alloc] init];
+    api.Start = 1000;
+    api.Count = 20;
+    api.LabelStatus = @"未激活";
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCTagManagerInfo *info) {
         if (requestStatus == HCRequestStatusSuccess)
