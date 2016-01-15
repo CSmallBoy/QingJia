@@ -136,6 +136,7 @@
     if (index == 2)
     {
         HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
+        editComment.data = @{@"data": info};
         UIViewController *rootController = self.view.window.rootViewController;
         if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
         {

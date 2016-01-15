@@ -28,17 +28,25 @@
     {
         permitUserString = [_PermitUserArr componentsJoinedByString:@","];
     }
+    if (IsEmpty(_FTImages))
+    {
+        _FTImages = @[];
+    }
     
     NSDictionary *head = @{@"Action": @"Publish", @"Token": [HCAccountMgr manager].loginInfo.Token, @"UUID": [HCAppMgr manager].uuid, @"PlatForm": [HCAppMgr manager].systemVersion};
     
+    NSString *defaultFamilyId = [HCAccountMgr manager].loginInfo.DefaultFamilyID;
+    
     NSDictionary *entity = @{
-                             @"FamilyID": @([[HCAccountMgr manager].loginInfo.DefaultFamilyID integerValue]),
+                             @"FamilyID": [Utils getNumberWithString:defaultFamilyId],
+                             @"FTImages": _FTImages,
                              @"FTContent": _FTContent,
                              @"OpenAddress": @([_OpenAddress integerValue]),
-                             @"PermitType": _PermitType,
+                             @"PermitType": @([_PermitType integerValue]),
                              @"PermitUserArr": permitUserString,
                              @"CreateLocation": [NSString stringWithFormat:@"%@,%@", [HCAppMgr manager].longitude, [HCAppMgr manager].latitude],
-                             @"CreateAddrSmall": [HCAppMgr manager].addressSmall,@"CreateAddr": [HCAppMgr manager].address
+                             @"CreateAddrSmall": [HCAppMgr manager].addressSmall,
+                             @"CreateAddr": [HCAppMgr manager].address
                              };
     
     NSDictionary *body = @{@"Head": head, @"Entity": entity};

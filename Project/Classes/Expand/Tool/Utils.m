@@ -583,6 +583,13 @@
     return dic;
 }
 
++ (NSNumber *)getNumberWithString:(NSString *)string
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    return [numberFormatter numberFromString:string];
+}
+
 
 // 得到中间显示200为橘色的文字
 + (NSMutableAttributedString *)changeStringColorWithStart:(NSString *)start colorString:(NSString *)colorStr end:(NSString *)end

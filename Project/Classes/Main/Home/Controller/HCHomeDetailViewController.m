@@ -67,7 +67,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1 + _detailInfo.commentsArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -202,9 +202,9 @@
 - (void)requestHomeDetail
 {
     [self showHUDView:nil];
-    
+    HCHomeInfo *info = self.data[@"data"];
     HCHomeDetailApi *api = [[HCHomeDetailApi alloc] init];
-    api.FTID = @"1000000014";
+    api.FTID = info.KeyId;
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info) {
         if (requestStatus == HCRequestStatusSuccess)

@@ -11,7 +11,7 @@
 /* ********************系统配置********************* */
 
 //定义一个API
-#define kAPIURL          @"http://192.168.10.199:8010/"            //外网
+#define kAPIURL          @"http://www.szmingma.com:8010/"            //外网
 //#define kAPIURL             @"https://baidu.com"
 
 #define kIMGURL        @"http://192.168.10.199:8008/"

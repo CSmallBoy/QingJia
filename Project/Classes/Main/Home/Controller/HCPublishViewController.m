@@ -21,6 +21,8 @@
 @property (nonatomic, strong) UIBarButtonItem *publishBtnItem;
 @property (nonatomic, assign) CGFloat editHeight;
 
+@property (nonatomic, strong) NSMutableArray *uploadImageNameArr;
+
 @end
 
 @implementation HCPublishViewController
@@ -223,7 +225,7 @@
     
     HCHomePublishApi *api = [[HCHomePublishApi alloc] init];
     
-    api.FTImages = _info.FTImages;
+    api.FTImages = _uploadImageNameArr;
     api.FTContent = _info.FTContent;
     api.OpenAddress = _info.OpenAddress;
     api.PermitType = _info.PermitType;

@@ -45,6 +45,10 @@
 // 获取head的头
 + (NSDictionary *)getRequestHeadWithAction:(NSString *)action;
 
+// NSString 转 NSNumber
+
++ (NSNumber *)getNumberWithString:(NSString *)string;
+
 //  获取设备类型
 + (NSString *)systemModel;
 

@@ -23,7 +23,7 @@
 - (id)requestArgument
 {
     NSDictionary *head = @{@"Action": @"Like", @"Token": [HCAccountMgr manager].loginInfo.Token, @"UUID": [HCAccountMgr manager].loginInfo.UUID};
-    NSDictionary *para = @{@"TimesId": @([_TimesId integerValue])};
+    NSDictionary *para = @{@"TimesId": [Utils getNumberWithString:_TimesId]};
     NSDictionary *body = @{@"Head": head, @"Para": para};
     return @{@"json": [Utils stringWithObject:body]};
 }

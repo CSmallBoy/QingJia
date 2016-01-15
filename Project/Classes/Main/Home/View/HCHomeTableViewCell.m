@@ -126,10 +126,15 @@
     if (!IsEmpty(info.HeadImg))
     {
         [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.HeadImg] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
+    }else
+    {
+        [self.headButton setImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
     }
     
     self.nickName.text = info.NickName;
-    self.times.text = [Utils transformServerDate:[info.CreateTime integerValue]];
+    
+    NSDate *date = [Utils getDateWithString:info.CreateTime format:@"yyyy-MM-dd HH:mm:ss"];
+    self.times.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
     // 手机来源
 //    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
     

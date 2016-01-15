@@ -7,14 +7,18 @@
 //
 
 #import "HCEditCommentViewController.h"
+#import "HCHomeInfo.h"
 #import "HCEditCommentInfo.h"
 #import "HCEditCommentApi.h"
+#import "HCImageUploadApi.h"
+#import "HCImageUploadInfo.h"
 #import "HCEditCommentView.h"
 
 @interface HCEditCommentViewController ()<HCEditCommentViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) HCEditCommentView *contentView;
 @property (nonatomic, strong) HCEditCommentInfo *info;
+@property (nonatomic, strong) NSArray *FTImages;
 
 @end
 
@@ -142,7 +146,14 @@
         [self showHUDText:@"评论内容不能为空！"];
         return;
     }
-    [self requestEditComment];
+    if (_info.FTImages.count > 1)
+    {
+        [self requestImageUpload];
+    }else
+    {
+       [self requestEditComment];
+    }
+    
 }
 
 - (void)handleBackButton
@@ -172,7 +183,10 @@
     [self showHUDView:nil];
     
     HCEditCommentApi *api = [[HCEditCommentApi alloc] init];
+    HCHomeInfo *homeInfo = self.data[@"data"];
+    _info.FTID = homeInfo.KeyId;
     api.commentInfo = _info;
+    api.FTImages = _FTImages;
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
         if (requestStatus == HCRequestStatusSuccess)
@@ -182,6 +196,38 @@
         }else
         {
             [self showHUDError:message];
+        }
+    }];
+}
+
+- (void)requestImageUpload
+{
+    [self showHUDView:nil];
+    
+    HCImageUploadApi *api = [[HCImageUploadApi alloc] init];
+     api.fileType = @"MTimes";
+    
+    NSMutableArray *imageArr = [NSMutableArray arrayWithCapacity:_info.FTImages.count-1];
+    for (NSInteger i = 0; i < _info.FTImages.count-1; i++)
+    {
+        [imageArr addObject:_info.FTImages[i]];
+    }
+    api.FTImages = imageArr;
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self hideHUDView];
+            NSMutableArray *ImageNameArr = [NSMutableArray arrayWithCapacity:array.count];
+            for (HCImageUploadInfo *info in array)
+            {
+                [ImageNameArr addObject:info.FileName];
+            }
+            _FTImages = ImageNameArr;
+            [self requestEditComment];
+        }else
+        {
+            [self showHUDError:@"图片上传失败!"];
         }
     }];
 }

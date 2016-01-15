@@ -25,7 +25,7 @@
 
 - (id)requestArgument
 {
-    NSString *ParentId = @"";
+    NSString *ParentId = @"0";
     NSString *ItemId = @"";
     if (!IsEmpty(_ParentId))
     {
@@ -37,7 +37,8 @@
     }
     
     NSDictionary *head = @{@"Action": @"GetList",@"Token": [HCAccountMgr manager].loginInfo.Token, @"UUID": [HCAccountMgr manager].loginInfo.UUID, @"PlatForm": [HCAppMgr manager].systemVersion};
-    NSDictionary *para = @{@"FTID": _FTID, @"ParentId": ParentId, @"ItemId": ItemId};
+    
+    NSDictionary *para = @{@"FTID": [Utils getNumberWithString:_FTID], @"ParentId": [Utils getNumberWithString:ParentId], @"ItemId": ItemId};
     NSDictionary *body = @{@"Head": head, @"Para": para};
     return @{@"json": [Utils stringWithObject:body]};
 }

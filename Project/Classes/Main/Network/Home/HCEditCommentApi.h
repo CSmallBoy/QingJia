@@ -15,6 +15,7 @@ typedef void(^HCEditCommentBlock)(HCRequestStatus requestStatus, NSString *messa
 @interface HCEditCommentApi : HCRequest
 
 @property (nonatomic, strong) HCEditCommentInfo *commentInfo;
+@property (nonatomic, strong) NSArray *FTImages;
 
 - (void)startRequest:(HCEditCommentBlock)requestBlock;
 
