@@ -9,5 +9,7 @@
 #import "HCTableViewController.h"
 
 @interface HCPromiseDetailViewController1 : HCTableViewController
-@property(nonatomic,strong) NSString  *ObjectId;
+
+@property(nonatomic,strong) NSNumber  *ObjectId;
+
 @end

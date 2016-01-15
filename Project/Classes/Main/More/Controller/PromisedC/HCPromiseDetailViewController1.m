@@ -7,22 +7,25 @@
 //
 
 #import "HCPromiseDetailViewController1.h"
-#import "HCPaymentViewController.h"
+
 #import "HCAvatarMgr.h"
+#import "UUDatePicker.h"
+
 #import "HCPromisedDetailAPI.h"
-#import "HCContactPersonInfo.h"
+#import "HCPromisedAddSelectAPI.h"
+
+#import "HCPromisedContractPersonInfo.h"
 #import "HCPromisedDetailInfo.h"
 #import "HCPromisedMissInfo.h"
 
-#import "HCPickerView.h"
+
 #import "HCPromisedMissCell.h"
 #import "HCBaseDetailUserInfoCell.h"
 #import "HCPromisedMedicalCell.h"
-#import "HCCustomTagContactTableViewCell.h"
-#import "UUDatePicker.h"
-@interface HCPromiseDetailViewController1 ()<HCPickerViewDelegate,HCBaseUserInfoCellDelegate,HCCustomTagContactTableViewCellDelegate,HCPromisedMedicalCellDelegate,HCPromisedMissCellDelegate>
+#import "HCPromisedContactTableViewCell.h"
 
-@property (nonatomic, strong) HCPickerView *datePicker;
+@interface HCPromiseDetailViewController1 ()<HCBaseUserInfoCellDelegate,HCPromisedContactTableViewCellDelegate,HCPromisedMedicalCellDelegate,HCPromisedMissCellDelegate>
+
 @property(nonatomic,strong)UIView *dateDetailPicker;
 
 @property (nonatomic,strong) UIView *footerView;
@@ -52,25 +55,25 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
 
-    if (_detailInfo.ContactArray.count ==2) {
+    if (self.detailInfo.ContactArray.count ==2) {
         _isAdd = NO;
     }
     else
     {
         _isAdd = YES;
     }
-    _detailInfo = [[HCPromisedDetailInfo alloc] init];
+//    _detailInfo = [[HCPromisedDetailInfo alloc] init];
     _missInfo = [[HCPromisedMissInfo alloc]init];
-    _detailInfo.ContactArray  = [NSMutableArray array];
-    [_detailInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
+    _missInfo.ObjectId = self.ObjectId;
+//    _detailInfo.ContactArray  = [NSMutableArray array];
+//    [_detailInfo.ContactArray addObject:[[HCPromisedContractPersonInfo alloc] init]];
     
-    [self requestData];
+//    [self requestData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.datePicker remove];
 }
 
 #pragma mark---UITableViewDelegate
@@ -82,7 +85,7 @@
     {
         HCBaseDetailUserInfoCell *baseDetailUserInfoCell =[[HCBaseDetailUserInfoCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"baseInfo"];
         baseDetailUserInfoCell.delegate = self;
-        baseDetailUserInfoCell.detailInfo = _detailInfo;
+        baseDetailUserInfoCell.detailInfo = self.detailInfo;
         baseDetailUserInfoCell.indexPath = indexPath;
         baseDetailUserInfoCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return baseDetailUserInfoCell;
@@ -90,7 +93,7 @@
     else if (indexPath.section == (_isAdd ? 3 :4))
     {
         HCPromisedMedicalCell * promisedMedicalCell = [[HCPromisedMedicalCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"promisedMedical"];
-        promisedMedicalCell.detailInfo = _detailInfo;
+        promisedMedicalCell.detailInfo = self.detailInfo;
         promisedMedicalCell.indexPath = indexPath;
         promisedMedicalCell.delegate = self;
         promisedMedicalCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -102,18 +105,16 @@
         missCell.missInfo = _missInfo;
         missCell.indexPath = indexPath;
         missCell.delegate = self;
-        missCell.isAdd = _isAdd;
         missCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return missCell;
-         
     }
     else
     {
         NSString *DCID = [NSString stringWithFormat:@"contactCell%ld",indexPath.section];
-        HCCustomTagContactTableViewCell *contactCell = [[HCCustomTagContactTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:DCID];
+        HCPromisedContactTableViewCell *contactCell = [[HCPromisedContactTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:DCID];
+        contactCell.isEdit = NO;
         contactCell.delegate = self;
-        contactCell.contactArr = _detailInfo.ContactArray;
-        
+        contactCell.contactArr = self.detailInfo.ContactArray;
         contactCell.indexPath = indexPath;
         contactCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return contactCell;
@@ -122,26 +123,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-    {
-        if (indexPath.row == 3)
-        {
-            [self.view endEditing:YES];
-            [self.datePicker show];
-        }
-        else
-        {
-            [self.datePicker remove];
-        }
-    }else if (indexPath.section == (_isAdd ?2:3))
+     if (indexPath.section == (_isAdd ?2:3))
       {
-        
         if (indexPath.row == 1) {
             [self.view endEditing:YES];
             [self.view addSubview:self.dateDetailPicker];
         }
-      
-    }
+      }
 }
 
 #pragma mark--UITableViewDataSource
@@ -157,7 +145,7 @@
     {
         switch (section) {
             case 0:
-                return 6;
+                return 8;
                 break;
             case 1:
                 return 4;
@@ -173,6 +161,7 @@
         }
     }else
     {
+
         switch (section) {
             case 0:
                 return  8;
@@ -192,6 +181,7 @@
             default:
                 break;
         }
+        
     }
     return 0;
 }
@@ -214,8 +204,7 @@
     else if (section == (_isAdd ? 3 : 4))
     {
         return self.medicalInfoHeaderView;
-    }
-    else if (section == (_isAdd ? 2 : 3))
+    }    else if (section == (_isAdd ? 2 : 3))
     {
         return self.missHeaderView;
         
@@ -260,7 +249,6 @@
 
 -(void)addUserHeaderIMG:(UIButton *)button
 {
-    [self.datePicker remove];
     [self.view endEditing:YES];
     
     [HCAvatarMgr manager].isUploadImage = YES;
@@ -287,33 +275,17 @@
 
 -(void)dismissDatePicker
 {
-    [self.datePicker remove];
     [self.dateDetailPicker removeFromSuperview];
 }
 
 -(void)dismissDatePicker0
 {
-    [self.datePicker remove];
     [self.dateDetailPicker removeFromSuperview];
-
 }
 
 -(void)dismissDatePicker2
 {
-    [self.datePicker remove];
     [self.dateDetailPicker removeFromSuperview];
-
-}
-
-#pragma mark - HCPickerViewDelegate
-
-- (void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result
-{
-    NSDate *date = result[@"date"];
-    _detailInfo.ObjectBirthDay = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
-    HCBaseDetailUserInfoCell *cell = (HCBaseDetailUserInfoCell *)
-    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
-    cell.textField.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
 }
 
 
@@ -355,7 +327,7 @@
     //        [self showHUDText:@"请输入正确的身份证号码"];
     //        return;
     //    }
-//    [self requestSaveResumeData];
+    [self requestSelectResumeData];
    
 }
 
@@ -364,11 +336,9 @@
     if (_isAdd  == YES)
     {
         _isAdd  = !_isAdd;
-        [_detailInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
+        [_detailInfo.ContactArray addObject:[[HCPromisedContractPersonInfo alloc] init]];
         [self.tableView reloadData];
-       
     }
-    
 }
 
 -(void)handleDeleteContact
@@ -389,10 +359,11 @@
 - (UIView *)dateDetailPicker
 {
     if(!_dateDetailPicker){
-        _dateDetailPicker = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-250, SCREEN_WIDTH, 250)];
-        _dateDetailPicker.backgroundColor = [UIColor whiteColor];
-        UUDatePicker *udatePicker = [[UUDatePicker alloc]initWithframe:CGRectMake(20, 50,SCREEN_WIDTH, 200) PickerStyle:0 didSelected:^(NSString *year, NSString *month, NSString *day, NSString *hour, NSString *minute, NSString *weekDay) {
+        _dateDetailPicker = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-200, SCREEN_WIDTH, 250)];
+        _dateDetailPicker.backgroundColor = [UIColor clearColor];
+        UUDatePicker *udatePicker = [[UUDatePicker alloc]initWithframe:CGRectMake(0, 50,SCREEN_WIDTH, 150) PickerStyle:0 didSelected:^(NSString *year, NSString *month, NSString *day, NSString *hour, NSString *minute, NSString *weekDay) {
             _missInfo.LossTime = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00",year,month,day,hour,minute];
+            
             [self.tableView reloadData];
         }];
         udatePicker.maxLimitDate = [NSDate date];
@@ -400,25 +371,12 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         
         [button setTitle:@"确定" forState:UIControlStateNormal];
-        button.frame = CGRectMake(SCREEN_WIDTH-80, 0, 80, 50);
+        button.frame = CGRectMake(SCREEN_WIDTH-80, 50, 80, 30);
         [button addTarget:self action:@selector(dismissuDatePicker) forControlEvents:UIControlEventTouchUpInside];
         
         [_dateDetailPicker addSubview:button];
     }
     return _dateDetailPicker;
-}
-
-
-- (HCPickerView *)datePicker
-{
-    if (_datePicker == nil)
-    {
-        _datePicker = [[HCPickerView alloc] initDatePickWithDate:[NSDate date]
-                                                  datePickerMode:UIDatePickerModeDate isHaveNavControler:YES];
-        _datePicker.datePicker.maximumDate = [NSDate date];
-        _datePicker.delegate = self;
-    }
-    return _datePicker;
 }
 
 -(UIView*)basicInfoHeaderView
@@ -442,20 +400,6 @@
         UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 30)];
         headerLabel.text = @"紧急联系人";
         headerLabel.font = [UIFont systemFontOfSize:12];
-        
-//        UIButton *addContactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        addContactBtn.frame = CGRectMake(70, 5, 20, 20);
-//        if (_isAdd)
-//        {
-//            [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
-//        }
-//        else
-//        {
-//            return nil;
-//        }
-//        [addContactBtn setBackgroundImage:OrigIMG(@"yihubaiying_but_Plus") forState:UIControlStateNormal];
-//        
-//        [_contactInfoHeaderView addSubview:addContactBtn];
         [_contactInfoHeaderView addSubview:headerLabel];
     }
     return _contactInfoHeaderView;
@@ -466,15 +410,10 @@
     if (!_deleteContactInfoView)
     {
         _deleteContactInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 30)];
-        UIButton *deleteContactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [deleteContactBtn setBackgroundImage:OrigIMG(@"yihubaiying_but_reduce") forState:UIControlStateNormal];
-        deleteContactBtn.frame = CGRectMake(70, 5, 20, 20);
-        [deleteContactBtn addTarget:self action:@selector(handleDeleteContact) forControlEvents:UIControlEventTouchUpInside];
         UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 30)];
         headerLabel.text = @"紧急联系人";
         headerLabel.font = [UIFont systemFontOfSize:12];
         [_deleteContactInfoView addSubview:headerLabel];
-        [_deleteContactInfoView addSubview:deleteContactBtn];
     }
     return _deleteContactInfoView;
 }
@@ -534,30 +473,78 @@
     return _titleLabel;
 }
 
-#pragma mark---network
 
+- (HCPromisedDetailInfo *)detailInfo
+{
+    if(!_detailInfo){
+        _detailInfo = [[HCPromisedDetailInfo alloc]init];
+        _detailInfo.ObjectXName = @"王二小";
+        _detailInfo.ObjectSex = @"男";
+        _detailInfo.ObjectBirthDay = @"1992-11-08";
+        _detailInfo.ObjectHomeAddress = @"上海市";
+        _detailInfo.ObjectSchool = @"第一小学";
+        _detailInfo.ObjectIdNo = @"340824111911083226";
+        _detailInfo.ObjectCareer = @"学生";
+        _detailInfo.BloodType = @"AB";
+        _detailInfo.Allergic = @"没有";
+    
+        HCPromisedContractPersonInfo *info = [[HCPromisedContractPersonInfo alloc]init];
+        info.ObjectXName = @"老王一";
+        info.ObjectXRelative =@"叔叔1";
+        info.PhoneNo = @"12345678909";
+        info.IDNo = @"2345245246";
+        
+        HCPromisedContractPersonInfo *info1 = [[HCPromisedContractPersonInfo alloc]init];
+        info1.ObjectXName = @"老王二";
+        info1.ObjectXRelative =@"叔叔2";
+        info1.PhoneNo = @"0987456789";
+        info1.IDNo = @"245634565654u677546";
+        
+        [_detailInfo.ContactArray addObject:info];
+        [_detailInfo.ContactArray addObject:info1];
+    }
+    return _detailInfo;
+}
+
+#pragma mark---network
+//请求详情数据
 -(void)requestData
 {
-    HCPromisedDetailAPI  *api = [[HCPromisedDetailAPI alloc]init];
-    api.ObjectId = self.ObjectId; ;
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *arr) {
+//    HCPromisedDetailAPI  *api = [[HCPromisedDetailAPI alloc]init];
+//    api.ObjectId = self.ObjectId; ;
+//    
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *arr) {
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            self.detailInfo = arr[0];
+//            
+//            self.missInfo = arr[1];
+//            [self.tableView reloadData];
+//        }
+//        else
+//        {
+//            [self showHUDError:message];
+//        }
+//    }];
+}
+// 提交数据
+-(void)requestSelectResumeData
+{
+    [self showHUDView:nil];
+
+    HCPromisedAddSelectAPI*api = [[HCPromisedAddSelectAPI alloc] init];
+    api.missInfo = self.missInfo;
+
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
         if (requestStatus == HCRequestStatusSuccess)
         {
-            self.detailInfo = arr[0];
-            
-            self.missInfo = arr[1];
+            [self showHUDSuccess:@"提交成功"];
             [self.tableView reloadData];
         }
         else
         {
             [self showHUDError:message];
         }
-        
-        
-        
     }];
-    
 }
-
 @end

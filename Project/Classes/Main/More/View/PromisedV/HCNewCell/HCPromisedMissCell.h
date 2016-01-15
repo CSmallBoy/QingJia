@@ -18,7 +18,7 @@
 
 @interface HCPromisedMissCell : UITableViewCell
 
-@property(nonatomic,assign) BOOL  isAdd;
+
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
 @property (nonatomic, strong) HCPromisedMissInfo *missInfo;

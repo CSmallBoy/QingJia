@@ -23,7 +23,7 @@
 
 -(id)requestArgument
 {
-    NSDictionary * head = @{@"Action" : @"CreateWithData",
+    NSDictionary * head = @{@"Action" : @"Create",
                             @"Token" : [HCAccountMgr manager].loginInfo.Token,
                             @"UUID":[HCAppMgr manager].uuid};
     NSDictionary  *jsonPara = [_missInfo mj_keyValues];

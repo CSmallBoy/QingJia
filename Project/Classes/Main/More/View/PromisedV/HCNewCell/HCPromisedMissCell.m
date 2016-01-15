@@ -7,6 +7,7 @@
 //
 #import "HCPromisedMissCell.h"
 #import "HCFeedbackTextView.h"
+
 #import "HCPromisedMissInfo.h"
 
 @interface HCPromisedMissCell ()<UITextFieldDelegate,HCFeedbackTextViewDelegate>
@@ -45,7 +46,8 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    _missInfo.LossAddress = _textField.text;
+    _missInfo.LossAddress = textField.text;
+    
 }
 
 #pragma mark ----HCFeedbackTextViewDelegate
@@ -68,9 +70,6 @@
     {
         _missInfo.LossDesciption = self.textView.textView.text;
     }
-   
-
-  
 }
 
 #pragma mark---Setter Or Getter
@@ -128,7 +127,6 @@
     {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 4, SCREEN_WIDTH-100, 40)];
         _textField.textAlignment = NSTextAlignmentLeft;
-        //        _textField.textColor = [UIColor blackColor];
         _textField.font = SYSTEMFONT(15);
     }
     return _textField;

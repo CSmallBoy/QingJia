@@ -9,6 +9,7 @@
 #import "HCBaseDetailUserInfoCell.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
+
 #import "HCPromisedDetailInfo.h"
 
 @interface HCBaseDetailUserInfoCell ()<UITextFieldDelegate>
@@ -102,6 +103,12 @@
     }else if (indexPath.row == 5)
     {
         self.textField.text = _detailInfo.ObjectSchool;
+    }else if (indexPath.row == 6)
+    {
+        self.textField.text = _detailInfo.ObjectIdNo;
+    }else if (indexPath.row == 7)
+    {
+        self.textField.text = _detailInfo.ObjectCareer;
     }
 
     self.textField.enabled = NO;
@@ -165,6 +172,8 @@
                                  @"请输入生日",
                                  @"请输入住址",
                                  @"请输入学校名称",
+                                 @"请输入身份证号",
+                                 @"请输入职业"
                               ];
     }
     return _placeholderTitleArr;
@@ -180,6 +189,8 @@
                       @"生日",
                       @"住址",
                       @"学校",
+                      @"身份证",
+                      @"职业"
                      ];
     }
     return _titleArr;

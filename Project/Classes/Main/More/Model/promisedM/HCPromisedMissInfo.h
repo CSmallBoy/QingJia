@@ -24,6 +24,6 @@
 /**
  *  id
  */
-@property(nonatomic,assign)int  ObjectId;
+@property(nonatomic,strong)NSNumber *  ObjectId;
 
 @end

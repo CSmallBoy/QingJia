@@ -7,8 +7,7 @@
 //
 
 #import "HCRequest.h"
-#import "HCPromisedDetailInfo.h"
-#import "HCPromisedMissInfo.h"
+
 
 typedef void(^HCPromisedDetailBlock) (HCRequestStatus requestStatus,NSString *message, NSArray  *infoArr);
 

@@ -62,16 +62,6 @@
 -(void)feedbackTextViewdidEndEditing
 {
     _detailInfo.Allergic = self.textView.textView.text;
-    
-//    if ([self.delegate respondsToSelector:@selector(writeAllergic)])
-//    {
-//        [self.delegate writeAllergic];
-//    }
-//    
-//    if (self.textView.textView.text != nil) {
-//        
-//        self.textView.textView.textColor = [UIColor blackColor];
-//    }
 }
 
 #pragma mark---Setter Or Getter
@@ -80,8 +70,7 @@
 {
     _indexPath = indexPath;
     _titleLabel.text = self.titleArr[indexPath.row];
-//    self.textField.enabled = _isEdit;
-//    self.textView.textView.editable = _isEdit;
+    _textField.enabled = _isEdit;
     if (indexPath.row == 0)
     {
         self.textField.placeholder = self.placeholderTitleArr[indexPath.row];

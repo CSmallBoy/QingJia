@@ -7,7 +7,8 @@
 //
 
 #import "HCPromisedDetailAPI.h"
-#import "HCContactPersonInfo.h"
+#import "HCPromisedDetailInfo.h"
+#import "HCPromisedMissInfo.h"
 
 @implementation HCPromisedDetailAPI
 

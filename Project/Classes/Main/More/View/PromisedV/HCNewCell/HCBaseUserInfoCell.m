@@ -8,6 +8,7 @@
 #import "HCBaseUserInfoCell.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
+
 #import "HCPromisedDetailInfo.h"
 
 @interface HCBaseUserInfoCell ()<UITextFieldDelegate>
@@ -52,7 +53,8 @@
         _detailInfo.ObjectXName = textField.text;
     }else if (textField.tag == 2)
     {
-        _detailInfo.ObjectSex = textField.text;
+            _detailInfo.ObjectSex = textField.text;
+  
     }else if (textField.tag == 3)
     {
         _detailInfo.ObjectBirthDay = textField.text;
@@ -65,6 +67,7 @@
     }else if (textField.tag == 6)
     {
         _detailInfo.ObjectIdNo = textField.text;
+        
     }else if (textField.tag == 7)
     {
         _detailInfo.ObjectCareer = textField.text;
@@ -138,8 +141,16 @@
     if (!_headerIMGBtn)
     {
         _headerIMGBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 2, 80, 80)];
-        [_headerIMGBtn setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
+        if (self.image == nil) {
+            [_headerIMGBtn setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
+        }
+        else
+        {
+            [_headerIMGBtn setBackgroundImage:self.image forState:UIControlStateNormal];
+        }
+        
         [_headerIMGBtn addTarget:self action:@selector(handleheaderIMG:) forControlEvents:UIControlEventTouchUpInside];
+        ViewRadius(_headerIMGBtn, 40);
     }
     return _headerIMGBtn;
 }

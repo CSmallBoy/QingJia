@@ -7,7 +7,9 @@
 //
 
 #import "HCPromisedContactTableViewCell.h"
+
 #import "HCPromisedContractPersonInfo.h"
+
 @interface HCPromisedContactTableViewCell ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *titleArr;
@@ -57,10 +59,21 @@
     }
     else if (textField.tag == 2)
     {
+        if (textField.text.length != 11) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入正确的手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+            return;
+        }
         _info.PhoneNo = textField.text;
     }
     else if (textField.tag == 3)
     {
+        if (textField.text.length != 18) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入正确的身份证号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+            return;
+        }
+
         _info.IDNo = textField.text;
     }
 }
@@ -75,6 +88,7 @@
     self.textField.attributedPlaceholder = attriString;
     self.textField.delegate = self;
     self.textField.tag = indexPath.row;
+    self.textField.enabled = _isEdit;
     _info = _contactArr[_indexPath.section-1];
    
    

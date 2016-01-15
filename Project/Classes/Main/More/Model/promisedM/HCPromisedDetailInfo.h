@@ -55,6 +55,4 @@
  */
 @property (nonatomic,strong) NSMutableArray *ContactArray;
 
-
-
 @end

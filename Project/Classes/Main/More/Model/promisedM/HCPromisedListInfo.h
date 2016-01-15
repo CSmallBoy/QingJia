@@ -16,6 +16,6 @@
 /**
  *  ID
  */
-@property(nonatomic,copy)NSString * ObjectId;
+@property(nonatomic,copy)NSNumber * ObjectId;
 
 @end

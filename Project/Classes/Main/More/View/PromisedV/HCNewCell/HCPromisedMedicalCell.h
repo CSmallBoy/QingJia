@@ -18,7 +18,7 @@
 @end
 
 @interface HCPromisedMedicalCell : UITableViewCell
-//@property(nonatomic,assign)  BOOL  isEdit;
+@property(nonatomic,assign)  BOOL  isEdit;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) HCPromisedDetailInfo *detailInfo;
 @property (nonatomic, weak) id<HCPromisedMedicalCellDelegate>delegate;

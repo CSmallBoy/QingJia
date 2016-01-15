@@ -138,7 +138,7 @@
     NSArray *indexArray = [self getNowDate:self.ScrollToDate];
     
     if (!myPickerView) {
-        myPickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        myPickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.frame.size.height)];
         myPickerView.showsSelectionIndicator = YES;
         myPickerView.backgroundColor = [UIColor clearColor];
         myPickerView.delegate = self;
@@ -198,7 +198,8 @@
 
 - (void)addLabelWithNames:(NSString *)name withPointX:(NSInteger)point_x
 {
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(point_x, 99, 20, 20)];
+
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(point_x , 99, 20, 20)];
     label.text = name;
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:18];
@@ -215,7 +216,7 @@
 {
     if (self.datePickerStyle == UUDateStyle_YearMonthDayHourMinute){
         if (isIOS7) {
-            [self creatValuePointXs:@[@"80",@"135",@"190",@"245",@"300"]
+            [self creatValuePointXs:@[@(SCREEN_WIDTH/2-80),@(SCREEN_WIDTH/2-20),@(SCREEN_WIDTH/2+30),@(SCREEN_WIDTH/2 +80),@(SCREEN_WIDTH/2+140)]
                           withNames:@[@"年",@"月",@"日",@"时",@"分"]];
         }
         return 5;

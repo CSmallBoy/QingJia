@@ -8,24 +8,28 @@
 
 #import "HCAddPromiseViewController1.h"
 #import "HCPaymentViewController.h"
+
 #import "HCAvatarMgr.h"
 #import "HCPickerView.h"
+#import "UUDatePicker.h"
+
 
 #import "HCPromisedAddCallMessageAPI.h"
 #import "HCPromisedAddSelectAPI.h"
 #import "HCPromisedDetailAPI.h"
+#import "HCImageUploadApi.h"
 
-#import "HCContactPersonInfo.h"
 #import "HCPromisedDetailInfo.h"
 #import "HCPromisedMissInfo.h"
 #import "HCPromisedContractPersonInfo.h"
+#import "HCImageUploadInfo.h"
 
 
 #import "HCPromisedMissCell.h"
 #import "HCBaseUserInfoCell.h"
 #import "HCPromisedMedicalCell.h"
 #import "HCPromisedContactTableViewCell.h"
-#import "UUDatePicker.h"
+
 @interface HCAddPromiseViewController1 ()<HCPickerViewDelegate,HCBaseUserInfoCellDelegate,HCPromisedContactTableViewCellDelegate,HCPromisedMedicalCellDelegate,HCPromisedMissCellDelegate>
 
 @property (nonatomic, strong) HCPickerView *datePicker;
@@ -41,6 +45,7 @@
 @property (nonatomic, assign) CGFloat height; // 药物史的高度
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) NSString *history;
+@property(nonatomic,strong)UIImage *image;
 
 @property (nonatomic,assign) BOOL isAdd;
 
@@ -61,7 +66,7 @@
     _detailInfo = [[HCPromisedDetailInfo alloc] init];
     _missInfo = [[HCPromisedMissInfo alloc]init];
     _detailInfo.ContactArray  = [NSMutableArray array];
-    [_detailInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
+    [_detailInfo.ContactArray addObject:[[HCPromisedContractPersonInfo alloc] init]];
 
 }
 
@@ -80,6 +85,7 @@
     {
          HCBaseUserInfoCell*baseUserInfoCell =[[HCBaseUserInfoCell alloc]initWithStyle:
                                                UITableViewCellStyleValue1 reuseIdentifier:@"CustonTag"];
+        baseUserInfoCell.image = _image;
         baseUserInfoCell.delegate = self;
         baseUserInfoCell.detailInfo = _detailInfo;
         baseUserInfoCell.indexPath = indexPath;
@@ -92,6 +98,7 @@
         promisedMedicalCell.detailInfo = _detailInfo;
         promisedMedicalCell.indexPath = indexPath;
         promisedMedicalCell.delegate = self;
+        promisedMedicalCell.isEdit = YES;
         promisedMedicalCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return promisedMedicalCell;
     }
@@ -112,6 +119,7 @@
         HCPromisedContactTableViewCell *contactCell = [[HCPromisedContactTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:DCID];
         contactCell.delegate = self;
         contactCell.contactArr = _detailInfo.ContactArray;
+        contactCell.isEdit = YES;
         HCPromisedContractPersonInfo *info =_detailInfo.ContactArray[indexPath.section-1];
         info.OrderIndex = @(indexPath.section);
         contactCell.indexPath = indexPath;
@@ -278,10 +286,11 @@
          {
              [[SDImageCache sharedImageCache] clearMemory];
              [[SDImageCache sharedImageCache] clearDisk];
-             [self.tableView reloadData];
+
          }
-         [button setBackgroundImage:image forState:UIControlStateNormal];
+         self.image = image;
          [self.tableView reloadData];
+        
      }];
 }
 
@@ -321,42 +330,38 @@
 
 -(void)handleCompeleteButton
 {
-    //    if (IsEmpty(_tagUserInfo.userName))
-    //    {
-    //        [self showHUDText:@"请输入姓名"];
-    //        return;
-    //    }
-    //    if (IsEmpty(_tagUserInfo.userGender))
-    //    {
-    //        [self showHUDText:@"请输入性别"];
-    //        return;
-    //    }
-    //    if (IsEmpty(_tagUserInfo.userBirthday))
-    //    {
-    //        [self showHUDText:@"请输入生日"];
-    //        return;
-    //    }
-    //    if (IsEmpty(_tagUserInfo.userAddress))
-    //    {
-    //        [self showHUDText:@"请输入居住地址"];
-    //        return;
-    //    }
-    //    if (IsEmpty(_tagUserInfo.userSchool))
-    //    {
-    //        [self showHUDText:@"请输入学校名称"];
-    //        return;
-    //    }
-    //    if (IsEmpty(_tagUserInfo.userPhoneNum) || ![Utils checkPhoneNum:_tagUserInfo.userPhoneNum])
-    //    {
-    //        [self showHUDText:@"请输入正确的电话"];
-    //        return;
-    //    }
-    //    if (IsEmpty(_tagUserInfo.userIDCard) || ![Utils chk18PaperId:_tagUserInfo.userIDCard]) {
-    //        [self showHUDText:@"请输入正确的身份证号码"];
-    //        return;
-    //    }
+        if (IsEmpty(_detailInfo.ObjectXName))
+        {
+            [self showHUDText:@"请输入姓名"];
+            return;
+        }
+        if (IsEmpty(_detailInfo.ObjectSex)|| _detailInfo.ObjectSex.length != 1)
+        {
+            [self showHUDText:@"请输入性别男或者女"];
+            return;
+        }
+        if (IsEmpty(_detailInfo.ObjectBirthDay))
+        {
+            [self showHUDText:@"请输入生日"];
+            return;
+        }
+        if (IsEmpty(_detailInfo.ObjectHomeAddress))
+        {
+            [self showHUDText:@"请输入居住地址"];
+            return;
+        }
+        if (IsEmpty(_detailInfo.ObjectSchool))
+        {
+            [self showHUDText:@"请输入学校名称"];
+            return;
+        }
+        if ([Utils chk18PaperId:_detailInfo.ObjectIdNo]) {
+            [self showHUDText:@"请输入正确的身份证号码"];
+            return;
+        }
 
-       [self requestSaveResumeData];
+       [self requestImageUpload];
+//    [self requestSaveResumeData];
 }
 
 -(void)handleAddContact
@@ -364,7 +369,7 @@
     if (_isAdd  == YES)
     {
         _isAdd  = !_isAdd;
-        [_detailInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
+        [_detailInfo.ContactArray addObject:[[HCPromisedContractPersonInfo alloc] init]];
         [self.tableView reloadData];
        
     }
@@ -386,23 +391,26 @@
 
 #pragma mark---Setter Or Getter
 
-
-
 - (UIView *)dateDetailPicker
 {
     if(!_dateDetailPicker){
-        _dateDetailPicker = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-250, SCREEN_WIDTH, 250)];
+        _dateDetailPicker = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-150, SCREEN_WIDTH, 150)];
         _dateDetailPicker.backgroundColor = [UIColor whiteColor];
-        UUDatePicker *udatePicker = [[UUDatePicker alloc]initWithframe:CGRectMake(20, 50,SCREEN_WIDTH, 200) PickerStyle:0 didSelected:^(NSString *year, NSString *month, NSString *day, NSString *hour, NSString *minute, NSString *weekDay) {
+        
+        UUDatePicker *udatePicker = [[UUDatePicker alloc]initWithframe:CGRectMake(0, 50,SCREEN_WIDTH, 150) PickerStyle:0 didSelected:^(NSString *year, NSString *month, NSString *day, NSString *hour, NSString *minute, NSString *weekDay) {
             _missInfo.LossTime = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00",year,month,day,hour,minute];
+            
             [self.tableView reloadData];
         }];
+        
+        udatePicker.backgroundColor = [UIColor whiteColor];
         udatePicker.maxLimitDate = [NSDate date];
        [_dateDetailPicker addSubview:udatePicker];
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         [button setTitle:@"确定" forState:UIControlStateNormal];
-        button.frame = CGRectMake(SCREEN_WIDTH-80, 0, 80, 50);
+        button.frame = CGRectMake(SCREEN_WIDTH-80, 40, 80, 30);
         [button addTarget:self action:@selector(dismissuDatePicker) forControlEvents:UIControlEventTouchUpInside];
         
         [_dateDetailPicker addSubview:button];
@@ -543,7 +551,6 @@
     [self showHUDView:nil];
     
      HCPromisedAddCallMessageAPI*api = [[HCPromisedAddCallMessageAPI alloc] init];
-    _detailInfo.ObjectPhoto = @"111111111";
     api.info = _detailInfo;
     api.missInfo = _missInfo;
     
@@ -560,25 +567,30 @@
     }];
 }
 
-//-(void)requestSelectResumeData
-//{
-//    [self showHUDView:nil];
-//    
-//    HCPromisedAddSelectAPI*api = [[HCPromisedAddSelectAPI alloc] init];
-//    api.missInfo = _missInfo;
-//    
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self showHUDSuccess:@"提交成功"];
-//            [self.tableView reloadData];
-//        }
-//        else
-//        {
-//            [self showHUDError:message];
-//        }
-//    }];
-//}
+- (void)requestImageUpload
+{
+
+    [self showHUDView:nil];
+    HCImageUploadApi *api = [[HCImageUploadApi alloc] init];
+    api.FTImages = @[_image];
+    api.fileType = @"FamilyPhoto";
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self hideHUDView];
+            HCImageUploadInfo *imageInfo = [array lastObject];
+            _detailInfo.ObjectPhoto = imageInfo.FileName;
+            [self requestSaveResumeData];
+        }else
+        {
+            [self showHUDError:@"头像上传失败!"];
+            return ;
+        }
+    }];
+}
+
+
 
 //-(void)requestData
 //{

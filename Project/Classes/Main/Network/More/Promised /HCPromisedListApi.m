@@ -24,7 +24,7 @@
     NSDictionary *head = @{@"Action" : @"GetList" ,
                            @"Token":[HCAccountMgr manager].loginInfo.Token ,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-    NSDictionary *Result = @{@"Start":@(1000),@"Count":@(20)};
+    NSDictionary *Result = @{@"Start":@(_Start),@"Count":@(20)};
     NSDictionary *bodyDic = @{@"Head" : head, @"Result" : Result};
     
     return @{@"json": [Utils stringWithObject:bodyDic]};
@@ -41,7 +41,6 @@
         HCPromisedListInfo  *info = [[HCPromisedListInfo alloc]init];
         info.name = dic[@"ObjectXName"];
         info.ObjectId = [dic[@"KeyId"] stringValue];
-       
         [ListInfos addObject:info];
     }
     return ListInfos;
