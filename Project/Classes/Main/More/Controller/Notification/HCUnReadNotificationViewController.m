@@ -29,8 +29,6 @@
     [self requestHomeData];
 }
 
-
-
 #pragma mark----UITableViewDelegate
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -49,7 +47,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCNotificationDetailViewController *detailVC = [[HCNotificationDetailViewController alloc]init];
-    [self changeReadState:indexPath];
+//    [self changeReadState:indexPath];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

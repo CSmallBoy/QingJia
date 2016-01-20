@@ -83,6 +83,7 @@
         if (_tagUserInfo.Allergic)
         {
             self.textView.textView.text = _tagUserInfo.Allergic;
+            self.textView.textView.textColor = [UIColor blackColor];
         }
         [self.contentView addSubview:self.textView];
     }

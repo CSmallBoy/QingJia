@@ -14,6 +14,9 @@
 #import "HCNotificationDetailInfo.h"
 #import "HCNotificationDetailApi.h"
 
+#import "HCNotificationUnreadChangeApi.h"
+#import "Utils.h"
+
 @interface HCNotificationDetailViewController ()
 
 @property (nonatomic,strong) UILabel *userNameLab;
@@ -42,6 +45,7 @@
     [self.view addSubview: self.timeLab];
     [self.view addSubview: self.notificationMessLab];
     [self.view addSubview: self.footerView];
+
 }
 
 
@@ -75,7 +79,6 @@
     {
         _userNameLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 74, 120, 44)];
         _userNameLab.textAlignment = NSTextAlignmentLeft;
-//        _userNameLab.text = self.info.SendUser;
         _userNameLab.textColor = [UIColor blackColor];
         _userNameLab.font = [UIFont systemFontOfSize:16];
     }
@@ -88,7 +91,6 @@
     {
         _timeLab = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-200, 74, 190, 44)];
         _timeLab.textAlignment = NSTextAlignmentRight;
-//        _timeLab.text = self.info.AddTime;
         _timeLab.textColor = [UIColor lightGrayColor];
         _timeLab.font = [UIFont systemFontOfSize:14];
     }
@@ -180,11 +182,26 @@
              _timeLab.text = self.info.AddTime;
              _notificationMessLab.text = self.info.NContent;
              [_notificationMessLab setFrame:CGRectMake(10, 120, SCREEN_WIDTH-20, [_notificationMessLab contentSize].height)];
-         }else
+                 [self changeReadState];
+         }
+         else
          {
              _info = info;
              [self showHUDError:message];
          }
      }];
+}
+
+
+-(void)changeReadState
+{
+    HCNotificationUnreadChangeApi *api = [[HCNotificationUnreadChangeApi alloc]init];
+    api.NoticeId = [_info.KeyId integerValue];;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id info) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            
+        }
+    }];
 }
 @end

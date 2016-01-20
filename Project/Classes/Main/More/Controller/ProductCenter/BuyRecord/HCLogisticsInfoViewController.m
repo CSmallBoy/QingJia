@@ -120,7 +120,7 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return (section == 0) ? self.footerView : nil;
+    return (section == 0) ?  nil: self.footerView;
 
 }
 

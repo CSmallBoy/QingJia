@@ -14,6 +14,8 @@
 
 #import "HCNotificationCentereReadTableViewCell.h"
 
+#define followID @"FollowNotificationID"
+
 @interface HCFollowNotificationViewController ()
 
 @property (nonatomic,strong) HCNotificationCenterInfo *info;
@@ -30,32 +32,30 @@
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self requestHomeData];
+    [self.tableView registerClass:[HCNotificationCentereReadTableViewCell class] forCellReuseIdentifier:followID];
 }
 
 #pragma mark----UITableViewDelegate
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *followID = @"FollowNotificationID";
-    
     UITableViewCell *cell;
     if (indexPath.section == 0)
     {
      HCNotificationCentereReadTableViewCell *messageCell  = [[HCNotificationCentereReadTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:followID];
         messageCell.info = _info;
-        
         cell = messageCell;
     }
-    else if(indexPath.section ==1)
+    else if(indexPath.section == 1)
     {
         if (indexPath.row == 0)
         {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"follow0"];
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:followID];
             cell.textLabel.text = @"跟进信息";
         }
         else if (indexPath.row != 0 )
         {
-           HCNotificationCenterFollowTableViewCell * followInfoCell = [[HCNotificationCenterFollowTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"follow"];
+           HCNotificationCenterFollowTableViewCell * followInfoCell = [[HCNotificationCenterFollowTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:followID];
             followInfoCell.info = _info;
             followInfoCell.indexPath = indexPath;
             cell = followInfoCell;

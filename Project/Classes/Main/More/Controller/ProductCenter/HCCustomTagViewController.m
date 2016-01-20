@@ -37,6 +37,8 @@
 
 @property (nonatomic,strong) HCTagUserInfo *tagUserInfo;
 
+#define CustonTag @"CustonTag"
+#define Medical @"Medical"
 @end
 
 @implementation HCCustomTagViewController
@@ -51,7 +53,6 @@
     _tagUserInfo = [[HCTagUserInfo alloc] init];
     _tagUserInfo.ContactArray  = [NSMutableArray array];
     [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
-
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -67,7 +68,7 @@
 
     if (indexPath.section == 0)
     {
-        HCCustomTagUserInfoCell *customTagUserInfoCell =[[HCCustomTagUserInfoCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CustonTag"];
+        HCCustomTagUserInfoCell *customTagUserInfoCell =[[HCCustomTagUserInfoCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CustonTag];
         customTagUserInfoCell.delegate = self;
         customTagUserInfoCell.tagUserInfo = _tagUserInfo;
         customTagUserInfoCell.indexPath = indexPath;
@@ -76,7 +77,7 @@
         }
     else if (indexPath.section == (_isAdd ? 2 :3))
         {
-            HCCustomTagUserMedicalCell * customTagUserMedicalCell = [[HCCustomTagUserMedicalCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Medical"];
+            HCCustomTagUserMedicalCell * customTagUserMedicalCell = [[HCCustomTagUserMedicalCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Medical];
             customTagUserMedicalCell.tagUserInfo = _tagUserInfo;
             customTagUserMedicalCell.indexPath = indexPath;
             customTagUserMedicalCell.delegate = self;

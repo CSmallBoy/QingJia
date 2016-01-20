@@ -16,12 +16,11 @@
 #import "HCNotificationDeleteApi.h"
 
 @interface HCReadNotificationViewController ()
-
 @property (nonatomic,strong) NSMutableArray *mutableArray;
-
 @end
 
 @implementation HCReadNotificationViewController
+#define readNotificationID @"readNotificationID"
 
 - (void)viewDidLoad
 {
@@ -34,23 +33,29 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *readNotificationID = @"readNotificationID";
     HCNotificationCentereReadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:readNotificationID];
-    if (!cell) {
-        
+    if (!cell)
+    {
         cell = [[HCNotificationCentereReadTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:readNotificationID];
         cell.info = self.dataSource[indexPath.section];
     }
     return cell;
-    
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCNotificationDetailViewController *detailVC = [[HCNotificationDetailViewController alloc]init];
-//    detailVC.info = self.dataSource[indexPath.section];
     [self.navigationController pushViewController:detailVC animated:YES];
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [self.dataSource removeObjectAtIndex:indexPath.section];
+        [self requestDelete:indexPath];
+        [tableView reloadData];
+    }
 }
 
 #pragma mark ---UITableViewDataSource
@@ -58,6 +63,21 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 75;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.dataSource.count;
+    
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -82,33 +102,6 @@
     UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
     view.backgroundColor = CLEARCOLOR;
     return view;
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return self.dataSource.count;
-    
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
-
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        [self.dataSource removeObjectAtIndex:indexPath.section];
-        
-        [self requestDelete:indexPath];
-        
-        [tableView reloadData];
-    }
 }
 
 #pragma mark - network

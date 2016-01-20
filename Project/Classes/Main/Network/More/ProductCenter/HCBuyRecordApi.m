@@ -15,20 +15,21 @@
 {
     [super startRequest:requestBlock];
 }
-
+//测试
 - (NSString *)requestUrl
 {
-    return @"User/AuthCode.ashx";// 测试
+    return @"HelpCase/HelpCase.ashx";
 }
+
 
 - (id)requestArgument
 {
-    //测试
-    NSDictionary *cshead = @{@"Action": @"ReGet", @"UUID": [HCAppMgr manager].uuid, @"PlatForm": [HCAppMgr manager].systemVersion};
-    NSDictionary *cspara = @{@"PhoneNumber": @(18012345678), @"theType": @(1000)};
-    NSDictionary *csbody = @{@"Head": cshead, @"Para": cspara};
-    return @{@"json": [Utils stringWithObject:csbody]};
+    NSDictionary *head = @{@"Action" : @"GetList"};
     
+    NSDictionary *result = @{@"Start" : @(1000), @"Count" : @(20)};
+    NSDictionary *bodyDic = @{@"Head" : head, @"Result" : result};
+    
+    return @{@"json": [Utils stringWithObject:bodyDic]};
 }
 
 - (id)formatResponseObject:(id)responseObject

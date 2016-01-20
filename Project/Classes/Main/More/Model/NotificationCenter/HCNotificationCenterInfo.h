@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface HCNotificationCenterInfo : NSObject
-/**
- *姓名
- */
+
+@property (nonatomic,strong) NSString *KeyId;
 @property (nonatomic,strong) NSString *SendUser;
 
 @property (nonatomic,strong) NSString *SysLevel;

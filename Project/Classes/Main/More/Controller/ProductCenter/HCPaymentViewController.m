@@ -36,6 +36,9 @@
 @end
 
 @implementation HCPaymentViewController
+#define acceptGoodsAddress @"acceptGoodsAddress"
+#define goodsList @"goodsList"
+#define payway @"payway"
 
 - (void)viewDidLoad
 {
@@ -57,19 +60,18 @@
     {
         if (indexPath.section == 0)
         {
-            UITableViewCell* acceptCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"acceptGoodsAddress"];
+            UITableViewCell* acceptCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:acceptGoodsAddress];
                 [acceptCell.contentView addSubview:self.acceptGoodsAddressTextView];
             cell = acceptCell;
-            
         }
         else if (indexPath.section == 1)
         {
-            HCGoodsListTableViewCell *goodsListcell = [[HCGoodsListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"goodsList"];
+            HCGoodsListTableViewCell *goodsListcell = [[HCGoodsListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:goodsList];
             cell = goodsListcell;
         }
         else
         {
-        HCPayWayTableViewCell* payCell = [[HCPayWayTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"payway"];
+        HCPayWayTableViewCell* payCell = [[HCPayWayTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:payway];
         cell = payCell;
         }
     }
@@ -99,16 +101,17 @@
     {
         return nil;
     }
-    if (section == 2)
+    switch (section)
     {
-        return self.beSureToPayView;
-    }
-    else if(section == 0)
-    {
-        return self.useNewAddressView;
-    }else
-    {
-        return nil;
+        case 0:
+            return self.useNewAddressView;
+            break;
+        case 2:
+            return self.beSureToPayView;
+            break;
+        default:
+            return nil;
+            break;
     }
 }
 
@@ -121,7 +124,6 @@
     _headerViewLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, WIDTH(self.view)-20, 30)];
     _headerViewLable.numberOfLines = 0;
     _headerViewLable.font = [UIFont systemFontOfSize:15];
-    
     
     if (section == 0)
     {
@@ -167,10 +169,12 @@
     if ( section == 0 )
     {
         return 44;
-    }if (section == 2)
+    }
+    if (section == 2)
     {
         return 120;
-    }else
+    }
+    else
     {
         return 1;
     }

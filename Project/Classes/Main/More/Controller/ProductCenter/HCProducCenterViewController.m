@@ -90,7 +90,4 @@
     return _imageViewList;
 }
 
-
-
-
 @end

@@ -8,6 +8,14 @@
 
 #import "HCShareViewController.h"
 
+#import "UMSocialWechatHandler.h"
+#import "UMSocial.h"
+#import "WXApi.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialSnsPlatformManager.h"
+#import "UMSocialSinaSSOHandler.h"
+
 @interface HCShareViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *weixinBtn;
@@ -26,6 +34,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(![WXApi isWXAppInstalled])
+    {
+        _weixinBtn.hidden = YES;
+        _pengyouBtn.hidden = YES;
+    }
+    if (![QQApiInterface isQQInstalled])
+    {
+        _qqzonBtn.hidden = YES;
+        _qqzonBtn.hidden = YES;
+    }
+
 }
 - (IBAction)backButton:(UIButton *)sender
 {
