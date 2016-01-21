@@ -60,7 +60,8 @@
             info.userSchool = @"闵行中心第一小学";
             info.userJob = @"学生";
             info.userHealth = @"健康";
-        }else if (i == 1)
+        }
+        else if (i == 1)
             {
                 info.tagUserName = @"张二";
                 info.imgArr = @[@"time_picture",@"time_picture",@"time_picture"];
@@ -79,7 +80,8 @@
                 info.userSchool = @"闵行中心第一小学";
                 info.userJob = @"老师";
                 info.userHealth = @"健康";
-            }else if (i == 2)
+            }
+        else if (i == 2)
             {
                     info.tagUserName = @"赵三";
                     info.imgArr = @[@"time_picture",@"time_picture"];
@@ -98,7 +100,8 @@
                     info.userSchool = @"闵行中心第一小学";
                     info.userJob = @"学生";
                     info.userHealth = @"良好";
-            }else if (i == 3)
+            }
+        else if (i == 3)
             {
                 info.tagUserName = @"李四";
                 info.imgArr = @[@"label"];
@@ -117,7 +120,8 @@
                 info.userSchool = @"闵行中心第一小学";
                 info.userJob = @"学生";
                 info.userHealth = @"健康";
-            }else
+            }
+        else
             {
                 info.tagUserName = @"钱五";
                 info.imgArr = @[@"label",@"hopne",@"Calendar",@"110"];

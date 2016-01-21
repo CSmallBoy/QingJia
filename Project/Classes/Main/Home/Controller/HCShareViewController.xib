@@ -63,6 +63,9 @@
                             <include reference="kzy-2Y-Mrt"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="MtalkBtn:" destination="-1" eventType="touchUpInside" id="fU9-b9-hQn"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAb-oc-GJA">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -83,6 +86,9 @@
                             <include reference="tR3-uR-hLp"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="tengxunweiboBtn:" destination="-1" eventType="touchUpInside" id="F5M-pF-oT5"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14y-Qg-2e0">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -103,6 +109,9 @@
                             <include reference="Eve-Dm-B6c"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="sinaWeibo:" destination="-1" eventType="touchUpInside" id="06d-Wl-cnN"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXp-Ym-fpN">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -123,6 +132,9 @@
                             <include reference="YHB-LK-13j"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="weixin:" destination="-1" eventType="touchUpInside" id="unZ-jx-HE2"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbv-KK-zW6">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -143,6 +155,9 @@
                             <include reference="xlx-Ob-WHW"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="pengyouBtn:" destination="-1" eventType="touchUpInside" id="mbq-aR-s84"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFP-Fa-J6T">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -163,6 +178,9 @@
                             <include reference="Z3H-zA-n3P"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="qqZone:" destination="-1" eventType="touchUpInside" id="pdo-Cy-qci"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用你无限的爱，填满岁月的痕迹" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8C-Ks-XXN">
                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -202,6 +220,9 @@
                             <include reference="mQw-Wd-wDE"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="qqBtn:" destination="-1" eventType="touchUpInside" id="FDn-YJ-xxb"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信好友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2q-te-dwJ">
                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>

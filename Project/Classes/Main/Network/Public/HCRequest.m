@@ -98,7 +98,6 @@
             if (status == HCRequestStatusAccessTokenExpired)
             {
                 [[NSNotificationCenter defaultCenter] postNotificationName:kHCAccessTokenExpiredNotification object:nil];
-                return;
             }
             // 返回错误时, 需要解析message。服务器返回的错误没有用, 因为客户端需要显示中文。
             NSString *message = @"";

@@ -114,20 +114,22 @@ static HCAppMgr *_sharedManager = nil;
 - (void)loginTokenInvalided
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"您的登录会话已失效，请重新登录。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    // 环信登出
-    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
-        if (error && error.errorCode != EMErrorServerNotLogin) {
-        }
-        else
-        {
-            [[ApplyViewController shareController] clear];
-            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
-        }
-    } onQueue:nil];
+
     
     [alert handlerClickedButton:^(UIAlertView *alert, NSInteger index){
+        // 环信登出
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+            if (error && error.errorCode != EMErrorServerNotLogin) {
+            }
+            else
+            {
+                [[ApplyViewController shareController] clear];
+                [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+            }
+        } onQueue:nil];
         //清空数据，返回登录
         [[HCAccountMgr manager] clean];
+        [HCAccountMgr manager].isLogined = NO;
         [self login];
     }];
     

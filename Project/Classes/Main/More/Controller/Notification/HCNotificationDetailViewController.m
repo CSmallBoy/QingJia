@@ -196,7 +196,7 @@
 -(void)changeReadState
 {
     HCNotificationUnreadChangeApi *api = [[HCNotificationUnreadChangeApi alloc]init];
-    api.NoticeId = [_info.KeyId integerValue];;
+    api.NoticeId = [_info.KeyId integerValue];
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id info) {
         if (requestStatus == HCRequestStatusSuccess)
         {

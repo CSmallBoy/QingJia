@@ -20,6 +20,14 @@
 
 #import <AMapLocationKit/AMapLocationKit.h>
 
+#import "UMSocial.h"
+#import "UMSocialSnsData.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialSinaSSOHandler.h"
+#import "UMSocialWechatHandler.h"
+
 @interface AppDelegate ()<AMapLocationManagerDelegate>
 
 
@@ -31,6 +39,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[HCAccountMgr manager] getLoginInfoData];
     //设置网络参数
     [self setupCustomProperty];
     // 环信
@@ -40,16 +49,49 @@
     // 地图
     [self setupMAMap];
     
+    [UMSocialData setAppKey:@"56971c14e0f55af6e5001da1"];
+    
+    [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
+    [UMSocialWechatHandler setWXAppId:@"wxa3e0f4e53bf74a06" appSecret:@"ed6ce4155f890517f746a2c1445dcb7e" url:@"http://www.umeng.com/social"];
+    
+    //设置分享到QQ空间的应用Id，和分享url 链接
+    [UMSocialQQHandler setQQWithAppId:@"1105057631" appKey:@"fe72cpeF5yD0qWfO" url:@"http://www.umeng.com/social"];
+    //设置支持没有客户端情况下使用SSO授权
+    [UMSocialQQHandler setSupportWebView:YES];
+    
+    // 打开新浪微博的SSO开关
+    // 将在新浪微博注册的应用appkey、redirectURL替换下面参数，并在info.plist的URL Scheme中相应添加wb+appkey，如"wb3921700954"，详情请参考官方文档。
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1685716127"
+                                         RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    
+    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline]];
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     return YES;
 }
 
+/**
+ 这里处理新浪微博SSO授权之后跳转回来，和微信分享完成之后跳转回来
+ */
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+}
+
+/**
+ 这里处理新浪微博SSO授权进入新浪微博客户端后进入后台，再返回原来应用
+ */
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [UMSocialSnsService  applicationDidBecomeActive];
+}
+
 //设置主控制器
 - (void)setupRootViewController
 {
-    [[HCAccountMgr manager] getLoginInfoData];
     //    if (![HCAppMgr manager].showInstroView)
     //    {
     //        DLog(@"加载欢迎页面,测试的取反");
