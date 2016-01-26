@@ -32,10 +32,12 @@
 @property (nonatomic, assign) CGFloat height; // 药物史的高度
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) NSString *history;
+@property(nonatomic,strong)UIImage *image;
 
 @property (nonatomic,assign) BOOL isAdd;
 
 @property (nonatomic,strong) HCTagUserInfo *tagUserInfo;
+
 
 #define CustonTag @"CustonTag"
 #define Medical @"Medical"
@@ -69,6 +71,7 @@
     if (indexPath.section == 0)
     {
         HCCustomTagUserInfoCell *customTagUserInfoCell =[[HCCustomTagUserInfoCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CustonTag];
+        customTagUserInfoCell.image = _image;
         customTagUserInfoCell.delegate = self;
         customTagUserInfoCell.tagUserInfo = _tagUserInfo;
         customTagUserInfoCell.indexPath = indexPath;
@@ -179,7 +182,7 @@
 
 #pragma mark---HCCustomTagUserInfoCellDelegate,HCCustomTagContactTableViewCellDelegate,HCCustomTagUserMedicalCellDelegate
 
--(void)addUserHeaderIMG
+-(void)addUserHeaderIMG:(UIButton *)button
 {
     [self.datePicker remove];
     [self.view endEditing:YES];
@@ -201,6 +204,8 @@
              [[SDImageCache sharedImageCache] clearDisk];
              [self.tableView reloadData];
          }
+          self.image = image;
+         [self.tableView reloadData];
      }];
 }
 
@@ -282,7 +287,6 @@
         [self.tableView reloadData];
          [_tagUserInfo.ContactArray addObject:[[HCContactPersonInfo alloc] init]];
     }
-  
 }
 
 -(void)handleDeleteContact
@@ -332,7 +336,7 @@
         addContactBtn.frame = CGRectMake(70, 5, 20, 20);
         if (_isAdd)
         {
-                    [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
+        [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
         }
         else
         {

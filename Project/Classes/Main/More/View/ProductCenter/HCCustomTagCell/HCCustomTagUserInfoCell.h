@@ -13,7 +13,7 @@
 
 @optional
 
--(void)addUserHeaderIMG;
+-(void)addUserHeaderIMG:(UIButton *)button;
 -(void)dismissDatePicker;
 
 @end
@@ -24,5 +24,5 @@
 @property (nonatomic, strong) HCTagUserInfo *tagUserInfo;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, weak) id<HCCustomTagUserInfoCellDelegate>delegate;
-
+@property (nonatomic,strong)UIImage  *image;
 @end

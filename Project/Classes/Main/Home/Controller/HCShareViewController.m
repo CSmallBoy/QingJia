@@ -67,9 +67,11 @@
 //腾讯微博
 - (IBAction)tengxunweiboBtn:(UIButton *)sender
 {
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToTencent] content:@"M-talk" image:[UIImage imageNamed:@"landingpage_Background"] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToTencent] content:@"M-talk11111" image:[UIImage imageNamed:@"landingpage_Background"] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
         if (response.responseCode == UMSResponseCodeSuccess)
         {
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"" message:@"分享成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
             DLog(@"分享成功！");
         }
     }];
@@ -78,28 +80,22 @@
 //新浪微博
 - (IBAction)sinaWeibo:(UIButton *)sender
 {
-//    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
-//    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-//        NSLog(@"response is %@",response);
-//    });
-//    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1685716127" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-//    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"M-talk" image:[UIImage imageNamed:@"landingpage_Background"] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
-//        if (response.responseCode == UMSResponseCodeSuccess)
-//        {
-//            DLog(@"分享成功！");
-//        }
-//    }];
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
-                    snsPlatform.snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
-    
-//    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1685716127" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    
-    [[UMSocialDataService defaultDataService]postSNSWithTypes:@[UMShareToSina] content:@"Mtalk测试" image:OrigIMG(@"landingpage_Background") location:nil urlResource:nil completion:^(UMSocialResponseEntity *response) {
-        if (response.responseCode == UMSResponseCodeSuccess) {
-            DLog(@"分享成功");
-        }
-    }];
+    [UMSocialAccountManager isOauthAndTokenNotExpired:UMShareToSina];
+    //进入授权页面
+    [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina].loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response)
+    {
 
+            //进入你的分享内容编辑页面
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"分享内嵌文字" image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *shareResponse)
+            {
+                if (response.responseCode == UMSResponseCodeSuccess)
+                {
+                    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:nil message:@"分享成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alter show];
+                }
+            }];
+
+    });
 }
 
 //qq好友
@@ -136,7 +132,7 @@
 
 - (void)shareTentceWithTypes:(NSArray *)array content:(NSString *)content imageName:(NSString *)imageName location:(CLLocation *)location urlResource:(UMSocialUrlResource *)urlResource
 {
-    NSString *urlStr = @"http://zp.ysrlin.com/gate/html/reg.php";
+    NSString *urlStr = @"http://www.mm-iworld.com";
     [UMSocialWechatHandler setWXAppId:@"wxa3e0f4e53bf74a06" appSecret:@"ed6ce4155f890517f746a2c1445dcb7e" url:urlStr];
     [[UMSocialDataService defaultDataService]  postSNSWithTypes:array content:content image:[UIImage imageNamed:imageName] location:location urlResource:urlResource presentedController:self completion:^(UMSocialResponseEntity *response){
         if (response.responseCode == UMSResponseCodeSuccess) {

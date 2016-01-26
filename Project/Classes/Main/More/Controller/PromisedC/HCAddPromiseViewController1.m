@@ -371,9 +371,7 @@
         _isAdd  = !_isAdd;
         [_detailInfo.ContactArray addObject:[[HCPromisedContractPersonInfo alloc] init]];
         [self.tableView reloadData];
-       
     }
-    
 }
 
 -(void)handleDeleteContact
@@ -393,20 +391,19 @@
 
 - (UIView *)dateDetailPicker
 {
-    if(!_dateDetailPicker){
+    if(!_dateDetailPicker)
+    {
         _dateDetailPicker = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-150, SCREEN_WIDTH, 150)];
         _dateDetailPicker.backgroundColor = [UIColor whiteColor];
         
         UUDatePicker *udatePicker = [[UUDatePicker alloc]initWithframe:CGRectMake(0, 50,SCREEN_WIDTH, 150) PickerStyle:0 didSelected:^(NSString *year, NSString *month, NSString *day, NSString *hour, NSString *minute, NSString *weekDay) {
             _missInfo.LossTime = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00",year,month,day,hour,minute];
-            
             [self.tableView reloadData];
         }];
         
         udatePicker.backgroundColor = [UIColor whiteColor];
         udatePicker.maxLimitDate = [NSDate date];
        [_dateDetailPicker addSubview:udatePicker];
-        
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         [button setTitle:@"确定" forState:UIControlStateNormal];
@@ -455,14 +452,8 @@
         
         UIButton *addContactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         addContactBtn.frame = CGRectMake(70, 5, 20, 20);
-        if (_isAdd)
-        {
-            [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
-        }
-        else
-        {
-            return nil;
-        }
+        [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
+
         [addContactBtn setBackgroundImage:OrigIMG(@"yihubaiying_but_Plus") forState:UIControlStateNormal];
         
         [_contactInfoHeaderView addSubview:addContactBtn];
@@ -589,8 +580,6 @@
         }
     }];
 }
-
-
 
 //-(void)requestData
 //{

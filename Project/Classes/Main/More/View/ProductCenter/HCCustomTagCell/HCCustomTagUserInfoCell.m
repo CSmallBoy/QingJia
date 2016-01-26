@@ -121,11 +121,11 @@
 
 #pragma mark --- privous Method
 
--(void)handleheaderIMG
+-(void)handleheaderIMG:(UIButton *)button
 {
-    if ([self.delegate respondsToSelector:@selector(addUserHeaderIMG)])
+    if ([self.delegate respondsToSelector:@selector(addUserHeaderIMG:)])
     {
-        [self.delegate addUserHeaderIMG];
+        [self.delegate addUserHeaderIMG:button];
     }
 }
 
@@ -136,8 +136,16 @@
     if (!_headerIMGBtn)
     {
         _headerIMGBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 2, 80, 80)];
-        [_headerIMGBtn setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
-        [_headerIMGBtn addTarget:self action:@selector(handleheaderIMG) forControlEvents:UIControlEventTouchUpInside];
+        if (self.image == nil)
+        {
+            [_headerIMGBtn setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
+        }
+        else
+        {
+            [_headerIMGBtn setBackgroundImage:self.image forState:UIControlStateNormal];
+        }
+        [_headerIMGBtn addTarget:self action:@selector(handleheaderIMG:) forControlEvents:UIControlEventTouchUpInside];
+        ViewRadius(_headerIMGBtn, 40);
     }
     return _headerIMGBtn;
 }

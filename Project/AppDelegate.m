@@ -59,13 +59,11 @@
     //设置支持没有客户端情况下使用SSO授权
     [UMSocialQQHandler setSupportWebView:YES];
     
-    // 打开新浪微博的SSO开关
-    // 将在新浪微博注册的应用appkey、redirectURL替换下面参数，并在info.plist的URL Scheme中相应添加wb+appkey，如"wb3921700954"，详情请参考官方文档。
+    // 打开新浪微博的SSO开关,回调地址需与开放平台的回调地址一致
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1685716127"
                                          RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     
-    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline]];
-    
+    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina]];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -78,9 +76,13 @@
  */
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
-}
 
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        return YES;
+    }
+    return result;
+}
 /**
  这里处理新浪微博SSO授权进入新浪微博客户端后进入后台，再返回原来应用
  */
@@ -88,6 +90,7 @@
 {
     [UMSocialSnsService  applicationDidBecomeActive];
 }
+
 
 //设置主控制器
 - (void)setupRootViewController
