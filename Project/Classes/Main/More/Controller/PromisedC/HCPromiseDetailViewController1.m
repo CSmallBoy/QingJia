@@ -8,6 +8,7 @@
 
 #import "HCPromiseDetailViewController1.h"
 
+#import "HCPickerView.h"
 #import "HCAvatarMgr.h"
 #import "UUDatePicker.h"
 
@@ -24,9 +25,10 @@
 #import "HCPromisedMedicalCell.h"
 #import "HCPromisedContactTableViewCell.h"
 
-@interface HCPromiseDetailViewController1 ()<HCBaseUserInfoCellDelegate,HCPromisedContactTableViewCellDelegate,HCPromisedMedicalCellDelegate,HCPromisedMissCellDelegate>
+@interface HCPromiseDetailViewController1 ()<HCBaseUserInfoCellDelegate,HCPromisedContactTableViewCellDelegate,HCPromisedMedicalCellDelegate,HCPromisedMissCellDelegate,HCPickerViewDelegate>
 
 @property(nonatomic,strong)UIView *dateDetailPicker;
+@property(nonatomic,strong) HCPickerView *datePicker;
 
 @property (nonatomic,strong) UIView *footerView;
 @property (nonatomic,strong) UIView *basicInfoHeaderView;
@@ -38,11 +40,13 @@
 @property (nonatomic, assign) CGFloat height; // 药物史的高度
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) NSString *history;
+@property(nonatomic,strong)UIImage *image;
 
 @property (nonatomic,assign) BOOL isAdd;
 
 @property (nonatomic,strong) HCPromisedDetailInfo *detailInfo;
 @property(nonatomic,strong)HCPromisedMissInfo   *missInfo;
+@property(nonatomic,strong) NSNumber  *ObjectId;
 
 @end
 
@@ -55,35 +59,38 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
 
-    if (self.detailInfo.ContactArray.count ==2) {
+    if (self.detailInfo.ContactArray.count ==2)
+    {
         _isAdd = NO;
     }
     else
     {
         _isAdd = YES;
     }
+    self.ObjectId = self.data [@"ObjectId"];
 //    _detailInfo = [[HCPromisedDetailInfo alloc] init];
     _missInfo = [[HCPromisedMissInfo alloc]init];
-    _missInfo.ObjectId = self.ObjectId;
+//    _missInfo.ObjectId = self.ObjectId;
 //    _detailInfo.ContactArray  = [NSMutableArray array];
 //    [_detailInfo.ContactArray addObject:[[HCPromisedContractPersonInfo alloc] init]];
-    
+//    
 //    [self requestData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.datePicker remove];
 }
 
 #pragma mark---UITableViewDelegate
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.section == 0)
     {
         HCBaseDetailUserInfoCell *baseDetailUserInfoCell =[[HCBaseDetailUserInfoCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"baseInfo"];
+        baseDetailUserInfoCell.image = _image;
         baseDetailUserInfoCell.delegate = self;
         baseDetailUserInfoCell.detailInfo = self.detailInfo;
         baseDetailUserInfoCell.indexPath = indexPath;
@@ -123,14 +130,27 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     if (indexPath.section == (_isAdd ?2:3))
-      {
-        if (indexPath.row == 1) {
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row == 3)
+        {
+            [self.view endEditing:YES];
+            [self.datePicker show];
+        }
+        else
+        {
+            [self.datePicker remove];
+        }
+    }
+    else if (indexPath.section == (_isAdd ?2:3))
+    {
+        
+        if (indexPath.row == 1)
+        {
             [self.view endEditing:YES];
             [self.view addSubview:self.dateDetailPicker];
         }
-      }
-}
+    }}
 
 #pragma mark--UITableViewDataSource
 
@@ -143,7 +163,8 @@
 {
     if (_isAdd)
     {
-        switch (section) {
+        switch (section)
+        {
             case 0:
                 return 8;
                 break;
@@ -159,10 +180,12 @@
             default:
                 break;
         }
-    }else
+    }
+    else
     {
 
-        switch (section) {
+        switch (section)
+        {
             case 0:
                 return  8;
                 break;
@@ -226,7 +249,7 @@
     }
     else if (indexPath.section == 0)
     {
-        return (indexPath.row == 0) ? 84 : 44;
+        return (indexPath.row == 0) ? 88 : 44;
     }
     else
     {
@@ -244,11 +267,24 @@
     return (section == (_isAdd ? 3 : 4)) ? 120 : 1 ;
 }
 
+#pragma mark - HCPickerViewDelegate
+
+- (void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result
+{
+    NSDate *date = result[@"date"];
+    _detailInfo.ObjectBirthDay = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
+    HCBaseDetailUserInfoCell *cell = (HCBaseDetailUserInfoCell *)
+    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    cell.textField.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
+}
+
 
 #pragma mark---HCCustomTagUserInfoCellDelegate,HCCustomTagContactTableViewCellDelegate,HCCustomTagUserMedicalCellDelegate
 
 -(void)addUserHeaderIMG:(UIButton *)button
 {
+    [self.datePicker remove];
+    [self.dateDetailPicker removeFromSuperview];
     [self.view endEditing:YES];
     
     [HCAvatarMgr manager].isUploadImage = YES;
@@ -256,38 +292,39 @@
     //上传个人头像
     [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg)
      {
-         if (!result)
-         {
-             [self showHUDText:msg];
-             [HCAvatarMgr manager].isUploadImage = NO;
-             [HCAvatarMgr manager].noUploadImage = NO;
-         }
-         else
-         {
-             [[SDImageCache sharedImageCache] clearMemory];
-             [[SDImageCache sharedImageCache] clearDisk];
-             [self.tableView reloadData];
-         }
-         [button setBackgroundImage:image forState:UIControlStateNormal];
+//         if (!result)
+//         {
+//             [self showHUDText:msg];
+//             [HCAvatarMgr manager].isUploadImage = NO;
+//             [HCAvatarMgr manager].noUploadImage = NO;
+//         }
+//         else
+//         {
+//             [[SDImageCache sharedImageCache] clearMemory];
+//             [[SDImageCache sharedImageCache] clearDisk];
+//         }
+         self.image = image;
          [self.tableView reloadData];
      }];
 }
 
 -(void)dismissDatePicker
 {
+    [self.datePicker remove];
     [self.dateDetailPicker removeFromSuperview];
 }
 
 -(void)dismissDatePicker0
 {
+    [self.datePicker remove];
     [self.dateDetailPicker removeFromSuperview];
 }
 
 -(void)dismissDatePicker2
 {
+    [self.datePicker remove];
     [self.dateDetailPicker removeFromSuperview];
 }
-
 
 #pragma mark - private methods
 
@@ -351,10 +388,21 @@
 -(void)dismissuDatePicker
 {
     [self.dateDetailPicker removeFromSuperview];
-
 }
 
 #pragma mark---Setter Or Getter
+
+- (HCPickerView *)datePicker
+{
+    if (_datePicker == nil)
+    {
+        _datePicker = [[HCPickerView alloc] initDatePickWithDate:[NSDate date]
+                                                  datePickerMode:UIDatePickerModeDate isHaveNavControler:YES];
+        _datePicker.datePicker.maximumDate = [NSDate date];
+        _datePicker.delegate = self;
+    }
+    return _datePicker;
+}
 
 - (UIView *)dateDetailPicker
 {
@@ -527,12 +575,14 @@
 //        }
 //    }];
 }
+
 // 提交数据
 -(void)requestSelectResumeData
 {
     [self showHUDView:nil];
 
     HCPromisedAddSelectAPI*api = [[HCPromisedAddSelectAPI alloc] init];
+    self.missInfo.ObjectId = @(100000001);
     api.missInfo = self.missInfo;
 
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {

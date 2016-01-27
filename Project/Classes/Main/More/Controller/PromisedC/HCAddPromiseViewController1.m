@@ -45,12 +45,15 @@
 @property (nonatomic, assign) CGFloat height; // 药物史的高度
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) NSString *history;
-@property(nonatomic,strong)UIImage *image;
+@property(nonatomic,strong) UIImage *image;
 
 @property (nonatomic,assign) BOOL isAdd;
+@property (nonatomic,assign) BOOL isShow;
 
 @property (nonatomic,strong) HCPromisedDetailInfo *detailInfo;
 @property(nonatomic,strong)HCPromisedMissInfo   *missInfo;
+
+@property(nonatomic,assign)NSString *  ObjectId;
 
 @end
 
@@ -63,11 +66,11 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
     _isAdd  = YES;
+    _isShow = YES;
     _detailInfo = [[HCPromisedDetailInfo alloc] init];
     _missInfo = [[HCPromisedMissInfo alloc]init];
     _detailInfo.ContactArray  = [NSMutableArray array];
     [_detailInfo.ContactArray addObject:[[HCPromisedContractPersonInfo alloc] init]];
-
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -80,10 +83,9 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.section == 0)
     {
-         HCBaseUserInfoCell*baseUserInfoCell =[[HCBaseUserInfoCell alloc]initWithStyle:
+        HCBaseUserInfoCell*baseUserInfoCell =[[HCBaseUserInfoCell alloc]initWithStyle:
                                                UITableViewCellStyleValue1 reuseIdentifier:@"CustonTag"];
         baseUserInfoCell.image = _image;
         baseUserInfoCell.delegate = self;
@@ -111,7 +113,6 @@
 //        missCell.isAdd = _isAdd;
         missCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return missCell;
-         
     }
     else
     {
@@ -148,7 +149,6 @@
             [self.view endEditing:YES];
             [self.view addSubview:self.dateDetailPicker];
         }
-      
     }
 }
 
@@ -174,7 +174,10 @@
                 return 3;
                 break;
             case 3:
-                return 2;
+                if (_isShow) {
+                    return 2;
+                }
+                return 0;
                 break;
             default:
                 break;
@@ -195,7 +198,10 @@
                 return 3;
                 break;
             case 4:
-                return 2;
+                if (_isShow) {
+                    return 2;
+                }
+                return 0;
                 break;
             default:
                 break;
@@ -231,7 +237,6 @@
     {
        return self.deleteContactInfoView;
     }
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -255,14 +260,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30;
+    return 40;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return (section == (_isAdd ? 3 : 4)) ? 120 : 1 ;
 }
-
 
 #pragma mark---HCCustomTagUserInfoCellDelegate,HCCustomTagContactTableViewCellDelegate,HCCustomTagUserMedicalCellDelegate
 
@@ -286,11 +290,9 @@
          {
              [[SDImageCache sharedImageCache] clearMemory];
              [[SDImageCache sharedImageCache] clearDisk];
-
          }
          self.image = image;
          [self.tableView reloadData];
-        
      }];
 }
 
@@ -311,7 +313,6 @@
 {
     [self.datePicker remove];
     [self.dateDetailPicker removeFromSuperview];
-
 }
 
 #pragma mark - HCPickerViewDelegate
@@ -327,6 +328,19 @@
 
 
 #pragma mark - private methods
+
+-(void)swiClick:(UISwitch *)swi
+{
+    if (swi.on) {
+        _isShow = YES;
+        [self.tableView reloadData];
+    }
+    else
+    {
+        _isShow = NO;
+        [self.tableView reloadData];
+    }
+}
 
 -(void)handleCompeleteButton
 {
@@ -366,12 +380,17 @@
 
 -(void)handleAddContact
 {
+    if (!_isAdd) {
+        [self showHUDText:@"只能添加两个联系人"];
+    }
+    
     if (_isAdd  == YES)
     {
         _isAdd  = !_isAdd;
         [_detailInfo.ContactArray addObject:[[HCPromisedContractPersonInfo alloc] init]];
         [self.tableView reloadData];
     }
+    
 }
 
 -(void)handleDeleteContact
@@ -384,27 +403,25 @@
 -(void)dismissuDatePicker
 {
     [self.dateDetailPicker removeFromSuperview];
-
 }
 
 #pragma mark---Setter Or Getter
 
 - (UIView *)dateDetailPicker
 {
-    if(!_dateDetailPicker)
-    {
-        _dateDetailPicker = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-150, SCREEN_WIDTH, 150)];
+    if(!_dateDetailPicker){
+        _dateDetailPicker = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-200, SCREEN_WIDTH, 200)];
         _dateDetailPicker.backgroundColor = [UIColor whiteColor];
+        _dateDetailPicker.userInteractionEnabled = YES;
         
         UUDatePicker *udatePicker = [[UUDatePicker alloc]initWithframe:CGRectMake(0, 50,SCREEN_WIDTH, 150) PickerStyle:0 didSelected:^(NSString *year, NSString *month, NSString *day, NSString *hour, NSString *minute, NSString *weekDay) {
             _missInfo.LossTime = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00",year,month,day,hour,minute];
+            
             [self.tableView reloadData];
         }];
-        
         udatePicker.backgroundColor = [UIColor whiteColor];
         udatePicker.maxLimitDate = [NSDate date];
-       [_dateDetailPicker addSubview:udatePicker];
-        
+        [_dateDetailPicker addSubview:udatePicker];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         [button setTitle:@"确定" forState:UIControlStateNormal];
         button.frame = CGRectMake(SCREEN_WIDTH-80, 40, 80, 30);
@@ -414,7 +431,6 @@
     }
     return _dateDetailPicker;
 }
-
 
 - (HCPickerView *)datePicker
 {
@@ -432,10 +448,10 @@
 {
     if (!_basicInfoHeaderView)
     {
-        _basicInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 30)];
-        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, WIDTH(self.view), 30)];
+        _basicInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 50)];
+        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, WIDTH(self.view), 40)];
         headerLabel.text = @"基本信息";
-        headerLabel.font = [UIFont systemFontOfSize:12];
+        headerLabel.font = [UIFont systemFontOfSize:14];
         [_basicInfoHeaderView addSubview:headerLabel];
     }
     return _basicInfoHeaderView;
@@ -445,15 +461,21 @@
 {
     if (!_contactInfoHeaderView)
     {
-        _contactInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 30)];
-        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 30)];
+        _contactInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 50)];
+        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 80, 40)];
         headerLabel.text = @"紧急联系人";
-        headerLabel.font = [UIFont systemFontOfSize:12];
+        headerLabel.font = [UIFont systemFontOfSize:14];
         
         UIButton *addContactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        addContactBtn.frame = CGRectMake(70, 5, 20, 20);
-        [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
-
+        addContactBtn.frame = CGRectMake(90, 10, 20, 20);
+        if (_isAdd)
+        {
+            [addContactBtn addTarget:self action:@selector(handleAddContact) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else
+        {
+            return nil;
+        }
         [addContactBtn setBackgroundImage:OrigIMG(@"yihubaiying_but_Plus") forState:UIControlStateNormal];
         
         [_contactInfoHeaderView addSubview:addContactBtn];
@@ -466,14 +488,14 @@
 {
     if (!_deleteContactInfoView)
     {
-        _deleteContactInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 30)];
+        _deleteContactInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 50)];
         UIButton *deleteContactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [deleteContactBtn setBackgroundImage:OrigIMG(@"yihubaiying_but_reduce") forState:UIControlStateNormal];
-        deleteContactBtn.frame = CGRectMake(70, 5, 20, 20);
+        deleteContactBtn.frame = CGRectMake(90, 10, 20, 20);
         [deleteContactBtn addTarget:self action:@selector(handleDeleteContact) forControlEvents:UIControlEventTouchUpInside];
-        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 30)];
+        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 80, 40)];
         headerLabel.text = @"紧急联系人";
-        headerLabel.font = [UIFont systemFontOfSize:12];
+        headerLabel.font = [UIFont systemFontOfSize:14];
         [_deleteContactInfoView addSubview:headerLabel];
         [_deleteContactInfoView addSubview:deleteContactBtn];
     }
@@ -483,10 +505,10 @@
 - (UIView *)missHeaderView
 {
     if(!_missHeaderView){
-        _missHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-10, 30)];
-        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-10, 30)];
+        _missHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-10, 50)];
+        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-10, 40)];
         headerLabel.text = @"走失信息";
-        headerLabel.font = [UIFont systemFontOfSize:12];
+        headerLabel.font = [UIFont systemFontOfSize:14];
         [_missHeaderView addSubview:headerLabel];
     }
     return _missHeaderView;
@@ -496,11 +518,18 @@
 {
     if (!_medicalInfoHeaderView)
     {
-        _medicalInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-10, 30)];
-        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-10, 30)];
+        _medicalInfoHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-10, 50)];
+        UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-10, 40)];
         headerLabel.text = @"医疗救助信息";
-        headerLabel.font = [UIFont systemFontOfSize:12];
+        headerLabel.font = [UIFont systemFontOfSize:14];
         [_medicalInfoHeaderView addSubview:headerLabel];
+        UISwitch * swi = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-60,5, 70, 20)];
+        swi.on = YES;
+        [swi addTarget:self action:@selector(swiClick:) forControlEvents:UIControlEventValueChanged];
+        [_medicalInfoHeaderView addSubview:swi];
+        UIView  *view = [[UIView alloc]initWithFrame:CGRectMake(0, 39.5, SCREEN_WIDTH, 0.5)];
+        view.backgroundColor = [UIColor lightGrayColor];
+        [_medicalInfoHeaderView addSubview:view];
     }
     return _medicalInfoHeaderView;
 }
@@ -510,7 +539,6 @@
     if(!_footerView)
     {
         _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 120)];
-        
         UIButton *completeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         completeBtn.frame = CGRectMake(15,40, WIDTH(self.view)-30, 44);
         completeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -560,7 +588,6 @@
 
 - (void)requestImageUpload
 {
-
     [self showHUDView:nil];
     HCImageUploadApi *api = [[HCImageUploadApi alloc] init];
     api.FTImages = @[_image];
@@ -596,10 +623,7 @@
 //        else
 //        {
 //            [self showHUDError:message];
-//        }
-//        
-//        
-//        
+//        } 
 //    }];
 //
 //}

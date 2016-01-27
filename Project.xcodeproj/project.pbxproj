@@ -852,7 +852,6 @@
 		8D0968DE1C47963A008C76E9 /* scanLine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0967F71C479639008C76E9 /* scanLine@3x.png */; };
 		8D0968DF1C47963A008C76E9 /* scanscanBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0967F81C479639008C76E9 /* scanscanBg.png */; };
 		8D0968E01C47963A008C76E9 /* HCScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0967FA1C479639008C76E9 /* HCScanViewController.m */; };
-		8D0968ED1C4797CC008C76E9 /* HCAddPromiseViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0968E31C4797CC008C76E9 /* HCAddPromiseViewController1.m */; };
 		8D0968EF1C4797CC008C76E9 /* HCPromisedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0968E71C4797CC008C76E9 /* HCPromisedViewController.m */; };
 		8D0968F01C4797CC008C76E9 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0968EA1C4797CC008C76E9 /* UUDatePicker.m */; };
 		8D0968F11C4797CC008C76E9 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0968EC1C4797CC008C76E9 /* UUDatePicker_DateModel.m */; };
@@ -874,6 +873,7 @@
 		8D09692C1C479824008C76E9 /* HCPromisedAddSelectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0969261C479824008C76E9 /* HCPromisedAddSelectAPI.m */; };
 		8D09692D1C479824008C76E9 /* HCPromisedDetailAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0969281C479824008C76E9 /* HCPromisedDetailAPI.m */; };
 		8D09692E1C479824008C76E9 /* HCPromisedListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D09692A1C479824008C76E9 /* HCPromisedListAPI.m */; };
+		8D1346301C5852D700BFE189 /* HCAddPromiseViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D13462F1C5852D700BFE189 /* HCAddPromiseViewController1.m */; };
 		8DB576051C479DA800AFE718 /* HCPromiseDetailViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB576041C479DA800AFE718 /* HCPromiseDetailViewController1.m */; };
 		C7692F561C3A4B2200582A10 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F511C3A4B2200582A10 /* MDCFocalPointView.m */; };
 		C7692F571C3A4B2200582A10 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F531C3A4B2200582A10 /* MDCFocusView.m */; };
@@ -2409,8 +2409,6 @@
 		8D0967F81C479639008C76E9 /* scanscanBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanscanBg.png; sourceTree = "<group>"; };
 		8D0967F91C479639008C76E9 /* HCScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCScanViewController.h; sourceTree = "<group>"; };
 		8D0967FA1C479639008C76E9 /* HCScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCScanViewController.m; sourceTree = "<group>"; };
-		8D0968E21C4797CC008C76E9 /* HCAddPromiseViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddPromiseViewController1.h; sourceTree = "<group>"; };
-		8D0968E31C4797CC008C76E9 /* HCAddPromiseViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddPromiseViewController1.m; sourceTree = "<group>"; };
 		8D0968E61C4797CC008C76E9 /* HCPromisedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedViewController.h; sourceTree = "<group>"; };
 		8D0968E71C4797CC008C76E9 /* HCPromisedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedViewController.m; sourceTree = "<group>"; };
 		8D0968E91C4797CC008C76E9 /* UUDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker.h; sourceTree = "<group>"; };
@@ -2453,6 +2451,8 @@
 		8D0969281C479824008C76E9 /* HCPromisedDetailAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedDetailAPI.m; sourceTree = "<group>"; };
 		8D0969291C479824008C76E9 /* HCPromisedListAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedListAPI.h; sourceTree = "<group>"; };
 		8D09692A1C479824008C76E9 /* HCPromisedListAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedListAPI.m; sourceTree = "<group>"; };
+		8D13462E1C58516200BFE189 /* HCAddPromiseViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddPromiseViewController1.h; sourceTree = "<group>"; };
+		8D13462F1C5852D700BFE189 /* HCAddPromiseViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddPromiseViewController1.m; sourceTree = "<group>"; };
 		8DB576031C479D9600AFE718 /* HCPromiseDetailViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromiseDetailViewController1.h; sourceTree = "<group>"; };
 		8DB576041C479DA800AFE718 /* HCPromiseDetailViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromiseDetailViewController1.m; sourceTree = "<group>"; };
 		C7692F501C3A4B2200582A10 /* MDCFocalPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocalPointView.h; sourceTree = "<group>"; };
@@ -5856,8 +5856,8 @@
 		8D0968E11C4797CC008C76E9 /* PromisedC */ = {
 			isa = PBXGroup;
 			children = (
-				8D0968E21C4797CC008C76E9 /* HCAddPromiseViewController1.h */,
-				8D0968E31C4797CC008C76E9 /* HCAddPromiseViewController1.m */,
+				8D13462E1C58516200BFE189 /* HCAddPromiseViewController1.h */,
+				8D13462F1C5852D700BFE189 /* HCAddPromiseViewController1.m */,
 				8DB576031C479D9600AFE718 /* HCPromiseDetailViewController1.h */,
 				8DB576041C479DA800AFE718 /* HCPromiseDetailViewController1.m */,
 				8D0968E61C4797CC008C76E9 /* HCPromisedViewController.h */,
@@ -6672,6 +6672,7 @@
 				0A7CBD071C31294E0051DD58 /* UIViewController+DismissKeyboard.m in Sources */,
 				0A5491BC1C2BC32D0085F50D /* ZXPDF417HighLevelEncoder.m in Sources */,
 				0A5491B31C2BC32D0085F50D /* ZXPDF417DetectionResultRowIndicatorColumn.m in Sources */,
+				8D1346301C5852D700BFE189 /* HCAddPromiseViewController1.m in Sources */,
 				0A7CBD111C31294E0051DD58 /* EaseLocationViewController.m in Sources */,
 				8D0968D91C47963A008C76E9 /* HCTagListView.m in Sources */,
 				0A5491901C2BC32D0085F50D /* ZXCode128Reader.m in Sources */,
@@ -7043,7 +7044,6 @@
 				0A7CBD1B1C31294E0051DD58 /* EaseBubbleView+Image.m in Sources */,
 				0A5491381C2BC32D0085F50D /* ZXGenericGFPoly.m in Sources */,
 				8D09683C1C479639008C76E9 /* HCMessageViewController.m in Sources */,
-				8D0968ED1C4797CC008C76E9 /* HCAddPromiseViewController1.m in Sources */,
 				0A7CBCA51C31294D0051DD58 /* GroupListViewController.m in Sources */,
 				0A54910B1C2BC32D0085F50D /* ZXAztecReader.m in Sources */,
 				8D0968841C479639008C76E9 /* UILabel+HCLabelContentSize.m in Sources */,

@@ -13,7 +13,7 @@ typedef void(^HCPromisedDetailBlock) (HCRequestStatus requestStatus,NSString *me
 
 @interface HCPromisedDetailAPI : HCRequest
 
-@property(nonatomic,copy)NSString  *ObjectId;
+@property(nonatomic,copy)NSNumber  *ObjectId;
 
 - (void)startRequest:(HCPromisedDetailBlock)requestBlock;
 

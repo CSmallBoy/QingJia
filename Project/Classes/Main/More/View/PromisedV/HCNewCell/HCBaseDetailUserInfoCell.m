@@ -91,12 +91,14 @@
     if (indexPath.row == 1)
     {
         self.textField.text = _detailInfo.ObjectXName;
+       
     }else if (indexPath.row == 2)
     {
         self.textField.text = _detailInfo.ObjectSex;
     }else if (indexPath.row == 3)
     {
         self.textField.text = _detailInfo.ObjectBirthDay;
+         self.textField.enabled = NO;
     }else if (indexPath.row == 4)
     {
         self.textField.text = _detailInfo.ObjectHomeAddress;
@@ -110,8 +112,8 @@
     {
         self.textField.text = _detailInfo.ObjectCareer;
     }
-
-    self.textField.enabled = NO;
+//
+//    self.textField.enabled = NO;
     self.textField.delegate = self;
     self.textField.tag = indexPath.row;
     
@@ -135,7 +137,13 @@
     if (!_headerIMGBtn)
     {
         _headerIMGBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 2, 80, 80)];
-        [_headerIMGBtn setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
+        if (self.image == nil) {
+            [_headerIMGBtn setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
+        }
+        else
+        {
+            [_headerIMGBtn setBackgroundImage:self.image forState:UIControlStateNormal];
+        }
         [_headerIMGBtn addTarget:self action:@selector(handleheaderIMG:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _headerIMGBtn;

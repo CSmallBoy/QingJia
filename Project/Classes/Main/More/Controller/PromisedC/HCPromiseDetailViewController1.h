@@ -10,6 +10,4 @@
 
 @interface HCPromiseDetailViewController1 : HCTableViewController
 
-@property(nonatomic,strong) NSNumber  *ObjectId;
-
 @end

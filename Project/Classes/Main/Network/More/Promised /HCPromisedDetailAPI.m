@@ -24,15 +24,12 @@
 
 - (id)requestArgument
 {
-    NSDictionary *head = @{@"Action" : @"Get" ,
+    NSDictionary *head = @{@"Action" : @"GetAllInf" ,
                            @"Token":[HCAccountMgr manager].loginInfo.Token ,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     
     NSDictionary  *ParaDic = @{@"CallId" :@(100000001)};// @([_ObjectId intValue])};
-    
-    
-    NSDictionary *bodyDic = @{@"Head" : head, @"Para" : ParaDic};
-    
+    NSDictionary *bodyDic = @{@"Head" : head, @"Para" : ParaDic};    
     return @{@"json": [Utils stringWithObject:bodyDic]};
 }
 

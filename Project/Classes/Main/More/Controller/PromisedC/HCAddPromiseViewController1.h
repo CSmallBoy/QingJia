@@ -10,6 +10,4 @@
 
 @interface HCAddPromiseViewController1 : HCTableViewController
 
-@property(nonatomic,assign)NSString *  ObjectId;
-
 @end

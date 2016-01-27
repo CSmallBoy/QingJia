@@ -70,7 +70,7 @@
 {
     _indexPath = indexPath;
     _titleLabel.text = self.titleArr[indexPath.row];
-    _textField.enabled = _isEdit;
+//    _textField.enabled = _isEdit;
     if (indexPath.row == 0)
     {
         self.textField.placeholder = self.placeholderTitleArr[indexPath.row];
@@ -130,7 +130,7 @@
 {
     if (!_placeholderTitleArr)
     {
-        _placeholderTitleArr = @[@"点击输入走失者血型",@"如果走失者有药物过敏历史点击输入郭明药物名称"];
+        _placeholderTitleArr = @[@"点击输入走失者血型",@"如果走失者有药物过敏历史点击输入过敏药物名称"];
     }
     return _placeholderTitleArr;
 }

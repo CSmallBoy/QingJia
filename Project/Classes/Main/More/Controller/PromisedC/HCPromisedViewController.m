@@ -9,9 +9,10 @@
 #import "HCPromisedViewController.h"
 #import "HCPromiseDetailViewController1.h"
 #import "HCAddPromiseViewController1.h"
-#import "MJRefresh.h"
-#import "HCPromisedAddCell.h"
 
+#import "MJRefresh.h"
+
+#import "HCPromisedAddCell.h"
 #import "HCPromisedListAPI.h"
 #import "HCPromisedListInfo.h"
 
@@ -36,12 +37,12 @@
     [self  createTableView];
 }
 //
--(void)viewWillAppear:(BOOL)animated
-{
-    [ super viewWillAppear:animated];
-    [self requestData];
-    [self.smallTableView reloadData];
-}
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    [ super viewWillAppear:animated];
+//    [self requestData];
+//    [self.smallTableView reloadData];
+//}
 
 #pragma mark--UITableViewDelegate
 
@@ -55,7 +56,6 @@
     cell.buttonH = self.smallTableView.frame.size.height/5;
     cell.block = ^(NSString  *buttonTitle)
     {
-        
         if ([buttonTitle isEqualToString:@"+ 新增录入"])
         {  //跳转到添加界面
             HCAddPromiseViewController1  *addVC = [[HCAddPromiseViewController1 alloc]init];
@@ -65,7 +65,7 @@
         {
             //跳转到信息界面
             HCPromiseDetailViewController1 *detailVC = [[HCPromiseDetailViewController1 alloc]init];
-            detailVC.ObjectId = info.ObjectId;
+            detailVC.data = @{@"ObjectId":info.ObjectId};
             [self.navigationController pushViewController:detailVC animated:YES];
         }
     };
@@ -86,14 +86,13 @@
 
 -(void)createUI
 {
-
    //背景图片
     _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 270,360)];
     _bgImage.userInteractionEnabled = YES;
     _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+45);
     _bgImage.image = [UIImage imageNamed:@"yihubaiying_Background.png"];
     [self.view addSubview:_bgImage];
-
+    
     //顶部图片
     CGFloat  headerViewW = _bgImage.frame.size.width/3;
     UIImageView *headerView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, headerViewW , headerViewW)];
@@ -151,6 +150,7 @@
 }
 
 #pragma mark --- network
+
 // 下拉刷新请求数据
 -(void)requestData
 {
@@ -169,12 +169,11 @@
 
         }else
         {
-        
            [self showHUDError:message];
         }
-
         }];
 }
+
 //上拉加载更多数据
 -(void)requestMoreData
 {
@@ -183,7 +182,6 @@
     HCPromisedListInfo *info = self.dataArr[self.dataArr.count-1];
     api.Start = [info.ObjectId intValue];
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSMutableArray *array) {
-
         
         if (requestStatus == HCRequestStatusSuccess) {
             [self.dataArr addObjectsFromArray:array];
@@ -199,7 +197,6 @@
         }
         
     }];
-    
 }
 
 @end

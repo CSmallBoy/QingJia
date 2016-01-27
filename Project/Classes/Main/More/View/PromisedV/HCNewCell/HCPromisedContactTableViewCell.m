@@ -88,7 +88,7 @@
     self.textField.attributedPlaceholder = attriString;
     self.textField.delegate = self;
     self.textField.tag = indexPath.row;
-    self.textField.enabled = _isEdit;
+//    self.textField.enabled = _isEdit;
     _info = _contactArr[_indexPath.section-1];
    
    

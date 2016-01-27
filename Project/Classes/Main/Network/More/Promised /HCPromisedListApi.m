@@ -26,7 +26,6 @@
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     NSDictionary *Result = @{@"Start":@(_Start),@"Count":@(20)};
     NSDictionary *bodyDic = @{@"Head" : head, @"Result" : Result};
-    
     return @{@"json": [Utils stringWithObject:bodyDic]};
 }
 
@@ -34,13 +33,11 @@
 {
     NSArray  *arrRows = responseObject[@"Data"][@"rows"];
     
-    
     NSMutableArray  *ListInfos = [NSMutableArray array];
-    
     for (NSDictionary *dic in arrRows) {
         HCPromisedListInfo  *info = [[HCPromisedListInfo alloc]init];
         info.name = dic[@"ObjectXName"];
-        info.ObjectId = [dic[@"KeyId"] stringValue];
+        info.ObjectId = @([dic[@"KeyId"] intValue]);
         [ListInfos addObject:info];
     }
     return ListInfos;

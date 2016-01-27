@@ -26,5 +26,6 @@
 @property (nonatomic, strong) HCPromisedDetailInfo *detailInfo;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, weak) id<HCBaseUserInfoCellDelegate>delegate;
+@property(nonatomic,strong) UIImage *image;
 
 @end
