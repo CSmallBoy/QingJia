@@ -11,6 +11,7 @@
 #import "HCMessageViewController.h"
 #import "HCMoreViewController.h"
 #import "HCScanViewController.h"
+#import "HCPromisedViewController.h"
 
 #import "ConversationListController.h"
 #import "ContactListViewController.h"
@@ -67,8 +68,8 @@ static NSString *kGroupName = @"GroupName";
     //
     [self setupChildNavigationControllerWithClass:[UINavigationController class]
                                   tabBarImageName:@"ThinkChange"
-                          rootViewControllerClass:[HCScanViewController class]
-                          rootViewControllerTitle:@"扫一扫"];
+                          rootViewControllerClass:[HCPromisedViewController class]
+                          rootViewControllerTitle:@"呼·应"];
     
     [self setupChildNavigationControllerWithClass:[UINavigationController class]
                                   tabBarImageName:@"more"
