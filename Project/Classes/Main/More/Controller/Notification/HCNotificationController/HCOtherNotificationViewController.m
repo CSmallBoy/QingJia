@@ -7,7 +7,6 @@
 //
 
 #import "HCOtherNotificationViewController.h"
-#import "HCNotificationCentereReadTableViewCell.h"
 #import "HCNotificationDetailViewController.h"
 #import "HCButtonItem.h"
 
