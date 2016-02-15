@@ -1,5 +1,5 @@
 //
-//  MyFamilyViewController.h
+//  HCInviteFamilyViewController.h
 //  Project
 //
 //  Created by 朱宗汉 on 16/2/1.
@@ -8,6 +8,6 @@
 
 #import "HCViewController.h"
 
-@interface MyFamilyViewController : HCViewController
+@interface HCInviteFamilyViewController : HCViewController
 
 @end

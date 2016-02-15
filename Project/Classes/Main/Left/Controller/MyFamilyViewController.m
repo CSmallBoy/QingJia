@@ -8,17 +8,25 @@
 
 #import "MyFamilyViewController.h"
 #import "HCaddRelativeViewController.h"
+#import "HCEditingMyselfViewController.h"
+//家庭管理
+#import "FamilyManageViewController.h"
 @interface MyFamilyViewController ()
 
 @end
 
 @implementation MyFamilyViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = @"我的家族";
+    UIBarButtonItem *barButton= [[UIBarButtonItem alloc]initWithTitle:@"setting" style:UIBarButtonItemStyleDone target:self action:@selector(barButtonClick)];
+    self.navigationItem.rightBarButtonItem = barButton;
+    [self setupBackItem];
     [self makeUI];
 }
+
 - (void)makeUI{
     NSArray *arr = @[@"人物一",@"人物二"];
     for (int i = 0; i < 2; i ++) {
@@ -31,16 +39,21 @@
     }
 }
 
--(void)buttonClick:(UIButton *)button{
+-(void)buttonClick:(UIButton *)button
+{
     UIViewController *vc;
-    if ([button.currentTitle isEqualToString:@"人物一"]) {
+    if ([button.currentTitle isEqualToString:@"人物一"])
+    {
         vc = [[HCaddRelativeViewController alloc]init];
     }else{
-        vc = [[HCaddRelativeViewController alloc]init];
+        vc = [[HCEditingMyselfViewController alloc]init];
     }
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+-(void)barButtonClick{
+    FamilyManageViewController * vc = [[FamilyManageViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     

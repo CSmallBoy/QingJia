@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"添加亲戚";
-    
+    [self setupBackItem];
     [self makeUI];
     NSArray *Arr = @[@"儿子",@"女儿",@"兄弟",@"姐妹"];
     _arr = [NSMutableArray arrayWithArray:Arr];
