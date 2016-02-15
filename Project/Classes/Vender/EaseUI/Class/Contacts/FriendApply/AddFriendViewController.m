@@ -19,10 +19,12 @@
 #import "lhScanQCodeViewController.h"
 #import "HCAddFriendlistTableViewCell.h"
 
-#import "UITableViewRowAction+JZExtension.h"
+#import "HCMailListViewController.h"
 
 @interface AddFriendViewController ()<UITextFieldDelegate, UIAlertViewDelegate,UIGestureRecognizerDelegate,HCAddFriendlistTableViewCellDelegate>
-
+{
+    NSMutableArray *btnArr;
+}
 @property (strong, nonatomic) NSMutableArray *dataSource;
 
 @property (strong, nonatomic) UIView *headerView;
@@ -40,7 +42,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         _dataSource = [NSMutableArray array];
     }
     return self;
@@ -93,70 +96,91 @@
 
 #pragma mark--UITableViewDataSource
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.models.count;
-}
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1 ;
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    static NSString *cellID = @"friendlist";
-    HCAddFriendlistTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell)
+    return self.models.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 55)];
+    btn1.backgroundColor = [UIColor redColor];
+    [btn1 setTitle:@"删除" forState:UIControlStateNormal];
+    UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 55)];
+    btn2.backgroundColor = [UIColor orangeColor];
+    [btn2 setTitle:@"收藏" forState:UIControlStateNormal];
+    
+    UIButton *btn3 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 55)];
+    btn3.backgroundColor = [UIColor greenColor];
+    [btn3 setTitle:@"举报" forState:UIControlStateNormal];
+    btnArr = [[NSMutableArray alloc]initWithObjects:btn1,btn2,btn3, nil];
+    
+    static NSString *cellIdentifier = @"Cell";
+    HCAddFriendlistTableViewCell *cell = (HCAddFriendlistTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil)
     {
-        cell = [[HCAddFriendlistTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.indexPath = indexPath;
+        cell = [[HCAddFriendlistTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                           reuseIdentifier:@"Cell"
+                                                  withBtns:btnArr
+                                                 tableView:self.tableView];
         cell.delegate = self;
     }
+        cell.indexPath = indexPath;
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSIndexPath *selected = [tableView indexPathForSelectedRow];
+    if(selected)
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+#pragma mark SCSwipeTableViewCellDelegate
+
+- (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath{
+
+    NSString *message = [NSString stringWithFormat:@"you choose the %ldth btn in section %ld row %ld",(long)tag,(long)indexpath.section,(long)indexpath.row ];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"tips"
+                                                   message:message
+                                                  delegate:self
+                                         cancelButtonTitle:@"ok"
+                                         otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+- (void)cellOptionBtnWillShow{
+    NSLog(@"cellOptionBtnWillShow");
+}
+
+- (void)cellOptionBtnWillHide{
+    NSLog(@"cellOptionBtnWillHide");
+}
+
+- (void)cellOptionBtnDidShow{
+    NSLog(@"cellOptionBtnDidShow");
+}
+
+- (void)cellOptionBtnDidHide{
+    NSLog(@"cellOptionBtnDidHide");
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
 }
 
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self setEditing:false animated:true];
-}
-
-- (nullable NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    void(^rowActionHandler)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        [self setEditing:false animated:true];
-    };
-    
-    UIButton *buttonForImage = [UIButton buttonWithType:UIButtonTypeCustom];//UIButtonTypeDetailDisclosure];
-//    //    buttonForImage.imageView.image = [UIImage imageNamed:@"108*108"];
-//    [buttonForImage setBackgroundImage:[UIImage imageNamed:@"110"] forState:UIControlStateNormal];
-//    UITableViewRowAction *action1 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault image:[buttonForImage imageForState:UIControlStateNormal] handler:rowActionHandler];
-//    UITableViewRowAction *action2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"disenable" handler:rowActionHandler];
-//    action2.enabled = false;
-//    UITableViewRowAction *action3 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"emjoy👍" handler:rowActionHandler];
-         UITableViewRowAction *action1 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault image:[buttonForImage imageForState:UIControlStateNormal] handler:^(UITableViewRowAction * _Nullable action, NSIndexPath * _Nullable indexPath) {
-             NSLog(@"1");
-         }];
-
-         UITableViewRowAction *action2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault image:[buttonForImage imageForState:UIControlStateNormal] handler:^(UITableViewRowAction * _Nullable action, NSIndexPath * _Nullable indexPath) {
-             NSLog(@"2");
-         }];
-         UITableViewRowAction *action3 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault image:[buttonForImage imageForState:UIControlStateNormal] handler:^(UITableViewRowAction * _Nullable action, NSIndexPath * _Nullable indexPath) {
-             NSLog(@"3");
-         }];
-    action1.backgroundColor = [UIColor blueColor];
-    action2.backgroundColor = [UIColor lightGrayColor];
-    action3.backgroundColor = [UIColor whiteColor];
-    action1.image = OrigIMG(@"Notice");
-    action2.image = OrigIMG(@"label");
-    action3.image = OrigIMG(@"110");
-    
-    return @[action1,action2,action3];
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 #pragma mark--HCAddFriendlistTableViewCellDelegate
@@ -186,6 +210,8 @@
     if (button.tag == 0 )
     {
         NSLog(@"1");
+        HCMailListViewController *mailVC = [[HCMailListViewController alloc]init];
+        [self.navigationController pushViewController:mailVC animated:YES];
     }
     else
     {

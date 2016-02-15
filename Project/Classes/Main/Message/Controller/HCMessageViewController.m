@@ -62,7 +62,8 @@
     if (index == 0)
     {
         [self.mainView addSubview:self.messageListVC.view];
-    }else if (index == 1)
+    }
+    else if (index == 1)
     {
         [self.mainView addSubview:self.contactsVC.view];
     }

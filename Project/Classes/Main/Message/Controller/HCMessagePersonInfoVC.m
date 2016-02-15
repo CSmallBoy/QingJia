@@ -59,7 +59,6 @@
     return (indexPath.section == 0) ? 80 : 40 ;
 }
 
-
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return (section == 0) ? 10 : 80;

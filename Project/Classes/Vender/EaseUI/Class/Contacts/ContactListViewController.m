@@ -49,7 +49,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.showRefreshHeader = YES;
     
     _contactsSource = [NSMutableArray array];
@@ -78,16 +77,17 @@
     [self reloadApplyView];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - getter
 
 - (NSArray *)rightItems
 {
-    if (_rightItems == nil) {
+    if (_rightItems == nil)
+    {
         UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
         [addButton setImage:[UIImage imageNamed:@"addContact.png"] forState:UIControlStateNormal];
         [addButton addTarget:self action:@selector(addContactAction) forControlEvents:UIControlEventTouchUpInside];
@@ -100,19 +100,20 @@
 
 - (UISearchBar *)searchBar
 {
-    if (_searchBar == nil) {
+    if (_searchBar == nil)
+    {
         _searchBar = [[EMSearchBar alloc] init];
         _searchBar.delegate = self;
         _searchBar.placeholder = NSLocalizedString(@"search", @"Search");
         _searchBar.backgroundColor = [UIColor colorWithRed:0.747 green:0.756 blue:0.751 alpha:1.000];
     }
-    
     return _searchBar;
 }
 
 - (EMSearchDisplayController *)searchController
 {
-    if (_searchController == nil) {
+    if (_searchController == nil)
+    {
         _searchController = [[EMSearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
         _searchController.delegate = self;
         _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -122,8 +123,8 @@
             static NSString *CellIdentifier = @"ContactListCell";
             BaseTableViewCell *cell = (BaseTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             
-            // Configure the cell...
-            if (cell == nil) {
+            if (cell == nil)
+            {
                 cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
             
@@ -135,21 +136,23 @@
             return cell;
         }];
         
-        [_searchController setHeightForRowAtIndexPathCompletion:^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
+        [_searchController setHeightForRowAtIndexPathCompletion:^CGFloat(UITableView *tableView, NSIndexPath *indexPath)
+         {
             return 50;
         }];
         
-        [_searchController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath) {
+        [_searchController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath)
+         {
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             
             EMBuddy *buddy = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
             NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
             NSString *loginUsername = [loginInfo objectForKey:kSDKUsername];
             if (loginUsername && loginUsername.length > 0) {
-                if ([loginUsername isEqualToString:buddy.username]) {
+                if ([loginUsername isEqualToString:buddy.username])
+                {
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"friend.notChatSelf", @"can't talk to yourself") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
                     [alertView show];
-                    
                     return;
                 }
             }
@@ -169,17 +172,15 @@
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return [self.dataArray count] + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    if (section == 0) {
+    if (section == 0)
+    {
         return 2;
     }
-    
     return [[self.dataArray objectAtIndex:(section - 1)] count];
 }
 
@@ -188,14 +189,16 @@
     NSString *CellIdentifier = [EaseUserCell cellIdentifierWithModel:nil];
     EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0)
+    {
         cell.model = nil;
-        if (indexPath.row == 0) {
+        if (indexPath.row == 0)
+        {
             NSString *CellIdentifier = @"addFriend";
             EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
@@ -210,14 +213,7 @@
             cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
             cell.titleLabel.text = NSLocalizedString(@"title.group", @"Group");
         }
-//        else if (indexPath.row == 2) {
-//            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
-//            cell.titleLabel.text = NSLocalizedString(@"title.chatroomlist",@"chatroom list");
-//        }
-//        else if (indexPath.row == 3) {
-//            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
-//            cell.titleLabel.text = NSLocalizedString(@"title.robotlist",@"robot list");
-//        }
+
     }
     else{
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
@@ -449,7 +445,8 @@
     //从获取的数据中剔除黑名单中的好友
     NSArray *blockList = [[EaseMob sharedInstance].chatManager blockedList];
     for (EMBuddy *buddy in buddyList) {
-        if (![blockList containsObject:buddy.username]) {
+        if (![blockList containsObject:buddy.username])
+        {
             [contactsSource addObject:buddy];
         }
     }

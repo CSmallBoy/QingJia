@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupBackItem];
     UIWebView *JDWebView = [[UIWebView alloc]initWithFrame:self.view.frame];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:@"https://www.jd.com"]] ;
     [JDWebView loadRequest:request];

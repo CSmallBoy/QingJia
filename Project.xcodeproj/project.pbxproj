@@ -348,9 +348,6 @@
 		C78D7AE51C5F28F700622CE2 /* HCStepMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78E51C5F28F600622CE2 /* HCStepMoveView.m */; };
 		C78D7AE61C5F28F700622CE2 /* HCMessagePersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78E91C5F28F600622CE2 /* HCMessagePersonInfoVC.m */; };
 		C78D7AE71C5F28F700622CE2 /* HCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78EB1C5F28F600622CE2 /* HCMessageViewController.m */; };
-		C78D7AE81C5F28F700622CE2 /* UITableViewCell+JZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78ED1C5F28F600622CE2 /* UITableViewCell+JZExtension.m */; };
-		C78D7AE91C5F28F700622CE2 /* UITableViewRowAction+JZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78EF1C5F28F600622CE2 /* UITableViewRowAction+JZExtension.m */; };
-		C78D7AEA1C5F28F700622CE2 /* UITableViewRowAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78F01C5F28F600622CE2 /* UITableViewRowAction.m */; };
 		C78D7AEB1C5F28F700622CE2 /* HCAddFriendlistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78F31C5F28F600622CE2 /* HCAddFriendlistTableViewCell.m */; };
 		C78D7AEC1C5F28F700622CE2 /* HCAddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78F51C5F28F600622CE2 /* HCAddFriendTableViewCell.m */; };
 		C78D7AED1C5F28F700622CE2 /* HCAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78FA1C5F28F600622CE2 /* HCAddItemViewController.m */; };
@@ -909,6 +906,9 @@
 		C7B00C8E1C5F26050010F93B /* groupPublicHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B291C5F26050010F93B /* groupPublicHeader@2x.png */; };
 		C7B00C8F1C5F26050010F93B /* nav_createGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2A1C5F26050010F93B /* nav_createGroup@2x.png */; };
 		C7B00C901C5F26050010F93B /* newFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2B1C5F26050010F93B /* newFriends@2x.png */; };
+		C7BE0E3B1C71A02A007D97A5 /* HCMailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3A1C71A02A007D97A5 /* HCMailListViewController.m */; };
+		C7BE0E411C71A041007D97A5 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3D1C71A041007D97A5 /* Model.m */; };
+		C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3F1C71A041007D97A5 /* pinyin.c */; };
 		C7CDB2501C71719700185450 /* FamilyManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CDB2051C71719700185450 /* FamilyManageViewController.m */; };
 		C7CDB2511C71719700185450 /* HCGradeManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CDB2081C71719700185450 /* HCGradeManagerViewController.m */; };
 		C7CDB2521C71719700185450 /* HCaddRelativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CDB20A1C71719700185450 /* HCaddRelativeViewController.m */; };
@@ -1633,10 +1633,6 @@
 		C78D78E91C5F28F600622CE2 /* HCMessagePersonInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessagePersonInfoVC.m; sourceTree = "<group>"; };
 		C78D78EA1C5F28F600622CE2 /* HCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessageViewController.h; sourceTree = "<group>"; };
 		C78D78EB1C5F28F600622CE2 /* HCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessageViewController.m; sourceTree = "<group>"; };
-		C78D78ED1C5F28F600622CE2 /* UITableViewCell+JZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+JZExtension.m"; sourceTree = "<group>"; };
-		C78D78EE1C5F28F600622CE2 /* UITableViewRowAction+JZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewRowAction+JZExtension.h"; sourceTree = "<group>"; };
-		C78D78EF1C5F28F600622CE2 /* UITableViewRowAction+JZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewRowAction+JZExtension.m"; sourceTree = "<group>"; };
-		C78D78F01C5F28F600622CE2 /* UITableViewRowAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewRowAction.m; sourceTree = "<group>"; };
 		C78D78F21C5F28F600622CE2 /* HCAddFriendlistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddFriendlistTableViewCell.h; sourceTree = "<group>"; };
 		C78D78F31C5F28F600622CE2 /* HCAddFriendlistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddFriendlistTableViewCell.m; sourceTree = "<group>"; };
 		C78D78F41C5F28F600622CE2 /* HCAddFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddFriendTableViewCell.h; sourceTree = "<group>"; };
@@ -2579,6 +2575,12 @@
 		C7B00B2A1C5F26050010F93B /* nav_createGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_createGroup@2x.png"; sourceTree = "<group>"; };
 		C7B00B2B1C5F26050010F93B /* newFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newFriends@2x.png"; sourceTree = "<group>"; };
 		C7B00B2C1C5F26050010F93B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C7BE0E391C71A02A007D97A5 /* HCMailListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMailListViewController.h; sourceTree = "<group>"; };
+		C7BE0E3A1C71A02A007D97A5 /* HCMailListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMailListViewController.m; sourceTree = "<group>"; };
+		C7BE0E3C1C71A041007D97A5 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		C7BE0E3D1C71A041007D97A5 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		C7BE0E3F1C71A041007D97A5 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
+		C7BE0E401C71A041007D97A5 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		C7CDB2041C71719700185450 /* FamilyManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyManageViewController.h; sourceTree = "<group>"; };
 		C7CDB2051C71719700185450 /* FamilyManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyManageViewController.m; sourceTree = "<group>"; };
 		C7CDB2071C71719700185450 /* HCGradeManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGradeManagerViewController.h; sourceTree = "<group>"; };
@@ -3999,10 +4001,6 @@
 			children = (
 				C78D78E71C5F28F600622CE2 /* Controller */,
 				C78D78EC1C5F28F600622CE2 /* Model */,
-				C78D78ED1C5F28F600622CE2 /* UITableViewCell+JZExtension.m */,
-				C78D78EE1C5F28F600622CE2 /* UITableViewRowAction+JZExtension.h */,
-				C78D78EF1C5F28F600622CE2 /* UITableViewRowAction+JZExtension.m */,
-				C78D78F01C5F28F600622CE2 /* UITableViewRowAction.m */,
 				C78D78F11C5F28F600622CE2 /* View */,
 			);
 			path = Message;
@@ -4015,6 +4013,8 @@
 				C78D78E91C5F28F600622CE2 /* HCMessagePersonInfoVC.m */,
 				C78D78EA1C5F28F600622CE2 /* HCMessageViewController.h */,
 				C78D78EB1C5F28F600622CE2 /* HCMessageViewController.m */,
+				C7BE0E391C71A02A007D97A5 /* HCMailListViewController.h */,
+				C7BE0E3A1C71A02A007D97A5 /* HCMailListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4022,6 +4022,9 @@
 		C78D78EC1C5F28F600622CE2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C7BE0E3C1C71A041007D97A5 /* Model.h */,
+				C7BE0E3D1C71A041007D97A5 /* Model.m */,
+				C7BE0E3E1C71A041007D97A5 /* pinyin */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6243,6 +6246,15 @@
 			path = other;
 			sourceTree = "<group>";
 		};
+		C7BE0E3E1C71A041007D97A5 /* pinyin */ = {
+			isa = PBXGroup;
+			children = (
+				C7BE0E3F1C71A041007D97A5 /* pinyin.c */,
+				C7BE0E401C71A041007D97A5 /* pinyin.h */,
+			);
+			path = pinyin;
+			sourceTree = "<group>";
+		};
 		C7CDB2021C71719700185450 /* Left */ = {
 			isa = PBXGroup;
 			children = (
@@ -6489,7 +6501,7 @@
 				TargetAttributes = {
 					0A6B7D971BF1EB6A008D54B3 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 7BRF7BU557;
+						DevelopmentTeam = TUQVNVJWWD;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -6982,11 +6994,9 @@
 				0A5491071C2BC32D0085F50D /* ZXAztecSimpleToken.m in Sources */,
 				0A5491031C2BC32D0085F50D /* ZXAztecBinaryShiftToken.m in Sources */,
 				0A54915E1C2BC32D0085F50D /* ZXDataMatrixBase256Encoder.m in Sources */,
-				C78D7AE91C5F28F700622CE2 /* UITableViewRowAction+JZExtension.m in Sources */,
 				C78D7C991C5F2C1200622CE2 /* UIView+SDExtension.m in Sources */,
 				0A54916C1C2BC32D0085F50D /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
 				C78D7AE11C5F28F700622CE2 /* HCRegistViewController.m in Sources */,
-				C78D7AE81C5F28F700622CE2 /* UITableViewCell+JZExtension.m in Sources */,
 				C7B00B8C1C5F26050010F93B /* EMSDWebImagePrefetcher.m in Sources */,
 				C7CDB26C1C71719700185450 /* HCLeftGradeView.m in Sources */,
 				0A54910C1C2BC32D0085F50D /* ZXAztecWriter.m in Sources */,
@@ -7209,6 +7219,7 @@
 				0A5491291C2BC32D0085F50D /* ZXURIResultParser.m in Sources */,
 				C7B00B641C5F26050010F93B /* PushNotificationViewController.m in Sources */,
 				0A5491CF1C2BC32D0085F50D /* ZXQRCodeFinderPatternFinder.m in Sources */,
+				C7BE0E411C71A041007D97A5 /* Model.m in Sources */,
 				0A5491131C2BC32D0085F50D /* ZXCalendarParsedResult.m in Sources */,
 				0A54913C1C2BC32D0085F50D /* ZXBitMatrix.m in Sources */,
 				C78D7AD91C5F28F700622CE2 /* HCFindPwdSecondViewController.m in Sources */,
@@ -7346,6 +7357,7 @@
 				C78D7AEB1C5F28F700622CE2 /* HCAddFriendlistTableViewCell.m in Sources */,
 				0A5491AC1C2BC32D0085F50D /* ZXPDF417BarcodeValue.m in Sources */,
 				0A54919F1C2BC32D0085F50D /* ZXOneDReader.m in Sources */,
+				C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */,
 				C7B00B861C5F26050010F93B /* EMSDImageCache.m in Sources */,
 				C7CDB25F1C71719700185450 /* HCFriendMessageViewController.m in Sources */,
 				C78D7AB01C5F28F700622CE2 /* HCHomeDetailViewController.m in Sources */,
@@ -7369,7 +7381,6 @@
 				C78D7B231C5F28F700622CE2 /* HCNotificationDetailInfo.m in Sources */,
 				0A5491731C2BC32D0085F50D /* ZXAI01320xDecoder.m in Sources */,
 				C78D7B921C5F28F700622CE2 /* HCRootTabBarController.m in Sources */,
-				C78D7AEA1C5F28F700622CE2 /* UITableViewRowAction.m in Sources */,
 				C78D7BD61C5F291A00622CE2 /* HCNotificationDetailApi.m in Sources */,
 				C7B00BA61C5F26050010F93B /* EaseMessageModel.m in Sources */,
 				C78D7B6E1C5F28F700622CE2 /* HCGetCodeApi.m in Sources */,
@@ -7446,6 +7457,7 @@
 				C7B00B8D1C5F26050010F93B /* MKAnnotationView+EMWebCache.m in Sources */,
 				C7B00BCC1C5F26050010F93B /* EaseChatBarMoreView.m in Sources */,
 				0A5491B01C2BC32D0085F50D /* ZXPDF417DecodedBitStreamParser.m in Sources */,
+				C7BE0E3B1C71A02A007D97A5 /* HCMailListViewController.m in Sources */,
 				C7B00B921C5F26050010F93B /* UIImage+EMWebP.m in Sources */,
 				C7B00B3D1C5F26050010F93B /* AppDelegate+EaseMobDebug.m in Sources */,
 				C78D7BD71C5F291A00622CE2 /* HCNotificationUnreadChangeApi.m in Sources */,
@@ -7711,7 +7723,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gaodeMap814;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mtalk.ww;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7748,7 +7760,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gaodeMap814;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mtalk.ww;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
