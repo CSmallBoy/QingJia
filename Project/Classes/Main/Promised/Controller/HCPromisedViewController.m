@@ -183,7 +183,6 @@
     _bgImage.userInteractionEnabled = YES;
     _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+45);
     _bgImage.image = [UIImage imageNamed:@"yihubaiying_Background.png"];
-    _bgImage.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:_bgImage];
     
     //顶部图片
