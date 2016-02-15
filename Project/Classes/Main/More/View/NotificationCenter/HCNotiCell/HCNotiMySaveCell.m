@@ -6,13 +6,13 @@
 //  Copyright © 2015年 Sunc. All rights reserved.
 //
 
-#import "SCSwipeTableViewCell.h"
+#import "HCNotiMySaveCell.h"
 
 #define SC_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 
 #define INTERVAL 10
 
-@interface SCSwipeTableViewCell()<UIGestureRecognizerDelegate>
+@interface HCNotiMySaveCell()<UIGestureRecognizerDelegate>
 {
     UITapGestureRecognizer *tap;
     BOOL isShow;
@@ -38,7 +38,7 @@
 @property (nonatomic, assign)BOOL isShowing;
 @end
 
-@implementation SCSwipeTableViewCell
+@implementation HCNotiMySaveCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -213,7 +213,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     if (!_isRightBtnShow) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"SC_CELL_SHOULDCLOSE" object:nil userInfo:@{@"action":@"closeCell"}];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"SC_CELL_SHOULDCLOSE_SAVE" object:nil userInfo:@{@"action":@"closeCell"}];
     }
     else{
         [self hideBtn];
@@ -225,7 +225,7 @@
 - (void)addNotify{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotify:)
-                                                 name:@"SC_CELL_SHOULDCLOSE"
+                                                 name:@"SC_CELL_SHOULDCLOSE_SAVE"
                                                object:nil];
 }
 
@@ -264,50 +264,45 @@
 }
 
 - (void)addGesture{
-    _panGersture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleGesture:)];
-    _panGersture.delegate = self;
-    [self.SCContentView addGestureRecognizer:_panGersture];
+
+    [self.SCContentView addGestureRecognizer:self.panGersture];
     
     tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
     [self.SCContentView addGestureRecognizer:tap];
     
 }
 
+
+- (UIPanGestureRecognizer *)panGersture
+{
+    if(!_panGersture){
+        _panGersture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleGesture:)];
+        _panGersture.delegate = self;
+    }
+    return _panGersture;
+}
+
+
 -(void)tap:(UITapGestureRecognizer *)tap
 {
      NSLog(@"%lf",_SCContentView.frame.origin.x );
-    
-    if (_isSaveCell)
-    {
-        
-        if (_SCContentView.frame.origin.x == -80)
-        {
-            [self hideBtn];
-        }else
-        {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextController" object:nil];
-        }
-    }else if (_SCContentView.frame.origin.x == -240)
-    {
 
-        [self hideBtn];
-        
-    }
-    else
+    if (_SCContentView.frame.origin.x == -120)
     {
-     [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextController" object:nil];
+        [self hideBtn];
+    }else
+    {
+        NSDictionary *dic = @{@"info" : self.info};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextOtherController" object:nil userInfo:dic];
     }
     
 }
 
 - (void)handleGesture:(UIPanGestureRecognizer *)recognizer{
-    if (_isShowing||_isHiding) {
-        return;
-    }
+
     CGPoint translation = [_panGersture translationInView:self];
     CGPoint location = [_panGersture locationInView:self];
     NSLog(@"translation----(%f)----loaction(%f)",translation.x,location.y);
-    //加bool
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
             break;
@@ -327,25 +322,24 @@
                 if (_SCContentView.frame.origin.x == -_judgeWidth) {
                     //close cell
                     [self hideBtn];
-                    isShow = NO;
                 }
                 else if (_SCContentView.frame.origin.x > -_judgeWidth){
                     //open cell
                     [self moveSCContentView:translation.x];
-                    isShow = YES;
+            
                 }
             }
             else if (translation.x>0){
                 //SCContentView is moving towards right
                 [self hideBtn];
-                isShow = NO;
+
             }
             break;
             
         case UIGestureRecognizerStateEnded:
             _superTableView.scrollEnabled = YES;
             if (_otherCellIsOpen&&!(_SCContentView.frame.origin.x == -_judgeWidth)) {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"SC_CELL_SHOULDCLOSE" object:nil userInfo:@{@"action":@"closeCell"}];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"SC_CELL_SHOULDCLOSE_SAVE" object:nil userInfo:@{@"action":@"closeCell"}];
                 return;
             }
             //end pan
@@ -417,7 +411,7 @@
             [self cellDidShow];
             _isShowing = NO;
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"SC_CELL_SHOULDCLOSE" object:nil userInfo:@{@"action":@"otherCellIsOpen"}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SC_CELL_SHOULDCLOSE_SAVE" object:nil userInfo:@{@"action":@"otherCellIsOpen"}];
         _superTableView.scrollEnabled = YES;
     }];
 }
@@ -439,7 +433,7 @@
             [self cellDidHide];
             _isHiding = NO;
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"SC_CELL_SHOULDCLOSE" object:nil userInfo:@{@"action":@"otherCellIsClose"}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SC_CELL_SHOULDCLOSE_SAVE" object:nil userInfo:@{@"action":@"otherCellIsClose"}];
         _superTableView.userInteractionEnabled = YES;
     }];
 }
@@ -486,6 +480,6 @@
 
 - (void)dealloc{
     [_superTableView removeObserver:self forKeyPath:@"contentOffset"];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SC_CELL_SHOULDCLOSE" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SC_CELL_SHOULDCLOSE_SAVE" object:nil];
 }
 @end

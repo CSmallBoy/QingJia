@@ -4,26 +4,28 @@
 //
 //  Created by 朱宗汉 on 15/12/21.
 //  Copyright © 2015年 com.xxx. All rights reserved.
-//
+
+
+// 呼·应 --------- 我的收藏--------------
 
 #import "HCSaveNotificationViewController.h"
 #import "HCNotificationDetailViewController.h"
 #import "HCButtonItem.h"
 
 
-
-#import "SCSwipeTableViewCell.h"
-
+#import "HCNotiMySaveCell.h"
 #import "HCMyNotificationCenterTableViewCell.h"
 
-#import "HCNotificationCenterApi.h"
 #import "HCNotificationCenterInfo.h"
+
+#import "HCNotificationCenterApi.h"
 #import "HCNotificationDeleteApi.h"
 
 @interface HCSaveNotificationViewController ()<UISearchBarDelegate,SCSwipeTableViewCellDelegate>
 {
-    NSMutableArray *btnArr;
+    NSMutableArray *saveBtnArr;
 }
+
 @property (nonatomic,strong) NSMutableArray * results;
 @property(nonatomic,strong)UISearchBar      *seatchBar;
 @property (nonatomic,strong)UITableView     *resultTableView;
@@ -35,6 +37,7 @@
 
 - (void)viewDidLoad
 {
+    // 呼·应 --------- 我的收藏--------------
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(30);
     self.tableView.tableHeaderView.backgroundColor = [UIColor yellowColor];
@@ -104,20 +107,29 @@
 //        return cell;
         
         
-        UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 55)];
-        btn1.backgroundColor = [UIColor redColor];
-        [btn1 setTitle:@"删除" forState:UIControlStateNormal];
+        UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
+        btn1.backgroundColor =  COLOR(247, 68, 76, 1);
+        UIImageView *imageView1= [[UIImageView alloc]initWithFrame:CGRectMake(15, 25, 30, 30)];
+        imageView1.image = IMG(@"一呼百应详情－delete");
+        [btn1 addSubview:imageView1];
+            
+        UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
+        btn2.backgroundColor = COLOR(49, 155, 225, 1);
+        UIImageView *imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(15, 25, 30, 30)];
+        imageView2.image = IMG(@"一呼百应详情－account");
+        [btn2 addSubview:imageView2];
+        btn2.tag = 200;
         
-        btnArr = [[NSMutableArray alloc]initWithObjects:btn1,nil];
+        saveBtnArr = [[NSMutableArray alloc]initWithObjects:btn1,btn2,nil];
         
         
-        static NSString *cellIdentifier = @"Celllll";
-        SCSwipeTableViewCell *cell = (SCSwipeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        static NSString *cellIdentifier = @"SaveCell";
+        HCNotiMySaveCell *cell = (HCNotiMySaveCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
        
         if (cell == nil) {
-            cell = [[SCSwipeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                               reuseIdentifier:@"Cellll"
-                                                      withBtns:btnArr
+            cell = [[HCNotiMySaveCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                               reuseIdentifier:@"SaveCell"
+                                                      withBtns:saveBtnArr
                                                      tableView:self.tableView];
             cell.delegate = self;
             cell.isSaveCell = YES;
@@ -183,35 +195,6 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{//（编辑方法）只要实现这个代理方法，左滑删除的效果就会出现
-  if (editingStyle == UITableViewCellEditingStyleDelete) {
-
-      
-  }
-}
-
-- (nullable NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // 收藏举报删除
-    NSArray  *titles = @[@"删除"];
-    NSMutableArray  *arr = [NSMutableArray array];
-    NSArray  *colors = @[[UIColor redColor]];
-   
-        
-        
-    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:titles[0] handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-
-            [self.dataSource removeObjectAtIndex:indexPath.row];
-            [self.tableView reloadData];
-
-        }];
-
-        action.backgroundColor = colors[0];
-        [arr addObject:action];
-    return arr;
-}
-
 
 #pragma mark ---UISearchBarDelegate
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
@@ -231,7 +214,7 @@
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     
-    self.resultTableView.frame= CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-283.5-144);
+    self.resultTableView.frame= CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-144-49);
     NSLog(@"%@",searchText);
     if (searchText.length != 0)
     {
@@ -253,6 +236,13 @@
     [self.resultTableView reloadData];
     
     
+}
+
+#pragma mark ---- scrollViewdelegate
+//搜索结果的tableView在开始滚动的时候收起键盘
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark --- buttonClick

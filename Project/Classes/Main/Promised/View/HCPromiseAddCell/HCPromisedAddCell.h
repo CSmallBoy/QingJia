@@ -8,14 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^block)(NSString *title);
+
+@class HCPromisedListInfo;
+typedef void (^block)(NSString *title,HCPromisedListInfo *info);
 
 
 @interface HCPromisedAddCell : UITableViewCell
 
-@property(nonatomic,strong) UIButton  *button;
+
 @property(nonatomic,assign) CGFloat  buttonH;
 @property(nonatomic,copy)NSString  *title;
+@property(nonatomic,strong) HCPromisedListInfo *info;
 @property(nonatomic,strong)block  block;
 
 +(instancetype)customCellWithTable:(UITableView *)tableView;

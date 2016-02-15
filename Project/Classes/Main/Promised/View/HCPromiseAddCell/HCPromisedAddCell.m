@@ -7,9 +7,11 @@
 //
 
 #import "HCPromisedAddCell.h"
-
+#import "HCPromisedListInfo.h"
 
 @interface HCPromisedAddCell ()
+@property(nonatomic,strong) UIButton  *button;
+@property(nonatomic,strong) UIImageView  *smallIV;
 @end
 
 @implementation HCPromisedAddCell
@@ -20,11 +22,10 @@
     
     HCPromisedAddCell   *cell = [tableView dequeueReusableCellWithIdentifier:SmallID];
     
-    if (!cell) {
+    if (!cell)
+    {
         cell = [[HCPromisedAddCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SmallID];
-        
         [cell addSubviews];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeImage:) name:@"changeImage" object:nil];
     }
     return cell;
@@ -37,17 +38,10 @@
     for (UIView  *view in self.subviews) {
         [view removeFromSuperview];
     }
-    UIButton  *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor = [UIColor whiteColor];
-    button.center = self.contentView.center;
-    button.layer.cornerRadius = 5;
-    button.layer.masksToBounds = YES;
-    //button  添加点击事件
-    
-    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    _button = button;
-    [self addSubview:_button];
-    
+
+
+    [self addSubview:self.button];
+
 }
 
 -(void)changeImage:(NSNotification *)info
@@ -58,6 +52,54 @@
 }
 
 #pragma mark --- Setter Or Getter
+
+
+
+- (UIButton *)button
+{
+    if(!_button){
+        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button.backgroundColor = [UIColor whiteColor];
+        ViewRadius(_button, 5);
+        [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _button;
+}
+
+
+
+
+- (UIImageView *)smallIV
+{
+    if(!_smallIV){
+        _smallIV = [[UIImageView alloc]initWithFrame:CGRectMake(_button.frame.size.width-40, (_button.frame.size.height/2)-15, 30, 30)];
+        _smallIV.image = IMG(@"yihubaiying_icon_m-talk logo_dis.png");
+    }
+    return _smallIV;
+}
+
+
+-(void)setInfo:(HCPromisedListInfo *)info
+{
+    _info = info;
+     [_button setTitle:info.name forState:UIControlStateNormal];
+    [_button setTitleColor:[UIColor colorWithRed:242/256.0 green:63/256.0 blue:68/256.0 alpha:1] forState:UIControlStateNormal];
+    if (info.isBlack)
+    {
+        _button.backgroundColor = [UIColor grayColor];
+    }
+    else
+    {
+        _button.backgroundColor = [UIColor whiteColor];
+    }
+    
+    if (info.isSend)
+    {
+        [self addSubview:self.smallIV];
+        self.button.selected = NO;
+    }
+
+}
 
 -(void)setTitle:(NSString *)title
 {
@@ -76,9 +118,9 @@
 
 -(void)buttonClick:(UIButton *)button
 {
-    _button.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
-    self.block(button.titleLabel.text);
-    _button.backgroundColor = [UIColor whiteColor];
+   
+    self.block(button.titleLabel.text,self.info);
+    self.info.isBlack = YES;
   
 }
 

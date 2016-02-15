@@ -13,7 +13,21 @@
 #import "HCPromisedCommentFrameInfo.h"
 #import "HCPromisedCommentInfo.h"
 
-@interface HCPromisedCommentController ()
+#import "HCAvatarMgr.h"
+
+@interface HCPromisedCommentController ()<UITextFieldDelegate>
+{
+    NSInteger  _photoCount;
+    UIButton  * _addPhotoBtn;
+
+}
+@property (nonatomic,strong) UIView  *inputView;
+@property (nonatomic,strong) UITextField   *textField;
+@property (nonatomic,strong) UIButton   *imageBtn;
+@property (nonatomic,strong) UIButton   *sendBtn;
+@property (nonatomic,strong) UITableView  *myTableView;
+@property (nonatomic,strong) UIView     * photoView;
+
 
 @end
 
@@ -22,29 +36,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发现线索";
-    self.tableView.tableHeaderView = HCTabelHeadView(1);
+    _photoCount = 0;
+    self.tableView.hidden = YES;
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self requestData];
-    [self.view addSubview:self.tableView];
-    self.tableView.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:self.myTableView];
+    [self.view addSubview:self.inputView];
     [self setupBackItem];
-  
 }
 
 #pragma mark --- tableViewDelegate
 
-
-
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HCPromisedCommentCell *cell = [HCPromisedCommentCell cellWithTableView:tableView];
-    
-    cell.commnetFrameInfo = self.dataSource[indexPath.row];
-    return cell;
+
+        HCPromisedCommentCell *cell = [HCPromisedCommentCell cellWithTableView:tableView];
+        cell.commnetFrameInfo = self.dataSource[indexPath.row];
+        cell.selected = NO;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+
     return 1;
 }
 
@@ -70,23 +86,154 @@
 }
 
 
+#pragma mark --- textFieldDelegate
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self.photoView removeFromSuperview];
+    self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+
+}
+
+#pragma mark --- private mothods
+
+-(void)clickImageBtn:(UIButton *) button
+{
+ 
+    [self.textField endEditing:YES];
+    [UIView animateWithDuration:0.05 animations:^{
+       
+        self.view.bounds = CGRectMake(0,SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_HEIGHT);
+    }completion:^(BOOL finished) {
+         [self.view addSubview:self.photoView];
+    }];
+
+}
+
+//添加图片
+-(void)addPhoto:(UIButton *)button
+{
+    [HCAvatarMgr manager].isUploadImage = YES;
+    [HCAvatarMgr manager].noUploadImage = NO;
+    //上传个人头像
+    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg)
+     {
+         _photoCount += 1;
+         _addPhotoBtn.frame = CGRectMake(SCREEN_WIDTH/3 * _photoCount, 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3);
+         if (!result)
+         {
+             [self showHUDText:msg];
+             [HCAvatarMgr manager].isUploadImage = NO;
+             [HCAvatarMgr manager].noUploadImage = NO;
+         }
+         else
+         {
+             [[SDImageCache sharedImageCache] clearMemory];
+             [[SDImageCache sharedImageCache] clearDisk];
+         }
+         
+         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3 * (_photoCount-1), 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3)];
+         imageView.image = image;
+         [self.photoView addSubview:imageView];
+     }];
+
+}
+
+
+#pragma mark --- getter Or setter
+
+
+- (UIView *)inputView
+{
+    if(!_inputView){
+        _inputView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-44, SCREEN_WIDTH,44)];
+        _inputView.backgroundColor = [UIColor redColor];
+        _inputView.backgroundColor =COLOR(222, 35, 46, 1);
+        [_inputView addSubview:self.textField];
+        [_inputView addSubview:self.imageBtn];
+        [_inputView addSubview:self.sendBtn];
+    }
+    return _inputView;
+}
+
+
+- (UITableView *)myTableView
+{
+    if(!_myTableView){
+        _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44) style:UITableViewStyleGrouped];
+        _myTableView.delegate = self;
+        _myTableView.dataSource = self;
+    }
+    return _myTableView;
+}
+
+
+- (UITextField *)textField
+{
+    if(!_textField){
+        _textField = [[UITextField alloc]initWithFrame:CGRectMake(60,7,SCREEN_WIDTH-120, 30)];
+        _textField.backgroundColor = [UIColor whiteColor];
+        ViewRadius(_textField, 4);
+        _textField.delegate = self;
+    }
+    return _textField;
+}
+
+- (UIButton *)sendBtn
+{
+    if(!_sendBtn){
+        _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _sendBtn.frame = CGRectMake(SCREEN_WIDTH - 60, 2, 60, 40);
+        [_sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    }
+    return _sendBtn;
+}
+
+- (UIButton *)imageBtn
+{
+    if(!_imageBtn){
+        _imageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _imageBtn.frame = CGRectMake(10,7 , 30, 30);
+        [_imageBtn addTarget:self action:@selector(clickImageBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [_imageBtn setBackgroundImage:IMG(@"Comment_but_Picture") forState:UIControlStateNormal];
+        ViewRadius(_imageBtn, 20);
+    }
+    return _imageBtn;
+}
+
+
+
+- (UIView *)photoView
+{
+    if(!_photoView){
+        _photoView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT,SCREEN_WIDTH, SCREEN_WIDTH/3)];
+        _photoView.backgroundColor = [UIColor whiteColor];
+        UIButton *button  = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(addPhoto:) forControlEvents:UIControlEventTouchUpInside ];
+        button.frame = CGRectMake(0, 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3);
+        [button setImage:IMG(@"Classinfo_but_plus") forState:UIControlStateNormal];
+        _addPhotoBtn = button;
+        [_photoView addSubview:_addPhotoBtn];
+    }
+    return _photoView;
+}
+
+
 #pragma mark ---  network
 
 -(void)requestData
 {
-    
-    for (int i= 0; i<20; i++) {
-        
+    for (int i= 0; i<20; i++)
+    {
         HCPromisedCommentFrameInfo *commentFrameInfo = [[HCPromisedCommentFrameInfo alloc]init];
         HCPromisedCommentInfo *commentInfo = [[HCPromisedCommentInfo alloc]init];
-      commentInfo.nickName  = [NSString stringWithFormat:@"用户昵称%d",i ];
-       commentInfo.comment = @"我看到一个小孩子跟你描述的小孩子很像，在人民广场，你看看是不是你家小孩子";
+        commentInfo.nickName  = [NSString stringWithFormat:@"用户昵称%d",i ];
+        commentInfo.comment = @"我看到一个小孩子跟你描述的小孩子很像，在人民广场，你看看是不是你家小孩子";
         commentInfo.time = @"一分钟前";
         commentFrameInfo.commentInfo = commentInfo;
         [self.dataSource addObject:commentFrameInfo];
     }
-   
-
 }
 
 - (void)didReceiveMemoryWarning {

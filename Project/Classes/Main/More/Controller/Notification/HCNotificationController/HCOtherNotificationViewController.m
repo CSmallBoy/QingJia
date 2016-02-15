@@ -4,13 +4,15 @@
 //
 //  Created by 朱宗汉 on 15/12/21.
 //  Copyright © 2015年 com.xxx. All rights reserved.
-//
+
+
+// 呼·应 -------- 信息中心--------
 
 #import "HCOtherNotificationViewController.h"
 #import "HCNotificationDetailViewController.h"
 #import "HCButtonItem.h"
 
-#import "SCSwipeTableViewCell.h"
+#import "HCNotifiMessageCenterCell.h"
 
 #import "HCMyNotificationCenterTableViewCell.h"
 
@@ -30,10 +32,11 @@
 @end
 
 @implementation HCOtherNotificationViewController
-#define readNotificationID @"readNotificationID"
+
 
 - (void)viewDidLoad
 {
+    // 呼·应 -------- 信息中心--------
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(30);
     self.tableView.tableHeaderView.backgroundColor = [UIColor yellowColor];
@@ -103,29 +106,34 @@
 //        cell.info = self.dataSource[indexPath.row];
 //        return cell;
         
-        UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 55)];
-        btn1.backgroundColor = [UIColor redColor];
-        [btn1 setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
+        btn1.backgroundColor = COLOR(247, 68, 76, 1);
+        UIImageView *imageView1= [[UIImageView alloc]initWithFrame:CGRectMake(15, 25, 30, 30)];
+        imageView1.image = IMG(@"一呼百应详情－delete");
+        [btn1 addSubview:imageView1];
         btn1.tag = 100;
-        [btn1 setTitle:@"删除" forState:UIControlStateNormal];
         
-        UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 55)];
-        btn2.backgroundColor = [UIColor orangeColor];
+        UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
+        btn2.backgroundColor = COLOR(49, 155, 225, 1);
+        UIImageView *imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(15, 25, 30, 30)];
+        imageView2.image = IMG(@"一呼百应详情－account");
+        [btn2 addSubview:imageView2];
         btn2.tag = 200;
-        [btn2 setTitle:@"举报" forState:UIControlStateNormal];
+       
         
-        UIButton  *btn3 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 55)];
-        btn3.backgroundColor = [UIColor greenColor];
+        UIButton  *btn3 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
+        btn3.backgroundColor = COLOR(253, 143, 40, 1);
+        UIImageView *imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(15, 25, 30, 30)];
+        imageView3.image = IMG(@"信息中心－favourite");
+        [btn3 addSubview:imageView3];
         btn3.tag = 300;
-        [btn3 setTitle:@"收藏" forState:UIControlStateNormal];
-        
-        btnArr = [[NSMutableArray alloc]initWithObjects:btn1,btn2,btn3,nil];
+        btnArr = [[NSMutableArray alloc]initWithObjects:btn2,btn1,btn3,nil];
 
         
         static NSString *cellIdentifier = @"Cellllll";
-        SCSwipeTableViewCell *cell = (SCSwipeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        HCNotifiMessageCenterCell *cell = (HCNotifiMessageCenterCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
-            cell = [[SCSwipeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+            cell = [[HCNotifiMessageCenterCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                reuseIdentifier:@"Celllll"
                                                       withBtns:btnArr
                                                      tableView:self.tableView];
@@ -150,10 +158,6 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
- 
-}
 
 #pragma mark ---UITableViewDataSource
 
@@ -189,52 +193,9 @@
     return YES;
 }
 
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{//（编辑方法）只要实现这个代理方法，左滑删除的效果就会出现
-//  if (editingStyle == UITableViewCellEditingStyleDelete) {
-//
-//      
-//  }
-//}
-
-//- (nullable NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // 收藏举报删除
-//    NSArray  *titles = @[@"删除",@"举报",@"收藏"];
-//    NSMutableArray  *arr = [NSMutableArray array];
-//    NSArray  *colors = @[[UIColor redColor],[UIColor orangeColor],[UIColor greenColor]];
-//   
-//    for (int i = 0; i<3; i++) {
-//        
-//        
-//    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:titles[i] handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-//       
-//        if ([action.title isEqualToString:@"删除"]) {
-//            
-//            [self.dataSource removeObjectAtIndex:indexPath.row];
-//            [self.tableView reloadData];
-//        }
-//        else if ([action.title isEqualToString:@"收藏"])
-//        {
-//            [self showHUDSuccess:@"收藏成功"];
-//        }
-//        else
-//        {
-//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您真的要举报么" delegate:self cancelButtonTitle:@"取消" otherButtonTitles: @"确定",nil];
-//            [alert show];
-//        }
-//        }];
-//
-//        action.backgroundColor = colors[i];
-//        
-//        [arr addObject:action];
-//    }
-//
-//    return arr;
-//}
-
 
 #pragma mark ---UISearchBarDelegate
+//开始编辑的时候
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     self.seatchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH- 60, 30);
@@ -252,7 +213,7 @@
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
 
-    self.resultTableView.frame= CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-283.5-144);
+    self.resultTableView.frame= CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-144-49);
     
     NSLog(@"%@",searchText);
     if (searchText.length != 0)
@@ -276,7 +237,16 @@
     
 }
 
+#pragma mark ---- scrollViewdelegate
+//搜索结果的tableView在开始滚动的时候收起键盘
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
+}
+
+
 #pragma mark --- buttonClick
+// 点击了取消按钮
 -(void)canleButton:(UIButton  *)button
 {
     self.seatchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 30);
@@ -287,14 +257,6 @@
     [self.seatchBar endEditing:YES];
 }
 
--(void)keyboardWasShown:(NSNotification *)noti
-{
-    CGRect keyBoardFrame = [noti.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
-    NSLog(@"——————————————%lf",keyBoardFrame.size.height);
-    self.resultTableView.frame= CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-keyBoardFrame.size.height-144);
-    
-}
 
 #pragma mark --- getter Or setter
 

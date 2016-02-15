@@ -289,8 +289,14 @@
 		0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83A1BF5887700DCA75A /* KWFormView.m */; };
 		0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */; };
 		3AA0DCFA47C83622EEE93AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9376B27D02CD20170277F57 /* libPods.a */; };
+		8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAEB21C604ECA0038B0BD /* HCNotiMySaveCell.m */; };
+		8D0FAEB71C6077B80038B0BD /* WKFRadarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAEB61C6077B80038B0BD /* WKFRadarView.m */; };
 		8D11911D1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */; };
 		8D1191201C5F3CDD003505D3 /* HCNotifcationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911F1C5F3CDD003505D3 /* HCNotifcationMessageCell.m */; };
+		8D21CA091C61D2B80071B32A /* HCMedicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */; };
+		8D21CA0C1C61D6310071B32A /* HCMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0B1C61D6310071B32A /* HCMedicalCell.m */; };
+		8D21CA0F1C61D6D10071B32A /* HCMedicalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0E1C61D6D10071B32A /* HCMedicalInfo.m */; };
+		8D21CA121C61DD1F0071B32A /* HCMedicalFrameIfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA111C61DD1F0071B32A /* HCMedicalFrameIfo.m */; };
 		C7692F561C3A4B2200582A10 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F511C3A4B2200582A10 /* MDCFocalPointView.m */; };
 		C7692F571C3A4B2200582A10 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F531C3A4B2200582A10 /* MDCFocusView.m */; };
 		C7692F581C3A4B2200582A10 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F551C3A4B2200582A10 /* MDCSpotlightView.m */; };
@@ -356,8 +362,8 @@
 		C78D7AF41C5F28F700622CE2 /* HCNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D790B1C5F28F600622CE2 /* HCNotificationViewController.m */; };
 		C78D7AF51C5F28F700622CE2 /* HCOtherNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D790D1C5F28F600622CE2 /* HCOtherNotificationViewController.m */; };
 		C78D7AF61C5F28F700622CE2 /* HCSaveNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D790F1C5F28F600622CE2 /* HCSaveNotificationViewController.m */; };
-		C78D7AF71C5F28F700622CE2 /* HCPromisedNotiController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79121C5F28F600622CE2 /* HCPromisedNotiController.m */; };
-		C78D7AF81C5F28F700622CE2 /* HCSavePromisedNotiController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79141C5F28F600622CE2 /* HCSavePromisedNotiController.m */; };
+		C78D7AF71C5F28F700622CE2 /* HCMyPromisedDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79121C5F28F600622CE2 /* HCMyPromisedDetailController.m */; };
+		C78D7AF81C5F28F700622CE2 /* HCOtherPromisedDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79141C5F28F600622CE2 /* HCOtherPromisedDetailController.m */; };
 		C78D7AF91C5F28F700622CE2 /* HCApplyReissueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79181C5F28F600622CE2 /* HCApplyReissueViewController.m */; };
 		C78D7AFA1C5F28F700622CE2 /* HCApplyReturnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D791A1C5F28F600622CE2 /* HCApplyReturnViewController.m */; };
 		C78D7AFB1C5F28F700622CE2 /* HCReissueReasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D791C1C5F28F600622CE2 /* HCReissueReasonViewController.m */; };
@@ -408,7 +414,7 @@
 		C78D7B3B1C5F28F700622CE2 /* HCNotificationMessageCallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79B71C5F28F700622CE2 /* HCNotificationMessageCallCell.m */; };
 		C78D7B3C1C5F28F700622CE2 /* HCPromisedCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79B91C5F28F700622CE2 /* HCPromisedCommentCell.m */; };
 		C78D7B3D1C5F28F700622CE2 /* HCPromisedCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79BB1C5F28F700622CE2 /* HCPromisedCommentController.m */; };
-		C78D7B3E1C5F28F700622CE2 /* SCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79BD1C5F28F700622CE2 /* SCSwipeTableViewCell.m */; };
+		C78D7B3E1C5F28F700622CE2 /* HCNotifiMessageCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79BD1C5F28F700622CE2 /* HCNotifiMessageCenterCell.m */; };
 		C78D7B421C5F28F700622CE2 /* UILabel+HCLabelContentSize.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79C61C5F28F700622CE2 /* UILabel+HCLabelContentSize.m */; };
 		C78D7B431C5F28F700622CE2 /* HCAddNewAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79CA1C5F28F700622CE2 /* HCAddNewAddressTableViewCell.m */; };
 		C78D7B441C5F28F700622CE2 /* HCBuyRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D79CD1C5F28F700622CE2 /* HCBuyRecordTableViewCell.m */; };
@@ -1501,10 +1507,22 @@
 		0AF9B83B1BF5887700DCA75A /* KWFormViewQuickBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFormViewQuickBuilder.h; sourceTree = "<group>"; };
 		0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFormViewQuickBuilder.m; sourceTree = "<group>"; };
 		6ACE64504D5E86E87CC78BEE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8D0FAEB11C604ECA0038B0BD /* HCNotiMySaveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotiMySaveCell.h; sourceTree = "<group>"; };
+		8D0FAEB21C604ECA0038B0BD /* HCNotiMySaveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotiMySaveCell.m; sourceTree = "<group>"; };
+		8D0FAEB51C6077B80038B0BD /* WKFRadarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKFRadarView.h; sourceTree = "<group>"; };
+		8D0FAEB61C6077B80038B0BD /* WKFRadarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKFRadarView.m; sourceTree = "<group>"; };
 		8D11911B1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyNotificationCenterTableViewCell.h; sourceTree = "<group>"; };
 		8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMyNotificationCenterTableViewCell.m; sourceTree = "<group>"; };
 		8D11911E1C5F3CDD003505D3 /* HCNotifcationMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotifcationMessageCell.h; sourceTree = "<group>"; };
 		8D11911F1C5F3CDD003505D3 /* HCNotifcationMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotifcationMessageCell.m; sourceTree = "<group>"; };
+		8D21CA071C61D2B80071B32A /* HCMedicalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalViewController.h; sourceTree = "<group>"; };
+		8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalViewController.m; sourceTree = "<group>"; };
+		8D21CA0A1C61D6310071B32A /* HCMedicalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalCell.h; sourceTree = "<group>"; };
+		8D21CA0B1C61D6310071B32A /* HCMedicalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalCell.m; sourceTree = "<group>"; };
+		8D21CA0D1C61D6D10071B32A /* HCMedicalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalInfo.h; sourceTree = "<group>"; };
+		8D21CA0E1C61D6D10071B32A /* HCMedicalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalInfo.m; sourceTree = "<group>"; };
+		8D21CA101C61DD1F0071B32A /* HCMedicalFrameIfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalFrameIfo.h; sourceTree = "<group>"; };
+		8D21CA111C61DD1F0071B32A /* HCMedicalFrameIfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalFrameIfo.m; sourceTree = "<group>"; };
 		C7692F501C3A4B2200582A10 /* MDCFocalPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocalPointView.h; sourceTree = "<group>"; };
 		C7692F511C3A4B2200582A10 /* MDCFocalPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCFocalPointView.m; sourceTree = "<group>"; };
 		C7692F521C3A4B2200582A10 /* MDCFocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocusView.h; sourceTree = "<group>"; };
@@ -1624,10 +1642,10 @@
 		C78D790D1C5F28F600622CE2 /* HCOtherNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCOtherNotificationViewController.m; sourceTree = "<group>"; };
 		C78D790E1C5F28F600622CE2 /* HCSaveNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSaveNotificationViewController.h; sourceTree = "<group>"; };
 		C78D790F1C5F28F600622CE2 /* HCSaveNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSaveNotificationViewController.m; sourceTree = "<group>"; };
-		C78D79111C5F28F600622CE2 /* HCPromisedNotiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedNotiController.h; sourceTree = "<group>"; };
-		C78D79121C5F28F600622CE2 /* HCPromisedNotiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedNotiController.m; sourceTree = "<group>"; };
-		C78D79131C5F28F600622CE2 /* HCSavePromisedNotiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSavePromisedNotiController.h; sourceTree = "<group>"; };
-		C78D79141C5F28F600622CE2 /* HCSavePromisedNotiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSavePromisedNotiController.m; sourceTree = "<group>"; };
+		C78D79111C5F28F600622CE2 /* HCMyPromisedDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyPromisedDetailController.h; sourceTree = "<group>"; };
+		C78D79121C5F28F600622CE2 /* HCMyPromisedDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMyPromisedDetailController.m; sourceTree = "<group>"; };
+		C78D79131C5F28F600622CE2 /* HCOtherPromisedDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCOtherPromisedDetailController.h; sourceTree = "<group>"; };
+		C78D79141C5F28F600622CE2 /* HCOtherPromisedDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCOtherPromisedDetailController.m; sourceTree = "<group>"; };
 		C78D79171C5F28F600622CE2 /* HCApplyReissueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCApplyReissueViewController.h; sourceTree = "<group>"; };
 		C78D79181C5F28F600622CE2 /* HCApplyReissueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCApplyReissueViewController.m; sourceTree = "<group>"; };
 		C78D79191C5F28F600622CE2 /* HCApplyReturnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCApplyReturnViewController.h; sourceTree = "<group>"; };
@@ -1728,8 +1746,8 @@
 		C78D79B91C5F28F700622CE2 /* HCPromisedCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedCommentCell.m; sourceTree = "<group>"; };
 		C78D79BA1C5F28F700622CE2 /* HCPromisedCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCPromisedCommentController.h; path = ../../../View/NotificationCenter/HCNotiCell/HCPromisedCommentController.h; sourceTree = "<group>"; };
 		C78D79BB1C5F28F700622CE2 /* HCPromisedCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCPromisedCommentController.m; path = ../../../View/NotificationCenter/HCNotiCell/HCPromisedCommentController.m; sourceTree = "<group>"; };
-		C78D79BC1C5F28F700622CE2 /* SCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSwipeTableViewCell.h; sourceTree = "<group>"; };
-		C78D79BD1C5F28F700622CE2 /* SCSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSwipeTableViewCell.m; sourceTree = "<group>"; };
+		C78D79BC1C5F28F700622CE2 /* HCNotifiMessageCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotifiMessageCenterCell.h; sourceTree = "<group>"; };
+		C78D79BD1C5F28F700622CE2 /* HCNotifiMessageCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotifiMessageCenterCell.m; sourceTree = "<group>"; };
 		C78D79C51C5F28F700622CE2 /* UILabel+HCLabelContentSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+HCLabelContentSize.h"; sourceTree = "<group>"; };
 		C78D79C61C5F28F700622CE2 /* UILabel+HCLabelContentSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+HCLabelContentSize.m"; sourceTree = "<group>"; };
 		C78D79C91C5F28F700622CE2 /* HCAddNewAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddNewAddressTableViewCell.h; sourceTree = "<group>"; };
@@ -3677,6 +3695,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8D0FAEB41C6077B80038B0BD /* HeadAnnimotion */ = {
+			isa = PBXGroup;
+			children = (
+				8D0FAEB51C6077B80038B0BD /* WKFRadarView.h */,
+				8D0FAEB61C6077B80038B0BD /* WKFRadarView.m */,
+			);
+			path = HeadAnnimotion;
+			sourceTree = "<group>";
+		};
 		8D11911A1C5F3ADA003505D3 /* HCMyNotification */ = {
 			isa = PBXGroup;
 			children = (
@@ -4041,12 +4068,14 @@
 		C78D79101C5F28F600622CE2 /* HCNotificationPromised */ = {
 			isa = PBXGroup;
 			children = (
-				C78D79111C5F28F600622CE2 /* HCPromisedNotiController.h */,
-				C78D79121C5F28F600622CE2 /* HCPromisedNotiController.m */,
-				C78D79131C5F28F600622CE2 /* HCSavePromisedNotiController.h */,
-				C78D79141C5F28F600622CE2 /* HCSavePromisedNotiController.m */,
+				C78D79111C5F28F600622CE2 /* HCMyPromisedDetailController.h */,
+				C78D79121C5F28F600622CE2 /* HCMyPromisedDetailController.m */,
+				C78D79131C5F28F600622CE2 /* HCOtherPromisedDetailController.h */,
+				C78D79141C5F28F600622CE2 /* HCOtherPromisedDetailController.m */,
 				C78D79BA1C5F28F700622CE2 /* HCPromisedCommentController.h */,
 				C78D79BB1C5F28F700622CE2 /* HCPromisedCommentController.m */,
+				8D21CA071C61D2B80071B32A /* HCMedicalViewController.h */,
+				8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */,
 			);
 			path = HCNotificationPromised;
 			sourceTree = "<group>";
@@ -4198,6 +4227,10 @@
 				C78D797D1C5F28F700622CE2 /* HCPromisedCommentFrameInfo.m */,
 				C78D797E1C5F28F700622CE2 /* HCPromisedCommentInfo.h */,
 				C78D797F1C5F28F700622CE2 /* HCPromisedCommentInfo.m */,
+				8D21CA0D1C61D6D10071B32A /* HCMedicalInfo.h */,
+				8D21CA0E1C61D6D10071B32A /* HCMedicalInfo.m */,
+				8D21CA101C61DD1F0071B32A /* HCMedicalFrameIfo.h */,
+				8D21CA111C61DD1F0071B32A /* HCMedicalFrameIfo.m */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -4323,8 +4356,12 @@
 				C78D79B71C5F28F700622CE2 /* HCNotificationMessageCallCell.m */,
 				C78D79B81C5F28F700622CE2 /* HCPromisedCommentCell.h */,
 				C78D79B91C5F28F700622CE2 /* HCPromisedCommentCell.m */,
-				C78D79BC1C5F28F700622CE2 /* SCSwipeTableViewCell.h */,
-				C78D79BD1C5F28F700622CE2 /* SCSwipeTableViewCell.m */,
+				C78D79BC1C5F28F700622CE2 /* HCNotifiMessageCenterCell.h */,
+				C78D79BD1C5F28F700622CE2 /* HCNotifiMessageCenterCell.m */,
+				8D0FAEB11C604ECA0038B0BD /* HCNotiMySaveCell.h */,
+				8D0FAEB21C604ECA0038B0BD /* HCNotiMySaveCell.m */,
+				8D21CA0A1C61D6310071B32A /* HCMedicalCell.h */,
+				8D21CA0B1C61D6310071B32A /* HCMedicalCell.m */,
 			);
 			path = HCNotiCell;
 			sourceTree = "<group>";
@@ -4966,6 +5003,7 @@
 				C78D7D171C5F342700622CE2 /* HCPromisedTagMangerViewController.m */,
 				C78D7D181C5F342700622CE2 /* HCPromisedViewController.h */,
 				C78D7D191C5F342700622CE2 /* HCPromisedViewController.m */,
+				8D0FAEB41C6077B80038B0BD /* HeadAnnimotion */,
 				C78D7D1A1C5F342700622CE2 /* UUDatePicker_Block */,
 			);
 			path = Controller;
@@ -6372,7 +6410,7 @@
 				TargetAttributes = {
 					0A6B7D971BF1EB6A008D54B3 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = TUQVNVJWWD;
+						DevelopmentTeam = 7BRF7BU557;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -6731,7 +6769,7 @@
 			files = (
 				C78D7B431C5F28F700622CE2 /* HCAddNewAddressTableViewCell.m in Sources */,
 				C7B00B4A1C5F26050010F93B /* GroupListViewController.m in Sources */,
-				C78D7B3E1C5F28F700622CE2 /* SCSwipeTableViewCell.m in Sources */,
+				C78D7B3E1C5F28F700622CE2 /* HCNotifiMessageCenterCell.m in Sources */,
 				0A54917C1C2BC32D0085F50D /* ZXRSSExpandedBlockParsedResult.m in Sources */,
 				0A5491B41C2BC32D0085F50D /* ZXPDF417ScanningDecoder.m in Sources */,
 				C78D7B501C5F28F700622CE2 /* HCCustomTagUserInfoCell.m in Sources */,
@@ -6890,12 +6928,13 @@
 				C78D7B001C5F28F700622CE2 /* HCCustomerViewController.m in Sources */,
 				C78D7AAE1C5F28F700622CE2 /* HCJoinGradeFunctionView.m in Sources */,
 				C7B00BA71C5F26050010F93B /* EaseUserModel.m in Sources */,
+				8D21CA121C61DD1F0071B32A /* HCMedicalFrameIfo.m in Sources */,
 				0A5491901C2BC32D0085F50D /* ZXCode128Reader.m in Sources */,
 				C78D7CEA1C5F2C6500622CE2 /* HCFriendMessageViewController.m in Sources */,
 				0A5491681C2BC32D0085F50D /* ZXDataMatrixX12Encoder.m in Sources */,
 				0A5491811C2BC32D0085F50D /* ZXRSSExpandedDecodedObject.m in Sources */,
 				C7B00B711C5F26050010F93B /* EMAudioPlayerUtil.m in Sources */,
-				C78D7AF71C5F28F700622CE2 /* HCPromisedNotiController.m in Sources */,
+				C78D7AF71C5F28F700622CE2 /* HCMyPromisedDetailController.m in Sources */,
 				C78D7D4F1C5F342700622CE2 /* HCPromisedListInfo.m in Sources */,
 				C78D7AB31C5F28F700622CE2 /* HCHomeViewController.m in Sources */,
 				C7B00B981C5F26050010F93B /* PSTCollectionViewCell.m in Sources */,
@@ -6909,6 +6948,7 @@
 				C7B00B941C5F26050010F93B /* UIImageView+EMWebCache.m in Sources */,
 				C78D7B9F1C5F28F700622CE2 /* HCScanViewController.m in Sources */,
 				C7B00B9B1C5F26050010F93B /* PSTCollectionViewFlowLayout.m in Sources */,
+				8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */,
 				C78D7ADB1C5F28F700622CE2 /* HCFindPwdViewController.m in Sources */,
 				C7B00B791C5F26050010F93B /* wav.mm in Sources */,
 				C7B00B671C5F26050010F93B /* BaseTableViewCell.m in Sources */,
@@ -6954,10 +6994,12 @@
 				C78D7C8D1C5F2C1200622CE2 /* HCActivatedTableViewController.m in Sources */,
 				0A54918C1C2BC32D0085F50D /* ZXRSSPair.m in Sources */,
 				C7B00B8A1C5F26050010F93B /* EMSDWebImageDownloaderOperation.m in Sources */,
+				8D21CA091C61D2B80071B32A /* HCMedicalViewController.m in Sources */,
 				C78D7B991C5F28F700622CE2 /* lhScanQCodeViewController.m in Sources */,
 				0A5491111C2BC32D0085F50D /* ZXBizcardResultParser.m in Sources */,
 				C78D7AFF1C5F28F700622CE2 /* HCWaitingDeliverGoodsViewController.m in Sources */,
 				C78D7C931C5F2C1200622CE2 /* HCTagClosedDetailViewControllwe.m in Sources */,
+				8D0FAEB71C6077B80038B0BD /* WKFRadarView.m in Sources */,
 				C78D7B261C5F28F700622CE2 /* HCAddressInfo.m in Sources */,
 				C7B00BC11C5F26050010F93B /* EaseBubbleView+Location.m in Sources */,
 				0A54911C1C2BC32D0085F50D /* ZXISBNResultParser.m in Sources */,
@@ -7098,6 +7140,7 @@
 				C7692F561C3A4B2200582A10 /* MDCFocalPointView.m in Sources */,
 				0A5491191C2BC32D0085F50D /* ZXGeoParsedResult.m in Sources */,
 				C7B00BAA1C5F26050010F93B /* NSObject+EaseMob.m in Sources */,
+				8D21CA0C1C61D6310071B32A /* HCMedicalCell.m in Sources */,
 				C78D7CE91C5F2C6500622CE2 /* HCFeedbackViewController.m in Sources */,
 				C78D7ABF1C5F28F700622CE2 /* HCFunctionTagView.m in Sources */,
 				0A5491741C2BC32D0085F50D /* ZXAI01392xDecoder.m in Sources */,
@@ -7171,6 +7214,7 @@
 				0A5491541C2BC32D0085F50D /* ZXResult.m in Sources */,
 				C7B00B8E1C5F26050010F93B /* NSData+EMImageContentType.m in Sources */,
 				0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */,
+				8D21CA0F1C61D6D10071B32A /* HCMedicalInfo.m in Sources */,
 				C7B00BCE1C5F26050010F93B /* EaseConversationCell.m in Sources */,
 				C78D7B241C5F28F700622CE2 /* HCPromisedCommentFrameInfo.m in Sources */,
 				C78D7B461C5F28F700622CE2 /* HCLogisticsInfoTableViewCellSecond.m in Sources */,
@@ -7347,7 +7391,7 @@
 				C78D7B901C5F28F700622CE2 /* HCPickerView.m in Sources */,
 				C7B00BBE1C5F26050010F93B /* EaseMessageTimeCell.m in Sources */,
 				C78D7BD51C5F291A00622CE2 /* HCNotificationDeleteApi.m in Sources */,
-				C78D7AF81C5F28F700622CE2 /* HCSavePromisedNotiController.m in Sources */,
+				C78D7AF81C5F28F700622CE2 /* HCOtherPromisedDetailController.m in Sources */,
 				C78D7AFB1C5F28F700622CE2 /* HCReissueReasonViewController.m in Sources */,
 				C7B00BBD1C5F26050010F93B /* EaseMessageCell.m in Sources */,
 				C78D7AA61C5F28F700622CE2 /* HCGradeSuccessViewController.m in Sources */,
@@ -7571,7 +7615,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mtalk.ww;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gaodeMap814;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7608,7 +7652,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mtalk.ww;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gaodeMap814;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

@@ -17,19 +17,18 @@
 -(void)setCommentInfo:(HCPromisedCommentInfo *)commentInfo
 {
     _commentInfo = commentInfo;
-    _headBtnFrame = CGRectMake(10, 5, SCREEN_WIDTH *0.1, SCREEN_WIDTH *0.1);
-    _nickLabelFrame = CGRectMake(10 + SCREEN_WIDTH*0.1, 13, SCREEN_WIDTH*0.5, 25);
-    _timeLabelFrame = CGRectMake(SCREEN_WIDTH*0.8, 13, SCREEN_WIDTH*0.2, 25);
+    _headBtnFrame = CGRectMake(10,5, 50, 50);
+    _nickLabelFrame = CGRectMake(70, 15, 200, 25);
+    _timeLabelFrame = CGRectMake(SCREEN_WIDTH-70, 15, 60, 25);
     
-     CGRect commentRect  = [commentInfo.comment boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.1+20, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12],NSForegroundColorAttributeName : [UIColor grayColor]} context:nil];
+    CGRect commentRect  = [commentInfo.comment boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-120, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12],NSForegroundColorAttributeName : [UIColor grayColor]} context:nil];
     
-    _commentLabelFrame = CGRectMake(SCREEN_WIDTH * 0.1+20, 13+25, SCREEN_WIDTH*0.7, commentRect.size.height);
-    _button1Frame =  CGRectMake(SCREEN_WIDTH*0.1+20 +0 *((SCREEN_WIDTH * 0.7)/3) , 13 + 25 + commentRect.size.height , (SCREEN_WIDTH*0.7-2)/3, (SCREEN_WIDTH*0.7-2)/3);
-    _button2Frame = CGRectMake(SCREEN_WIDTH*0.1+20 +1 *((SCREEN_WIDTH * 0.7)/3) , 13 + 25 + commentRect.size.height , (SCREEN_WIDTH*0.7-2)/3, (SCREEN_WIDTH*0.7-2)/3);
-    _button3Frame = CGRectMake(SCREEN_WIDTH*0.1+20 +2 *((SCREEN_WIDTH * 0.7)/3) , 13 + 25 + commentRect.size.height , (SCREEN_WIDTH*0.7-2)/3, (SCREEN_WIDTH*0.7-2)/3);
+    _commentLabelFrame = CGRectMake(60, 59, SCREEN_WIDTH-120, commentRect.size.height);
+    _button1Frame =  CGRectMake(60 , CGRectGetMaxY(_commentLabelFrame) + 10 , 50, 50);
+    _button2Frame = CGRectMake(120,CGRectGetMaxY(_commentLabelFrame)+10,50 ,50);
+    _button3Frame = CGRectMake(180,CGRectGetMaxY(_commentLabelFrame) + 10,50,50);
     
-    _cellHeight = CGRectGetMaxX(_button3Frame) +10;
-    
+    _cellHeight = CGRectGetMaxY(_button3Frame) +10;
 
 }
 

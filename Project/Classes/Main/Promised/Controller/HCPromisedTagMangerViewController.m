@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
+// -----------------------这个界面不要了------------------
 #import "HCPromisedTagMangerViewController.h"
 #import "HCPromiseDetailViewController1.h"
 
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // ————-----———————————— 这个界面不要了————————————————————————
     self.title = @"标签管理";
     [self  setupBackItem];
     [self.view addSubview:self.collectionView];
@@ -52,7 +54,6 @@
 {
     HCPromiseDetailViewController1  *detailVC = [[HCPromiseDetailViewController1 alloc]init];
     [self.navigationController pushViewController:detailVC animated:YES];
- 
 }
 
 #pragma mark --- getter Or setter
@@ -81,15 +82,11 @@
     return _dataArr;
 }
 
-
-
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
   
 }
 
+// -----------------这个界面不要了--------------
 
 @end

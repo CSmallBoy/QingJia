@@ -4,10 +4,12 @@
 //
 //  Created by 朱宗汉 on 15/12/21.
 //  Copyright © 2015年 com.xxx. All rights reserved.
-//未读信息
+
+//  呼·应---------与我相关--------
 
 #import "HCMyNotificationViewController.h"
 #import "HCNotificationDetailViewController.h"
+
 
 #import "HCButtonItem.h"
 
@@ -35,6 +37,7 @@
 
 - (void)viewDidLoad
 {
+    //  呼·应---------与我相关--------
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(30);
     self.tableView.tableHeaderView.backgroundColor = [UIColor yellowColor];
@@ -130,6 +133,17 @@
     {
     
         return self.results.count;
+    }
+
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+{
+    if (indexPath.section == 0)
+    {
+      NSDictionary *dic = @{@"info" : self.dataSource[indexPath.row]};
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextMyController" object:nil userInfo:dic];
     }
 
 }

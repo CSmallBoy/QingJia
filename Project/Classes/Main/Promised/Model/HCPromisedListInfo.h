@@ -17,5 +17,12 @@
  *  ID
  */
 @property(nonatomic,copy)NSNumber * ObjectId;
-
+/**
+ *  按钮的颜色
+ */
+@property(nonatomic,assign) BOOL  isBlack;
+/**
+ *  是否发送过
+ */
+@property(nonatomic,assign) BOOL  isSend;
 @end

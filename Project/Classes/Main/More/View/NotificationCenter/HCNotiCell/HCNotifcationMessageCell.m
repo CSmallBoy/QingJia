@@ -83,6 +83,7 @@
 {
     if(!_titleLabel){
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, INTERVAL, 150, 30)];
+        _titleLabel.font = [UIFont systemFontOfSize:15];
     }
     return _titleLabel;
 }
@@ -90,8 +91,9 @@
 - (UILabel *)timeLabel
 {
     if(!_timeLabel){
-        _timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH -150, INTERVAL, 150, 20)];
-        _timeLabel.font = [UIFont systemFontOfSize:12];
+        _timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH -160, INTERVAL, 150, 20)];
+        _timeLabel.font = [UIFont systemFontOfSize:10];
+        _timeLabel.textAlignment = NSTextAlignmentRight;
         _timeLabel.textColor  = [UIColor lightGrayColor];
     }
     return _timeLabel;
@@ -103,7 +105,7 @@
 {
     if(!_messageLabel){
         _messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 40, SCREEN_WIDTH-80, 30)];
-        _messageLabel.font = [UIFont systemFontOfSize:14];
+        _messageLabel.font = [UIFont systemFontOfSize:12];
     }
     return _messageLabel;
 }

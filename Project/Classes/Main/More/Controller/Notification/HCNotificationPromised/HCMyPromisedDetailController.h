@@ -8,6 +8,6 @@
 
 #import "HCViewController.h"
 
-@interface HCPromisedNotiController : HCViewController
+@interface HCMyPromisedDetailController : HCViewController
 
 @end

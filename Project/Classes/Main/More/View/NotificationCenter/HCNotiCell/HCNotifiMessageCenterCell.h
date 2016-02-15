@@ -19,7 +19,7 @@
 
 @end
 
-@interface SCSwipeTableViewCell : UITableViewCell
+@interface HCNotifiMessageCenterCell : UITableViewCell
 @property (nonatomic,assign) BOOL isSaveCell;
 @property (nonatomic,strong) HCNotificationCenterInfo *info;
 @property (nonatomic, weak)id<SCSwipeTableViewCellDelegate>delegate;
@@ -67,6 +67,3 @@
           tableView:(UITableView *)tableView;
 
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com

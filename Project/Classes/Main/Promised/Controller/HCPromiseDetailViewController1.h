@@ -8,6 +8,9 @@
 
 #import "HCTableViewController.h"
 
+typedef void(^showRadarViewBlock)(BOOL isShow);
+
 @interface HCPromiseDetailViewController1 : HCTableViewController
 
+@property(nonatomic,strong)showRadarViewBlock block;
 @end

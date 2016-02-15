@@ -4,15 +4,16 @@
 //
 //  Created by 陈福杰 on 15/12/15.
 //  Copyright © 2015年 com.xxx. All rights reserved.
-//
+
+// “应”界面 ————————————————————————————
 
 #import "HCNotificationViewController.h"
 #import "HCMyNotificationViewController.h"
 #import "HCOtherNotificationViewController.h"
 #import "HCNotificationHeadImageController.h"
 #import "HCSaveNotificationViewController.h"
-#import "HCPromisedNotiController.h"
-#import "HCSavePromisedNotiController.h"
+#import "HCMyPromisedDetailController.h"
+#import "HCOtherPromisedDetailController.h"
 
 @interface HCNotificationViewController ()
 
@@ -30,6 +31,7 @@
 
 - (void)viewDidLoad
 {
+    // “应”界面 ————————————————————————————
     [super viewDidLoad];
 
      [self setupBackItem];
@@ -39,10 +41,7 @@
      [self.view addSubview:self.saveVC.view];
       self.saveVC.view.hidden = YES;
       self.otherVC.view.hidden = YES;
-    
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextController:) name:@"ToNextController" object:nil];
-    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -52,26 +51,7 @@
 
 #pragma mark -----private method
 
-
-
-//
-//-(void)ToNextController:(NSNotification *)info
-//{
-//    
-//    if ([info.userInfo[@"isSave"] isEqualToNumber:@(1)])
-//    {
-//        HCSavePromisedNotiController * SaveVC = [[HCSavePromisedNotiController alloc]init];
-//        [self.navigationController pushViewController:SaveVC animated:YES];
-//    }else
-//    {
-//    
-//        HCPromisedNotiController *detailVC = [[HCPromisedNotiController alloc]init];
-//        detailVC.tabBarController.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:detailVC animated:YES];
-//    }
-//}
-
-- (void)handleSegmentedControl:(UISegmentedControl *)segment
+- (void)ClickSegmentedControl:(UISegmentedControl *)segment
 {
     if (segment.selectedSegmentIndex == 0)
     {
@@ -113,7 +93,7 @@
             _segmented.selectedSegmentIndex = 1;
             _segmented.frame = CGRectMake(20, 74, SCREEN_WIDTH-40, 30);
             _segmented.backgroundColor = [UIColor whiteColor];
-            [_segmented addTarget:self action:@selector(handleSegmentedControl:) forControlEvents:UIControlEventValueChanged];
+            [_segmented addTarget:self action:@selector(ClickSegmentedControl:) forControlEvents:UIControlEventValueChanged];
         }
         return _segmented;
 }

@@ -4,31 +4,40 @@
 //
 //  Created by 陈福杰 on 15/12/15.
 //  Copyright © 2015年 com.xxx. All rights reserved.
-//
+//  ———————————————— 呼·应——————————————————————————
 
 #import "HCPromisedViewController.h"
 #import "HCPromiseDetailViewController1.h"
 #import "HCAddPromiseViewController1.h"
 #import "HCNotificationViewController.h"
 #import "HCNotificationHeadImageController.h"
-#import "HCPromisedNotiController.h"
-#import "HCSavePromisedNotiController.h"
+#import "HCMyPromisedDetailController.h"
+#import "HCOtherPromisedDetailController.h"
+
+#import "lhScanQCodeViewController.h"
 
 #import "MJRefresh.h"
+#import "WKFRadarView.h"
 
 #import "HCPromisedAddCell.h"
 #import "HCPromisedListAPI.h"
 #import "HCPromisedListInfo.h"
 
 @interface HCPromisedViewController ()<UITableViewDataSource,UITableViewDelegate>
-
+{
+    BOOL   isShouldWhow;
+}
 @property(nonatomic,strong)UITableView     *smallTableView;
 @property(nonatomic,strong)NSMutableArray  *dataArr;
 @property(nonatomic,strong)UIImageView     *bgImage;
+@property(nonatomic,strong)UIButton        *headBtn;
+@property(nonatomic,strong)WKFRadarView    *radarView;
+@property(nonatomic,strong)NSString        *nextVCTitle;
+@property(nonatomic,strong)HCPromisedListInfo  *nextVCInfo;
 
 @property (nonatomic,strong) UISegmentedControl  *segmented;
 
-@property (nonatomic,strong) HCNotificationViewController *notiVC;
+@property (nonatomic,strong) HCNotificationViewController *notiVC; // 应界面
 
 @end
 
@@ -36,6 +45,7 @@
 
 - (void)viewDidLoad
 {
+    //  ———————————————— 呼·应——————————————————————————
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
     [self addNavItem];
@@ -45,13 +55,48 @@
     [self  createTableView];
     [self.view addSubview:self.notiVC.view];
     self.notiVC.view.hidden = YES;
-    
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HeadImage:) name:@"显示头像" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextController:) name:@"ToNextController" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextMyDetailController:) name:@"ToNextMyController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextOtherController:) name:@"ToNextOtherController" object:nil];
 
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (isShouldWhow)
+    {
+        [_radarView removeFromSuperview];
+        CGFloat  headerViewW =  _bgImage.frame.size.width/3;
+        WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*2 , headerViewW*2)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
+        CGFloat  headerViewY = _bgImage.frame.origin.y-20;
+        radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
+        _radarView = radarView;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(radarTap:)];
+        [_radarView addGestureRecognizer:tap];
+        
+        _headBtn.hidden = YES;
+        [self.view addSubview:_radarView];
+        [self.view sendSubviewToBack:_radarView];
+        [self.view sendSubviewToBack:_bgImage];
+
+    }
+     else
+     {
+         [_radarView removeFromSuperview];
+         _headBtn.hidden = NO;
+     }
+    
+    for (NSInteger i = 0; i<self.dataArr.count; i++)
+    {
+        HCPromisedListInfo *info = self.dataArr[i];
+        info.isBlack = NO;
+    }
+    
+    [self.smallTableView reloadData];
+}
 
 -(void)HeadImage:(NSNotification *)info
 {
@@ -61,21 +106,22 @@
     [self.navigationController pushViewController:imageVC animated:YES];
 }
 
--(void)ToNextController:(NSNotification *)info
+-(void)ToNextMyDetailController:(NSNotification *)info
 {
-    
-    if ([info.userInfo[@"isSave"] isEqualToNumber:@(1)])
-    {
-        HCSavePromisedNotiController * SaveVC = [[HCSavePromisedNotiController alloc]init];
-        SaveVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:SaveVC animated:YES];
-    }else
-    {
-        
-        HCPromisedNotiController *detailVC = [[HCPromisedNotiController alloc]init];
-        detailVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:detailVC animated:YES];
-    }
+
+    HCMyPromisedDetailController *detailVC = [[HCMyPromisedDetailController alloc]init];
+    detailVC.data = info.userInfo;
+    detailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVC animated:YES];
+
+}
+
+-(void)ToNextOtherController:(NSNotification  *)noti
+{
+    HCOtherPromisedDetailController * OtherVC = [[HCOtherPromisedDetailController alloc]init];
+    OtherVC.data = noti.userInfo;
+    OtherVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:OtherVC animated:YES];
 }
 
 #pragma mark--UITableViewDelegate
@@ -85,24 +131,35 @@
     HCPromisedAddCell  *cell = [HCPromisedAddCell customCellWithTable:tableView];
     cell.backgroundColor = [UIColor clearColor];
     HCPromisedListInfo *info =self.dataArr[indexPath.row];
-    cell.title = info.name;
-    
-    cell.buttonH = self.smallTableView.frame.size.height/5;
-    cell.block = ^(NSString  *buttonTitle)
-    {
-        
-        if ([buttonTitle isEqualToString:@"+ 新增录入"])
-        {  //跳转到添加界面
-            HCAddPromiseViewController1  *addVC = [[HCAddPromiseViewController1 alloc]init];
-            [self.navigationController pushViewController:addVC animated:YES];
-        }
-        else
+    cell.info = info;
+
+    for (UIImageView * image in cell.subviews) {
+        if ([image isKindOfClass:[UIImageView class]])
         {
-            //跳转到信息界面
-            HCPromiseDetailViewController1 *detailVC = [[HCPromiseDetailViewController1 alloc]init];
-            detailVC.data = @{@"ObjectId":info.ObjectId};
-            [self.navigationController pushViewController:detailVC animated:YES];
+            if (!info.isSend)
+            {
+                [image removeFromSuperview];
+            }
         }
+    }
+    cell.buttonH = self.smallTableView.frame.size.height/5;
+    cell.block = ^(NSString  *buttonTitle,HCPromisedListInfo *info)
+    {
+        self.nextVCInfo = info;
+        self.nextVCTitle = buttonTitle;
+        for (NSInteger i = 0; i< self.dataArr.count; i++) {
+            HCPromisedListInfo *info1 = self.dataArr[i];
+            
+            if (i==indexPath.row)
+            {
+                continue;
+            }
+            else
+            {
+                info1.isBlack = NO;
+            }
+        }
+          [self.smallTableView reloadData];
     };
     return cell;
 }
@@ -126,15 +183,18 @@
     _bgImage.userInteractionEnabled = YES;
     _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+45);
     _bgImage.image = [UIImage imageNamed:@"yihubaiying_Background.png"];
+    _bgImage.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:_bgImage];
     
     //顶部图片
     CGFloat  headerViewW =  _bgImage.frame.size.width/3;
-    UIImageView *headerView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, headerViewW , headerViewW)];
+    UIButton *headerView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, headerViewW , headerViewW)];
     CGFloat  headerViewY = _bgImage.frame.origin.y-20;
     headerView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
-    headerView.image = [UIImage imageNamed:@"yihubaiying_icon_m-talk logo_dis.png"];
-    [self.view addSubview:headerView];
+    [headerView addTarget:self action:@selector(headButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView setBackgroundImage:IMG(@"yihubaiying_icon_m-talk logo_dis.png") forState:UIControlStateNormal];
+    _headBtn = headerView;
+    [self.view addSubview:_headBtn];
     
     // 两个图片
     UIImageView  *leftIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, -15, 30, 30)];
@@ -149,6 +209,30 @@
 //    [_bgImage addSubview:self.tagButton];
 }
 
+
+
+-(void)pushVC
+{
+    if ([self.nextVCTitle isEqualToString:@"+ 新增录入"])
+    {  //跳转到添加界面
+        HCAddPromiseViewController1  *addVC = [[HCAddPromiseViewController1 alloc]init];
+        addVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:addVC animated:YES];
+    }
+    else
+    {
+        //跳转到信息界面
+        HCPromiseDetailViewController1 *detailVC = [[HCPromiseDetailViewController1 alloc]init];
+        detailVC.data = @{@"ObjectId":self.nextVCInfo.ObjectId,@"ListInfo":self.nextVCInfo};
+        detailVC.hidesBottomBarWhenPushed = YES;
+        detailVC.block = ^(BOOL isShow){
+        
+            isShouldWhow = isShow;
+        
+        };
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
+}
 -(void)createTableView
 {
     self.smallTableView.backgroundColor = [UIColor clearColor];
@@ -157,18 +241,45 @@
     [_bgImage addSubview:self.smallTableView];
 }
 
+
 -(void)addNavItem
 {
 
     self.navigationItem.titleView = self.segmented;
-}
-
--(void)tap:(UITapGestureRecognizer *)tap
-{
-    HCNotificationViewController *notiVC = [[HCNotificationViewController alloc]init];
-    [self.navigationController pushViewController:notiVC animated:YES];
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:IMG(@"ThinkChange_sel") style:UIBarButtonItemStylePlain target:self action:@selector(ToQrcodeController:)];
+    self.navigationItem.rightBarButtonItem = right;
     
 }
+
+#pragma Mark --- click
+
+-(void)ToQrcodeController:(UIBarButtonItem *)right
+{
+    lhScanQCodeViewController   *scanVC = [[lhScanQCodeViewController alloc]init];
+    [self.navigationController pushViewController:scanVC animated:YES];
+}
+
+-(void)headButtonClick:(UIButton *)button
+{
+    
+    CGFloat  headerViewW =  _bgImage.frame.size.width/3;
+    WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*2 , headerViewW*2)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
+    CGFloat  headerViewY = _bgImage.frame.origin.y-20;
+    radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
+    _radarView = radarView;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(radarTap:)];
+    [_radarView addGestureRecognizer:tap];
+    
+    _headBtn.hidden = YES;
+    [self.view addSubview:_radarView];
+    [self.view sendSubviewToBack:_radarView];
+    [self.view sendSubviewToBack:_bgImage];
+    
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(pushVC) userInfo:nil repeats:NO];
+    
+}
+
 
 
 -(void)handleSegmentedControl:(UISegmentedControl *)segmented
@@ -180,8 +291,32 @@
     {
         self.notiVC.view.hidden = NO;
     }
-
+    
 }
+
+-(void)radarTap:(UITapGestureRecognizer *)tap
+{
+    if ([self.nextVCTitle isEqualToString:@"+ 新增录入"])
+    {  //跳转到添加界面
+        HCAddPromiseViewController1  *addVC = [[HCAddPromiseViewController1 alloc]init];
+        addVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:addVC animated:YES];
+    }
+    else
+    {
+        //跳转到信息界面
+        HCPromiseDetailViewController1 *detailVC = [[HCPromiseDetailViewController1 alloc]init];
+        detailVC.data = @{@"ObjectId":self.nextVCInfo.ObjectId,@"ListInfo":self.nextVCInfo};
+        detailVC.hidesBottomBarWhenPushed = YES;
+        detailVC.block = ^(BOOL isShow){
+            
+            isShouldWhow = isShow;
+            
+        };
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
+}
+
 
 #pragma mark ---Setter Or Getter
 

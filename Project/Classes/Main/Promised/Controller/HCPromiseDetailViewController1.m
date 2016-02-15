@@ -18,6 +18,7 @@
 #import "HCPromisedContractPersonInfo.h"
 #import "HCPromisedDetailInfo.h"
 #import "HCPromisedMissInfo.h"
+#import "HCPromisedListInfo.h"
 
 
 #import "HCPromisedMissCell.h"
@@ -429,7 +430,13 @@
     //        [self showHUDText:@"请输入正确的身份证号码"];
     //        return;
     //    }
-    [self requestSelectResumeData];
+//    [self requestSelectResumeData];
+    //------------------此处代码应该写在提交成功后-----------------
+    HCPromisedListInfo  *info =  self.data[@"ListInfo"];
+    info.isSend = YES;
+    self.block (YES);
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    //---------------------------------------------------------
    
 }
 

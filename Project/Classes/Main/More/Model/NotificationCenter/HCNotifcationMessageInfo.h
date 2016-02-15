@@ -4,7 +4,7 @@
 //
 //  Created by 朱宗汉 on 16/1/29.
 //  Copyright © 2016年 com.xxx. All rights reserved.
-//
+//  一百应留言模型
 
 #import <Foundation/Foundation.h>
 
