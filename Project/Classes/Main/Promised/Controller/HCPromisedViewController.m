@@ -379,6 +379,7 @@
 
         }else
         {
+           [self.smallTableView.mj_header endRefreshing];
            [self showHUDError:message];
         }
         }];
@@ -387,26 +388,43 @@
 //上拉加载更多数据
 -(void)requestMoreData
 {
-    HCPromisedListAPI  *api = [[HCPromisedListAPI alloc]init];
-    [self.dataArr removeLastObject];
-    HCPromisedListInfo *info = self.dataArr[self.dataArr.count-1];
-    api.Start = [info.ObjectId intValue];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSMutableArray *array) {
-        
-        if (requestStatus == HCRequestStatusSuccess) {
-            [self.dataArr addObjectsFromArray:array];
-            HCPromisedListInfo *info = [[HCPromisedListInfo alloc]init];
-            info.name=@"+ 新增录入";
-            [self.dataArr addObject:info];
-            [self.smallTableView.mj_footer endRefreshing];
-            [self.smallTableView reloadData];
-        }
-        else
-        {
-            [self showHUDError:message];
-        }
-        
-    }];
+ 
+    if (self.dataArr.count>1)
+    {
+        HCPromisedListAPI  *api = [[HCPromisedListAPI alloc]init];
+        [self.dataArr removeLastObject];
+        HCPromisedListInfo *info = self.dataArr[self.dataArr.count-1];
+        api.Start = [info.ObjectId intValue];
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSMutableArray *array) {
+            
+            if (requestStatus == HCRequestStatusSuccess) {
+                if (!array)
+                {
+                    [self.dataArr addObjectsFromArray:array];
+                    HCPromisedListInfo *info = [[HCPromisedListInfo alloc]init];
+                    info.name=@"+ 新增录入";
+                    [self.dataArr addObject:info];
+                    [self.smallTableView reloadData];
+                    
+                }
+                [self.smallTableView.mj_footer endRefreshing];
+                
+                
+            }
+            else
+            {
+                [self.smallTableView.mj_footer endRefreshing];
+                [self showHUDError:message];
+            }
+            
+        }];
+    }
+    else
+    {
+        [self.smallTableView.mj_footer endRefreshing];
+    }
+    
+
 }
 
 @end
