@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 vmeet. All rights reserved.
 //
 
-#import "Model.h"
+#import "HCMailListModel.h"
 
-@implementation Model
+@implementation HCMailListModel
 
 @end

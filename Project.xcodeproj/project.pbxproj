@@ -907,7 +907,7 @@
 		C7B00C8F1C5F26050010F93B /* nav_createGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2A1C5F26050010F93B /* nav_createGroup@2x.png */; };
 		C7B00C901C5F26050010F93B /* newFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2B1C5F26050010F93B /* newFriends@2x.png */; };
 		C7BE0E3B1C71A02A007D97A5 /* HCMailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3A1C71A02A007D97A5 /* HCMailListViewController.m */; };
-		C7BE0E411C71A041007D97A5 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3D1C71A041007D97A5 /* Model.m */; };
+		C7BE0E411C71A041007D97A5 /* HCMailListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3D1C71A041007D97A5 /* HCMailListModel.m */; };
 		C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3F1C71A041007D97A5 /* pinyin.c */; };
 		C7CDB2501C71719700185450 /* FamilyManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CDB2051C71719700185450 /* FamilyManageViewController.m */; };
 		C7CDB2511C71719700185450 /* HCGradeManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CDB2081C71719700185450 /* HCGradeManagerViewController.m */; };
@@ -2577,8 +2577,8 @@
 		C7B00B2C1C5F26050010F93B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C7BE0E391C71A02A007D97A5 /* HCMailListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMailListViewController.h; sourceTree = "<group>"; };
 		C7BE0E3A1C71A02A007D97A5 /* HCMailListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMailListViewController.m; sourceTree = "<group>"; };
-		C7BE0E3C1C71A041007D97A5 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
-		C7BE0E3D1C71A041007D97A5 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		C7BE0E3C1C71A041007D97A5 /* HCMailListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMailListModel.h; sourceTree = "<group>"; };
+		C7BE0E3D1C71A041007D97A5 /* HCMailListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMailListModel.m; sourceTree = "<group>"; };
 		C7BE0E3F1C71A041007D97A5 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		C7BE0E401C71A041007D97A5 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		C7CDB2041C71719700185450 /* FamilyManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyManageViewController.h; sourceTree = "<group>"; };
@@ -4022,8 +4022,8 @@
 		C78D78EC1C5F28F600622CE2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C7BE0E3C1C71A041007D97A5 /* Model.h */,
-				C7BE0E3D1C71A041007D97A5 /* Model.m */,
+				C7BE0E3C1C71A041007D97A5 /* HCMailListModel.h */,
+				C7BE0E3D1C71A041007D97A5 /* HCMailListModel.m */,
 				C7BE0E3E1C71A041007D97A5 /* pinyin */,
 			);
 			path = Model;
@@ -7219,7 +7219,7 @@
 				0A5491291C2BC32D0085F50D /* ZXURIResultParser.m in Sources */,
 				C7B00B641C5F26050010F93B /* PushNotificationViewController.m in Sources */,
 				0A5491CF1C2BC32D0085F50D /* ZXQRCodeFinderPatternFinder.m in Sources */,
-				C7BE0E411C71A041007D97A5 /* Model.m in Sources */,
+				C7BE0E411C71A041007D97A5 /* HCMailListModel.m in Sources */,
 				0A5491131C2BC32D0085F50D /* ZXCalendarParsedResult.m in Sources */,
 				0A54913C1C2BC32D0085F50D /* ZXBitMatrix.m in Sources */,
 				C78D7AD91C5F28F700622CE2 /* HCFindPwdSecondViewController.m in Sources */,

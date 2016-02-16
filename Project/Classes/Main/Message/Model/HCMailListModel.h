@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Model : NSObject
+@interface HCMailListModel : NSObject
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *tel;
 @property (nonatomic, assign) int recordID;

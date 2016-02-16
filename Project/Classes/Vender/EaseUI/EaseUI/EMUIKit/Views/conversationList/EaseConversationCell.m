@@ -58,6 +58,7 @@ CGFloat const EaseConversationCellPadding = 10;
     _avatarView = [[EaseImageView alloc] init];
     _avatarView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:_avatarView];
+        ViewRadius(self.avatarView, self.avatarView.bounds.size.width/2);
     
     _timeLabel = [[UILabel alloc] init];
     _timeLabel.translatesAutoresizingMaskIntoConstraints = NO;

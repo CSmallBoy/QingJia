@@ -10,7 +10,7 @@
 
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
-#import "Model.h"
+#import "HCMailListModel.h"
 #import "pinyin.h"
 @interface HCMailListViewController ()
 
@@ -40,7 +40,7 @@
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         for (int j=0; j<self.dataSource.count; j++)
         {
-            Model *model = [self.dataSource objectAtIndex:j];
+            HCMailListModel *model = [self.dataSource objectAtIndex:j];
             //获取姓名首位
             NSString *string = [model.name substringWithRange:NSMakeRange(0, 1)];
             //将姓名首位转换成NSData类型
@@ -149,7 +149,7 @@
     int cont = 0;
     for (int j=0; j<self.dataSource.count; j++)
     {
-        Model *model = [self.dataSource objectAtIndex:j];
+        HCMailListModel *model = [self.dataSource objectAtIndex:j];
         //获取姓名的首位
         NSString *string = [model.name substringWithRange:NSMakeRange(0, 1)];
         //将姓名首位转化成NSData类型
@@ -235,7 +235,7 @@
     for (NSInteger i = 0; i < nPeople; i++)
     {
         //新建一个addressBook model类
-        Model *addressBook = [[Model alloc] init];
+        HCMailListModel *addressBook = [[HCMailListModel alloc] init];
         //获取个人
         ABRecordRef person = CFArrayGetValueAtIndex(allPeople, i);
         //获取个人名字
