@@ -72,6 +72,32 @@
     }
 }
 
+#pragma mark --- private mothods
+//添加滑块
+-(void)addSlider
+{
+    UISlider  *slider = [[UISlider alloc]initWithFrame:CGRectMake(110, 4, SCREEN_WIDTH-150, 40)];
+    slider.minimumTrackTintColor = [UIColor redColor];
+    slider.minimumValue = 0.0;
+    slider.maximumValue = 120;
+    [slider setThumbImage:IMG(@"bullet_black") forState:UIControlStateNormal];
+    [self.contentView addSubview:slider];
+    
+    //最大值和最小值label
+    UILabel *minLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 12, 30, 20)];
+    minLabel.text = @"0:00";
+    minLabel.adjustsFontSizeToFitWidth = YES;
+    minLabel.textColor = [UIColor blackColor];
+    [self.contentView addSubview:minLabel];
+    
+    UILabel *maxLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-40, 12, 30, 20)];
+    maxLabel.textColor = [UIColor blackColor];
+    maxLabel.text = @"2:00";
+    maxLabel.adjustsFontSizeToFitWidth = YES;
+    [self.contentView addSubview:maxLabel];
+
+}
+
 #pragma mark---Setter Or Getter
 
 -(void)setIndexPath:(NSIndexPath *)indexPath
@@ -80,20 +106,15 @@
     _titleLabel.text = self.titleArr[indexPath.row];
     if (indexPath.row == 0)
     {
-        self.textField.placeholder = self.placeholderTitleArr[indexPath.row];
-        self.textField.text = _missInfo.LossAddress;
-        self.textField.delegate = self;
-        [self.contentView addSubview:self.textField];
+        [self addSlider];
     }
     else if (indexPath.row == 1)
     {
         self.textField.placeholder = self.placeholderTitleArr[indexPath.row];
-        self.textField.text = _missInfo.LossTime;
-        self.textField.enabled = NO;
+        self.textField.text = _missInfo.LossAddress;
         self.textField.delegate = self;
         [self.contentView addSubview:self.textField];
-
-        
+ 
     }else if(indexPath.row == 2)
     {
         self.textView.placeholder = self.placeholderTitleArr[indexPath.row];
@@ -147,7 +168,7 @@
 {
     if (!_placeholderTitleArr)
     {
-        _placeholderTitleArr = @[@"点击输入走失地点",@"点击输入走失时间",@"点击输入走失时的一些特点，比如：相貌特征，身高，所穿衣物"];
+        _placeholderTitleArr = @[@"点击输入走失时间",@"点击输入走失地点",@"点击输入走失时的一些特点，比如：相貌特征，身高，所穿衣物"];
     }
     return _placeholderTitleArr;
 }
@@ -156,7 +177,7 @@
 {
     if (!_titleArr)
     {
-        _titleArr = @[@"地点",@"走失时间",@"描述"];
+        _titleArr = @[@"时间",@"地点",@"描述"];
     }
     return _titleArr;
 }

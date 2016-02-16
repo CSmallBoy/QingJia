@@ -114,11 +114,11 @@
     
     CALayer * thumbnailLayer = [[CALayer alloc]init];
     thumbnailLayer.backgroundColor = [UIColor whiteColor].CGColor;
-    CGRect thumbnailRect = CGRectMake(0, 0, 90, 90);
+    CGRect thumbnailRect = CGRectMake(0, 0,115/383.0*(382/668.0)*SCREEN_HEIGHT ,115/383.0*(382/668.0)*SCREEN_HEIGHT );
     thumbnailRect.origin.x = (rect.size.width - thumbnailRect.size.width)/2.0;
     thumbnailRect.origin.y = (rect.size.height - thumbnailRect.size.height)/2.0;
     thumbnailLayer.frame = thumbnailRect;
-    thumbnailLayer.cornerRadius = 45;
+    thumbnailLayer.cornerRadius = 115/383.0*(382/668.0)*SCREEN_HEIGHT/2;
     thumbnailLayer.borderWidth = 1.0;
     thumbnailLayer.masksToBounds = YES;
     thumbnailLayer.borderColor = [UIColor whiteColor].CGColor;

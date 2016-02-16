@@ -26,6 +26,7 @@
 @interface HCPromisedViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     BOOL   isShouldWhow;
+    BOOL   jump;
 }
 @property(nonatomic,strong)UITableView     *smallTableView;
 @property(nonatomic,strong)NSMutableArray  *dataArr;
@@ -57,7 +58,6 @@
     self.notiVC.view.hidden = YES;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HeadImage:) name:@"显示头像" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextMyDetailController:) name:@"ToNextMyController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextOtherController:) name:@"ToNextOtherController" object:nil];
 
@@ -65,10 +65,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    jump = NO;
     if (isShouldWhow)
     {
         [_radarView removeFromSuperview];
-        CGFloat  headerViewW =  _bgImage.frame.size.width/3;
+        CGFloat  headerViewW =  _headBtn.frame.size.width;
         WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*2 , headerViewW*2)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
         CGFloat  headerViewY = _bgImage.frame.origin.y-20;
         radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
@@ -130,6 +131,7 @@
 {
     HCPromisedAddCell  *cell = [HCPromisedAddCell customCellWithTable:tableView];
     cell.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     HCPromisedListInfo *info =self.dataArr[indexPath.row];
     cell.info = info;
 
@@ -142,6 +144,7 @@
             }
         }
     }
+    cell.buttonW = self.smallTableView.frame.size.width;
     cell.buttonH = self.smallTableView.frame.size.height/5;
     cell.block = ^(NSString  *buttonTitle,HCPromisedListInfo *info)
     {
@@ -160,6 +163,7 @@
             }
         }
           [self.smallTableView reloadData];
+          jump = YES;
     };
     return cell;
 }
@@ -179,14 +183,15 @@
 -(void)createUI
 {
    //背景图片
-    _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 270,360)];
+    _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320/384.0*(382/668.0)*SCREEN_HEIGHT,(382/668.0)*SCREEN_HEIGHT)];
     _bgImage.userInteractionEnabled = YES;
     _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+45);
     _bgImage.image = [UIImage imageNamed:@"yihubaiying_Background.png"];
+    _bgImage.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:_bgImage];
     
     //顶部图片
-    CGFloat  headerViewW =  _bgImage.frame.size.width/3;
+    CGFloat  headerViewW =  115/383.0*_bgImage.frame.size.height;
     UIButton *headerView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, headerViewW , headerViewW)];
     CGFloat  headerViewY = _bgImage.frame.origin.y-20;
     headerView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
@@ -204,8 +209,6 @@
     UIImageView   *rightIV = [[UIImageView alloc]initWithFrame:CGRectMake(rightIVX, -15, 30, 30)];
     rightIV.image = [UIImage imageNamed:@"yihubaiying_nail.png"];
     [_bgImage addSubview:rightIV];
-    
-//    [_bgImage addSubview:self.tagButton];
 }
 
 
@@ -260,26 +263,25 @@
 
 -(void)headButtonClick:(UIButton *)button
 {
-    
-    CGFloat  headerViewW =  _bgImage.frame.size.width/3;
-    WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*2 , headerViewW*2)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
-    CGFloat  headerViewY = _bgImage.frame.origin.y-20;
-    radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
-    _radarView = radarView;
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(radarTap:)];
-    [_radarView addGestureRecognizer:tap];
-    
-    _headBtn.hidden = YES;
-    [self.view addSubview:_radarView];
-    [self.view sendSubviewToBack:_radarView];
-    [self.view sendSubviewToBack:_bgImage];
-    
-    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(pushVC) userInfo:nil repeats:NO];
-    
+    if (jump)
+    {
+        CGFloat  headerViewW = 115/383.0*_bgImage.frame.size.height;
+        WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*2 , headerViewW*2)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
+        CGFloat  headerViewY = _bgImage.frame.origin.y-20;
+        radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
+        _radarView = radarView;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(radarTap:)];
+        [_radarView addGestureRecognizer:tap];
+        
+        _headBtn.hidden = YES;
+        [self.view addSubview:_radarView];
+        [self.view sendSubviewToBack:_radarView];
+        [self.view sendSubviewToBack:_bgImage];
+        
+        [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(pushVC) userInfo:nil repeats:NO];
+    }
 }
-
-
 
 -(void)handleSegmentedControl:(UISegmentedControl *)segmented
 {
@@ -295,25 +297,9 @@
 
 -(void)radarTap:(UITapGestureRecognizer *)tap
 {
-    if ([self.nextVCTitle isEqualToString:@"+ 新增录入"])
-    {  //跳转到添加界面
-        HCAddPromiseViewController1  *addVC = [[HCAddPromiseViewController1 alloc]init];
-        addVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:addVC animated:YES];
-    }
-    else
-    {
-        //跳转到信息界面
-        HCPromiseDetailViewController1 *detailVC = [[HCPromiseDetailViewController1 alloc]init];
-        detailVC.data = @{@"ObjectId":self.nextVCInfo.ObjectId,@"ListInfo":self.nextVCInfo};
-        detailVC.hidesBottomBarWhenPushed = YES;
-        detailVC.block = ^(BOOL isShow){
-            
-            isShouldWhow = isShow;
-            
-        };
-        [self.navigationController pushViewController:detailVC animated:YES];
-    }
+
+    [self pushVC];
+    
 }
 
 

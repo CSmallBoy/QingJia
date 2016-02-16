@@ -46,7 +46,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    switch (textField.tag) {
+    switch (textField.tag-100) {
         case 0:
             _detailInfo.Height = _textField.text;
             break;
@@ -62,8 +62,6 @@
         default:
             break;
     }
-    
-    _detailInfo.BloodType = _textField.text;
 }
 
 #pragma mark ----HCFeedbackTextViewDelegate
@@ -79,16 +77,15 @@
 -(void)feedbackTextViewdidEndEditing
 {
     
-    if (self.textView.tag == 3) {
+    if (self.textView.tag == 103) {
         
          _detailInfo.Allergic = self.textView.textView.text;
     }
-    else if (self.textView.tag == 5)
+    else if (self.textView.tag == 105)
     {
         _detailInfo.Medicalnote = self.textView.textView.text;
     }
-    
-   
+
 }
 
 #pragma mark---Setter Or Getter
@@ -98,43 +95,60 @@
     _indexPath = indexPath;
     _titleLabel.text = self.titleArr[indexPath.row];
     
+    self.textField.text = nil;
     switch (indexPath.row) {
         case 0:
             self.textField.text = _detailInfo.Height;
             self.textField.placeholder = self.placeholderTitleArr[indexPath.row];
-            self.textField.tag = indexPath.row;
+            self.textField.tag = 100 +indexPath.row;
+            self.textField.delegate = self;
             [self.contentView addSubview:self.textField];
             break;
         case 1:
             self.textField.text = _detailInfo.Weight;
             self.textField.placeholder = self.placeholderTitleArr[indexPath.row];
-            self.textField.tag = indexPath.row;
+            self.textField.tag = 100 +indexPath.row;
+            self.textField.delegate = self;
             [self.contentView addSubview:self.textField];
             break;
         case 2:
             self.textField.text = _detailInfo.BloodType;
             self.textField.placeholder = self.placeholderTitleArr[indexPath.row];
-            self.textField.tag = indexPath.row;
+            self.textField.tag = 100 +indexPath.row;
+            self.textField.delegate = self;
             [self.contentView addSubview:self.textField];
             break;
             break;
         case 3:
-            self.textView.textView.text = _detailInfo.Allergic;
             self.textView.placeholder = self.placeholderTitleArr[indexPath.row];
-            self.textView.tag = indexPath.row;
+            if (_detailInfo.Allergic)
+            {
+                self.textView.textView.text = _detailInfo.Allergic;
+                self.textView.textView.textColor = [UIColor blackColor];
+            }
+            self.textView.tag = 100 +indexPath.row;
+            self.textField.delegate = self;
+            self.textView.delegate = self;
             [self.contentView addSubview:self.textView];
             break;
         case 4:
             self.textField.text = _detailInfo.Medical;
             self.textField.placeholder = self.placeholderTitleArr[indexPath.row];
-            self.textField.tag = indexPath.row;
+            self.textField.tag = 100 +indexPath.row;
+            self.textField.delegate = self;
             [self.contentView addSubview:self.textField];
             break;
             break;
         case 5:
-            self.textView.textView.text = _detailInfo.Medicalnote;
             self.textView.placeholder = self.placeholderTitleArr[indexPath.row];
-            self.textView.tag = indexPath.row;
+            if (_detailInfo.Medicalnote)
+            {
+                self.textView.textView.text = _detailInfo.Medicalnote;
+                self.textView.textView.textColor = [UIColor blackColor];
+            }
+            self.textView.tag = 100 +indexPath.row;
+            self.textField.delegate = self;
+            self.textView.delegate = self;
             [self.contentView addSubview:self.textView];
             break;
         default:

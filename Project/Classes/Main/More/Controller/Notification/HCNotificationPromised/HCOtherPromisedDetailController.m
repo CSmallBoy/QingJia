@@ -45,6 +45,8 @@
 @implementation HCOtherPromisedDetailController
 
 - (void)viewDidLoad {
+    
+    //一呼百应详情 ----- 别人的一呼百应
     [super viewDidLoad];
     self.info = self.data[@"info"];
     [self setupBackItem];
@@ -73,6 +75,12 @@
     [self.navigationController pushViewController:imageVC animated:YES];
 }
 
+// 点击进入  医疗急救卡
+-(void)toMedicalVC
+{
+    HCMedicalViewController   *medicalVC = [[HCMedicalViewController alloc]init];
+    [self.navigationController pushViewController:medicalVC animated:YES];
+}
 
 -(void)CallTOPromised
 {
@@ -96,12 +104,6 @@
     [self showHUDText:@"拨打110"];
 }
 
-
--(void)toMedicalVC
-{
-    HCMedicalViewController   *medicalVC = [[HCMedicalViewController alloc]init];
-    [self.navigationController pushViewController:medicalVC animated:YES];
-}
 
 #pragma mark --- setter Or getter
 
@@ -166,7 +168,7 @@
 - (UIImageView *)imageView
 {
     if(!_imageView){
-        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.165+10, SCREEN_HEIGHT*0.35 + 40, SCREEN_WIDTH*0.67-20, SCREEN_HEIGHT *0.4)];
+        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(70/375.0*SCREEN_WIDTH, SCREEN_HEIGHT*0.35 + 40, SCREEN_WIDTH-2*70/375.0*SCREEN_WIDTH, SCREEN_HEIGHT *0.4)];
         ViewRadius(_imageView, 5);
         _imageView.image = IMG(@"1");
         _imageView.userInteractionEnabled = YES;
@@ -203,7 +205,7 @@
 - (UILabel *)numLabel
 {
     if(!_numLabel){
-        _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.MedicalBtn.frame.size.width + 20,0,100,12)];
+        _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.MedicalBtn.frame.size.width + 10,0,100,12)];
         _numLabel.text = @"编号：12345678";
         _numLabel.adjustsFontSizeToFitWidth = YES;
         _numLabel.textColor = [UIColor blackColor];
@@ -232,7 +234,7 @@
     if(!_FatherTel)
     {
         _FatherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _FatherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 20, self.numLabel.frame.size.height+3,self.imageView.frame.size.height/12, self.imageView.frame.size.height/12) ;
+        _FatherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 10, self.numLabel.frame.size.height+3,self.imageView.frame.size.height/12, self.imageView.frame.size.height/12) ;
         [_FatherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
     }
     return _FatherTel;
@@ -242,7 +244,7 @@
 {
     if(!_MotherTel){
         _MotherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _MotherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 20 + SCREEN_WIDTH*60/250, self.numLabel.frame.size.height+3,self.imageView.frame.size.height/12, self.imageView.frame.size.height/12) ;
+        _MotherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 10 + SCREEN_WIDTH*60/250, self.numLabel.frame.size.height+3,self.imageView.frame.size.height/12, self.imageView.frame.size.height/12) ;
         [_MotherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
     }
     return _MotherTel;

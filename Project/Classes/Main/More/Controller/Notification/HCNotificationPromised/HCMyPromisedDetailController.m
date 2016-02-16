@@ -6,6 +6,8 @@
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
+#import <StoreKit/StoreKit.h>
+
 #import "HCMyPromisedDetailController.h"
 #import "HCNotificationHeadImageController.h"
 #import "HCPromisedCommentController.h"
@@ -14,7 +16,7 @@
 #import "HCNotificationCenterInfo.h"
 
 #import "HCButtonItem.h"
-@interface HCMyPromisedDetailController ()
+@interface HCMyPromisedDetailController ()<SKStoreProductViewControllerDelegate>
 
 @property (nonatomic,strong) UIImageView    *sexIV;
 @property (nonatomic,strong) UIImageView   *imageView;
@@ -44,6 +46,7 @@
 @implementation HCMyPromisedDetailController
 
 - (void)viewDidLoad {
+    // --------与我相关一呼百应详情-----------------
     [super viewDidLoad];
     self.info = self.data[@"info"];
     [self setupBackItem];
@@ -57,8 +60,15 @@
     [self.view addSubview:self.foundBtn];
     [self.view addSubview:self.missTimeLabel];
     [self.view addSubview:self.missMessageLabel];
+}
 
-   
+#pragma mark ---SKStoreProductViewControllerDelegate
+
+// 点击了appstore的取消按钮
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 #pragma mark --- private mothods
 // 点击头像
@@ -86,8 +96,32 @@
     {
         [self.blackView removeFromSuperview];
         [self.myAlertView removeFromSuperview];
-        HCPromisedCommentController *commentVc= [[HCPromisedCommentController alloc]init];
-        [self.navigationController pushViewController:commentVc animated:YES];
+        
+        [self showHUDText:@"正在跳转AppStore"];
+        
+// -----------------------------跳转到appStore---------------------------------------------
+        //初始化控制器
+        SKStoreProductViewController *storeProductViewContorller = [[SKStoreProductViewController alloc] init];
+        //设置代理请求为当前控制器本身
+        storeProductViewContorller.delegate = self;
+        //加载一个新的视图展示
+        [storeProductViewContorller loadProductWithParameters:
+         //appId唯一的
+         @{SKStoreProductParameterITunesItemIdentifier : @"587767923"} completionBlock:^(BOOL result, NSError *error) {
+             //block回调
+             if(error){
+                 [self showHUDError:@"跳转失败"];
+                 NSLog(@"错误 %@ with userInfo %@",error,[error userInfo]);
+             }else{
+                 [self hideHUDView];
+                 //模态弹出appstore
+                 [self presentViewController:storeProductViewContorller animated:YES completion:^{
+                     
+                 }
+                  ];
+             }
+         }];
+//-------------------------------------------------------------------------------------
         
     }else  if ([button.titleLabel.text isEqualToString:@"关闭"])
     {
@@ -101,6 +135,7 @@
     
     }
 }
+
 // 点击进入  医疗急救卡
 -(void)toMedicalVC
 {
@@ -143,7 +178,7 @@
     if(!_FatherTel)
     {
         _FatherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _FatherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 20, self.numLabel.frame.size.height+3,self.imageView.frame.size.height/12, self.imageView.frame.size.height/12) ;
+        _FatherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 10, self.numLabel.frame.size.height+3,self.imageView.frame.size.height/12, self.imageView.frame.size.height/12) ;
         [_FatherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
     }
     return _FatherTel;
@@ -153,7 +188,7 @@
 {
     if(!_MotherTel){
         _MotherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _MotherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 20 + SCREEN_WIDTH*60/250, self.numLabel.frame.size.height+3,self.imageView.frame.size.height/12, self.imageView.frame.size.height/12) ;
+        _MotherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 10 + SCREEN_WIDTH*60/250, self.numLabel.frame.size.height+3,self.imageView.frame.size.height/12, self.imageView.frame.size.height/12) ;
         [_MotherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
     }
     return _MotherTel;
@@ -162,7 +197,7 @@
 - (UILabel *)numLabel
 {
     if(!_numLabel){
-        _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.MedicalBtn.frame.size.width + 20,0,100,12)];
+        _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.MedicalBtn.frame.size.width + 10,0,100,12)];
         _numLabel.text = @"编号：12345678";
         _numLabel.adjustsFontSizeToFitWidth = YES;
         _numLabel.textColor = [UIColor blackColor];
@@ -244,7 +279,7 @@
 - (UIImageView *)imageView
 {
     if(!_imageView){
-        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.165, SCREEN_HEIGHT*0.35 + 40, SCREEN_WIDTH*0.67, SCREEN_HEIGHT *0.4)];
+        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(70/375.0*SCREEN_WIDTH, SCREEN_HEIGHT*0.35 + 40, SCREEN_WIDTH-2*70/375.0*SCREEN_WIDTH, SCREEN_HEIGHT *0.4)];
         ViewRadius(_imageView, 5);
         _imageView.image = IMG(@"1");
         _imageView.userInteractionEnabled = YES;
@@ -307,8 +342,6 @@
     }
     return _blackView;
 }
-
-
 
 - (UIView *)myAlertView
 {

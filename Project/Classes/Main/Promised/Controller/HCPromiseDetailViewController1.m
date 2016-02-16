@@ -162,8 +162,8 @@
         
         if (indexPath.row == 1)
         {
-            [self.view endEditing:YES];
-            [self.view addSubview:self.dateDetailPicker];
+//            [self.view endEditing:YES];
+//            [self.view addSubview:self.dateDetailPicker];
         }
     }}
 

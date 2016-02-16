@@ -166,7 +166,7 @@
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     
-    self.resultTableView.frame= CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-283.5-144);
+    self.resultTableView.frame= CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-144-49);
     NSLog(@"%@",searchText);
     if (searchText.length != 0)
     {
@@ -199,6 +199,13 @@
     
     [self.resultTableView reloadData];
 
+}
+
+
+#pragma mark --- scrollerViewDelegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark --- private mothods
