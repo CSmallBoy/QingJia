@@ -397,16 +397,14 @@
         api.Start = [info.ObjectId intValue];
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSMutableArray *array) {
             
-            if (requestStatus == HCRequestStatusSuccess) {
-                if (!array)
-                {
+            if (requestStatus == HCRequestStatusSuccess)
+            {
                     [self.dataArr addObjectsFromArray:array];
                     HCPromisedListInfo *info = [[HCPromisedListInfo alloc]init];
                     info.name=@"+ 新增录入";
                     [self.dataArr addObject:info];
                     [self.smallTableView reloadData];
-                    
-                }
+                
                 [self.smallTableView.mj_footer endRefreshing];
                 
                 
