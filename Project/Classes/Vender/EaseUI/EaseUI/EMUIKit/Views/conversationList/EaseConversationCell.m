@@ -58,7 +58,7 @@ CGFloat const EaseConversationCellPadding = 10;
     _avatarView = [[EaseImageView alloc] init];
     _avatarView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:_avatarView];
-        ViewRadius(self.avatarView, self.avatarView.bounds.size.width/2);
+
     
     _timeLabel = [[UILabel alloc] init];
     _timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -98,6 +98,7 @@ CGFloat const EaseConversationCellPadding = 10;
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.avatarView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:EaseConversationCellPadding]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.avatarView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.avatarView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.avatarView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
+            ViewRadius(self.avatarView, 20);
 }
 
 - (void)_setupTimeLabelConstraints

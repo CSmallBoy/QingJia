@@ -109,7 +109,7 @@
     }
     
     EMRobot *robot = [self.dataSource objectAtIndex:indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:@"chatListCellHead"];
+    cell.imageView.image = [UIImage imageNamed:@"label"];
     if ([robot.nickname length]) {
         cell.textLabel.text = robot.nickname;
     }

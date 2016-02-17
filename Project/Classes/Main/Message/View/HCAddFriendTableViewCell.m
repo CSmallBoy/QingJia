@@ -25,7 +25,7 @@
     {
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 70,70)];
         imageView.image =  [UIImage imageNamed:@"chatListCellHead.png"];
-        ViewRadius(imageView, 40);
+        ViewRadius(imageView, 35);
         [self.contentView addSubview:imageView];
         
         UILabel *nameLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 20, WIDTH(self.contentView)-100, 40)];
