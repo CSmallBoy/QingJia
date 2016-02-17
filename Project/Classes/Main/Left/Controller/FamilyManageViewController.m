@@ -10,6 +10,7 @@
 #import "HCInviteFamilyViewController.h"
 #import "HCLikeFamilyViewController.h"
 #import "HCCombineFamilyViewController.h"
+#import "HCMergingFamilyViewController.h"
 @interface FamilyManageViewController ()
 
 @end
@@ -60,7 +61,7 @@
             break;
         case 2001:
         {//合并家庭记录
-            
+            vc = [[HCMergingFamilyViewController alloc]init];
         }
             break;
         case 2002:

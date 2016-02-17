@@ -52,9 +52,14 @@
         cell = [[HCCombineFamilyTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     [cell.button_select addTarget:self action:@selector(button_select:) forControlEvents:UIControlEventTouchUpInside];
-    if (indexPath.row==2) {
-        [cell.button_select setImage:[UIImage imageNamed:@"selected.png"] forState:UIControlStateNormal];
+    
+    if (cell.button_select.selected) {
+        
+    }else{
+        [cell.button_select setImage:[UIImage imageNamed:@"select_no.png"] forState:UIControlStateNormal];
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)button_select:(UIButton *)button{

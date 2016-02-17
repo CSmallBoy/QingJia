@@ -10,6 +10,7 @@
 
 @interface HCsaveEditingViewController ()<UITableViewDataSource,UITableViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>{
     UIImagePickerController *_myPk;
+    UIImagePickerController *picker;
     UIImageView *head_image;
 }
 @property (nonatomic,strong)NSArray *arr;
@@ -67,7 +68,12 @@
         }];
         UIAlertAction *paizhao = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             //打开相机
-            
+            UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+            picker = [[UIImagePickerController alloc] init];//初始化
+            picker.delegate = self;
+            picker.allowsEditing = YES;//设置可编辑
+            picker.sourceType = sourceType;
+            [self presentViewController:picker animated:YES completion:nil];//进入照相界面
         }];
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
@@ -80,16 +86,21 @@
         
     }
 }
-//选择图片调用
+//相册选择图片调用
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     //编辑后的的图片 也可以是没有边际的图片
     UIImage *choose = [info objectForKey:UIImagePickerControllerEditedImage];
     head_image.image = choose;
+    //是否添加判断是拍照还是相册
     [_myPk dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
  
 }//点cancel
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    //是否添加判断是拍照还是相册
     [_myPk dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+
 }
 -(void)barButtonClick{
     
