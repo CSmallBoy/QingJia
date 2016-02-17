@@ -32,6 +32,7 @@
 
 @property (nonatomic,strong) UIView     *footerView;
 @property (nonatomic,strong) UIView     *imgeViewBottom;
+@property (nonatomic,strong) UIScrollView  *scrollView;
 
 @property (nonatomic,strong) HCButtonItem *messageBtn;
 @property (nonatomic,strong) HCButtonItem *MTalkBtn;
@@ -52,20 +53,44 @@
     [self setupBackItem];
     self.view.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     self.title = @"一呼百应详情";
-    [self.view addSubview:self.headBtn];
-    [self.view addSubview:self.sexIV];
-    [self.view addSubview:self.nameLabel];
-    [self.view addSubview:self.ageLabel];
-    [self.view addSubview:self.imageView];
-    [self.view addSubview:self.missTimeLabel];
-    [self.view addSubview:self.missMessageLabel];
+    
+    
+    
+    [self.scrollView addSubview:self.headBtn];
+    [self.scrollView addSubview:self.sexIV];
+    [self.scrollView addSubview:self.nameLabel];
+    [self.scrollView addSubview:self.ageLabel];
+    [self.scrollView addSubview:self.imageView];
+    [self.scrollView addSubview:self.missTimeLabel];
+    [self.scrollView addSubview:self.missMessageLabel];
+    
+    [self.view addSubview:self.scrollView];
     
     [self.view addSubview:self.footerView];
+    
+    // 导航栏上的加号“+”
+    [self addItem];
    
 }
 
-
 #pragma mark --- private mothods
+
+-(void)addItem
+{
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"➕" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick:)];
+    self.navigationItem.rightBarButtonItem = right;
+
+}
+
+// 点击了右边的Item
+-(void)rightItemClick:(UIBarButtonItem *)right
+{
+    UIView  *view = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 74, 90, 60)];
+    view.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:view];
+
+}
+
 // 点击头像
 -(void)headClick:(UIButton  *)button
 {
@@ -112,7 +137,7 @@
 {
     if(!_headBtn){
         _headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _headBtn.frame = CGRectMake(10,74, 80, 80);
+        _headBtn.frame = CGRectMake(10,10, 80/680.0*SCREEN_HEIGHT, 80/680.0*SCREEN_HEIGHT);
         ViewRadius(_headBtn, _headBtn.frame.size.width*0.5);
         [_headBtn addTarget:self action:@selector(headClick:) forControlEvents:UIControlEventTouchUpInside];
         _headBtn.layer.borderColor = [UIColor redColor].CGColor;
@@ -126,7 +151,8 @@
 - (UIImageView *)sexIV
 {
     if(!_sexIV){
-        _sexIV = [[UIImageView alloc]initWithFrame:CGRectMake(100, 100, 15, 15)];
+        CGFloat sexIVX = self.headBtn.frame.origin.x+self.headBtn.frame.size.width + 10;
+        _sexIV = [[UIImageView alloc]initWithFrame:CGRectMake(sexIVX, 30/600.0 *SCREEN_HEIGHT, 15, 15)];
         if ([self.info.sex isEqualToString:@"男"])
         {
             _sexIV.image = IMG(@"男");
@@ -142,7 +168,8 @@
 - (UILabel *)nameLabel
 {
     if(!_nameLabel){
-        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(125,100,75,20)];
+        CGFloat nameLabelX = self.sexIV.frame.origin.x + self.sexIV.frame.size.width+10;
+        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(nameLabelX,30/600.0*SCREEN_HEIGHT,75,20)];
         _nameLabel.adjustsFontSizeToFitWidth = YES;
         _nameLabel.text = self.info.name;
         _nameLabel.textAlignment = NSTextAlignmentCenter;
@@ -155,7 +182,8 @@
 - (UILabel *)ageLabel
 {
     if(!_ageLabel){
-        _ageLabel = [[UILabel alloc]initWithFrame:CGRectMake(210,100,30,20)];
+        CGFloat  ageLabelX = self.nameLabel.frame.origin.x + self.nameLabel.frame.size.width;
+        _ageLabel = [[UILabel alloc]initWithFrame:CGRectMake(ageLabelX,30/600.0*SCREEN_HEIGHT,30,20)];
         _ageLabel.font = [UIFont systemFontOfSize:14];
         _ageLabel.text = [NSString stringWithFormat:@"%@岁",self.info.age];
         _ageLabel.textColor = [UIColor lightGrayColor];
@@ -168,8 +196,8 @@
 - (UIImageView *)imageView
 {
     if(!_imageView){
-        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(70/375.0*SCREEN_WIDTH, SCREEN_HEIGHT*0.35 + 40, SCREEN_WIDTH-2*70/375.0*SCREEN_WIDTH, SCREEN_HEIGHT *0.4)];
-        ViewRadius(_imageView, 5);
+        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(60/375.0*SCREEN_WIDTH, CGRectGetMaxY(self.missMessageLabel.frame) + 20, 250/375.0*SCREEN_WIDTH, 350/250.0*250/375.0*SCREEN_WIDTH)];
+        ViewRadius(_imageView, 10);
         _imageView.image = IMG(@"1");
         _imageView.userInteractionEnabled = YES;
         [_imageView addSubview:self.imgeViewBottom];
@@ -180,7 +208,7 @@
 - (UIView *)imgeViewBottom
 {
     if(!_imgeViewBottom){
-        _imgeViewBottom = [[UIView alloc]initWithFrame:CGRectMake(0,self.imageView.frame.size.height-self.imageView.frame.size.height/6,self.imageView.frame.size.width , self.imageView.frame.size.height/6)];
+       _imgeViewBottom = [[UIView alloc]initWithFrame:CGRectMake(0,self.imageView.frame.size.height-self.imageView.frame.size.height/6-10,self.imageView.frame.size.width , self.imageView.frame.size.height/6+10)];
         _imgeViewBottom.backgroundColor = [UIColor whiteColor];
         [_imgeViewBottom addSubview:self.MedicalBtn];
         [_imgeViewBottom addSubview:self.numLabel];
@@ -191,7 +219,11 @@
         NSArray *arr = @[@"联系人1",@"联系人2"];
         for (int i = 0; i<2; i++)
         {
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX([btnArr[i] frame])+5,self.numLabel.frame.size.height+3+self.imageView.frame.size.height/24-7.5,SCREEN_WIDTH*60/250 , 15)];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(
+                CGRectGetMaxX([btnArr[i] frame])+5,
+                (self.imageView.frame.size.height/6+10)-10/375.0*SCREEN_WIDTH-15/670.0*SCREEN_HEIGHT,
+                SCREEN_WIDTH*60/250 ,
+                15/670.0*SCREEN_HEIGHT)];
             label.text = arr[i];
             label.textColor = [UIColor grayColor];
             label.font = [UIFont systemFontOfSize:12];
@@ -205,7 +237,7 @@
 - (UILabel *)numLabel
 {
     if(!_numLabel){
-        _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.MedicalBtn.frame.size.width + 10,0,100,12)];
+      _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.MedicalBtn.frame.size.width + 10,5,100/320.0*SCREEN_WIDTH,12/480.0*SCREEN_HEIGHT)];
         _numLabel.text = @"编号：12345678";
         _numLabel.adjustsFontSizeToFitWidth = YES;
         _numLabel.textColor = [UIColor blackColor];
@@ -219,7 +251,7 @@
 {
     if(!_MedicalBtn){
         _MedicalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _MedicalBtn.frame = CGRectMake(10, -self.imageView.frame.size.width/10, self.imageView.frame.size.width/5, self.imageView.frame.size.width/5);
+        _MedicalBtn.frame = CGRectMake(5, -self.imageView.frame.size.width/10, self.imageView.frame.size.width/5, self.imageView.frame.size.width/5);
         _MedicalBtn.layer.borderColor = [UIColor whiteColor].CGColor;
         ViewRadius(_MedicalBtn,self.imageView.frame.size.width/10 );
         [_MedicalBtn addTarget:self action:@selector(toMedicalVC) forControlEvents:UIControlEventTouchUpInside];
@@ -233,8 +265,12 @@
 {
     if(!_FatherTel)
     {
+        CGFloat  FatherTelW = (self.imageView.frame.size.height/6+10)-12/480.0*SCREEN_HEIGHT-10/375.0*SCREEN_WIDTH-5/375.0*SCREEN_WIDTH;
         _FatherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _FatherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 10, self.numLabel.frame.size.height+3,self.imageView.frame.size.height/12, self.imageView.frame.size.height/12) ;
+        _FatherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width-5 ,
+                                     (self.imageView.frame.size.height/6+10)-5/375.0*SCREEN_WIDTH-FatherTelW/375.0*SCREEN_WIDTH,
+                                     FatherTelW,
+                                     FatherTelW) ;
         [_FatherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
     }
     return _FatherTel;
@@ -243,8 +279,12 @@
 - (UIButton *)MotherTel
 {
     if(!_MotherTel){
+        CGFloat  MotherTelW = (self.imageView.frame.size.height/6+10)-12/480.0*SCREEN_HEIGHT-10/375.0*SCREEN_WIDTH-5/375.0*SCREEN_WIDTH;
         _MotherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _MotherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 10 + SCREEN_WIDTH*60/250, self.numLabel.frame.size.height+3,self.imageView.frame.size.height/12, self.imageView.frame.size.height/12) ;
+        _MotherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 10 + self.imageView.      frame.size.width*80/250.0,
+                                     (self.imageView.frame.size.height/6+10)-5/375.0*SCREEN_WIDTH-MotherTelW/375.0*SCREEN_WIDTH,
+                                     MotherTelW,
+                                     MotherTelW) ;
         [_MotherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
     }
     return _MotherTel;
@@ -255,8 +295,10 @@
     if(!_missMessageLabel)
     {
         NSString *str = [NSString stringWithFormat:@"走失描述：%@",self.info.missDesc];
-        //        CGSize  size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-50, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14],NSForegroundColorAttributeName : [UIColor grayColor]} context:nil].size;
-        _missMessageLabel = [[UILabel alloc]initWithFrame:CGRectMake(30,150,SCREEN_WIDTH-50,SCREEN_HEIGHT/8)];
+        CGSize  size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-40, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17],NSForegroundColorAttributeName : [UIColor grayColor]} context:nil].size;
+        _missMessageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20,80/600.0*SCREEN_HEIGHT,size.width,size.height)];
+        _missMessageLabel.font = [UIFont fontWithName:@"PingFangTC-Thin" size:17];
+        //        _missMessageLabel.font = [UIFont boldSystemFontOfSize:5.0];
         _missMessageLabel.adjustsFontSizeToFitWidth = YES;
         _missMessageLabel.text = str;
         _missMessageLabel.numberOfLines = 0;
@@ -268,7 +310,8 @@
 - (UILabel *)missTimeLabel
 {
     if(!_missTimeLabel){
-        _missTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 130, 200, 20)];
+        CGFloat missTimeLabelX = self.headBtn.frame.origin.x+self.headBtn.frame.size.width + 10;
+        _missTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(missTimeLabelX, 60/600.0*SCREEN_HEIGHT, 200, 20)];
         _missTimeLabel.textColor = [UIColor blackColor];
         _missTimeLabel.font = [UIFont systemFontOfSize:14];
         _missTimeLabel.text = [NSString stringWithFormat:@"走失时间：%@",self.info.sendTime];
@@ -281,7 +324,6 @@
 {
     if (!_footerView)
     {
-        //        CGFloat footerViewY = MAX(SCREEN_HEIGHT-61,self.notificationMessLab.frame.size.height+120);
         _footerView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT-60 , SCREEN_WIDTH, 60)];
         _footerView.backgroundColor = [UIColor whiteColor];
         
@@ -333,6 +375,16 @@
         [_policeBtn addTarget:self action:@selector(CallPolice) forControlEvents:UIControlEventTouchUpInside];
     }
     return _policeBtn;
+}
+
+- (UIScrollView *)scrollView
+{
+    if(!_scrollView){
+        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT, SCREEN_HEIGHT-49)];
+        _scrollView.backgroundColor = kHCBackgroundColor;
+        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(self.imageView.frame) + 30);
+    }
+    return _scrollView;
 }
 
 - (void)didReceiveMemoryWarning {
