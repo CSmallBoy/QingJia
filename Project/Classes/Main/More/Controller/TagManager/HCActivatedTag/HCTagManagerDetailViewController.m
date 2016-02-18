@@ -23,6 +23,7 @@
     UIButton *button;
     UIButton *button2;
     UIView *view_all;
+    UIImageView *button_view;
 }
 
 @property (nonatomic,strong) UIView *headerView;
@@ -48,12 +49,11 @@
 -(void)add_click{
     NSLog(@"%d",ool);
     if (ool) {
-        button.hidden = NO;
-        button2.hidden = NO;
+        button_view.hidden = NO;
+       
     }else{
             //[button removeFromSuperview];
-        button.hidden = YES;
-        button2.hidden = YES;
+         button_view.hidden = YES;
     }
     ool =!ool;
     
@@ -168,23 +168,27 @@
     [_headerView addSubview:header_button];
     
     //添加的button
-   
+    button_view= [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.8, 0, 70, 63)];
+    button_view.userInteractionEnabled = YES;
+    button_view.image = [UIImage imageNamed:@"group"];
     button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(SCREEN_WIDTH*0.8, 20, 70, 30);
+    button.frame = CGRectMake(0, 0, 70, 30);
     [button setTitle:@"编辑标签" forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setBackgroundColor:[UIColor clearColor]];
-    button.hidden= YES;
+    
     [button addTarget:self action:@selector(editingClick) forControlEvents:UIControlEventTouchUpInside];
-    [_headerView addSubview:button];
+   
+    [button_view addSubview:button];
     button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(SCREEN_WIDTH*0.8, 20+(33), 70, 30);
+    button2.frame = CGRectMake(0,33, 70, 30);
     [button2 setBackgroundColor:[UIColor clearColor]];
     [button2 setTitle:@"停用标签" forState:UIControlStateNormal];
-    button2.hidden= YES;
     button2.titleLabel.font = [UIFont systemFontOfSize:13];
     [button2 addTarget:self action:@selector(stopClick) forControlEvents:UIControlEventTouchUpInside];
-    [_headerView addSubview:button2];
+     button_view.hidden= YES;
+    [button_view addSubview:button2];
+    [_headerView addSubview:button_view];
     
     return _headerView;
 }
@@ -204,7 +208,7 @@
     
     for (int i = 0 ; i < 2; i ++) {
         UIButton *label_button = [UIButton buttonWithType:UIButtonTypeCustom];
-        label_button.frame = CGRectMake(10,SCREEN_HEIGHT*0.33*0.5+35*i , SCREEN_WIDTH*0.6-20, 30);
+        label_button.frame = CGRectMake(10,SCREEN_HEIGHT*0.32*0.5+35*i , SCREEN_WIDTH*0.6-20, 28);
         label_button.tag = 1000+i;
         [label_button setTitle:arr[i] forState:UIControlStateNormal];
         [label_button addTarget:self action:@selector(label_buttonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -215,10 +219,11 @@
         }
         [view addSubview:label_button];
     }
-    UILabel *alert_label = [[UILabel alloc]initWithFrame:CGRectMake(view.bounds.size.width*0.1, 15, view.bounds.size.width*0.8, 30)];
+    UILabel *alert_label = [[UILabel alloc]initWithFrame:CGRectMake(view.bounds.size.width*0.1, 15, view.bounds.size.width*0.8, 50)];
     alert_label.text = @"确认是否永久停用该标签!";
     alert_label.numberOfLines = 0;
     [view addSubview:alert_label];
+    ViewBorderRadius(view, 10, 0, CLEARCOLOR);
     [view_all addSubview:view];
     [self.view addSubview:view_all];
     
