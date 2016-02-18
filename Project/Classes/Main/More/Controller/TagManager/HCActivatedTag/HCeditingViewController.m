@@ -157,8 +157,9 @@
         {
              label.text = @"紧急联系人";
             UIButton *button =[UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(93, 3, 24, 24);
-            [button setBackgroundColor:[UIColor redColor]];
+            button.frame = CGRectMake(90, 3, 24, 24);
+            //[button setBackgroundColor:[UIColor redColor]];
+            [button setImage:[UIImage imageNamed:@"yihubaiying_but_Plus"] forState:UIControlStateNormal];
             [view addSubview:button];
             [button addTarget:self action:@selector(AddbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
         }
@@ -172,8 +173,9 @@
             }else{
                 label.text = @"紧急联系人";
                 UIButton *button =[UIButton buttonWithType:UIButtonTypeCustom];
-                button.frame = CGRectMake(93, 3, 24, 24);
-                [button setBackgroundColor:[UIColor greenColor]];
+                button.frame = CGRectMake(90, 3, 24, 24);
+                //[button setBackgroundColor:[UIColor greenColor]];
+                [button setImage:[UIImage imageNamed:@"yihubaiying_but_reduce"] forState:UIControlStateNormal];
                 [view addSubview:button];
                 [button addTarget:self action:@selector(reducebuttonClick:) forControlEvents:UIControlEventTouchUpInside];
             }

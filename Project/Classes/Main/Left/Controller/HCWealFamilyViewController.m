@@ -70,8 +70,8 @@
     [self.view addSubview:view2];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(SCREEN_WIDTH*0.60*0.88, 7, 20, 20);
+    [button setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
-    [button setBackgroundColor:[UIColor redColor]];
    UILabel *label =[[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT*0.09, SCREEN_WIDTH*0.6, 30)];
     label.text = @"邀请已发送...";
     label.textAlignment = NSTextAlignmentCenter;
