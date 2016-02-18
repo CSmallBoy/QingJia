@@ -57,31 +57,26 @@
     {
         self.myVC.view.hidden = YES;
         self.saveVC.view.hidden = YES;
-        
         self.otherVC.view.hidden = NO;
+        [self.view endEditing:YES];
         
     }
     else if (segment.selectedSegmentIndex == 1)
     {
         self.otherVC.view.hidden = YES;
         self.saveVC.view.hidden = YES;
-        
         self.myVC.view.hidden = NO;
+         [self.view endEditing:YES];
        
 
     }else
     {
-
         self.myVC.view.hidden = YES;
         self.otherVC.view.hidden = YES;
-        
         self.saveVC.view.hidden = NO;
-        
+         [self.view endEditing:YES];
     }
-
 }
-
-
 
 #pragma mark----Setter Or Getter
 

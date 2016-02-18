@@ -8,6 +8,8 @@
 
 #import "HCTableViewController.h"
 
+// -----------------------发现线索 控制器----------------------------
+
 @interface HCPromisedCommentController : HCTableViewController
 
 @end

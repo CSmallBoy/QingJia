@@ -9,8 +9,9 @@
 #import "HCNotifiMessageCenterCell.h"
 
 #define SC_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
-
 #define INTERVAL 10
+
+// ------------------------------------信息中心cell-------------------------------------------
 
 @interface HCNotifiMessageCenterCell()<UIGestureRecognizerDelegate>
 {

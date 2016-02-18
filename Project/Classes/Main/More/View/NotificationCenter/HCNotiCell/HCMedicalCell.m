@@ -10,6 +10,9 @@
 #import "HCMedicalFrameIfo.h"
 #import "HCMedicalInfo.h"
 
+// --------------------------------医疗急救卡cell----------------------------------
+
+
 @interface HCMedicalCell ()
 @property (nonatomic,strong) UILabel *title;
 @property (nonatomic,strong) UILabel *Content;

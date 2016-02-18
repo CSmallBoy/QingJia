@@ -289,6 +289,9 @@
 		0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83A1BF5887700DCA75A /* KWFormView.m */; };
 		0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */; };
 		3AA0DCFA47C83622EEE93AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9376B27D02CD20170277F57 /* libPods.a */; };
+		8D0ACCED1C75C00C008A8A55 /* higlightedBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0ACCE91C75C00C008A8A55 /* higlightedBarBackground@2x.png */; };
+		8D0ACCEE1C75C00C008A8A55 /* TLTiltSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0ACCEB1C75C00C008A8A55 /* TLTiltSlider.m */; };
+		8D0ACCEF1C75C00C008A8A55 /* trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0ACCEC1C75C00C008A8A55 /* trackBackground@2x.png */; };
 		8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAEB21C604ECA0038B0BD /* HCNotiMySaveCell.m */; };
 		8D0FAEB71C6077B80038B0BD /* WKFRadarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAEB61C6077B80038B0BD /* WKFRadarView.m */; };
 		8D11911D1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */; };
@@ -1526,6 +1529,10 @@
 		0AF9B83B1BF5887700DCA75A /* KWFormViewQuickBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFormViewQuickBuilder.h; sourceTree = "<group>"; };
 		0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFormViewQuickBuilder.m; sourceTree = "<group>"; };
 		6ACE64504D5E86E87CC78BEE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8D0ACCE91C75C00C008A8A55 /* higlightedBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "higlightedBarBackground@2x.png"; sourceTree = "<group>"; };
+		8D0ACCEA1C75C00C008A8A55 /* TLTiltSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTiltSlider.h; sourceTree = "<group>"; };
+		8D0ACCEB1C75C00C008A8A55 /* TLTiltSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTiltSlider.m; sourceTree = "<group>"; };
+		8D0ACCEC1C75C00C008A8A55 /* trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trackBackground@2x.png"; sourceTree = "<group>"; };
 		8D0FAEB11C604ECA0038B0BD /* HCNotiMySaveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotiMySaveCell.h; sourceTree = "<group>"; };
 		8D0FAEB21C604ECA0038B0BD /* HCNotiMySaveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotiMySaveCell.m; sourceTree = "<group>"; };
 		8D0FAEB51C6077B80038B0BD /* WKFRadarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKFRadarView.h; sourceTree = "<group>"; };
@@ -3747,6 +3754,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8D0ACCE81C75C00C008A8A55 /* TLTilitSilder */ = {
+			isa = PBXGroup;
+			children = (
+				8D0ACCE91C75C00C008A8A55 /* higlightedBarBackground@2x.png */,
+				8D0ACCEA1C75C00C008A8A55 /* TLTiltSlider.h */,
+				8D0ACCEB1C75C00C008A8A55 /* TLTiltSlider.m */,
+				8D0ACCEC1C75C00C008A8A55 /* trackBackground@2x.png */,
+			);
+			path = TLTilitSilder;
+			sourceTree = "<group>";
+		};
 		8D0FAEB41C6077B80038B0BD /* HeadAnnimotion */ = {
 			isa = PBXGroup;
 			children = (
@@ -5146,6 +5164,7 @@
 				C78D7D331C5F342700622CE2 /* HCPromisedMedicalCell.m */,
 				C78D7D341C5F342700622CE2 /* HCPromisedMissCell.h */,
 				C78D7D351C5F342700622CE2 /* HCPromisedMissCell.m */,
+				8D0ACCE81C75C00C008A8A55 /* TLTilitSilder */,
 			);
 			path = HCNewCell;
 			sourceTree = "<group>";
@@ -6583,6 +6602,7 @@
 				C7B00BF71C5F26050010F93B /* VoiceSearchFeedback005@2x.png in Resources */,
 				C7B00C581C5F26050010F93B /* chatBar_keyboardSelected.png in Resources */,
 				C758EE5A1C743E7A0081FFE1 /* red_tel.png in Resources */,
+				8D0ACCEF1C75C00C008A8A55 /* trackBackground@2x.png in Resources */,
 				C7B00C4A1C5F26050010F93B /* chat_location_detail_disclosureHL.png in Resources */,
 				C7B00C241C5F26050010F93B /* VoiceSearchFeedback014.png in Resources */,
 				C758EE551C743E7A0081FFE1 /* image.jpg in Resources */,
@@ -6705,6 +6725,7 @@
 				C7B00C0E1C5F26050010F93B /* VoiceSearchFeedback003.png in Resources */,
 				C7B00C701C5F26050010F93B /* chatBar_more_photoSelected.png in Resources */,
 				C7B00C191C5F26050010F93B /* VoiceSearchFeedback008@2x.png in Resources */,
+				8D0ACCED1C75C00C008A8A55 /* higlightedBarBackground@2x.png in Resources */,
 				0A418C1F1C148E9C0024DAC3 /* PushConfig.plist in Resources */,
 				C78D7ADE1C5F28F700622CE2 /* HCLoginViewController.xib in Resources */,
 				0A67B2261C0D63B300FB87C8 /* 7.jpg in Resources */,
@@ -7033,6 +7054,7 @@
 				0A5491681C2BC32D0085F50D /* ZXDataMatrixX12Encoder.m in Sources */,
 				0A5491811C2BC32D0085F50D /* ZXRSSExpandedDecodedObject.m in Sources */,
 				C7B00B711C5F26050010F93B /* EMAudioPlayerUtil.m in Sources */,
+				8D0ACCEE1C75C00C008A8A55 /* TLTiltSlider.m in Sources */,
 				C78D7AF71C5F28F700622CE2 /* HCMyPromisedDetailController.m in Sources */,
 				C78D7D4F1C5F342700622CE2 /* HCPromisedListInfo.m in Sources */,
 				C78D7AB31C5F28F700622CE2 /* HCHomeViewController.m in Sources */,

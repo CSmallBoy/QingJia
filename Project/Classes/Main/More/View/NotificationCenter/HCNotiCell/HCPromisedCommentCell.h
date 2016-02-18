@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+// -------------------------------------留言评论cell----------------------------------------
+
 @class HCPromisedCommentFrameInfo;
 @interface HCPromisedCommentCell : UITableViewCell
 

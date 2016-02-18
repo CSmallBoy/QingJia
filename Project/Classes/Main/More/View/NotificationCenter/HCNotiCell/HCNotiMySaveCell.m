@@ -9,8 +9,9 @@
 #import "HCNotiMySaveCell.h"
 
 #define SC_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
-
 #define INTERVAL 10
+
+// ---------------------------------- 我的收藏cell -----------------------------------------
 
 @interface HCNotiMySaveCell()<UIGestureRecognizerDelegate>
 {

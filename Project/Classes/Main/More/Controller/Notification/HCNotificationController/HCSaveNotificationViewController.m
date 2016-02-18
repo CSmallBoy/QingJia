@@ -204,7 +204,7 @@
     button.frame = CGRectMake(SCREEN_WIDTH-60, 0, 60, 30);
     [button setTitle:@"取消" forState:UIControlStateNormal];
     button.backgroundColor = COLOR(189, 189, 183, 1);
-    [button addTarget:self action:@selector(canleButton:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(canleButtonSave:) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView.tableHeaderView addSubview:button];
 
     [self.view addSubview:self.resultView];
@@ -246,7 +246,7 @@
 }
 
 #pragma mark --- buttonClick
--(void)canleButton:(UIButton  *)button
+-(void)canleButtonSave:(UIButton  *)button
 {
     self.seatchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 30);
     [self.tableView.tableHeaderView bringSubviewToFront: self.seatchBar];
@@ -298,6 +298,8 @@
         _resultView = [[UIView alloc]initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-144)];
         _resultView.backgroundColor =[UIColor blackColor];
         _resultView.alpha = 0.2;
+        UITapGestureRecognizer  *Tap  =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(canleButtonSave:)];
+        [_resultView addGestureRecognizer:Tap];
     }
     return _resultView;
 }

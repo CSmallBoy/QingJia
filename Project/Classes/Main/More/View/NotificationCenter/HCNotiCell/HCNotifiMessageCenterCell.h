@@ -4,10 +4,13 @@
 //
 //  Created by Sunc on 15/12/17.
 //  Copyright © 2015年 Sunc. All rights reserved.
-//
+
 
 #import <UIKit/UIKit.h>
 #import "HCNotificationCenterInfo.h"
+
+//----------------------------------------信息中心cell-----------------------------------------
+
 @protocol SCSwipeTableViewCellDelegate <NSObject>
 
 - (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath;

@@ -10,6 +10,9 @@
 
 #import "HCPromisedMissInfo.h"
 
+
+#import "TLTiltSlider.h"
+
 @interface HCPromisedMissCell ()<UITextFieldDelegate,HCFeedbackTextViewDelegate>
 
 @property (nonatomic,strong) NSArray *placeholderTitleArr;
@@ -76,11 +79,12 @@
 //添加滑块
 -(void)addSlider
 {
+//    TLTiltSlider *slider = [[TLTiltSlider alloc] initWithFrame:(CGRect){.origin.x = 110, .origin.y = 4, SCREEN_WIDTH-150, .size.height = 5}];
     UISlider  *slider = [[UISlider alloc]initWithFrame:CGRectMake(110, 4, SCREEN_WIDTH-150, 40)];
-    slider.minimumTrackTintColor = [UIColor redColor];
+    slider.minimumTrackTintColor = COLOR(230, 45, 55, 1);
     slider.minimumValue = 0.0;
     slider.maximumValue = 120;
-    [slider setThumbImage:IMG(@"bullet_black") forState:UIControlStateNormal];
+    [slider setThumbImage:IMG(@"SliderClick-2") forState:(UIControlStateNormal)];
     [self.contentView addSubview:slider];
     
     //最大值和最小值label

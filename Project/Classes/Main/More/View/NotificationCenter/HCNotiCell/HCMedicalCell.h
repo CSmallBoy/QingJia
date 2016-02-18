@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+// --------------------------------医疗急救卡cell----------------------------------
+
 @class HCMedicalFrameIfo;
 @interface HCMedicalCell : UITableViewCell
 
