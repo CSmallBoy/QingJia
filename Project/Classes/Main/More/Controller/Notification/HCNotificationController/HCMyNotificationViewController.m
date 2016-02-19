@@ -140,7 +140,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 {
-    if (indexPath.section == 0)
+    if (indexPath.section == 0 && tableView == self.tableView)
     {
       NSDictionary *dic = @{@"info" : self.dataSource[indexPath.row]};
       [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextMyController" object:nil userInfo:dic];

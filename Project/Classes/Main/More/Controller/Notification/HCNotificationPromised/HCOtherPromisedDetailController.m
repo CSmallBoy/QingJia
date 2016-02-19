@@ -228,7 +228,7 @@
     if(!_imageView){
         _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(60/375.0*SCREEN_WIDTH, CGRectGetMaxY(self.missMessageLabel.frame) + 20, 250/375.0*SCREEN_WIDTH, 350/250.0*250/375.0*SCREEN_WIDTH)];
         ViewRadius(_imageView, 10);
-        _imageView.image = IMG(@"1");
+        _imageView.image = IMG(@"girl");
         _imageView.userInteractionEnabled = YES;
         [_imageView addSubview:self.imgeViewBottom];
     }
@@ -238,7 +238,7 @@
 - (UIView *)imgeViewBottom
 {
     if(!_imgeViewBottom){
-       _imgeViewBottom = [[UIView alloc]initWithFrame:CGRectMake(0,self.imageView.frame.size.height-self.imageView.frame.size.height/6-10,self.imageView.frame.size.width , self.imageView.frame.size.height/6+10)];
+       _imgeViewBottom = [[UIView alloc]initWithFrame:CGRectMake(0,self.imageView.frame.size.height-self.imageView.frame.size.height/6,self.imageView.frame.size.width , self.imageView.frame.size.height/6)];
         _imgeViewBottom.backgroundColor = [UIColor whiteColor];
         [_imgeViewBottom addSubview:self.MedicalBtn];
         [_imgeViewBottom addSubview:self.numLabel];
@@ -249,11 +249,10 @@
         NSArray *arr = @[@"联系人1",@"联系人2"];
         for (int i = 0; i<2; i++)
         {
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(
-                CGRectGetMaxX([btnArr[i] frame])+5,
-                (self.imageView.frame.size.height/6+10)-10/375.0*SCREEN_WIDTH-15/670.0*SCREEN_HEIGHT,
-                SCREEN_WIDTH*60/250 ,
-                15/670.0*SCREEN_HEIGHT)];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX([btnArr[i] frame])+5,
+                                                                      self.imageView.frame.size.height/7-15/670.0*SCREEN_HEIGHT,
+                                                                      SCREEN_WIDTH*60/250 ,
+                                                                      15/670.0*SCREEN_HEIGHT)];
             label.text = arr[i];
             label.textColor = [UIColor grayColor];
             label.font = [UIFont systemFontOfSize:12];
@@ -295,12 +294,11 @@
 {
     if(!_FatherTel)
     {
-        CGFloat  FatherTelW = (self.imageView.frame.size.height/6+10)-12/480.0*SCREEN_HEIGHT-10/375.0*SCREEN_WIDTH-5/375.0*SCREEN_WIDTH;
         _FatherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _FatherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width-5 ,
-                                     (self.imageView.frame.size.height/6+10)-5/375.0*SCREEN_WIDTH-FatherTelW/375.0*SCREEN_WIDTH,
-                                     FatherTelW,
-                                     FatherTelW) ;
+        _FatherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width+10 ,
+                                     CGRectGetMaxY(self.numLabel.frame) +7,
+                                     self.imageView.frame.size.height/7 * 25/50,
+                                     self.imageView.frame.size.height/7 * 25/50) ;
         [_FatherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
     }
     return _FatherTel;
@@ -309,12 +307,12 @@
 - (UIButton *)MotherTel
 {
     if(!_MotherTel){
-        CGFloat  MotherTelW = (self.imageView.frame.size.height/6+10)-12/480.0*SCREEN_HEIGHT-10/375.0*SCREEN_WIDTH-5/375.0*SCREEN_WIDTH;
+
         _MotherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _MotherTel.frame =CGRectMake(self.MedicalBtn.frame.size.width + 10 + self.imageView.      frame.size.width*80/250.0,
-                                     (self.imageView.frame.size.height/6+10)-5/375.0*SCREEN_WIDTH-MotherTelW/375.0*SCREEN_WIDTH,
-                                     MotherTelW,
-                                     MotherTelW) ;
+        _MotherTel.frame =CGRectMake(CGRectGetMaxY(self.MedicalBtn.frame) + SCREEN_WIDTH*80/250 + 5,
+                                     CGRectGetMaxY(self.numLabel.frame) +7,
+                                     self.imageView.frame.size.height/7 * 25/50,
+                                     self.imageView.frame.size.height/7 * 25/50) ;
         [_MotherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
     }
     return _MotherTel;

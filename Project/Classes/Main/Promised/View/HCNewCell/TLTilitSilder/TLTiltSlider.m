@@ -19,7 +19,7 @@
 @implementation TLTiltSlider
 
 // This is the rendered size of the entire knob, including the shadow.
-static const CGSize kKnobSize = (CGSize){.width = 15, .height = 15};
+static const CGSize kKnobSize = (CGSize){.width = 24, .height = 24};
 // This is the margin around kKnobSize which the shadow occupies.
 static const CGFloat kShadowMargin = 1.0f;
 
@@ -49,8 +49,8 @@ static const CGFloat kShadowMargin = 1.0f;
 -(void)setup
 {
 //    [self setMinimumTrackImage:IMG(@"SliderLeft）@3x_03") forState:(UIControlStateNormal)];
-    [self setMinimumTrackImage:[[UIImage imageNamed:@"SliderLeft）@3x_03"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 0)] forState:UIControlStateNormal];
-    [self setMaximumTrackImage:[[UIImage imageNamed:@"SliderRight@2x_05"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 4)] forState:UIControlStateNormal];
+    [self setMinimumTrackImage:[[UIImage imageNamed:@"SliderLeft）@3x_03"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 4, 8, 0)] forState:UIControlStateNormal];
+    [self setMaximumTrackImage:[[UIImage imageNamed:@"SliderRight@2x_05"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 0, 8, 4)] forState:UIControlStateNormal];
 
     // Set up our motion updates
     [self setupMotionDetection];
@@ -171,7 +171,7 @@ static const CGFloat kShadowMargin = 1.0f;
     CGImageRelease(image);
     
     // Grab the image from our context and set it to our applicable control states. 
-    UIImage *knobImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIImage *knobImage = UIGraphicsGetImageFromCurrentImageContext();
 //    [self setThumbImage:IMG(@"SliderClick-2") forState:UIControlStateNormal];
 //    [self setThumbImage:IMG(@"SliderClick-2") forState:UIControlStateSelected];
 //    [self setThumbImage:IMG(@"SliderClick-2") forState:UIControlStateHighlighted];

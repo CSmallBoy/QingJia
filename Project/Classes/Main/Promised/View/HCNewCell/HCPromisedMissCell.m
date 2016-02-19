@@ -14,10 +14,12 @@
 #import "TLTiltSlider.h"
 
 @interface HCPromisedMissCell ()<UITextFieldDelegate,HCFeedbackTextViewDelegate>
-
+{
+    BOOL   _isSlider;
+}
 @property (nonatomic,strong) NSArray *placeholderTitleArr;
 @property (nonatomic,strong) NSArray *titleArr;
-
+@property (nonatomic,strong) UILabel *nowLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic,strong) HCFeedbackTextView *textView;
@@ -79,27 +81,59 @@
 //添加滑块
 -(void)addSlider
 {
-//    TLTiltSlider *slider = [[TLTiltSlider alloc] initWithFrame:(CGRect){.origin.x = 110, .origin.y = 4, SCREEN_WIDTH-150, .size.height = 5}];
-    UISlider  *slider = [[UISlider alloc]initWithFrame:CGRectMake(110, 4, SCREEN_WIDTH-150, 40)];
+    TLTiltSlider *slider = [[TLTiltSlider alloc] initWithFrame:(CGRect){.origin.x = 110, .origin.y = 4, SCREEN_WIDTH-150, .size.height = 24}];
+//    UISlider  *slider = [[UISlider alloc]initWithFrame:CGRectMake(110, 4, SCREEN_WIDTH-150, 40)];
     slider.minimumTrackTintColor = COLOR(230, 45, 55, 1);
     slider.minimumValue = 0.0;
     slider.maximumValue = 120;
-    [slider setThumbImage:IMG(@"SliderClick-2") forState:(UIControlStateNormal)];
+    slider.value = [_missInfo.LossTime intValue];
+   [ slider addTarget:self action:@selector(addSmallLabel:) forControlEvents:UIControlEventValueChanged];
     [self.contentView addSubview:slider];
     
     //最大值和最小值label
-    UILabel *minLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 12, 30, 20)];
+    UILabel *minLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 6, 30, 20)];
     minLabel.text = @"0:00";
     minLabel.adjustsFontSizeToFitWidth = YES;
     minLabel.textColor = [UIColor blackColor];
     [self.contentView addSubview:minLabel];
     
-    UILabel *maxLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-40, 12, 30, 20)];
+    UILabel *maxLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-40, 6, 30, 20)];
     maxLabel.textColor = [UIColor blackColor];
     maxLabel.text = @"2:00";
     maxLabel.adjustsFontSizeToFitWidth = YES;
     [self.contentView addSubview:maxLabel];
+    
+    // 当前值 Label
+    _nowLabel = [[UILabel alloc]init];
+    _nowLabel.text = @"0:00";
+    _nowLabel.textColor = [UIColor blackColor];
+    _nowLabel.adjustsFontSizeToFitWidth = YES;
+    _nowLabel.text = [NSString stringWithFormat:@"%d:%02d",(int)slider.value/60,(int)slider.value %60];
+    [self.contentView addSubview:_nowLabel];
+    if ([_missInfo.LossTime isEqualToString:@"0"] || _missInfo.LossTime == nil)
+    {
+        _isSlider = YES;
+    }
+    else
+    {
+        _nowLabel.frame = CGRectMake(115 + slider.value/140 *(SCREEN_WIDTH-150), 30, 30, 15);
+        _isSlider = NO;
+    }
+}
 
+
+-(void)addSmallLabel:(UISlider *)slider
+{
+    if (slider.value != 0)
+    {
+        _nowLabel.frame = CGRectMake(115 + slider.value/140 *(SCREEN_WIDTH-150), 30, 30, 15);
+        _nowLabel.text = [NSString stringWithFormat:@"%d:%02d",(int)slider.value/60,(int)slider.value %60];
+    }
+    else
+    {
+        _nowLabel.hidden = YES;
+    }
+    _missInfo.LossTime = [NSString stringWithFormat:@"%d",(int)slider.value];
 }
 
 #pragma mark---Setter Or Getter

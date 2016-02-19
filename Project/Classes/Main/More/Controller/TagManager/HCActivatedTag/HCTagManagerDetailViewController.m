@@ -41,7 +41,8 @@
     self.tableView.tableHeaderView = self.headerView;
     self.title = @"标签详情";
     [self.tableView registerClass:[HCTagDetailTableViewCell class] forCellReuseIdentifier:TagManagerDetailCell];
-    UIBarButtonItem *add_bar_button = [[UIBarButtonItem alloc]initWithTitle:@"添加" style:UIBarButtonItemStyleDone  target:self action:@selector(add_click)];
+    UIBarButtonItem *add_bar_button = [[UIBarButtonItem alloc]initWithImage:IMG(@"导航条－inclass_Plus") style:UIBarButtonItemStylePlain target:self action:@selector(add_click)];
+//    UIBarButtonItem *add_bar_button = [[UIBarButtonItem alloc]initWithTitle:@"添加" style:UIBarButtonItemStyleDone  target:self action:@selector(add_click)];
     ool = YES;
     self.navigationItem.rightBarButtonItem = add_bar_button;
     
@@ -99,7 +100,7 @@
 {
     if (!_headerView)
     {
-        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,150)];
+        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,210)];
         _headerView.backgroundColor = [UIColor whiteColor];
 //
 //        HCTagDetailHeaderView *view1 = [[HCTagDetailHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 110)];
@@ -110,9 +111,15 @@
 //        view1.tagIMGView.frame = CGRectMake(0, 0,SCREEN_WIDTH, 100);
 //        view1.tagNameLab.frame = CGRectMake(120, 10, SCREEN_WIDTH-130, 60);
 //        view1.tagIDLab.frame = CGRectMake(120, 70, SCREEN_WIDTH-130, 40);
-        UIImageView *image_head = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
+        UIImageView *image_head = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
         image_head.image = OrigIMG(_info.imgArr[_index]);
          [self.headerView addSubview:image_head];
+        
+        UILabel *idLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 140, 110, 20)];
+        idLabel.text = @"ID:123456789";
+        idLabel.adjustsFontSizeToFitWidth = YES;
+        idLabel.textColor = [UIColor blackColor];
+        [self.headerView addSubview:idLabel];
        //[self.view addSubview:image_head];
         //[self.headerView addSubview:view1];
        
@@ -130,11 +137,12 @@
 //        view2.tagIDLab.font = [UIFont systemFontOfSize:12];
 //        view2.tagIDLab.numberOfLines = 0;
         NSArray *arr =@[@"父亲(紧急联系人)",@"母亲(紧急联系人)"];
-        UIView *view2 = [[UIView  alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 50)];
+        UIView *view2 = [[UIView  alloc]initWithFrame:CGRectMake(0, 160, SCREEN_WIDTH, 50)];
+        view2.backgroundColor = kHCBackgroundColor;
         for (int i = 0 ; i < 2; i ++) {
-            UIImageView *image_phone = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/3)*(i+1), 10, 20, 20)];
-            image_phone.image = [UIImage imageNamed:@"red_tel.png"];
-            UILabel *phone_num = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/3)*(i+1)+33, 7, 100, 30)];
+            UIImageView *image_phone = [[UIImageView alloc]initWithFrame:CGRectMake(100 + i * 130, 15, 20, 20)];//父亲电话图标
+            image_phone.image = [UIImage imageNamed:@"PHONE-2"];
+            UILabel *phone_num = [[UILabel alloc]initWithFrame:CGRectMake(130 + i * 130, 12, 100, 30)];
             phone_num.font = [UIFont systemFontOfSize:13];
             phone_num.text = arr[i];
             [view2 addSubview:image_phone];
@@ -161,18 +169,18 @@
 //        }
     }
     UIButton *header_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    header_button.frame = CGRectMake(10, 70, 70, 70);
+    header_button.frame = CGRectMake(10, 130, 70, 70);
     header_button.layer.masksToBounds = YES;
     header_button.layer.cornerRadius = 35;
     [header_button setImage:[UIImage imageNamed:@"image_hea.jpg"] forState:UIControlStateNormal];
     [_headerView addSubview:header_button];
     
     //添加的button
-    button_view= [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.8, 0, 70, 63)];
+    button_view= [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 0, 90, 63)];
     button_view.userInteractionEnabled = YES;
     button_view.image = [UIImage imageNamed:@"group"];
     button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0, 0, 70, 30);
+    button.frame = CGRectMake(0, 2, 90, 30);
     [button setTitle:@"编辑标签" forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setBackgroundColor:[UIColor clearColor]];
@@ -181,7 +189,7 @@
    
     [button_view addSubview:button];
     button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(0,33, 70, 30);
+    button2.frame = CGRectMake(0,33, 90, 30);
     [button2 setBackgroundColor:[UIColor clearColor]];
     [button2 setTitle:@"停用标签" forState:UIControlStateNormal];
     button2.titleLabel.font = [UIFont systemFontOfSize:13];
