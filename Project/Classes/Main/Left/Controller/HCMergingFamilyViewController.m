@@ -7,7 +7,8 @@
 //
 
 #import "HCMergingFamilyViewController.h"
-//#import "MNWheelView.h"
+#import "HCMergingFamilyView.h"
+#import "HCMergingFamilyImageView.h"
 @interface HCMergingFamilyViewController ()<UIGestureRecognizerDelegate>{
     //图片数组
     NSMutableArray *arr;
@@ -28,7 +29,13 @@
     
     [self setupBackItem];
     self.view.backgroundColor = [UIColor grayColor];
-
+    HCMergingFamilyView *view_left = [[HCMergingFamilyView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH*0.33, SCREEN_HEIGHT)];
+    view_left.up_label.text = @"2015";
+    view_left.down_label.text = @"2016";
+    view_left.time_label.text = @"feb";
+    [self.view addSubview:view_left];
+    
+    
     view_all  = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.33, 64, SCREEN_WIDTH*0.67, SCREEN_HEIGHT -64)];
     view_all.backgroundColor = [UIColor clearColor];
     [self.view addSubview:view_all];
@@ -76,36 +83,27 @@
     if (count>6) {
         smallH=20;
     }
-    //CGFloat myH=_baseView.frame.size.height-smallH*mid*2;
-    //CGFloat myH=_baseView.frame.size.height-0.0749*SCREEN_HEIGHT*mid*2;
-    
-    
-    
     //草纸上的 H = 50
     //距离边上的 负数距离
     CGFloat fujunli = - (50 * (count-1)/2 -((SCREEN_HEIGHT - 64 - 230)/2));
-    
-    
-    
-    
-    // CGFloat myH=_baseView.frame.size.height-jianxi*mid*2;
     for (int i=0; i<count; i++) {
-        UIImageView *view1=[[UIImageView alloc]init];
+        HCMergingFamilyImageView *view1=[[HCMergingFamilyImageView alloc]init];
+    
         CGFloat dd=abs(mid-i);
         if (i<mid) {
-            //原来的
-            //view1.frame=CGRectMake(smallH*dd, smallH*i, _baseView.frame.size.width-smallH*dd*2, smallH);
-            //            view1.frame=CGRectMake(40*dd, 0.0749*SCREEN_HEIGHT*i, _baseView.frame.size.width, 0.0749*SCREEN_HEIGHT);
             view1.frame=CGRectMake(40*dd, fujunli+ 50*i, _baseView.frame.size.width, 50);
         }else if(i>mid)
-        { //原来的
-            //view1.frame=CGRectMake(smallH*dd, myH+smallH*(i-1), _baseView.frame.size.width-smallH*dd*2, smallH);
+        {
             view1.frame=CGRectMake(40*dd,fujunli+230+50*(i-1), _baseView.frame.size.width, 50);
         }else
-        {//原来的
+        {
             view1.frame=CGRectMake(2, 50*mid+fujunli, _baseView.frame.size.width-4, 230);
-            //view1.frame=CGRectMake(2, 0.0749*SCREEN_HEIGHT*mid, _baseView.frame.size.width-4, 230);
         }
+//        view1.name_label.text = @"幸福家庭";
+//        view1.name_label.textColor = [UIColor whiteColor];
+//        view1.name_label.backgroundColor = [UIColor grayColor];
+//        view1.name_label.textAlignment = NSTextAlignmentCenter;
+//        view1.name_label.alpha =0.1;
         view1.image=arr[i];
         view1.backgroundColor=[UIColor clearColor];
         view1.tag=i+1;
@@ -145,7 +143,7 @@
     [view_all addSubview:btn3];
 }
 -(void)swipeUp:(UISwipeGestureRecognizer *)zer
-{//UISwipeGestureRecognizerDirectionUp
+{
     if (zer.direction==UISwipeGestureRecognizerDirectionUp) {
         
         [self setAllFramge:0];
@@ -153,7 +151,6 @@
     {
         [self setAllFramge:1];
     }
-    NSLog(@"%@",zer);
 }
 -(void)chick:(UIButton *)btn
 {
