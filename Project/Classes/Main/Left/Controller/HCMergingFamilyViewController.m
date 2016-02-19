@@ -8,7 +8,6 @@
 
 #import "HCMergingFamilyViewController.h"
 #import "HCMergingFamilyView.h"
-#import "HCMergingFamilyImageView.h"
 @interface HCMergingFamilyViewController ()<UIGestureRecognizerDelegate>{
     //图片数组
     NSMutableArray *arr;
@@ -17,6 +16,10 @@
     int _index;
     //侧面显示的图片view
     UIView *view_all;
+    int mid;
+    CGFloat fujunli;
+    UILabel *name_label;
+    
     
 }
 
@@ -35,7 +38,7 @@
     view_left.time_label.text = @"feb";
     [self.view addSubview:view_left];
     
-    
+   
     view_all  = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.33, 64, SCREEN_WIDTH*0.67, SCREEN_HEIGHT -64)];
     view_all.backgroundColor = [UIColor clearColor];
     [self.view addSubview:view_all];
@@ -78,32 +81,31 @@
 {
     _images=images;
     int count=(int)images.count;
-    int mid=count/2;
+     mid=count/2;
     CGFloat smallH=30;
     if (count>6) {
         smallH=20;
     }
     //草纸上的 H = 50
     //距离边上的 负数距离
-    CGFloat fujunli = - (50 * (count-1)/2 -((SCREEN_HEIGHT - 64 - 230)/2));
+    fujunli = - (50 * (count-1)/2 -((SCREEN_HEIGHT - 64 - 230)/2));
     for (int i=0; i<count; i++) {
-        HCMergingFamilyImageView *view1=[[HCMergingFamilyImageView alloc]init];
-    
+        UIImageView *view1=[[UIImageView alloc]init];
+        view1.userInteractionEnabled = YES;
         CGFloat dd=abs(mid-i);
         if (i<mid) {
             view1.frame=CGRectMake(40*dd, fujunli+ 50*i, _baseView.frame.size.width, 50);
+            
         }else if(i>mid)
         {
             view1.frame=CGRectMake(40*dd,fujunli+230+50*(i-1), _baseView.frame.size.width, 50);
+            
         }else
         {
             view1.frame=CGRectMake(2, 50*mid+fujunli, _baseView.frame.size.width-4, 230);
+            
         }
-//        view1.name_label.text = @"幸福家庭";
-//        view1.name_label.textColor = [UIColor whiteColor];
-//        view1.name_label.backgroundColor = [UIColor grayColor];
-//        view1.name_label.textAlignment = NSTextAlignmentCenter;
-//        view1.name_label.alpha =0.1;
+     
         view1.image=arr[i];
         view1.backgroundColor=[UIColor clearColor];
         view1.tag=i+1;
@@ -141,6 +143,14 @@
     btn3.tag=103;
     [btn3 addTarget:self action:@selector(chick:) forControlEvents:UIControlEventTouchUpInside];
     [view_all addSubview:btn3];
+    
+    name_label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH *0.33, 50*mid+fujunli +180 + 64, SCREEN_WIDTH *0.67, 50)];
+    name_label.text = @"幸福家庭";
+    name_label.backgroundColor = [UIColor grayColor];
+    name_label.alpha = 0.5;
+    name_label.textColor = [UIColor whiteColor];
+    name_label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:name_label];
 }
 -(void)swipeUp:(UISwipeGestureRecognizer *)zer
 {
@@ -235,11 +245,16 @@
                     [[_baseView viewWithTag:count-i+1] setFrame:[[_baseView viewWithTag:count-i] frame]];
                 }
             }
+            
         } completion:^(BOOL finished) {
             anibool=YES;
             [self bigtop];
         }];
     }
+    
+    
+
+    
 }
 
 -(void)bigtop
@@ -260,6 +275,14 @@
         for (int j=0; j<count; j++)[_baseView bringSubviewToFront:maxHiew];
         
     }
+    
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        name_label.alpha = 0;
+    }];
+    [UIView animateWithDuration:1 animations:^{
+        name_label.alpha = 0.5;
+    }];
     
 }
 
