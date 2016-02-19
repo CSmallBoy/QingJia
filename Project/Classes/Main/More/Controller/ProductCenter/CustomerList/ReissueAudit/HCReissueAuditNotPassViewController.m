@@ -156,7 +156,7 @@
 
 -(void)clickReviewBtn
 {
-    [self showHUDText:@"回复申请补货"];
+//    [self showHUDText:@"回复申请补货"];
     HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
     UIViewController *rootController = self.view.window.rootViewController;
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)

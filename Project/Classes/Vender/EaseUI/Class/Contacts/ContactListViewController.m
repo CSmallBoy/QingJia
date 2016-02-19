@@ -54,19 +54,17 @@
     _contactsSource = [NSMutableArray array];
     _sectionTitles = [NSMutableArray array];
     
-    //
-    
+
+//    [self.view addSubview:self.searchBar];
+//    self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+//    self.tableView.frame = CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height);
     [self searchController];
-    self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
-    [self.view addSubview:self.searchBar];
-    
-    self.tableView.frame = CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height);
-    
+
     [self reloadDataSource];
     // 环信UIdemo中有用到Parse, 加载用户好友个人信息
     [[UserProfileManager sharedInstance] loadUserProfileInBackgroundWithBuddy:self.contactsSource saveToLoacal:YES completion:NULL];
     
-    
+    self.tableView.tableHeaderView = self.searchBar;
     [self tableViewDidTriggerHeaderRefresh];
 }
 
@@ -98,13 +96,14 @@
     return _rightItems;
 }
 
+
 - (UISearchBar *)searchBar
 {
     if (_searchBar == nil)
     {
-        _searchBar = [[EMSearchBar alloc] init];
+        _searchBar = [[EMSearchBar alloc]  initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, 44)];
         _searchBar.delegate = self;
-        _searchBar.placeholder = NSLocalizedString(@"search", @"Search");
+        _searchBar.placeholder = NSLocalizedString(@"search", @"Search ");
         _searchBar.backgroundColor = [UIColor colorWithRed:0.747 green:0.756 blue:0.751 alpha:1.000];
     }
     return _searchBar;
@@ -116,7 +115,8 @@
     {
         _searchController = [[EMSearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
         _searchController.delegate = self;
-        _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+           _searchController.searchResultsTableView.tableFooterView = [[UIView alloc] init];
         
         __weak ContactListViewController *weakSelf = self;
         [_searchController setCellForRowAtIndexPathCompletion:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath) {
@@ -132,6 +132,7 @@
             cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
             cell.textLabel.text = buddy.username;
             cell.username = buddy.username;
+            ViewRadius(cell.imageView, 17);
             
             return cell;
         }];
@@ -403,6 +404,8 @@
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
 }
+
+
 
 #pragma mark - BaseTableCellDelegate
 

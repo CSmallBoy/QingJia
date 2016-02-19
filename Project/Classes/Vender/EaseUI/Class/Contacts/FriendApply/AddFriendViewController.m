@@ -147,7 +147,25 @@
 
 - (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath{
 
-    NSString *message = [NSString stringWithFormat:@"you choose the %ldth btn in section %ld row %ld",(long)tag,(long)indexpath.section,(long)indexpath.row ];
+    NSString *btnName ;
+    switch ((long)tag)
+    {
+        case 0:
+            btnName = @"删除";
+            break;
+            
+        case 1:
+            btnName = @"收藏";
+            break;
+        
+        case 2:
+            btnName = @"举报";
+            break;
+            
+        default:
+            break;
+    }
+    NSString *message = [NSString stringWithFormat:@"你选择了 在 %ld 分区 %ld行 %@ 按钮",(long)indexpath.section,(long)indexpath.row ,btnName];
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"tips"
                                                    message:message
                                                   delegate:self
@@ -209,7 +227,6 @@
 {
     if (button.tag == 0 )
     {
-        NSLog(@"1");
         HCMailListViewController *mailVC = [[HCMailListViewController alloc]init];
         [self.navigationController pushViewController:mailVC animated:YES];
     }

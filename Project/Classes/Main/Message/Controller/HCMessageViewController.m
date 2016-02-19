@@ -94,7 +94,7 @@
 {
     if (!_mainView)
     {
-        _mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, WIDTH(self.view), HEIGHT(self.view))];
+        _mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, WIDTH(self.view), HEIGHT(self.view)-64)];
         _mainView.contentSize = CGSizeMake(WIDTH(self.view) * 2, 0);
         _mainView.pagingEnabled = YES;
         _mainView.scrollEnabled = NO;
@@ -119,7 +119,7 @@
     if (!_contactsVC)
     {
         _contactsVC = [[ContactListViewController alloc] init];
-        _contactsVC.view.frame = CGRectMake(WIDTH(self.view), 0, WIDTH(self.view), HEIGHT(self.view)-64);
+        _contactsVC.view.frame = CGRectMake(WIDTH(self.view), 0, WIDTH(self.view), HEIGHT(self.view)-104);
     }
     return _contactsVC;
 }

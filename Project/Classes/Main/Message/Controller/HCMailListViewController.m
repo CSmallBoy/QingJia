@@ -272,7 +272,7 @@
             }
             //获取电话号码和email
             for (NSInteger k = 0; k < valuesCount; k++) {
-                CFTypeRef value = ABMultiValueCopyValueAtIndex(valuesRef, k);
+                CFTypeRef value = ABMultiValueCopyValueAtIndex(valuesRef, 0);//k代表获取该联系人的号码组中最后一个号码
                 switch (j) {
                     case 0: {// Phone number
                         addressBook.tel = (__bridge NSString*)value;
