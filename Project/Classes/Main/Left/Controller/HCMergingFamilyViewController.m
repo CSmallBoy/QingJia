@@ -55,7 +55,7 @@
     
     arr = [NSMutableArray arrayWithCapacity:0];
     //到时候从服务器获取的图片信息
-    for (int i = 0; i < 9; i ++) {
+    for (int i = 0; i < 11; i ++) {
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",i]];
         [arr addObject:image];
     }
@@ -76,21 +76,35 @@
     if (count>6) {
         smallH=20;
     }
-    CGFloat myH=_baseView.frame.size.height-smallH*mid*2;
+    //CGFloat myH=_baseView.frame.size.height-smallH*mid*2;
+    //CGFloat myH=_baseView.frame.size.height-0.0749*SCREEN_HEIGHT*mid*2;
+    
+    
+    
+    //草纸上的 H = 50
+    //距离边上的 负数距离
+    CGFloat fujunli = - (50 * (count-1)/2 -((SCREEN_HEIGHT - 64 - 230)/2));
+    
+    
+    
+    
+    // CGFloat myH=_baseView.frame.size.height-jianxi*mid*2;
     for (int i=0; i<count; i++) {
         UIImageView *view1=[[UIImageView alloc]init];
         CGFloat dd=abs(mid-i);
         if (i<mid) {
             //原来的
             //view1.frame=CGRectMake(smallH*dd, smallH*i, _baseView.frame.size.width-smallH*dd*2, smallH);
-            view1.frame=CGRectMake(smallH*dd, smallH*i, _baseView.frame.size.width, smallH);
+            //            view1.frame=CGRectMake(40*dd, 0.0749*SCREEN_HEIGHT*i, _baseView.frame.size.width, 0.0749*SCREEN_HEIGHT);
+            view1.frame=CGRectMake(40*dd, fujunli+ 50*i, _baseView.frame.size.width, 50);
         }else if(i>mid)
         { //原来的
-          //view1.frame=CGRectMake(smallH*dd, myH+smallH*(i-1), _baseView.frame.size.width-smallH*dd*2, smallH);
-           view1.frame=CGRectMake(smallH*dd, myH+smallH*(i-1), _baseView.frame.size.width, smallH);
+            //view1.frame=CGRectMake(smallH*dd, myH+smallH*(i-1), _baseView.frame.size.width-smallH*dd*2, smallH);
+            view1.frame=CGRectMake(40*dd,fujunli+230+50*(i-1), _baseView.frame.size.width, 50);
         }else
         {//原来的
-            view1.frame=CGRectMake(2, smallH*mid, _baseView.frame.size.width-4, myH);
+            view1.frame=CGRectMake(2, 50*mid+fujunli, _baseView.frame.size.width-4, 230);
+            //view1.frame=CGRectMake(2, 0.0749*SCREEN_HEIGHT*mid, _baseView.frame.size.width-4, 230);
         }
         view1.image=arr[i];
         view1.backgroundColor=[UIColor clearColor];
@@ -107,9 +121,9 @@
     CGFloat btnX=_baseView.frame.origin.x;
     CGFloat btnY=_baseView.frame.origin.y;
     CGFloat btnW=_baseView.frame.size.width;
-    CGFloat btnH=smallH*mid;
+    CGFloat btnH=50*mid;
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame=CGRectMake(btnX, btnY, btnW, btnH);
+    btn.frame=CGRectMake(btnX, btnY+fujunli, btnW, btnH);
     btn.tag=101;
     btn.backgroundColor=[UIColor clearColor];
     [btn addTarget:self action:@selector(chick:) forControlEvents:UIControlEventTouchUpInside];
@@ -117,19 +131,18 @@
     
     
     UIButton *btn2=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn2.frame=CGRectMake(btnX, btnY+myH+smallH*mid, btnW, btnH);
+    btn2.frame=CGRectMake(btnX, btnY+230+50*mid+fujunli, btnW, btnH);
     btn2.backgroundColor=[UIColor clearColor];
     btn2.tag=102;
     [btn2 addTarget:self action:@selector(chick:) forControlEvents:UIControlEventTouchUpInside];
     [view_all addSubview:btn2];
     
     UIButton *btn3=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn3.frame=CGRectMake(2, smallH*mid, _baseView.frame.size.width-4, myH);
+    btn3.frame=CGRectMake(2, 50*mid, _baseView.frame.size.width-4, 230);
     btn3.backgroundColor=[UIColor clearColor];
     btn3.tag=103;
     [btn3 addTarget:self action:@selector(chick:) forControlEvents:UIControlEventTouchUpInside];
     [view_all addSubview:btn3];
-    
 }
 -(void)swipeUp:(UISwipeGestureRecognizer *)zer
 {//UISwipeGestureRecognizerDirectionUp
