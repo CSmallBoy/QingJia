@@ -8,6 +8,8 @@
 
 #import "HCViewController.h"
 
+// --------------------------- 头像 控制器---------------------------
+
 @interface HCNotificationHeadImageController : HCViewController
 
 @end

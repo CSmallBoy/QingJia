@@ -15,7 +15,9 @@
 
 #import "HCButtonItem.h"
 @interface HCOtherPromisedDetailController ()
-
+{
+    BOOL  _isShowDelete;
+}
 @property (nonatomic,strong) UIImageView    *sexIV;
 @property (nonatomic,strong) UIImageView    *imageView;
 
@@ -33,6 +35,7 @@
 @property (nonatomic,strong) UIView     *footerView;
 @property (nonatomic,strong) UIView     *imgeViewBottom;
 @property (nonatomic,strong) UIScrollView  *scrollView;
+@property (nonatomic,strong) UIImageView   *deletIV;
 
 @property (nonatomic,strong) HCButtonItem *messageBtn;
 @property (nonatomic,strong) HCButtonItem *MTalkBtn;
@@ -77,7 +80,7 @@
 
 -(void)addItem
 {
-    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"➕" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick:)];
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:IMG(@"导航条－inclass_Plus") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick:)];
     self.navigationItem.rightBarButtonItem = right;
 
 }
@@ -85,9 +88,36 @@
 // 点击了右边的Item
 -(void)rightItemClick:(UIBarButtonItem *)right
 {
-    UIView  *view = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 74, 90, 60)];
-    view.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:view];
+    UIImageView  *view = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 64, 105, 75)];
+    view.image = IMG(@"delete-report-23");
+    
+    UIButton  *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    deleteBtn.frame = CGRectMake(15, 15, 20, 20);
+    [deleteBtn setBackgroundImage:IMG(@"一呼百应详情－delete") forState:UIControlStateNormal];
+    [view addSubview:deleteBtn];
+    
+    UIButton *deleteText = [UIButton buttonWithType:UIButtonTypeCustom];
+    deleteText.frame = CGRectMake(50, 13, 40, 20);
+    deleteText.titleLabel.font = [UIFont systemFontOfSize:15];
+    [deleteText setTitle:@"删除" forState:UIControlStateNormal];
+    [deleteText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [view addSubview:deleteText];
+    
+    UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    reportBtn.frame = CGRectMake(15, 48, 20, 20);
+    [reportBtn setBackgroundImage:IMG(@"一呼百应详情－account") forState:UIControlStateNormal];
+    [view addSubview:reportBtn];
+    
+    UIButton *reportText = [UIButton buttonWithType:UIButtonTypeCustom];
+    reportText.frame = CGRectMake(50, 48, 40, 20);
+    reportText.titleLabel.font = [UIFont systemFontOfSize:15];
+    [reportText setTitle:@"举报" forState:UIControlStateNormal];
+    [reportText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [view addSubview:reportText];
+    
+    self.deletIV = view;
+    [self.view addSubview:self.deletIV];
+    _isShowDelete = YES;
 
 }
 
@@ -383,9 +413,19 @@
         _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT, SCREEN_HEIGHT-49)];
         _scrollView.backgroundColor = kHCBackgroundColor;
         _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(self.imageView.frame) + 30);
+        
+        UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeDeletIV)];
+        [_scrollView addGestureRecognizer:tap];
     }
     return _scrollView;
 }
+
+-(void)removeDeletIV
+{
+    
+    [_deletIV removeFromSuperview];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

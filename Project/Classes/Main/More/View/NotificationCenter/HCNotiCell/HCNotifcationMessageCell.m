@@ -11,6 +11,8 @@
 
 #define INTERVAL 10
 
+// ----------------------------与我相关 给XXX留言cell--------------------------------
+
 @interface HCNotifcationMessageCell ()
 
 @property (nonatomic,strong) UIImageView  *headIV;

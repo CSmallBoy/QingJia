@@ -268,6 +268,8 @@
         _resultView = [[UIView alloc]initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-144)];
         _resultView.backgroundColor =[UIColor blackColor];
         _resultView.alpha = 0.2;
+        UITapGestureRecognizer  *Tap  =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(canleButton:)];
+        [_resultView addGestureRecognizer:Tap];
     }
     return _resultView;
 }

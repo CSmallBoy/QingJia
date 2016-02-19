@@ -10,6 +10,8 @@
 #import "HCPromisedCommentFrameInfo.h"
 #import "HCPromisedCommentInfo.h"
 
+// -------------------------------------留言评论cell----------------------------------------
+
 @interface HCPromisedCommentCell ()
 {
      CGRect  commentRect;

@@ -70,7 +70,7 @@
     {
         [_radarView removeFromSuperview];
         CGFloat  headerViewW =  _headBtn.frame.size.width;
-        WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*2 , headerViewW*2)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
+        WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*3 , headerViewW*3)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
         CGFloat  headerViewY = _bgImage.frame.origin.y-20;
         radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
         _radarView = radarView;
@@ -266,7 +266,7 @@
     if (jump)
     {
         CGFloat  headerViewW = 115/383.0*_bgImage.frame.size.height;
-        WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*2 , headerViewW*2)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
+        WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*3 , headerViewW*3)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
         CGFloat  headerViewY = _bgImage.frame.origin.y-20;
         radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
         _radarView = radarView;

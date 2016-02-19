@@ -6,6 +6,9 @@
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
+// -----------------------发现线索 控制器----------------------------
+
+
 #import "HCPromisedCommentController.h"
 
 #import "HCPromisedCommentCell.h"
@@ -21,12 +24,13 @@
     UIButton  * _addPhotoBtn;
 
 }
-@property (nonatomic,strong) UIView  *inputView;
+@property (nonatomic,strong) UIView        *inputView;
+@property (nonatomic,strong) UIView        * photoView;
+@property (nonatomic,strong) UIButton      *imageBtn;
+@property (nonatomic,strong) UIButton      *sendBtn;
+@property (nonatomic,strong) UITableView   *myTableView;
 @property (nonatomic,strong) UITextField   *textField;
-@property (nonatomic,strong) UIButton   *imageBtn;
-@property (nonatomic,strong) UIButton   *sendBtn;
-@property (nonatomic,strong) UITableView  *myTableView;
-@property (nonatomic,strong) UIView     * photoView;
+
 
 
 @end
@@ -85,6 +89,18 @@
     return 1;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.view endEditing:YES];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    }completion:^(BOOL finished) {
+       [self.photoView removeFromSuperview];
+    }];
+    
+}
 
 #pragma mark --- textFieldDelegate
 
@@ -196,8 +212,7 @@
         _imageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _imageBtn.frame = CGRectMake(10,7 , 30, 30);
         [_imageBtn addTarget:self action:@selector(clickImageBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [_imageBtn setBackgroundImage:IMG(@"Comment_but_Picture") forState:UIControlStateNormal];
-        ViewRadius(_imageBtn, 20);
+        [_imageBtn setBackgroundImage:IMG(@"cam-0") forState:UIControlStateNormal];
     }
     return _imageBtn;
 }

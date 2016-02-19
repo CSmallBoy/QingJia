@@ -19,6 +19,8 @@
 
 @end
 
+// ---------------------------------- 我的收藏cell -----------------------------------------
+
 @interface HCNotiMySaveCell : UITableViewCell
 @property (nonatomic,assign) BOOL isSaveCell;
 @property (nonatomic,strong) HCNotificationCenterInfo *info;

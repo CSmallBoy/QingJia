@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+// -------------------------------------- 与我相关 给XXX留言cell--------------------------------
+
 @class HCNotifcationMessageInfo;
 
 @interface HCNotifcationMessageCell : UITableViewCell
