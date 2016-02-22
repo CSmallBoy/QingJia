@@ -215,4 +215,9 @@ didFinishLaunchingWithOptions:launchOptions
     [self.locationManager stopUpdatingLocation];
 }
 
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showRadarView" object:nil];
+}
+
 @end
