@@ -11,6 +11,7 @@
 #import "HCLikeFamilyViewController.h"
 #import "HCCombineFamilyViewController.h"
 #import "HCMergingFamilyViewController.h"
+#import "HCAuditViewController.h"
 @interface FamilyManageViewController ()
 
 @end
@@ -28,7 +29,8 @@
 }
 //审核事件
 - (void)barButtonClick{
-    
+    HCAuditViewController *vc = [[HCAuditViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)makeUI{
     UIImageView *back_image = [[UIImageView alloc]initWithFrame:self.view.frame];

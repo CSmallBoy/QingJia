@@ -300,6 +300,8 @@
 		8D21CA0C1C61D6310071B32A /* HCMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0B1C61D6310071B32A /* HCMedicalCell.m */; };
 		8D21CA0F1C61D6D10071B32A /* HCMedicalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0E1C61D6D10071B32A /* HCMedicalInfo.m */; };
 		8D21CA121C61DD1F0071B32A /* HCMedicalFrameIfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA111C61DD1F0071B32A /* HCMedicalFrameIfo.m */; };
+		C72F1F951C7719EE00A6E794 /* HCAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */; };
+		C72F1F981C771F8100A6E794 /* SCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F971C771F8100A6E794 /* SCSwipeTableViewCell.m */; };
 		C758EE3E1C743E7A0081FFE1 /* FamilyManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */; };
 		C758EE3F1C743E7A0081FFE1 /* HCGradeManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDEB1C743E7A0081FFE1 /* HCGradeManagerViewController.m */; };
 		C758EE401C743E7A0081FFE1 /* HCaddRelativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDED1C743E7A0081FFE1 /* HCaddRelativeViewController.m */; };
@@ -1549,6 +1551,10 @@
 		8D21CA0E1C61D6D10071B32A /* HCMedicalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalInfo.m; sourceTree = "<group>"; };
 		8D21CA101C61DD1F0071B32A /* HCMedicalFrameIfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalFrameIfo.h; sourceTree = "<group>"; };
 		8D21CA111C61DD1F0071B32A /* HCMedicalFrameIfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalFrameIfo.m; sourceTree = "<group>"; };
+		C72F1F931C7719EE00A6E794 /* HCAuditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAuditViewController.h; sourceTree = "<group>"; };
+		C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAuditViewController.m; sourceTree = "<group>"; };
+		C72F1F961C771F8100A6E794 /* SCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSwipeTableViewCell.h; sourceTree = "<group>"; };
+		C72F1F971C771F8100A6E794 /* SCSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSwipeTableViewCell.m; sourceTree = "<group>"; };
 		C758EDE71C743E7A0081FFE1 /* FamilyManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyManageViewController.h; sourceTree = "<group>"; };
 		C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyManageViewController.m; sourceTree = "<group>"; };
 		C758EDEA1C743E7A0081FFE1 /* HCGradeManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGradeManagerViewController.h; sourceTree = "<group>"; };
@@ -3823,6 +3829,8 @@
 				C758EE681C74422C0081FFE1 /* image */,
 				C758EDE71C743E7A0081FFE1 /* FamilyManageViewController.h */,
 				C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */,
+				C72F1F931C7719EE00A6E794 /* HCAuditViewController.h */,
+				C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */,
 				C758EDEC1C743E7A0081FFE1 /* HCaddRelativeViewController.h */,
 				C758EDED1C743E7A0081FFE1 /* HCaddRelativeViewController.m */,
 				C758EDEE1C743E7A0081FFE1 /* HCCombineFamilyViewController.h */,
@@ -3976,6 +3984,8 @@
 		C758EE681C74422C0081FFE1 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				C72F1F961C771F8100A6E794 /* SCSwipeTableViewCell.h */,
+				C72F1F971C771F8100A6E794 /* SCSwipeTableViewCell.m */,
 				C758EE161C743E7A0081FFE1 /* head.jpg */,
 				C758EE171C743E7A0081FFE1 /* image.jpg */,
 				C758EE181C743E7A0081FFE1 /* image_hea.jpg */,
@@ -7243,6 +7253,7 @@
 				C78D7BDD1C5F291A00622CE2 /* HCLogisticsApi.m in Sources */,
 				0A5491271C2BC32D0085F50D /* ZXTextParsedResult.m in Sources */,
 				C7B00B8B1C5F26050010F93B /* EMSDWebImageManager.m in Sources */,
+				C72F1F951C7719EE00A6E794 /* HCAuditViewController.m in Sources */,
 				0A5491241C2BC32D0085F50D /* ZXSMTPResultParser.m in Sources */,
 				C78D7B8E1C5F28F700622CE2 /* HCBarButtonItem.m in Sources */,
 				C78D7D4D1C5F342700622CE2 /* HCPromisedContractPersonInfo.m in Sources */,
@@ -7425,6 +7436,7 @@
 				C78D7BD61C5F291A00622CE2 /* HCNotificationDetailApi.m in Sources */,
 				C7B00BA61C5F26050010F93B /* EaseMessageModel.m in Sources */,
 				C78D7B6E1C5F28F700622CE2 /* HCGetCodeApi.m in Sources */,
+				C72F1F981C771F8100A6E794 /* SCSwipeTableViewCell.m in Sources */,
 				C78D7ADF1C5F28F700622CE2 /* HCPerfectMessageViewController.m in Sources */,
 				C78D7B271C5F28F700622CE2 /* HCContactPersonInfo.m in Sources */,
 				C7B00BC41C5F26050010F93B /* EaseBubbleView+Voice.m in Sources */,

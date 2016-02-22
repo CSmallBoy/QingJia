@@ -19,14 +19,15 @@
 }
 - (void)makeUI{
     _up_label = [[UILabel alloc]initWithFrame:CGRectMake(22, 5, 40, 20)];
-    _down_label = [[UILabel alloc]initWithFrame:CGRectMake(22 , SCREEN_HEIGHT - 25 -64, 40, 20)];
+    _down_label = [[UILabel alloc]initWithFrame:CGRectMake(22 , SCREEN_HEIGHT - 30 -64, 40, 20)];
     _line_label = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 2, SCREEN_HEIGHT - 25)];
     _time_label = [[UILabel alloc]initWithFrame:CGRectMake(32, (SCREEN_HEIGHT-64)/2, 30, 20)];
     
     _line_label.backgroundColor = [UIColor whiteColor];
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(10, (SCREEN_HEIGHT-64)/2, 20, 20)];
-    image.backgroundColor = [UIColor redColor];
+    ViewBorderRadius(image, 10, 0, CLEARCOLOR);
     
+    image.image = [UIImage imageNamed:@"round"];
     [self addSubview:_up_label];
     [self addSubview:_down_label];
     [self addSubview:_line_label];

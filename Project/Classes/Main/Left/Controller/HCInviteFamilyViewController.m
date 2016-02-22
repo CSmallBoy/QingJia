@@ -10,6 +10,7 @@
 #import "HCinviteFamilyTableViewCell.h"
 //幸福家庭
 #import "HCWealFamilyViewController.h"
+#import "lhScanQCodeViewController.h"
 @interface HCInviteFamilyViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
     UITextField *_text_tf;
     //搜索结果
@@ -32,6 +33,12 @@
     [self setupBackItem];
     [self makeUI];
     sousuo = YES;
+    UIBarButtonItem *bar = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"inclass_ThinkChange"] style:UIBarButtonItemStylePlain target:self action:@selector(Scan)];
+    self.navigationItem.rightBarButtonItem = bar;
+}
+- (void)Scan{
+    lhScanQCodeViewController *vc = [[lhScanQCodeViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 //界面创建
 - (void)makeUI{
