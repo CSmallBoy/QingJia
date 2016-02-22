@@ -60,7 +60,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HeadImage:) name:@"显示头像" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextMyDetailController:) name:@"ToNextMyController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextOtherController:) name:@"ToNextOtherController" object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showRadarView) name:@"showRadarView" object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -97,6 +97,44 @@
     }
     
     [self.smallTableView reloadData];
+}
+
+// 从后台进入活跃状态的时候 判断是否显示雷达想过
+-(void)showRadarView
+{
+    if (isShouldWhow)
+    {
+        [_radarView removeFromSuperview];
+        CGFloat  headerViewW =  _headBtn.frame.size.width;
+        WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*3 , headerViewW*3)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
+        CGFloat  headerViewY = _bgImage.frame.origin.y-20;
+        radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
+        _radarView = radarView;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(radarTap:)];
+        [_radarView addGestureRecognizer:tap];
+        
+        _headBtn.hidden = YES;
+        [self.view addSubview:_radarView];
+        [self.view sendSubviewToBack:_radarView];
+        [self.view sendSubviewToBack:_bgImage];
+        
+    }
+    else
+    {
+        [_radarView removeFromSuperview];
+        _headBtn.hidden = NO;
+    }
+    
+    
+    for (NSInteger i = 0; i<self.dataArr.count; i++)
+    {
+        HCPromisedListInfo *info = self.dataArr[i];
+        info.isBlack = NO;
+    }
+    
+    [self.smallTableView reloadData];
+
 }
 
 -(void)HeadImage:(NSNotification *)info

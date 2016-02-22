@@ -126,6 +126,7 @@
 {
     if (slider.value != 0)
     {
+        _nowLabel.hidden = NO;
         _nowLabel.frame = CGRectMake(115 + slider.value/140 *(SCREEN_WIDTH-150), 30, 30, 15);
         _nowLabel.text = [NSString stringWithFormat:@"%d:%02d",(int)slider.value/60,(int)slider.value %60];
     }

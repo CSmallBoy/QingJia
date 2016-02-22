@@ -289,6 +289,7 @@
 		0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83A1BF5887700DCA75A /* KWFormView.m */; };
 		0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */; };
 		3AA0DCFA47C83622EEE93AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9376B27D02CD20170277F57 /* libPods.a */; };
+		8D0878551C7AA32B0093BE87 /* HCProductionCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0878541C7AA32B0093BE87 /* HCProductionCenterController.m */; };
 		8D0ACCED1C75C00C008A8A55 /* higlightedBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0ACCE91C75C00C008A8A55 /* higlightedBarBackground@2x.png */; };
 		8D0ACCEE1C75C00C008A8A55 /* TLTiltSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0ACCEB1C75C00C008A8A55 /* TLTiltSlider.m */; };
 		8D0ACCEF1C75C00C008A8A55 /* trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0ACCEC1C75C00C008A8A55 /* trackBackground@2x.png */; };
@@ -1529,6 +1530,8 @@
 		0AF9B83B1BF5887700DCA75A /* KWFormViewQuickBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFormViewQuickBuilder.h; sourceTree = "<group>"; };
 		0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFormViewQuickBuilder.m; sourceTree = "<group>"; };
 		6ACE64504D5E86E87CC78BEE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8D0878531C7AA32B0093BE87 /* HCProductionCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductionCenterController.h; sourceTree = "<group>"; };
+		8D0878541C7AA32B0093BE87 /* HCProductionCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductionCenterController.m; sourceTree = "<group>"; };
 		8D0ACCE91C75C00C008A8A55 /* higlightedBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "higlightedBarBackground@2x.png"; sourceTree = "<group>"; };
 		8D0ACCEA1C75C00C008A8A55 /* TLTiltSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTiltSlider.h; sourceTree = "<group>"; };
 		8D0ACCEB1C75C00C008A8A55 /* TLTiltSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTiltSlider.m; sourceTree = "<group>"; };
@@ -3754,6 +3757,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8D0878521C7AA2B60093BE87 /* ProductionCenterController */ = {
+			isa = PBXGroup;
+			children = (
+				8D0878531C7AA32B0093BE87 /* HCProductionCenterController.h */,
+				8D0878541C7AA32B0093BE87 /* HCProductionCenterController.m */,
+			);
+			path = ProductionCenterController;
+			sourceTree = "<group>";
+		};
 		8D0ACCE81C75C00C008A8A55 /* TLTilitSilder */ = {
 			isa = PBXGroup;
 			children = (
@@ -4342,6 +4354,7 @@
 		C78D79151C5F28F600622CE2 /* ProductCenter */ = {
 			isa = PBXGroup;
 			children = (
+				8D0878521C7AA2B60093BE87 /* ProductionCenterController */,
 				C78D79161C5F28F600622CE2 /* AfterSales */,
 				C78D791F1C5F28F600622CE2 /* BuyRecord */,
 				C78D79261C5F28F600622CE2 /* CustomerList */,
@@ -7388,6 +7401,7 @@
 				0A54915D1C2BC32D0085F50D /* ZXDataMatrixASCIIEncoder.m in Sources */,
 				C78D7BD31C5F291A00622CE2 /* HCNotificationCenterFollowAPI.m in Sources */,
 				C7B00B771C5F26050010F93B /* EMCDDeviceManagerBase.m in Sources */,
+				8D0878551C7AA32B0093BE87 /* HCProductionCenterController.m in Sources */,
 				0A6B7F9C1BF1EB74008D54B3 /* TOWebViewController.m in Sources */,
 				C78D7B441C5F28F700622CE2 /* HCBuyRecordTableViewCell.m in Sources */,
 				0A54912C1C2BC32D0085F50D /* ZXVEventResultParser.m in Sources */,
