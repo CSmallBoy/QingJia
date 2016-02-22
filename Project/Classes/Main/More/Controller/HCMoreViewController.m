@@ -115,7 +115,7 @@ static NSString * const reuseIdentifier = @"moreCollectionCell";
     {
         _vClassNameArr = @[@"HCNotificationViewController", @"HCTimeViewController",
                            @"HCRescueCenterViewController", @"HClassCalendarViewController",
-                           @"HCTagManagerViewController", @"HCProducCenterViewController",
+                           @"HCTagManagerViewController", @"HCProductionCenterController",
                            @"HCPromisedViewController", @"HCAddItemViewController"];
     }
     return _vClassNameArr;
