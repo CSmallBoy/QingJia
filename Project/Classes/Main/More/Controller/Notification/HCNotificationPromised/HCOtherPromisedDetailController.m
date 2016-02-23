@@ -159,6 +159,30 @@
     [self showHUDText:@"拨打110"];
 }
 
+// 点击进入图片大图
+-(void)addBigImage:(UITapGestureRecognizer *)tap
+{
+    self.navigationController.navigationBarHidden = YES;
+    UIImageView  *bigImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
+    UIImageView  *smallImageView = (UIImageView *)tap.view;
+    bigImageView.image = smallImageView.image;
+    bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImage:)];
+    bigImageView.userInteractionEnabled = YES;
+    bigImageView.backgroundColor = [UIColor blackColor];
+    [bigImageView addGestureRecognizer:tap2];
+    
+    [self.view addSubview:bigImageView];
+    
+}
+// 点击移除图片大图
+-(void)removeBigImage:(UITapGestureRecognizer *)tap
+{
+    self.navigationController.navigationBarHidden = NO;
+    [tap.view removeFromSuperview];
+    
+}
 
 #pragma mark --- setter Or getter
 
@@ -231,6 +255,10 @@
         _imageView.image = IMG(@"girl");
         _imageView.userInteractionEnabled = YES;
         [_imageView addSubview:self.imgeViewBottom];
+        UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addBigImage:)];
+        [_imageView addGestureRecognizer:tap];
+        
+        
     }
     return _imageView;
 }

@@ -50,7 +50,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
     [self addNavItem];
-
+    
+    self.navigationController.navigationItem.backBarButtonItem = nil;
+    
+    
     [self requestData];
     [self  createUI];
     [self  createTableView];
@@ -74,9 +77,12 @@
         CGFloat  headerViewY = _bgImage.frame.origin.y-20;
         radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
         _radarView = radarView;
+        _radarView.userInteractionEnabled = NO;
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(radarTap:)];
-        [_radarView addGestureRecognizer:tap];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = self.headBtn.frame;
+        [button addTarget:self action:@selector(radarTap:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:button];
         
         _headBtn.hidden = YES;
         [self.view addSubview:_radarView];
@@ -99,7 +105,7 @@
     [self.smallTableView reloadData];
 }
 
-// 从后台进入活跃状态的时候 判断是否显示雷达想过
+// 从后台进入活跃状态的时候 判断是否显示雷达显示
 -(void)showRadarView
 {
     if (isShouldWhow)
@@ -110,9 +116,13 @@
         CGFloat  headerViewY = _bgImage.frame.origin.y-20;
         radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
         _radarView = radarView;
+        _radarView.userInteractionEnabled = NO;
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(radarTap:)];
-        [_radarView addGestureRecognizer:tap];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = self.headBtn.frame;
+        [button addTarget:self action:@selector(radarTap:) forControlEvents:UIControlEventTouchUpInside];
+        [_radarView addSubview:button];
         
         _headBtn.hidden = YES;
         [self.view addSubview:_radarView];
@@ -141,7 +151,7 @@
 {
     HCNotificationHeadImageController  *imageVC = [[HCNotificationHeadImageController alloc]init];
     imageVC.data = @{@"image":info.userInfo[@"image"]};
-    imageVC.tabBarController.hidesBottomBarWhenPushed = YES;
+    imageVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:imageVC animated:YES];
 }
 

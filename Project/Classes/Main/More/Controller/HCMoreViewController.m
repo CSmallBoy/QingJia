@@ -55,8 +55,14 @@ static NSString * const reuseIdentifier = @"moreCollectionCell";
 {
     NSString *vCName = self.vClassNameArr[indexPath.section*3+indexPath.row];
     HCViewController *vc = [[NSClassFromString(vCName) alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([vc isKindOfClass:[HCPromisedViewController class]])
+    {
+        self.tabBarController.selectedIndex = 2;
+    }else
+    {
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
