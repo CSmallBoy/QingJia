@@ -22,7 +22,7 @@
     [super viewDidLoad];
     self.title = @"我的家族";
     self.view.backgroundColor = [UIColor whiteColor];
-    UIBarButtonItem *barButton= [[UIBarButtonItem alloc]initWithTitle:@"setting" style:UIBarButtonItemStyleDone target:self action:@selector(barButtonClick)];
+    UIBarButtonItem *barButton=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Settings"] style:UIBarButtonItemStyleDone target:self action:@selector(barButtonClick)];
     self.navigationItem.rightBarButtonItem = barButton;
     [self setupBackItem];
     [self makeUI];

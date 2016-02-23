@@ -94,11 +94,11 @@
         view1.userInteractionEnabled = YES;
         CGFloat dd=abs(mid-i);
         if (i<mid) {
-            view1.frame=CGRectMake(40*dd, fujunli+ 50*i, _baseView.frame.size.width, 50);
+            view1.frame=CGRectMake(40*dd, fujunli+ 50*i, _baseView.frame.size.width, 46);
             
         }else if(i>mid)
         {
-            view1.frame=CGRectMake(40*dd,fujunli+230+50*(i-1), _baseView.frame.size.width, 50);
+            view1.frame=CGRectMake(40*dd,fujunli+230+50*(i-1), _baseView.frame.size.width, 46);
             
         }else
         {

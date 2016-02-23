@@ -888,7 +888,7 @@
 		C7B00C4C1C5F26050010F93B /* chat_location_preview.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00AE01C5F26050010F93B /* chat_location_preview.png */; };
 		C7B00C4D1C5F26050010F93B /* chat_location_preview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00AE11C5F26050010F93B /* chat_location_preview@2x.png */; };
 		C7B00C4E1C5F26050010F93B /* faceDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00AE31C5F26050010F93B /* faceDelete.png */; };
-		C7B00C4F1C5F26050010F93B /* faceDelete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00AE41C5F26050010F93B /* faceDelete@2x.png */; };
+		C7B00C4F1C5F26050010F93B /* faceDelet.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00AE41C5F26050010F93B /* faceDelet.png */; };
 		C7B00C501C5F26050010F93B /* imageDownloadFail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00AE51C5F26050010F93B /* imageDownloadFail@2x.png */; };
 		C7B00C511C5F26050010F93B /* messageSendFail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00AE61C5F26050010F93B /* messageSendFail@2x.png */; };
 		C7B00C521C5F26050010F93B /* chatBar_face.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00AE81C5F26050010F93B /* chatBar_face.png */; };
@@ -2603,7 +2603,7 @@
 		C7B00AE01C5F26050010F93B /* chat_location_preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_location_preview.png; sourceTree = "<group>"; };
 		C7B00AE11C5F26050010F93B /* chat_location_preview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_location_preview@2x.png"; sourceTree = "<group>"; };
 		C7B00AE31C5F26050010F93B /* faceDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faceDelete.png; sourceTree = "<group>"; };
-		C7B00AE41C5F26050010F93B /* faceDelete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceDelete@2x.png"; sourceTree = "<group>"; };
+		C7B00AE41C5F26050010F93B /* faceDelet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faceDelet.png; sourceTree = "<group>"; };
 		C7B00AE51C5F26050010F93B /* imageDownloadFail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imageDownloadFail@2x.png"; sourceTree = "<group>"; };
 		C7B00AE61C5F26050010F93B /* messageSendFail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messageSendFail@2x.png"; sourceTree = "<group>"; };
 		C7B00AE81C5F26050010F93B /* chatBar_face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatBar_face.png; sourceTree = "<group>"; };
@@ -6371,7 +6371,7 @@
 			isa = PBXGroup;
 			children = (
 				C7B00AE31C5F26050010F93B /* faceDelete.png */,
-				C7B00AE41C5F26050010F93B /* faceDelete@2x.png */,
+				C7B00AE41C5F26050010F93B /* faceDelet.png */,
 			);
 			path = emoji;
 			sourceTree = "<group>";
@@ -6604,7 +6604,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7B00C4F1C5F26050010F93B /* faceDelete@2x.png in Resources */,
+				C7B00C4F1C5F26050010F93B /* faceDelet.png in Resources */,
 				C7AFFAC61C48BEC900D4A628 /* UMSLoginViewController.xib in Resources */,
 				C7B00BCF1C5F26050010F93B /* EaseUIResource.bundle in Resources */,
 				0A67B2291C0D63B300FB87C8 /* bg_main@2x.png in Resources */,
