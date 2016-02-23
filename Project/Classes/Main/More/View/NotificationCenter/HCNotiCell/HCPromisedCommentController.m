@@ -168,6 +168,7 @@
 {
  
     [self.textField endEditing:YES];
+    [self addPhoto:button];
     [UIView animateWithDuration:0.05 animations:^{
        
         self.view.bounds = CGRectMake(0,SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -198,7 +199,7 @@
              [[SDImageCache sharedImageCache] clearMemory];
              [[SDImageCache sharedImageCache] clearDisk];
          }
-         
+         [self.view addSubview:self.photoView];
          UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3 * (_photoCount-1), 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3)];
          imageView.image = image;
          [self.photoView addSubview:imageView];

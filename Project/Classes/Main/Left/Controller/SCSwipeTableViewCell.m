@@ -99,7 +99,7 @@
 - (void)buttonClick:(UIButton*)button{
     NSIndexPath *indexPath = [_superTableView indexPathForCell:(UITableViewCell*)button.superview.superview.superview.superview];
    
-    NSLog(@"%@",indexpath);
+    NSLog(@"%@",indexPath);
 }
 - (void)processBtns{
     CGFloat lastWidth = 0;
