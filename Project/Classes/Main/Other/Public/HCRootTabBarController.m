@@ -67,7 +67,7 @@ static NSString *kGroupName = @"GroupName";
                           rootViewControllerTitle:@"消息"];
     //
     [self setupChildNavigationControllerWithClass:[UINavigationController class]
-                                  tabBarImageName:@"ThinkChange"
+                                  tabBarImageName:@"Primised"
                           rootViewControllerClass:[HCPromisedViewController class]
                           rootViewControllerTitle:@"呼·应"];
     

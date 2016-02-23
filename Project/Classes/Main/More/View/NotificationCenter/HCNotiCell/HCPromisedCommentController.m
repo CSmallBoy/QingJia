@@ -20,9 +20,10 @@
 
 @interface HCPromisedCommentController ()<UITextFieldDelegate>
 {
-    NSInteger  _photoCount;
+    NSInteger   _photoCount;
     UIButton  * _addPhotoBtn;
-
+    CGRect      _startFrame;
+    BOOL        _startEdit;
 }
 @property (nonatomic,strong) UIView        *inputView;
 @property (nonatomic,strong) UIView        * photoView;
@@ -55,6 +56,40 @@
 {
 
         HCPromisedCommentCell *cell = [HCPromisedCommentCell cellWithTableView:tableView];
+        cell.block = ^(UIButton *button){
+            
+            
+            if (_startEdit)
+            {
+                [self.view endEditing:YES];
+                
+                [UIView animateWithDuration:0.3 animations:^{
+                    
+                    self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                }completion:^(BOOL finished) {
+                    [self.photoView removeFromSuperview];
+                }];
+            }else
+            {
+                _startFrame = [button convertRect:button.bounds toView:self.view];
+                UIImageView *imageview = [[UIImageView alloc]initWithFrame:_startFrame];
+                imageview.image = [button backgroundImageForState:UIControlStateNormal];
+                imageview.backgroundColor = [UIColor blackColor];
+                imageview.userInteractionEnabled = YES;
+                UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImageView:)];
+                [imageview addGestureRecognizer:tap];
+                imageview.contentMode = UIViewContentModeScaleAspectFit;
+                [self.view addSubview:imageview];
+                [UIView animateWithDuration:0.4 animations:^{
+                    
+                    imageview.frame = self.view.frame;
+                    
+                }];
+            }
+            
+           
+            
+        };
         cell.commnetFrameInfo = self.dataSource[indexPath.row];
         cell.selected = NO;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -106,13 +141,28 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    _startEdit = YES;
     [self.photoView removeFromSuperview];
     self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+}
 
-
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    _startEdit = NO;
 }
 
 #pragma mark --- private mothods
+
+-(void)removeBigImageView:(UITapGestureRecognizer *)tap
+{
+    UIImageView *imageView = (UIImageView *)tap.view;
+    [UIView animateWithDuration:0.4 animations:^{
+        imageView.frame = _startFrame;
+    }completion:^(BOOL finished) {
+        [imageView removeFromSuperview];
+    }];
+
+}
 
 -(void)clickImageBtn:(UIButton *) button
 {
@@ -216,8 +266,6 @@
     }
     return _imageBtn;
 }
-
-
 
 - (UIView *)photoView
 {

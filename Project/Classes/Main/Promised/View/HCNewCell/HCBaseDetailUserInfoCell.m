@@ -49,19 +49,19 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (textField.tag == 1)
+    if (textField.tag == 0)
     {
         _detailInfo.ObjectXName = textField.text;
-    }else if (textField.tag == 2)
+    }else if (textField.tag == 1)
     {
         _detailInfo.ObjectSex = textField.text;
-    }else if (textField.tag == 3)
+    }else if (textField.tag == 2)
     {
         _detailInfo.ObjectBirthDay = textField.text;
-    }else if (textField.tag == 4)
+    }else if (textField.tag == 3)
     {
         _detailInfo.ObjectHomeAddress = textField.text;
-    }else if (textField.tag == 5)
+    }else if (textField.tag == 4)
     {
         _detailInfo.ObjectSchool = textField.text;
     }

@@ -10,10 +10,14 @@
 
 // -------------------------------------留言评论cell----------------------------------------
 
+
+typedef void(^HCPromisedCommentCellBlock)(UIButton  *button) ;
+
 @class HCPromisedCommentFrameInfo;
 @interface HCPromisedCommentCell : UITableViewCell
 
 @property (nonatomic,strong) HCPromisedCommentFrameInfo  *commnetFrameInfo;
+@property (nonatomic,strong) HCPromisedCommentCellBlock block;
 
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 

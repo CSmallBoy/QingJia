@@ -62,7 +62,7 @@
 //点击了头像
 -(void)headBtnClick:(UIButton *)button
 {
-  
+   
 
 }
 
@@ -70,9 +70,7 @@
 -(void)imageBtnClick:(UIButton *)button
 
 {
-
-
-
+      self.block (button);
 }
 
 #pragma mark --- getter Or setter

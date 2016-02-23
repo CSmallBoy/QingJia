@@ -152,7 +152,8 @@
 -(void)addBigImage:(UITapGestureRecognizer *)tap
 {
     self.navigationController.navigationBarHidden = YES;
-    UIImageView  *bigImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
+    CGRect  startFrame =  [self.imageView convertRect:self.imageView.bounds toView:self.view];
+    UIImageView  *bigImageView = [[UIImageView alloc]initWithFrame:startFrame];
     UIImageView  *smallImageView = (UIImageView *)tap.view;
     bigImageView.image = smallImageView.image;
     bigImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -164,14 +165,20 @@
     
     [self.view addSubview:bigImageView];
     
+    [UIView animateWithDuration:0.3 animations:^{
+       
+        bigImageView.frame = self.view.frame;
+        
+    }];
+    
 }
 
 // 点击移除图片大图
 -(void)removeBigImage:(UITapGestureRecognizer *)tap
 {
     self.navigationController.navigationBarHidden = NO;
-    [tap.view removeFromSuperview];
     
+    [tap.view removeFromSuperview];
 }
 
 #pragma mark --- setter Or getter
