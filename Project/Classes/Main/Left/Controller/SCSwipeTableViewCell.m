@@ -10,7 +10,9 @@
 
 #define SC_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 
-@interface SCSwipeTableViewCell()<UIGestureRecognizerDelegate>
+@interface SCSwipeTableViewCell()<UIGestureRecognizerDelegate>{
+    UITapGestureRecognizer *tap;
+}
 
 @property (nonatomic, retain)UIView  *cellContentView;
 @property (nonatomic, retain)UIPanGestureRecognizer *panGersture;
@@ -56,8 +58,8 @@
     [self addObserverEvent];
     [self addGesture];
     [self addNotify];
+    [_SCContentView addSubview:[self makeUICell]];
 }
-
 #pragma mark prepareForReuser
 - (void)prepareForReuse
 {
@@ -75,7 +77,30 @@
         return;
     }
 }
-
+//cell 上的子视图
+- (UIView*)makeUICell{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 55)];
+    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(10, 3, 49, 49)];
+    image.image = IMG(@"1");
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:@"已同意" forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(SCREEN_WIDTH *0.7 -180, 12.5, SCREEN_WIDTH, 30)];
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(65, 12.5, SCREEN_WIDTH*0.3, 30)];
+    label.text = @"家庭名字";
+    [view addSubview:label];
+    [view addSubview:image];
+    [view addSubview:button];
+    
+    
+    return view;
+}
+- (void)buttonClick:(UIButton*)button{
+    NSIndexPath *indexPath = [_superTableView indexPathForCell:(UITableViewCell*)button.superview.superview.superview.superview];
+   
+    NSLog(@"%@",indexpath);
+}
 - (void)processBtns{
     CGFloat lastWidth = 0;
     int i = 0;
@@ -164,13 +189,33 @@
         }
     }
 }
-
+//添加手势
 - (void)addGesture{
     _panGersture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleGesture:)];
     _panGersture.delegate = self;
     [self.SCContentView addGestureRecognizer:_panGersture];
-}
+    
+    tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    [self.SCContentView addGestureRecognizer:tap];
 
+}
+//tap手势方法
+-(void)tap:(UITapGestureRecognizer *)tap
+{
+    NSLog(@"%lf",_SCContentView.frame.origin.x );
+    if (_SCContentView.frame.origin.x == -180)
+    {
+        
+        [self hideBtn];
+        
+    }
+    else
+    {
+        //跳转 传值
+        NSLog(@"跳转");
+    }
+    
+}
 - (void)handleGesture:(UIPanGestureRecognizer *)recognizer{
     if (_isShowing||_isHiding) {
         return;
@@ -355,6 +400,3 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SC_CELL_SHOULDCLOSE" object:nil];
 }
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com

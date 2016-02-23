@@ -148,7 +148,7 @@
 {
     if (!_setImgView2)
     {
-        _setImgView2 = [[UIImageView alloc] initWithImage:OrigIMG(@"Settings")];
+        _setImgView2 = [[UIImageView alloc] initWithImage:OrigIMG(@"Home")];
         _setImgView2.frame = CGRectMake(0, 10, 20, 20);
     }
     return _setImgView2;

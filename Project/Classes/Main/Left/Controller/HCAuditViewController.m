@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"审核";
     btnArr = [NSMutableArray array];
     [self setupBackItem];
     [self makeUI];
@@ -39,11 +40,12 @@
     NSLog(@"cellOptionBtnDidHide");
 }
 - (void)makeUI{
-    tabview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+    tabview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT )];
     tabview.delegate = self;
     tabview.dataSource = self;
     [self.view addSubview:tabview];
 }
+//选中的button事件
 - (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath{
     NSLog(@"you choose the %ldth btn in section %ld row %ld",(long)tag,(long)indexpath.section,(long)indexpath.row);
     NSString *message = [NSString stringWithFormat:@"you choose the %ldth btn in section %ld row %ld",(long)tag,(long)indexpath.section,(long)indexpath.row ];
@@ -55,25 +57,25 @@
     [alert show];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return 15;
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"1" forState:UIControlStateNormal];
     [button setFrame:CGRectMake(0, 0, 60, 55)];
     [button setBackgroundColor:[UIColor redColor]];
-   
+    [button setImage:IMG(@"delete") forState:UIControlStateNormal];
     
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button2 setTitle:@"2" forState:UIControlStateNormal];
     [button2 setFrame:CGRectMake(0, 0, 60, 55)];
-    [button2 setBackgroundColor:[UIColor redColor]];
+    [button2 setImage:IMG(@"dangerous") forState:UIControlStateNormal];
    
     UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button3 setTitle:@"3" forState:UIControlStateNormal];
     [button3 setFrame:CGRectMake(0, 0, 60, 55)];
-    [button3 setBackgroundColor:[UIColor redColor]];
+    [button3 setImage:IMG(@"safe") forState:UIControlStateNormal];
     
     btnArr = [NSMutableArray arrayWithObjects:button,button2,button3, nil];
     static NSString *cellIdentifier = @"Cell";
@@ -84,27 +86,16 @@
                                                   withBtns:btnArr
                                                  tableView:tabview];
         cell.delegate = self;
-        //[cell.SCContentView addSubview:label];
     }
-    
-    for (UILabel *subLabel in cell.SCContentView.subviews) {
-        subLabel.text = [NSString stringWithFormat:@"swipeCell test row %ld",(long)indexPath.row];
-    }
+  
     cell.textLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     return cell;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    return 55;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSIndexPath *selected = [tableView indexPathForSelectedRow];
-    
-    if(selected)
-    {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
