@@ -10,6 +10,8 @@
 
 
 #import "HCPromisedCommentController.h"
+#import "ZLPhotoPickerViewController.h"
+
 
 #import "HCPromisedCommentCell.h"
 
@@ -17,8 +19,9 @@
 #import "HCPromisedCommentInfo.h"
 
 #import "HCAvatarMgr.h"
+#import "ZLPhotoAssets.h"
 
-@interface HCPromisedCommentController ()<UITextFieldDelegate>
+@interface HCPromisedCommentController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 {
     NSInteger   _photoCount;
     UIButton  * _addPhotoBtn;
@@ -31,6 +34,7 @@
 @property (nonatomic,strong) UIButton      *sendBtn;
 @property (nonatomic,strong) UITableView   *myTableView;
 @property (nonatomic,strong) UITextField   *textField;
+@property (nonatomic,strong) NSMutableArray    *images;
 
 
 
@@ -86,9 +90,6 @@
                     
                 }];
             }
-            
-           
-            
         };
         cell.commnetFrameInfo = self.dataSource[indexPath.row];
         cell.selected = NO;
@@ -151,7 +152,100 @@
     _startEdit = NO;
 }
 
+#pragma mark ---- UIActionSheetDelegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+        {
+            UIImagePickerController * picker = [[UIImagePickerController alloc]init];
+            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
+            picker.delegate = self;
+            picker.allowsEditing = YES;
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+            break;
+            
+        case 1:
+        {
+            ZLPhotoPickerViewController *zlpVC = [[ZLPhotoPickerViewController alloc]init];
+            zlpVC.callBack = ^(NSArray *arr){
+                
+                for (ZLPhotoAssets *zl in arr)
+                {
+                    UIImage  *image = zl.originImage;
+                    [self.images addObject:image];
+                }
+                for (int i = 0; i< self.images.count; i++)
+                {
+                    UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i * SCREEN_WIDTH/3, 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3)];
+                    imageView.userInteractionEnabled = YES;
+                    imageView.image = self.images[i];
+                    UILongPressGestureRecognizer  *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(deletePhoto:)];
+                    [imageView addGestureRecognizer:longPress];
+                    [self.photoView addSubview:imageView];
+                }
+                [UIView animateWithDuration:0.05 animations:^{
+                    
+                        self.view.bounds = CGRectMake(0,SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_HEIGHT);
+                
+                }completion:^(BOOL finished) {
+                    
+                        [self.view addSubview:self.photoView];
+                    
+                }];
+            };
+            [self presentViewController:zlpVC animated:YES completion:nil];
+        }
+            break;
+        default:
+            break;
+       }
+
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    [self.images addObject: image];
+
+    for (int i = 0; i< self.images.count; i++)
+    {
+        UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i * SCREEN_WIDTH/3, 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3)];
+        imageView.image = self.images[i];
+        [self.photoView addSubview:imageView];
+    }
+
+     [UIView animateWithDuration:0.05 animations:^{
+        
+        self.view.bounds = CGRectMake(0,SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_HEIGHT);
+         
+     }completion:^(BOOL finished) {
+         
+        [self.view addSubview:self.photoView];
+         
+     }];
+    
+     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3 * (_photoCount-1), 0,  SCREEN_WIDTH/3, SCREEN_WIDTH/3)];
+        imageView.image = image;
+    [self.photoView addSubview:imageView];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark --- private mothods
+
+
+-(void)deletePhoto:(UILongPressGestureRecognizer *)longPress
+{
+    UIView  *view = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3-20,0, 20, 20)];
+    view.backgroundColor = [UIColor redColor];
+    [longPress.view addSubview:view];
+ 
+}
 
 -(void)removeBigImageView:(UITapGestureRecognizer *)tap
 {
@@ -166,45 +260,18 @@
 
 -(void)clickImageBtn:(UIButton *) button
 {
- 
+    UIActionSheet  *sheet = [[UIActionSheet alloc]initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
+    [sheet  showInView:self.view];
     [self.textField endEditing:YES];
-    [self addPhoto:button];
-    [UIView animateWithDuration:0.05 animations:^{
-       
-        self.view.bounds = CGRectMake(0,SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_HEIGHT);
-    }completion:^(BOOL finished) {
-         [self.view addSubview:self.photoView];
-    }];
+
 
 }
 
 //添加图片
 -(void)addPhoto:(UIButton *)button
 {
-    [HCAvatarMgr manager].isUploadImage = YES;
-    [HCAvatarMgr manager].noUploadImage = NO;
-    //上传个人头像
-    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg)
-     {
-         _photoCount += 1;
-         _addPhotoBtn.frame = CGRectMake(SCREEN_WIDTH/3 * _photoCount, 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3);
-         if (!result)
-         {
-             [self showHUDText:msg];
-             [HCAvatarMgr manager].isUploadImage = NO;
-             [HCAvatarMgr manager].noUploadImage = NO;
-         }
-         else
-         {
-             [[SDImageCache sharedImageCache] clearMemory];
-             [[SDImageCache sharedImageCache] clearDisk];
-         }
-         [self.view addSubview:self.photoView];
-         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3 * (_photoCount-1), 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3)];
-         imageView.image = image;
-         [self.photoView addSubview:imageView];
-     }];
-
+    UIActionSheet  *sheet = [[UIActionSheet alloc]initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
+    [sheet  showInView:self.view];
 }
 
 
@@ -282,6 +349,15 @@
     }
     return _photoView;
 }
+
+- (NSMutableArray *)images
+{
+    if(!_images){
+        _images = [[NSMutableArray alloc]init];
+    }
+    return _images;
+}
+
 
 
 #pragma mark ---  network
