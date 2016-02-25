@@ -2,13 +2,13 @@
 //  HCHomeViewController.h
 //  Project
 //
-//  Created by 陈福杰 on 15/12/15.
-//  Copyright © 2015年 com.xxx. All rights reserved.
+//  Created by 陈福杰 on 16/2/25.
+//  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "HCTableViewController.h"
+#import "HCViewController.h"
 
-@interface HCHomeViewController : HCTableViewController
+@interface HCHomeViewController : HCViewController
 
 @property (nonatomic, strong) NSString *gradeId;
 

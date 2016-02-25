@@ -2,215 +2,68 @@
 //  HCHomeViewController.m
 //  Project
 //
-//  Created by 陈福杰 on 15/12/15.
-//  Copyright © 2015年 com.xxx. All rights reserved.
+//  Created by 陈福杰 on 16/2/25.
+//  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
 #import "HCHomeViewController.h"
-#import "HCHomeDetailViewController.h"
-#import "HCShareViewController.h"
-#import "HCHomeUserTimeViewController.h"
-#import "HCEditCommentViewController.h"
-#import "HCHomePictureDetailViewController.h"
-#import "MJRefresh.h"
-#import "AppDelegate.h"
+#import "HCHomeFamilyViewController.h"
+#import "HCHomeFamilyGroupViewController.h"
 #import "HCPublishViewController.h"
-#import "HCWelcomeJoinGradeViewController.h"
-#import "HCHomeTableViewCell.h"
-#import "HCHomeInfo.h"
-#import "HCHomeApi.h"
-#import "HCHomeLikeCountApi.h"
+#import "AppDelegate.h"
 
-#import "HCCreateGradeViewController.h"
+@interface HCHomeViewController ()<UIScrollViewDelegate>
 
-#define HCHomeCell @"HCHomeTableViewCell"
-
-@interface HCHomeViewController ()<HCHomeTableViewCellDelegate>
-
+@property (nonatomic, strong) UISegmentedControl *segmentControl;
 @property (nonatomic, strong) UIBarButtonItem *leftItem;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
-@property (nonatomic, strong) NSString *start;
 
-@property (nonatomic, strong) HCWelcomeJoinGradeViewController *welcomJoinGrade;
+@property (nonatomic, strong) UIScrollView *mainScrollView;
+@property (nonatomic, assign) NSInteger currentIndex;
+
+@property (nonatomic, strong) HCHomeFamilyViewController *family;
+@property (nonatomic, strong) HCHomeFamilyGroupViewController *familyGroup;
 
 @end
 
 @implementation HCHomeViewController
 
-#pragma mark - life cycle
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"M-时光";
     
-    [self readLocationData];
-    
+    self.navigationItem.titleView = self.segmentControl;
     self.navigationItem.leftBarButtonItem = self.leftItem;
     self.navigationItem.rightBarButtonItem = self.rightItem;
     
-    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
-    [self.tableView registerClass:[HCHomeTableViewCell class] forCellReuseIdentifier:HCHomeCell];
-    
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
-    
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
+    [self.view addSubview:self.mainScrollView];
+    [self.mainScrollView addSubview:self.family.view];
+    [self.mainScrollView addSubview:self.familyGroup.view];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    _currentIndex = scrollView.contentOffset.x / SCREEN_WIDTH;
+    _segmentControl.selectedSegmentIndex = _currentIndex;
 }
 
-#pragma mark - UITableView
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    HCHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HCHomeCell];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.indexPath = indexPath;
-    cell.delegate = self;
-    HCHomeInfo *info = self.dataSource[indexPath.section];
-    cell.info = info;
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    HCHomeInfo *info = self.dataSource[indexPath.section];
-    HCHomeDetailViewController *detail = [[HCHomeDetailViewController alloc] init];
-    detail.data = @{@"data": info};
-    detail.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detail animated:YES];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat height = 60 + WIDTH(self.view)*0.15;
-    
-    HCHomeInfo *info = self.dataSource[indexPath.section];
-    
-    height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
-    
-    if (!IsEmpty(info.FTImages))
+    if (scrollView.contentOffset.x == 0)
     {
-        height = height + (WIDTH(self.view)-30)/3;
+        [self handleLeftItem];
     }
-    
-    if (!IsEmpty(info.CreateAddrSmall))
-    {
-        height = height + 30;
-    }
-    
-    return height;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 5;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return self.dataSource.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
-
-#pragma mark - HCHomeTableViewCellDelegate
-
-- (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath functionIndex:(NSInteger)index
-{
-    HCHomeInfo *info = self.dataSource[indexPath.section];
-
-    if (index == 2)
-    {
-        HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
-        editComment.data = @{@"data": info};
-        UIViewController *rootController = self.view.window.rootViewController;
-        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-        {
-            editComment.modalPresentationStyle=
-            UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
-        }else
-        {
-            rootController.modalPresentationStyle=
-            UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
-        }
-        [rootController presentViewController:editComment animated:YES completion:nil];
-    }else if (index == 1)
-    {
-        HCShareViewController  *shareVC = [[HCShareViewController alloc] init];
-        [self presentViewController:shareVC animated:YES completion:nil];
-    }else if (index == 0)
-    {
-        [self requestLikeCount:info indexPath:indexPath];
-    }
-}
-
-- (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath moreImgView:(NSInteger)index
-{
-    HCHomePictureDetailViewController *pictureDetail = [[HCHomePictureDetailViewController alloc] init];
-    pictureDetail.data = @{@"data": self.dataSource[indexPath.section], @"index": @(index)};
-    pictureDetail.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:pictureDetail animated:YES];
-}
-
-- (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn
-{
-    HCHomeInfo *info = self.dataSource[indexPath.section];
-    HCHomeUserTimeViewController *userTime = [[HCHomeUserTimeViewController alloc] init];
-    userTime.data = @{@"data": info};
-    userTime.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:userTime animated:YES];
 }
 
 #pragma mark - private methods
 
-- (void)readLocationData
-{
-    NSString *path = [self getSaveLocationDataPath];
-    NSArray *arrayData = [NSArray arrayWithContentsOfFile:path];
-
-    [self.dataSource addObjectsFromArray:[HCHomeInfo mj_objectArrayWithKeyValuesArray:arrayData]];
-    [self.tableView reloadData];
-    [self requestHomeData];
-}
-
-- (NSString *)getSaveLocationDataPath
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory=[paths objectAtIndex:0];
-    return [documentsDirectory stringByAppendingPathComponent:@"homedata.plist"];
-}
-
-- (void)writeLocationData:(NSArray *)array
-{
-    NSString *path = [self getSaveLocationDataPath];
-    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
-    for (NSInteger i = 0; i < array.count; i++)
-    {
-        HCHomeInfo *info = array[i];
-        NSDictionary *dic = [info mj_keyValues];
-        [arrayM addObject:dic];
-    }
-    [arrayM writeToFile:path atomically:YES];
-}
 
 - (void)handleLeftItem
 {
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-
+    
     if (app.leftSlideController.closed)
     {
         [app.leftSlideController openLeftView];
@@ -224,55 +77,50 @@
 - (void)handleRightItem
 {
     // 测试
-//    HCCreateGradeViewController *createGrade = [[HCCreateGradeViewController alloc] init];
-//    createGrade.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:createGrade animated:YES];
-//    return;
-//    HCHomeDetailViewController *detail = [[HCHomeDetailViewController alloc] init];
-//    [self.navigationController pushViewController:detail animated:YES];
-//    return;
-//    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
-//    UIViewController *rootController = self.view.window.rootViewController;
-//    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-//    {
-//        editComment.modalPresentationStyle=
-//        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
-//    }else
-//    {
-//        rootController.modalPresentationStyle=
-//        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
-//    }
-//    [rootController presentViewController:editComment animated:YES completion:nil];
-//    return;
+    //    HCCreateGradeViewController *createGrade = [[HCCreateGradeViewController alloc] init];
+    //    createGrade.hidesBottomBarWhenPushed = YES;
+    //    [self.navigationController pushViewController:createGrade animated:YES];
+    //    return;
+    //    HCHomeDetailViewController *detail = [[HCHomeDetailViewController alloc] init];
+    //    [self.navigationController pushViewController:detail animated:YES];
+    //    return;
+    //    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
+    //    UIViewController *rootController = self.view.window.rootViewController;
+    //    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    //    {
+    //        editComment.modalPresentationStyle=
+    //        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+    //    }else
+    //    {
+    //        rootController.modalPresentationStyle=
+    //        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+    //    }
+    //    [rootController presentViewController:editComment animated:YES completion:nil];
+    //    return;
     
     HCPublishViewController *publish = [[HCPublishViewController alloc] init];
-    publish.data = @{@"data": self.dataSource};
+//    publish.data = @{@"data": self.dataSource};
     publish.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:publish animated:YES];
 }
 
+- (void)handleSegmentControl:(UISegmentedControl *)segment
+{
+    [self.mainScrollView setContentOffset:CGPointMake(segment.selectedSegmentIndex * WIDTH(self.view), -64) animated:YES];
+}
+
 #pragma mark - setter or getter
 
-- (void)setGradeId:(NSString *)gradeId
+- (UISegmentedControl *)segmentControl
 {
-    if (!IsEmpty(gradeId))
+    if (!_segmentControl)
     {
-        _welcomJoinGrade = [[HCWelcomeJoinGradeViewController alloc] init];
-        _welcomJoinGrade.gradeId = [NSString stringWithFormat:@"欢迎加入%@班级", gradeId];
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        UIViewController *rootController = window.rootViewController;
-        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-        {
-          _welcomJoinGrade.modalPresentationStyle=
-          UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
-        }else
-        {
-          rootController.modalPresentationStyle=
-          UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
-        }
-      [_welcomJoinGrade setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-      [rootController presentViewController:_welcomJoinGrade animated:YES completion:nil];
+        _segmentControl = [[UISegmentedControl alloc] initWithItems:@[@"家庭时光", @"家族时光"]];
+        [_segmentControl addTarget:self action:@selector(handleSegmentControl:) forControlEvents:UIControlEventValueChanged];
+        _segmentControl.frame = CGRectMake(0, 20, WIDTH(self.view)*0.4, 25);
+        _segmentControl.selectedSegmentIndex = 0;
     }
+    return _segmentControl;
 }
 
 - (UIBarButtonItem *)leftItem
@@ -293,72 +141,42 @@
     return _rightItem;
 }
 
-#pragma mark - network
-
-- (void)requestHomeData
+- (UIScrollView *)mainScrollView
 {
-    HCHomeApi *api = [[HCHomeApi alloc] init];
-    api.Start = @"0";
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-        [self.tableView.mj_header endRefreshing];
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self.dataSource removeAllObjects];
-            [self.dataSource addObjectsFromArray:array];
-            
-            HCHomeInfo *lastInfo = [array lastObject];
-            api.Start = lastInfo.KeyId;
-            
-            [self writeLocationData:array];
-            [self.tableView reloadData];
-        }else
-        {
-            [self showHUDError:message];
-        }
-    }];
-    _baseRequest = api;
+    if (!_mainScrollView)
+    {
+        _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), HEIGHT(self.view)-44)];
+        _mainScrollView.contentSize = CGSizeMake(WIDTH(self.view)*2, 0);
+        _mainScrollView.backgroundColor = [UIColor greenColor];
+        _mainScrollView.delegate = self;
+        _mainScrollView.pagingEnabled = YES;
+        _mainScrollView.bounces = NO;
+        _mainScrollView.showsHorizontalScrollIndicator = NO;
+        _mainScrollView.showsVerticalScrollIndicator = NO;
+    }
+    return _mainScrollView;
 }
 
-- (void)requestMoreHomeData
+- (HCHomeFamilyViewController *)family
 {
-    HCHomeApi *api = [[HCHomeApi alloc] init];
-    api.Start = _start;
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-        [self.tableView.mj_footer endRefreshing];
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self.dataSource addObjectsFromArray:array];
-            
-            HCHomeInfo *lastInfo = [array lastObject];
-            api.Start = lastInfo.KeyId;
-            
-            [self writeLocationData:array];
-            [self.tableView reloadData];
-        }else
-        {
-            [self showHUDError:message];
-        }
-    }];
+    if (!_family)
+    {
+        _family = [[HCHomeFamilyViewController alloc] init];
+        _family.view.frame = CGRectMake(0, 0, WIDTH(self.view), HEIGHT(self.view)-108);
+        [self addChildViewController:_family];
+    }
+    return _family;
 }
 
-// 请求点赞
-- (void)requestLikeCount:(HCHomeInfo *)info indexPath:(NSIndexPath *)indexPath
+- (HCHomeFamilyGroupViewController *)familyGroup
 {
-    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
-    api.TimesId = info.KeyId;
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            info.FTLikeCount = [NSString stringWithFormat:@"%@", @([info.FTLikeCount integerValue]+1)];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        }else
-        {
-            [self showHUDError:message];
-        }
-    }];
+    if (!_familyGroup)
+    {
+        _familyGroup = [[HCHomeFamilyGroupViewController alloc] init];
+        _familyGroup.view.frame = CGRectMake(WIDTH(self.view), 0, WIDTH(self.view), HEIGHT(self.view)-108);
+        [self addChildViewController:_familyGroup];
+    }
+    return _familyGroup;
 }
-
-
 
 @end

@@ -11,9 +11,10 @@
 #import "UIButton+WebCache.h"
 #import "HCFunctionTagView.h"
 #import "HCHomeInfo.h"
-#import "HCHomeMoreImgView.h"
+//#import "HCHomeMoreImgView.h"
+#import "HCShowMoreImage.h"
 
-@interface HCHomeTableViewCell()<HCHomeMoreImgViewDelegate, HCFunctionTagViewDelegate>
+@interface HCHomeTableViewCell()<HCFunctionTagViewDelegate, HCHomeMoreImgViewDelegate>
 
 @property (nonatomic, strong) UIButton *headButton;
 @property (nonatomic, strong) UILabel *nickName;
@@ -25,7 +26,8 @@
 @property (nonatomic, strong) UILabel *address;
 
 @property (nonatomic, strong) HCFunctionTagView *functionTagView;
-@property (nonatomic, strong) HCHomeMoreImgView *moreImgView;
+//@property (nonatomic, strong) HCHomeMoreImgView *moreImgView;
+@property (nonatomic, strong) HCShowMoreImage *moreImgView;
 
 @end
 
@@ -67,16 +69,25 @@
     // 图片
     if (!IsEmpty(_info.FTImages))
     {
-        CGFloat height = (WIDTH(self)-30) / 3;
-        self.moreImgView.frame = CGRectMake(0, MaxY(self.contents)+10, WIDTH(self), height);
+        CGFloat height = 0;
+        if (_info.FTImages.count < 5)
+        {
+            NSInteger row = ((int)_info.FTImages.count/3) + 1;
+            height = WIDTH(self) * 0.33 * row;
+        }else
+        {
+            NSInteger row = ((int)MIN(_info.FTImages.count, 9)/3.5) + 1;
+            height = WIDTH(self) * 0.33 * row;
+        }
+        self.moreImgView.frame = CGRectMake(0, MaxY(self.contents), WIDTH(self), height);
     }
     // 地址
     if (!IsEmpty(_info.FTImages))
     {
         if (!IsEmpty(_info.CreateAddrSmall))
         {
-            self.addressImgView.frame = CGRectMake(10, MaxY(self.moreImgView)+5, 15, 20);
-            self.address.frame = CGRectMake(MaxX(self.addressImgView)+5, MaxY(self.moreImgView)+5, WIDTH(self)-40, 20);
+            self.addressImgView.frame = CGRectMake(10, MaxY(self.moreImgView)+10, 15, 20);
+            self.address.frame = CGRectMake(MaxX(self.addressImgView)+10, MaxY(self.moreImgView)+10, WIDTH(self)-40, 20);
         }
     }else
     {
@@ -137,6 +148,7 @@
     self.times.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
     // 手机来源
 //    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
+    self.deveceModel.text = @"来至:iphone6s";
     
     // 内容设置行间距
     if (!IsEmpty(info.FTContent))
@@ -152,7 +164,8 @@
     if (!IsEmpty(info.FTImages))
     {
         self.moreImgView.hidden = NO;
-        [self.moreImgView hchomeMoreImgViewWithUrlStringArray:info.FTImages];
+        self.moreImgView.imageUrlArr = info.FTImages;
+//        [self.moreImgView hchomeMoreImgViewWithUrlStringArray:info.FTImages];
     }else
     {
         self.moreImgView.hidden = YES;
@@ -269,17 +282,26 @@
     return _functionTagView;
 }
 
-- (HCHomeMoreImgView *)moreImgView
+//- (HCHomeMoreImgView *)moreImgView
+//{
+//    if (!_moreImgView)
+//    {
+//        CGFloat width = (SCREEN_WIDTH - 40) / 3;
+//        _moreImgView = [[HCHomeMoreImgView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+//        _moreImgView.delegates = self;
+//    }
+//    return _moreImgView;
+//}
+
+- (HCShowMoreImage *)moreImgView
 {
     if (!_moreImgView)
     {
-        CGFloat width = (SCREEN_WIDTH - 40) / 3;
-        _moreImgView = [[HCHomeMoreImgView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
-        _moreImgView.delegates = self;
+        _moreImgView = [[HCShowMoreImage alloc] init];
+        _moreImgView.delegate = self;
     }
     return _moreImgView;
 }
-
 
 
 @end

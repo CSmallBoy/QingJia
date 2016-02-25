@@ -7,7 +7,6 @@
 //
 
 #import "HCHomeMoreImgView.h"
-//#import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 
 @interface HCHomeMoreImgView()
