@@ -71,14 +71,15 @@
     HCViewController *vc = nil;
     if (type == HCLeftGradeViewButtonTypeGradeButton)
     {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(WIDTH(self.view)*0.18, WIDTH(self.view)*0.23);
-        CGFloat paddingY = 10;
-        CGFloat paddingX = 20;
-        layout.sectionInset = UIEdgeInsetsMake(paddingY, paddingX, paddingY, paddingX);
-        layout.minimumInteritemSpacing = paddingY;
+//        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//        layout.itemSize = CGSizeMake(WIDTH(self.view)*0.18, WIDTH(self.view)*0.23);
+//        CGFloat paddingY = 10;
+//        CGFloat paddingX = 20;
+//        layout.sectionInset = UIEdgeInsetsMake(paddingY, paddingX, paddingY, paddingX);
+//        layout.minimumInteritemSpacing = paddingY;
         
-        vc = (HCViewController *)[[HCGradeManagerViewController alloc] initWithCollectionViewLayout:layout];
+//        vc = (HCViewController *)[[HCGradeManagerViewController alloc] initWithCollectionViewLayout:layout];
+        vc = [[HCGradeManagerViewController alloc] init];
     }else if (type == HCLeftGradeViewButtonTypeHead)
     {
         vc  = [[HCUserMessageViewController alloc] init];

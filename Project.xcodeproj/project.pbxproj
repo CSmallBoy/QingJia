@@ -277,6 +277,35 @@
 		0A72D8FB1C3E4675006D1C62 /* LeftSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A72D8F81C3E4675006D1C62 /* LeftSlideViewController.m */; };
 		0A72D8FC1C3E4675006D1C62 /* UIView_extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A72D8FA1C3E4675006D1C62 /* UIView_extra.m */; };
 		0A79B2831BF313DD00788A66 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A79B2821BF313DD00788A66 /* CoreLocation.framework */; };
+		0A8BE3631C7E8C90008E8100 /* HCCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE35A1C7E8C90008E8100 /* HCCheckViewController.m */; };
+		0A8BE3641C7E8C90008E8100 /* HCCodeLookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE35C1C7E8C90008E8100 /* HCCodeLookViewController.m */; };
+		0A8BE3651C7E8C90008E8100 /* HCGradeManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE35E1C7E8C90008E8100 /* HCGradeManagerViewController.m */; };
+		0A8BE3661C7E8C90008E8100 /* KMQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3601C7E8C90008E8100 /* KMQRCode.m */; };
+		0A8BE3671C7E8C90008E8100 /* UIImage+RoundedRectImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3621C7E8C90008E8100 /* UIImage+RoundedRectImage.m */; };
+		0A8BE3751C7E8CA9008E8100 /* HCAboutMTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE36A1C7E8CA9008E8100 /* HCAboutMTalkViewController.m */; };
+		0A8BE3761C7E8CA9008E8100 /* HCAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE36C1C7E8CA9008E8100 /* HCAddFriendViewController.m */; };
+		0A8BE3771C7E8CA9008E8100 /* HCFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE36E1C7E8CA9008E8100 /* HCFeedbackViewController.m */; };
+		0A8BE3781C7E8CA9008E8100 /* HCFriendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3701C7E8CA9008E8100 /* HCFriendMessageViewController.m */; };
+		0A8BE3791C7E8CA9008E8100 /* HCJurisdictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3721C7E8CA9008E8100 /* HCJurisdictionViewController.m */; };
+		0A8BE37A1C7E8CA9008E8100 /* HCSoftwareSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3741C7E8CA9008E8100 /* HCSoftwareSettingViewController.m */; };
+		0A8BE3821C7E8CC0008E8100 /* HCUserCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE37D1C7E8CC0008E8100 /* HCUserCodeViewController.m */; };
+		0A8BE3831C7E8CC0008E8100 /* HCUserHeadImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE37F1C7E8CC0008E8100 /* HCUserHeadImageViewController.m */; };
+		0A8BE3841C7E8CC0008E8100 /* HCUserMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3811C7E8CC0008E8100 /* HCUserMessageViewController.m */; };
+		0A8BE3961C7E8D6A008E8100 /* HCCheckInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE38F1C7E8D6A008E8100 /* HCCheckInfo.m */; };
+		0A8BE3971C7E8D6A008E8100 /* HCFriendMessageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3921C7E8D6A008E8100 /* HCFriendMessageInfo.m */; };
+		0A8BE3981C7E8D6A008E8100 /* HCUserMessageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3951C7E8D6A008E8100 /* HCUserMessageInfo.m */; };
+		0A8BE3B51C7E8D7C008E8100 /* ButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE39B1C7E8D7C008E8100 /* ButtonView.m */; };
+		0A8BE3B61C7E8D7C008E8100 /* HCCheckTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE39E1C7E8D7C008E8100 /* HCCheckTableViewCell.m */; };
+		0A8BE3B71C7E8D7C008E8100 /* HCGradeManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3A01C7E8D7C008E8100 /* HCGradeManagerTableViewCell.m */; };
+		0A8BE3B81C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3A21C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.m */; };
+		0A8BE3B91C7E8D7C008E8100 /* HCFeedbackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3A41C7E8D7C008E8100 /* HCFeedbackView.m */; };
+		0A8BE3BA1C7E8D7C008E8100 /* HCinviteFamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3A61C7E8D7C008E8100 /* HCinviteFamilyTableViewCell.m */; };
+		0A8BE3BB1C7E8D7C008E8100 /* HCLeftGradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3A81C7E8D7C008E8100 /* HCLeftGradeView.m */; };
+		0A8BE3BC1C7E8D7C008E8100 /* HCLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3AA1C7E8D7C008E8100 /* HCLeftView.m */; };
+		0A8BE3BD1C7E8D7C008E8100 /* HCLikeFamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3AC1C7E8D7C008E8100 /* HCLikeFamilyTableViewCell.m */; };
+		0A8BE3BE1C7E8D7C008E8100 /* HCMergingFamilyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3AE1C7E8D7C008E8100 /* HCMergingFamilyView.m */; };
+		0A8BE3BF1C7E8D7C008E8100 /* HCFriendMessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3B11C7E8D7C008E8100 /* HCFriendMessageCollectionViewCell.m */; };
+		0A8BE3C01C7E8D7C008E8100 /* HCUserMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE3B41C7E8D7C008E8100 /* HCUserMessageTableViewCell.m */; };
 		0AA064A21C34E0730043AA58 /* FixFopen.c in Sources */ = {isa = PBXBuildFile; fileRef = 0AA064A11C34E0730043AA58 /* FixFopen.c */; };
 		0AA0EB981C1536F3007F7EAB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB971C1536F3007F7EAB /* AddressBook.framework */; };
 		0AA0EB9A1C1536FB007F7EAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */; };
@@ -332,7 +361,6 @@
 		C72F1F951C7719EE00A6E794 /* HCAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */; };
 		C72F1F981C771F8100A6E794 /* SCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F971C771F8100A6E794 /* SCSwipeTableViewCell.m */; };
 		C758EE3E1C743E7A0081FFE1 /* FamilyManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */; };
-		C758EE3F1C743E7A0081FFE1 /* HCGradeManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDEB1C743E7A0081FFE1 /* HCGradeManagerViewController.m */; };
 		C758EE401C743E7A0081FFE1 /* HCaddRelativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDED1C743E7A0081FFE1 /* HCaddRelativeViewController.m */; };
 		C758EE411C743E7A0081FFE1 /* HCCombineFamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDEF1C743E7A0081FFE1 /* HCCombineFamilyViewController.m */; };
 		C758EE421C743E7A0081FFE1 /* HCEditingMyselfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDF11C743E7A0081FFE1 /* HCEditingMyselfViewController.m */; };
@@ -344,35 +372,13 @@
 		C758EE481C743E7A0081FFE1 /* HCsaveEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDFD1C743E7A0081FFE1 /* HCsaveEditingViewController.m */; };
 		C758EE491C743E7A0081FFE1 /* HCWealFamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDFF1C743E7A0081FFE1 /* HCWealFamilyViewController.m */; };
 		C758EE4B1C743E7A0081FFE1 /* MyFamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE031C743E7A0081FFE1 /* MyFamilyViewController.m */; };
-		C758EE4C1C743E7A0081FFE1 /* HCAboutMTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE061C743E7A0081FFE1 /* HCAboutMTalkViewController.m */; };
-		C758EE4D1C743E7A0081FFE1 /* HCAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE081C743E7A0081FFE1 /* HCAddFriendViewController.m */; };
-		C758EE4E1C743E7A0081FFE1 /* HCFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE0A1C743E7A0081FFE1 /* HCFeedbackViewController.m */; };
-		C758EE4F1C743E7A0081FFE1 /* HCFriendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE0C1C743E7A0081FFE1 /* HCFriendMessageViewController.m */; };
-		C758EE501C743E7A0081FFE1 /* HCJurisdictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE0E1C743E7A0081FFE1 /* HCJurisdictionViewController.m */; };
-		C758EE511C743E7A0081FFE1 /* HCSoftwareSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE101C743E7A0081FFE1 /* HCSoftwareSettingViewController.m */; };
-		C758EE521C743E7A0081FFE1 /* HCUserCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE131C743E7A0081FFE1 /* HCUserCodeViewController.m */; };
-		C758EE531C743E7A0081FFE1 /* HCUserMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE151C743E7A0081FFE1 /* HCUserMessageViewController.m */; };
 		C758EE541C743E7A0081FFE1 /* head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C758EE161C743E7A0081FFE1 /* head.jpg */; };
 		C758EE551C743E7A0081FFE1 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C758EE171C743E7A0081FFE1 /* image.jpg */; };
 		C758EE561C743E7A0081FFE1 /* image_hea.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C758EE181C743E7A0081FFE1 /* image_hea.jpg */; };
 		C758EE571C743E7A0081FFE1 /* jia.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C758EE191C743E7A0081FFE1 /* jia.jpg */; };
-		C758EE581C743E7A0081FFE1 /* HCFriendMessageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE1D1C743E7A0081FFE1 /* HCFriendMessageInfo.m */; };
-		C758EE591C743E7A0081FFE1 /* HCUserMessageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE201C743E7A0081FFE1 /* HCUserMessageInfo.m */; };
 		C758EE5A1C743E7A0081FFE1 /* red_tel.png in Resources */ = {isa = PBXBuildFile; fileRef = C758EE211C743E7A0081FFE1 /* red_tel.png */; };
 		C758EE5B1C743E7A0081FFE1 /* select_no.png in Resources */ = {isa = PBXBuildFile; fileRef = C758EE221C743E7A0081FFE1 /* select_no.png */; };
 		C758EE5C1C743E7A0081FFE1 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C758EE231C743E7A0081FFE1 /* selected.png */; };
-		C758EE5D1C743E7A0081FFE1 /* ButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE261C743E7A0081FFE1 /* ButtonView.m */; };
-		C758EE5E1C743E7A0081FFE1 /* HCGradeManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE291C743E7A0081FFE1 /* HCGradeManagerTableViewCell.m */; };
-		C758EE5F1C743E7A0081FFE1 /* HCRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE2B1C743E7A0081FFE1 /* HCRefreshHeader.m */; };
-		C758EE601C743E7A0081FFE1 /* HCCombineFamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE2D1C743E7A0081FFE1 /* HCCombineFamilyTableViewCell.m */; };
-		C758EE611C743E7A0081FFE1 /* HCFeedbackView.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE2F1C743E7A0081FFE1 /* HCFeedbackView.m */; };
-		C758EE621C743E7A0081FFE1 /* HCinviteFamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE311C743E7A0081FFE1 /* HCinviteFamilyTableViewCell.m */; };
-		C758EE631C743E7A0081FFE1 /* HCLeftGradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE331C743E7A0081FFE1 /* HCLeftGradeView.m */; };
-		C758EE641C743E7A0081FFE1 /* HCLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE351C743E7A0081FFE1 /* HCLeftView.m */; };
-		C758EE651C743E7A0081FFE1 /* HCLikeFamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE371C743E7A0081FFE1 /* HCLikeFamilyTableViewCell.m */; };
-		C758EE661C743E7A0081FFE1 /* HCFriendMessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE3A1C743E7A0081FFE1 /* HCFriendMessageCollectionViewCell.m */; };
-		C758EE671C743E7A0081FFE1 /* HCUserMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EE3D1C743E7A0081FFE1 /* HCUserMessageTableViewCell.m */; };
-		C75D173A1C76B82300F5DA5C /* HCMergingFamilyView.m in Sources */ = {isa = PBXBuildFile; fileRef = C75D17391C76B82300F5DA5C /* HCMergingFamilyView.m */; };
 		C7692F561C3A4B2200582A10 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F511C3A4B2200582A10 /* MDCFocalPointView.m */; };
 		C7692F571C3A4B2200582A10 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F531C3A4B2200582A10 /* MDCFocusView.m */; };
 		C7692F581C3A4B2200582A10 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F551C3A4B2200582A10 /* MDCSpotlightView.m */; };
@@ -1543,6 +1549,64 @@
 		0A72D8F91C3E4675006D1C62 /* UIView_extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_extra.h; sourceTree = "<group>"; };
 		0A72D8FA1C3E4675006D1C62 /* UIView_extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_extra.m; sourceTree = "<group>"; };
 		0A79B2821BF313DD00788A66 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0A8BE3591C7E8C90008E8100 /* HCCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCheckViewController.h; sourceTree = "<group>"; };
+		0A8BE35A1C7E8C90008E8100 /* HCCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCheckViewController.m; sourceTree = "<group>"; };
+		0A8BE35B1C7E8C90008E8100 /* HCCodeLookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCodeLookViewController.h; sourceTree = "<group>"; };
+		0A8BE35C1C7E8C90008E8100 /* HCCodeLookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCodeLookViewController.m; sourceTree = "<group>"; };
+		0A8BE35D1C7E8C90008E8100 /* HCGradeManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGradeManagerViewController.h; sourceTree = "<group>"; };
+		0A8BE35E1C7E8C90008E8100 /* HCGradeManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGradeManagerViewController.m; sourceTree = "<group>"; };
+		0A8BE35F1C7E8C90008E8100 /* KMQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMQRCode.h; sourceTree = "<group>"; };
+		0A8BE3601C7E8C90008E8100 /* KMQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMQRCode.m; sourceTree = "<group>"; };
+		0A8BE3611C7E8C90008E8100 /* UIImage+RoundedRectImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedRectImage.h"; sourceTree = "<group>"; };
+		0A8BE3621C7E8C90008E8100 /* UIImage+RoundedRectImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedRectImage.m"; sourceTree = "<group>"; };
+		0A8BE3691C7E8CA9008E8100 /* HCAboutMTalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAboutMTalkViewController.h; sourceTree = "<group>"; };
+		0A8BE36A1C7E8CA9008E8100 /* HCAboutMTalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAboutMTalkViewController.m; sourceTree = "<group>"; };
+		0A8BE36B1C7E8CA9008E8100 /* HCAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddFriendViewController.h; sourceTree = "<group>"; };
+		0A8BE36C1C7E8CA9008E8100 /* HCAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddFriendViewController.m; sourceTree = "<group>"; };
+		0A8BE36D1C7E8CA9008E8100 /* HCFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFeedbackViewController.h; sourceTree = "<group>"; };
+		0A8BE36E1C7E8CA9008E8100 /* HCFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFeedbackViewController.m; sourceTree = "<group>"; };
+		0A8BE36F1C7E8CA9008E8100 /* HCFriendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageViewController.h; sourceTree = "<group>"; };
+		0A8BE3701C7E8CA9008E8100 /* HCFriendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFriendMessageViewController.m; sourceTree = "<group>"; };
+		0A8BE3711C7E8CA9008E8100 /* HCJurisdictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCJurisdictionViewController.h; sourceTree = "<group>"; };
+		0A8BE3721C7E8CA9008E8100 /* HCJurisdictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCJurisdictionViewController.m; sourceTree = "<group>"; };
+		0A8BE3731C7E8CA9008E8100 /* HCSoftwareSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSoftwareSettingViewController.h; sourceTree = "<group>"; };
+		0A8BE3741C7E8CA9008E8100 /* HCSoftwareSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSoftwareSettingViewController.m; sourceTree = "<group>"; };
+		0A8BE37C1C7E8CC0008E8100 /* HCUserCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserCodeViewController.h; sourceTree = "<group>"; };
+		0A8BE37D1C7E8CC0008E8100 /* HCUserCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserCodeViewController.m; sourceTree = "<group>"; };
+		0A8BE37E1C7E8CC0008E8100 /* HCUserHeadImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserHeadImageViewController.h; sourceTree = "<group>"; };
+		0A8BE37F1C7E8CC0008E8100 /* HCUserHeadImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserHeadImageViewController.m; sourceTree = "<group>"; };
+		0A8BE3801C7E8CC0008E8100 /* HCUserMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserMessageViewController.h; sourceTree = "<group>"; };
+		0A8BE3811C7E8CC0008E8100 /* HCUserMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserMessageViewController.m; sourceTree = "<group>"; };
+		0A8BE38E1C7E8D6A008E8100 /* HCCheckInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCheckInfo.h; sourceTree = "<group>"; };
+		0A8BE38F1C7E8D6A008E8100 /* HCCheckInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCheckInfo.m; sourceTree = "<group>"; };
+		0A8BE3911C7E8D6A008E8100 /* HCFriendMessageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageInfo.h; sourceTree = "<group>"; };
+		0A8BE3921C7E8D6A008E8100 /* HCFriendMessageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFriendMessageInfo.m; sourceTree = "<group>"; };
+		0A8BE3941C7E8D6A008E8100 /* HCUserMessageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserMessageInfo.h; sourceTree = "<group>"; };
+		0A8BE3951C7E8D6A008E8100 /* HCUserMessageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserMessageInfo.m; sourceTree = "<group>"; };
+		0A8BE39A1C7E8D7C008E8100 /* ButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonView.h; sourceTree = "<group>"; };
+		0A8BE39B1C7E8D7C008E8100 /* ButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonView.m; sourceTree = "<group>"; };
+		0A8BE39D1C7E8D7C008E8100 /* HCCheckTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCheckTableViewCell.h; sourceTree = "<group>"; };
+		0A8BE39E1C7E8D7C008E8100 /* HCCheckTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCheckTableViewCell.m; sourceTree = "<group>"; };
+		0A8BE39F1C7E8D7C008E8100 /* HCGradeManagerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGradeManagerTableViewCell.h; sourceTree = "<group>"; };
+		0A8BE3A01C7E8D7C008E8100 /* HCGradeManagerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGradeManagerTableViewCell.m; sourceTree = "<group>"; };
+		0A8BE3A11C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCombineFamilyTableViewCell.h; sourceTree = "<group>"; };
+		0A8BE3A21C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCombineFamilyTableViewCell.m; sourceTree = "<group>"; };
+		0A8BE3A31C7E8D7C008E8100 /* HCFeedbackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFeedbackView.h; sourceTree = "<group>"; };
+		0A8BE3A41C7E8D7C008E8100 /* HCFeedbackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFeedbackView.m; sourceTree = "<group>"; };
+		0A8BE3A51C7E8D7C008E8100 /* HCinviteFamilyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCinviteFamilyTableViewCell.h; sourceTree = "<group>"; };
+		0A8BE3A61C7E8D7C008E8100 /* HCinviteFamilyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCinviteFamilyTableViewCell.m; sourceTree = "<group>"; };
+		0A8BE3A71C7E8D7C008E8100 /* HCLeftGradeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLeftGradeView.h; sourceTree = "<group>"; };
+		0A8BE3A81C7E8D7C008E8100 /* HCLeftGradeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLeftGradeView.m; sourceTree = "<group>"; };
+		0A8BE3A91C7E8D7C008E8100 /* HCLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLeftView.h; sourceTree = "<group>"; };
+		0A8BE3AA1C7E8D7C008E8100 /* HCLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLeftView.m; sourceTree = "<group>"; };
+		0A8BE3AB1C7E8D7C008E8100 /* HCLikeFamilyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLikeFamilyTableViewCell.h; sourceTree = "<group>"; };
+		0A8BE3AC1C7E8D7C008E8100 /* HCLikeFamilyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLikeFamilyTableViewCell.m; sourceTree = "<group>"; };
+		0A8BE3AD1C7E8D7C008E8100 /* HCMergingFamilyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMergingFamilyView.h; sourceTree = "<group>"; };
+		0A8BE3AE1C7E8D7C008E8100 /* HCMergingFamilyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMergingFamilyView.m; sourceTree = "<group>"; };
+		0A8BE3B01C7E8D7C008E8100 /* HCFriendMessageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageCollectionViewCell.h; sourceTree = "<group>"; };
+		0A8BE3B11C7E8D7C008E8100 /* HCFriendMessageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFriendMessageCollectionViewCell.m; sourceTree = "<group>"; };
+		0A8BE3B31C7E8D7C008E8100 /* HCUserMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserMessageTableViewCell.h; sourceTree = "<group>"; };
+		0A8BE3B41C7E8D7C008E8100 /* HCUserMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserMessageTableViewCell.m; sourceTree = "<group>"; };
 		0AA064A11C34E0730043AA58 /* FixFopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FixFopen.c; sourceTree = "<group>"; };
 		0AA0EB971C1536F3007F7EAB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -1645,8 +1709,6 @@
 		C72F1F971C771F8100A6E794 /* SCSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSwipeTableViewCell.m; sourceTree = "<group>"; };
 		C758EDE71C743E7A0081FFE1 /* FamilyManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyManageViewController.h; sourceTree = "<group>"; };
 		C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyManageViewController.m; sourceTree = "<group>"; };
-		C758EDEA1C743E7A0081FFE1 /* HCGradeManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGradeManagerViewController.h; sourceTree = "<group>"; };
-		C758EDEB1C743E7A0081FFE1 /* HCGradeManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGradeManagerViewController.m; sourceTree = "<group>"; };
 		C758EDEC1C743E7A0081FFE1 /* HCaddRelativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCaddRelativeViewController.h; sourceTree = "<group>"; };
 		C758EDED1C743E7A0081FFE1 /* HCaddRelativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCaddRelativeViewController.m; sourceTree = "<group>"; };
 		C758EDEE1C743E7A0081FFE1 /* HCCombineFamilyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCombineFamilyViewController.h; sourceTree = "<group>"; };
@@ -1669,57 +1731,13 @@
 		C758EDFF1C743E7A0081FFE1 /* HCWealFamilyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCWealFamilyViewController.m; sourceTree = "<group>"; };
 		C758EE021C743E7A0081FFE1 /* MyFamilyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFamilyViewController.h; sourceTree = "<group>"; };
 		C758EE031C743E7A0081FFE1 /* MyFamilyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFamilyViewController.m; sourceTree = "<group>"; };
-		C758EE051C743E7A0081FFE1 /* HCAboutMTalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAboutMTalkViewController.h; sourceTree = "<group>"; };
-		C758EE061C743E7A0081FFE1 /* HCAboutMTalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAboutMTalkViewController.m; sourceTree = "<group>"; };
-		C758EE071C743E7A0081FFE1 /* HCAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddFriendViewController.h; sourceTree = "<group>"; };
-		C758EE081C743E7A0081FFE1 /* HCAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddFriendViewController.m; sourceTree = "<group>"; };
-		C758EE091C743E7A0081FFE1 /* HCFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFeedbackViewController.h; sourceTree = "<group>"; };
-		C758EE0A1C743E7A0081FFE1 /* HCFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFeedbackViewController.m; sourceTree = "<group>"; };
-		C758EE0B1C743E7A0081FFE1 /* HCFriendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageViewController.h; sourceTree = "<group>"; };
-		C758EE0C1C743E7A0081FFE1 /* HCFriendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFriendMessageViewController.m; sourceTree = "<group>"; };
-		C758EE0D1C743E7A0081FFE1 /* HCJurisdictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCJurisdictionViewController.h; sourceTree = "<group>"; };
-		C758EE0E1C743E7A0081FFE1 /* HCJurisdictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCJurisdictionViewController.m; sourceTree = "<group>"; };
-		C758EE0F1C743E7A0081FFE1 /* HCSoftwareSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSoftwareSettingViewController.h; sourceTree = "<group>"; };
-		C758EE101C743E7A0081FFE1 /* HCSoftwareSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSoftwareSettingViewController.m; sourceTree = "<group>"; };
-		C758EE121C743E7A0081FFE1 /* HCUserCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserCodeViewController.h; sourceTree = "<group>"; };
-		C758EE131C743E7A0081FFE1 /* HCUserCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserCodeViewController.m; sourceTree = "<group>"; };
-		C758EE141C743E7A0081FFE1 /* HCUserMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserMessageViewController.h; sourceTree = "<group>"; };
-		C758EE151C743E7A0081FFE1 /* HCUserMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserMessageViewController.m; sourceTree = "<group>"; };
 		C758EE161C743E7A0081FFE1 /* head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = head.jpg; path = ../head.jpg; sourceTree = "<group>"; };
 		C758EE171C743E7A0081FFE1 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image.jpg; path = ../image.jpg; sourceTree = "<group>"; };
 		C758EE181C743E7A0081FFE1 /* image_hea.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image_hea.jpg; path = ../image_hea.jpg; sourceTree = "<group>"; };
 		C758EE191C743E7A0081FFE1 /* jia.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = jia.jpg; path = ../jia.jpg; sourceTree = "<group>"; };
-		C758EE1C1C743E7A0081FFE1 /* HCFriendMessageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageInfo.h; sourceTree = "<group>"; };
-		C758EE1D1C743E7A0081FFE1 /* HCFriendMessageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFriendMessageInfo.m; sourceTree = "<group>"; };
-		C758EE1F1C743E7A0081FFE1 /* HCUserMessageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserMessageInfo.h; sourceTree = "<group>"; };
-		C758EE201C743E7A0081FFE1 /* HCUserMessageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserMessageInfo.m; sourceTree = "<group>"; };
 		C758EE211C743E7A0081FFE1 /* red_tel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_tel.png; path = ../red_tel.png; sourceTree = "<group>"; };
 		C758EE221C743E7A0081FFE1 /* select_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = select_no.png; path = ../select_no.png; sourceTree = "<group>"; };
 		C758EE231C743E7A0081FFE1 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = ../selected.png; sourceTree = "<group>"; };
-		C758EE251C743E7A0081FFE1 /* ButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonView.h; sourceTree = "<group>"; };
-		C758EE261C743E7A0081FFE1 /* ButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonView.m; sourceTree = "<group>"; };
-		C758EE281C743E7A0081FFE1 /* HCGradeManagerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGradeManagerTableViewCell.h; sourceTree = "<group>"; };
-		C758EE291C743E7A0081FFE1 /* HCGradeManagerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGradeManagerTableViewCell.m; sourceTree = "<group>"; };
-		C758EE2A1C743E7A0081FFE1 /* HCRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCRefreshHeader.h; sourceTree = "<group>"; };
-		C758EE2B1C743E7A0081FFE1 /* HCRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCRefreshHeader.m; sourceTree = "<group>"; };
-		C758EE2C1C743E7A0081FFE1 /* HCCombineFamilyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCombineFamilyTableViewCell.h; sourceTree = "<group>"; };
-		C758EE2D1C743E7A0081FFE1 /* HCCombineFamilyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCombineFamilyTableViewCell.m; sourceTree = "<group>"; };
-		C758EE2E1C743E7A0081FFE1 /* HCFeedbackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFeedbackView.h; sourceTree = "<group>"; };
-		C758EE2F1C743E7A0081FFE1 /* HCFeedbackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFeedbackView.m; sourceTree = "<group>"; };
-		C758EE301C743E7A0081FFE1 /* HCinviteFamilyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCinviteFamilyTableViewCell.h; sourceTree = "<group>"; };
-		C758EE311C743E7A0081FFE1 /* HCinviteFamilyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCinviteFamilyTableViewCell.m; sourceTree = "<group>"; };
-		C758EE321C743E7A0081FFE1 /* HCLeftGradeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLeftGradeView.h; sourceTree = "<group>"; };
-		C758EE331C743E7A0081FFE1 /* HCLeftGradeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLeftGradeView.m; sourceTree = "<group>"; };
-		C758EE341C743E7A0081FFE1 /* HCLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLeftView.h; sourceTree = "<group>"; };
-		C758EE351C743E7A0081FFE1 /* HCLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLeftView.m; sourceTree = "<group>"; };
-		C758EE361C743E7A0081FFE1 /* HCLikeFamilyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLikeFamilyTableViewCell.h; sourceTree = "<group>"; };
-		C758EE371C743E7A0081FFE1 /* HCLikeFamilyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLikeFamilyTableViewCell.m; sourceTree = "<group>"; };
-		C758EE391C743E7A0081FFE1 /* HCFriendMessageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFriendMessageCollectionViewCell.h; sourceTree = "<group>"; };
-		C758EE3A1C743E7A0081FFE1 /* HCFriendMessageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFriendMessageCollectionViewCell.m; sourceTree = "<group>"; };
-		C758EE3C1C743E7A0081FFE1 /* HCUserMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserMessageTableViewCell.h; sourceTree = "<group>"; };
-		C758EE3D1C743E7A0081FFE1 /* HCUserMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserMessageTableViewCell.m; sourceTree = "<group>"; };
-		C75D17381C76B82300F5DA5C /* HCMergingFamilyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMergingFamilyView.h; sourceTree = "<group>"; };
-		C75D17391C76B82300F5DA5C /* HCMergingFamilyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMergingFamilyView.m; sourceTree = "<group>"; };
 		C7692F501C3A4B2200582A10 /* MDCFocalPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocalPointView.h; sourceTree = "<group>"; };
 		C7692F511C3A4B2200582A10 /* MDCFocalPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCFocalPointView.m; sourceTree = "<group>"; };
 		C7692F521C3A4B2200582A10 /* MDCFocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocusView.h; sourceTree = "<group>"; };
@@ -3801,6 +3819,147 @@
 			path = LeftSlideViewController;
 			sourceTree = "<group>";
 		};
+		0A8BE3581C7E8C90008E8100 /* GradeManager */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE3591C7E8C90008E8100 /* HCCheckViewController.h */,
+				0A8BE35A1C7E8C90008E8100 /* HCCheckViewController.m */,
+				0A8BE35B1C7E8C90008E8100 /* HCCodeLookViewController.h */,
+				0A8BE35C1C7E8C90008E8100 /* HCCodeLookViewController.m */,
+				0A8BE35D1C7E8C90008E8100 /* HCGradeManagerViewController.h */,
+				0A8BE35E1C7E8C90008E8100 /* HCGradeManagerViewController.m */,
+				0A8BE35F1C7E8C90008E8100 /* KMQRCode.h */,
+				0A8BE3601C7E8C90008E8100 /* KMQRCode.m */,
+				0A8BE3611C7E8C90008E8100 /* UIImage+RoundedRectImage.h */,
+				0A8BE3621C7E8C90008E8100 /* UIImage+RoundedRectImage.m */,
+			);
+			path = GradeManager;
+			sourceTree = "<group>";
+		};
+		0A8BE3681C7E8CA9008E8100 /* SoftwareSet */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE3691C7E8CA9008E8100 /* HCAboutMTalkViewController.h */,
+				0A8BE36A1C7E8CA9008E8100 /* HCAboutMTalkViewController.m */,
+				0A8BE36B1C7E8CA9008E8100 /* HCAddFriendViewController.h */,
+				0A8BE36C1C7E8CA9008E8100 /* HCAddFriendViewController.m */,
+				0A8BE36D1C7E8CA9008E8100 /* HCFeedbackViewController.h */,
+				0A8BE36E1C7E8CA9008E8100 /* HCFeedbackViewController.m */,
+				0A8BE36F1C7E8CA9008E8100 /* HCFriendMessageViewController.h */,
+				0A8BE3701C7E8CA9008E8100 /* HCFriendMessageViewController.m */,
+				0A8BE3711C7E8CA9008E8100 /* HCJurisdictionViewController.h */,
+				0A8BE3721C7E8CA9008E8100 /* HCJurisdictionViewController.m */,
+				0A8BE3731C7E8CA9008E8100 /* HCSoftwareSettingViewController.h */,
+				0A8BE3741C7E8CA9008E8100 /* HCSoftwareSettingViewController.m */,
+			);
+			path = SoftwareSet;
+			sourceTree = "<group>";
+		};
+		0A8BE37B1C7E8CC0008E8100 /* UersMessage */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE37C1C7E8CC0008E8100 /* HCUserCodeViewController.h */,
+				0A8BE37D1C7E8CC0008E8100 /* HCUserCodeViewController.m */,
+				0A8BE37E1C7E8CC0008E8100 /* HCUserHeadImageViewController.h */,
+				0A8BE37F1C7E8CC0008E8100 /* HCUserHeadImageViewController.m */,
+				0A8BE3801C7E8CC0008E8100 /* HCUserMessageViewController.h */,
+				0A8BE3811C7E8CC0008E8100 /* HCUserMessageViewController.m */,
+			);
+			path = UersMessage;
+			sourceTree = "<group>";
+		};
+		0A8BE38C1C7E8D6A008E8100 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE38D1C7E8D6A008E8100 /* GradeManager */,
+				0A8BE3901C7E8D6A008E8100 /* SoftwareSet */,
+				0A8BE3931C7E8D6A008E8100 /* UserMessage */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A8BE38D1C7E8D6A008E8100 /* GradeManager */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE38E1C7E8D6A008E8100 /* HCCheckInfo.h */,
+				0A8BE38F1C7E8D6A008E8100 /* HCCheckInfo.m */,
+			);
+			path = GradeManager;
+			sourceTree = "<group>";
+		};
+		0A8BE3901C7E8D6A008E8100 /* SoftwareSet */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE3911C7E8D6A008E8100 /* HCFriendMessageInfo.h */,
+				0A8BE3921C7E8D6A008E8100 /* HCFriendMessageInfo.m */,
+			);
+			path = SoftwareSet;
+			sourceTree = "<group>";
+		};
+		0A8BE3931C7E8D6A008E8100 /* UserMessage */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE3941C7E8D6A008E8100 /* HCUserMessageInfo.h */,
+				0A8BE3951C7E8D6A008E8100 /* HCUserMessageInfo.m */,
+			);
+			path = UserMessage;
+			sourceTree = "<group>";
+		};
+		0A8BE3991C7E8D7C008E8100 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE39A1C7E8D7C008E8100 /* ButtonView.h */,
+				0A8BE39B1C7E8D7C008E8100 /* ButtonView.m */,
+				0A8BE39C1C7E8D7C008E8100 /* GradeManager */,
+				0A8BE3A11C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.h */,
+				0A8BE3A21C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.m */,
+				0A8BE3A31C7E8D7C008E8100 /* HCFeedbackView.h */,
+				0A8BE3A41C7E8D7C008E8100 /* HCFeedbackView.m */,
+				0A8BE3A51C7E8D7C008E8100 /* HCinviteFamilyTableViewCell.h */,
+				0A8BE3A61C7E8D7C008E8100 /* HCinviteFamilyTableViewCell.m */,
+				0A8BE3A71C7E8D7C008E8100 /* HCLeftGradeView.h */,
+				0A8BE3A81C7E8D7C008E8100 /* HCLeftGradeView.m */,
+				0A8BE3A91C7E8D7C008E8100 /* HCLeftView.h */,
+				0A8BE3AA1C7E8D7C008E8100 /* HCLeftView.m */,
+				0A8BE3AB1C7E8D7C008E8100 /* HCLikeFamilyTableViewCell.h */,
+				0A8BE3AC1C7E8D7C008E8100 /* HCLikeFamilyTableViewCell.m */,
+				0A8BE3AD1C7E8D7C008E8100 /* HCMergingFamilyView.h */,
+				0A8BE3AE1C7E8D7C008E8100 /* HCMergingFamilyView.m */,
+				0A8BE3AF1C7E8D7C008E8100 /* SoftwareSet */,
+				0A8BE3B21C7E8D7C008E8100 /* UserMessage */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A8BE39C1C7E8D7C008E8100 /* GradeManager */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE39D1C7E8D7C008E8100 /* HCCheckTableViewCell.h */,
+				0A8BE39E1C7E8D7C008E8100 /* HCCheckTableViewCell.m */,
+				0A8BE39F1C7E8D7C008E8100 /* HCGradeManagerTableViewCell.h */,
+				0A8BE3A01C7E8D7C008E8100 /* HCGradeManagerTableViewCell.m */,
+			);
+			path = GradeManager;
+			sourceTree = "<group>";
+		};
+		0A8BE3AF1C7E8D7C008E8100 /* SoftwareSet */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE3B01C7E8D7C008E8100 /* HCFriendMessageCollectionViewCell.h */,
+				0A8BE3B11C7E8D7C008E8100 /* HCFriendMessageCollectionViewCell.m */,
+			);
+			path = SoftwareSet;
+			sourceTree = "<group>";
+		};
+		0A8BE3B21C7E8D7C008E8100 /* UserMessage */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE3B31C7E8D7C008E8100 /* HCUserMessageTableViewCell.h */,
+				0A8BE3B41C7E8D7C008E8100 /* HCUserMessageTableViewCell.m */,
+			);
+			path = UserMessage;
+			sourceTree = "<group>";
+		};
 		0AC89D691C28F32A003EED90 /* OTCover */ = {
 			isa = PBXGroup;
 			children = (
@@ -3976,9 +4135,9 @@
 		C758EDE51C743E790081FFE1 /* Left */ = {
 			isa = PBXGroup;
 			children = (
+				0A8BE3991C7E8D7C008E8100 /* View */,
+				0A8BE38C1C7E8D6A008E8100 /* Model */,
 				C758EDE61C743E7A0081FFE1 /* Controller */,
-				C758EE1A1C743E7A0081FFE1 /* Model */,
-				C758EE241C743E7A0081FFE1 /* View */,
 			);
 			path = Left;
 			sourceTree = "<group>";
@@ -3986,6 +4145,9 @@
 		C758EDE61C743E7A0081FFE1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0A8BE37B1C7E8CC0008E8100 /* UersMessage */,
+				0A8BE3681C7E8CA9008E8100 /* SoftwareSet */,
+				0A8BE3581C7E8C90008E8100 /* GradeManager */,
 				C775E28B1C755181004C1C7C /* FamilyManage */,
 				C758EE681C74422C0081FFE1 /* image */,
 				C758EDE71C743E7A0081FFE1 /* FamilyManageViewController.h */,
@@ -4014,132 +4176,8 @@
 				C758EDF91C743E7A0081FFE1 /* HCMergingFamilyViewController.m */,
 				C758EE021C743E7A0081FFE1 /* MyFamilyViewController.h */,
 				C758EE031C743E7A0081FFE1 /* MyFamilyViewController.m */,
-				C758EDE91C743E7A0081FFE1 /* GradeManager */,
-				C758EE041C743E7A0081FFE1 /* SoftwareSet */,
-				C758EE111C743E7A0081FFE1 /* UersMessage */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		C758EDE91C743E7A0081FFE1 /* GradeManager */ = {
-			isa = PBXGroup;
-			children = (
-				C758EDEA1C743E7A0081FFE1 /* HCGradeManagerViewController.h */,
-				C758EDEB1C743E7A0081FFE1 /* HCGradeManagerViewController.m */,
-			);
-			path = GradeManager;
-			sourceTree = "<group>";
-		};
-		C758EE041C743E7A0081FFE1 /* SoftwareSet */ = {
-			isa = PBXGroup;
-			children = (
-				C758EE051C743E7A0081FFE1 /* HCAboutMTalkViewController.h */,
-				C758EE061C743E7A0081FFE1 /* HCAboutMTalkViewController.m */,
-				C758EE071C743E7A0081FFE1 /* HCAddFriendViewController.h */,
-				C758EE081C743E7A0081FFE1 /* HCAddFriendViewController.m */,
-				C758EE091C743E7A0081FFE1 /* HCFeedbackViewController.h */,
-				C758EE0A1C743E7A0081FFE1 /* HCFeedbackViewController.m */,
-				C758EE0B1C743E7A0081FFE1 /* HCFriendMessageViewController.h */,
-				C758EE0C1C743E7A0081FFE1 /* HCFriendMessageViewController.m */,
-				C758EE0D1C743E7A0081FFE1 /* HCJurisdictionViewController.h */,
-				C758EE0E1C743E7A0081FFE1 /* HCJurisdictionViewController.m */,
-				C758EE0F1C743E7A0081FFE1 /* HCSoftwareSettingViewController.h */,
-				C758EE101C743E7A0081FFE1 /* HCSoftwareSettingViewController.m */,
-			);
-			path = SoftwareSet;
-			sourceTree = "<group>";
-		};
-		C758EE111C743E7A0081FFE1 /* UersMessage */ = {
-			isa = PBXGroup;
-			children = (
-				C758EE121C743E7A0081FFE1 /* HCUserCodeViewController.h */,
-				C758EE131C743E7A0081FFE1 /* HCUserCodeViewController.m */,
-				C758EE141C743E7A0081FFE1 /* HCUserMessageViewController.h */,
-				C758EE151C743E7A0081FFE1 /* HCUserMessageViewController.m */,
-			);
-			path = UersMessage;
-			sourceTree = "<group>";
-		};
-		C758EE1A1C743E7A0081FFE1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C758EE1B1C743E7A0081FFE1 /* SoftwareSet */,
-				C758EE1E1C743E7A0081FFE1 /* UserMessage */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C758EE1B1C743E7A0081FFE1 /* SoftwareSet */ = {
-			isa = PBXGroup;
-			children = (
-				C758EE1C1C743E7A0081FFE1 /* HCFriendMessageInfo.h */,
-				C758EE1D1C743E7A0081FFE1 /* HCFriendMessageInfo.m */,
-			);
-			path = SoftwareSet;
-			sourceTree = "<group>";
-		};
-		C758EE1E1C743E7A0081FFE1 /* UserMessage */ = {
-			isa = PBXGroup;
-			children = (
-				C758EE1F1C743E7A0081FFE1 /* HCUserMessageInfo.h */,
-				C758EE201C743E7A0081FFE1 /* HCUserMessageInfo.m */,
-			);
-			path = UserMessage;
-			sourceTree = "<group>";
-		};
-		C758EE241C743E7A0081FFE1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C758EE251C743E7A0081FFE1 /* ButtonView.h */,
-				C758EE261C743E7A0081FFE1 /* ButtonView.m */,
-				C75D17381C76B82300F5DA5C /* HCMergingFamilyView.h */,
-				C75D17391C76B82300F5DA5C /* HCMergingFamilyView.m */,
-				C758EE271C743E7A0081FFE1 /* GradeManager */,
-				C758EE2C1C743E7A0081FFE1 /* HCCombineFamilyTableViewCell.h */,
-				C758EE2D1C743E7A0081FFE1 /* HCCombineFamilyTableViewCell.m */,
-				C758EE2E1C743E7A0081FFE1 /* HCFeedbackView.h */,
-				C758EE2F1C743E7A0081FFE1 /* HCFeedbackView.m */,
-				C758EE301C743E7A0081FFE1 /* HCinviteFamilyTableViewCell.h */,
-				C758EE311C743E7A0081FFE1 /* HCinviteFamilyTableViewCell.m */,
-				C758EE321C743E7A0081FFE1 /* HCLeftGradeView.h */,
-				C758EE331C743E7A0081FFE1 /* HCLeftGradeView.m */,
-				C758EE341C743E7A0081FFE1 /* HCLeftView.h */,
-				C758EE351C743E7A0081FFE1 /* HCLeftView.m */,
-				C758EE361C743E7A0081FFE1 /* HCLikeFamilyTableViewCell.h */,
-				C758EE371C743E7A0081FFE1 /* HCLikeFamilyTableViewCell.m */,
-				C758EE381C743E7A0081FFE1 /* SoftwareSet */,
-				C758EE3B1C743E7A0081FFE1 /* UserMessage */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C758EE271C743E7A0081FFE1 /* GradeManager */ = {
-			isa = PBXGroup;
-			children = (
-				C758EE281C743E7A0081FFE1 /* HCGradeManagerTableViewCell.h */,
-				C758EE291C743E7A0081FFE1 /* HCGradeManagerTableViewCell.m */,
-				C758EE2A1C743E7A0081FFE1 /* HCRefreshHeader.h */,
-				C758EE2B1C743E7A0081FFE1 /* HCRefreshHeader.m */,
-			);
-			path = GradeManager;
-			sourceTree = "<group>";
-		};
-		C758EE381C743E7A0081FFE1 /* SoftwareSet */ = {
-			isa = PBXGroup;
-			children = (
-				C758EE391C743E7A0081FFE1 /* HCFriendMessageCollectionViewCell.h */,
-				C758EE3A1C743E7A0081FFE1 /* HCFriendMessageCollectionViewCell.m */,
-			);
-			path = SoftwareSet;
-			sourceTree = "<group>";
-		};
-		C758EE3B1C743E7A0081FFE1 /* UserMessage */ = {
-			isa = PBXGroup;
-			children = (
-				C758EE3C1C743E7A0081FFE1 /* HCUserMessageTableViewCell.h */,
-				C758EE3D1C743E7A0081FFE1 /* HCUserMessageTableViewCell.m */,
-			);
-			path = UserMessage;
 			sourceTree = "<group>";
 		};
 		C758EE681C74422C0081FFE1 /* image */ = {
@@ -7135,7 +7173,6 @@
 				0A5491661C2BC32D0085F50D /* ZXDataMatrixSymbolInfo144.m in Sources */,
 				C7B00B2E1C5F26050010F93B /* EMGifImage.m in Sources */,
 				C78D7C951C5F2C1200622CE2 /* HCTagManagerViewController.m in Sources */,
-				C758EE611C743E7A0081FFE1 /* HCFeedbackView.m in Sources */,
 				0A5491361C2BC32D0085F50D /* ZXWhiteRectangleDetector.m in Sources */,
 				0A67B22B1C0D63B300FB87C8 /* MRImgShowView.m in Sources */,
 				0A54918D1C2BC32D0085F50D /* ZXRSSUtils.m in Sources */,
@@ -7162,7 +7199,6 @@
 				0A5491DB1C2BC32D0085F50D /* ZXMultiFormatReader.m in Sources */,
 				0A5491371C2BC32D0085F50D /* ZXGenericGF.m in Sources */,
 				C7B00B7D1C5F26050010F93B /* MWCaptionView.m in Sources */,
-				C758EE631C743E7A0081FFE1 /* HCLeftGradeView.m in Sources */,
 				C78D7B0C1C5F28F700622CE2 /* HCProducCenterViewController.m in Sources */,
 				0A6B7F9D1BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m in Sources */,
 				0A5491A21C2BC32D0085F50D /* ZXUPCEANExtension2Support.m in Sources */,
@@ -7177,7 +7213,6 @@
 				C7B00B591C5F26050010F93B /* InvitationManager.m in Sources */,
 				0A5491451C2BC32D0085F50D /* ZXGridSampler.m in Sources */,
 				0A5491401C2BC32D0085F50D /* ZXCharacterSetECI.m in Sources */,
-				C758EE4C1C743E7A0081FFE1 /* HCAboutMTalkViewController.m in Sources */,
 				0A5491891C2BC32D0085F50D /* ZXRSS14Reader.m in Sources */,
 				0A54911A1C2BC32D0085F50D /* ZXGeoResultParser.m in Sources */,
 				C78D7D511C5F342700622CE2 /* HCPromisedTagInfo.m in Sources */,
@@ -7195,6 +7230,7 @@
 				C7B00B511C5F26050010F93B /* MyChatroomListViewController.m in Sources */,
 				0A54916E1C2BC32D0085F50D /* ZXMaxiCodeReader.m in Sources */,
 				C7B00BC51C5F26050010F93B /* EaseBubbleView.m in Sources */,
+				0A8BE3981C7E8D6A008E8100 /* HCUserMessageInfo.m in Sources */,
 				C78D7B4E1C5F28F700622CE2 /* HCCustomerTableViewCell.m in Sources */,
 				0A5491051C2BC32D0085F50D /* ZXAztecEncoder.m in Sources */,
 				C7B00B581C5F26050010F93B /* RealtimeSearchUtil.m in Sources */,
@@ -7204,6 +7240,7 @@
 				C78D7BDF1C5F291A00622CE2 /* HCReturnAddressApi.m in Sources */,
 				C78D7BDA1C5F291A00622CE2 /* HCBuyRecordApi.m in Sources */,
 				C7B00B6E1C5F26050010F93B /* EMSearchDisplayController.m in Sources */,
+				0A8BE3B51C7E8D7C008E8100 /* ButtonView.m in Sources */,
 				C78D7BE31C5F291A00622CE2 /* HCPromisedListAPI.m in Sources */,
 				0A5491331C2BC32D0085F50D /* ZXImage.m in Sources */,
 				0A54916A1C2BC32D0085F50D /* ZXDataMatrixWriter.m in Sources */,
@@ -7226,6 +7263,7 @@
 				0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */,
 				C7B00BB91C5F26050010F93B /* EaseUsersListViewController.m in Sources */,
 				0A5491671C2BC32D0085F50D /* ZXDataMatrixTextEncoder.m in Sources */,
+				0A8BE3821C7E8CC0008E8100 /* HCUserCodeViewController.m in Sources */,
 				0A5491591C2BC32D0085F50D /* ZXDataMatrixDecodedBitStreamParser.m in Sources */,
 				0A5491C01C2BC32D0085F50D /* ZXPDF417Writer.m in Sources */,
 				0A5491DA1C2BC32D0085F50D /* ZXQRCodeWriter.m in Sources */,
@@ -7238,6 +7276,7 @@
 				C7B00B801C5F26050010F93B /* MWPhoto.m in Sources */,
 				C78D7AA51C5F28F700622CE2 /* HCCreateGradeViewController.m in Sources */,
 				C78D7AE41C5F28F700622CE2 /* HCLoginInfo.m in Sources */,
+				0A8BE3751C7E8CA9008E8100 /* HCAboutMTalkViewController.m in Sources */,
 				C78D7C8E1C5F2C1200622CE2 /* HCeditingViewController.m in Sources */,
 				C78D7AAB1C5F28F700622CE2 /* HCCreateGradeInfo.m in Sources */,
 				C78D7B001C5F28F700622CE2 /* HCCustomerViewController.m in Sources */,
@@ -7254,21 +7293,23 @@
 				C78D7D4F1C5F342700622CE2 /* HCPromisedListInfo.m in Sources */,
 				C78D7AB31C5F28F700622CE2 /* HCHomeViewController.m in Sources */,
 				C7B00B981C5F26050010F93B /* PSTCollectionViewCell.m in Sources */,
+				0A8BE3961C7E8D6A008E8100 /* HCCheckInfo.m in Sources */,
 				0A5491C71C2BC32D0085F50D /* ZXQRCodeErrorCorrectionLevel.m in Sources */,
-				C75D173A1C76B82300F5DA5C /* HCMergingFamilyView.m in Sources */,
 				0A5491091C2BC32D0085F50D /* ZXAztecToken.m in Sources */,
 				C78D7B2D1C5F28F700622CE2 /* HCLogisticsInfo.m in Sources */,
 				0A54918F1C2BC32D0085F50D /* ZXCodaBarWriter.m in Sources */,
 				0A5491B61C2BC32D0085F50D /* ZXPDF417DetectorResult.m in Sources */,
 				C7B00B341C5F26050010F93B /* TTGlobalUICommon.m in Sources */,
 				0A6B7F241BF1EB74008D54B3 /* HCDictionaryMgr.m in Sources */,
-				C758EE671C743E7A0081FFE1 /* HCUserMessageTableViewCell.m in Sources */,
 				C7B00B941C5F26050010F93B /* UIImageView+EMWebCache.m in Sources */,
 				C78D7B9F1C5F28F700622CE2 /* HCScanViewController.m in Sources */,
 				C7B00B9B1C5F26050010F93B /* PSTCollectionViewFlowLayout.m in Sources */,
 				8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */,
+				0A8BE3C01C7E8D7C008E8100 /* HCUserMessageTableViewCell.m in Sources */,
+				0A8BE3661C7E8C90008E8100 /* KMQRCode.m in Sources */,
 				8D131A8A1C7D7C7F00F0D5A0 /* ZLCamera.m in Sources */,
 				C78D7ADB1C5F28F700622CE2 /* HCFindPwdViewController.m in Sources */,
+				0A8BE3831C7E8CC0008E8100 /* HCUserHeadImageViewController.m in Sources */,
 				C7B00B791C5F26050010F93B /* wav.mm in Sources */,
 				8D131A861C7D7C7F00F0D5A0 /* UIImage+ZLPhotoLib.m in Sources */,
 				C7B00B671C5F26050010F93B /* BaseTableViewCell.m in Sources */,
@@ -7282,10 +7323,8 @@
 				C7B00B521C5F26050010F93B /* ContactListSelectViewController.m in Sources */,
 				C78D7D4C1C5F342700622CE2 /* UUDatePicker_DateModel.m in Sources */,
 				0A54917B1C2BC32D0085F50D /* ZXAnyAIDecoder.m in Sources */,
-				C758EE4D1C743E7A0081FFE1 /* HCAddFriendViewController.m in Sources */,
 				C7B00B571C5F26050010F93B /* ApplyViewController.m in Sources */,
 				0A5491B81C2BC32D0085F50D /* ZXPDF417BarcodeMatrix.m in Sources */,
-				C758EE521C743E7A0081FFE1 /* HCUserCodeViewController.m in Sources */,
 				0A54912E1C2BC32D0085F50D /* ZXVINResultParser.m in Sources */,
 				C7B00B451C5F26050010F93B /* ChatGroupDetailViewController.m in Sources */,
 				0A54918B1C2BC32D0085F50D /* ZXRSSFinderPattern.m in Sources */,
@@ -7298,7 +7337,6 @@
 				0A5491DC1C2BC32D0085F50D /* ZXMultiFormatWriter.m in Sources */,
 				C78D7B451C5F28F700622CE2 /* HCLogisticsInfoTableViewCell.m in Sources */,
 				C78D7B221C5F28F700622CE2 /* HCNotificationCenterInfo.m in Sources */,
-				C758EE641C743E7A0081FFE1 /* HCLeftView.m in Sources */,
 				C7B00B611C5F26050010F93B /* BlackListViewController.m in Sources */,
 				C78D7B941C5F28F700622CE2 /* HCViewController.m in Sources */,
 				C78D7B361C5F28F700622CE2 /* HCTagManagerInfo.m in Sources */,
@@ -7322,7 +7360,6 @@
 				0A5491111C2BC32D0085F50D /* ZXBizcardResultParser.m in Sources */,
 				C78D7AFF1C5F28F700622CE2 /* HCWaitingDeliverGoodsViewController.m in Sources */,
 				C78D7C931C5F2C1200622CE2 /* HCTagClosedDetailViewControllwe.m in Sources */,
-				C758EE4F1C743E7A0081FFE1 /* HCFriendMessageViewController.m in Sources */,
 				8D0FAEB71C6077B80038B0BD /* WKFRadarView.m in Sources */,
 				C78D7B261C5F28F700622CE2 /* HCAddressInfo.m in Sources */,
 				C7B00BC11C5F26050010F93B /* EaseBubbleView+Location.m in Sources */,
@@ -7331,7 +7368,6 @@
 				C7B00B391C5F26050010F93B /* UIResponder+Router.m in Sources */,
 				0A6B7F9A1BF1EB74008D54B3 /* TOActivityChrome.m in Sources */,
 				0A54919B1C2BC32D0085F50D /* ZXITFWriter.m in Sources */,
-				C758EE501C743E7A0081FFE1 /* HCJurisdictionViewController.m in Sources */,
 				8D131A941C7D7C7F00F0D5A0 /* ZLPhotoPickerBrowserPhotoView.m in Sources */,
 				C78D7D5C1C5F342700622CE2 /* HCPromisedTagCell.m in Sources */,
 				0A5491391C2BC32D0085F50D /* ZXReedSolomonDecoder.m in Sources */,
@@ -7340,6 +7376,7 @@
 				0A5491321C2BC32D0085F50D /* ZXCGImageLuminanceSource.m in Sources */,
 				C78D7B641C5F28F700622CE2 /* HCCreateGradeApi.m in Sources */,
 				8D131A8B1C7D7C7F00F0D5A0 /* ZLCameraImageView.m in Sources */,
+				0A8BE3651C7E8C90008E8100 /* HCGradeManagerViewController.m in Sources */,
 				C78D7B4D1C5F28F700622CE2 /* HCApplyReturnReasonCell.m in Sources */,
 				C7B00BC81C5F26050010F93B /* EaseImageView.m in Sources */,
 				0A5491D31C2BC32D0085F50D /* ZXQRCodeEncoder.m in Sources */,
@@ -7371,7 +7408,6 @@
 				C7B00B831C5F26050010F93B /* MWTapDetectingView.m in Sources */,
 				C7B00B661C5F26050010F93B /* UserProfileEditViewController.m in Sources */,
 				0A54913A1C2BC32D0085F50D /* ZXReedSolomonEncoder.m in Sources */,
-				C758EE621C743E7A0081FFE1 /* HCinviteFamilyTableViewCell.m in Sources */,
 				C78D7ABA1C5F28F700622CE2 /* HCHomeDetailInfo.m in Sources */,
 				0A5491C11C2BC32D0085F50D /* ZXQRCodeBitMatrixParser.m in Sources */,
 				C78D7D471C5F342700622CE2 /* HCAddPromiseViewController1.m in Sources */,
@@ -7382,6 +7418,7 @@
 				0A5491961C2BC32D0085F50D /* ZXEAN13Writer.m in Sources */,
 				C78D7B891C5F28F700622CE2 /* HCGetUserInfoByDeviceApi.m in Sources */,
 				0A5491771C2BC32D0085F50D /* ZXAI013x0xDecoder.m in Sources */,
+				0A8BE3BC1C7E8D7C008E8100 /* HCLeftView.m in Sources */,
 				0A5491171C2BC32D0085F50D /* ZXExpandedProductParsedResult.m in Sources */,
 				C7B00B951C5F26050010F93B /* UIView+EMWebCacheOperation.m in Sources */,
 				C78D7B0B1C5F28F700622CE2 /* HCPaymentViewController.m in Sources */,
@@ -7400,10 +7437,10 @@
 				C7B00B371C5F26050010F93B /* NSString+Valid.m in Sources */,
 				0A5491501C2BC32D0085F50D /* ZXErrors.m in Sources */,
 				C7B00BB01C5F26050010F93B /* EaseMessageReadManager.m in Sources */,
-				C758EE5F1C743E7A0081FFE1 /* HCRefreshHeader.m in Sources */,
 				8D131A9B1C7D7C7F00F0D5A0 /* ZLPhotoPickerGroup.m in Sources */,
 				0A6B7F191BF1EB74008D54B3 /* UIAlertView+HTBlock.m in Sources */,
 				C78D7AB71C5F28F700622CE2 /* HCWelcomeJoinGradeViewController.m in Sources */,
+				0A8BE3B61C7E8D7C008E8100 /* HCCheckTableViewCell.m in Sources */,
 				8D1191201C5F3CDD003505D3 /* HCNotifcationMessageCell.m in Sources */,
 				C78D7B2C1C5F28F700622CE2 /* HCCustomerInfo.m in Sources */,
 				C78D7B8A1C5F28F700622CE2 /* HCVatarUploadApi.m in Sources */,
@@ -7436,12 +7473,10 @@
 				C78D7B8E1C5F28F700622CE2 /* HCBarButtonItem.m in Sources */,
 				C78D7D4D1C5F342700622CE2 /* HCPromisedContractPersonInfo.m in Sources */,
 				0A5491821C2BC32D0085F50D /* ZXRSSExpandedFieldParser.m in Sources */,
-				C758EE651C743E7A0081FFE1 /* HCLikeFamilyTableViewCell.m in Sources */,
 				C7B00BCB1C5F26050010F93B /* EaseFacialView.m in Sources */,
 				0A6B7F221BF1EB74008D54B3 /* HCAvatarMgr.m in Sources */,
 				C7B00B811C5F26050010F93B /* MWPhotoBrowser.m in Sources */,
 				C7B00B681C5F26050010F93B /* EMSearchBar.m in Sources */,
-				C758EE5D1C743E7A0081FFE1 /* ButtonView.m in Sources */,
 				C758EE481C743E7A0081FFE1 /* HCsaveEditingViewController.m in Sources */,
 				0A54911D1C2BC32D0085F50D /* ZXParsedResult.m in Sources */,
 				C78D7AC31C5F28F700622CE2 /* HCHomeTableViewCell.m in Sources */,
@@ -7451,6 +7486,7 @@
 				C758EE421C743E7A0081FFE1 /* HCEditingMyselfViewController.m in Sources */,
 				0A5491291C2BC32D0085F50D /* ZXURIResultParser.m in Sources */,
 				C7B00B641C5F26050010F93B /* PushNotificationViewController.m in Sources */,
+				0A8BE3B91C7E8D7C008E8100 /* HCFeedbackView.m in Sources */,
 				0A5491CF1C2BC32D0085F50D /* ZXQRCodeFinderPatternFinder.m in Sources */,
 				C7BE0E411C71A041007D97A5 /* HCMailListModel.m in Sources */,
 				0A5491131C2BC32D0085F50D /* ZXCalendarParsedResult.m in Sources */,
@@ -7490,15 +7526,13 @@
 				C78D7AAD1C5F28F700622CE2 /* HCFooterView.m in Sources */,
 				C7B00B911C5F26050010F93B /* UIImage+EMMultiFormat.m in Sources */,
 				C758EE4B1C743E7A0081FFE1 /* MyFamilyViewController.m in Sources */,
-				C758EE511C743E7A0081FFE1 /* HCSoftwareSettingViewController.m in Sources */,
-				C758EE581C743E7A0081FFE1 /* HCFriendMessageInfo.m in Sources */,
 				8D131A991C7D7C7F00F0D5A0 /* ZLPhotoPickerDatas.m in Sources */,
 				C7B00B691C5F26050010F93B /* EMTextView.m in Sources */,
 				0A5491081C2BC32D0085F50D /* ZXAztecState.m in Sources */,
 				0A54914B1C2BC32D0085F50D /* ZXBinaryBitmap.m in Sources */,
 				C7B00B4E1C5F26050010F93B /* PublicGroupListViewController.m in Sources */,
-				C758EE4E1C743E7A0081FFE1 /* HCFeedbackViewController.m in Sources */,
 				0A5491101C2BC32D0085F50D /* ZXAddressBookParsedResult.m in Sources */,
+				0A8BE3971C7E8D6A008E8100 /* HCFriendMessageInfo.m in Sources */,
 				0A5491B11C2BC32D0085F50D /* ZXPDF417DetectionResult.m in Sources */,
 				C78D7B0F1C5F28F700622CE2 /* HCTaoBaoViewController.m in Sources */,
 				C78D7AFA1C5F28F700622CE2 /* HCApplyReturnViewController.m in Sources */,
@@ -7519,6 +7553,7 @@
 				C7B00BA51C5F26050010F93B /* EaseConversationModel.m in Sources */,
 				0A5491931C2BC32D0085F50D /* ZXCode39Writer.m in Sources */,
 				0A5491981C2BC32D0085F50D /* ZXEAN8Writer.m in Sources */,
+				0A8BE3671C7E8C90008E8100 /* UIImage+RoundedRectImage.m in Sources */,
 				C78D7CA61C5F2C4D00622CE2 /* HCTagManagerTableViewCell.m in Sources */,
 				0A6B7F231BF1EB74008D54B3 /* HCDataMgr.m in Sources */,
 				C78D7B681C5F28F700622CE2 /* HCHomeLikeCountApi.m in Sources */,
@@ -7544,13 +7579,15 @@
 				C7B00BAC1C5F26050010F93B /* UIViewController+DismissKeyboard.m in Sources */,
 				0A5491481C2BC32D0085F50D /* ZXPerspectiveTransform.m in Sources */,
 				C78D7AF31C5F28F700622CE2 /* HCNotificationHeadImageController.m in Sources */,
+				0A8BE3B71C7E8D7C008E8100 /* HCGradeManagerTableViewCell.m in Sources */,
 				C78D7B051C5F28F700622CE2 /* HCRefundSuccessViewController.m in Sources */,
-				C758EE531C743E7A0081FFE1 /* HCUserMessageViewController.m in Sources */,
 				C7B00B9F1C5F26050010F93B /* PSTGridLayoutInfo.m in Sources */,
 				0A5491A51C2BC32D0085F50D /* ZXUPCEANReader.m in Sources */,
 				0A54917A1C2BC32D0085F50D /* ZXAI01weightDecoder.m in Sources */,
+				0A8BE3BD1C7E8D7C008E8100 /* HCLikeFamilyTableViewCell.m in Sources */,
 				0A5491541C2BC32D0085F50D /* ZXResult.m in Sources */,
 				C7B00B8E1C5F26050010F93B /* NSData+EMImageContentType.m in Sources */,
+				0A8BE3BB1C7E8D7C008E8100 /* HCLeftGradeView.m in Sources */,
 				0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */,
 				8D21CA0F1C61D6D10071B32A /* HCMedicalInfo.m in Sources */,
 				C7B00BCE1C5F26050010F93B /* EaseConversationCell.m in Sources */,
@@ -7567,9 +7604,11 @@
 				C7B00B331C5F26050010F93B /* THProgressView.m in Sources */,
 				0A5491C81C2BC32D0085F50D /* ZXQRCodeFormatInformation.m in Sources */,
 				C78D7C901C5F2C1200622CE2 /* HClabelDetaViewController.m in Sources */,
+				0A8BE3B81C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.m in Sources */,
+				0A8BE37A1C7E8CA9008E8100 /* HCSoftwareSettingViewController.m in Sources */,
 				C78D7B2F1C5F28F700622CE2 /* HCReturnAddressInfo.m in Sources */,
+				0A8BE3771C7E8CA9008E8100 /* HCFeedbackViewController.m in Sources */,
 				0A5491D51C2BC32D0085F50D /* ZXQRCodeMatrixUtil.m in Sources */,
-				C758EE5E1C743E7A0081FFE1 /* HCGradeManagerTableViewCell.m in Sources */,
 				C78D7B391C5F28F700622CE2 /* HCButtonItem.m in Sources */,
 				0A5491D81C2BC32D0085F50D /* ZXQRCodeMultiReader.m in Sources */,
 				C78D7BE41C5F291A00622CE2 /* HCRescueCenterApi.m in Sources */,
@@ -7579,6 +7618,7 @@
 				C78D7AB41C5F28F700622CE2 /* HCPublishViewController.m in Sources */,
 				0A54917D1C2BC32D0085F50D /* ZXRSSExpandedCurrentParsingState.m in Sources */,
 				0A54915D1C2BC32D0085F50D /* ZXDataMatrixASCIIEncoder.m in Sources */,
+				0A8BE3BF1C7E8D7C008E8100 /* HCFriendMessageCollectionViewCell.m in Sources */,
 				C78D7BD31C5F291A00622CE2 /* HCNotificationCenterFollowAPI.m in Sources */,
 				8D131A911C7D7C7F00F0D5A0 /* ZLPhotoPickerBrowserPhoto.m in Sources */,
 				C7B00B771C5F26050010F93B /* EMCDDeviceManagerBase.m in Sources */,
@@ -7592,6 +7632,7 @@
 				C78D7B6C1C5F28F700622CE2 /* HCChangePwdApi.m in Sources */,
 				C78D7B041C5F28F700622CE2 /* HCInputWaybillNumViewController.m in Sources */,
 				C78D7AEB1C5F28F700622CE2 /* HCAddFriendlistTableViewCell.m in Sources */,
+				0A8BE3BA1C7E8D7C008E8100 /* HCinviteFamilyTableViewCell.m in Sources */,
 				0A5491AC1C2BC32D0085F50D /* ZXPDF417BarcodeValue.m in Sources */,
 				0A54919F1C2BC32D0085F50D /* ZXOneDReader.m in Sources */,
 				C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */,
@@ -7621,12 +7662,14 @@
 				C78D7B921C5F28F700622CE2 /* HCRootTabBarController.m in Sources */,
 				C78D7BD61C5F291A00622CE2 /* HCNotificationDetailApi.m in Sources */,
 				C7B00BA61C5F26050010F93B /* EaseMessageModel.m in Sources */,
+				0A8BE3631C7E8C90008E8100 /* HCCheckViewController.m in Sources */,
 				C78D7B6E1C5F28F700622CE2 /* HCGetCodeApi.m in Sources */,
 				C72F1F981C771F8100A6E794 /* SCSwipeTableViewCell.m in Sources */,
 				C78D7ADF1C5F28F700622CE2 /* HCPerfectMessageViewController.m in Sources */,
 				C78D7B271C5F28F700622CE2 /* HCContactPersonInfo.m in Sources */,
 				C7B00BC41C5F26050010F93B /* EaseBubbleView+Voice.m in Sources */,
 				C7B00B541C5F26050010F93B /* AddFriendCell.m in Sources */,
+				0A8BE3841C7E8CC0008E8100 /* HCUserMessageViewController.m in Sources */,
 				C78D7B701C5F28F700622CE2 /* HCLogoutApi.m in Sources */,
 				C7B00BA11C5F26050010F93B /* PSTGridLayoutRow.m in Sources */,
 				C78D7B0E1C5F28F700622CE2 /* HCJDBuyViewController.m in Sources */,
@@ -7641,7 +7684,6 @@
 				C78D7BE51C5F291A00622CE2 /* HCActivateTagApi.m in Sources */,
 				0A54919D1C2BC32D0085F50D /* ZXMultiFormatUPCEANReader.m in Sources */,
 				C78D7ABB1C5F28F700622CE2 /* HCHomeDetailUserInfo.m in Sources */,
-				C758EE661C743E7A0081FFE1 /* HCFriendMessageCollectionViewCell.m in Sources */,
 				C78D7B421C5F28F700622CE2 /* UILabel+HCLabelContentSize.m in Sources */,
 				0A54912A1C2BC32D0085F50D /* ZXURLTOResultParser.m in Sources */,
 				C7B00B601C5F26050010F93B /* RobotManager.m in Sources */,
@@ -7675,7 +7717,6 @@
 				0A5491641C2BC32D0085F50D /* ZXDataMatrixHighLevelEncoder.m in Sources */,
 				8D131AA01C7D7C7F00F0D5A0 /* ZLPhotoRect.m in Sources */,
 				0A5491021C2BC32D0085F50D /* ZXAztecDetector.m in Sources */,
-				C758EE3F1C743E7A0081FFE1 /* HCGradeManagerViewController.m in Sources */,
 				8D131A8F1C7D7C7F00F0D5A0 /* ZLPhotoAssets.m in Sources */,
 				8D131A891C7D7C7F00F0D5A0 /* ViewController.m in Sources */,
 				C7B00B4D1C5F26050010F93B /* PublicGroupDetailViewController.m in Sources */,
@@ -7685,6 +7726,7 @@
 				C7B00B4B1C5F26050010F93B /* GroupSettingViewController.m in Sources */,
 				0A54915C1C2BC32D0085F50D /* ZXDataMatrixDetector.m in Sources */,
 				0A54910E1C2BC32D0085F50D /* ZXAddressBookAUResultParser.m in Sources */,
+				0A8BE3641C7E8C90008E8100 /* HCCodeLookViewController.m in Sources */,
 				0A5491D41C2BC32D0085F50D /* ZXQRCodeMaskUtil.m in Sources */,
 				0A5491C61C2BC32D0085F50D /* ZXQRCodeDecoderMetaData.m in Sources */,
 				C7B00B3E1C5F26050010F93B /* AppDelegate+Parse.m in Sources */,
@@ -7709,12 +7751,12 @@
 				C78D7ABC1C5F28F700622CE2 /* HCHomeInfo.m in Sources */,
 				0A5491D61C2BC32D0085F50D /* ZXMultiDetector.m in Sources */,
 				C7B00B461C5F26050010F93B /* ContactSelectionViewController.m in Sources */,
+				0A8BE3BE1C7E8D7C008E8100 /* HCMergingFamilyView.m in Sources */,
 				C7B00B481C5F26050010F93B /* CreateGroupViewController.m in Sources */,
 				C7B00BA91C5F26050010F93B /* NSDateFormatter+Category.m in Sources */,
 				C7B00B431C5F26050010F93B /* CustomMessageCell.m in Sources */,
 				C78D7B511C5F28F700622CE2 /* HCCustomTagUserMedicalCell.m in Sources */,
 				C7B00B991C5F26050010F93B /* PSTCollectionViewController.m in Sources */,
-				C758EE591C743E7A0081FFE1 /* HCUserMessageInfo.m in Sources */,
 				0A54912F1C2BC32D0085F50D /* ZXWifiParsedResult.m in Sources */,
 				0AA064A21C34E0730043AA58 /* FixFopen.c in Sources */,
 				C78D7D481C5F342700622CE2 /* HCPromiseDetailViewController1.m in Sources */,
@@ -7725,10 +7767,12 @@
 				C78D7B2B1C5F28F700622CE2 /* HCBuyRecordInfo.m in Sources */,
 				0A5491AF1C2BC32D0085F50D /* ZXPDF417CodewordDecoder.m in Sources */,
 				0A5491801C2BC32D0085F50D /* ZXRSSExpandedDecodedNumeric.m in Sources */,
+				0A8BE3761C7E8CA9008E8100 /* HCAddFriendViewController.m in Sources */,
 				8D131A8C1C7D7C7F00F0D5A0 /* ZLCameraView.m in Sources */,
 				0A5491411C2BC32D0085F50D /* ZXDecoderResult.m in Sources */,
 				0A5491251C2BC32D0085F50D /* ZXTelParsedResult.m in Sources */,
 				C78D7BE21C5F291A00622CE2 /* HCPromisedDetailAPI.m in Sources */,
+				0A8BE3781C7E8CA9008E8100 /* HCFriendMessageViewController.m in Sources */,
 				0A5491D01C2BC32D0085F50D /* ZXQRCodeFinderPatternInfo.m in Sources */,
 				0A5491711C2BC32D0085F50D /* ZXAbstractExpandedDecoder.m in Sources */,
 				0A5491471C2BC32D0085F50D /* ZXIntArray.m in Sources */,
@@ -7768,6 +7812,7 @@
 				0A5491571C2BC32D0085F50D /* ZXDataMatrixBitMatrixParser.m in Sources */,
 				C78D7AF91C5F28F700622CE2 /* HCApplyReissueViewController.m in Sources */,
 				C7B00B881C5F26050010F93B /* EMSDWebImageDecoder.m in Sources */,
+				0A8BE3791C7E8CA9008E8100 /* HCJurisdictionViewController.m in Sources */,
 				C7B00B971C5F26050010F93B /* PSTCollectionView.m in Sources */,
 				C78D7B8D1C5F28F700622CE2 /* HCRequest.m in Sources */,
 				C78D7AC41C5F28F700622CE2 /* HCPraiseTagListView.m in Sources */,
@@ -7776,7 +7821,6 @@
 				0A5491A41C2BC32D0085F50D /* ZXUPCEANExtensionSupport.m in Sources */,
 				8D11911D1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m in Sources */,
 				0A5491581C2BC32D0085F50D /* ZXDataMatrixDataBlock.m in Sources */,
-				C758EE601C743E7A0081FFE1 /* HCCombineFamilyTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

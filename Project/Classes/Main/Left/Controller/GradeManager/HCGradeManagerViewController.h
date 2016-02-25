@@ -6,8 +6,8 @@
 //  Copyright © 2015年 com.xxx. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "HCTableViewController.h"
 
-@interface HCGradeManagerViewController : UICollectionViewController
+@interface HCGradeManagerViewController : HCTableViewController
 
 @end

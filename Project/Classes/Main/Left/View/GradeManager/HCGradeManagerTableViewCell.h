@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HCGradeManagerTableViewCellDelegate <NSObject>
+
+- (void)HCGradeManagerTableViewCellSelectedTag:(NSInteger)tag;
+
+@end
+
 @interface HCGradeManagerTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, strong) NSArray *array;
+
+@property (nonatomic, weak) id<HCGradeManagerTableViewCellDelegate>delegate;
 
 @end

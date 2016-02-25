@@ -8,6 +8,7 @@
 
 #import "HCUserMessageViewController.h"
 #import "HCUserCodeViewController.h"
+#import "HCUserHeadImageViewController.h"
 #import "HCUserMessageTableViewCell.h"
 #import "HCUserMessageInfo.h"
 #import "HCPickerView.h"
@@ -100,6 +101,12 @@
     [self showHUDText:@"编辑用户信息"];
 }
 
+- (void)handleHeadButton
+{
+    HCUserHeadImageViewController *headImage = [[HCUserHeadImageViewController alloc] init];
+    [self.navigationController pushViewController:headImage animated:YES];
+}
+
 #pragma mark - setter 
 
 - (UIBarButtonItem *)rightItem
@@ -129,7 +136,7 @@
     {
         _headBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), WIDTH(self.view)*0.45)];
         _headBackground.image = OrigIMG(@"2Dbarcode_message_Background");
-        
+        _headBackground.userInteractionEnabled = YES;
         [_headBackground addSubview:self.headButton];
         [_headBackground addSubview:self.nickName];
         [_headBackground addSubview:self.markLabel];
@@ -145,6 +152,7 @@
         _headButton.frame = CGRectMake(0, 30, WIDTH(self.view)*0.2, WIDTH(self.view)*0.2);
         _headButton.center = CGPointMake(self.view.center.x, _headButton.center.y);
         [_headButton setImage:OrigIMG(@"2Dbarcode_message_HeadPortraits") forState:UIControlStateNormal];
+        [_headButton addTarget:self action:@selector(handleHeadButton) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(_headButton, WIDTH(_headButton)*0.5);
     }
     return _headButton;
