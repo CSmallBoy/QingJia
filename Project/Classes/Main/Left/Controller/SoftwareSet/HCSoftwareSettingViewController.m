@@ -17,7 +17,8 @@
 @property (nonatomic, strong) NSDictionary *imageNameDic;
 @property (nonatomic, strong) NSDictionary *titleDic;
 @property (nonatomic, strong) UISwitch *switchs;
-
+@property (nonatomic,strong) UIButton * blackView;// 黑色蒙层
+@property (nonatomic,strong)  UIView * whiteView;
 @end
 
 @implementation HCSoftwareSettingViewController
@@ -83,6 +84,31 @@
         vc = [[HCAboutMTalkViewController alloc] init];
     }
     [self.navigationController pushViewController:vc animated:YES];
+    
+    if (indexPath.section == 1 && indexPath.row == 1)
+    {
+        _blackView = [[UIButton alloc]initWithFrame:self.view.frame];
+        _blackView.backgroundColor = [UIColor blackColor];
+        _blackView.alpha = 0.3;
+        [_blackView addTarget:self action:@selector(removeBlackAndWhite) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_blackView];
+        
+        _whiteView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-44*7, SCREEN_WIDTH, 44 * 7)];
+        _whiteView.backgroundColor = [UIColor whiteColor];
+        NSArray *arr =@[@"短信",@"朋友圈",@"微信好友",@"QQ好友",@"QQ空间",@"腾讯微博",@"新浪微博"];
+        for (int i = 0; i<7; i++) {
+            
+            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, i * 44, SCREEN_WIDTH, 44)];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [button setTitle:arr[i] forState:UIControlStateNormal];
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 43, SCREEN_WIDTH, 1)];
+            view.backgroundColor = [UIColor lightGrayColor];
+            [button addSubview:view];
+            [_whiteView addSubview:button];
+        }
+        [self.view addSubview:_whiteView];
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,6 +147,12 @@
 }
 
 #pragma private methods
+
+-(void)removeBlackAndWhite
+{
+    [_blackView removeFromSuperview];
+    [_whiteView removeFromSuperview];
+}
 
 - (void)handleLogoutButton
 {

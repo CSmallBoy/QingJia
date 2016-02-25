@@ -9,9 +9,13 @@
 #import "HCUserMessageViewController.h"
 #import "HCUserCodeViewController.h"
 #import "HCUserHeadImageViewController.h"
+#import "HCEditUserMessageViewController.h"
+
 #import "HCUserMessageTableViewCell.h"
 #import "HCUserMessageInfo.h"
 #import "HCPickerView.h"
+
+
 
 #define HCUserCell @"HCUserMessageTableViewCell"
 
@@ -98,7 +102,10 @@
 
 - (void)handleRightItem
 {
-    [self showHUDText:@"编辑用户信息"];
+//    [self showHUDText:@"编辑用户信息"];
+    HCEditUserMessageViewController *editVC = [[HCEditUserMessageViewController alloc]init];
+    [self.navigationController pushViewController:editVC animated:YES];
+    
 }
 
 - (void)handleHeadButton

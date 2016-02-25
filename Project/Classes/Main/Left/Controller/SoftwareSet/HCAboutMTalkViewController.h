@@ -7,7 +7,7 @@
 //
 
 #import "HCViewController.h"
-
-@interface HCAboutMTalkViewController : HCViewController
+#import "HCTableViewController.h"
+@interface HCAboutMTalkViewController :HCTableViewController
 
 @end
