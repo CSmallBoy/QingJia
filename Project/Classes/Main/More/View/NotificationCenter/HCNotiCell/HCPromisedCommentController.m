@@ -84,6 +84,7 @@
                 [imageview addGestureRecognizer:tap];
                 imageview.contentMode = UIViewContentModeScaleAspectFit;
                 [self.view addSubview:imageview];
+                self.navigationController.navigationBarHidden = YES;
                 [UIView animateWithDuration:0.4 animations:^{
                     
                     imageview.frame = self.view.frame;
@@ -249,7 +250,9 @@
 
 -(void)removeBigImageView:(UITapGestureRecognizer *)tap
 {
+    self.navigationController.navigationBarHidden = NO;
     UIImageView *imageView = (UIImageView *)tap.view;
+    imageView.backgroundColor = [UIColor clearColor];
     [UIView animateWithDuration:0.4 animations:^{
         imageView.frame = _startFrame;
     }completion:^(BOOL finished) {

@@ -48,7 +48,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     if (indexPath.section == 0)
     {
-        if (indexPath.row == 0 || indexPath.row == 1)
+        if (indexPath.row == 0 )
         {
             UISwitch *switchs = self.switchs;
             [cell.contentView addSubview:switchs];
@@ -73,7 +73,7 @@
     }
     
     HCViewController *vc = nil;
-    if (indexPath.section == 0 && indexPath.row == 2)
+    if (indexPath.section == 0 && indexPath.row == 1)
     {
         vc = [[HCJurisdictionViewController alloc] init];
     }else if (indexPath.section == 1 && indexPath.row == 0)
@@ -167,7 +167,7 @@
 {
     if (!_imageNameDic)
     {
-        _imageNameDic = @{@"1":@[@"airplane", @"seting_Locate", @"permission", @"delete"], @"2": @[@"Feedback", @"Recommend", @"about_mtalk", @"Exit"]};
+        _imageNameDic = @{@"1":@[@"airplane",  @"permission", @"delete"], @"2": @[@"Feedback", @"Recommend", @"about_mtalk", @"Exit"]};
     }
     return _imageNameDic;
 }
@@ -176,7 +176,7 @@
 {
     if (!_titleDic)
     {
-        _titleDic = @{@"1": @[@"消息推送提醒", @"默认定位设置", @"默认权限设置", @"清除缓存"], @"2": @[@"反馈建议", @"推荐给好友", @"关于M-Talk", @"退出登录"]};
+        _titleDic = @{@"1": @[@"消息推送提醒",  @"默认权限设置", @"清除缓存"], @"2": @[@"反馈建议", @"推荐给好友", @"关于M-Talk", @"退出登录"]};
     }
     return _titleDic;
 }

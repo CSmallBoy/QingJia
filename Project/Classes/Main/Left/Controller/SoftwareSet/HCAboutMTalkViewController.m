@@ -58,11 +58,12 @@
     view.backgroundColor = kHCBackgroundColor;
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-40, 15, 80, 80)];
-    imageView.image = IMG(@"about_mtalk");
+    imageView.image = IMG(@"mtalklogo");
+    ViewRadius(imageView, 10);
     [view addSubview:imageView];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 100, 100, 20)];
-    label.text = @"M-Tabl1.0";
+    label.text = @"M-Talk1.0";
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor blackColor];
     [view addSubview:label];
