@@ -7,7 +7,7 @@
 //
 
 #import "HCCodeLookViewController.h"
-
+#import "HCShareViewController.h"
 #import "KMQRCode.h"
 #import "UIImage+RoundedRectImage.h"
 
@@ -36,10 +36,17 @@
     self.title = @"家庭二维码";
     
     [self.view addSubview:self.grayView];
+    UIBarButtonItem *bar = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Share_QrCode"] style:UIBarButtonItemStylePlain target:self action:@selector(barClick)];
+    self.navigationItem.rightBarButtonItem = bar;
+    
     [self createCode];
     
 }
-
+- (void)barClick{
+    HCShareViewController *vc = [[HCShareViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 #pragma mark - private methods
 
 - (void)handleTap:(UITapGestureRecognizer *)tap
