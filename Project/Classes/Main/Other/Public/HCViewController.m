@@ -23,6 +23,7 @@
     [super viewDidLoad];
 //    self.view.backgroundColor = kHCBackgroundColor;
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController.navigationBar  setBackgroundColor:kHCNavBarColor];
 }
 
 - (void)didReceiveMemoryWarning

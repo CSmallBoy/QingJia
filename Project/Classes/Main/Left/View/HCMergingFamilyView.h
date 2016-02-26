@@ -13,5 +13,4 @@
 @property (nonatomic,strong)UILabel *down_label;
 @property (nonatomic,strong)UILabel *line_label;
 @property (nonatomic,strong)UILabel *time_label;
-
 @end

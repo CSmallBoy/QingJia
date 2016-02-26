@@ -86,7 +86,7 @@
     [button setTitle:@"已同意" forState:UIControlStateNormal];
     [button setFrame:CGRectMake(SCREEN_WIDTH *0.7 -180, 12.5, SCREEN_WIDTH, 30)];
     [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(buttonClick1:) forControlEvents:UIControlEventTouchUpInside];
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(65, 12.5, SCREEN_WIDTH*0.3, 30)];
     label.text = @"家庭名字";
     [view addSubview:label];
@@ -96,10 +96,10 @@
     
     return view;
 }
-- (void)buttonClick:(UIButton*)button{
+- (void)buttonClick1:(UIButton*)button{
     NSIndexPath *indexPath = [_superTableView indexPathForCell:(UITableViewCell*)button.superview.superview.superview.superview];
    
-    NSLog(@"%@",indexPath);
+    NSLog(@"触发 button %ld ",indexPath.row);
 }
 - (void)processBtns{
     CGFloat lastWidth = 0;

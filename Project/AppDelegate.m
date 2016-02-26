@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.m
 //  Project
 //
@@ -115,7 +115,7 @@
         _leftSlideController = [[LeftSlideViewController alloc] initWithLeftView:left andMainView:_mainController];
         
         self.window.rootViewController = _leftSlideController;
-        
+    
         HCHomeViewController *home = (HCHomeViewController *)_homeNavController.visibleViewController;
         if (!IsEmpty(_showWelcomeJoinGradeID))
         {

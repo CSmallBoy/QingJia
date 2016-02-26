@@ -111,7 +111,7 @@ static NSString *kGroupName = @"GroupName";
     navVc.tabBarItem.selectedImage = OrigIMG(selectedImage);
     // 设置字体颜色
     [navVc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
-    
+    [navVc.navigationBar setBackgroundColor:kHCNavBarColor];
     if ([rootViewControllerClass isSubclassOfClass:[HCMessageViewController class]])
     {
         _messageRootVC = (UINavigationController *)navVc;

@@ -64,7 +64,7 @@
     [button setTitle:@"1" forState:UIControlStateNormal];
     [button setFrame:CGRectMake(0, 0, 60, 55)];
     [button setBackgroundColor:[UIColor redColor]];
-    [button setImage:IMG(@"delete") forState:UIControlStateNormal];
+    [button setImage:IMG(@"delete1") forState:UIControlStateNormal];
     
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -87,7 +87,6 @@
                                                  tableView:tabview];
         cell.delegate = self;
     }
-  
     cell.textLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     return cell;
 }

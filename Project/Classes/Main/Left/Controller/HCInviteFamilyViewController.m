@@ -33,7 +33,7 @@
     [self setupBackItem];
     [self makeUI];
     sousuo = YES;
-    UIBarButtonItem *bar = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"inclass_ThinkChange"] style:UIBarButtonItemStylePlain target:self action:@selector(Scan)];
+    UIBarButtonItem *bar = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"ThinkChange_sel"] style:UIBarButtonItemStylePlain target:self action:@selector(Scan)];
     self.navigationItem.rightBarButtonItem = bar;
 }
 - (void)Scan{

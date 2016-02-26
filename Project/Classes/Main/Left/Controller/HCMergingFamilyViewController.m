@@ -31,17 +31,19 @@
     [super viewDidLoad];
     
     [self setupBackItem];
+    //self.view.backgroundColor = [UIColor colorWithRed:230/255.0 green:59/255.0 blue:58/255.0 alpha:1];
     self.view.backgroundColor = [UIColor grayColor];
     HCMergingFamilyView *view_left = [[HCMergingFamilyView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH*0.33, SCREEN_HEIGHT)];
     view_left.up_label.text = @"2015";
     view_left.down_label.text = @"2016";
     view_left.time_label.text = @"feb";
     [self.view addSubview:view_left];
-    
+    [self.navigationController.navigationBar setBackgroundColor:kHCNavBarColor];
    
     view_all  = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.33, 64, SCREEN_WIDTH*0.67, SCREEN_HEIGHT -64)];
     view_all.backgroundColor = [UIColor clearColor];
     [self.view addSubview:view_all];
+     
     
     _click=^(int i)
     {
