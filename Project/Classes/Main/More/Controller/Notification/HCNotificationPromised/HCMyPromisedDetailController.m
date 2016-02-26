@@ -84,7 +84,7 @@
     HCNotificationHeadImageController *imageVC = [[HCNotificationHeadImageController alloc]init];
     imageVC.data = @{@"image" : image};
     [self.navigationController pushViewController:imageVC animated:YES];
-
+    
 }
 
 // 点击了已经找到的按钮
@@ -105,7 +105,7 @@
         
         [self showHUDText:@"正在跳转AppStore"];
         
-// -----------------------------跳转到appStore---------------------------------------------
+        // -----------------------------跳转到appStore---------------------------------------------
         //初始化控制器
         SKStoreProductViewController *storeProductViewContorller = [[SKStoreProductViewController alloc] init];
         //设置代理请求为当前控制器本身
@@ -127,7 +127,7 @@
                   ];
              }
          }];
-//------------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------
         
     }else  if ([button.titleLabel.text isEqualToString:@"关闭"])
     {
@@ -166,7 +166,7 @@
     [self.view addSubview:bigImageView];
     
     [UIView animateWithDuration:0.3 animations:^{
-       
+        
         bigImageView.frame = self.view.frame;
         
     }];
@@ -177,8 +177,15 @@
 -(void)removeBigImage:(UITapGestureRecognizer *)tap
 {
     self.navigationController.navigationBarHidden = NO;
+    tap.view.backgroundColor = [UIColor clearColor];
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect  startFrame =  [self.imageView convertRect:self.imageView.bounds toView:self.view];
+        tap.view.frame = startFrame;
+    }completion:^(BOOL finished) {
+        [tap.view removeFromSuperview];
+    }];
     
-    [tap.view removeFromSuperview];
+    
 }
 
 #pragma mark --- setter Or getter
@@ -207,9 +214,9 @@
             label.textColor = [UIColor grayColor];
             label.font = [UIFont systemFontOfSize:12];
             [_imgeViewBottom addSubview:label];
-                                                                     
+            
         }
- 
+        
     }
     return _imgeViewBottom;
 }
@@ -234,7 +241,7 @@
     if(!_MotherTel){
         _MotherTel = [UIButton buttonWithType:UIButtonTypeCustom];
         _MotherTel.frame =CGRectMake(CGRectGetMaxY(self.MedicalBtn.frame) + SCREEN_WIDTH*80/250 + 5,
-                                    CGRectGetMaxY(self.numLabel.frame) +7,
+                                     CGRectGetMaxY(self.numLabel.frame) +7,
                                      self.imageView.frame.size.height/7 * 25/50,
                                      self.imageView.frame.size.height/7 * 25/50) ;
         [_MotherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
@@ -338,7 +345,7 @@
         UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addBigImage:)];
         [_imageView addGestureRecognizer:tap];
         
-        }
+    }
     return _imageView;
 }
 
@@ -349,9 +356,9 @@
         _foundBtn.frame = CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49);
         [_foundBtn setTitle:@"已找到" forState:UIControlStateNormal];
         _foundBtn.backgroundColor = [UIColor orangeColor];
-         [_foundBtn addTarget:self action:@selector(foundBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-       
-    
+        [_foundBtn addTarget:self action:@selector(foundBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
     }
     return _foundBtn;
 }
@@ -362,10 +369,10 @@
     if(!_missMessageLabel)
     {
         NSString *str = [NSString stringWithFormat:@"走失描述：%@",self.info.missDesc];
-     CGSize  size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-40, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17],NSForegroundColorAttributeName : [UIColor grayColor]} context:nil].size;
+        CGSize  size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-40, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17],NSForegroundColorAttributeName : [UIColor grayColor]} context:nil].size;
         _missMessageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20,80/600.0*SCREEN_HEIGHT,size.width,size.height)];
         _missMessageLabel.font = [UIFont fontWithName:@"PingFangTC-Thin" size:17];
-//        _missMessageLabel.font = [UIFont boldSystemFontOfSize:5.0];
+        //        _missMessageLabel.font = [UIFont boldSystemFontOfSize:5.0];
         _missMessageLabel.adjustsFontSizeToFitWidth = YES;
         _missMessageLabel.text = str;
         _missMessageLabel.numberOfLines = 0;
@@ -411,7 +418,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor blackColor];
         [_myAlertView addSubview:label];
-         NSArray *Arr = @[@"好评",@"关闭",@"取消"];
+        NSArray *Arr = @[@"好评",@"关闭",@"取消"];
         for (int i = 0;i<3 ; i++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.frame = CGRectMake(30 + i *80, 100, 60, 40);
@@ -447,7 +454,7 @@
     if(!_grayView){
         _grayView = [[UIView alloc]initWithFrame:CGRectMake(100, CGRectGetMaxX(self.numLabel.frame) + 5, 100, 20)];
         _grayView.backgroundColor = [UIColor blackColor];
-                                                        
+        
     }
     return _grayView;
 }

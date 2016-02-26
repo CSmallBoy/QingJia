@@ -78,32 +78,24 @@ static NSString * const reuseIdentifier = @"moreCollectionCell";
     return 3;
 }
 
-
-
 #pragma mark - setter or getter
 
 - (NSMutableArray *)TagArr
 {
     if (!_TagArr)
     {
-        NSArray *titleArr = @[@"通知中心",
-                              @"时间轴",
-                              @"救助中心",
-                              @"班级日历",
-                              @"标签管理",
+        NSArray *titleArr = @[@"一呼百应",
                               @"产品中心",
-                              @"一呼百应",
-                              @"添加"];
-        NSArray *imageNameArr = @[@"Notice",
-                                  @"Timeline",
-                                  @"Salve",
-                                  @"Calendar",
-                                  @"label",
+                              @"救助中心",
+                              @"标签管理",
+                              ];
+        NSArray *imageNameArr = @[@"hopne",
                                   @"Products",
-                                  @"hopne",
-                                  @"Classinfo_but_plus"];
+                                  @"Salve",
+                                  @"label",
+                                  ];
         _TagArr = [NSMutableArray arrayWithCapacity:8];
-        for (NSInteger i = 0; i < 8; i++)
+        for (NSInteger i = 0; i < 4; i++)
         {
             HCMoreInfo *info = [[HCMoreInfo alloc] init];
             info.title = titleArr[i];
@@ -119,10 +111,8 @@ static NSString * const reuseIdentifier = @"moreCollectionCell";
 {
     if (!_vClassNameArr)
     {
-        _vClassNameArr = @[@"HCNotificationViewController", @"HCTimeViewController",
-                           @"HCRescueCenterViewController", @"HClassCalendarViewController",
-                           @"HCTagManagerViewController", @"HCProductionCenterController",
-                           @"HCPromisedViewController", @"HCAddItemViewController"];
+        _vClassNameArr = @[@"HCPromisedViewController",@"HCProductionCenterController",
+                           @"HCRescueCenterViewController",@"HCTagManagerViewController"];
     }
     return _vClassNameArr;
 }

@@ -73,7 +73,7 @@
     
     // 导航栏上的加号“+”
     [self addItem];
-   
+    
 }
 
 #pragma mark --- private mothods
@@ -82,43 +82,52 @@
 {
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:IMG(@"导航条－inclass_Plus") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick:)];
     self.navigationItem.rightBarButtonItem = right;
-
+    
 }
 
 // 点击了右边的Item
 -(void)rightItemClick:(UIBarButtonItem *)right
 {
-    UIImageView  *view = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 64, 105, 75)];
-    view.image = IMG(@"delete-report-23");
     
-    UIButton  *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    deleteBtn.frame = CGRectMake(15, 15, 20, 20);
-    [deleteBtn setBackgroundImage:IMG(@"一呼百应详情－delete") forState:UIControlStateNormal];
-    [view addSubview:deleteBtn];
+    if (_isShowDelete)
+    {
+        [self removeDeletIV];
+        _isShowDelete = NO;
+    }else
+    {
+        
+        UIImageView  *view = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 64, 105, 75)];
+        view.image = IMG(@"delete-report-23");
+        
+        UIButton  *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        deleteBtn.frame = CGRectMake(15, 15, 20, 20);
+        [deleteBtn setBackgroundImage:IMG(@"一呼百应详情－delete") forState:UIControlStateNormal];
+        [view addSubview:deleteBtn];
+        
+        UIButton *deleteText = [UIButton buttonWithType:UIButtonTypeCustom];
+        deleteText.frame = CGRectMake(50, 13, 40, 20);
+        deleteText.titleLabel.font = [UIFont systemFontOfSize:15];
+        [deleteText setTitle:@"删除" forState:UIControlStateNormal];
+        [deleteText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [view addSubview:deleteText];
+        
+        UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        reportBtn.frame = CGRectMake(15, 48, 20, 20);
+        [reportBtn setBackgroundImage:IMG(@"一呼百应详情－account") forState:UIControlStateNormal];
+        [view addSubview:reportBtn];
+        
+        UIButton *reportText = [UIButton buttonWithType:UIButtonTypeCustom];
+        reportText.frame = CGRectMake(50, 48, 40, 20);
+        reportText.titleLabel.font = [UIFont systemFontOfSize:15];
+        [reportText setTitle:@"举报" forState:UIControlStateNormal];
+        [reportText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [view addSubview:reportText];
+        
+        self.deletIV = view;
+        [self.view addSubview:self.deletIV];
+        _isShowDelete = YES;
+    }
     
-    UIButton *deleteText = [UIButton buttonWithType:UIButtonTypeCustom];
-    deleteText.frame = CGRectMake(50, 13, 40, 20);
-    deleteText.titleLabel.font = [UIFont systemFontOfSize:15];
-    [deleteText setTitle:@"删除" forState:UIControlStateNormal];
-    [deleteText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [view addSubview:deleteText];
-    
-    UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    reportBtn.frame = CGRectMake(15, 48, 20, 20);
-    [reportBtn setBackgroundImage:IMG(@"一呼百应详情－account") forState:UIControlStateNormal];
-    [view addSubview:reportBtn];
-    
-    UIButton *reportText = [UIButton buttonWithType:UIButtonTypeCustom];
-    reportText.frame = CGRectMake(50, 48, 40, 20);
-    reportText.titleLabel.font = [UIFont systemFontOfSize:15];
-    [reportText setTitle:@"举报" forState:UIControlStateNormal];
-    [reportText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [view addSubview:reportText];
-    
-    self.deletIV = view;
-    [self.view addSubview:self.deletIV];
-    _isShowDelete = YES;
-
 }
 
 // 点击头像
@@ -266,7 +275,7 @@
 - (UIView *)imgeViewBottom
 {
     if(!_imgeViewBottom){
-       _imgeViewBottom = [[UIView alloc]initWithFrame:CGRectMake(0,self.imageView.frame.size.height-self.imageView.frame.size.height/6,self.imageView.frame.size.width , self.imageView.frame.size.height/6)];
+        _imgeViewBottom = [[UIView alloc]initWithFrame:CGRectMake(0,self.imageView.frame.size.height-self.imageView.frame.size.height/6,self.imageView.frame.size.width , self.imageView.frame.size.height/6)];
         _imgeViewBottom.backgroundColor = [UIColor whiteColor];
         [_imgeViewBottom addSubview:self.MedicalBtn];
         [_imgeViewBottom addSubview:self.numLabel];
@@ -294,7 +303,7 @@
 - (UILabel *)numLabel
 {
     if(!_numLabel){
-      _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.MedicalBtn.frame.size.width + 10,5,100/320.0*SCREEN_WIDTH,12/480.0*SCREEN_HEIGHT)];
+        _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.MedicalBtn.frame.size.width + 10,5,100/320.0*SCREEN_WIDTH,12/480.0*SCREEN_HEIGHT)];
         _numLabel.text = @"编号：12345678";
         _numLabel.adjustsFontSizeToFitWidth = YES;
         _numLabel.textColor = [UIColor blackColor];
@@ -335,7 +344,7 @@
 - (UIButton *)MotherTel
 {
     if(!_MotherTel){
-
+        
         _MotherTel = [UIButton buttonWithType:UIButtonTypeCustom];
         _MotherTel.frame =CGRectMake(CGRectGetMaxY(self.MedicalBtn.frame) + SCREEN_WIDTH*80/250 + 5,
                                      CGRectGetMaxY(self.numLabel.frame) +7,
@@ -450,6 +459,7 @@
 {
     
     [_deletIV removeFromSuperview];
+    _isShowDelete  = NO;
 }
 
 
