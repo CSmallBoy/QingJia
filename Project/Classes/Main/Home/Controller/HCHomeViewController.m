@@ -14,7 +14,6 @@
 
 @interface HCHomeViewController ()<UIScrollViewDelegate>
 
-@property (nonatomic, strong) UISegmentedControl *segmentControl;
 @property (nonatomic, strong) UIBarButtonItem *leftItem;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 
@@ -32,7 +31,6 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = self.segmentControl;
     self.navigationItem.leftBarButtonItem = self.leftItem;
     self.navigationItem.rightBarButtonItem = self.rightItem;
     
@@ -46,7 +44,13 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     _currentIndex = scrollView.contentOffset.x / SCREEN_WIDTH;
-    _segmentControl.selectedSegmentIndex = _currentIndex;
+    if (_currentIndex == 0)
+    {
+        self.title = @"哆啦A梦的家庭";
+    }else if(_currentIndex == 1)
+    {
+        self.title = @"XXXX的家族";
+    }
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
@@ -110,18 +114,6 @@
 }
 
 #pragma mark - setter or getter
-
-- (UISegmentedControl *)segmentControl
-{
-    if (!_segmentControl)
-    {
-        _segmentControl = [[UISegmentedControl alloc] initWithItems:@[@"家庭时光", @"家族时光"]];
-        [_segmentControl addTarget:self action:@selector(handleSegmentControl:) forControlEvents:UIControlEventValueChanged];
-        _segmentControl.frame = CGRectMake(0, 20, WIDTH(self.view)*0.4, 25);
-        _segmentControl.selectedSegmentIndex = 0;
-    }
-    return _segmentControl;
-}
 
 - (UIBarButtonItem *)leftItem
 {
