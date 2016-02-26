@@ -10,8 +10,10 @@
 
 #import "HCFeedbackTextView.h"
 
-@interface HCFeedbackViewController ()
+@interface HCFeedbackViewController ()<UITextFieldDelegate>
 
+@property (nonatomic,strong) UITextField  *textField;
+@property (nonatomic,strong) NSString     *telStr;
 
 @end
 
@@ -72,9 +74,12 @@
     }
     
     if (indexPath.row == 0) {
-        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(10, 15, SCREEN_WIDTH-20, 20)];
-        textField.placeholder = @"联系方式（手机号或者E-mail）";
-        [cell.contentView addSubview:textField];
+        _textField = [[UITextField alloc]initWithFrame:CGRectMake(10, 15, SCREEN_WIDTH-20, 20)];
+        _textField.placeholder = @"联系方式（手机号或者E-mail）";
+        _textField.text = self.telStr;
+        
+        _textField.delegate = self;
+        [cell.contentView addSubview:_textField];
     }else
     {
         HCFeedbackTextView *textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH-20,SCREEN_HEIGHT-44-50-100-64-20)];
@@ -108,9 +113,16 @@
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 12, SCREEN_WIDTH-20, 20)];
     label.text = @"欢迎提需求或建议，我们的进步离不开您的反馈！";
     label.textColor = [UIColor blackColor];
+    label.adjustsFontSizeToFitWidth = YES;
     
     return label;
 }
 
+
+#pragma mark --- UITextfiledDelegate
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.telStr = textField.text;
+}
 
 @end

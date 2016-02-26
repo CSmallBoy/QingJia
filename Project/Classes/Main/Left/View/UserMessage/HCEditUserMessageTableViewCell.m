@@ -25,9 +25,10 @@
     if (!cell) {
         
         cell = [[HCEditUserMessageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-        [cell addSubviews];
+       
         
     }
+     [cell addSubviews];
     return cell;
 
 }
@@ -58,7 +59,7 @@
     {
         self.textField.placeholder = @"上传头像";
         self.textField.enabled = NO;
-        
+        self.textField.frame = CGRectMake(52 + 10, 10, SCREEN_WIDTH-100, 20);
         UIButton  *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(SCREEN_WIDTH-50, 2, 40, 40);
         [button setBackgroundImage:IMG(@"2Dbarcode_message_HeadPortraits") forState:UIControlStateNormal];

@@ -12,7 +12,6 @@
 
 @interface HCChangeBounleTelNumberCell ()<UITextFieldDelegate>
 @property (nonatomic,strong) UILabel     *titleLabel;
-@property (nonatomic,strong) UITextField *textField;
 @property (nonatomic,strong) NSArray     *titleArr;
 @property (nonatomic,strong) NSArray     *placeHodelArr;
 @property (nonatomic,strong) NSString    *phoneNum;
@@ -115,7 +114,7 @@
             _placeHodelArr = @[@"请点击输入的新的绑定手机号",@"请点击再次输入新的绑定手机号验证"];
         }else
         {
-        _placeHodelArr = @[@"请输入原来的手机号",@"请输入验证码"];
+        _placeHodelArr = @[@"请输入原来的手机号",@""];
         }
         
         

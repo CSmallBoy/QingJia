@@ -24,6 +24,7 @@
 @property (nonatomic,assign) NSInteger timeNum;
 @property (nonatomic,strong)  NSString *phoneNum;
 @property (nonatomic,strong)  NSString *codeNum;
+@property (nonatomic,strong) UITextField  *textField;
 
 @end
 
@@ -36,7 +37,12 @@
     
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.view addSubview:self.tableView];
-    
+    _textField = [[UITextField alloc]initWithFrame:CGRectMake(70, 80,300, 20)];
+    _textField.font = [UIFont systemFontOfSize:14];
+    _textField.placeholder = @"请输入验证码";
+    _textField.textColor = [UIColor blackColor];
+    [self.tableView addSubview:self.textField];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getCodeNumber:) name:@"getCodeNumber" object:nil];
    
 }
@@ -117,8 +123,6 @@
     [view addSubview:blueLabel];
     
     return view;
-    
-
 }
 
 
@@ -147,22 +151,20 @@
         HCChangeBoundleTelNumberControll *sureVC = [[HCChangeBoundleTelNumberControll alloc]init];
         sureVC.isSure = YES;
         [self.navigationController pushViewController:sureVC animated:YES];
+//        if (![Utils checkPhoneNum:self.phoneNum]) {
+//            [self showHUDText:@"输入正确的手机号"];
+//            return;
+//        }
+//        
+//        
+//        if (self.textField.text.length < 6) {
+//            [self showHUDText:@"输入正确的验证码"];
+//            return;
+//        }
+//        [self requestcheckCode];
+
+       
     }
-        NSLog(@"###################%@",self.codeNum);
-
-   
-//    if (![Utils checkPhoneNum:self.phoneNum]) {
-//        [self showHUDText:@"输入正确的手机号"];
-//        return;
-//    }
-//    
-//    NSLog(@"###################%@",self.codeNum);
-//    if (self.codeNum.length < 4) {
-//        [self showHUDText:@"输入正确的验证码"];
-//        return;
-//    }
-//    [self requestcheckCode];
-
 }
 
 -(void)startTime
@@ -198,7 +200,7 @@
 - (UILabel *)timeNumLabel
 {
     if(!_timeNumLabel){
-        _timeNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-90,25, 80, 30)];
+        _timeNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-90,25, 80, 31)];
         _timeNumLabel.textAlignment = NSTextAlignmentCenter;
         ViewRadius(_timeNumLabel, 5);
     }
@@ -258,9 +260,9 @@
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self hideHUDView];
-//            HCPerfectMessageViewController *perfect = [[HCPerfectMessageViewController alloc] init];
-//            perfect.data = @{@"phonenumber": self.phoneNum, @"token": data[@"Token"]};
-//            [self.navigationController pushViewController:perfect animated:YES];
+            HCChangeBoundleTelNumberControll *sureVC = [[HCChangeBoundleTelNumberControll alloc]init];
+            sureVC.isSure = YES;
+            [self.navigationController pushViewController:sureVC animated:YES];
         }else
         {
             [self showHUDError:message];

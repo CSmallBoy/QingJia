@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) NSIndexPath   *indexPath;
 @property (nonatomic,assign) BOOL    isSure;
+@property (nonatomic,strong) UITextField   *textField;
 
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 

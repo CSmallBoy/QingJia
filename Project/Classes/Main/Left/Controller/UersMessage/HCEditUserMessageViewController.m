@@ -72,6 +72,7 @@
 {
     HCEditUserMessageTableViewCell *cell = [HCEditUserMessageTableViewCell cellWithTableView:tableView];
     cell.indexPath = indexPath;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 
