@@ -23,6 +23,8 @@
 #import "HCPromisedListAPI.h"
 #import "HCPromisedListInfo.h"
 
+
+
 @interface HCPromisedViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     BOOL   isShouldWhow;
@@ -420,6 +422,7 @@
             [self.dataArr removeAllObjects];
             self.dataArr = array;
             HCPromisedListInfo *info = [[HCPromisedListInfo alloc]init];
+
             info.name=@"+ 新增录入";
             [self.dataArr addObject:info];
             [self.smallTableView.mj_header endRefreshing];

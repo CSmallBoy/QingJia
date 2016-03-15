@@ -12,6 +12,9 @@
 #import "HCRescueCenterInfo.h"
 #import "UIImageView+WebCache.h"
 
+
+#import "MJRefresh.h"
+
 @interface HCRescueCenterViewController ()<UISearchDisplayDelegate,UISearchBarDelegate,UISearchControllerDelegate>
 
 //定义一个可变数组，存放搜索结果
@@ -31,6 +34,10 @@
     [self requestHomeData];
     [self setupBackItem];
     [self.searchDisplayController.searchResultsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"SearchCell"];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreData)];
+    [self.tableView.mj_header beginRefreshing];
     
 }
 
@@ -178,23 +185,51 @@
 {
     HCRescueCenterApi *api = [[HCRescueCenterApi alloc] init];
     
-    api.Start = 1000;
+    api.Start = 0;
     api.Count = 20;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array)
      {
+        
          if (requestStatus == HCRequestStatusSuccess)
          {
+             [self.tableView.mj_header endRefreshing];
              [self.dataSource removeAllObjects];
              [self.dataSource addObjectsFromArray:array];
              [self.tableView reloadData];
          }else
          {
-             [self.dataSource removeAllObjects];
-             [self.dataSource addObjectsFromArray:array];
-             [self.tableView reloadData];
+             
+             [self.tableView.mj_header endRefreshing];
              [self showHUDError:message];
          }
      }];
+}
+
+//上拉加载
+-(void)requestMoreData
+{
+    HCRescueCenterInfo *info = [self.dataSource lastObject];
+    
+    HCRescueCenterApi *api = [[HCRescueCenterApi alloc] init];
+    
+    api.Start = [info.KeyId intValue];
+    api.Count = 20;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array)
+     {
+         
+         if (requestStatus == HCRequestStatusSuccess)
+         {
+             [self.dataSource addObjectsFromArray:array];
+             [self.tableView reloadData];
+             
+             [self.tableView.mj_footer endRefreshing];
+         }else
+         {
+             [self.tableView.mj_footer endRefreshing];
+             [self showHUDError:message];
+         }
+     }];
+
 }
 
 @end

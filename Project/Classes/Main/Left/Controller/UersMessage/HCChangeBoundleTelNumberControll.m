@@ -84,8 +84,6 @@
         UITextField *textFIeld = (UITextField *)[cell viewWithTag:101];
         self.codeNum = textFIeld.text;
     }
-    
-    
     return cell;
 }
 
