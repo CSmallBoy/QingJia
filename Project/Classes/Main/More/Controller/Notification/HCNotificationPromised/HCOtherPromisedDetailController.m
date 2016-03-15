@@ -10,6 +10,7 @@
 #import "HCNotificationHeadImageController.h"
 #import "HCPromisedCommentController.h"
 #import "HCMedicalViewController.h"
+#import "HCPromisedReportController.h"
 
 #import "HCNotificationCenterInfo.h"
 
@@ -98,6 +99,7 @@
         
         UIImageView  *view = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 64, 105, 75)];
         view.image = IMG(@"delete-report-23");
+        view.userInteractionEnabled = YES;
         
         UIButton  *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         deleteBtn.frame = CGRectMake(15, 15, 20, 20);
@@ -114,6 +116,7 @@
         UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         reportBtn.frame = CGRectMake(15, 48, 20, 20);
         [reportBtn setBackgroundImage:IMG(@"一呼百应详情－account") forState:UIControlStateNormal];
+        [reportBtn addTarget:self action:@selector(toReportVC:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:reportBtn];
         
         UIButton *reportText = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -128,6 +131,14 @@
         _isShowDelete = YES;
     }
     
+}
+
+
+//点击举报
+-(void)toReportVC:(UIButton *)button
+{
+    HCPromisedReportController *reportVC = [[HCPromisedReportController alloc]init];
+    [self.navigationController pushViewController:reportVC animated:YES];
 }
 
 // 点击头像

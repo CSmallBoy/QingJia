@@ -20,6 +20,9 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *selectedBtn;
 @property (nonatomic, strong) UIButton *agreeBtn;
+@property (nonatomic,strong)  NSArray *relationArr;
+
+@property (nonatomic,strong) NSString *seleteStr;
 
 @end
 
@@ -38,17 +41,41 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HCCheckTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCheckCellId];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.delegate = self;
-    cell.info = self.dataSource[indexPath.row];
+    if (tableView == self.tableView)
+    {
+        HCCheckTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCheckCellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
+        cell.info = self.dataSource[indexPath.row];
+        
+        return cell;
+
+    }
+    else
+    {
+        static NSString *ID = @"chooseID"  ;
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (!cell)
+        {
+            cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.textLabel.text = self.relationArr[indexPath.row];
+        return cell;
+    }
     
-    return cell;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewCellEditingStyleDelete;
+    if (tableView == self.tableView)
+    {
+        return UITableViewCellEditingStyleDelete;
+
+    }
+    
+    return UITableViewCellEditingStyleNone;
+
+
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,12 +92,35 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    if (tableView == self.tableView) {
+        return self.dataSource.count;
+    }
+    return self.relationArr.count;
+    
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    if (tableView == self.tableView) {
+        return 60;
+    }
+    return 40;
+    
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView != self.tableView) {
+        
+        self.seleteStr = self.relationArr[indexPath.row];
+        
+        [self.selectedBtn setTitle:self.seleteStr forState:UIControlStateNormal];
+        
+        [tableView removeFromSuperview];
+        
+    }
 }
 
 #pragma mark - HCCheckTableViewCellDelegate
@@ -89,6 +139,17 @@
     {
         [self.contentView removeFromSuperview];
     }
+}
+
+-(void)chooseClick:(UIButton *)button
+{
+     CGRect  startFrame = [self.selectedBtn convertRect:self.selectedBtn.bounds toView:self.view];
+     UITableView *smallTableView = [[UITableView alloc]initWithFrame:CGRectMake(startFrame.origin.x, CGRectGetMaxY(startFrame), startFrame.size.width, 150) style:UITableViewStylePlain];
+    smallTableView.delegate = self;
+    smallTableView.dataSource =self;
+    
+    [self.view addSubview:smallTableView];
+    
 }
 
 #pragma mark - setter or getter
@@ -142,9 +203,13 @@
         _selectedBtn.frame = CGRectMake(15, MaxY(self.titleLabel)+10, WIDTH(self.customAlertView)-30, 44);
         [_selectedBtn setTitle:@"父亲" forState:UIControlStateNormal];
         [_selectedBtn setTitleColor:DarkGrayColor forState:UIControlStateNormal];
+        
+        [_selectedBtn addTarget:self action:@selector(chooseClick:) forControlEvents:UIControlEventTouchUpInside];
+        
         ViewBorderRadius(_selectedBtn, 2, 1, LightGraryColor);
         UIImageView *bottomArrow = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH(_selectedBtn)-30, 12, 20, 20)];
         bottomArrow.image = OrigIMG(@"list_open");
+        
         [_selectedBtn addSubview:bottomArrow];
     }
     return _selectedBtn;
@@ -162,6 +227,17 @@
     }
     return _agreeBtn;
 }
+
+
+- (NSArray *)relationArr
+{
+    if(!_relationArr){
+        _relationArr = @[@"父亲",@"母亲",@"姐妹",@"兄弟",@"姐弟",@"兄妹"];
+    }
+    return _relationArr;
+}
+
+
 
 #pragma mark - network
 

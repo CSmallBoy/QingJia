@@ -390,6 +390,7 @@
 		8D0ACCED1C75C00C008A8A55 /* higlightedBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0ACCE91C75C00C008A8A55 /* higlightedBarBackground@2x.png */; };
 		8D0ACCEE1C75C00C008A8A55 /* TLTiltSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0ACCEB1C75C00C008A8A55 /* TLTiltSlider.m */; };
 		8D0ACCEF1C75C00C008A8A55 /* trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0ACCEC1C75C00C008A8A55 /* trackBackground@2x.png */; };
+		8D0B71371C97A14700B091AA /* HCPromisedReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B71361C97A14700B091AA /* HCPromisedReportController.m */; };
 		8D0F9FBE1C7E9A290096A3B9 /* HCEditUserMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0F9FBD1C7E9A290096A3B9 /* HCEditUserMessageViewController.m */; };
 		8D0F9FC11C7E9F320096A3B9 /* HCEditUserMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0F9FC01C7E9F320096A3B9 /* HCEditUserMessageTableViewCell.m */; };
 		8D0F9FC41C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0F9FC31C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.m */; };
@@ -1772,6 +1773,8 @@
 		8D0ACCEA1C75C00C008A8A55 /* TLTiltSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTiltSlider.h; sourceTree = "<group>"; };
 		8D0ACCEB1C75C00C008A8A55 /* TLTiltSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTiltSlider.m; sourceTree = "<group>"; };
 		8D0ACCEC1C75C00C008A8A55 /* trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trackBackground@2x.png"; sourceTree = "<group>"; };
+		8D0B71351C97A14700B091AA /* HCPromisedReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedReportController.h; sourceTree = "<group>"; };
+		8D0B71361C97A14700B091AA /* HCPromisedReportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedReportController.m; sourceTree = "<group>"; };
 		8D0F9FBC1C7E9A290096A3B9 /* HCEditUserMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEditUserMessageViewController.h; sourceTree = "<group>"; };
 		8D0F9FBD1C7E9A290096A3B9 /* HCEditUserMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEditUserMessageViewController.m; sourceTree = "<group>"; };
 		8D0F9FBF1C7E9F320096A3B9 /* HCEditUserMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEditUserMessageTableViewCell.h; sourceTree = "<group>"; };
@@ -4779,6 +4782,8 @@
 				C78D79BB1C5F28F700622CE2 /* HCPromisedCommentController.m */,
 				8D21CA071C61D2B80071B32A /* HCMedicalViewController.h */,
 				8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */,
+				8D0B71351C97A14700B091AA /* HCPromisedReportController.h */,
+				8D0B71361C97A14700B091AA /* HCPromisedReportController.m */,
 				8D131A4D1C7D7C4E00F0D5A0 /* Photo */,
 			);
 			path = HCNotificationPromised;
@@ -7213,6 +7218,7 @@
 				C78D7AAC1C5F28F700622CE2 /* HCCreateGradeTableViewCell.m in Sources */,
 				C7B00B761C5F26050010F93B /* EMCDDeviceManager+Remind.m in Sources */,
 				C7B00B5C1C5F26050010F93B /* EMRobotChatTextBubbleView.m in Sources */,
+				8D0B71371C97A14700B091AA /* HCPromisedReportController.m in Sources */,
 				8D131A8D1C7D7C7F00F0D5A0 /* ZLCameraViewController.m in Sources */,
 				0A54910F1C2BC32D0085F50D /* ZXAddressBookDoCoMoResultParser.m in Sources */,
 				C78D7C911C5F2C1200622CE2 /* HCTagManagerDetailViewController.m in Sources */,
