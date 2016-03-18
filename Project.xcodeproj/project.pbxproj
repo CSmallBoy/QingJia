@@ -386,6 +386,20 @@
 		0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83A1BF5887700DCA75A /* KWFormView.m */; };
 		0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */; };
 		3AA0DCFA47C83622EEE93AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9376B27D02CD20170277F57 /* libPods.a */; };
+		8D07E7791C9A4148007F08B5 /* HCMtalkShopingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7781C9A4148007F08B5 /* HCMtalkShopingController.m */; };
+		8D07E77D1C9A44AE007F08B5 /* HCMtalkShopingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E77C1C9A44AE007F08B5 /* HCMtalkShopingInfo.m */; };
+		8D07E7811C9A470E007F08B5 /* HCMtalkShopingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7801C9A470E007F08B5 /* HCMtalkShopingCell.m */; };
+		8D07E7841C9A5559007F08B5 /* HCMyMtalkShoping.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7831C9A5559007F08B5 /* HCMyMtalkShoping.m */; };
+		8D07E7871C9A6BA6007F08B5 /* HCMtalkMyOrderListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7861C9A6BA6007F08B5 /* HCMtalkMyOrderListController.m */; };
+		8D07E78A1C9A6CD8007F08B5 /* HCMtalkMyOrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7891C9A6CD8007F08B5 /* HCMtalkMyOrderInfo.m */; };
+		8D07E78D1C9A6F83007F08B5 /* HCMTalkMyOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E78C1C9A6F83007F08B5 /* HCMTalkMyOrderCell.m */; };
+		8D07E7901C9A7F12007F08B5 /* HCMtalkWaitPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E78F1C9A7F12007F08B5 /* HCMtalkWaitPayController.m */; };
+		8D07E7931C9A805B007F08B5 /* HCMtalkWaitReceivedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7921C9A805B007F08B5 /* HCMtalkWaitReceivedController.m */; };
+		8D07E7961C9A824C007F08B5 /* HCMtalkAfterSaleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7951C9A824C007F08B5 /* HCMtalkAfterSaleController.m */; };
+		8D07E7991C9A833E007F08B5 /* HCMTalkAfterSaleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7981C9A833E007F08B5 /* HCMTalkAfterSaleCell.m */; };
+		8D07E79C1C9A85B0007F08B5 /* HCMtalkMyOrderFinisheController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E79B1C9A85B0007F08B5 /* HCMtalkMyOrderFinisheController.m */; };
+		8D07E79F1C9A8785007F08B5 /* HCMyOrderDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E79E1C9A8785007F08B5 /* HCMyOrderDetailInfo.m */; };
+		8D07E7A21C9AB20E007F08B5 /* HCMTalkApplyAfterSaleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7A11C9AB20E007F08B5 /* HCMTalkApplyAfterSaleController.m */; };
 		8D0878551C7AA32B0093BE87 /* HCProductionCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0878541C7AA32B0093BE87 /* HCProductionCenterController.m */; };
 		8D0ACCED1C75C00C008A8A55 /* higlightedBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0ACCE91C75C00C008A8A55 /* higlightedBarBackground@2x.png */; };
 		8D0ACCEE1C75C00C008A8A55 /* TLTiltSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0ACCEB1C75C00C008A8A55 /* TLTiltSlider.m */; };
@@ -1767,6 +1781,34 @@
 		0AF9B83B1BF5887700DCA75A /* KWFormViewQuickBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFormViewQuickBuilder.h; sourceTree = "<group>"; };
 		0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFormViewQuickBuilder.m; sourceTree = "<group>"; };
 		6ACE64504D5E86E87CC78BEE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8D07E7771C9A4148007F08B5 /* HCMtalkShopingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkShopingController.h; sourceTree = "<group>"; };
+		8D07E7781C9A4148007F08B5 /* HCMtalkShopingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMtalkShopingController.m; sourceTree = "<group>"; };
+		8D07E77B1C9A44AE007F08B5 /* HCMtalkShopingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkShopingInfo.h; sourceTree = "<group>"; };
+		8D07E77C1C9A44AE007F08B5 /* HCMtalkShopingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMtalkShopingInfo.m; sourceTree = "<group>"; };
+		8D07E77F1C9A470E007F08B5 /* HCMtalkShopingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkShopingCell.h; sourceTree = "<group>"; };
+		8D07E7801C9A470E007F08B5 /* HCMtalkShopingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMtalkShopingCell.m; sourceTree = "<group>"; };
+		8D07E7821C9A5559007F08B5 /* HCMyMtalkShoping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyMtalkShoping.h; sourceTree = "<group>"; };
+		8D07E7831C9A5559007F08B5 /* HCMyMtalkShoping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMyMtalkShoping.m; sourceTree = "<group>"; };
+		8D07E7851C9A6BA6007F08B5 /* HCMtalkMyOrderListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkMyOrderListController.h; sourceTree = "<group>"; };
+		8D07E7861C9A6BA6007F08B5 /* HCMtalkMyOrderListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMtalkMyOrderListController.m; sourceTree = "<group>"; };
+		8D07E7881C9A6CD8007F08B5 /* HCMtalkMyOrderInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkMyOrderInfo.h; sourceTree = "<group>"; };
+		8D07E7891C9A6CD8007F08B5 /* HCMtalkMyOrderInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMtalkMyOrderInfo.m; sourceTree = "<group>"; };
+		8D07E78B1C9A6F83007F08B5 /* HCMTalkMyOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMTalkMyOrderCell.h; sourceTree = "<group>"; };
+		8D07E78C1C9A6F83007F08B5 /* HCMTalkMyOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMTalkMyOrderCell.m; sourceTree = "<group>"; };
+		8D07E78E1C9A7F12007F08B5 /* HCMtalkWaitPayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkWaitPayController.h; sourceTree = "<group>"; };
+		8D07E78F1C9A7F12007F08B5 /* HCMtalkWaitPayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMtalkWaitPayController.m; sourceTree = "<group>"; };
+		8D07E7911C9A805B007F08B5 /* HCMtalkWaitReceivedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkWaitReceivedController.h; sourceTree = "<group>"; };
+		8D07E7921C9A805B007F08B5 /* HCMtalkWaitReceivedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMtalkWaitReceivedController.m; sourceTree = "<group>"; };
+		8D07E7941C9A824C007F08B5 /* HCMtalkAfterSaleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkAfterSaleController.h; sourceTree = "<group>"; };
+		8D07E7951C9A824C007F08B5 /* HCMtalkAfterSaleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMtalkAfterSaleController.m; sourceTree = "<group>"; };
+		8D07E7971C9A833E007F08B5 /* HCMTalkAfterSaleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMTalkAfterSaleCell.h; sourceTree = "<group>"; };
+		8D07E7981C9A833E007F08B5 /* HCMTalkAfterSaleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMTalkAfterSaleCell.m; sourceTree = "<group>"; };
+		8D07E79A1C9A85B0007F08B5 /* HCMtalkMyOrderFinisheController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkMyOrderFinisheController.h; sourceTree = "<group>"; };
+		8D07E79B1C9A85B0007F08B5 /* HCMtalkMyOrderFinisheController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMtalkMyOrderFinisheController.m; sourceTree = "<group>"; };
+		8D07E79D1C9A8785007F08B5 /* HCMyOrderDetailInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyOrderDetailInfo.h; sourceTree = "<group>"; };
+		8D07E79E1C9A8785007F08B5 /* HCMyOrderDetailInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMyOrderDetailInfo.m; sourceTree = "<group>"; };
+		8D07E7A01C9AB20E007F08B5 /* HCMTalkApplyAfterSaleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMTalkApplyAfterSaleController.h; sourceTree = "<group>"; };
+		8D07E7A11C9AB20E007F08B5 /* HCMTalkApplyAfterSaleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMTalkApplyAfterSaleController.m; sourceTree = "<group>"; };
 		8D0878531C7AA32B0093BE87 /* HCProductionCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductionCenterController.h; sourceTree = "<group>"; };
 		8D0878541C7AA32B0093BE87 /* HCProductionCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductionCenterController.m; sourceTree = "<group>"; };
 		8D0ACCE91C75C00C008A8A55 /* higlightedBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "higlightedBarBackground@2x.png"; sourceTree = "<group>"; };
@@ -4320,11 +4362,53 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8D07E77A1C9A4485007F08B5 /* HCMtalkShopInfo */ = {
+			isa = PBXGroup;
+			children = (
+				8D07E77B1C9A44AE007F08B5 /* HCMtalkShopingInfo.h */,
+				8D07E77C1C9A44AE007F08B5 /* HCMtalkShopingInfo.m */,
+				8D07E7881C9A6CD8007F08B5 /* HCMtalkMyOrderInfo.h */,
+				8D07E7891C9A6CD8007F08B5 /* HCMtalkMyOrderInfo.m */,
+				8D07E79D1C9A8785007F08B5 /* HCMyOrderDetailInfo.h */,
+				8D07E79E1C9A8785007F08B5 /* HCMyOrderDetailInfo.m */,
+			);
+			path = HCMtalkShopInfo;
+			sourceTree = "<group>";
+		};
+		8D07E77E1C9A46E1007F08B5 /* MtalkShoping */ = {
+			isa = PBXGroup;
+			children = (
+				8D07E77F1C9A470E007F08B5 /* HCMtalkShopingCell.h */,
+				8D07E7801C9A470E007F08B5 /* HCMtalkShopingCell.m */,
+				8D07E78B1C9A6F83007F08B5 /* HCMTalkMyOrderCell.h */,
+				8D07E78C1C9A6F83007F08B5 /* HCMTalkMyOrderCell.m */,
+				8D07E7971C9A833E007F08B5 /* HCMTalkAfterSaleCell.h */,
+				8D07E7981C9A833E007F08B5 /* HCMTalkAfterSaleCell.m */,
+			);
+			path = MtalkShoping;
+			sourceTree = "<group>";
+		};
 		8D0878521C7AA2B60093BE87 /* ProductionCenterController */ = {
 			isa = PBXGroup;
 			children = (
 				8D0878531C7AA32B0093BE87 /* HCProductionCenterController.h */,
 				8D0878541C7AA32B0093BE87 /* HCProductionCenterController.m */,
+				8D07E7771C9A4148007F08B5 /* HCMtalkShopingController.h */,
+				8D07E7781C9A4148007F08B5 /* HCMtalkShopingController.m */,
+				8D07E7821C9A5559007F08B5 /* HCMyMtalkShoping.h */,
+				8D07E7831C9A5559007F08B5 /* HCMyMtalkShoping.m */,
+				8D07E7851C9A6BA6007F08B5 /* HCMtalkMyOrderListController.h */,
+				8D07E7861C9A6BA6007F08B5 /* HCMtalkMyOrderListController.m */,
+				8D07E78E1C9A7F12007F08B5 /* HCMtalkWaitPayController.h */,
+				8D07E78F1C9A7F12007F08B5 /* HCMtalkWaitPayController.m */,
+				8D07E7911C9A805B007F08B5 /* HCMtalkWaitReceivedController.h */,
+				8D07E7921C9A805B007F08B5 /* HCMtalkWaitReceivedController.m */,
+				8D07E7941C9A824C007F08B5 /* HCMtalkAfterSaleController.h */,
+				8D07E7951C9A824C007F08B5 /* HCMtalkAfterSaleController.m */,
+				8D07E79A1C9A85B0007F08B5 /* HCMtalkMyOrderFinisheController.h */,
+				8D07E79B1C9A85B0007F08B5 /* HCMtalkMyOrderFinisheController.m */,
+				8D07E7A01C9AB20E007F08B5 /* HCMTalkApplyAfterSaleController.h */,
+				8D07E7A11C9AB20E007F08B5 /* HCMTalkApplyAfterSaleController.m */,
 			);
 			path = ProductionCenterController;
 			sourceTree = "<group>";
@@ -4948,6 +5032,7 @@
 		C78D79801C5F28F700622CE2 /* ProductCenter */ = {
 			isa = PBXGroup;
 			children = (
+				8D07E77A1C9A4485007F08B5 /* HCMtalkShopInfo */,
 				C78D79811C5F28F700622CE2 /* Address */,
 				C78D79841C5F28F700622CE2 /* CustomTagInfo */,
 				C78D79891C5F28F700622CE2 /* HCApplyReissueResonInfo.h */,
@@ -5033,6 +5118,7 @@
 		C78D79AB1C5F28F700622CE2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8D07E77E1C9A46E1007F08B5 /* MtalkShoping */,
 				C78D79AC1C5F28F700622CE2 /* HCLightGrayLineView.h */,
 				C78D79AD1C5F28F700622CE2 /* HCLightGrayLineView.m */,
 				C78D79AE1C5F28F700622CE2 /* HCMoreCollectionViewCell.h */,
@@ -7275,6 +7361,7 @@
 				C78D7B0A1C5F28F700622CE2 /* HCCustomTagViewController.m in Sources */,
 				C7B00BC21C5F26050010F93B /* EaseBubbleView+Text.m in Sources */,
 				0A2B46F11C7F12AF00AAA157 /* HCEditCommentView.m in Sources */,
+				8D07E79C1C9A85B0007F08B5 /* HCMtalkMyOrderFinisheController.m in Sources */,
 				0A54917E1C2BC32D0085F50D /* ZXRSSExpandedDecodedChar.m in Sources */,
 				C7B00B511C5F26050010F93B /* MyChatroomListViewController.m in Sources */,
 				0A54916E1C2BC32D0085F50D /* ZXMaxiCodeReader.m in Sources */,
@@ -7300,6 +7387,7 @@
 				0A54915E1C2BC32D0085F50D /* ZXDataMatrixBase256Encoder.m in Sources */,
 				C78D7C991C5F2C1200622CE2 /* UIView+SDExtension.m in Sources */,
 				0A54916C1C2BC32D0085F50D /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
+				8D07E7871C9A6BA6007F08B5 /* HCMtalkMyOrderListController.m in Sources */,
 				C78D7AE11C5F28F700622CE2 /* HCRegistViewController.m in Sources */,
 				C7B00B8C1C5F26050010F93B /* EMSDWebImagePrefetcher.m in Sources */,
 				0A54910C1C2BC32D0085F50D /* ZXAztecWriter.m in Sources */,
@@ -7359,6 +7447,7 @@
 				0A2B47801C7F12C800AAA157 /* HCDictionaryApi.m in Sources */,
 				C78D7B9F1C5F28F700622CE2 /* HCScanViewController.m in Sources */,
 				C7B00B9B1C5F26050010F93B /* PSTCollectionViewFlowLayout.m in Sources */,
+				8D07E7931C9A805B007F08B5 /* HCMtalkWaitReceivedController.m in Sources */,
 				8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */,
 				0A2B46E51C7F12AF00AAA157 /* HCHomeUserTimeViewController.m in Sources */,
 				0A2B46E71C7F12AF00AAA157 /* HCPublishViewController.m in Sources */,
@@ -7435,6 +7524,7 @@
 				C7B00BAB1C5F26050010F93B /* NSString+Valid.m in Sources */,
 				0A2B46E11C7F12AF00AAA157 /* HCHomeDetailViewController.m in Sources */,
 				C7B00BC61C5F26050010F93B /* EaseChatToolbar.m in Sources */,
+				8D07E78D1C9A6F83007F08B5 /* HCMTalkMyOrderCell.m in Sources */,
 				0A5491321C2BC32D0085F50D /* ZXCGImageLuminanceSource.m in Sources */,
 				8D131A8B1C7D7C7F00F0D5A0 /* ZLCameraImageView.m in Sources */,
 				0A8BE3651C7E8C90008E8100 /* HCGradeManagerViewController.m in Sources */,
@@ -7452,6 +7542,7 @@
 				0A54911B1C2BC32D0085F50D /* ZXISBNParsedResult.m in Sources */,
 				0A5491D21C2BC32D0085F50D /* ZXQRCodeBlockPair.m in Sources */,
 				C78D7B171C5F28F700622CE2 /* HCRescueCenterViewController.m in Sources */,
+				8D07E77D1C9A44AE007F08B5 /* HCMtalkShopingInfo.m in Sources */,
 				C7B00BB71C5F26050010F93B /* EaseMessageViewController.m in Sources */,
 				0A5491441C2BC32D0085F50D /* ZXGlobalHistogramBinarizer.m in Sources */,
 				C7B00BBC1C5F26050010F93B /* EaseBaseMessageCell.m in Sources */,
@@ -7466,6 +7557,7 @@
 				C78D7B031C5F28F700622CE2 /* HCWaitReissueAuditViewController.m in Sources */,
 				0A5491BE1C2BC32D0085F50D /* ZXPDF417Reader.m in Sources */,
 				0A5491621C2BC32D0085F50D /* ZXDataMatrixEncoderContext.m in Sources */,
+				8D07E7791C9A4148007F08B5 /* HCMtalkShopingController.m in Sources */,
 				0A2B476F1C7F12C800AAA157 /* HCNotificationUnreadChangeApi.m in Sources */,
 				8D0F9FC41C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.m in Sources */,
 				C78D7B201C5F28F700622CE2 /* HCMoreInfo.m in Sources */,
@@ -7474,6 +7566,7 @@
 				0A54913A1C2BC32D0085F50D /* ZXReedSolomonEncoder.m in Sources */,
 				0A5491C11C2BC32D0085F50D /* ZXQRCodeBitMatrixParser.m in Sources */,
 				C78D7D471C5F342700622CE2 /* HCAddPromiseViewController1.m in Sources */,
+				8D07E7991C9A833E007F08B5 /* HCMTalkAfterSaleCell.m in Sources */,
 				C7B00B5F1C5F26050010F93B /* RobotListViewController.m in Sources */,
 				C7B00B901C5F26050010F93B /* UIImage+EMGIF.m in Sources */,
 				C7B00B9E1C5F26050010F93B /* PSTCollectionViewUpdateItem.m in Sources */,
@@ -7488,6 +7581,7 @@
 				C78D7B4B1C5F28F700622CE2 /* HCApplyReturnDetailCell.m in Sources */,
 				8D131A951C7D7C7F00F0D5A0 /* ZLPhotoPickerBrowserViewController.m in Sources */,
 				C7B00BC31C5F26050010F93B /* EaseBubbleView+Video.m in Sources */,
+				8D07E7811C9A470E007F08B5 /* HCMtalkShopingCell.m in Sources */,
 				C78D7B011C5F28F700622CE2 /* HCReissueAuditNotPassViewController.m in Sources */,
 				0A2B47751C7F12C800AAA157 /* HCLogisticsApi.m in Sources */,
 				0A54915B1C2BC32D0085F50D /* ZXDataMatrixVersion.m in Sources */,
@@ -7558,6 +7652,7 @@
 				C7B00B3B1C5F26050010F93B /* UIViewController+HUD.m in Sources */,
 				0A54919C1C2BC32D0085F50D /* ZXMultiFormatOneDReader.m in Sources */,
 				C78D7C941C5F2C1200622CE2 /* HCCourseViewController.m in Sources */,
+				8D07E78A1C9A6CD8007F08B5 /* HCMtalkMyOrderInfo.m in Sources */,
 				0A5491721C2BC32D0085F50D /* ZXAI013103decoder.m in Sources */,
 				0A5491A11C2BC32D0085F50D /* ZXUPCAWriter.m in Sources */,
 				0A5491281C2BC32D0085F50D /* ZXURIParsedResult.m in Sources */,
@@ -7601,6 +7696,7 @@
 				0A8BE3971C7E8D6A008E8100 /* HCFriendMessageInfo.m in Sources */,
 				0A5491B11C2BC32D0085F50D /* ZXPDF417DetectionResult.m in Sources */,
 				C78D7B0F1C5F28F700622CE2 /* HCTaoBaoViewController.m in Sources */,
+				8D07E7901C9A7F12007F08B5 /* HCMtalkWaitPayController.m in Sources */,
 				C78D7AFA1C5F28F700622CE2 /* HCApplyReturnViewController.m in Sources */,
 				C7B00B3A1C5F26050010F93B /* UIViewController+DismissKeyboard.m in Sources */,
 				0A5491D11C2BC32D0085F50D /* ZXQRCode.m in Sources */,
@@ -7615,6 +7711,7 @@
 				0A54919A1C2BC32D0085F50D /* ZXITFReader.m in Sources */,
 				C78D7AE31C5F28F700622CE2 /* HCAccountMgr.m in Sources */,
 				0A5491B21C2BC32D0085F50D /* ZXPDF417DetectionResultColumn.m in Sources */,
+				8D07E79F1C9A8785007F08B5 /* HCMyOrderDetailInfo.m in Sources */,
 				C7B00BA51C5F26050010F93B /* EaseConversationModel.m in Sources */,
 				0A5491931C2BC32D0085F50D /* ZXCode39Writer.m in Sources */,
 				0A5491981C2BC32D0085F50D /* ZXEAN8Writer.m in Sources */,
@@ -7639,6 +7736,7 @@
 				0A2B477E1C7F12C800AAA157 /* HCTagManagerApi.m in Sources */,
 				8D131A9D1C7D7C7F00F0D5A0 /* ZLPhotoPickerGroupViewController.m in Sources */,
 				0A54914E1C2BC32D0085F50D /* ZXDimension.m in Sources */,
+				8D07E7841C9A5559007F08B5 /* HCMyMtalkShoping.m in Sources */,
 				0A5491631C2BC32D0085F50D /* ZXDataMatrixErrorCorrection.m in Sources */,
 				C7B00BAC1C5F26050010F93B /* UIViewController+DismissKeyboard.m in Sources */,
 				0A2B47701C7F12C800AAA157 /* HCAddressApi.m in Sources */,
@@ -7674,6 +7772,7 @@
 				0A8BE3B81C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.m in Sources */,
 				0A8BE37A1C7E8CA9008E8100 /* HCSoftwareSettingViewController.m in Sources */,
 				C78D7B2F1C5F28F700622CE2 /* HCReturnAddressInfo.m in Sources */,
+				8D07E7961C9A824C007F08B5 /* HCMtalkAfterSaleController.m in Sources */,
 				0A8BE3771C7E8CA9008E8100 /* HCFeedbackViewController.m in Sources */,
 				0A5491D51C2BC32D0085F50D /* ZXQRCodeMatrixUtil.m in Sources */,
 				C78D7B391C5F28F700622CE2 /* HCButtonItem.m in Sources */,
@@ -7847,6 +7946,7 @@
 				C78D7AA61C5F28F700622CE2 /* HCGradeSuccessViewController.m in Sources */,
 				C78D7D571C5F342700622CE2 /* HCPromisedAddCell.m in Sources */,
 				C7B00BCA1C5F26050010F93B /* EaseFaceView.m in Sources */,
+				8D07E7A21C9AB20E007F08B5 /* HCMTalkApplyAfterSaleController.m in Sources */,
 				C7B00BA21C5F26050010F93B /* PSTGridLayoutSection.m in Sources */,
 				C78D7C8F1C5F2C1200622CE2 /* HCHeathViewController.m in Sources */,
 				0A2B47661C7F12C800AAA157 /* HCGetCodeApi.m in Sources */,
