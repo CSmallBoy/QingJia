@@ -7,6 +7,9 @@
 //
 
 #import "HCMtalkWaitReceivedController.h"
+#import "HCMtalkWaitReceivedDetailController.h"
+
+
 #import "HCMtalkMyOrderInfo.h"
 #import "HCMTalkMyOrderCell.h"
 
@@ -64,6 +67,13 @@
     
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HCMtalkWaitReceivedDetailController *orderDetailVC = [[HCMtalkWaitReceivedDetailController alloc]init];\
+    [self.navigationController pushViewController:orderDetailVC animated:YES];
+}
+
 
 #pragma mark ---- network
 

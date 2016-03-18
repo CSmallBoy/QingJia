@@ -7,6 +7,8 @@
 //
 
 #import "HCMtalkMyOrderFinisheController.h"
+#import "HCMTalkApplyAfterSaleController.h"
+
 #import "HCMyOrderDetailInfo.h"
 
 @interface HCMtalkMyOrderFinisheController ()
@@ -167,7 +169,7 @@
             case 3:
             {
                 cell.textLabel.text = @"您的快递已经签收，欢迎再次光临M-Talk商城~";
-                cell.textLabel.font = [UIFont systemFontOfSize:14];
+                cell.textLabel.adjustsFontSizeToFitWidth = YES;
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 
             }
@@ -289,6 +291,18 @@
     return cell;
 }
 
+#pragma mark --- private mothods
+
+-(void)buttonClick:(UIButton *)button
+{
+    if (button.tag == 101) {
+        
+        HCMTalkApplyAfterSaleController *applyVC = [[HCMTalkApplyAfterSaleController alloc]init];
+        [self.navigationController pushViewController:applyVC animated:YES];
+        
+    }
+}
+
 
 #pragma mark --- setter Or getter
 
@@ -354,6 +368,7 @@
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.frame = CGRectMake(110+jiange *i, 10, jiange-10, 30) ;
             btn.layer.borderWidth = 1;
+            btn.tag = 100 + i;
             btn.layer.borderColor = kHCBackgroundColor.CGColor;
             [btn setTitle:arr[i] forState:UIControlStateNormal];
             if (i!=2) {
@@ -370,6 +385,7 @@
             }
             
             ViewRadius(btn, 5);
+            [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
             btn.titleLabel.adjustsFontSizeToFitWidth = YES;
             [_footerView addSubview:btn];
             

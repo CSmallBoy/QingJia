@@ -1,59 +1,56 @@
 //
-//  HCMTalkApplyAfterSaleController.m
+//  HCMtalkAuditThroughController.m
 //  Project
 //
-//  Created by 朱宗汉 on 16/3/17.
+//  Created by 朱宗汉 on 16/3/18.
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "HCMTalkApplyAfterSaleController.h"
-#import "HCMtalkReturnReason.h"
-#import "HCMtalkAuditingController.h"
+#import "HCMtalkAuditThroughController.h"
 
-#import "HCMtalkMyOrderInfo.h"
+@interface HCMtalkAuditThroughController ()
 
-@interface HCMTalkApplyAfterSaleController (){
-    NSInteger num1;
-}
-
-@property (nonatomic,strong) UITableView *myTableView;
-@property (nonatomic,strong) HCMtalkMyOrderInfo *info;
 @property (nonatomic,strong) UIView *footerView;
-@property (nonatomic,strong) UILabel *label;
-@property (nonatomic,strong) UIView *smallView;
+@property (nonatomic,strong) UITableView *myTableView;
 
 @end
 
-@implementation HCMTalkApplyAfterSaleController
+@implementation HCMtalkAuditThroughController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//----------------------------申请售后--------------------------------
-    self.title = @"申请售后";
+    // ------------------------审核通过--------------------------------
+    self.title = @"审核通过";
     [self setupBackItem];
-    num1 = 1;
+    
     [self.view addSubview:self.myTableView];
     [self.view addSubview:self.footerView];
-  
+    
 }
 
+#pragma mark --- tableView delegate
 
-#pragma mark ---- tableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 3;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0 || section == 3) {
+    if (section == 0)
+    {
         return 1;
     }
-    else
+    else if (section == 1)
     {
         return 2;
     }
+    else
+    {
+        return 3;
+    }
 }
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -62,43 +59,39 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 8;
+    return  8;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0)
+    {
         return 120;
     }
     else if (indexPath.section == 1)
     {
         return 44;
     }
-    else if (indexPath.section == 2)
+    else
     {
-        if ( indexPath.row == 0) {
+        if (indexPath.row == 0 || indexPath.row == 2)
+        {
             return 44;
         }
         else
         {
-            return 80;
+            return 120;
         }
-        
     }
-    else
-    {
-        return 120;
-    }
-    
 }
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UITableViewCell *cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
-    if (indexPath.section == 0) {
-        
+    if (indexPath.section == 0)
+    {
         UIImageView * bigIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 100, 100)];
         bigIV.image = IMG(@"1");
         [cell addSubview:bigIV];
@@ -122,51 +115,23 @@
         
         UILabel *priceLabe = [[UILabel alloc]initWithFrame:CGRectMake(120,CGRectGetMaxY(numLabel.frame)+5, 80, 30)];
         priceLabe.textColor = [UIColor blackColor];
-        priceLabe.text = self.info.price;
+        priceLabe.text = @"￥9.9元";
         [cell addSubview:priceLabe];
-        return cell;
-
+        
     }
-    else if (indexPath.section == 1)
+    else if(indexPath.section == 1)
     {
-        if (indexPath.section == 1&&indexPath.row == 0)
+        if (indexPath.row == 0)
         {
             NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:@"退货选择  M-Talk烫印机"];
             [attStr addAttributes:@{NSFontAttributeName :[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(0, 4)];
             cell.textLabel.attributedText = attStr;
             
-            self.label = [[UILabel alloc]initWithFrame:CGRectMake(35, 0, 35, 20)];
-            self.smallView  =[[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-115, 11, 105, 20)];
-            
-
-            self.smallView.layer.borderWidth = 1;
-            self.smallView.layer.borderColor = kHCBackgroundColor.CGColor;
-            ViewRadius(self.smallView, 5);
-
-            UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-            [button1 setTitle:@"-" forState:UIControlStateNormal];
-            [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            button1.layer.borderWidth = 1;
-            [button1 addTarget:self action:@selector(minusNum) forControlEvents:UIControlEventTouchUpInside];
-            button1.frame = CGRectMake(0, 0, 35, 20);
-        
-            
-            self.label.text =[NSString stringWithFormat:@"%ld",num1];
-            self.label.textColor = [UIColor blackColor];
-            self.label.textAlignment = NSTextAlignmentCenter;
-
-            UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
-            [button3 setTitle:@"+" forState:UIControlStateNormal];
-            [button3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            button3.layer.borderWidth =1;
-            button3.frame = CGRectMake(70, 0, 35, 20);
-            
-            [self.smallView addSubview:button1];
-            [self.smallView  addSubview:self.label];
-            [self.smallView  addSubview:button3];
-            
-            [cell addSubview:self.smallView ];
-           
+            UISegmentedControl *segment = [[UISegmentedControl alloc]initWithItems:@[@"➖",@"1",@"➕"]];
+            segment.frame = CGRectMake(SCREEN_WIDTH-160, 6, 150, 30);
+            segment.backgroundColor = [UIColor whiteColor];
+            segment.tintColor = [UIColor grayColor];
+            [cell addSubview:segment];
             
         }
         else
@@ -175,10 +140,10 @@
             [attStr addAttributes:@{NSFontAttributeName :[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(0, 4)];
             
             cell.textLabel.attributedText = attStr;
-   
+            
         }
     }
-    else if (indexPath.section == 2)
+    else
     {
         if (indexPath.row == 0)
         {
@@ -195,81 +160,36 @@
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
+        else if (indexPath.row ==1)
+        {
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH-10, 30)];
+            label.textColor = [UIColor blackColor];
+            label.text = @"原因描述：烫印机烫不了标签，想退货";
+            [cell addSubview:label];
+            
+            for (int i =0; i<3; i++)
+            {
+                UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+70*i, 50, 60, 60)];
+                imageView.image = IMG(@"1");
+                [cell addSubview:imageView];
+            }
+            
+        }
         else
         {
-            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH-20, 60)];
-            textView.text = @"原因描述:";
-            textView.textColor = [UIColor blackColor];
-            [cell addSubview:textView];
+            NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:@"退款去向 微信钱包"];
+            [attStr addAttributes:@{NSFontAttributeName :[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(0, 4)];
+            cell.textLabel.attributedText = attStr;
         }
- 
-    }
-    else
-    {
-        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 80, 20)];
-        titleLabel.text = @"上传图片";
-        titleLabel.textColor = [UIColor blackColor];
-        titleLabel.adjustsFontSizeToFitWidth = YES;
-        [cell addSubview:titleLabel];
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(10, 40, 50, 50);
-        [button setBackgroundImage:IMG(@"Add-Images") forState:UIControlStateNormal];
-        [cell addSubview:button];
-        
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 100,SCREEN_WIDTH-20, 10)];
-        label.textColor = [UIColor grayColor];
-        label.adjustsFontSizeToFitWidth = YES;
-        label.text = @"最多上传三张图片，每张不得超过5M，支持JPG、BMP、PNG";
-        [cell addSubview:label];
-    
     }
-    
-    
     
     return cell;
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 2&& indexPath.row == 0) {
-        
-        HCMtalkReturnReason *reasonVC = [[HCMtalkReturnReason alloc]init];
-        [self.navigationController pushViewController:reasonVC animated:YES];
-    }
-}
 
-
-#pragma mark --- private mothod
-
--(void)toAuditVC
-{
-    HCMtalkAuditingController *auditVC = [[HCMtalkAuditingController alloc]init];
-    [self.navigationController pushViewController:auditVC animated:YES];
-
-}
-
-
--(void)minusNum
-{
-    NSInteger num = [self.label.text integerValue];
-    num = num + 1;
-    self.label.text = [NSString stringWithFormat:@"%ld",num];
-}
-
-#pragma mark ---setter or getter
-
-- (HCMtalkMyOrderInfo *)info
-{
-    if(!_info){
-        _info = [[HCMtalkMyOrderInfo alloc]init];
-        _info.title = @"套餐A M-talk二维码标签10张+M-talk烫印机1个";
-        _info.price = @"￥9.9元";
-
-    }
-    return _info;
-}
+#pragma mark --- setter Or getter
 
 
 - (UITableView *)myTableView
@@ -284,7 +204,6 @@
     }
     return _myTableView;
 }
-
 
 
 - (UIView *)footerView
@@ -310,21 +229,20 @@
         
         UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         rightBtn.frame = CGRectMake(110, 0,SCREEN_WIDTH-110 , 50);
-        [rightBtn setTitle:@"申请售后" forState:UIControlStateNormal];
+        [rightBtn setTitle:@"审核通过" forState:UIControlStateNormal];
         [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         rightBtn.backgroundColor = OrangeColor;
-        [rightBtn addTarget:self action:@selector(toAuditVC) forControlEvents:UIControlEventTouchUpInside];
         
         [_footerView addSubview:rightBtn];
     }
     return _footerView;
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-   
+    
 }
+
 
 
 @end

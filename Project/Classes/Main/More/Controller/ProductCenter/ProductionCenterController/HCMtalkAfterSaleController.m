@@ -9,6 +9,7 @@
 #import "HCMtalkAfterSaleController.h"
 #import "HCMtalkMyOrderInfo.h"
 #import "HCMTalkAfterSaleCell.h"
+#import "HCMtalkAuditThroughController.h"
 
 @interface HCMtalkAfterSaleController ()
 
@@ -26,6 +27,10 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.backgroundColor = kHCBackgroundColor;
     [self.view addSubview:self.tableView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toNextVC) name:@"toNextVC" object:nil];
+    
+    
 }
 
 #pragma mark --- tableViewdelegate
@@ -64,6 +69,14 @@
     
     return cell;
 }
+#pragma mark --- private mothod
+
+-(void)toNextVC
+{
+    HCMtalkAuditThroughController *throughVC = [[HCMtalkAuditThroughController alloc]init];
+    [self.navigationController pushViewController:throughVC animated:YES];
+}
+
 
 #pragma mark ---- network
 

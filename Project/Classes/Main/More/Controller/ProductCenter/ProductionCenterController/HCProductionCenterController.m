@@ -64,7 +64,7 @@
 - (HCButtonItem *)taoBaoBtn
 {
     if(!_taoBaoBtn){
-         _taoBaoBtn = [[HCButtonItem alloc]initWithFrame:CGRectMake(0, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"taoBao" WithImageWidth:30 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"淘宝购买", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:10];
+         _taoBaoBtn = [[HCButtonItem alloc]initWithFrame:CGRectMake(0, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"taobaologo" WithImageWidth:30 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"淘宝购买", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:10];
         [_taoBaoBtn addTarget:self action:@selector(showTaoBaoWebView) forControlEvents:UIControlEventTouchUpInside];
        
     }
@@ -76,7 +76,7 @@
 - (HCButtonItem *)jinDongBtn
 {
     if(!_jinDongBtn){
-         _jinDongBtn = [[HCButtonItem alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3*2, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"jinDong" WithImageWidth:30 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"京东购买", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:10];
+         _jinDongBtn = [[HCButtonItem alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3*2, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"jindonglogo" WithImageWidth:50 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"京东购买", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:10];
         [_jinDongBtn addTarget:self action:@selector(showJinDongWebView) forControlEvents:UIControlEventTouchUpInside];
     }
     return _jinDongBtn;
@@ -87,7 +87,7 @@
 {
     if(!_MtalkBtn){
         
-        _MtalkBtn = [[HCButtonItem alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"mtalklogo" WithImageWidth:30 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"购买Malk", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:10];
+        _MtalkBtn = [[HCButtonItem alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"m-talk-logo" WithImageWidth:30 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"购买Malk", nil) WithFontSize:14 WithFontColor:[UIColor blackColor] WithGap:10];
         [_MtalkBtn addTarget:self action:@selector(toNextController) forControlEvents:UIControlEventTouchUpInside];
     }
     return _MtalkBtn;

@@ -55,6 +55,12 @@
   
 }
 
+-(void)toNextVC
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"toNextVC" object:nil];
+
+}
+
 #pragma mark --- setter Or getter
 
 
@@ -152,6 +158,7 @@
         _againBtn.layer.borderWidth = 1;
         _againBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         _againBtn.layer.borderColor = [UIColor redColor].CGColor;
+        [_againBtn addTarget:self action:@selector(toNextVC) forControlEvents:UIControlEventTouchUpInside];
         [_againBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     }
     return _againBtn;
