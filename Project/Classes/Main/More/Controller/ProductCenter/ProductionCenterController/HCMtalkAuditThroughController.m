@@ -7,6 +7,7 @@
 //
 
 #import "HCMtalkAuditThroughController.h"
+#import "segmentCell.h"
 
 @interface HCMtalkAuditThroughController ()
 
@@ -123,15 +124,8 @@
     {
         if (indexPath.row == 0)
         {
-            NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:@"退货选择  M-Talk烫印机"];
-            [attStr addAttributes:@{NSFontAttributeName :[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(0, 4)];
-            cell.textLabel.attributedText = attStr;
-            
-            UISegmentedControl *segment = [[UISegmentedControl alloc]initWithItems:@[@"➖",@"1",@"➕"]];
-            segment.frame = CGRectMake(SCREEN_WIDTH-160, 6, 150, 30);
-            segment.backgroundColor = [UIColor whiteColor];
-            segment.tintColor = [UIColor grayColor];
-            [cell addSubview:segment];
+            segmentCell *cell1 = [segmentCell cellWithTableView:tableView];
+            return cell1;
             
         }
         else

@@ -36,9 +36,19 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.tableHeaderView = self.tableHeaderView;
     [self.view addSubview:self.tableView];
-  
-   
+
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    // --------------------导航栏透明 -------------------
+//    UIImage *image = [UIImage imageNamed:@"clearColor-2"];
+//    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsCompact];
+//
+//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+//    self.navigationController.navigationBar.clipsToBounds = YES;
+}
+
 
 #pragma mark --- tableViewDelegate
 

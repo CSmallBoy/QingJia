@@ -64,7 +64,7 @@
 {
     HCMTalkMyOrderCell *cell = [HCMTalkMyOrderCell cellWithTable:tableView];
     cell.info = self.dataSource[indexPath.section];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

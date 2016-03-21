@@ -66,7 +66,7 @@
     self.titleLabel.textColor = [UIColor grayColor];
     
     NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc]initWithString:info.title ];
-    [attStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]} range:NSMakeRange(0, 2)];
+    [attStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]} range:NSMakeRange(0, 3)];
     self.titleLabel.attributedText = attStr;
     
     self.priceLabel.text = [NSString stringWithFormat:@"实付款：%@",info.price];

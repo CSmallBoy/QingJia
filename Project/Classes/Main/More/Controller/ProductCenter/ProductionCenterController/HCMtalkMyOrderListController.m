@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setupBackItem];
     self.title = @"我的订单";
     
@@ -28,6 +29,7 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.backgroundColor = kHCBackgroundColor;
     [self.view addSubview:self.tableView];
+
 }
 
 #pragma mark --- tableViewdelegate
@@ -63,6 +65,7 @@
 {
     HCMTalkMyOrderCell *cell = [HCMTalkMyOrderCell cellWithTable:tableView];
     cell.info = self.dataSource[indexPath.section];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

@@ -12,6 +12,9 @@
 
 @interface HCMtalkWaitReceivedDetailController ()
 
+@property (nonatomic,strong) UIView  *footerView;
+@property (nonatomic,strong) UITableView  *myTableView;
+
 @end
 
 @implementation HCMtalkWaitReceivedDetailController
@@ -22,10 +25,11 @@
     self.title = @"待收货";
     [self setupBackItem];
     [self requestData];
-    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
-    self.tableView.backgroundColor = kHCBackgroundColor;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
+    self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.footerView];
+    [self.view addSubview:self.myTableView];
+    
+   
     
 }
 
@@ -136,6 +140,37 @@
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
+
+#pragma mark --- getter Or setter
+
+
+- (UIView *)footerView
+{
+    if(!_footerView){
+        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-50, SCREEN_WIDTH, 50)];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(15, 10,SCREEN_WIDTH-30, 30);
+        [button setBackgroundColor:COLOR(222, 35, 46, 1)];
+        [button setTitle:@"确认收货" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        ViewRadius(button, 5);
+        [_footerView addSubview:button];
+    }
+    return _footerView;
+}
+
+
+- (UITableView *)myTableView
+{
+    if(!_myTableView){
+        _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-50-64) style:UITableViewStyleGrouped];
+        _myTableView.delegate = self;
+        _myTableView.dataSource = self;
+        _myTableView.backgroundColor = kHCBackgroundColor;
+    }
+    return _myTableView;
+}
+
 
 #pragma mark --- netWork
 -(void)requestData

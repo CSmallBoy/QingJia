@@ -55,6 +55,7 @@
     UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button3 setTitle:@"+" forState:UIControlStateNormal];
     [button3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button3 addTarget:self action:@selector(addNum) forControlEvents:UIControlEventTouchUpInside];
     button3.layer.borderWidth =1;
     button3.frame = CGRectMake(70, 0, 35, 20);
     
@@ -63,6 +64,27 @@
     [self.smallView  addSubview:button3];
     
     [self addSubview:self.smallView ];
+
+}
+
+
+-(void)minusNum
+{
+    NSInteger num = [self.label.text integerValue];
+    
+    if (num==1) {
+        return;
+    }
+    num = num - 1;
+    self.label.text = [NSString stringWithFormat:@"%ld",num];
+}
+
+
+-(void)addNum
+{
+    NSInteger num = [self.label.text integerValue];
+    num = num+1;
+    self.label.text = [NSString stringWithFormat:@"%ld",num];
 
 }
 

@@ -10,6 +10,7 @@
 
 @interface HCMtalkReturnReason ()
 @property (nonatomic,strong) NSMutableArray *arr;
+@property (nonatomic,strong) NSArray *titleArr;
 @end
 
 @implementation HCMtalkReturnReason
@@ -62,10 +63,10 @@
         [cell addSubview:imageView];  
     }
     
-    NSArray *arr= @[@"不通电",@"不能烫印标签",@"其他"];
+   self.titleArr= @[@"不通电",@"不能烫印标签",@"其他"];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(40, 6, 200, 30)];
-    label.text = arr[indexPath.row];
+    label.text = self.titleArr[indexPath.row];
     label.textColor = [UIColor blackColor];
     label.adjustsFontSizeToFitWidth = YES;
     
@@ -92,11 +93,9 @@
             [_arr addObject:@"2"];
         }
     }
-    
     [self.tableView reloadData];
     
-    
-    
+    self.block(self.titleArr[indexPath.row]);
 }
 
 - (void)didReceiveMemoryWarning {

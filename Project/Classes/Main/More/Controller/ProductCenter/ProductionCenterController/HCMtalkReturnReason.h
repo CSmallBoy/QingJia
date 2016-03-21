@@ -8,6 +8,10 @@
 
 #import "HCTableViewController.h"
 
+typedef void(^changeReasonBlock) (NSString *str);
+
 @interface HCMtalkReturnReason : HCTableViewController
+
+@property (nonatomic,strong) changeReasonBlock block;
 
 @end
