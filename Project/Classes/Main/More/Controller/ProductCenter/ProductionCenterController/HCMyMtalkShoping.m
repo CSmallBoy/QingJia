@@ -36,19 +36,50 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.tableHeaderView = self.tableHeaderView;
     [self.view addSubview:self.tableView];
+    
 
 }
+
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     // --------------------导航栏透明 -------------------
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"clearColor-2"] forBarMetrics:UIBarMetricsDefault];
+    //导航条底部黑线去除办法
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    
+    
 //    UIImage *image = [UIImage imageNamed:@"clearColor-2"];
 //    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsCompact];
-//
 //    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
 //    self.navigationController.navigationBar.clipsToBounds = YES;
+
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    
+    
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBackgroundColor:kHCNavBarColor];
+    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeFrame" object:nil];
+//    
+//    [[NSUserDefaults standardUserDefaults] setObject:@(1) forKey:@"isChange"];
+//    
+//    self.hidesBottomBarWhenPushed = NO;
+    
+//    UIImage *image = [UIImage imageNamed:@"red3-2"];
+//    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsCompact];
+//    self.navigationController.navigationBar.clipsToBounds = NO;
+
+
+}
 
 #pragma mark --- tableViewDelegate
 

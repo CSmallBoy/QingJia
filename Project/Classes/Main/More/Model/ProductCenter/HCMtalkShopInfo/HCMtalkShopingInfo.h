@@ -15,4 +15,6 @@
 @property (nonatomic,strong)NSString *price;
 @property (nonatomic,strong)NSString *discount;
 
+@property (nonatomic,assign) BOOL isSelect;
+@property (nonatomic,strong) NSString *allPrice;
 @end

@@ -34,10 +34,43 @@
     [self.view addSubview:self.jinDongWebView];
     self.jinDongWebView.hidden = YES;
     [self.view addSubview:self.footerView];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    UIView *statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
+    
+    statusBarView.backgroundColor=kHCNavBarColor;
+    
+    [self.view addSubview:statusBarView];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    
 }
 
 
 #pragma mark --- private mothods
+
+-(void)changeFrame
+{
+    self.footerView.frame = CGRectMake(0, SCREEN_HEIGHT-124, SCREEN_WIDTH, 60) ;
+    self.taoBaoWebView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-124);
+    self.jinDongWebView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-124);
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isChange"];
+
+}
+
+-(void)newChangeFrame
+{
+    
+    
+    self.footerView.frame = CGRectMake(0, SCREEN_HEIGHT-124, SCREEN_WIDTH, 60) ;
+    self.taoBaoWebView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-124);
+    self.jinDongWebView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-124);
+
+  
+}
 
 -(void)showTaoBaoWebView
 {
@@ -53,8 +86,6 @@
 {
     HCMtalkShopingController *malkVC = [[HCMtalkShopingController alloc]init];
     [self.navigationController pushViewController:malkVC animated:YES];
-    
-    
 }
 
 
@@ -98,7 +129,7 @@
 - (UIWebView *)taoBaoWebView
 {
     if(!_taoBaoWebView){
-        _taoBaoWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-60)];
+        _taoBaoWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-60-64)];
         NSURLRequest  *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.taobao.com"]];
         [_taoBaoWebView loadRequest:request];
     }
@@ -131,6 +162,7 @@
     if (!_footerView)
     {
         _footerView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT-60 , SCREEN_WIDTH, 60)];
+        
         _footerView.backgroundColor = kHCBackgroundColor;
         
         UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-20, 1)];

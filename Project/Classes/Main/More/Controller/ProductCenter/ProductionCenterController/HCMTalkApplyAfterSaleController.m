@@ -39,6 +39,17 @@
   
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    UIView *statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
+    
+    statusBarView.backgroundColor=kHCNavBarColor;
+    
+    [self.view addSubview:statusBarView];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    
+}
 
 #pragma mark ---- tableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

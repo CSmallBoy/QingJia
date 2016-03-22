@@ -28,8 +28,17 @@
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.footerView];
     [self.view addSubview:self.myTableView];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    UIView *statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
     
-   
+    statusBarView.backgroundColor=kHCNavBarColor;
+    
+    [self.view addSubview:statusBarView];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
 }
 
@@ -163,7 +172,7 @@
 - (UITableView *)myTableView
 {
     if(!_myTableView){
-        _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-50-64) style:UITableViewStyleGrouped];
+        _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50-64) style:UITableViewStyleGrouped];
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
         _myTableView.backgroundColor = kHCBackgroundColor;

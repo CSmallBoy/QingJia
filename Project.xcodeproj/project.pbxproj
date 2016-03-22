@@ -386,6 +386,9 @@
 		0AF9B83D1BF5887700DCA75A /* KWFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83A1BF5887700DCA75A /* KWFormView.m */; };
 		0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */; };
 		3AA0DCFA47C83622EEE93AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9376B27D02CD20170277F57 /* libPods.a */; };
+		8D0730391CA0EBD900332296 /* HCProductDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0730381CA0EBD900332296 /* HCProductDetailController.m */; };
+		8D07303C1CA11BA400332296 /* HCProductShopingCarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07303B1CA11BA400332296 /* HCProductShopingCarController.m */; };
+		8D0730401CA1263500332296 /* HCShopingCarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07303F1CA1263500332296 /* HCShopingCarCell.m */; };
 		8D07E7791C9A4148007F08B5 /* HCMtalkShopingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7781C9A4148007F08B5 /* HCMtalkShopingController.m */; };
 		8D07E77D1C9A44AE007F08B5 /* HCMtalkShopingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E77C1C9A44AE007F08B5 /* HCMtalkShopingInfo.m */; };
 		8D07E7811C9A470E007F08B5 /* HCMtalkShopingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07E7801C9A470E007F08B5 /* HCMtalkShopingCell.m */; };
@@ -1788,6 +1791,12 @@
 		0AF9B83B1BF5887700DCA75A /* KWFormViewQuickBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFormViewQuickBuilder.h; sourceTree = "<group>"; };
 		0AF9B83C1BF5887700DCA75A /* KWFormViewQuickBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFormViewQuickBuilder.m; sourceTree = "<group>"; };
 		6ACE64504D5E86E87CC78BEE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8D0730371CA0EBD900332296 /* HCProductDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductDetailController.h; sourceTree = "<group>"; };
+		8D0730381CA0EBD900332296 /* HCProductDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductDetailController.m; sourceTree = "<group>"; };
+		8D07303A1CA11BA400332296 /* HCProductShopingCarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductShopingCarController.h; sourceTree = "<group>"; };
+		8D07303B1CA11BA400332296 /* HCProductShopingCarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductShopingCarController.m; sourceTree = "<group>"; };
+		8D07303E1CA1263500332296 /* HCShopingCarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCShopingCarCell.h; sourceTree = "<group>"; };
+		8D07303F1CA1263500332296 /* HCShopingCarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCShopingCarCell.m; sourceTree = "<group>"; };
 		8D07E7771C9A4148007F08B5 /* HCMtalkShopingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkShopingController.h; sourceTree = "<group>"; };
 		8D07E7781C9A4148007F08B5 /* HCMtalkShopingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMtalkShopingController.m; sourceTree = "<group>"; };
 		8D07E77B1C9A44AE007F08B5 /* HCMtalkShopingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMtalkShopingInfo.h; sourceTree = "<group>"; };
@@ -4383,6 +4392,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8D0730361CA0EB6B00332296 /* HCProdoctCenterBuyController */ = {
+			isa = PBXGroup;
+			children = (
+				8D0730371CA0EBD900332296 /* HCProductDetailController.h */,
+				8D0730381CA0EBD900332296 /* HCProductDetailController.m */,
+				8D07303A1CA11BA400332296 /* HCProductShopingCarController.h */,
+				8D07303B1CA11BA400332296 /* HCProductShopingCarController.m */,
+			);
+			path = HCProdoctCenterBuyController;
+			sourceTree = "<group>";
+		};
+		8D07303D1CA125C100332296 /* ShopingCar */ = {
+			isa = PBXGroup;
+			children = (
+				8D07303E1CA1263500332296 /* HCShopingCarCell.h */,
+				8D07303F1CA1263500332296 /* HCShopingCarCell.m */,
+			);
+			path = ShopingCar;
+			sourceTree = "<group>";
+		};
 		8D07E77A1C9A4485007F08B5 /* HCMtalkShopInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -4440,6 +4469,7 @@
 				8D0AB9851C9BABAD00DDAB7D /* HCMtalkAuditingController.m */,
 				8D0AB9901C9BE58200DDAB7D /* HCMtalkAuditThroughController.h */,
 				8D0AB9911C9BE58200DDAB7D /* HCMtalkAuditThroughController.m */,
+				8D0730361CA0EB6B00332296 /* HCProdoctCenterBuyController */,
 			);
 			path = ProductionCenterController;
 			sourceTree = "<group>";
@@ -5149,6 +5179,7 @@
 		C78D79AB1C5F28F700622CE2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8D07303D1CA125C100332296 /* ShopingCar */,
 				8D07E77E1C9A46E1007F08B5 /* MtalkShoping */,
 				C78D79AC1C5F28F700622CE2 /* HCLightGrayLineView.h */,
 				C78D79AD1C5F28F700622CE2 /* HCLightGrayLineView.m */,
@@ -7742,6 +7773,7 @@
 				C78D7C971C5F2C1200622CE2 /* HCUnactivatedTagViewController.m in Sources */,
 				0A2B47731C7F12C800AAA157 /* HCCustomerApi.m in Sources */,
 				C7B00B621C5F26050010F93B /* DebugViewController.m in Sources */,
+				8D0730401CA1263500332296 /* HCShopingCarCell.m in Sources */,
 				C7B00B491C5F26050010F93B /* GroupBansViewController.m in Sources */,
 				C7B00BB41C5F26050010F93B /* EaseEmotionManager.m in Sources */,
 				0A2B477F1C7F12C800AAA157 /* HCUnactivatedTagApi.m in Sources */,
@@ -7810,6 +7842,7 @@
 				0A5491C81C2BC32D0085F50D /* ZXQRCodeFormatInformation.m in Sources */,
 				C78D7C901C5F2C1200622CE2 /* HClabelDetaViewController.m in Sources */,
 				0A8BE3B81C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.m in Sources */,
+				8D07303C1CA11BA400332296 /* HCProductShopingCarController.m in Sources */,
 				0A8BE37A1C7E8CA9008E8100 /* HCSoftwareSettingViewController.m in Sources */,
 				C78D7B2F1C5F28F700622CE2 /* HCReturnAddressInfo.m in Sources */,
 				8D07E7961C9A824C007F08B5 /* HCMtalkAfterSaleController.m in Sources */,
@@ -7947,6 +7980,7 @@
 				0A5491D61C2BC32D0085F50D /* ZXMultiDetector.m in Sources */,
 				C7B00B461C5F26050010F93B /* ContactSelectionViewController.m in Sources */,
 				0A8BE3BE1C7E8D7C008E8100 /* HCMergingFamilyView.m in Sources */,
+				8D0730391CA0EBD900332296 /* HCProductDetailController.m in Sources */,
 				C7B00B481C5F26050010F93B /* CreateGroupViewController.m in Sources */,
 				C7B00BA91C5F26050010F93B /* NSDateFormatter+Category.m in Sources */,
 				C7B00B431C5F26050010F93B /* CustomMessageCell.m in Sources */,

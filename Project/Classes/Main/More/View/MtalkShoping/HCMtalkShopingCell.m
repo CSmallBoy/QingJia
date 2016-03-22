@@ -52,7 +52,7 @@
 {
     _info = info;
     self.titleLabel.text = info.title;
-    self.priceLabel.text = info.price;
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@元",info.price];
     self.discountLabel.text = info.discount;
 
 }
