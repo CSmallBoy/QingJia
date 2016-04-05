@@ -9,6 +9,7 @@
 #import "HCGradeViewController.h"
 #import "HCCreateGradeViewController.h"
 #import "HCJoinGradeViewController.h"
+#import "HCHomeViewController.h"
 #import "AppDelegate.h"
 
 @interface HCGradeViewController ()
@@ -60,7 +61,7 @@
     [self.navigationController pushViewController:joinGrade animated:YES];
 }
 
-- (void)handleRightItem
+- (void)handleRightItem1
 {
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app setupRootViewController];
@@ -72,7 +73,7 @@
 {
     if (!_rightItem)
     {
-        _rightItem = [[UIBarButtonItem alloc] initWithTitle:@"跳过" style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem)];
+        _rightItem = [[UIBarButtonItem alloc] initWithTitle:@"跳过" style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem1)];
     }
     return _rightItem;
 }
