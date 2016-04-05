@@ -10,11 +10,13 @@
 
 @class HCCreateGradeInfo;
 
-typedef void(^HCCreateGradeBlock)(HCRequestStatus requestStatus, NSString *message, HCCreateGradeInfo *info);
+typedef void(^HCCreateGradeBlock)(HCRequestStatus requestStatus, NSString *message,  id respone);
 
 @interface HCCreateGradeApi : HCRequest
 
 @property (nonatomic, strong) HCCreateGradeInfo *gradeInfo;
+
+@property (nonatomic,strong) NSString *token;
 
 - (void)startRequest:(HCCreateGradeBlock)requestBlock;
 

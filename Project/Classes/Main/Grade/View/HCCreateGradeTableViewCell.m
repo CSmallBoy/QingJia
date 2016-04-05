@@ -30,7 +30,6 @@
     {
         [self.contentView addSubview:self.title];
         [self.contentView addSubview:self.textField];
-        [self.contentView addSubview:self.redMark];
     }
     return self;
 }
@@ -38,7 +37,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    if (_indexPath.row != 5)
+    if (_indexPath.row != 4)
     {
         self.title.textColor = DarkGrayColor;
         self.title.frame = CGRectMake(10, 0, 80, 50);
@@ -59,19 +58,17 @@
 {
     if (textField.tag == 0)
     {
-        _info.FamilyName = textField.text;
+        _info.familyNickName = textField.text;
     }else if (textField.tag == 1)
     {
-        _info.FamilyNickName = textField.text;
+        _info.familyDescription = textField.text;
     }else if (textField.tag == 2)
     {
-        _info.ContactAddr = textField.text;
-    }else if (textField.tag == 3)
+        _info.contactAddr = textField.text;
+    }
+    else if (textField.tag == 3)
     {
-        _info.VisitPassWord = textField.text;
-    }else if (textField.tag == 4)
-    {
-        _info.repassword = textField.text;
+        _info.ancestralHome = textField.text;
     }
 }
 
@@ -82,10 +79,9 @@
     _indexPath = indexPath;
     
     self.textField.tag = indexPath.row;
-    if (indexPath.row != 5)
+    if (indexPath.row != 4)
     {
         self.textField.enabled = YES;
-        self.redMark.hidden = NO;
         self.title.hidden = NO;
         self.title.text = self.titleArr[indexPath.row];
         self.textField.placeholder = self.placeholderArr[indexPath.row];
@@ -94,9 +90,9 @@
         self.textField.enabled = NO;
         self.redMark.hidden = YES;
     }
-    if (indexPath.row == 5)
+    if (indexPath.row == 4)
     {
-        self.title.text = @"请点击上传您的班级照片";
+        self.title.text = @"请点击上传您的家庭照片";
         [self.contentView addSubview:self.selectedImgView];
         if (!IsEmpty(_info.uploadImage))
         {
@@ -104,6 +100,12 @@
             self.selectedImgView.image = _info.uploadImage;
         }
     }
+    
+    if (indexPath.row == 1)
+    {
+        [self.contentView addSubview:self.redMark];
+    }
+    
 }
 
 - (UILabel *)title
@@ -153,7 +155,7 @@
 {
     if (!_titleArr)
     {
-        _titleArr = @[@"班级名字", @"班级签名", @"学校地址", @"班级密码", @"班级密码"];
+        _titleArr = @[@"家庭昵称",@"家庭签名", @"学校住址", @"祖籍"];
     }
     return _titleArr;
 }
@@ -162,8 +164,7 @@
 {
     if (!_placeholderArr)
     {
-        _placeholderArr = @[@"请给您的班级取个名字", @"请点击输入一句班级签名",@"请点击输入您的学校地址",
-                            @"请点击设置班级密码", @"请再次点击输入班级密码进行校验"];
+        _placeholderArr = @[@"点击输入家庭昵称",@"点击输入一句家庭签名", @"点击输入您的学校住址",@"请点击输入您的祖籍"];
     }
     return _placeholderArr;
 }

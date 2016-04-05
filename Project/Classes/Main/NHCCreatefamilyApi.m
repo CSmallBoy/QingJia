@@ -16,7 +16,9 @@
     return @"Family/create.do";
 }
 -(id)requestArgument{
-    NSDictionary *head = @{@"platForm": @"IOS9.3", @"UUID": @"3284F4E0-80CE-4F14-AEA8-1361066BFBBB",@"token":@""};
+    NSDictionary *head = @{@"platForm": @"IOS9.3",
+                           @"token":[readUserInfo getReadDic][@"Token"],
+                           @"UUID":[readUserInfo GetUUID]};
     NSDictionary *para = @{@"ancestralHome":@"祖籍" , @"familyNickName":@"个性签名" ,@"familyPhoto":@"头像",@"photoType":@"jpg",@"contactAddr":@"上海市,闵行区,集心路168号"};
     return @{@"Head": head, @"Para": para};
   

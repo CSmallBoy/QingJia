@@ -16,6 +16,8 @@
 #import "HCImageUploadInfo.h"
 #import "HCCreateGradeApi.h"
 
+#import "NHCCreatefamilyApi.h"
+
 #define HCCreateGrade @"HCCreateGrade"
 
 @interface HCCreateGradeViewController ()<HCFooterViewDelegate>
@@ -31,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"创建班级";
+    self.title = @"创建家庭";
     [self setupBackItem];
     
     _info = [[HCCreateGradeInfo alloc] init];
@@ -50,7 +52,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 5)
+    if (indexPath.row == 4)
     {
         [HCAvatarMgr manager].noUploadImage = YES;
         [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
@@ -75,12 +77,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 5)
+    if (indexPath.row == 4)
     {
         return 150;
     }
@@ -107,32 +109,24 @@
 
 - (void)checkCreateGradeData
 {
-    if (IsEmpty(_info.FamilyName))
-    {
-        [self showHUDText:@"班级名字不能为空!"];
-        return;
-    }
-    if (IsEmpty(_info.FamilyNickName))
-    {
-        [self showHUDText:@"班级签名不能为空!"];
-        return;
-    }
-    if (IsEmpty(_info.ContactAddr))
-    {
-        [self showHUDText:@"学校地址不能为空!"];
-        return;
-    }
-    if (IsEmpty(_info.VisitPassWord))
-    {
-        [self showHUDText:@"密码不能为空!"];
-        return;
-    }
-    if (![_info.VisitPassWord isEqualToString:_info.repassword])
-    {
-        [self showHUDText:@"两次密码输入不相同!"];
-        return;
-    }
-    [self requestImageUpload];
+//    if (IsEmpty(_info.familyNickName))
+//    {
+//        [self showHUDText:@"家庭昵称不能为空"];
+//        return;
+//    }
+//    if (IsEmpty(_info.familyDescription))
+//    {
+//        [self showHUDText:@"家庭签名不能为空"];
+//        return;
+//    }
+//    if (IsEmpty(_info.contactAddr))
+//    {
+//        [self showHUDText:@"学校地址不能为空!"];
+//        return;
+//    }
+    
+
+    [self requestCreateGrade];
 }
 
 #pragma mark - setter or getter
@@ -154,42 +148,36 @@
     HCCreateGradeApi *api = [[HCCreateGradeApi alloc] init];
     api.gradeInfo = _info;
     
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCCreateGradeInfo *info) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self hideHUDView];
-            HCGradeSuccessViewController *gradeSuccess = [[HCGradeSuccessViewController alloc] init];
-            gradeSuccess.data = @{@"data": info};
-            [HCAccountMgr manager].loginInfo.DefaultFamilyID = info.KeyId;
-            [[HCAccountMgr manager] updateLoginInfoToDB];
-            [self.navigationController pushViewController:gradeSuccess animated:YES];
-        }else
-        {
-            [self showHUDError:@"班级创建失败!"];
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+      
+        if (requestStatus == HCRequestStatusSuccess) {
+            NSLog(@"家庭创建成功");
         }
     }];
+    
 }
 
 - (void)requestImageUpload
 {
     [self showHUDView:nil];
     
-    HCImageUploadApi *api = [[HCImageUploadApi alloc] init];
-    api.FTImages = @[_info.uploadImage];
-    api.fileType = @"FamilyPhoto";
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            HCImageUploadInfo *info = [array lastObject];
-//            _info.FamilyPhoto = info.FileUrl;
-            _info.FamilyPhoto = info.FileName;
-            [self requestCreateGrade];
-        }else
-        {
-            [self showHUDError:@"头像上传失败!"];
-        }
-    }];
+//    HCImageUploadApi *api = [[HCImageUploadApi alloc] init];
+//    api.FTImages = @[_info.uploadImage];
+//    api.fileType = @"FamilyPhoto";
+//    
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            HCImageUploadInfo *info = [array lastObject];
+////            _info.FamilyPhoto = info.FileUrl;
+//            _info.FamilyPhoto = info.FileName;
+//            [self requestCreateGrade];
+//        }else
+//        {
+//            [self showHUDError:@"头像上传失败!"];
+//        }
+//    }];
 }
 
 

@@ -18,25 +18,39 @@
 
 - (NSString *)requestUrl
 {
-    return @"Family/Create.ashx";
+    return @"Family/create.do";
 }
 
 - (id)requestArgument
 {
-    NSDictionary *head = @{@"Action": @"Create", @"Token": [HCAccountMgr manager].loginInfo.Token, @"UUID": [HCAccountMgr manager].loginInfo.UUID, @"Address": [HCAppMgr manager].address, @"PlatForm": [HCAppMgr manager].systemVersion};
+
     
-    NSDictionary *entity = @{@"FamilyName": _gradeInfo.FamilyName, @"FamilyNickName": _gradeInfo.FamilyNickName, @"FamilyPhoto": _gradeInfo.FamilyPhoto, @"VisitPassWord": _gradeInfo.VisitPassWord, @"ContactAddr": _gradeInfo.ContactAddr};
-    NSDictionary *body = @{@"Head": head, @"Entity": entity};
+    NSDictionary *head = @{@"platForm": @"IOS9.2",
+                           @"token":[readUserInfo getReadDic][@"Token"],
+                           @"UUID":[readUserInfo GetUUID]};
     
-    DLog(@"json----%@", [Utils stringWithObject:body]);
+    NSLog(@"%@",[readUserInfo getReadDic][@"Token"]);
     
-    return @{@"json": [Utils stringWithObject:body]};
+    
+    NSDictionary *para = @{@"ancestralHome":_gradeInfo.ancestralHome,
+                           @"familyNickName":_gradeInfo.familyNickName,
+                           @"familyDescription":_gradeInfo.familyDescription,
+ 
+                           @"contactAddr":@"上海市，闵行区，集心路168号"};
+    
+    return @{@"Head":head,@"Para":para};
+    
+    
+   
 }
 
 - (id)formatResponseObject:(id)responseObject
 {
-    NSDictionary *dic = responseObject[@"Data"][@"FamilyInf"];
-    return [HCCreateGradeInfo mj_objectWithKeyValues:dic];
+
+    
+    
+    return responseObject;
+    
 }
 
 @end

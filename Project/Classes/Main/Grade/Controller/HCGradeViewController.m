@@ -27,7 +27,9 @@
 {
     [super viewDidLoad];
     [self setupBackItem];
-    self.title = @"加入班级";
+    [self.createGrade setTitle:@"创建家庭" forState:UIControlStateNormal];
+    [self.joinGrade setTitle:@"加入家庭" forState:UIControlStateNormal];
+    self.title = @"加入家庭";
     ViewRadius(_createGrade, 4);
     ViewRadius(_joinGrade, 4);
     self.navigationItem.rightBarButtonItem = self.rightItem;
@@ -48,13 +50,13 @@
 }
 
 #pragma mark - private methods
-//创建 班级
+//创建 家庭
 - (IBAction)createGradeButton:(UIButton *)sender
 {
     HCCreateGradeViewController *createGrade = [[HCCreateGradeViewController alloc] init];
     [self.navigationController pushViewController:createGrade animated:YES];
 }
-//加入 班级
+//加入 家庭
 - (IBAction)joinGradeButton:(UIButton *)sender
 {
     HCJoinGradeViewController *joinGrade = [[HCJoinGradeViewController alloc] init];
