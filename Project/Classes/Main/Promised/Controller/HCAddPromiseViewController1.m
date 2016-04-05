@@ -7,7 +7,6 @@
 //
 
 #import "HCAddPromiseViewController1.h"
-#import "HCPaymentViewController.h"
 
 #import "HCAvatarMgr.h"
 #import "HCPickerView.h"

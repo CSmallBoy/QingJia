@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class HCAddressInfo;
 @interface HCAddNewAddressTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
 @property (nonatomic, strong) UITextField *textField;
 
+@property (nonatomic,strong) HCAddressInfo *info;
 
 
 @end

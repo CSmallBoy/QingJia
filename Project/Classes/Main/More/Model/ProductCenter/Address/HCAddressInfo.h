@@ -30,4 +30,6 @@
  *收货街道
  */
 @property (nonatomic,strong) NSString *receivingStreet;
+
+@property (nonatomic,assign) BOOL  isDefault;
 @end

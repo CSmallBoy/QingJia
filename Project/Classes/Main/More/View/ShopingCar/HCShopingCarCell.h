@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(changeAllPriceBlock);
+
 @class HCMtalkShopingInfo;
+typedef void (^changeAllPriceBlock)(void);
 @interface HCShopingCarCell : UITableViewCell
 
 @property (nonatomic,strong) HCMtalkShopingInfo *info;
+
+@property (nonatomic,strong) changeAllPriceBlock block1;
+@property (nonatomic,strong) changeAllPriceBlock block2;
 
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 

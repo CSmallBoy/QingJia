@@ -1,32 +1,32 @@
 //
-//  HCShopingCarCell.m
+//  HCSureOrderCell.m
 //  Project
 //
-//  Created by 朱宗汉 on 16/3/22.
+//  Created by 朱宗汉 on 16/3/24.
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "HCShopingCarCell.h"
+#import "HCSureOrderCell.h"
 #import "HCMtalkShopingInfo.h"
 
-@interface HCShopingCarCell ()
+@interface HCSureOrderCell ()
 @property (nonatomic,strong) UIImageView *headIV ;
 @property (nonatomic,strong) UILabel *titleLabel;
-@property (nonatomic,strong) UIImageView *flogBtn;
 @property (nonatomic,strong) UILabel *priceLabel;
 @property (nonatomic,strong) UIView *segmentView;
 @property (nonatomic,strong) UILabel *label;
+
 @end
 
-@implementation HCShopingCarCell
+@implementation HCSureOrderCell
 
 +(instancetype)cellWithTableView:(UITableView *)tableView
 {
-     static NSString *ID  = @"shopingCarCellID";
+    static NSString *ID  = @"sureOrderCellID";
     
-    HCShopingCarCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    HCSureOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
-        cell = [[HCShopingCarCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell = [[HCSureOrderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         [cell addSubviews];
     }
     return cell;
@@ -39,8 +39,6 @@
     {
         [view removeFromSuperview];
     }
-    
-    [self addSubview:self.flogBtn];
     [self addSubview:self.headIV];
     [self addSubview:self.titleLabel];
     [self addSubview:self.priceLabel];
@@ -60,21 +58,13 @@
     
     self.priceLabel.text = [NSString stringWithFormat:@"￥%@元",info.price];
 
-    if (info.isSelect) {
-        self.flogBtn.image = IMG(@"thehook");
-    }
-    else
-    {
-        self.flogBtn.image = IMG(@"addressquan");
-    }
-    
 }
 
 
 - (UIImageView *)headIV
 {
     if(!_headIV){
-        _headIV = [[UIImageView alloc]initWithFrame:CGRectMake(50, 10, 80, 80)];
+        _headIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 80, 80)];
         _headIV.image = IMG(@"1");
     }
     return _headIV;
@@ -102,17 +92,6 @@
     return _priceLabel;
 }
 
-
-- (UIImageView *)flogBtn
-{
-    if(!_flogBtn){
-        _flogBtn = [[UIImageView alloc]init];
-        _flogBtn.frame = CGRectMake(10,30, 30, 30);
-        _flogBtn.image = IMG(@"addressquan");
-        
-    }
-    return _flogBtn;
-}
 
 
 - (UIView *)segmentView
@@ -144,7 +123,7 @@
         [_segmentView addSubview:button1];
         [_segmentView  addSubview:self.label];
         [_segmentView addSubview:button3];
-   
+        
     }
     return _segmentView;
 }
@@ -159,13 +138,9 @@
     }
     num = num - 1;
     self.info.allPrice = [NSString stringWithFormat:@"%2lf",[self.info.price floatValue] * num];
-    self.label.text = [NSString stringWithFormat:@"%ld",num];
+    self.label.text = [NSString stringWithFormat:@"%ld",(long)num];
     
-    if (self.info.isSelect)
-    {
-        self.block1();
-    }
-    
+    self.block (num);
 }
 
 -(void)addNum
@@ -173,14 +148,9 @@
     NSInteger num = [self.label.text integerValue];
     num = num+1;
     self.info.allPrice = [NSString stringWithFormat:@"%.2lf",[self.info.price floatValue] * num];
-    self.label.text = [NSString stringWithFormat:@"%ld",num];
+    self.label.text = [NSString stringWithFormat:@"%ld",(long)num];
     
-    
-    if (self.info.isSelect)
-    {
-        self.block2();
-    }
-    
+    self.block(num);
 }
 
 

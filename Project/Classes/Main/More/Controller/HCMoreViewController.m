@@ -11,7 +11,7 @@
 #import "HCAddItemViewController.h"
 #import "HClassCalendarViewController.h"
 #import "HCNotificationViewController.h"
-#import "HCProducCenterViewController.h"
+#import "HCProductionCenterController.h"
 #import "HCPromisedViewController.h" // 一呼百应
 #import "HCRescueCenterViewController.h" // 救助中心
 #import "HCTimeViewController.h"

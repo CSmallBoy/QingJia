@@ -6,11 +6,11 @@
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "HCMTalkMyOrderCell.h"
+#import "HCMTalkWaitPayCell.h"
 #import "HCMtalkMyOrderInfo.h"
 
 
-@interface HCMTalkMyOrderCell ()
+@interface HCMTalkWaitPayCell ()
 @property (nonatomic,strong) UIImageView * titleIV;
 @property (nonatomic,strong) UILabel  * titleLabel;
 
@@ -22,15 +22,15 @@
 
 @end
 
-@implementation HCMTalkMyOrderCell
+@implementation HCMTalkWaitPayCell
 
 +(instancetype)cellWithTable:(UITableView *)tableView
 {
-    static NSString *ID = @"M-TalkMyOrderCell";
+    static NSString *ID = @"HCMTalkWaitPayCell";
     
-    HCMTalkMyOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    HCMTalkWaitPayCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
-        cell =[[HCMTalkMyOrderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell =[[HCMTalkWaitPayCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         [cell addSubviews];
     }
     
@@ -143,7 +143,7 @@
         _againBtn.layer.borderColor = [UIColor redColor].CGColor;
         ViewRadius(_againBtn, 5);
         [_againBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [_againBtn setTitle:@"再次订购" forState:UIControlStateNormal];
+        [_againBtn setTitle:@"去支付" forState:UIControlStateNormal];
     }
     return _againBtn;
 }

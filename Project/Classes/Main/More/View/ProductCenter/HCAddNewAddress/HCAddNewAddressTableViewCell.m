@@ -8,7 +8,7 @@
 
 #import "HCAddNewAddressTableViewCell.h"
 #import "HCFeedbackTextView.h"
-
+#import "HCAddressInfo.h"
 @interface HCAddNewAddressTableViewCell ()
 
 @property (nonatomic,strong) NSArray *placeholderTitleArr;
@@ -35,15 +35,39 @@
 
 -(void)setIndexPath:(NSIndexPath *)indexPath
 {
+    _indexPath = indexPath;
         _titleLabel.text = self.titleArr[indexPath.row];
     if (indexPath.row !=4)
     {
         NSAttributedString *attriString = [[NSAttributedString alloc] initWithString: self.placeholderTitleArr[indexPath.row] attributes:@{                                                                           NSFontAttributeName: [UIFont systemFontOfSize:14],                                                                   NSForegroundColorAttributeName:[UIColor lightGrayColor]                                                                         }];
         self.textField.attributedPlaceholder = attriString;
+        
+        self.textField.textColor = [UIColor blackColor];
+        switch (indexPath.row) {
+            case 0:
+                self.textField.text = self.info.consigneeName;
+                break;
+            case 1:
+                self.textField.text = self.info.phoneNumb;
+                break;
+            case 2:
+                self.textField.text = self.info.postcode;
+                break;
+            case 3:
+                self.textField.text = self.info.receivingCity;  
+                break;
+            default:
+                break;
+        }
+        
         [self.contentView addSubview:self.textField];
     }
     else
     {
+        if (self.info.receivingStreet != nil) {
+            self.textView.textView.text = self.info.receivingStreet;
+            self.textView.textView.textColor = [UIColor blackColor];
+        }
         [self.contentView addSubview:self.textView];
     }
 }
