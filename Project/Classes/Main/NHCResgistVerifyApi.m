@@ -20,15 +20,23 @@
 }
 - (id)requestArgument
 {   //验证验证码
-    NSString *uuid = [[NSUUID UUID] UUIDString];
-    NSDictionary *head = @{@"UUID":@"3284F4E0-80CE-4F14-AEA8-1361066BFBBB",@"platForm":@"IOS9.3"};
-    NSDictionary *para = @{@"PhoneNumber": _PhoneNumber,@"theCode": _theCode,@"theType": _theType};
-    NSDictionary *body = @{@"Para":para,@"Head":head};
+
+    NSDictionary *head = @{@"UUID":_uuid,
+                           @"platForm":[readUserInfo GetPlatForm]};
+    NSDictionary *para = @{@"PhoneNumber": _PhoneNumber,
+                           @"theCode": _theCode,
+                           @"theType": _theType};
+    NSDictionary *body = @{@"Para":para,
+                           @"Head":head};
     return body;
 }
 - (id)formatResponseObject:(id)responseObject
 {
-    
+    NSDictionary *dic = responseObject[@"Data"];
+    HCLoginInfo *loginInfo = [HCLoginInfo mj_objectWithKeyValues:dic[@"UserInf"]];
+    loginInfo.Token = dic[@"Token"];
+    [readUserInfo Dicdelete];
+    [readUserInfo creatDic:dic];
     return responseObject;
 }
 

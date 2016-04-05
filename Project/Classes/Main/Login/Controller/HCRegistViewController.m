@@ -13,7 +13,9 @@
 #import "HCCheckCodeApi.h"
 #import "HCGetVerificationCodeApi.h"
 #import "NHCResgistVerifyApi.h"
-@interface HCRegistViewController ()
+@interface HCRegistViewController (){
+    NSString *uuid;
+}
 
 @end
 
@@ -35,7 +37,7 @@
     [super viewDidLoad];
     self.title = @"注册";
     [self setupBackItem];
-    
+     uuid = [[NSUUID UUID] UUIDString];
     //设置圆角
     ViewRadius(_nextBtn, 4.0f);
     ViewRadius(_timeNumLabel, 3.0f);
@@ -122,6 +124,7 @@
     
     HCGetVerificationCodeApi *api = [[HCGetVerificationCodeApi alloc] init];
     api.phoneNumber = _mobileTextField.text;
+    api.uuid = uuid;
     api.thetype = @"1000";
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
@@ -155,6 +158,7 @@
     NHCResgistVerifyApi *api = [[NHCResgistVerifyApi alloc] init];
     api.PhoneNumber = _mobileTextField.text;
     api.theCode = _checkNumTextField.text;
+    api.uuid = uuid;
     api.theType = @"1000";
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {

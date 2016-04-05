@@ -17,4 +17,8 @@
 +(NSString*)imageString:(UIImage*)image64;
 //64转图片
 + (UIImage*)image64:(NSString*)imagestr;
+//获取uuid
++ (NSString *)GetUUID;
+//获取版本信息
++ (NSString *)GetPlatForm;
 @end

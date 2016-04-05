@@ -15,7 +15,6 @@
     //初始化归档对象
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
     //设置归档
-    
     [archiver encodeObject:dic forKey:@"peson"];
     //归档结束
     [archiver finishEncoding];
@@ -66,5 +65,14 @@
     NSData *data =[[NSData alloc]initWithBase64Encoding:imagestr];
     UIImage *image = [UIImage imageWithData:data];
     return image;
+}
++ (NSString *)GetUUID{
+    
+    NSString *uuid = [[NSUUID UUID]UUIDString];
+    return uuid;
+}
++ (NSString *)GetPlatForm{
+    NSString * strModel = [UIDevice currentDevice].model;
+    return strModel;
 }
 @end

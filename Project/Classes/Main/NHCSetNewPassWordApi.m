@@ -15,14 +15,18 @@
 }
 
 - (NSString *)requestUrl
-{   //验证验证码
+{   //设置新密码
     return @"User/setNewPwd.do";
 }
 - (id)requestArgument
-{   //验证验证码
-    NSDictionary *head = @{@"UUID":@"3284F4E0-80CE-4F14-AEA8-1361066BFBBB",@"platForm":@"IOS9.3",@"userName":_PhoneNum};
+{
+    NSDictionary *dict = [readUserInfo getReadDic];
+    NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],
+                           @"platForm":[readUserInfo GetPlatForm],
+                           @"userName":_PhoneNum};
     NSDictionary *para = @{@"userPWD":_NewPassWord};
-    NSDictionary *body = @{@"Para":para,@"Head":head};
+    NSDictionary *body = @{@"Para":para,
+                           @"Head":head};
     return body;
 }
 - (id)formatResponseObject:(id)responseObject

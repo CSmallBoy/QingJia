@@ -11,5 +11,6 @@ typedef void(^HCGetCode)(HCRequestStatus requestStatus, NSString *message, id da
 @interface HCGetVerificationCodeApi : HCRequest
 @property (nonatomic, strong) NSString *phoneNumber;
 @property (nonatomic, assign) NSString *thetype;
+@property (nonatomic, assign) NSString *uuid;
 - (void)startRequest:(HCGetCode)requestBlock;
 @end

@@ -15,14 +15,19 @@
 }
 
 - (NSString *)requestUrl
-{   //验证验证码
+{   //退出登录
     return @"User/logout.do";
 }
 - (id)requestArgument
-{   //验证验证码
-    NSDictionary *head = @{@"UUID":@"3284F4E0-80CE-4F14-AEA8-1361066BFBBB",@"platForm":@"IOS9.3",@"userName":@"18300701234",@"token":@"680A-68jo-P657-Z8n6"};
+{   //退出登录
+    NSDictionary *dict  = [readUserInfo getReadDic];
+    NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],
+                           @"platForm":[readUserInfo GetPlatForm],
+                           @"userName":dict[@"UserInf"][@"userName"],
+                           @"token":dict[@"Token"]};
     NSMutableDictionary *para = [NSMutableDictionary dictionaryWithCapacity:0];
-    NSDictionary *body = @{@"Para":para,@"Head":head};
+    NSDictionary *body = @{@"Para":para,
+                           @"Head":head};
     return body;
 }
 - (id)formatResponseObject:(id)responseObject

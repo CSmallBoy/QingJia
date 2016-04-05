@@ -20,11 +20,14 @@
 }
 - (id)requestArgument
 {// 登陆
+    NSString *uuid= [readUserInfo GetUUID];
     
-    
-    NSDictionary *head = @{@"UUID":@"3284F4E0-80CE-4F14-AEA8-1361066BFBBB",@"platForm":@"IOS9.3"};
-    NSDictionary *para = @{@"userName":_UserName,@"userPWD":_UserPWD};
-    NSDictionary *body = @{@"Para":para,@"Head":head};
+    NSDictionary *head = @{@"UUID":uuid,
+                           @"platForm":[readUserInfo GetPlatForm]};
+    NSDictionary *para = @{@"userName":_UserName,
+                           @"userPWD":_UserPWD};
+    NSDictionary *body = @{@"Para":para,
+                           @"Head":head};
     return body;
 }
 - (id)formatResponseObject:(id)responseObject

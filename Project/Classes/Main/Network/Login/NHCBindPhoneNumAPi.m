@@ -20,11 +20,15 @@
 }
 - (id)requestArgument
 {   //验证验证码
-    NSDictionary *head = @{@"UUID":@"3284F4E0-80CE-4F14-AEA8-1361066BFBBB",@"platForm":@"IOS9.3",@"token":@"Tu12-I52C-FV9A-8m32"};
+    NSDictionary *dict = [readUserInfo getReadDic];
+    NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],  
+                           @"platForm":[readUserInfo GetPlatForm],
+                           @"token":[HCAccountMgr manager].loginInfo.Token};
     NSDictionary *para = @{@"newPhoneNo":@"18300701111",
                            @"theCode":@"验证码",                         
                            };
-    NSDictionary *body = @{@"Para":para,@"Head":head};
+    NSDictionary *body = @{@"Para":para,
+                           @"Head":head};
     return body;
 }
 - (id)formatResponseObject:(id)responseObject

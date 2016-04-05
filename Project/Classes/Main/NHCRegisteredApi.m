@@ -20,9 +20,16 @@
 }
 - (id)requestArgument
 {// 注册
-    NSDictionary *head = @{@"UUID":@"3284F4E0-80CE-4F14-AEA8-1361066BFBBB",@"platForm":@"IOS9.3",@"userName":_userName,@"address":@"上海市"};
-    NSDictionary *para = @{@"trueName":_TrueName,@"birthDay":_birthday,@"userPWD":_passWord,@"sex":_sex};
-    NSDictionary *body = @{@"Para":para,@"Head":head};
+    NSDictionary *head = @{@"UUID":[readUserInfo GetUUID],
+                           @"platForm":[readUserInfo GetPlatForm],
+                           @"userName":_userName,
+                           @"address":@"上海市"};
+    NSDictionary *para = @{@"trueName":_TrueName,
+                           @"birthDay":_birthday,
+                           @"userPWD":_passWord,
+                           @"sex":_sex};
+    NSDictionary *body = @{@"Para":para,
+                           @"Head":head};
     return body;
 }
 - (id)formatResponseObject:(id)responseObject

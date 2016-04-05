@@ -12,5 +12,6 @@ typedef void(^HCRegisterVerify)(HCRequestStatus requestStatus, NSString *message
 @property (nonatomic, strong) NSString *PhoneNumber;
 @property (nonatomic, assign) NSString *theType;
 @property (nonatomic, assign) NSString *theCode;
+@property (nonatomic, assign) NSString *uuid;
 - (void)startRequest:(HCRegisterVerify)requestBlock;
 @end

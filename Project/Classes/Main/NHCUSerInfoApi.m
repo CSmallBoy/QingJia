@@ -20,7 +20,10 @@
 }
 - (id)requestArgument
 {   //完善用户信息
-    NSDictionary *head = @{@"UUID":@"3284F4E0-80CE-4F14-AEA8-1361066BFBBB",@"platForm":@"IOS9.3",@"token":[HCAccountMgr manager].loginInfo.Token};
+    NSDictionary *dict = [readUserInfo getReadDic];
+    NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],
+                           @"platForm":[readUserInfo GetPlatForm],
+                           @"token":[HCAccountMgr manager].loginInfo.Token};
     NSDictionary *para = @{@"nickName":_myModel.nickName,
                            @"photoType":@"jpg",
                            @"userPhoto":_myModel.PhotoStr,

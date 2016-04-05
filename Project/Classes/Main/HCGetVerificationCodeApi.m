@@ -20,10 +20,14 @@
 }
 - (id)requestArgument
 {
-    NSString *uuid = [[NSUUID UUID] UUIDString];
-    NSDictionary *head = @{@"platForm": @"IOS9.3", @"UUID": @"3284F4E0-80CE-4F14-AEA8-1361066BFBBB"};
-    NSDictionary *para = @{@"phoneNumber": _phoneNumber, @"theType": _thetype};
-    return @{@"Head": head, @"Para": para};
+    
+    
+    NSDictionary *head = @{@"platForm": [readUserInfo GetPlatForm],
+                           @"UUID": _uuid};
+    NSDictionary *para = @{@"phoneNumber": _phoneNumber,
+                           @"theType": _thetype};
+    return @{@"Head": head,
+             @"Para": para};
 }
 - (id)formatResponseObject:(id)responseObject
 {

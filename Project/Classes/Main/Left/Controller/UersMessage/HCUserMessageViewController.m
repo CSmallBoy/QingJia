@@ -37,12 +37,12 @@
 @implementation HCUserMessageViewController
 - (void)viewWillAppear:(BOOL)animated{
     _dict = [readUserInfo getReadDic];
-    NSString *imagestr= _dict[@"UserInf"][@"userPhoto"];
-    if (imagestr.length>0) {
-        [_headButton setImage:[readUserInfo image64:imagestr]forState:UIControlStateNormal];
-    }else{
-        [_headButton setImage:OrigIMG(@"2Dbarcode_message_HeadPortraits") forState:UIControlStateNormal];
-    }
+//    NSString *imagestr= _dict[@"UserInf"][@"userPhoto"];
+//    if (imagestr.length>0) {
+//        [_headButton setImage:[readUserInfo image64:imagestr]forState:UIControlStateNormal];
+//    }else{
+//        [_headButton setImage:OrigIMG(@"2Dbarcode_message_HeadPortraits") forState:UIControlStateNormal];
+//    }
 }
 - (void)viewDidLoad
 {
