@@ -99,7 +99,44 @@
 - (void)buttonClick1:(UIButton*)button{
     NSIndexPath *indexPath = [_superTableView indexPathForCell:(UITableViewCell*)button.superview.superview.superview.superview];
    
+    
+
+    [self makeAlertView];
+    
+    
+    
     NSLog(@"触发 button %ld ",indexPath.row);
+}
+//创建弹出的view视图
+- (UIView *)makeAlertView{
+    
+    UIView *view_grond = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH *0.15, SCREEN_HEIGHT *0.3, SCREEN_WIDTH *0.7, 120)];
+    view_grond.backgroundColor = [UIColor greenColor];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, view_grond.bounds.size.width, 30)];
+    label.text = @"请选择与管理员的关系";
+    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(15, 35, view_grond.bounds.size.width-30, 30)];
+    label2.layer.borderWidth = 1.0;
+    label.layer.borderColor = [UIColor blackColor].CGColor;
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(label2.bounds.size.width-15, 0, 15, 30)];
+    [button setBackgroundColor:[UIColor redColor]];
+    for (int i = 0 ; i < 2; i ++) {
+        UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button2 setFrame:CGRectMake(15+140*i, 80, 100, 30)];
+        [button2 setBackgroundColor:[UIColor orangeColor]];
+        [view_grond addSubview:button2];
+    }
+    [label2 addSubview:button];
+    [view_grond addSubview:label2];
+    [view_grond addSubview:label];
+    
+    UIView *view_all = [[UIView alloc]initWithFrame:self.superview.bounds];
+    view_all.backgroundColor = [UIColor grayColor];
+    //view_all.alpha = 0.8;
+    [view_all addSubview:view_grond];
+    view_all.userInteractionEnabled = NO;
+    [self.superview.superview addSubview:view_all];
+    return view_grond;
 }
 - (void)processBtns{
     CGFloat lastWidth = 0;

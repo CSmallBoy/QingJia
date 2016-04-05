@@ -9,5 +9,5 @@
 #import "HCViewController.h"
 
 @interface HCPerfectMessageViewController : HCViewController
-
+@property (nonatomic,copy)NSString *userNumNmae;
 @end

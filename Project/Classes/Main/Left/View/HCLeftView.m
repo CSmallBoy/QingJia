@@ -67,7 +67,7 @@
     {
         _nickName = [[UILabel alloc] init];
         _nickName.textColor = [UIColor whiteColor];
-        _nickName.frame = CGRectMake(WIDTH(self)*.2, MaxY(self.headButton)+10, 90, 20);
+        _nickName.frame = CGRectMake(WIDTH(self)*0.2, MaxY(self.headButton)+10, 90, 20);
         _nickName.textAlignment = NSTextAlignmentCenter;
         _nickName.text = @"用户昵称";
     }
@@ -82,6 +82,7 @@
         _createGradeBtn.tag = HCLeftViewButtonTypeCreateGrade;
         [_createGradeBtn addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         [_createGradeBtn setTitle:@"创建班级" forState:UIControlStateNormal];
+        
         _createGradeBtn.frame = CGRectMake(WIDTH(self)*0.2, HEIGHT(self)*0.5, 90, 60);
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 59, 90, 1)];

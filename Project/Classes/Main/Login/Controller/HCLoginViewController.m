@@ -13,7 +13,13 @@
 #import "HCAppMgr.h"
 
 #import "AppDelegate.h"
-
+#import "NHCRegisteredApi.h"
+#import "NHCLoginApi.h"
+#import "NHCResgistVerifyApi.h"
+#import "HCGetVerificationCodeApi.h"
+#import "NHCCancellationApi.h"
+#import "NHCSetNewPassWordApi.h"
+#import "NHCUSerInfoApi.h"
 
 @interface HCLoginViewController ()
 {
@@ -36,8 +42,55 @@
     ViewRadius(_contentView, 4);
     
     _accountTextField.text = [self lastLoginUsername];
+    [self makeUI];
+    
+   
+    
 }
-
+- (void)makeUI{
+    //注册
+//    NHCRegisteredApi *api = [[NHCRegisteredApi alloc]init];
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        
+//    }];
+    //验证验证码
+//    NHCResgistVerifyApi *api = [[NHCResgistVerifyApi alloc]init];
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        
+//    }];
+    //注销
+//    NHCCancellationApi *api = [[NHCCancellationApi alloc]init];
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        
+//    }];
+    //修改密码
+//    NHCSetNewPassWordApi *api = [[NHCSetNewPassWordApi alloc]init];
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        NSLog(@"");
+//    }];
+    //完善用户信息
+//    NHCUSerInfoApi *api = [[NHCUSerInfoApi alloc]init];
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        
+//    }];
+    //环信  注册
+   
+}
+- (void)makeUI2{
+    //获取验证码
+//    HCGetVerificationCodeApi *api = [[HCGetVerificationCodeApi alloc]init];
+//    api.phoneNumber = @"18300701234";
+//    api.thetype =  @"1000";
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+//        
+//    }];
+//    getcode *gei = [[getcode alloc]init];
+//    [gei startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+//        
+//    }];
+    
+  
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -52,7 +105,7 @@
 
 
 #pragma  mark - private
-
+//保存最后一次登录名
 - (void)saveLastLoginUsername
 {
     NSString *username = [[[EaseMob sharedInstance].chatManager loginInfo] objectForKey:kSDKUsername];
@@ -115,19 +168,21 @@
 {
     [self showHUDView:@"正在登录"];
 
-    HCLoginApi *api = [[HCLoginApi alloc] init];
+    NHCLoginApi *api = [[NHCLoginApi alloc] init];
     api.UserName = _accountTextField.text;
     api.UserPWD = _keyTextField.text;
 
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo){
 
-        if (requestStatus == HCRequestStatusSuccess)
+        if (requestStatus+100 == HCRequestStatusSuccess)
         {
             [self loginWithUsername:_accountTextField.text password:_keyTextField.text loginInfo:loginInfo];
         }else
         {
             [self showHUDError:message];
         }
+        
     }];
 }
 
@@ -145,7 +200,7 @@
              [HCAccountMgr manager].loginInfo = info;
              [HCAccountMgr manager].isLogined = YES;
              //登录信息存数据库
-             [[HCAccountMgr manager] saveLoginInfoToDB];
+          //  [[HCAccountMgr manager] saveLoginInfoToDB];
              
              // 环信数据
              //设置是否自动登录
@@ -159,7 +214,15 @@
              //发送自动登陆状态通知
              [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
              //保存最近一次登录用户名
-             [self saveLastLoginUsername];
+           //  [self saveLastLoginUsername];
+             
+             
+             
+             
+             
+             
+             //保存登陆过后信息
+             
          }
          else
          {

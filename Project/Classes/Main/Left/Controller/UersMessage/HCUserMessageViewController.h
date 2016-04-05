@@ -9,5 +9,4 @@
 #import "HCTableViewController.h"
 
 @interface HCUserMessageViewController : HCTableViewController
-
 @end

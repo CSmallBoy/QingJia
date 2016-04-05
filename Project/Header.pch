@@ -28,6 +28,7 @@
 #import "EaseUI.h"
 #import "EMAlertView.h"
 #import "EaseMob.h"
+#import "readUserInfo.h"
 
 #endif
 

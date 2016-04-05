@@ -11,7 +11,8 @@
 #import "HCGetCodeApi.h"
 #import "HCCheckCodeApi.h"
 #import "TOWebViewController.h"
-
+#import "HCGetVerificationCodeApi.h"
+#import "NHCResgistVerifyApi.h"
 @interface HCFindPwdViewController ()
 {
     __weak IBOutlet UIButton    *_nextBtn;
@@ -103,10 +104,10 @@
             [self showHUDText:@"输入正确的手机号"];
             return;
         }
-        if (_checkNumTextField.text.length < 4) {
-            [self showHUDText:@"输入正确的验证码"];
-            return;
-        }
+//        if (_checkNumTextField.text.length < 4) {
+//            [self showHUDText:@"输入正确的验证码"];
+//            return;
+//        }
     [self requestCheckCode];
 }
 
@@ -117,21 +118,18 @@
 - (void)requestGetCode
 {
     [self showHUDView:nil];
-    
-    HCGetCodeApi *api = [[HCGetCodeApi alloc] init];
-    api.phoneNumber = _mobileTextField.text;
-    api.thetype = 1001;
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data)
-     {
-         if (requestStatus == HCRequestStatusSuccess)
-         {
-             [self showHUDSuccess:@"获取成功"];
-         }else
-         {
-             [self showHUDError:message];
-         }
-     }];
+    HCGetVerificationCodeApi *apiGet = [[HCGetVerificationCodeApi alloc]init];
+    apiGet.phoneNumber = _mobileTextField.text;
+    apiGet.thetype = @"1001";
+    [apiGet startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+        if (requestStatus +100 == HCRequestStatusSuccess)
+        {
+            [self showHUDSuccess:@"获取成功"];
+        }else
+        {
+            [self showHUDError:message];
+        }
+    }];
 }
 
 // 校验验证码
@@ -139,24 +137,37 @@
 - (void)requestCheckCode
 {
     [self showHUDView:nil];
-    
-    HCCheckCodeApi *api = [[HCCheckCodeApi alloc] init];
-    api.PhoneNumber = _mobileTextField.text;
-    api.theCode = [_checkNumTextField.text integerValue];
-    api.theType = 1001;
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
-        if (requestStatus == HCRequestStatusSuccess)
+    NHCResgistVerifyApi *cheakApi = [[NHCResgistVerifyApi alloc]init];
+    cheakApi.PhoneNumber = _mobileTextField.text;
+    cheakApi.theType = @"1001";
+    cheakApi.theCode = _checkNumTextField.text;
+    [cheakApi startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+        if (requestStatus +100 == HCRequestStatusSuccess)
         {
             [self hideHUDView];
             HCFindPwdSecondViewController *pwdsecond = [[HCFindPwdSecondViewController alloc] init];
-            pwdsecond.data = @{@"phonenumber": _mobileTextField.text, @"token": data[@"Token"]};
+            //此处没有返回token  不需要用
+            pwdsecond.data = @{@"phonenumber": _mobileTextField.text};
             [self.navigationController pushViewController:pwdsecond animated:YES];
         }else
         {
             [self showHUDError:message];
         }
+        
     }];
+    
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            [self hideHUDView];
+//            HCFindPwdSecondViewController *pwdsecond = [[HCFindPwdSecondViewController alloc] init];
+//            pwdsecond.data = @{@"phonenumber": _mobileTextField.text, @"token": data[@"Token"]};
+//            [self.navigationController pushViewController:pwdsecond animated:YES];
+//        }else
+//        {
+//            [self showHUDError:message];
+//        }
+//    }];
 }
 
 @end

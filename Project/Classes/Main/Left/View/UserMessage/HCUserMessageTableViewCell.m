@@ -44,6 +44,7 @@
         placeholder = [[NSMutableAttributedString alloc] initWithString:self.placeArr[indexPath.row]];
         [placeholder setAttributes:@{NSForegroundColorAttributeName: LightGraryColor, NSFontAttributeName:[UIFont systemFontOfSize:15]} range:NSMakeRange(0, placeholder.length)];
         self.textField.enabled = YES;
+        self.textField.userInteractionEnabled = NO;
     }else{
         placeholder = [[NSMutableAttributedString alloc] initWithString:self.placeArr[indexPath.row]];
         [placeholder setAttributes:@{NSForegroundColorAttributeName: DarkGrayColor, NSFontAttributeName:[UIFont systemFontOfSize:15]} range:NSMakeRange(0, placeholder.length)];

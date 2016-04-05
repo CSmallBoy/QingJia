@@ -11,7 +11,7 @@
 #import "TOWebViewController.h"
 #import "AppDelegate.h"
 #import "HCChangePwdApi.h"
-
+#import "NHCSetNewPassWordApi.h"
 @interface HCFindPwdSecondViewController ()
 {
     __weak IBOutlet UITextField *_pwdTextField;
@@ -75,14 +75,12 @@
 - (void)requestChangePwd
 {
     [self showHUDView:nil];
+    NHCSetNewPassWordApi *newPwApi = [[NHCSetNewPassWordApi alloc]init];
+    newPwApi.NewPassWord = _pwdTextField.text;
+    newPwApi.PhoneNum = self.data[@"phonenumber"];
     
-    HCChangePwdApi *api = [[HCChangePwdApi alloc] init];
-    api.UserPWD = _pwdTextField.text;
-    api.Token = self.data[@"token"];
-    api.UserName = self.data[@"phonenumber"];
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
-        if (requestStatus == HCRequestStatusSuccess)
+    [newPwApi startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+        if (requestStatus +100 == HCRequestStatusSuccess)
         {
             [self showHUDSuccess:@"密码修改成功"];
             [self performSelector:@selector(backLoginView) withObject:nil afterDelay:1.2f];
@@ -91,6 +89,23 @@
             [self showHUDError:message];
         }
     }];
+    
+    
+//    HCChangePwdApi *api = [[HCChangePwdApi alloc] init];
+//    api.UserPWD = _pwdTextField.text;
+//    api.Token = self.data[@"token"];
+//    api.UserName = self.data[@"phonenumber"];
+//    
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            [self showHUDSuccess:@"密码修改成功"];
+//            [self performSelector:@selector(backLoginView) withObject:nil afterDelay:1.2f];
+//        }else
+//        {
+//            [self showHUDError:message];
+//        }
+//    }];
 }
 
 

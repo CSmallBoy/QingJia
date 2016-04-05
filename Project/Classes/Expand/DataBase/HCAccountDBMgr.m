@@ -134,6 +134,26 @@ static HCAccountDBMgr *_sharedManager = nil;
     //清空表数据
     [self truncateTable];
     
+    NSDictionary *dic = loginInfo;
+    NSString *token = dic[@"Data"][@"Token"];
+    NSString *UUId = dic[@"Data"][@"UserInf"][@"uuid"];
+    NSString *PhoneNo = dic[@"Data"][@"UserInf"][@"phoneNo"];
+    NSString *UserName = dic[@"Data"][@"UserInf"][@"userName"];
+    NSString *TrueName = dic[@"Data"][@"UserInf"][@"trueName"];
+    NSString *NickName = dic[@"Data"][@"UserInf"][@"chatName"];
+    NSString *Sex = dic[@"Data"][@"UserInf"][@"sex"];
+    NSString *Age = dic[@"Data"][@"UserInf"][@"birthDay"];
+    NSString *IsFMA = dic[@"Data"][@"UserInf"][@"uuid"];
+    NSString *DefaultFamilyID = dic[@"Data"][@"UserInf"][@"uuid"];
+    NSString *Career = dic[@"Data"][@"UserInf"][@"userName"];
+    NSString *UserDescription = dic[@"Data"][@"UserInf"][@"chineseZodiac"];
+    NSString *UserId = dic[@"Data"][@"UserInf"][@"userId"];
+    NSString *Company = dic[@"Data"][@"UserInf"][@"company"];
+    NSString *UserPhoto = dic[@"Data"][@"UserInf"][@"phoneNo"];
+   
+    NSString *HomeAddress = dic[@"Data"][@"UserInf"][@"homeAddress"];
+
+    
     NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO '%@'(\
                            Token,\
                            UUID,\
@@ -152,23 +172,23 @@ static HCAccountDBMgr *_sharedManager = nil;
                            Career,\
                            UserPhoto)\
                            VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');",
-                           kHCDBTableUser,
+                           @"UserInfo",
                            loginInfo.Token,
-                           loginInfo.UUID,
+                           loginInfo.Token,
                            loginInfo.PhoneNo,
                            loginInfo.UserName,
                            loginInfo.TrueName,
                            loginInfo.NickName,
                            loginInfo.Sex,
+                           loginInfo.Sex,
                            loginInfo.Age,
-                           loginInfo.IsFMA,
-                           loginInfo.DefaultFamilyID,
-                           loginInfo.UserDescription,
+                           loginInfo.Token,
+                           loginInfo.Career,
                            loginInfo.UserId,
                            loginInfo.HomeAddress,
                            loginInfo.Company,
                            loginInfo.Career,
-                           loginInfo.UserPhoto];
+                           loginInfo.PhoneNo];
     BOOL res = [self executeUpdate:insertSql];
     return res;
 }

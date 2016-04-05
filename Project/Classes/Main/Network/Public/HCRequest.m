@@ -29,11 +29,12 @@
 
 - (YTKRequestMethod)requestMethod
 {
-    return YTKRequestMethodGet;
+    return YTKRequestMethodPost;
 }
 
 - (YTKRequestSerializerType)requestSerializerType
 {
+    
     return YTKRequestSerializerTypeJSON;
 }
 

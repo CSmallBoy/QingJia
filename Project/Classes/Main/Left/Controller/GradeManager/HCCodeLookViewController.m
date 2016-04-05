@@ -44,7 +44,7 @@
 }
 - (void)barClick{
     HCShareViewController *vc = [[HCShareViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
     
 }
 #pragma mark - private methods
@@ -77,7 +77,7 @@
     
     //使用核心绘图框架CG（Core Graphics）对象操作，创建带圆角效果的图片
     UIImage *imgIcon = [UIImage createRoundedRectImage:[UIImage imageNamed:@"mtalklogo"]
-                                              withSize:CGSizeMake(70.0, 70.0)
+                                              withSize:CGSizeMake(60.0, 60.0)
                                             withRadius:10];
     
     //使用核心绘图框架CG（Core Graphics）对象操作，合并二维码图片和用于中间显示的图标图片
@@ -121,7 +121,7 @@
 {
     if (!_contentView)
     {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, WIDTH(self.view)-30, HEIGHT(self.view)*0.6)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, WIDTH(self.view)-30, WIDTH(self.view)-30)];
         _contentView.center = self.view.center;
         _contentView.backgroundColor = [UIColor whiteColor];
         ViewRadius(_contentView, 5);
@@ -168,12 +168,12 @@
     }
     return _classSingle;
 }
-
+//二维码  的大小
 - (UIImageView *)codeImgView
 {
     if (!_codeImgView)
     {
-        _codeImgView = [[UIImageView alloc] initWithFrame:CGRectMake(30, MaxY(self.classImgView)+20, WIDTH(self.contentView)-60, WIDTH(self.contentView)-60)];
+        _codeImgView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH(self.contentView)*0.15, MaxY(self.classImgView)+10, WIDTH(self.contentView)*0.7, WIDTH(self.contentView)*0.7)];
     }
     return _codeImgView;
 }

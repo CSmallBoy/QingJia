@@ -7,7 +7,12 @@
 //
 
 #import "HCTableViewController.h"
-
+#import "MyselfInfoModel.h"
+@protocol userInfoDelegate <NSObject>
+-(void)userInfoName:(MyselfInfoModel *)model;
+@end
 @interface HCEditUserMessageViewController : HCTableViewController
+
+@property (nonatomic,assign)id<userInfoDelegate>delegate;
 
 @end

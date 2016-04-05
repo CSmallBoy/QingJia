@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"可能属于的家庭";
     [self makeUI];
 }
 - (void)makeUI{
@@ -41,6 +42,7 @@
         label3.textColor = [UIColor grayColor];
         [cell addSubview:label3];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (void)didReceiveMemoryWarning {

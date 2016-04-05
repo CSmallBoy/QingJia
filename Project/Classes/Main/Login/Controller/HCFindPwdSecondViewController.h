@@ -9,5 +9,5 @@
 #import "HCViewController.h"
 
 @interface HCFindPwdSecondViewController : HCViewController
-
+@property (nonatomic,copy) NSString *phoneNumber;
 @end

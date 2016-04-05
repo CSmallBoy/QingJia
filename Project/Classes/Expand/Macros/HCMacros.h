@@ -10,8 +10,8 @@
 
 /* ********************系统配置********************* */
 
-//定义一个API
-#define kAPIURL          @"http://www.szmingma.com:8010/"            //外网
+//定义一个API  http://damaotech.com/rest/User/getAuthCode.do借口服务器
+#define kAPIURL          @"http://damaotech.com/rest/"            //外网
 //#define kAPIURL             @"https://baidu.com"
 
 #define kIMGURL        @"http://192.168.10.199:8008/"

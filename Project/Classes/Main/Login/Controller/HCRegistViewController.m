@@ -11,7 +11,8 @@
 #import "TOWebViewController.h"
 #import "HCGetCodeApi.h"
 #import "HCCheckCodeApi.h"
-
+#import "HCGetVerificationCodeApi.h"
+#import "NHCResgistVerifyApi.h"
 @interface HCRegistViewController ()
 
 @end
@@ -104,10 +105,10 @@
         [self showHUDText:@"输入正确的手机号"];
         return;
     }
-    if (_checkNumTextField.text.length < 4) {
-        [self showHUDText:@"输入正确的验证码"];
-        return;
-    }
+//    if (_checkNumTextField.text.length < 4) {
+//        [self showHUDText:@"输入正确的验证码"];
+//        return;
+//    }
     [self requestCheckCode];
 }
 
@@ -119,13 +120,12 @@
 {
     [self showHUDView:nil];
     
-    HCGetCodeApi *api = [[HCGetCodeApi alloc] init];
+    HCGetVerificationCodeApi *api = [[HCGetVerificationCodeApi alloc] init];
     api.phoneNumber = _mobileTextField.text;
-    api.thetype = 1000;
+    api.thetype = @"1000";
     
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data)
-    {
-        if (requestStatus == HCRequestStatusSuccess)
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
+        if (requestStatus+100 == HCRequestStatusSuccess)
         {
             [self showHUDSuccess:@"获取成功"];
         }else
@@ -133,6 +133,17 @@
             [self showHUDError:message];
         }
     }];
+    //之前代码 已经注释
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data)
+//    {
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            [self showHUDSuccess:@"获取成功"];
+//        }else
+//        {
+//            [self showHUDError:message];
+//        }
+//    }];
 }
 
 // 校验验证码
@@ -141,17 +152,19 @@
 {
     [self showHUDView:nil];
     
-    HCCheckCodeApi *api = [[HCCheckCodeApi alloc] init];
+    NHCResgistVerifyApi *api = [[NHCResgistVerifyApi alloc] init];
     api.PhoneNumber = _mobileTextField.text;
-    api.theCode = [_checkNumTextField.text integerValue];
-    api.theType = 1000;
+    api.theCode = _checkNumTextField.text;
+    api.theType = @"1000";
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
-        if (requestStatus == HCRequestStatusSuccess)
+        if (requestStatus +100== HCRequestStatusSuccess)
         {
             [self hideHUDView];
             HCPerfectMessageViewController *perfect = [[HCPerfectMessageViewController alloc] init];
-            perfect.data = @{@"phonenumber": _mobileTextField.text, @"token": data[@"Token"]};
+            //新版本  此处没有token
+           // perfect.data = @{@"phonenumber": _mobileTextField.text, @"token": data[@"Token"]};
+            perfect.userNumNmae = _mobileTextField.text;
             [self.navigationController pushViewController:perfect animated:YES];
         }else
         {

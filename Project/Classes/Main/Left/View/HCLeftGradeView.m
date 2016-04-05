@@ -99,7 +99,7 @@
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _headButton.tag = HCLeftGradeViewButtonTypeHead;
         [_headButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
-        _headButton.frame = CGRectMake(WIDTH(self)*0.2, 0, 100, 100);
+        _headButton.frame = CGRectMake(30, 0, WIDTH(self)*0.7-60, WIDTH(self)*0.3);//WIDTH(self)*0.2, 0, 100, 100);//30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3
         ViewRadius(_headButton, 50);
         _headButton.center = CGPointMake(_headButton.center.x, self.center.y+30);
         
@@ -114,7 +114,8 @@
     {
         _nickName = [[UILabel alloc] init];
         _nickName.textColor = [UIColor whiteColor];
-        _nickName.frame = CGRectMake(WIDTH(self)*.2, MaxY(self.headButton)+10, 90, 20);
+//        _nickName.frame = CGRectMake(WIDTH(self)*0.2, MaxY(self.headButton)+10, 90, 20);
+          _nickName.frame = CGRectMake(0, MaxY(self.headButton)+10, WIDTH(self)*0.7, 20);
         _nickName.textAlignment = NSTextAlignmentCenter;
         _nickName.text = @"用户昵称";
     }

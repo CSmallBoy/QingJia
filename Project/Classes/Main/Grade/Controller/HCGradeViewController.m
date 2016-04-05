@@ -47,13 +47,13 @@
 }
 
 #pragma mark - private methods
-
+//创建 班级
 - (IBAction)createGradeButton:(UIButton *)sender
 {
     HCCreateGradeViewController *createGrade = [[HCCreateGradeViewController alloc] init];
     [self.navigationController pushViewController:createGrade animated:YES];
 }
-
+//加入 班级
 - (IBAction)joinGradeButton:(UIButton *)sender
 {
     HCJoinGradeViewController *joinGrade = [[HCJoinGradeViewController alloc] init];

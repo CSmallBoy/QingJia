@@ -35,7 +35,6 @@
     [self setupBackItem];
     
     _info = [[HCCreateGradeInfo alloc] init];
-    
     [self.tableView registerClass:[HCCreateGradeTableViewCell class] forCellReuseIdentifier:HCCreateGrade];
 }
 
@@ -54,7 +53,6 @@
     if (indexPath.row == 5)
     {
         [HCAvatarMgr manager].noUploadImage = YES;
-
         [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
             if (result)
             {

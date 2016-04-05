@@ -57,13 +57,15 @@
     
     if (indexPath.section==0 && indexPath.row == 0)
     {
-        self.textField.placeholder = @"上传头像";
-        self.textField.enabled = NO;
-        self.textField.frame = CGRectMake(52 + 10, 10, SCREEN_WIDTH-100, 20);
-        UIButton  *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(SCREEN_WIDTH-50, 2, 40, 40);
-        [button setBackgroundImage:IMG(@"2Dbarcode_message_HeadPortraits") forState:UIControlStateNormal];
-        [self.contentView addSubview:button];
+//        self.textField.placeholder = @"上传头像";
+//        self.textField.enabled = NO;
+//        self.textField.frame = CGRectMake(52 + 10, 10, SCREEN_WIDTH-100, 20);
+//        UIImageView  *image = [[UIImageView alloc]init];
+//        image.frame = CGRectMake(SCREEN_WIDTH-50, 2, 40, 40);
+//        image.tag = 1000;
+//        image.image =IMG(@"2Dbarcode_message_HeadPortraits");
+//        [button setBackgroundImage:IMG(@"2Dbarcode_message_HeadPortraits") forState:UIControlStateNormal];
+//        [self.contentView addSubview:button];
     }
     
     if (indexPath.section == 0 && indexPath.row == 1)
