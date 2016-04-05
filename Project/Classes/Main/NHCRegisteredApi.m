@@ -37,6 +37,8 @@
     NSDictionary *dic = responseObject[@"Data"];
     HCLoginInfo *loginfo = [HCLoginInfo mj_objectWithKeyValues:dic[@"UserEntity"]];
     loginfo.Token = dic[@"Token"];
+    [readUserInfo Dicdelete];
+    [readUserInfo creatDic:dic];
     return responseObject;
 }
 @end
