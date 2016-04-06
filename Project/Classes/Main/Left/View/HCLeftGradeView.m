@@ -1,4 +1,4 @@
-//
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      //
 //  HCLeftGradeView.m
 //  Project
 //
@@ -9,6 +9,8 @@
 #import "HCLeftGradeView.h"
 #import "UIButton+WebCache.h"
 #import "MyFamilyViewController.h"
+//下载头像
+#import "NHCDownloadImageApi.h"
 @interface HCLeftGradeView(){
     NSDictionary *dicting;
 }
@@ -100,9 +102,15 @@
         _headButton.frame = CGRectMake(WIDTH(self)*0.2, 0, WIDTH(self)*0.3, WIDTH(self)*0.3);//WIDTH(self)*0.2, 0, 100, 100);//30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3
         ViewRadius(_headButton, WIDTH(self)*0.15);
         _headButton.center = CGPointMake(_headButton.center.x, self.center.y+30);
+        NHCDownloadImageApi *api = [[NHCDownloadImageApi alloc]init];
+        api.type = @"0";//0 代表个人
         
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+            
+        }];
         
         NSDictionary *dict = [readUserInfo getReadDic];
+        
         if (dict[@"PhotoStr"]==nil) {
             //没有图片的时候显示的默认头像
             [_headButton sd_setImageWithURL:[NSURL URLWithString:@"http://xiaodaohang.cn/3.jpg"] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];

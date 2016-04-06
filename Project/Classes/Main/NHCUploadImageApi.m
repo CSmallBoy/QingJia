@@ -16,7 +16,7 @@
 
 - (NSString *)requestUrl
 {   //验证验证码
-    return @"photo/uploadOne.do";
+    return @"Photo/uploadOne.do";
 }
 - (id)requestArgument
 {   //验证验证码
@@ -25,7 +25,7 @@
                            @"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token};
     NSDictionary *para = @{@"type":_type,
-                           @"photo":_photoStr,
+                           @"photo":_photoStr,@"id":@"1000"
                            };
     NSDictionary *body = @{@"Para":para,
                            @"Head":head};

@@ -490,6 +490,7 @@
 		C752A8711CB4E6F8006719F1 /* NHCDownloadImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A8701CB4E6F8006719F1 /* NHCDownloadImageApi.m */; };
 		C752A8771CB4F6B7006719F1 /* HCUserHeathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A8761CB4F6B7006719F1 /* HCUserHeathViewController.m */; };
 		C752A87C1CB4FF22006719F1 /* NHCUserHeathApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A87B1CB4FF22006719F1 /* NHCUserHeathApi.m */; };
+		C752A87F1CB515A6006719F1 /* NHCGetUserHeathApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A87E1CB515A6006719F1 /* NHCGetUserHeathApi.m */; };
 		C758EE3E1C743E7A0081FFE1 /* FamilyManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */; };
 		C758EE401C743E7A0081FFE1 /* HCaddRelativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDED1C743E7A0081FFE1 /* HCaddRelativeViewController.m */; };
 		C758EE411C743E7A0081FFE1 /* HCCombineFamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDEF1C743E7A0081FFE1 /* HCCombineFamilyViewController.m */; };
@@ -2001,6 +2002,8 @@
 		C752A8761CB4F6B7006719F1 /* HCUserHeathViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserHeathViewController.m; sourceTree = "<group>"; };
 		C752A87A1CB4FF22006719F1 /* NHCUserHeathApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCUserHeathApi.h; sourceTree = "<group>"; };
 		C752A87B1CB4FF22006719F1 /* NHCUserHeathApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCUserHeathApi.m; sourceTree = "<group>"; };
+		C752A87D1CB515A6006719F1 /* NHCGetUserHeathApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCGetUserHeathApi.h; sourceTree = "<group>"; };
+		C752A87E1CB515A6006719F1 /* NHCGetUserHeathApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCGetUserHeathApi.m; sourceTree = "<group>"; };
 		C758EDE71C743E7A0081FFE1 /* FamilyManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyManageViewController.h; sourceTree = "<group>"; };
 		C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyManageViewController.m; sourceTree = "<group>"; };
 		C758EDEC1C743E7A0081FFE1 /* HCaddRelativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCaddRelativeViewController.h; sourceTree = "<group>"; };
@@ -4725,6 +4728,8 @@
 				C73C0B911CA29A660034E42E /* NHCBindPhoneNumAPi.m */,
 				C752A87A1CB4FF22006719F1 /* NHCUserHeathApi.h */,
 				C752A87B1CB4FF22006719F1 /* NHCUserHeathApi.m */,
+				C752A87D1CB515A6006719F1 /* NHCGetUserHeathApi.h */,
+				C752A87E1CB515A6006719F1 /* NHCGetUserHeathApi.m */,
 			);
 			name = userApi;
 			sourceTree = "<group>";
@@ -7667,6 +7672,7 @@
 				0A5491911C2BC32D0085F50D /* ZXCode128Writer.m in Sources */,
 				0A54915F1C2BC32D0085F50D /* ZXDataMatrixC40Encoder.m in Sources */,
 				0A2B46EC1C7F12AF00AAA157 /* HCEditCommentInfo.m in Sources */,
+				C752A87F1CB515A6006719F1 /* NHCGetUserHeathApi.m in Sources */,
 				C7B00B351C5F26050010F93B /* NSDate+Category.m in Sources */,
 				0A5491691C2BC32D0085F50D /* ZXDataMatrixReader.m in Sources */,
 				C7B00B371C5F26050010F93B /* NSString+Valid.m in Sources */,

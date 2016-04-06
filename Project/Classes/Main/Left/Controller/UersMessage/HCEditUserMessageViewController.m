@@ -212,9 +212,8 @@
         [self presentViewController:myalert animated:YES completion:nil];
     }else if (indexPath.section == 0 &&indexPath.row==5){
         
-    }else if (indexPath.section==0 && indexPath.row==10){
-        HCUserHeathViewController *VC= [[HCUserHeathViewController alloc]init];
-        [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.section==1 && indexPath.row==0){
+        [self toChangeNumber];
     }
     
 }

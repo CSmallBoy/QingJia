@@ -9,5 +9,10 @@
 #import "HCRequest.h"
 
 @interface NHCUserHeathApi : HCRequest
-
+@property (nonatomic,copy) NSString *height;
+@property (nonatomic,copy) NSString *weight ;
+@property (nonatomic,copy) NSString *bloodType;
+@property (nonatomic,copy) NSString *allergic;
+@property (nonatomic,copy) NSString *cureCondition;
+@property (nonatomic,copy) NSString *cureNote;
 @end

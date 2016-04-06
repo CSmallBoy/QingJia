@@ -13,7 +13,8 @@
 
 #import "HCGetCodeApi.h"
 #import "HCCheckCodeApi.h"
-
+#import "HCGetVerificationCodeApi.h"
+#import "NHCResgistVerifyApi.h"
 #import "Utils.h"
 
 @interface HCChangeBoundleTelNumberControll ()
@@ -24,6 +25,7 @@
 @property (nonatomic,assign) NSInteger timeNum;
 @property (nonatomic,strong)  NSString *phoneNum;
 @property (nonatomic,strong)  NSString *codeNum;
+@property (nonatomic,strong)  NSString *uuid;
 @property (nonatomic,strong) UITextField  *textField;
 
 @end
@@ -42,7 +44,7 @@
     _textField.placeholder = @"请输入验证码";
     _textField.textColor = [UIColor blackColor];
     [self.tableView addSubview:self.textField];
-
+    _uuid = [readUserInfo GetUUID];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getCodeNumber:) name:@"getCodeNumber" object:nil];
    
 }
@@ -146,9 +148,9 @@
     }
     else
     {
-        HCChangeBoundleTelNumberControll *sureVC = [[HCChangeBoundleTelNumberControll alloc]init];
-        sureVC.isSure = YES;
-        [self.navigationController pushViewController:sureVC animated:YES];
+//        HCChangeBoundleTelNumberControll *sureVC = [[HCChangeBoundleTelNumberControll alloc]init];
+//        sureVC.isSure = YES;
+//        [self.navigationController pushViewController:sureVC animated:YES];
 //        if (![Utils checkPhoneNum:self.phoneNum]) {
 //            [self showHUDText:@"输入正确的手机号"];
 //            return;
@@ -159,7 +161,7 @@
 //            [self showHUDText:@"输入正确的验证码"];
 //            return;
 //        }
-//        [self requestcheckCode];
+        [self requestcheckCode];
 
        
     }
@@ -226,9 +228,10 @@
 {
     [self showHUDView:nil];
     
-    HCGetCodeApi *api = [[HCGetCodeApi alloc] init];
+    HCGetVerificationCodeApi *api = [[HCGetVerificationCodeApi alloc] init];
     api.phoneNumber = _phoneNum;
-    api.thetype = 1000;
+    api.thetype = @"1003";
+    api.uuid = _uuid;
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data)
      {
@@ -248,12 +251,12 @@
 - (void)requestcheckCode
 {
     [self showHUDView:nil];
-    
-    HCCheckCodeApi *api = [[HCCheckCodeApi alloc] init];
+    //  接口有问题  待定
+    NHCResgistVerifyApi *api = [[NHCResgistVerifyApi alloc] init];
     api.PhoneNumber = self.phoneNum;
-    api.theCode = [self.codeNum integerValue];
-    api.theType = 1000;
-    
+    api.theCode = _textField.text ;
+    api.theType = @"1003";
+    api.uuid = _uuid;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
         if (requestStatus == HCRequestStatusSuccess)
         {

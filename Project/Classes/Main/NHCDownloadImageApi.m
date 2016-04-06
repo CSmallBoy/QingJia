@@ -20,7 +20,8 @@
     NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],
                            @"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token};
-    NSDictionary *para = @{@"type":_type};
+    NSDictionary *para = @{@"type":_type,
+                           @"id":@"2000"};
     NSDictionary *body = @{@"Para":para,
                            @"Head":head};
     return body;

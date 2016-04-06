@@ -15,11 +15,13 @@
 #import "HCUserMessageInfo.h"
 #import "HCPickerView.h"
 #import "NHCUploadImageApi.h"
-
+#import "NHCGetUserHeathApi.h"
+#import "HCUserHeathViewController.h"
 #define HCUserCell @"HCUserMessageTableViewCell"
 
 @interface HCUserMessageViewController ()<HCPickerViewDelegate,userInfoDelegate>{
     MyselfInfoModel*_model;
+    NSArray *arr;
 }
 
 @property (nonatomic, strong) HCPickerView *datePicker;
@@ -43,7 +45,13 @@
     }else{
         [_headButton setBackgroundImage:[readUserInfo image64:_dict[@"PhotoStr"]] forState:UIControlStateNormal];
     }
-    
+    NHCGetUserHeathApi *API= [[NHCGetUserHeathApi alloc]init];
+    [API startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        if (requestStatus == HCRequestStatusSuccess) {
+            arr = responseObject;
+            
+        }
+    }];
 }
 - (void)viewDidLoad
 {
@@ -135,8 +143,16 @@
     if (indexPath.row == 1)
     {
         vc = [[HCUserCodeViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row==8){
+      HCUserHeathViewController * Vc= [[HCUserHeathViewController alloc]init];
+        
+   
+        Vc.arr_heath = arr;
+        [self.navigationController pushViewController:Vc animated:YES];
+    
     }
-    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -9,5 +9,5 @@
 #import "HCTableViewController.h"
 
 @interface HCUserHeathViewController : HCTableViewController
-
+@property (nonatomic ,strong) NSArray *arr_heath;
 @end
