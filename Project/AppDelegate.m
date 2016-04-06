@@ -27,7 +27,7 @@
 #import "UMSocialSinaHandler.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialWechatHandler.h"
-
+#import "NHCCancellationApi.h"
 @interface AppDelegate ()<AMapLocationManagerDelegate>
 
 
@@ -95,10 +95,6 @@
 //设置主控制器
 - (void)setupRootViewController
 {
-    //    if (![HCAppMgr manager].showInstroView)
-    //    {
-    //        DLog(@"加载欢迎页面,测试的取反");
-    //    }
     if (![HCAccountMgr manager].isLogined)
     {
         HCLoginViewController *login = [[HCLoginViewController alloc]init];

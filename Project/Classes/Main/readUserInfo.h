@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "MyselfInfoModel.h"
+typedef void (^NHCReadBack)(NSString *str);
+
 @interface readUserInfo : NSObject
 +(void)creatDic:(NSDictionary*)dic;
 +(NSDictionary *)getReadDic;
@@ -21,4 +23,11 @@
 + (NSString *)GetUUID;
 //获取版本信息
 + (NSString *)GetPlatForm;
+
+
+//读取导数据库后的回调方法
+/*
+ *读取
+ */
+- (void)queryLastUserInfo:(NHCReadBack)accountInfo;
 @end

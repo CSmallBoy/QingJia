@@ -95,14 +95,14 @@
     }
     apiUser.sex = [HCDictionaryMgr getSexStringWithKey:key];
     //环信的注册
-    [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:_userNumNmae password:_password.text];
+   // [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:_userNumNmae password:_password.text];
     [apiUser startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo) {
         if (requestStatus +100== HCRequestStatusSuccess)
         {
             [self hideHUDView];
             
-            [HCAccountMgr manager].loginInfo = loginInfo;
-           // [[HCAccountMgr manager] saveLoginInfoToDB];
+            [HCAccountMgr manager].loginInfo = loginInfo;  
+            [[HCAccountMgr manager] saveLoginInfoToDB];
             [HCAccountMgr manager].isLogined = YES;
             
             HCGradeViewController *grade = [[HCGradeViewController alloc] init];

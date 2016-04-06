@@ -12,7 +12,8 @@
 #import "HCAccountDBMgr.h"
 #import "UIAlertView+HTBlock.h"
 #import "HCGetUserInfoByDeviceApi.h"
-
+//退出
+#import "NHCCancellationApi.h"
 static HCAppMgr *_sharedManager = nil;
 
 @implementation HCAppMgr
@@ -136,18 +137,16 @@ static HCAppMgr *_sharedManager = nil;
     [alert show];
 }
 
-// 登出
+// 退出
 
 - (void)requestLogout
 {
-    HCLogoutApi *api = [[HCLogoutApi alloc] init];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self login];
-        }
+    NHCCancellationApi *api2 = [[NHCCancellationApi alloc]init];
+    [api2 startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        [self login];
     }];
-    
+    [HCAccountMgr manager].isLogined = NO;
+    //环信账号退出
     [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
         if (error && error.errorCode != EMErrorServerNotLogin) {
         }

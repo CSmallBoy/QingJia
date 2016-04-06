@@ -75,4 +75,13 @@
     NSString * strModel = [UIDevice currentDevice].model;
     return strModel;
 }
+-(void)queryLastUserInfo:(NHCReadBack)accountInfo{
+    NSDictionary *dict = [readUserInfo getReadDic];
+    if ([dict[@"userName"] isEqualToString:@""]) {
+        
+    }else{
+        
+    }
+    return;
+}
 @end

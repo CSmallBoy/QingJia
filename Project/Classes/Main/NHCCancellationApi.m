@@ -32,6 +32,8 @@
 }
 - (id)formatResponseObject:(id)responseObject
 {
+    //退出时清理个人信息
+    [readUserInfo Dicdelete];
     return responseObject;
 }
 @end

@@ -58,7 +58,7 @@ static HCAccountDBMgr *_sharedManager = nil;
     }
     
     NSString *dbPath=[folder stringByAppendingPathComponent:kHCDBName];
-
+    
     DLog(@"dbPath:%@",dbPath);
     //创建队列
     FMDatabaseQueue *queue =[FMDatabaseQueue databaseQueueWithPath:dbPath];
@@ -95,7 +95,7 @@ static HCAccountDBMgr *_sharedManager = nil;
     __block BOOL createRes = NO;
     
     [self.queue inDatabase:^(FMDatabase *db) {
-
+        
         NSString *sql = [NSString stringWithFormat:
                          @"CREATE TABLE IF NOT EXISTS '%@'(\
                          id INTEGER PRIMARY KEY AUTOINCREMENT,\
@@ -106,15 +106,18 @@ static HCAccountDBMgr *_sharedManager = nil;
                          TrueName TEXT,\
                          NickName TEXT,\
                          Sex TEXT,\
-                         Age TEXT,\
-                         IsFMA TEXT,\
+                         birthDay TEXT,\
                          DefaultFamilyID TEXT,\
+                         createFamilyId TEXT,\
                          UserDescription TEXT,\
-                         UserId TEXT, \
+                         allFamilyIds TEXT, \
+                         chatName TEXT,\
+                         chatPwd TEXT,\
                          HomeAddress TEXT, \
                          Company TEXT, \
                          Career TEXT, \
-                         UserPhoto TEXT);",
+                         chineseZodiac ,\
+                         status TEXT);",
                          kHCDBTableUser];
         createRes = [db executeUpdate:sql];
     }];
@@ -134,26 +137,6 @@ static HCAccountDBMgr *_sharedManager = nil;
     //清空表数据
     [self truncateTable];
     
-    NSDictionary *dic = loginInfo;
-    NSString *token = dic[@"Data"][@"Token"];
-    NSString *UUId = dic[@"Data"][@"UserInf"][@"uuid"];
-    NSString *PhoneNo = dic[@"Data"][@"UserInf"][@"phoneNo"];
-    NSString *UserName = dic[@"Data"][@"UserInf"][@"userName"];
-    NSString *TrueName = dic[@"Data"][@"UserInf"][@"trueName"];
-    NSString *NickName = dic[@"Data"][@"UserInf"][@"chatName"];
-    NSString *Sex = dic[@"Data"][@"UserInf"][@"sex"];
-    NSString *Age = dic[@"Data"][@"UserInf"][@"birthDay"];
-    NSString *IsFMA = dic[@"Data"][@"UserInf"][@"uuid"];
-    NSString *DefaultFamilyID = dic[@"Data"][@"UserInf"][@"uuid"];
-    NSString *Career = dic[@"Data"][@"UserInf"][@"userName"];
-    NSString *UserDescription = dic[@"Data"][@"UserInf"][@"chineseZodiac"];
-    NSString *UserId = dic[@"Data"][@"UserInf"][@"userId"];
-    NSString *Company = dic[@"Data"][@"UserInf"][@"company"];
-    NSString *UserPhoto = dic[@"Data"][@"UserInf"][@"phoneNo"];
-   
-    NSString *HomeAddress = dic[@"Data"][@"UserInf"][@"homeAddress"];
-
-    
     NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO '%@'(\
                            Token,\
                            UUID,\
@@ -162,33 +145,39 @@ static HCAccountDBMgr *_sharedManager = nil;
                            TrueName,\
                            NickName,\
                            Sex,\
-                           Age,\
-                           IsFMA,\
+                           birthDay,\
+                           createFamilyId,\
                            DefaultFamilyID,\
                            UserDescription,\
-                           UserId,\
+                           allFamilyIds,\
                            HomeAddress,\
                            Company,\
                            Career,\
-                           UserPhoto)\
-                           VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');",
-                           @"UserInfo",
+                           chatName,\
+                           chatPwd,\
+                           chineseZodiac ,\
+                           status)\
+                           VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');",
+                           kHCDBTableUser,
                            loginInfo.Token,
-                           loginInfo.Token,
+                           loginInfo.UUID,
                            loginInfo.PhoneNo,
                            loginInfo.UserName,
                            loginInfo.TrueName,
                            loginInfo.NickName,
                            loginInfo.Sex,
-                           loginInfo.Sex,
-                           loginInfo.Age,
-                           loginInfo.Token,
-                           loginInfo.Career,
-                           loginInfo.UserId,
+                           loginInfo.birthday,
+                           loginInfo.createFamilyId,
+                           loginInfo.DefaultFamilyID,
+                           loginInfo.UserDescription,
+                           loginInfo.allFamilyIds,
                            loginInfo.HomeAddress,
                            loginInfo.Company,
                            loginInfo.Career,
-                           loginInfo.PhoneNo];
+                           loginInfo.chatName,
+                           loginInfo.chatPwd,
+                           loginInfo.chineseZodiac,
+                           loginInfo.status];
     BOOL res = [self executeUpdate:insertSql];
     return res;
 }
@@ -200,17 +189,23 @@ static HCAccountDBMgr *_sharedManager = nil;
  *
  *  @return 更新语句的执行结果
  */
-- (BOOL)updateLoginInfo:(HCLoginInfo *)info
-{
-    if (info.Token) {
-        
-        NSString *modifySql = [NSString stringWithFormat:@"UPDATE '%@' SET UUID = '%@',PhoneNo = '%@',UserName = '%@',TrueName = '%@',NickName = '%@',Sex = '%@',Age = '%@',IsFMA = '%@',DefaultFamilyID = '%@',UserDescription = '%@', UserPhoto = '%@',HomeAddress = '%@',Company = '%@',Career = '%@',Token = '%@' WHERE UserId = '%@';",kHCDBTableUser,info.UUID,info.PhoneNo,info.UserName,info.TrueName,info.NickName,info.Sex,info.Age,info.IsFMA,info.DefaultFamilyID,info.UserDescription,info.UserPhoto, info.HomeAddress, info.Company, info.Career, info.Token, info.UserId];
-        
-        return [self executeUpdate:modifySql];
-    }
-    
-    return NO;
-}
+
+
+//- (BOOL)updateLoginInfo:(HCLoginInfo *)info
+//{
+//    if (info.Token) {
+//
+//        NSString *modifySql = [NSString stringWithFormat:@"UPDATE '%@' SET UUID = '%@',PhoneNo = '%@',UserName = '%@',TrueName = '%@',NickName = '%@',Sex = '%@',Age = '%@',IsFMA = '%@',DefaultFamilyID = '%@',UserDescription = '%@', UserPhoto = '%@',HomeAddress = '%@',Company = '%@',Career = '%@',Token = '%@' WHERE UserId = '%@';",kHCDBTableUser,info.UUID,info.PhoneNo,info.UserName,info.TrueName,info.NickName,info.Sex,info.Age,info.IsFMA,info.DefaultFamilyID,info.UserDescription,info.UserPhoto, info.HomeAddress, info.Company, info.Career, info.Token, info.UserId];
+//
+//        return [self executeUpdate:modifySql];
+//    }
+//
+//    return NO;
+//}
+
+
+
+
 
 /**
  *  更新用户信息
@@ -237,17 +232,18 @@ static HCAccountDBMgr *_sharedManager = nil;
             loginInfo.NickName = StringFromObject([set stringForColumn:@"NickName"]);
             
             loginInfo.Sex = [set stringForColumn:@"Sex"];
-            loginInfo.Age = StringFromObject([set stringForColumn:@"Age"]);
-            loginInfo.IsFMA = StringFromObject([set stringForColumn:@"IsFMA"]);
-            loginInfo.DefaultFamilyID = StringFromObject([set stringForColumn:@"DefaultFamilyID"]);
-            loginInfo.UserDescription = StringFromObject([set stringForColumn:@"UserDescription"]);
-            loginInfo.UserPhoto = StringFromObject([set stringForColumn:@"UserPhoto"]);
+            loginInfo.birthday = StringFromObject([set stringForColumn:@"birthDay"]);
+            loginInfo.createFamilyId = StringFromObject([set stringForColumn:@"createFamilyId"]);
+            loginInfo.DefaultFamilyID = StringFromObject([set stringForColumn:@"defaultFamilyId"]);
+            loginInfo.UserDescription = StringFromObject([set stringForColumn:@"userDescription"]);
+            loginInfo.allFamilyIds = StringFromObject([set stringForColumn:@"allFamilyIds"]);
             
-            loginInfo.UserId = StringFromObject([set stringForColumn:@"UserId"]);
-            loginInfo.HomeAddress = StringFromObject([set stringForColumn:@"HomeAddress"]);
-            loginInfo.Company = StringFromObject([set stringForColumn:@"Company"]);
-            loginInfo.Career = StringFromObject([set stringForColumn:@"Career"]);
-
+            loginInfo.status = StringFromObject([set stringForColumn:@"status"]);
+            loginInfo.HomeAddress = StringFromObject([set stringForColumn:@"homeAddress"]);
+            loginInfo.Company = StringFromObject([set stringForColumn:@"company"]);
+            loginInfo.Career = StringFromObject([set stringForColumn:@"career"]);
+            loginInfo.chatName = StringFromObject([set stringForColumn:@"chatName"]);
+            loginInfo.chatPwd = StringFromObject([set stringForColumn:@"chatPwd"]);
             accountInfo(loginInfo);
             [set close];
             
@@ -255,7 +251,6 @@ static HCAccountDBMgr *_sharedManager = nil;
         }
         
     }];
-    //return NO;
 }
 
 /**

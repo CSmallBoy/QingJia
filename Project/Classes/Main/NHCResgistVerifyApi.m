@@ -32,11 +32,6 @@
 }
 - (id)formatResponseObject:(id)responseObject
 {
-    NSDictionary *dic = responseObject[@"Data"];
-    HCLoginInfo *loginInfo = [HCLoginInfo mj_objectWithKeyValues:dic[@"UserInf"]];
-    loginInfo.Token = dic[@"Token"];
-    [readUserInfo Dicdelete];
-    [readUserInfo creatDic:dic];
     return responseObject;
 }
 

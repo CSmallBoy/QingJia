@@ -42,7 +42,7 @@ static HCAccountMgr *_sharedManager = nil;
 //更新数据库的登录信息
 - (void)updateLoginInfoToDB
 {
-    //[[HCAccountDBMgr manager] updateLoginInfo:self.loginInfo];
+    [[HCAccountDBMgr manager] updateLoginInfo:self.loginInfo];
 }
 
 //更新数据库的用户信息
@@ -54,7 +54,7 @@ static HCAccountMgr *_sharedManager = nil;
 //保存用户登录信息
 - (void)saveLoginInfoToDB
 {
-    //[[HCAccountDBMgr manager] insertLoginInfo:self.loginInfo];
+    [[HCAccountDBMgr manager] insertLoginInfo:self.loginInfo];
 }
 
 

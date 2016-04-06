@@ -22,11 +22,15 @@
 @property (nonatomic, strong) NSString      *TrueName;
 @property (nonatomic, strong) NSString      *NickName;
 @property (nonatomic, strong) NSString      *Sex;
-@property (nonatomic, strong) NSString      *Age;
-@property (nonatomic, strong) NSString      *IsFMA;
+@property (nonatomic, strong) NSString      *birthday;
+@property (nonatomic, strong) NSString      *createFamilyId;
 @property (nonatomic, strong) NSString      *DefaultFamilyID;
 @property (nonatomic, strong) NSString      *UserDescription;
-@property (nonatomic, strong) NSString      *UserPhoto;
+@property (nonatomic, strong) NSString      *status;
+@property (nonatomic, strong) NSString      *chatName;
+@property (nonatomic, strong) NSString      *chatPwd;
+@property (nonatomic, strong) NSString      *chineseZodiac;
+@property (nonatomic, strong) NSString      *allFamilyIds;
 
 
 @end
