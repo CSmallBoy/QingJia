@@ -35,6 +35,19 @@
         [self addSubview:self.nickName];
         [self addSubview:self.sofewareSetBtn];
         [self addSubview:self.familyButton];
+//        
+    //  NSString *str = [HCAccountMgr manager].loginInfo.DefaultFamilyID;
+        NSDictionary *dic = [readUserInfo getReadDic];
+        NSString *str = dic[@"UserInf"][@"defaultFamilyID"];
+        if (IsEmpty(str)) {
+            self.gradeName.text = @"昵称"; 
+        }
+        else
+        {
+            self.gradeName.text = @"家庭名称";
+           
+        }
+        
        
     }
     return self;
@@ -64,7 +77,7 @@
         _gradeName = [[UILabel alloc] initWithFrame:CGRectMake(0, MaxY(self.gradeHeadButton)+20, WIDTH(self)*0.7, 20)];
         _gradeName.textAlignment = NSTextAlignmentCenter;
         _gradeName.textColor = [UIColor whiteColor];
-        _gradeName.text = @"班级名称";
+//        _gradeName.text = @"班级名称";
     }
     return _gradeName;
 }
