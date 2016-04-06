@@ -37,7 +37,7 @@
     _info = self.data[@"data"];
     NSError *error = nil;
     ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
-    ZXBitMatrix* result = [writer encode:_info.FamilyCode
+    ZXBitMatrix* result = [writer encode:_info.familyId
                                   format:kBarcodeFormatQRCode
                                    width:WIDTH(self.view)
                                   height:WIDTH(self.view)

@@ -418,6 +418,7 @@
 		8D0F9FC71C7ECC710096A3B9 /* HCChangeBounleTelNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0F9FC61C7ECC710096A3B9 /* HCChangeBounleTelNumberCell.m */; };
 		8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAEB21C604ECA0038B0BD /* HCNotiMySaveCell.m */; };
 		8D0FAEB71C6077B80038B0BD /* WKFRadarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAEB61C6077B80038B0BD /* WKFRadarView.m */; };
+		8D1003B21CB4DFFA00D8AE4D /* MyLoginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1003B11CB4DFFA00D8AE4D /* MyLoginInfo.m */; };
 		8D11911D1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */; };
 		8D1191201C5F3CDD003505D3 /* HCNotifcationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911F1C5F3CDD003505D3 /* HCNotifcationMessageCell.m */; };
 		8D131A861C7D7C7F00F0D5A0 /* UIImage+ZLPhotoLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D131A4F1C7D7C7F00F0D5A0 /* UIImage+ZLPhotoLib.m */; };
@@ -1851,6 +1852,8 @@
 		8D0FAEB21C604ECA0038B0BD /* HCNotiMySaveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotiMySaveCell.m; sourceTree = "<group>"; };
 		8D0FAEB51C6077B80038B0BD /* WKFRadarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKFRadarView.h; sourceTree = "<group>"; };
 		8D0FAEB61C6077B80038B0BD /* WKFRadarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKFRadarView.m; sourceTree = "<group>"; };
+		8D1003B01CB4DFFA00D8AE4D /* MyLoginInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginInfo.h; sourceTree = "<group>"; };
+		8D1003B11CB4DFFA00D8AE4D /* MyLoginInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginInfo.m; sourceTree = "<group>"; };
 		8D11911B1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyNotificationCenterTableViewCell.h; sourceTree = "<group>"; };
 		8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMyNotificationCenterTableViewCell.m; sourceTree = "<group>"; };
 		8D11911E1C5F3CDD003505D3 /* HCNotifcationMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotifcationMessageCell.h; sourceTree = "<group>"; };
@@ -4912,6 +4915,8 @@
 				C78D78E21C5F28F600622CE2 /* HCLoginInfo.m */,
 				C79E0EC31CA69AD300717D9B /* NHCloginInfoModel.h */,
 				C79E0EC41CA69AD300717D9B /* NHCloginInfoModel.m */,
+				8D1003B01CB4DFFA00D8AE4D /* MyLoginInfo.h */,
+				8D1003B11CB4DFFA00D8AE4D /* MyLoginInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7998,6 +8003,7 @@
 				C78D7B911C5F28F700622CE2 /* HCPopoverView.m in Sources */,
 				C78D7B8F1C5F28F700622CE2 /* HCNavTabBar.m in Sources */,
 				C7B00BB81C5F26050010F93B /* EaseRefreshTableViewController.m in Sources */,
+				8D1003B21CB4DFFA00D8AE4D /* MyLoginInfo.m in Sources */,
 				0A2B477C1C7F12C800AAA157 /* HCRescueCenterApi.m in Sources */,
 				C758EE451C743E7A0081FFE1 /* HCLikeFamilyViewController.m in Sources */,
 				C7B00B781C5F26050010F93B /* amrFileCodec.mm in Sources */,

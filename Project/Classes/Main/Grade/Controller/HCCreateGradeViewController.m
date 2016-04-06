@@ -150,10 +150,22 @@
     
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-      
+        
         if (requestStatus == HCRequestStatusSuccess) {
-            NSLog(@"家庭创建成功");
+            
+            NSLog(@"创建家庭成功");
+            NSDictionary *dic = respone[@"Data"][@"UserEntity"];
+            
+            _info = [HCCreateGradeInfo mj_objectWithKeyValues:dic];
+            
+            HCGradeSuccessViewController *finishVC = [[HCGradeSuccessViewController alloc]init];
+            
+            finishVC.data = @{@"data":_info};
+            [self.navigationController pushViewController:finishVC animated:YES];
+            
         }
+        
+        
     }];
     
 }

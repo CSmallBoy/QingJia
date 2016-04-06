@@ -26,8 +26,8 @@
 
     
     NSDictionary *head = @{@"platForm": @"IOS9.2",
-                           @"token":[readUserInfo getReadDic][@"Token"],
-                           @"UUID":[readUserInfo GetUUID]};
+                           @"token":[HCAccountMgr manager].loginInfo.Token,
+                           @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     
     NSLog(@"%@",[readUserInfo getReadDic][@"Token"]);
     
@@ -36,7 +36,7 @@
                            @"familyNickName":_gradeInfo.familyNickName,
                            @"familyDescription":_gradeInfo.familyDescription,
  
-                           @"contactAddr":@"上海市，闵行区，集心路168号"};
+                           @"contactAddr":_gradeInfo.contactAddr};
     
     return @{@"Head":head,@"Para":para};
     
@@ -47,8 +47,6 @@
 - (id)formatResponseObject:(id)responseObject
 {
 
-    
-    
     return responseObject;
     
 }

@@ -12,8 +12,8 @@
 
 //私有定义
 //来自服务端定义
-#define KCodeStatus           @"Code"
-#define KMessage              @"Message"
+#define KCodeStatus           @"code"
+#define KMessage              @"message"
 #define KBody                 @"data"
 #define kXAuthFailedCode      @"X-Auth-Failed-Code"
 
