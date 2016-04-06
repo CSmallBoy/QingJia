@@ -26,6 +26,7 @@
     NSTimer  *_timer;
     long     _timeNum;
 }
+@property (nonatomic,copy)NSString *uuid;
 @end
 
 @implementation HCFindPwdViewController
@@ -33,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"密码找回";
-    
+    _uuid = [readUserInfo GetUUID];
     [self setupBackItem];
     //设置圆角
     ViewRadius(_nextBtn, 4.0f);
@@ -119,6 +120,7 @@
 {
     [self showHUDView:nil];
     HCGetVerificationCodeApi *apiGet = [[HCGetVerificationCodeApi alloc]init];
+    apiGet.uuid = _uuid;
     apiGet.phoneNumber = _mobileTextField.text;
     apiGet.thetype = @"1001";
     [apiGet startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
@@ -141,8 +143,9 @@
     cheakApi.PhoneNumber = _mobileTextField.text;
     cheakApi.theType = @"1001";
     cheakApi.theCode = _checkNumTextField.text;
+    cheakApi.uuid = _uuid;
     [cheakApi startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
-        if (requestStatus +100 == HCRequestStatusSuccess)
+        if (requestStatus == HCRequestStatusSuccess)
         {
             [self hideHUDView];
             HCFindPwdSecondViewController *pwdsecond = [[HCFindPwdSecondViewController alloc] init];

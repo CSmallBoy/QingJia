@@ -486,6 +486,10 @@
 		C73C0B8C1CA293FF0034E42E /* NHCSetNewPassWordApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C73C0B8B1CA293FF0034E42E /* NHCSetNewPassWordApi.m */; };
 		C73C0B8F1CA296930034E42E /* NHCUSerInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C73C0B8E1CA296930034E42E /* NHCUSerInfoApi.m */; };
 		C73C0B921CA29A660034E42E /* NHCBindPhoneNumAPi.m in Sources */ = {isa = PBXBuildFile; fileRef = C73C0B911CA29A660034E42E /* NHCBindPhoneNumAPi.m */; };
+		C752A86E1CB4E6DE006719F1 /* NHCUploadImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A86D1CB4E6DE006719F1 /* NHCUploadImageApi.m */; };
+		C752A8711CB4E6F8006719F1 /* NHCDownloadImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A8701CB4E6F8006719F1 /* NHCDownloadImageApi.m */; };
+		C752A8771CB4F6B7006719F1 /* HCUserHeathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A8761CB4F6B7006719F1 /* HCUserHeathViewController.m */; };
+		C752A87C1CB4FF22006719F1 /* NHCUserHeathApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A87B1CB4FF22006719F1 /* NHCUserHeathApi.m */; };
 		C758EE3E1C743E7A0081FFE1 /* FamilyManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */; };
 		C758EE401C743E7A0081FFE1 /* HCaddRelativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDED1C743E7A0081FFE1 /* HCaddRelativeViewController.m */; };
 		C758EE411C743E7A0081FFE1 /* HCCombineFamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDEF1C743E7A0081FFE1 /* HCCombineFamilyViewController.m */; };
@@ -1989,6 +1993,14 @@
 		C73C0B8E1CA296930034E42E /* NHCUSerInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCUSerInfoApi.m; sourceTree = "<group>"; };
 		C73C0B901CA29A660034E42E /* NHCBindPhoneNumAPi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NHCBindPhoneNumAPi.h; path = Network/Login/NHCBindPhoneNumAPi.h; sourceTree = "<group>"; };
 		C73C0B911CA29A660034E42E /* NHCBindPhoneNumAPi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NHCBindPhoneNumAPi.m; path = Network/Login/NHCBindPhoneNumAPi.m; sourceTree = "<group>"; };
+		C752A86C1CB4E6DE006719F1 /* NHCUploadImageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCUploadImageApi.h; sourceTree = "<group>"; };
+		C752A86D1CB4E6DE006719F1 /* NHCUploadImageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCUploadImageApi.m; sourceTree = "<group>"; };
+		C752A86F1CB4E6F8006719F1 /* NHCDownloadImageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCDownloadImageApi.h; sourceTree = "<group>"; };
+		C752A8701CB4E6F8006719F1 /* NHCDownloadImageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCDownloadImageApi.m; sourceTree = "<group>"; };
+		C752A8751CB4F6B7006719F1 /* HCUserHeathViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserHeathViewController.h; sourceTree = "<group>"; };
+		C752A8761CB4F6B7006719F1 /* HCUserHeathViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserHeathViewController.m; sourceTree = "<group>"; };
+		C752A87A1CB4FF22006719F1 /* NHCUserHeathApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCUserHeathApi.h; sourceTree = "<group>"; };
+		C752A87B1CB4FF22006719F1 /* NHCUserHeathApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCUserHeathApi.m; sourceTree = "<group>"; };
 		C758EDE71C743E7A0081FFE1 /* FamilyManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyManageViewController.h; sourceTree = "<group>"; };
 		C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyManageViewController.m; sourceTree = "<group>"; };
 		C758EDEC1C743E7A0081FFE1 /* HCaddRelativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCaddRelativeViewController.h; sourceTree = "<group>"; };
@@ -4243,6 +4255,8 @@
 				8D0F9FBD1C7E9A290096A3B9 /* HCEditUserMessageViewController.m */,
 				8D0F9FC21C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.h */,
 				8D0F9FC31C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.m */,
+				C752A8751CB4F6B7006719F1 /* HCUserHeathViewController.h */,
+				C752A8761CB4F6B7006719F1 /* HCUserHeathViewController.m */,
 			);
 			path = UersMessage;
 			sourceTree = "<group>";
@@ -4675,12 +4689,10 @@
 		C73C0B761CA27A020034E42E /* newjiekou */ = {
 			isa = PBXGroup;
 			children = (
+				C752A8791CB4FE53006719F1 /* public */,
+				C752A8781CB4FE33006719F1 /* userApi */,
 				C7B90BDA1CA4E4710022C60C /* family */,
 				C73C0B7D1CA27B830034E42E /* login */,
-				C73C0B771CA27A590034E42E /* HCGetVerificationCodeApi.h */,
-				C73C0B781CA27A590034E42E /* HCGetVerificationCodeApi.m */,
-				C79E0EC61CA69D0C00717D9B /* readUserInfo.h */,
-				C79E0EC71CA69D0C00717D9B /* readUserInfo.m */,
 			);
 			name = newjiekou;
 			sourceTree = "<group>";
@@ -4688,6 +4700,8 @@
 		C73C0B7D1CA27B830034E42E /* login */ = {
 			isa = PBXGroup;
 			children = (
+				C73C0B771CA27A590034E42E /* HCGetVerificationCodeApi.h */,
+				C73C0B781CA27A590034E42E /* HCGetVerificationCodeApi.m */,
 				C73C0B7E1CA27B9D0034E42E /* NHCLoginApi.h */,
 				C73C0B7F1CA27B9D0034E42E /* NHCLoginApi.m */,
 				C73C0B811CA27BFF0034E42E /* NHCRegisteredApi.h */,
@@ -4698,12 +4712,34 @@
 				C73C0B881CA290F20034E42E /* NHCCancellationApi.m */,
 				C73C0B8A1CA293FF0034E42E /* NHCSetNewPassWordApi.h */,
 				C73C0B8B1CA293FF0034E42E /* NHCSetNewPassWordApi.m */,
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
+		C752A8781CB4FE33006719F1 /* userApi */ = {
+			isa = PBXGroup;
+			children = (
 				C73C0B8D1CA296930034E42E /* NHCUSerInfoApi.h */,
 				C73C0B8E1CA296930034E42E /* NHCUSerInfoApi.m */,
 				C73C0B901CA29A660034E42E /* NHCBindPhoneNumAPi.h */,
 				C73C0B911CA29A660034E42E /* NHCBindPhoneNumAPi.m */,
+				C752A87A1CB4FF22006719F1 /* NHCUserHeathApi.h */,
+				C752A87B1CB4FF22006719F1 /* NHCUserHeathApi.m */,
 			);
-			name = login;
+			name = userApi;
+			sourceTree = "<group>";
+		};
+		C752A8791CB4FE53006719F1 /* public */ = {
+			isa = PBXGroup;
+			children = (
+				C79E0EC61CA69D0C00717D9B /* readUserInfo.h */,
+				C79E0EC71CA69D0C00717D9B /* readUserInfo.m */,
+				C752A86F1CB4E6F8006719F1 /* NHCDownloadImageApi.h */,
+				C752A8701CB4E6F8006719F1 /* NHCDownloadImageApi.m */,
+				C752A86C1CB4E6DE006719F1 /* NHCUploadImageApi.h */,
+				C752A86D1CB4E6DE006719F1 /* NHCUploadImageApi.m */,
+			);
+			name = public;
 			sourceTree = "<group>";
 		};
 		C758EDE51C743E790081FFE1 /* Left */ = {
@@ -7349,6 +7385,7 @@
 				0A54910F1C2BC32D0085F50D /* ZXAddressBookDoCoMoResultParser.m in Sources */,
 				C78D7C911C5F2C1200622CE2 /* HCTagManagerDetailViewController.m in Sources */,
 				0A5491661C2BC32D0085F50D /* ZXDataMatrixSymbolInfo144.m in Sources */,
+				C752A8771CB4F6B7006719F1 /* HCUserHeathViewController.m in Sources */,
 				C7B00B2E1C5F26050010F93B /* EMGifImage.m in Sources */,
 				C78D7C951C5F2C1200622CE2 /* HCTagManagerViewController.m in Sources */,
 				0A5491361C2BC32D0085F50D /* ZXWhiteRectangleDetector.m in Sources */,
@@ -7575,6 +7612,7 @@
 				0A8BE3651C7E8C90008E8100 /* HCGradeManagerViewController.m in Sources */,
 				0A2B47611C7F12C800AAA157 /* HCHomePictureDetailApi.m in Sources */,
 				C78D7B4D1C5F28F700622CE2 /* HCApplyReturnReasonCell.m in Sources */,
+				C752A86E1CB4E6DE006719F1 /* NHCUploadImageApi.m in Sources */,
 				C7B00BC81C5F26050010F93B /* EaseImageView.m in Sources */,
 				0A5491D31C2BC32D0085F50D /* ZXQRCodeEncoder.m in Sources */,
 				C78D7B161C5F28F700622CE2 /* HCCaseDetailViewController.m in Sources */,
@@ -7638,6 +7676,7 @@
 				0A6B7F191BF1EB74008D54B3 /* UIAlertView+HTBlock.m in Sources */,
 				0A8BE3B61C7E8D7C008E8100 /* HCCheckTableViewCell.m in Sources */,
 				8D1191201C5F3CDD003505D3 /* HCNotifcationMessageCell.m in Sources */,
+				C752A87C1CB4FF22006719F1 /* NHCUserHeathApi.m in Sources */,
 				0A2B47781C7F12C800AAA157 /* HCPromisedAddCallMessageAPI.m in Sources */,
 				C7692F581C3A4B2200582A10 /* MDCSpotlightView.m in Sources */,
 				0A5491881C2BC32D0085F50D /* ZXAbstractRSSReader.m in Sources */,
@@ -7868,6 +7907,7 @@
 				0A5491731C2BC32D0085F50D /* ZXAI01320xDecoder.m in Sources */,
 				C78D7B921C5F28F700622CE2 /* HCRootTabBarController.m in Sources */,
 				C7B00BA61C5F26050010F93B /* EaseMessageModel.m in Sources */,
+				C752A8711CB4E6F8006719F1 /* NHCDownloadImageApi.m in Sources */,
 				0A8BE3631C7E8C90008E8100 /* HCCheckViewController.m in Sources */,
 				C72F1F981C771F8100A6E794 /* SCSwipeTableViewCell.m in Sources */,
 				C78D7ADF1C5F28F700622CE2 /* HCPerfectMessageViewController.m in Sources */,

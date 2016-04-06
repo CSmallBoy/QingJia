@@ -9,7 +9,9 @@
 #import "HCLeftGradeView.h"
 #import "UIButton+WebCache.h"
 #import "MyFamilyViewController.h"
-@interface HCLeftGradeView()
+@interface HCLeftGradeView(){
+    NSDictionary *dicting;
+}
 
 @property (nonatomic, strong) UIButton *sofewareSetBtn;
 @property (nonatomic, strong) UIImageView *setImgView;
@@ -31,6 +33,7 @@
         [self addSubview:self.nickName];
         [self addSubview:self.sofewareSetBtn];
         [self addSubview:self.familyButton];
+       
     }
     return self;
 }
@@ -86,12 +89,7 @@
     }
     return _familyButton;
 }
-//我的家族点击事件
-//- (void)familyButton:(UIButton *)button{
-//    NSLog(@"dainwole ");
-//    MyFamilyViewController *Vc = [[MyFamilyViewController alloc]init];
-//
-//}
+//把图片 下载在赋值
 - (UIButton *)headButton
 {
     if (!_headButton)
@@ -99,11 +97,20 @@
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _headButton.tag = HCLeftGradeViewButtonTypeHead;
         [_headButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
-        _headButton.frame = CGRectMake(30, 0, WIDTH(self)*0.7-60, WIDTH(self)*0.3);//WIDTH(self)*0.2, 0, 100, 100);//30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3
-        ViewRadius(_headButton, 50);
+        _headButton.frame = CGRectMake(WIDTH(self)*0.2, 0, WIDTH(self)*0.3, WIDTH(self)*0.3);//WIDTH(self)*0.2, 0, 100, 100);//30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3
+        ViewRadius(_headButton, WIDTH(self)*0.15);
         _headButton.center = CGPointMake(_headButton.center.x, self.center.y+30);
         
-        [_headButton sd_setImageWithURL:[NSURL URLWithString:@"http://xiaodaohang.cn/3.jpg"] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
+        
+        NSDictionary *dict = [readUserInfo getReadDic];
+        if (dict[@"PhotoStr"]==nil) {
+            //没有图片的时候显示的默认头像
+            [_headButton sd_setImageWithURL:[NSURL URLWithString:@"http://xiaodaohang.cn/3.jpg"] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
+        }else{
+            UIImage *image = [readUserInfo image64:dict[@"PhotoStr"]];
+            [_headButton setImage:image forState:UIControlStateNormal];
+        }
+       
     }
     return _headButton;
 }
@@ -117,7 +124,13 @@
 //        _nickName.frame = CGRectMake(WIDTH(self)*0.2, MaxY(self.headButton)+10, 90, 20);
           _nickName.frame = CGRectMake(0, MaxY(self.headButton)+10, WIDTH(self)*0.7, 20);
         _nickName.textAlignment = NSTextAlignmentCenter;
-        _nickName.text = @"用户昵称";
+         dicting =[readUserInfo getReadDic];
+        if (dicting == nil) {
+            _nickName.text = @"用户昵称";
+        }else{
+            _nickName.text = dicting[@"UserInf"][@"nickName"];
+        }
+        
     }
     return _nickName;
 }

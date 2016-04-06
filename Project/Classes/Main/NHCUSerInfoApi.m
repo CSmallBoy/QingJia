@@ -15,7 +15,7 @@
 }
 
 - (NSString *)requestUrl
-{   //验证验证码
+{   //完善用户信息
     return @"User/addUserInfo.do";
 }
 - (id)requestArgument
@@ -25,11 +25,10 @@
                            @"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token};
     NSDictionary *para = @{@"nickName":_myModel.nickName,
-                           @"photoType":@"jpg",
-                           @"userPhoto":_myModel.PhotoStr,
                            @"homeAddress":_myModel.adress,
                            @"career":_myModel.professional,
-                           @"userDescription":@"日行一善"
+                           @"userDescription":@"日行一善",
+                           @"company":_myModel.company
                            };
     NSDictionary *body = @{@"Para":para,@"Head":head};
     return body;

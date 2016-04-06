@@ -162,7 +162,7 @@
     api.theType = @"1000";
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
-        if (requestStatus +100== HCRequestStatusSuccess)
+        if (requestStatus == HCRequestStatusSuccess)
         {
             [self hideHUDView];
             HCPerfectMessageViewController *perfect = [[HCPerfectMessageViewController alloc] init];

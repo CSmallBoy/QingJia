@@ -80,7 +80,7 @@
     newPwApi.PhoneNum = self.data[@"phonenumber"];
     
     [newPwApi startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
-        if (requestStatus +100 == HCRequestStatusSuccess)
+        if (requestStatus  == HCRequestStatusSuccess)
         {
             [self showHUDSuccess:@"密码修改成功"];
             [self performSelector:@selector(backLoginView) withObject:nil afterDelay:1.2f];

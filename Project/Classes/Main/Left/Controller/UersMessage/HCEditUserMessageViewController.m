@@ -12,6 +12,9 @@
 #import "HCUserMessageViewController.h"
 #import "NHCUSerInfoApi.h"
 #import "MyselfInfoModel.h"
+#import "NHCUploadImageApi.h"
+//医疗信息卡
+#import "HCUserHeathViewController.h"
 @interface HCEditUserMessageViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>{
     UIImagePickerController *_myPk;
     UIImageView *buttonImage;
@@ -209,6 +212,9 @@
         [self presentViewController:myalert animated:YES completion:nil];
     }else if (indexPath.section == 0 &&indexPath.row==5){
         
+    }else if (indexPath.section==0 && indexPath.row==10){
+        HCUserHeathViewController *VC= [[HCUserHeathViewController alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
     }
     
 }
@@ -232,25 +238,29 @@
 -(void)saveClick:(UIBarButtonItem *)item
 {
     [self.tableView reloadData];
-        api.myModel = model;
+    api.myModel = model;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         
     }];
+    //代理方法传值
     [_delegate userInfoName:model];
     
-    //先清除
-    //[readUserInfo Dicdelete];
-    //在存储  等会再写、
-    //[readUserInfo creatDic:<#(NSDictionary *)#>]
+    NHCUploadImageApi *api_image = [[NHCUploadImageApi alloc]init];
+    api_image.type = @"0";
+    api_image.photoStr = model.PhotoStr;
+    [api_image startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        
+    }];
+    
+    
+    
+   
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
-    
-    [dic addObserver:model.nickName forKeyPath:@"nickName" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-//    [dic addObserver:model.birday forKeyPath:@"birthDay" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-//    [dic addObserver:model.age forKeyPath:@"nickName" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-//    [dic addObserver:model.adress forKeyPath:@"nickName" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-//    [dic addObserver:model.company forKeyPath:@"nickName" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-//    [dic addObserver:model.professional forKeyPath:@"nickName" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    
+//    [dic addObserver:model.nickName forKeyPath:@"nickName" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+//    [dic addObserver:model.PhotoStr forKeyPath:@"PhotoStr" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [dic setObject:model.PhotoStr forKey:@"PhotoStr"];
+    [readUserInfo Dicdelete];
+    [readUserInfo creatDic:dic];
     [self showHUDText:@"保存成功"];
     for (UIViewController *temp in self.navigationController.viewControllers) {
         if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
@@ -258,9 +268,6 @@
             [self.navigationController popToViewController:temp animated:YES];
         }
     }
-    
-
-    
 }
 
 - (void)didReceiveMemoryWarning {

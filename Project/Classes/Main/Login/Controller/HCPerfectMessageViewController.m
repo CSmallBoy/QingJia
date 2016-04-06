@@ -97,7 +97,7 @@
     //环信的注册
    // [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:_userNumNmae password:_password.text];
     [apiUser startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo) {
-        if (requestStatus +100== HCRequestStatusSuccess)
+        if (requestStatus == HCRequestStatusSuccess)
         {
             [self hideHUDView];
             

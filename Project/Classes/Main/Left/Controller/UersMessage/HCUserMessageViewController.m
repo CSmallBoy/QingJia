@@ -14,7 +14,7 @@
 #import "HCUserMessageTableViewCell.h"
 #import "HCUserMessageInfo.h"
 #import "HCPickerView.h"
-
+#import "NHCUploadImageApi.h"
 
 #define HCUserCell @"HCUserMessageTableViewCell"
 
@@ -37,12 +37,13 @@
 @implementation HCUserMessageViewController
 - (void)viewWillAppear:(BOOL)animated{
     _dict = [readUserInfo getReadDic];
-//    NSString *imagestr= _dict[@"UserInf"][@"userPhoto"];
-//    if (imagestr.length>0) {
-//        [_headButton setImage:[readUserInfo image64:imagestr]forState:UIControlStateNormal];
-//    }else{
-//        [_headButton setImage:OrigIMG(@"2Dbarcode_message_HeadPortraits") forState:UIControlStateNormal];
-//    }
+    //若果本地没有头像就要去下载  如果就没有上传
+    if (_dict[@"PhotoStr"]==nil) {
+        
+    }else{
+        [_headButton setBackgroundImage:[readUserInfo image64:_dict[@"PhotoStr"]] forState:UIControlStateNormal];
+    }
+    
 }
 - (void)viewDidLoad
 {
@@ -91,18 +92,18 @@
             break;
         case 5:
         {
-            
+            cell.textField.text = _dict[@"UserInf"][@"homeAddress"];
         }
             break;
         case 6:
         {
-            cell.textField.text = _dict[@"UserInf"][@"chineseZodiac"];
+            cell.textField.text = _dict[@"UserInf"][@"company"];
 
         }
             break;
         case 7:
         {
-            cell.textField.text = _dict[@"UserInf"][@"chineseZodiac"];
+            cell.textField.text = _dict[@"UserInf"][@"career"];
 
         }
             break;
@@ -237,7 +238,13 @@
     if (!_nickName)
     {
         _nickName = [[UILabel alloc] initWithFrame:CGRectMake(0, MaxY(self.headButton)+5, WIDTH(self.view), 20)];
-        _nickName.text = @"名字昵称";
+        _dict = [readUserInfo getReadDic];
+        if (_dict==nil) {
+            _nickName.text = @"名字昵称";
+        }else{
+            _nickName.text = _dict[@"UserInf"][@"nickName"];
+        }
+        
         _nickName.textAlignment = NSTextAlignmentCenter;
         _nickName.textColor = [UIColor whiteColor];
     }

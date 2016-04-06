@@ -1,18 +1,14 @@
 //
-//  NHCBindPhoneNumAPi.m
+//  NHCUserHeathApi.m
 //  Project
 //
-//  Created by 朱宗汉 on 16/3/23.
+//  Created by 朱宗汉 on 16/4/6.
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "NHCBindPhoneNumAPi.h"
+#import "NHCUserHeathApi.h"
 
-@implementation NHCBindPhoneNumAPi
-- (void)startRequest:(NHCUserInfo)requestBlock
-{
-    [super startRequest:requestBlock];
-}
+@implementation NHCUserHeathApi
 
 - (NSString *)requestUrl
 {   //验证验证码
@@ -21,7 +17,7 @@
 - (id)requestArgument
 {   //验证验证码
     NSDictionary *dict = [readUserInfo getReadDic];
-    NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],  
+    NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],
                            @"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token};
     NSDictionary *para = @{@"height":@"18300701111",
@@ -40,3 +36,5 @@
     return responseObject;
 }
 @end
+
+

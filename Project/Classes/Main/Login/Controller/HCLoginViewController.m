@@ -133,9 +133,12 @@
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo){
 
-        if (requestStatus+100 == HCRequestStatusSuccess)
+        if (requestStatus == HCRequestStatusSuccess)
         {
+            //之前环信的版本
             [self loginWithUsername:_accountTextField.text password:_keyTextField.text loginInfo:loginInfo];
+            //服务器的版本
+//            [self loginWithUsername:loginInfo.chatName password:loginInfo.chatPwd loginInfo:loginInfo];
         }else
         {
             [self showHUDError:message];
@@ -158,7 +161,7 @@
              [HCAccountMgr manager].loginInfo = info;
              [HCAccountMgr manager].isLogined = YES;
              //登录信息存数据库
-          //  [[HCAccountMgr manager] saveLoginInfoToDB];
+            [[HCAccountMgr manager] saveLoginInfoToDB];
              
              // 环信数据
              //设置是否自动登录

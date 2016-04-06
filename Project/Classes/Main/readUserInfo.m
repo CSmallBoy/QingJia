@@ -73,7 +73,8 @@
 }
 + (NSString *)GetPlatForm{
     NSString * strModel = [UIDevice currentDevice].model;
-    return strModel;
+    return [[UIDevice currentDevice] name];
+    //return deviceString;
 }
 -(void)queryLastUserInfo:(NHCReadBack)accountInfo{
     NSDictionary *dict = [readUserInfo getReadDic];
