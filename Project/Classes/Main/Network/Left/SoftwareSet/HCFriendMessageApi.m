@@ -27,24 +27,20 @@
     for (NSInteger i = 1; i < 11; i++)
     {
         HCFriendMessageInfo *info = [[HCFriendMessageInfo alloc] init];
-        info.uid = [NSString stringWithFormat:@"%@", @(i)];
-        info.name = [NSString stringWithFormat:@"姓名-%@", @(i)];
-        info.imageName = @"http://xiaodaohang.cn/1.jpg";
+        info.userId = [NSString stringWithFormat:@"%@", @(i)];
+        info.nickName = [NSString stringWithFormat:@"姓名-%@", @(i)];
+        
         if (i == 2 || i == 5)
         {
-            info.imageName = @"http://xiaodaohang.cn/2.jpg";
         }else if (i == 3 || i ==8)
         {
-            info.imageName = @"http://xiaodaohang.cn/3.jpg";
+          
         }
         [arrayM addObject:info];
     }
     
     HCFriendMessageInfo *info = [[HCFriendMessageInfo alloc] init];
-    info.uid = @"0";
-    info.name = @"添加";
-    info.imageName = @"add-members";
-    [arrayM addObject:info];
+  
     
     return arrayM;
 }

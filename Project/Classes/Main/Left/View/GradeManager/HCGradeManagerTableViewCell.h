@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class HCCreateGradeInfo;
+
 @protocol HCGradeManagerTableViewCellDelegate <NSObject>
 
 - (void)HCGradeManagerTableViewCellSelectedTag:(NSInteger)tag;
@@ -18,7 +21,8 @@
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) NSArray *array;
-
+@property (nonatomic,strong) UIImage *image;
+@property (nonatomic,strong) HCCreateGradeInfo *info;
 @property (nonatomic, weak) id<HCGradeManagerTableViewCellDelegate>delegate;
 
 @end

@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "HCLoginInfo.h"
 
+#import "HCCreateGradeInfo.h"
+
 @interface HCAccountMgr : NSObject
 
 @property (nonatomic, strong) HCLoginInfo       *loginInfo; //登陆信息
+
+@property (nonatomic,strong) HCCreateGradeInfo * familyInfo;
 
 @property (nonatomic, assign) BOOL  isLogined;
 

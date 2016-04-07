@@ -42,13 +42,14 @@
 - (void)setInfo:(HCFriendMessageInfo *)info
 {
     _info = info;
-    self.nickName.text = info.name;
-    if ([info.uid integerValue])
+    self.nickName.text = info.nickName;
+    if ([info.userId integerValue])
     {
-        [self.headImgView sd_setImageWithURL:[NSURL URLWithString:info.imageName] placeholderImage:OrigIMG(@"2Dbarcode_message_HeadPortraits")];
+        self.headImgView.image = IMG(@"1");
+        
     }else
     {
-        self.headImgView.image = OrigIMG(info.imageName);
+        self.headImgView.image = IMG(@"1");
     }
 }
 

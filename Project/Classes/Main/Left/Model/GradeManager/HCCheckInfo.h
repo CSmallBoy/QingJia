@@ -10,8 +10,9 @@
 
 @interface HCCheckInfo : NSObject
 
-@property (nonatomic, strong) NSString *imageName;
-@property (nonatomic, strong) NSString *nickName;
-@property (nonatomic, strong) NSString *detail;
-
+@property (nonatomic, strong) NSString *applyTime;
+@property (nonatomic, strong) NSString *applyUserNickName;
+@property (nonatomic, strong) NSString *joinMessage;
+@property (nonatomic, strong) NSString *applyUserId;
+@property (nonatomic, strong) NSString *permitFlag;
 @end

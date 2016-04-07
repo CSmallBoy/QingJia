@@ -9,10 +9,15 @@
 
 #import "HCJoinGradeViewController.h"
 #import "lhScanQCodeViewController.h"
+#import "HCFamilyMessageViewController.h"
 #import "HCJoinGradeFunctionView.h"
 #import "AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
+
+#import "applyToFamily.h"
+#import "findFamilyMessage.h"
+#import "HCCreateGradeInfo.h"
 
 #define IOS8 ([[UIDevice currentDevice].systemVersion intValue] >= 8 ? YES : NO)
 
@@ -21,6 +26,7 @@
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @property (nonatomic, strong) UIButton *joinButton;
 @property (nonatomic, strong) UITextField *textField;
+@property (nonatomic,strong) UITextField *textField1;
 
 @property (nonatomic, strong) NSString *gradeId;
 
@@ -36,7 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"加入班级";
+    self.title = @"加入家庭";
     [self setupBackItem];
     self.navigationItem.rightBarButtonItem = self.rightItem;
     [self.view addSubview:self.rightFunctionView];
@@ -53,14 +59,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"joingrade"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.row == 0)
+    {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"joingrade"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.textLabel.text = @"家庭ID";
+        cell.textLabel.font = [UIFont systemFontOfSize:16];
+        [cell.contentView addSubview:self.textField];
+        
+        return cell;
+    }
+    else
+    {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"joingrade"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.textLabel.text = @"验证信息";
+        cell.textLabel.font = [UIFont systemFontOfSize:16];
+        [cell.contentView addSubview:self.textField1];
+        
+        return cell;
+    }
     
-    cell.textLabel.text = @"班级ID";
-    cell.textLabel.font = [UIFont systemFontOfSize:16];
-    [cell.contentView addSubview:self.textField];
     
-    return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -78,7 +100,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -180,25 +202,32 @@
 - (void)accordingQcode:(NSString *)str
 {
 #warning 得到班级ID信息，进行网络请求加入默认班级，然后进入时光主页
-    [self requestJoinGrade:str];
+    [self requestJoinGrade];
 }
 
 #pragma mark - private methods
 
+// 点击右边扫描二维码的Item
 - (void)handleRightItem:(UIBarButtonItem *)item
 {
-    self.rightFunctionView.hidden = item.tag;
-    item.tag = !item.tag;
+//    self.rightFunctionView.hidden = item.tag;
+//    item.tag = !item.tag;
+    
+    _lhScanVC= [[lhScanQCodeViewController alloc]init];
+    [self.navigationController pushViewController:_lhScanVC animated:YES];
+    
 }
 
+// --------------------------点击了完成按钮-----------------------
 - (void)handleJoinButton
 {
     if (IsEmpty(self.textField.text))
     {
-        [self showHUDText:@"请输入班级ID号"];
+        [self showHUDText:@"请输入家庭ID号"];
         return;
     }
-    [self requestJoinGrade:self.textField.text];
+    
+    [self requestJoinGrade];
 }
 
 - (void)toHomeViewController
@@ -215,7 +244,7 @@
 {
     if (!_rightItem)
     {
-        _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"grade_add") style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem:)];
+        _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"ThinkChange_sel") style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem:)];
     }
     return _rightItem;
 }
@@ -237,9 +266,20 @@
     {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(80, 0, WIDTH(self.view)-80, 47)];
         _textField.font = [UIFont systemFontOfSize:15];
-        _textField.placeholder = @"请点击输入班级ID号";
+        _textField.placeholder = @"请点击输入家庭ID号";
     }
     return _textField;
+}
+
+- (UITextField *)textField1
+{
+    if (!_textField1)
+    {
+        _textField1 = [[UITextField alloc] initWithFrame:CGRectMake(80, 0, WIDTH(self.view)-80, 47)];
+        _textField1.font = [UIFont systemFontOfSize:15];
+        _textField1.placeholder = @"请点击输入验证信息";
+    }
+    return _textField1;
 }
 
 - (UIButton *)joinButton
@@ -248,7 +288,7 @@
     {
         _joinButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _joinButton.frame = CGRectMake(15, 30, WIDTH(self.view)-30, 44);
-        [_joinButton setTitle:@"加入班级" forState:UIControlStateNormal];
+        [_joinButton setTitle:@"完成" forState:UIControlStateNormal];
         _joinButton.backgroundColor = RGB(251, 25, 53);
         [_joinButton addTarget:self action:@selector(handleJoinButton) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(_joinButton, 4);
@@ -256,12 +296,37 @@
     return _joinButton;
 }
 
+
 #pragma mark - network
 
-- (void)requestJoinGrade:(NSString *)gradeId
+- (void)requestJoinGrade
 {
-    _gradeId = gradeId;
-    [self performSelector:@selector(toHomeViewController) withObject:nil afterDelay:1.2];
+    
+    findFamilyMessage *api = [[findFamilyMessage alloc]init];
+    api.familyId =self.textField.text;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+       
+        if (requestStatus == HCRequestStatusSuccess) {
+            
+            
+            NSDictionary *dic = respone[@"Data"][@"FamilyInf"];
+            HCCreateGradeInfo *info = [[HCCreateGradeInfo alloc]init];
+            info.familyId = dic[@"familyId"];
+            info.ancestralHome = dic[@"ancestralHome"];
+            info.familyNickName = dic[@"familyNickName"];
+            info.familyPhoto = dic[@"familyPhoto"];
+            info.contactAddr = dic[@"contactAddr"];
+            
+            HCFamilyMessageViewController *familyMessageVC = [[HCFamilyMessageViewController alloc]init];
+            familyMessageVC.data = @{@"info":info,@"message":self.textField1.text};
+            [self.navigationController pushViewController:familyMessageVC animated:YES];
+            
+        }
+        
+    }];
+
+//    _gradeId = gradeId;
+//    [self performSelector:@selector(toHomeViewController) withObject:nil afterDelay:1.2];
 }
 
 
