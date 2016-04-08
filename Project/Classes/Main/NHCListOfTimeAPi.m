@@ -45,6 +45,7 @@
         info.FTImages = array;
         info.CreateAddrSmall = arr[i][@"createAddrSmall"];
         info.NickName = arr[i][@"creatorName"];
+        info.CreateTime = arr[i][@"createTime"];
         [arring addObject:info];
     }
     return arring;
