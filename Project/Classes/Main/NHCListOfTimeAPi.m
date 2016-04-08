@@ -22,12 +22,13 @@
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":dict[@"UserInf"][@"uuid"]};
     NSDictionary *para = @{@"rangeType":@"0",
-                           @"start":@"30",
-                           @"count":@"2"};
+                           @"start":@"0",
+                           @"count":@"20",
+                           @"rangeId":dict[@"UserInf"][@"createFamilyId"]};
     return @{@"Head":head,@"Para":para};
 }
 -(id)formatResponseObject:(id)responseObject{
-    
-    return responseObject;
+    NSArray *arr = responseObject[@"Data"][@"rows"];
+    return arr;
 }
 @end

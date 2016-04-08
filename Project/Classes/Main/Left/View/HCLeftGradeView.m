@@ -285,8 +285,6 @@
 {
     if(!_smallView){
         _smallView = [[UIView alloc]initWithFrame:CGRectMake((WIDTH(self)*0.7-100)/2, 320/667.0*SCREEN_HEIGHT, 100, 100)];
-        
-    
         UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
         button1.frame = CGRectMake(0, 0, 100, 20) ;
         [button1 setTitle:@"创建家庭" forState:UIControlStateNormal];

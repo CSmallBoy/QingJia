@@ -13,6 +13,7 @@
 #import "HCHomeTableViewCell.h"
 #import "HCHomeInfo.h"
 #import "HCHomeApi.h"
+#import "NHCListOfTimeAPi.h"
 
 #define HCHomeUserTimeCell @"HCHomeUserTimeCell"
 
@@ -38,9 +39,9 @@
     
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.tableView registerClass:[HCHomeTableViewCell class] forCellReuseIdentifier:HCHomeUserTimeCell];
-    
+    //家庭
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
-    
+    //家族
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
 }
 
@@ -170,7 +171,13 @@
 }
 
 #pragma mark - network
-
+//获取家庭的时光
+- (void)requestHomeDataF{
+    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
+    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id data) {
+        
+    }];
+}
 - (void)requestHomeData
 {
     HCHomeApi *api = [[HCHomeApi alloc] init];

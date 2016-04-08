@@ -1,4 +1,4 @@
-//
+ //
 //  HCHomeViewController.m
 //  Project
 //
@@ -18,6 +18,8 @@
 #import "HCHomeInfo.h"
 #import "HCHomeApi.h"
 #import "HCHomeLikeCountApi.h"
+
+#import "NHCListOfTimeAPi.h"
 
 #import "HCCreateGradeViewController.h"
 
@@ -65,7 +67,6 @@
     cell.delegate = self;
     HCHomeInfo *info = self.dataSource[indexPath.section];
     cell.info = info;
-    
     return cell;
 }
 
@@ -232,28 +233,41 @@
 }
 
 #pragma mark - network
-
+- (void)getData{
+    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
+    
+    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id data) {
+        
+    }];
+}
 - (void)requestHomeData
 {
-    HCHomeApi *api = [[HCHomeApi alloc] init];
-    api.Start = @"0";
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
+    api.start_num = @"0";
+    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, NSArray *array) {
         [self.tableView.mj_header endRefreshing];
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-            [self.dataSource removeAllObjects];
-            [self.dataSource addObjectsFromArray:array];
-            
-            HCHomeInfo *lastInfo = [array lastObject];
-            api.Start = lastInfo.KeyId;
-            
-            [self writeLocationData:array];
-            [self.tableView reloadData];
-//        }else
-//        {
-//            [self showHUDError:message];
-//        }
+        [self.dataSource removeAllObjects];
+       
+        [self.dataSource addObjectsFromArray:array];
+//        HCHomeInfo *lastInfo = [array lastObject];
+//        api.start_num = lastInfo.KeyId;
+//        [self writeLocationData:array];
+       // [self.tableView reloadData];
     }];
+//    HCHomeApi *api = [[HCHomeApi alloc] init];
+//    api.Start = @"0";
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        [self.tableView.mj_header endRefreshing];
+//
+//            [self.dataSource removeAllObjects];
+//            [self.dataSource addObjectsFromArray:array];
+//            
+//            HCHomeInfo *lastInfo = [array lastObject];
+//            api.Start = lastInfo.KeyId;
+//            
+//            [self writeLocationData:array];
+//            [self.tableView reloadData];
+//    }];
     _baseRequest = api;
 }
 
