@@ -19,4 +19,5 @@
 @property (nonatomic,copy)NSString *company;
 @property (nonatomic,copy)NSString *professional;
 @property (nonatomic,copy)NSString *PhotoStr;
+@property (nonatomic,copy)NSString *chineseZodiac;
 @end

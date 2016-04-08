@@ -9,5 +9,6 @@
 #import "HCViewController.h"
 
 @interface HCUserHeadImageViewController : HCViewController
+@property (nonatomic,copy)NSString *head_image;
 
 @end

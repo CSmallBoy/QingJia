@@ -30,4 +30,7 @@ typedef void (^NHCReadBack)(NSString *str);
  *读取
  */
 - (void)queryLastUserInfo:(NHCReadBack)accountInfo;
+
++ (UIImage*)creatQrCode:(NSString*)CodeInfo;
++ (BOOL)JudgmentInformation:(NSString *)ture;
 @end

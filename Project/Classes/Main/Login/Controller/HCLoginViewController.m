@@ -45,6 +45,8 @@
     ViewRadius(_contentView, 4);
     
     _accountTextField.text = [self lastLoginUsername];
+    //环信注册
+    [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:@"13111111111" password:@"tim123"];
 
     
 }

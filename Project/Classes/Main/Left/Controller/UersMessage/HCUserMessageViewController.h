@@ -9,4 +9,5 @@
 #import "HCTableViewController.h"
 
 @interface HCUserMessageViewController : HCTableViewController
+@property (nonatomic,copy) NSString  *photo_str;
 @end

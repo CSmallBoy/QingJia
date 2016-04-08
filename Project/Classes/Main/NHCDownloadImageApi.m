@@ -13,7 +13,7 @@
     [super startRequest:requestBlock];
 }
 - (NSString *)requestUrl{
-    return @"photo/downloadOne.do";
+    return @"Photo/downloadOne.do";
 }
 - (id)requestArgument{
     NSDictionary *dict = [readUserInfo getReadDic];
@@ -27,6 +27,7 @@
     return body;
 }
 -(id)formatResponseObject:(id)responseObject{
-    return responseObject;
+    NSString *str = responseObject[@"Data"][@"photo"];
+    return str;
 }
 @end

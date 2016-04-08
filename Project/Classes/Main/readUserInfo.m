@@ -7,7 +7,8 @@
 //
 
 #import "readUserInfo.h"
-
+#import "KMQRCode.h"
+#import "UIImage+RoundedRectImage.h"
 @implementation readUserInfo
 //创建
 +(void)creatDic:(NSDictionary*)dic{
@@ -75,6 +76,34 @@
     NSString * strModel = [UIDevice currentDevice].model;
     return [[UIDevice currentDevice] name];
     //return deviceString;
+}
+
++ (UIImage*)creatQrCode:(NSString *)CodeInfo{
+   // NSString *source = @"http://baidu.com";
+    
+    //使用iOS 7后的CIFilter对象操作，生成二维码图片imgQRCode（会拉伸图片，比较模糊，效果不佳）
+    CIImage *imgQRCode = [KMQRCode createQRCodeImage:CodeInfo];
+    
+    //使用核心绘图框架CG（Core Graphics）对象操作，进一步针对大小生成二维码图片imgAdaptiveQRCode（图片大小适合，清晰，效果好）
+    UIImage *imgAdaptiveQRCode = [KMQRCode resizeQRCodeImage:imgQRCode
+                                                    withSize:SCREEN_WIDTH];
+    
+    //默认产生的黑白色的二维码图片；我们可以让它产生其它颜色的二维码图片，例如：蓝白色的二维码图片
+    imgAdaptiveQRCode = [KMQRCode specialColorImage:imgAdaptiveQRCode
+                                            withRed:0
+                                              green:0
+                                               blue:0]; //0~255
+    
+    //使用核心绘图框架CG（Core Graphics）对象操作，创建带圆角效果的图片
+    UIImage *imgIcon = [UIImage createRoundedRectImage:[UIImage imageNamed:@"mtalklogo"]
+                                              withSize:CGSizeMake(60.0, 60.0)
+                                            withRadius:10];
+    
+    //使用核心绘图框架CG（Core Graphics）对象操作，合并二维码图片和用于中间显示的图标图片
+    imgAdaptiveQRCode = [KMQRCode addIconToQRCodeImage:imgAdaptiveQRCode
+                                              withIcon:imgIcon
+                                          withIconSize:imgIcon.size];
+    return imgAdaptiveQRCode;
 }
 -(void)queryLastUserInfo:(NHCReadBack)accountInfo{
     NSDictionary *dict = [readUserInfo getReadDic];

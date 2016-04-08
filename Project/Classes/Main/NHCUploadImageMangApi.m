@@ -1,15 +1,15 @@
 //
-//  NHCUploadImageApi.m
+//  NHCUploadImageMangApi.m
 //  Project
 //
-//  Created by 朱宗汉 on 16/4/6.
+//  Created by 朱宗汉 on 16/4/7.
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "NHCUploadImageApi.h"
+#import "NHCUploadImageMangApi.h"
 
-@implementation NHCUploadImageApi
-- (void)startRequest:(NHCUPImage)requestBlock
+@implementation NHCUploadImageMangApi
+- (void)startRequest:(NHCMangImageUpload)requestBlock
 {
     [super startRequest:requestBlock];
 }
@@ -19,13 +19,14 @@
     return @"Photo/uploadOne.do";
 }
 - (id)requestArgument
-{   
+{
     NSDictionary *dict = [readUserInfo getReadDic];
     NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],
                            @"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token};
     NSDictionary *para = @{@"type":_type,
-                           @"photo":_photoStr,@"id":@"1000"
+                           @"photo":_photoStr,
+                           @"id":_TimeID
                            };
     NSDictionary *body = @{@"Para":para,
                            @"Head":head};
@@ -36,4 +37,3 @@
     return responseObject;
 }
 @end
-

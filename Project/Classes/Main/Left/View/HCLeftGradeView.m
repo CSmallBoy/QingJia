@@ -26,6 +26,16 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    NHCDownloadImageApi *api = [[NHCDownloadImageApi alloc]init];
+    api.type = @"0";//0 代表个人
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *photostr) {
+        if (IsEmpty(photostr)) {
+            [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
+        }else{
+             [_headButton setImage:[readUserInfo image64:photostr] forState:UIControlStateNormal];
+        }
+       
+    }];
     if (self)
     {
         self.backgroundColor = RGB(34, 35, 37);
@@ -102,12 +112,7 @@
         _headButton.frame = CGRectMake(WIDTH(self)*0.2, 0, WIDTH(self)*0.3, WIDTH(self)*0.3);//WIDTH(self)*0.2, 0, 100, 100);//30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3
         ViewRadius(_headButton, WIDTH(self)*0.15);
         _headButton.center = CGPointMake(_headButton.center.x, self.center.y+30);
-        NHCDownloadImageApi *api = [[NHCDownloadImageApi alloc]init];
-        api.type = @"0";//0 代表个人
-        
-        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-            
-        }];
+    
         
         NSDictionary *dict = [readUserInfo getReadDic];
         
@@ -129,11 +134,10 @@
     {
         _nickName = [[UILabel alloc] init];
         _nickName.textColor = [UIColor whiteColor];
-//        _nickName.frame = CGRectMake(WIDTH(self)*0.2, MaxY(self.headButton)+10, 90, 20);
-          _nickName.frame = CGRectMake(0, MaxY(self.headButton)+10, WIDTH(self)*0.7, 20);
+        _nickName.frame = CGRectMake(0, MaxY(self.headButton)+10, WIDTH(self)*0.7, 20);
         _nickName.textAlignment = NSTextAlignmentCenter;
          dicting =[readUserInfo getReadDic];
-        if (dicting == nil) {
+        if (IsEmpty(dicting[@"UserInf"][@"nickName"])) {
             _nickName.text = @"用户昵称";
         }else{
             _nickName.text = dicting[@"UserInf"][@"nickName"];

@@ -54,7 +54,7 @@
     loginInfo.createFamilyId = dic[@"UserInf"][@"createFamilyId"];
     loginInfo.UserName = dic[@"UserInf"][@"userName"];
     loginInfo.HomeAddress = dic[@"UserInf"][@"homeAddress"];
-    loginInfo.UserId = dic[@"UserInf"][@"UserId"];
+    loginInfo.UserId = dic[@"UserInf"][@"userId"];
     [readUserInfo Dicdelete];
     [readUserInfo creatDic:dic];
     return loginInfo;

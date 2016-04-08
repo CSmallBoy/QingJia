@@ -72,8 +72,9 @@
 {
     if (!_headImgView)
     {
-        _headImgView = [[UIImageView alloc] initWithFrame:self.contentView.frame];
-        _headImgView.image = OrigIMG(@"label_Head-Portraits");
+        _headImgView = [[UIImageView alloc]initWithFrame:CGRectMake(15, (HEIGHT(self.view)*0.6-SCREEN_WIDTH)/2, SCREEN_WIDTH-30-30, SCREEN_WIDTH)];
+        //头像
+        _headImgView.image = [readUserInfo image64:_head_image];
     }
     return _headImgView;
 }

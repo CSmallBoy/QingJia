@@ -9,7 +9,7 @@
 #import "HCRequest.h"
 #import "MyselfInfoModel.h"
 @class MyselfInfoModel;
-typedef void(^NHCUserInfo)(HCRequestStatus requestStatus, NSString *message, NSArray *array);
+typedef void(^NHCUserInfo)(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac);
 @interface NHCUSerInfoApi : HCRequest
 - (void)startRequest:(NHCUserInfo)requestBlock;
 @property (nonatomic,strong) MyselfInfoModel *myModel;

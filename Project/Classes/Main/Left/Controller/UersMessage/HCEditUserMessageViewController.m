@@ -15,6 +15,10 @@
 #import "NHCUploadImageApi.h"
 //医疗信息卡
 #import "HCUserHeathViewController.h"
+#import "HCPickerView.h"
+
+
+
 @interface HCEditUserMessageViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>{
     UIImagePickerController *_myPk;
     UIImageView *buttonImage;
@@ -23,10 +27,11 @@
     NSArray *arr2;
     NHCUSerInfoApi *api;
     MyselfInfoModel *model;
+    UIDatePicker * datePicker;
+    UIView *view_back;
+    NSString *str;
     
 }
-
-
 
 @end
 
@@ -50,6 +55,7 @@
                   @[@"绑定手机号"]];
     arr2= @[@[@"请点击点击选择头像",@"请输入昵称",@"XXX",@"X",@"XX",@"XXXX-XX-XX",@"X",@"XXXXXXXXXXX",@"XXXXX",@"XXX",@"我的医疗急救卡"],
                            @[@"181109722222"]];
+ 
 }
 
 #pragma mark --- UITableViewDelegate
@@ -116,11 +122,6 @@
                 model.age = textField.text;
             }
                 break;
-            case 5:
-            {
-                model.birday = textField.text;
-            }
-                break;
             case 6:
             {
                 model.Animalsign= textField.text;
@@ -173,10 +174,25 @@
         }
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(12, 10, 50, 20)];
         UITextField *text_tf = [[UITextField alloc]initWithFrame:CGRectMake(62, 10, SCREEN_WIDTH-100, 20)];
-        text_tf.placeholder = arr2[indexPath.section][indexPath.row];
+        NSDictionary *dict_catch = [readUserInfo getReadDic];
+        //需要先看网络上有没有   在判断本地有没有
+        if (IsEmpty(dict_catch[@"UserInf"][@"career"])) {
+            text_tf.placeholder = arr2[indexPath.section][indexPath.row];
+        }else{
+            text_tf.text = arr2[indexPath.section][indexPath.row];
+        }
+        
         text_tf.delegate =self;
         if (indexPath.row==0||indexPath.row==3||indexPath.row==6||indexPath.row==2) {
             text_tf.userInteractionEnabled = NO;
+        }
+        if (indexPath.row == 5) {
+            if (IsEmpty(str)) {
+                
+            }else{
+                text_tf.text = str;
+            }
+            
         }
         label.text = Arr[indexPath.section][indexPath.row];
         [cell addSubview:label];
@@ -211,9 +227,11 @@
         [myalert addAction:cancel];
         [self presentViewController:myalert animated:YES completion:nil];
     }else if (indexPath.section == 0 &&indexPath.row==5){
-        
+        [self makeDatePicker];
     }else if (indexPath.section==1 && indexPath.row==0){
         [self toChangeNumber];
+    }else{
+       
     }
     
 }
@@ -238,12 +256,33 @@
 {
     [self.tableView reloadData];
     api.myModel = model;
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac){
+        if (requestStatus == HCRequestStatusSuccess) {
+            
+            for (UIViewController *temp in self.navigationController.viewControllers) {
+                if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
+                    
+                    [self.navigationController popToViewController:temp animated:YES];
+                }
+            }
+            [dic setObject:str forKey:@"birthday"];
+            [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
+            [dic setObject:model.PhotoStr forKey:@"PhotoStr"];
+            [dic setObject:model.nickName forKey:@"nickName"];
+            [dic setObject:model.age forKey:@"age"];
+            [dic setObject:model.adress forKey:@"adress"];
+            [dic setObject:model.company forKey:@"company"];
+            [dic setObject:model.professional forKey:@"professional"];
+            
+            [readUserInfo Dicdelete];
+            [readUserInfo creatDic:dic];
+        }
         
     }];
     //代理方法传值
     [_delegate userInfoName:model];
-    
+    //图片上传
     NHCUploadImageApi *api_image = [[NHCUploadImageApi alloc]init];
     api_image.type = @"0";
     api_image.photoStr = model.PhotoStr;
@@ -251,22 +290,45 @@
         
     }];
     
-    
-    
-   
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
-//    [dic addObserver:model.nickName forKeyPath:@"nickName" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-//    [dic addObserver:model.PhotoStr forKeyPath:@"PhotoStr" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    [dic setObject:model.PhotoStr forKey:@"PhotoStr"];
-    [readUserInfo Dicdelete];
-    [readUserInfo creatDic:dic];
     [self showHUDText:@"保存成功"];
-    for (UIViewController *temp in self.navigationController.viewControllers) {
-        if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
-            
-            [self.navigationController popToViewController:temp animated:YES];
-        }
-    }
+    
+}
+//时间选择器
+-(void)makeDatePicker{
+    view_back = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT*0.67, SCREEN_WIDTH, SCREEN_HEIGHT *0.33)];
+    datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT*0.03, SCREEN_WIDTH, SCREEN_HEIGHT*0.3)];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    //[datePicker addTarget:self action:@selector(makeDate:) forControlEvents:UIControlEventValueChanged];
+    datePicker.backgroundColor = [UIColor grayColor];
+    datePicker.locale=[NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+    view_back.backgroundColor = [UIColor grayColor];
+    UIButton *sure_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [sure_button setTitle:@"确定" forState:UIControlStateNormal];
+    [sure_button setFrame:CGRectMake(SCREEN_WIDTH *0.85, 0, SCREEN_WIDTH *0.15, SCREEN_HEIGHT *0.03)];
+    [sure_button setBackgroundColor:[UIColor redColor]];
+    [sure_button addTarget:self action:@selector(getDate:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *cancel_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancel_button setTitle:@"取消" forState:UIControlStateNormal];
+    [cancel_button setBackgroundColor:[UIColor redColor]];
+    [cancel_button setFrame:CGRectMake(0, 0, SCREEN_WIDTH *0.15, SCREEN_HEIGHT *0.03)];
+    [view_back addSubview:sure_button];
+    [view_back addSubview:cancel_button];
+    [view_back addSubview:datePicker];
+    [self.view addSubview:view_back];
+    
+}
+-(void)getDate:(UIDatePicker*)sender{
+    NSDateFormatter *formatrer = [[NSDateFormatter alloc]init];
+    //格式化输出
+    [formatrer setDateFormat:@"yyyy-MM-dd"];
+    str = [formatrer stringFromDate:datePicker.date];
+    //[ setTitle:str forState:UIControlStateNormal];
+    [view_back removeFromSuperview];
+    NSIndexPath  *indexPath_1=[NSIndexPath indexPathForRow:5 inSection:0];
+    model.birday = str;
+    NSArray*indexArray=[NSArray  arrayWithObject:indexPath_1];
+    [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:(UITableViewRowAnimationAutomatic)];
+    
 }
 
 - (void)didReceiveMemoryWarning {

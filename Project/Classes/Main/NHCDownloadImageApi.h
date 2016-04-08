@@ -7,7 +7,7 @@
 //
 
 #import "HCRequest.h"
-typedef void(^NHCDownImage)(HCRequestStatus requestStatus, NSString *message, NSArray *array);
+typedef void(^NHCDownImage)(HCRequestStatus requestStatus, NSString *message, NSString *photostr);
 @interface NHCDownloadImageApi : HCRequest
 @property (nonatomic,copy) NSString * type;
 @property (nonatomic,copy) NSString * photoStr;

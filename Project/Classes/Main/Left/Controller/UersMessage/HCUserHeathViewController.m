@@ -88,7 +88,7 @@
         if (_arr_heath==nil) {
             label2.placeholder = arr_detil[indexPath.row];
         }else{
-            label2.placeholder = _arr_heath[indexPath.row];
+            label2.text = _arr_heath[indexPath.row];
         }
         
         [cell addSubview:label2];

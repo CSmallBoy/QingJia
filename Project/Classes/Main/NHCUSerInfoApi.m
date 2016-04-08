@@ -29,13 +29,14 @@
                            @"career":_myModel.professional,
                            @"userDescription":@"日行一善",
                            @"company":_myModel.company
+                           ,@"birthDay":_myModel.birday
                            };
     NSDictionary *body = @{@"Para":para,@"Head":head};
     return body;
 }
 - (id)formatResponseObject:(id)responseObject
 {
-    
-    return responseObject;
+    NSString *str = responseObject[@"Data"][@"chineseZodiac"];
+    return str;
 }
 @end
