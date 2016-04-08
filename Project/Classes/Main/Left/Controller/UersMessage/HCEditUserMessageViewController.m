@@ -258,7 +258,7 @@
     [self.tableView reloadData];
     api.myModel = model;
     
-    [self showHUDText:nil];
+    [self showHUDView:nil];
     
      NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac){

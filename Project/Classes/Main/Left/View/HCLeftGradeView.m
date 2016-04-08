@@ -28,6 +28,7 @@
 @property (nonatomic, strong) UIImageView *setImgView;
 @property (nonatomic, strong) UIImageView *setImgView2;
 @property (nonatomic,strong)  UIView *smallView;
+@property (nonatomic,strong)  UIButton *joinFamilyBtn;
 
 @property (nonatomic,strong) HCCreateGradeInfo *info;
 
@@ -96,6 +97,7 @@
             {
               // 显示创建过家庭的侧边
                 [self requestFamilyMessage];
+                [self addSubview:self.joinFamilyBtn];
             }
             else
             {
@@ -137,7 +139,7 @@
     NSDictionary *dic = noti.userInfo;
     UIImage*image = dic[@"photo"];
     
-    if (IsEmpty(str) || [str isKindOfClass:[NSURL class]] || IsEmpty(strFamilyId))
+    if ((IsEmpty(str) || [str isKindOfClass:[NSURL class]])&& IsEmpty(strFamilyId))
     {
      
         [self.gradeHeadButton setImage:image forState:UIControlStateNormal];
@@ -204,21 +206,12 @@
        
         if (requestStatus == HCRequestStatusSuccess) {
            
-            NSLog(@"图片下载成功");
+            UIImage *image = [readUserInfo image64:respone [@"Data"][@"photo"]];
+            
+            [self.gradeHeadButton setImage:image forState:UIControlStateNormal];
         }
         
     }];
-    
-//    NHCDownloadImageApi *imgApi = [[NHCDownloadImageApi alloc]init];
-//    imgApi.ID =downLoadApi.familyId;
-//    imgApi.type = @"1";
-//    
-//    [imgApi startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *photostr) {
-//       
-//        
-//        
-//    }];
-    
     
 }
 
@@ -269,14 +262,13 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"toJoinFamilyVC" object:nil];
 }
 
-
 //我的家族
 - (UIButton *)familyButton{
     if (!_familyButton) {
         _familyButton = [UIButton buttonWithType:UIButtonTypeCustom];
        [_familyButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         [_familyButton setTitle:@"我的家族" forState:UIControlStateNormal];
-        _familyButton.frame = CGRectMake(WIDTH(self)*0.2, HEIGHT(self)-130, 120, 40);
+        _familyButton.frame = CGRectMake(WIDTH(self)*0.2, HEIGHT(self)-130+30, 120, 40);
         [_familyButton addSubview:self.setImgView2];
         _familyButton.tag = HCLeftGradeViewFamily;
     }
@@ -336,7 +328,7 @@
         _sofewareSetBtn.tag = HCLeftGradeViewButtonTypeSoftwareSet;
         [_sofewareSetBtn addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         [_sofewareSetBtn setTitle:@"软件设置" forState:UIControlStateNormal];
-        _sofewareSetBtn.frame = CGRectMake(WIDTH(self)*0.2, HEIGHT(self)-80, 120, 40);
+        _sofewareSetBtn.frame = CGRectMake(WIDTH(self)*0.2, HEIGHT(self)-70, 120, 40);
         [_sofewareSetBtn addSubview:self.setImgView];
     }
     return _sofewareSetBtn;
@@ -380,12 +372,23 @@
         
         [_smallView  addSubview:button1];
         [_smallView addSubview:button2];
-        
-        
     }
     return _smallView;
 }
 
+
+- (UIButton *)joinFamilyBtn
+{
+    if(!_joinFamilyBtn){
+        _joinFamilyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _joinFamilyBtn.frame = CGRectMake(self.nickName.frame.origin.x, self.nickName.frame.origin.y + 20, WIDTH(self)*0.7,20);
+        [_joinFamilyBtn setTitle:@"加入家庭" forState:UIControlStateNormal];
+        [_joinFamilyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_joinFamilyBtn addTarget:self action:@selector(toJoinFamily) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _joinFamilyBtn;
+}
 
 
 
