@@ -24,6 +24,10 @@ typedef void (^NHCReadBack)(NSString *str);
 //获取版本信息
 + (NSString *)GetPlatForm;
 
+// 将家庭信息存到本地
++(void)createFamileDic:(NSDictionary *)dic;
+
++(NSDictionary *)getFaimilyDic;
 
 //读取导数据库后的回调方法
 /*

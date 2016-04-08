@@ -60,38 +60,67 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestFamilyMessage) name:@"showFamilyMessage" object:nil];
         
         NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
-        
-        if (IsEmpty(str) || [str isKindOfClass:[NSURL class]])
+        NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
+        if (IsEmpty(str) || [str isKindOfClass:[NSURL class]] || IsEmpty(strFamilyId))
         {
-           
+            // 显示没有创建家庭的侧边
+            
             self.gradeName.text =[HCAccountMgr manager].loginInfo.NickName;
             self.nickName.hidden = YES;
             self.familyButton.hidden = YES;
             self.headButton.hidden = YES;
-            
             [self addSubview:self.smallView];
+           
             
+            NSDictionary *dict = [readUserInfo getReadDic];
+            self.gradeHeadButton.frame = CGRectMake(WIDTH(self)*0.2, 60, WIDTH(self)*0.3, WIDTH(self)*0.3);
+             ViewRadius(self.gradeHeadButton, WIDTH(self)*0.3/2);
+            
+            
+            
+            
+//            if (dict[@"PhotoStr"]==nil) {
+//                //没有图片的时候显示的默认头像
+//                [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
+//            }else{
+//                UIImage *image = [readUserInfo image64:dict[@"PhotoStr"]];
+//                [_gradeHeadButton setImage:image forState:UIControlStateNormal];
+//            }
         }
         else
         {
+            NSString *str1 =[readUserInfo getReadDic][@"UserInf"][@"createFamilyId"];
             
-            if (str.length == 10)
+            if (str.length == 10 )
             {
+              // 显示创建过家庭的侧边
                 [self requestFamilyMessage];
             }
             else
             {
+                // 显示没有创建家庭的侧边
                 self.gradeName.text =[HCAccountMgr manager].loginInfo.NickName;
                 self.nickName.hidden = YES;
                 self.familyButton.hidden = YES;
                 self.headButton.hidden = YES;
-                
                 [self addSubview:self.smallView];
+                
+                
+                NSDictionary *dict = [readUserInfo getReadDic];
+                
+                self.gradeHeadButton.frame = CGRectMake(WIDTH(self)*0.2, 60, WIDTH(self)*0.3, WIDTH(self)*0.3);
+                ViewRadius(self.gradeHeadButton, WIDTH(self)*0.3/2);
+                
+                if (dict[@"PhotoStr"]==nil) {
+                    //没有图片的时候显示的默认头像
+                    [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
+                }else{
+                    UIImage *image = [readUserInfo image64:dict[@"PhotoStr"]];
+                    [_gradeHeadButton setImage:image forState:UIControlStateNormal];
+                }
 
             }
         }
-        
-       
     }
     return self;
 }
@@ -128,6 +157,15 @@
             self.headButton.hidden = NO;
             
             self.smallView.hidden = YES;
+            if (_info.familyPhoto==nil) {
+                //没有图片的时候显示的默认头像
+                [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
+            }else{
+                UIImage *image = [readUserInfo image64:_info.familyPhoto];
+                [_gradeHeadButton setImage:image forState:UIControlStateNormal];
+            }
+            
+
         }
     }];
     

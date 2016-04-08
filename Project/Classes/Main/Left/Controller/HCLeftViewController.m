@@ -17,6 +17,8 @@
 #import "HCLeftView.h"
 #import "HCLeftGradeView.h"
 
+#import "HCUserMessageViewController.h"
+
 @interface HCLeftViewController ()<HCLeftViewDelegate, HCLeftGradeViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -88,7 +90,29 @@
 //        layout.minimumInteritemSpacing = paddingY;
         
 //        vc = (HCViewController *)[[HCGradeManagerViewController alloc] initWithCollectionViewLayout:layout];
-        vc = [[HCGradeManagerViewController alloc] init];
+        
+        NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
+        
+        if (IsEmpty(str) || [str isKindOfClass:[NSURL class]])
+        {
+           
+            vc = [[HCUserMessageViewController alloc]init];
+            
+        }else
+        {
+            if (str.length == 10)
+            {
+            
+                vc = [[HCGradeManagerViewController alloc] init];
+            
+            }else
+            {
+                vc = [[HCUserMessageViewController alloc]init];
+            
+            }
+        
+        }
+
     }else if (type == HCLeftGradeViewButtonTypeHead)
     {
         vc  = [[HCUserMessageViewController alloc] init];

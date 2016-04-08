@@ -161,6 +161,9 @@
             
             _info = [HCCreateGradeInfo mj_objectWithKeyValues:dic];
             [HCAccountMgr manager].loginInfo.createFamilyId = _info.familyId;
+            [HCAccountMgr manager].familyInfo = _info;
+            
+            [readUserInfo createFamileDic:dic];
             
             [self upLoadImage];
         }
