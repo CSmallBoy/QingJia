@@ -7,7 +7,7 @@
 //
 
 #import "NHCListOfTimeAPi.h"
-
+#import "HCHomeInfo.h"
 @implementation NHCListOfTimeAPi
 -(void)startRequest:(NHCListTime)requestBlock{
     [super startRequest:requestBlock];
@@ -20,7 +20,7 @@
     NSDictionary *dict = [readUserInfo getReadDic];
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
-                           @"UUID":dict[@"UserInf"][@"uuid"]};
+                           @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     NSDictionary *para = @{@"rangeType":@"0",
                            @"start":@"0",
                            @"count":@"20",
@@ -29,6 +29,22 @@
 }
 -(id)formatResponseObject:(id)responseObject{
     NSArray *arr = responseObject[@"Data"][@"rows"];
-    return arr;
+    NSMutableArray *arring = [NSMutableArray array];
+    for (int i = 0 ; i < arr.count; i ++) {
+        HCHomeInfo *info = [[HCHomeInfo alloc]init];
+        info.FTContent = arr[i][@"content"];
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSInteger j = 0; j < i; j++)
+        {
+            NSString *imageStr = [NSString stringWithFormat:@"http://img2.3lian.com/img2007/10/28/%@.jpg", @(120+j)];
+            DLog(@"%@", imageStr);
+            [array addObject:imageStr];
+        }
+        info.FTImages = array;
+        info.CreateAddrSmall = arr[i][@"createAddrSmall"];
+        info.NickName = arr[i][@"creatorName"];
+        [arring addObject:info];
+    }
+    return arring;
 }
 @end

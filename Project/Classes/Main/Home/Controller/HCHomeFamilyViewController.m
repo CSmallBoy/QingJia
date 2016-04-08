@@ -252,7 +252,7 @@
 //        HCHomeInfo *lastInfo = [array lastObject];
 //        api.start_num = lastInfo.KeyId;
 //        [self writeLocationData:array];
-       // [self.tableView reloadData];
+        [self.tableView reloadData];
     }];
 //    HCHomeApi *api = [[HCHomeApi alloc] init];
 //    api.Start = @"0";
