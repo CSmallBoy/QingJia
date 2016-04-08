@@ -254,18 +254,17 @@
 
 -(void)saveClick:(UIBarButtonItem *)item
 {
+    
     [self.tableView reloadData];
     api.myModel = model;
+    
+    [self showHUDText:nil];
+    
      NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac){
         if (requestStatus == HCRequestStatusSuccess) {
             
-            for (UIViewController *temp in self.navigationController.viewControllers) {
-                if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
-                    
-                    [self.navigationController popToViewController:temp animated:YES];
-                }
-            }
+         
             [dic setObject:str forKey:@"birthday"];
             [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
             [dic setObject:model.PhotoStr forKey:@"PhotoStr"];
@@ -288,9 +287,29 @@
     api_image.photoStr = model.PhotoStr;
     [api_image startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         
+        [self hideHUDView];
+        if (requestStatus == HCRequestStatusSuccess) {
+            
+            for (UIViewController *temp in self.navigationController.viewControllers) {
+                if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
+                    
+                    [self.navigationController popToViewController:temp animated:YES];
+                }
+            }
+            
+            NSDictionary *dict = @{@"photo":choose};
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserPhoto" object:nil userInfo:dict];
+            [self showHUDSuccess:@"保存成功"];
+        }
+        else
+        {
+            [self showHUDSuccess:@"保存失败"];
+        }
+        
     }];
     
-    [self showHUDText:@"保存成功"];
+    
     
 }
 //时间选择器

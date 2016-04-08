@@ -24,10 +24,10 @@
 -(id)requestArgument
 {
     NSDictionary *head = @{@"UUID":[HCAccountMgr manager].loginInfo.UUID,
-                           @"platForm":@"IOS9.2",
+                           @"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token};
     
-    NSDictionary *para = @{@"Id":_familyId,
+    NSDictionary *para = @{@"id":_familyId,
                            @"type":@"1"};
     
     return @{@"Head":head,

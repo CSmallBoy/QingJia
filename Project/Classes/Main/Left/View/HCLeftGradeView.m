@@ -11,6 +11,8 @@
 #import "MyFamilyViewController.h"
 #import "HCCreateGradeViewController.h"
 
+#import "NHCDownloadImageApi.h"
+
 #import "findFamilyMessage.h"
 #import "FamilyDownLoadImage.h"
 
@@ -35,6 +37,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserPhoto:) name:@"changeUserPhoto" object:nil];
+    
     self = [super initWithFrame:frame];
     NHCDownloadImageApi *api = [[NHCDownloadImageApi alloc]init];
     api.type = @"0";//0 代表个人
@@ -61,7 +66,8 @@
         
         NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
         NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
-        if (IsEmpty(str) || [str isKindOfClass:[NSURL class]] || IsEmpty(strFamilyId))
+        
+        if ((IsEmpty(str) || [str isKindOfClass:[NSURL class]])&& IsEmpty(strFamilyId))
         {
             // 显示没有创建家庭的侧边
             
@@ -75,23 +81,18 @@
             NSDictionary *dict = [readUserInfo getReadDic];
             self.gradeHeadButton.frame = CGRectMake(WIDTH(self)*0.2, 60, WIDTH(self)*0.3, WIDTH(self)*0.3);
              ViewRadius(self.gradeHeadButton, WIDTH(self)*0.3/2);
-            
-            
-            
-            
-//            if (dict[@"PhotoStr"]==nil) {
-//                //没有图片的时候显示的默认头像
-//                [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
-//            }else{
-//                UIImage *image = [readUserInfo image64:dict[@"PhotoStr"]];
-//                [_gradeHeadButton setImage:image forState:UIControlStateNormal];
-//            }
+
+            if (dict[@"PhotoStr"]==nil) {
+                //没有图片的时候显示的默认头像
+                [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
+            }else{
+                UIImage *image = [readUserInfo image64:dict[@"PhotoStr"]];
+                [_gradeHeadButton setImage:image forState:UIControlStateNormal];
+            }
         }
         else
         {
-            NSString *str1 =[readUserInfo getReadDic][@"UserInf"][@"createFamilyId"];
-            
-            if (str.length == 10 )
+          if (str.length == 10||strFamilyId.length == 10)
             {
               // 显示创建过家庭的侧边
                 [self requestFamilyMessage];
@@ -127,12 +128,42 @@
 
 #pragma mark - private methods
 
+// 改变用户头像
+-(void)changeUserPhoto:(NSNotification *)noti
+{
+    NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
+    NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
+    
+    NSDictionary *dic = noti.userInfo;
+    UIImage*image = dic[@"photo"];
+    
+    if (IsEmpty(str) || [str isKindOfClass:[NSURL class]] || IsEmpty(strFamilyId))
+    {
+     
+        [self.gradeHeadButton setImage:image forState:UIControlStateNormal];
+    
+    }else
+    {
+         if (str.length == 10 )
+         {
+         [self.headButton setImage:image forState:UIControlStateNormal];
+         }
+         else
+         {
+         [self.gradeHeadButton setImage:image forState:UIControlStateNormal];
+         }
+    
+    }
+}
+
 -(void)requestFamilyMessage
 {
 
     findFamilyMessage *api = [[findFamilyMessage alloc]init];
     FamilyDownLoadImage *downLoadApi = [[FamilyDownLoadImage alloc]init];
-     NSString *str =[readUserInfo getReadDic][@"UserInf"][@"createFamilyId"];
+     NSString *str =[readUserInfo getFaimilyDic][@"familyId"];
+    
+    
     if (IsEmpty(str)) {
         api.familyId =[HCAccountMgr manager].loginInfo.createFamilyId;
         downLoadApi.familyId = [HCAccountMgr manager].loginInfo.createFamilyId;
@@ -140,7 +171,7 @@
     else
     {
         api.familyId = str;
-        downLoadApi.familyId = [HCAccountMgr manager].loginInfo.createFamilyId;
+        downLoadApi.familyId = str;
     }
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
@@ -172,11 +203,23 @@
     [downLoadApi startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        
         if (requestStatus == HCRequestStatusSuccess) {
-            NSString *str = respone[@"Data"][@"Data"];
+           
             NSLog(@"图片下载成功");
         }
         
     }];
+    
+//    NHCDownloadImageApi *imgApi = [[NHCDownloadImageApi alloc]init];
+//    imgApi.ID =downLoadApi.familyId;
+//    imgApi.type = @"1";
+//    
+//    [imgApi startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *photostr) {
+//       
+//        
+//        
+//    }];
+    
+    
 }
 
 - (UIButton *)gradeHeadButton

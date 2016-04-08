@@ -17,7 +17,7 @@
 }
 - (id)requestArgument{
     NSDictionary *dict = [readUserInfo getReadDic];
-    NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],
+    NSDictionary *head = @{@"UUID":[HCAccountMgr manager].loginInfo.UUID,
                            @"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token};
     NSDictionary *para = @{@"type":_type,

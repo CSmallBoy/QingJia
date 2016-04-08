@@ -55,6 +55,12 @@
             [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *photostr) {
                 [_headButton setBackgroundImage:[readUserInfo image64:photostr] forState:UIControlStateNormal];
                 str = photostr;
+               
+                NSDictionary *dict = [readUserInfo getReadDic];
+                [dict setValue:str forKey:@"PhotoStr"];
+                [readUserInfo Dicdelete];
+                [readUserInfo creatDic:dict];
+            
             }];
         }
        
