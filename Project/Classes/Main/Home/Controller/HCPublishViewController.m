@@ -15,6 +15,8 @@
 #import "NHCReleaseTimeApi.h"
 //多图
 #import "NHCUploadImageMangApi.h"
+//获取时光列表
+#import "NHCListOfTimeAPi.h"
 #define HCPublishCell @"HCPublishCell"
 
 @interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate>
@@ -42,6 +44,11 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCPublishTableViewCell class] forCellReuseIdentifier:HCPublishCell];
+    //获取时光
+    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
+    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id data) {
+        
+    }];
 
 }
 

@@ -26,7 +26,6 @@
     NSDictionary *head = @{@"Action": @"GetList", @"Token": [HCAccountMgr manager].loginInfo.Token, @"UUID": [HCAppMgr manager].uuid};
     NSDictionary *result = @{@"Start":@([_Start integerValue]), @"Count": @(20)};
     NSDictionary *body = @{@"Head": head, @"Result": result};
-    
     return @{@"json": [Utils stringWithObject:body]};
 }
 
@@ -37,7 +36,6 @@
     for (NSInteger i = 0; i < 10; i++)
     {
         HCHomeInfo *info = [[HCHomeInfo alloc] init];
-        
         info.KeyId = @"1234567";
         info.NickName = @"测试名字";
         info.FTContent = @"测试发布时光内容";
@@ -48,10 +46,8 @@
             DLog(@"%@", imageStr);
             [array addObject:imageStr];
         }
-        
         info.FTImages = array;
         info.CreateAddrSmall = @"上海市浦东新区";
-        
         [arrayM addObject:info];
     }
     return arrayM;
