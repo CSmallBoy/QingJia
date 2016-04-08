@@ -448,6 +448,15 @@
 		8D131A9F1C7D7C7F00F0D5A0 /* ZLPhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D131A831C7D7C7F00F0D5A0 /* ZLPhotoPickerViewController.m */; };
 		8D131AA01C7D7C7F00F0D5A0 /* ZLPhotoRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D131A851C7D7C7F00F0D5A0 /* ZLPhotoRect.m */; };
 		8D131AA21C7D872800F0D5A0 /* ZLPhotoLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8D131AA11C7D872800F0D5A0 /* ZLPhotoLib.bundle */; };
+		8D1590511CB5F94200B08BDC /* FamilyUploadImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590501CB5F94200B08BDC /* FamilyUploadImageApi.m */; };
+		8D1590541CB5F94800B08BDC /* applyToFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590531CB5F94800B08BDC /* applyToFamily.m */; };
+		8D1590571CB5FF7F00B08BDC /* findFamilyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590561CB5FF7F00B08BDC /* findFamilyMessage.m */; };
+		8D15905A1CB6007100B08BDC /* HCFamilyMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590591CB6007100B08BDC /* HCFamilyMessageViewController.m */; };
+		8D15905D1CB6577500B08BDC /* FamilyDownLoadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15905C1CB6577500B08BDC /* FamilyDownLoadImage.m */; };
+		8D1590601CB6652300B08BDC /* sigleFamilyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15905F1CB6652300B08BDC /* sigleFamilyMessage.m */; };
+		8D1590631CB67D3400B08BDC /* HCFamilyapplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590621CB67D3400B08BDC /* HCFamilyapplyList.m */; };
+		8D1590661CB683C400B08BDC /* HCFamilyValidationJoinApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590651CB683C400B08BDC /* HCFamilyValidationJoinApply.m */; };
+		8D1590691CB68FC400B08BDC /* NHCCheckTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590681CB68FC400B08BDC /* NHCCheckTableViewCell.m */; };
 		8D21CA091C61D2B80071B32A /* HCMedicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */; };
 		8D21CA0C1C61D6310071B32A /* HCMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0B1C61D6310071B32A /* HCMedicalCell.m */; };
 		8D21CA0F1C61D6D10071B32A /* HCMedicalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0E1C61D6D10071B32A /* HCMedicalInfo.m */; };
@@ -1923,6 +1932,24 @@
 		8D131A841C7D7C7F00F0D5A0 /* ZLPhotoRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoRect.h; sourceTree = "<group>"; };
 		8D131A851C7D7C7F00F0D5A0 /* ZLPhotoRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoRect.m; sourceTree = "<group>"; };
 		8D131AA11C7D872800F0D5A0 /* ZLPhotoLib.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoLib.bundle; sourceTree = "<group>"; };
+		8D15904F1CB5F94200B08BDC /* FamilyUploadImageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyUploadImageApi.h; sourceTree = "<group>"; };
+		8D1590501CB5F94200B08BDC /* FamilyUploadImageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyUploadImageApi.m; sourceTree = "<group>"; };
+		8D1590521CB5F94800B08BDC /* applyToFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applyToFamily.h; sourceTree = "<group>"; };
+		8D1590531CB5F94800B08BDC /* applyToFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = applyToFamily.m; sourceTree = "<group>"; };
+		8D1590551CB5FF7F00B08BDC /* findFamilyMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = findFamilyMessage.h; sourceTree = "<group>"; };
+		8D1590561CB5FF7F00B08BDC /* findFamilyMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = findFamilyMessage.m; sourceTree = "<group>"; };
+		8D1590581CB6007100B08BDC /* HCFamilyMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFamilyMessageViewController.h; sourceTree = "<group>"; };
+		8D1590591CB6007100B08BDC /* HCFamilyMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFamilyMessageViewController.m; sourceTree = "<group>"; };
+		8D15905B1CB6577500B08BDC /* FamilyDownLoadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyDownLoadImage.h; sourceTree = "<group>"; };
+		8D15905C1CB6577500B08BDC /* FamilyDownLoadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyDownLoadImage.m; sourceTree = "<group>"; };
+		8D15905E1CB6652300B08BDC /* sigleFamilyMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sigleFamilyMessage.h; sourceTree = "<group>"; };
+		8D15905F1CB6652300B08BDC /* sigleFamilyMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sigleFamilyMessage.m; sourceTree = "<group>"; };
+		8D1590611CB67D3400B08BDC /* HCFamilyapplyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFamilyapplyList.h; sourceTree = "<group>"; };
+		8D1590621CB67D3400B08BDC /* HCFamilyapplyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFamilyapplyList.m; sourceTree = "<group>"; };
+		8D1590641CB683C400B08BDC /* HCFamilyValidationJoinApply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFamilyValidationJoinApply.h; sourceTree = "<group>"; };
+		8D1590651CB683C400B08BDC /* HCFamilyValidationJoinApply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFamilyValidationJoinApply.m; sourceTree = "<group>"; };
+		8D1590671CB68FC400B08BDC /* NHCCheckTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCCheckTableViewCell.h; sourceTree = "<group>"; };
+		8D1590681CB68FC400B08BDC /* NHCCheckTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCCheckTableViewCell.m; sourceTree = "<group>"; };
 		8D21CA071C61D2B80071B32A /* HCMedicalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalViewController.h; sourceTree = "<group>"; };
 		8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalViewController.m; sourceTree = "<group>"; };
 		8D21CA0A1C61D6310071B32A /* HCMedicalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalCell.h; sourceTree = "<group>"; };
@@ -3045,7 +3072,6 @@
 				0A2B470B1C7F12C800AAA157 /* Left */,
 				0A2B470F1C7F12C800AAA157 /* Login */,
 				0A2B471C1C7F12C800AAA157 /* More */,
-				0A2B474E1C7F12C800AAA157 /* Other */,
 				0A2B47551C7F12C800AAA157 /* Public */,
 			);
 			path = Network;
@@ -3054,8 +3080,22 @@
 		0A2B46FB1C7F12C800AAA157 /* Grade */ = {
 			isa = PBXGroup;
 			children = (
+				8D1590521CB5F94800B08BDC /* applyToFamily.h */,
+				8D1590531CB5F94800B08BDC /* applyToFamily.m */,
+				8D15904F1CB5F94200B08BDC /* FamilyUploadImageApi.h */,
+				8D1590501CB5F94200B08BDC /* FamilyUploadImageApi.m */,
+				8D15905B1CB6577500B08BDC /* FamilyDownLoadImage.h */,
+				8D15905C1CB6577500B08BDC /* FamilyDownLoadImage.m */,
 				0A2B46FC1C7F12C800AAA157 /* HCCreateGradeApi.h */,
 				0A2B46FD1C7F12C800AAA157 /* HCCreateGradeApi.m */,
+				8D1590551CB5FF7F00B08BDC /* findFamilyMessage.h */,
+				8D1590561CB5FF7F00B08BDC /* findFamilyMessage.m */,
+				8D15905E1CB6652300B08BDC /* sigleFamilyMessage.h */,
+				8D15905F1CB6652300B08BDC /* sigleFamilyMessage.m */,
+				8D1590611CB67D3400B08BDC /* HCFamilyapplyList.h */,
+				8D1590621CB67D3400B08BDC /* HCFamilyapplyList.m */,
+				8D1590641CB683C400B08BDC /* HCFamilyValidationJoinApply.h */,
+				8D1590651CB683C400B08BDC /* HCFamilyValidationJoinApply.m */,
 			);
 			path = Grade;
 			sourceTree = "<group>";
@@ -3218,7 +3258,8 @@
 				0A2B47531C7F12C800AAA157 /* HCVatarUploadApi.h */,
 				0A2B47541C7F12C800AAA157 /* HCVatarUploadApi.m */,
 			);
-			path = Other;
+			name = Other;
+			path = ../../../Network/Other;
 			sourceTree = "<group>";
 		};
 		0A2B47551C7F12C800AAA157 /* Public */ = {
@@ -4225,6 +4266,7 @@
 			children = (
 				0A8BE3591C7E8C90008E8100 /* HCCheckViewController.h */,
 				0A8BE35A1C7E8C90008E8100 /* HCCheckViewController.m */,
+				0A2B474E1C7F12C800AAA157 /* Other */,
 				0A8BE35B1C7E8C90008E8100 /* HCCodeLookViewController.h */,
 				0A8BE35C1C7E8C90008E8100 /* HCCodeLookViewController.m */,
 				0A8BE35D1C7E8C90008E8100 /* HCGradeManagerViewController.h */,
@@ -4342,6 +4384,8 @@
 		0A8BE39C1C7E8D7C008E8100 /* GradeManager */ = {
 			isa = PBXGroup;
 			children = (
+				8D1590671CB68FC400B08BDC /* NHCCheckTableViewCell.h */,
+				8D1590681CB68FC400B08BDC /* NHCCheckTableViewCell.m */,
 				0A8BE39D1C7E8D7C008E8100 /* HCCheckTableViewCell.h */,
 				0A8BE39E1C7E8D7C008E8100 /* HCCheckTableViewCell.m */,
 				0A8BE39F1C7E8D7C008E8100 /* HCGradeManagerTableViewCell.h */,
@@ -4909,6 +4953,8 @@
 				C78D785D1C5F28F600622CE2 /* HCGradeViewController.xib */,
 				C78D785E1C5F28F600622CE2 /* HCJoinGradeViewController.h */,
 				C78D785F1C5F28F600622CE2 /* HCJoinGradeViewController.m */,
+				8D1590581CB6007100B08BDC /* HCFamilyMessageViewController.h */,
+				8D1590591CB6007100B08BDC /* HCFamilyMessageViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7533,6 +7579,7 @@
 				0A8BE3751C7E8CA9008E8100 /* HCAboutMTalkViewController.m in Sources */,
 				C78D7C8E1C5F2C1200622CE2 /* HCeditingViewController.m in Sources */,
 				0A2B47771C7F12C800AAA157 /* HCReturnAddressApi.m in Sources */,
+				8D1590661CB683C400B08BDC /* HCFamilyValidationJoinApply.m in Sources */,
 				C78D7AAB1C5F28F700622CE2 /* HCCreateGradeInfo.m in Sources */,
 				C78D7AAE1C5F28F700622CE2 /* HCJoinGradeFunctionView.m in Sources */,
 				C7B00BA71C5F26050010F93B /* EaseUserModel.m in Sources */,
@@ -7853,6 +7900,7 @@
 				0A5491C41C2BC32D0085F50D /* ZXQRCodeDecodedBitStreamParser.m in Sources */,
 				0A67B22A1C0D63B300FB87C8 /* ImgShowViewController.m in Sources */,
 				C7B00B841C5F26050010F93B /* MWZoomingScrollView.m in Sources */,
+				8D1590511CB5F94200B08BDC /* FamilyUploadImageApi.m in Sources */,
 				0A5491AB1C2BC32D0085F50D /* ZXPDF417BarcodeMetadata.m in Sources */,
 				C78D7B9B1C5F28F700622CE2 /* QRCodeReaderView.m in Sources */,
 				0A54914F1C2BC32D0085F50D /* ZXEncodeHints.m in Sources */,
@@ -7902,16 +7950,20 @@
 				0A5491D81C2BC32D0085F50D /* ZXQRCodeMultiReader.m in Sources */,
 				8D131A9F1C7D7C7F00F0D5A0 /* ZLPhotoPickerViewController.m in Sources */,
 				C7B00B9C1C5F26050010F93B /* PSTCollectionViewItemKey.m in Sources */,
+				8D1590691CB68FC400B08BDC /* NHCCheckTableViewCell.m in Sources */,
 				0AAB69A31C06009800A0A2E8 /* AppDelegate.m in Sources */,
 				0A54917D1C2BC32D0085F50D /* ZXRSSExpandedCurrentParsingState.m in Sources */,
 				0A54915D1C2BC32D0085F50D /* ZXDataMatrixASCIIEncoder.m in Sources */,
 				0A8BE3BF1C7E8D7C008E8100 /* HCFriendMessageCollectionViewCell.m in Sources */,
+				8D1590571CB5FF7F00B08BDC /* findFamilyMessage.m in Sources */,
 				0A2B46EE1C7F12AF00AAA157 /* HCHomeDetailUserInfo.m in Sources */,
+				8D15905A1CB6007100B08BDC /* HCFamilyMessageViewController.m in Sources */,
 				8D131A911C7D7C7F00F0D5A0 /* ZLPhotoPickerBrowserPhoto.m in Sources */,
 				C7B00B771C5F26050010F93B /* EMCDDeviceManagerBase.m in Sources */,
 				0A2B476A1C7F12C800AAA157 /* HCNotificationCenterApi.m in Sources */,
 				0A6B7F9C1BF1EB74008D54B3 /* TOWebViewController.m in Sources */,
 				C78D7B441C5F28F700622CE2 /* HCBuyRecordTableViewCell.m in Sources */,
+				8D1590541CB5F94800B08BDC /* applyToFamily.m in Sources */,
 				0A2B47721C7F12C800AAA157 /* HCBuyRecordApi.m in Sources */,
 				0A54912C1C2BC32D0085F50D /* ZXVEventResultParser.m in Sources */,
 				0A72D8FB1C3E4675006D1C62 /* LeftSlideViewController.m in Sources */,
@@ -7956,6 +8008,7 @@
 				0A2B46E81C7F12AF00AAA157 /* HCShareViewController.m in Sources */,
 				0A2B46F21C7F12AF00AAA157 /* HCFunctionTagView.m in Sources */,
 				C78D7D4E1C5F342700622CE2 /* HCPromisedDetailInfo.m in Sources */,
+				8D1590631CB67D3400B08BDC /* HCFamilyapplyList.m in Sources */,
 				8D9790391CB3A00B00FE3C12 /* HCMtalkShopingInfo.m in Sources */,
 				C7B00B561C5F26050010F93B /* ApplyFriendCell.m in Sources */,
 				0AF9B8341BF56DFD00DCA75A /* UIImage+CFJ.m in Sources */,
@@ -7971,6 +8024,7 @@
 				0A54912B1C2BC32D0085F50D /* ZXVCardResultParser.m in Sources */,
 				C7B00B8F1C5F26050010F93B /* UIButton+EMWebCache.m in Sources */,
 				8D97904F1CB3A05D00FE3C12 /* HCMTalkAfterSaleCell.m in Sources */,
+				8D1590601CB6652300B08BDC /* sigleFamilyMessage.m in Sources */,
 				C78D7AEE1C5F28F700622CE2 /* HClassCalendarViewController.m in Sources */,
 				0A5491A61C2BC32D0085F50D /* ZXUPCEANWriter.m in Sources */,
 				0A5491381C2BC32D0085F50D /* ZXGenericGFPoly.m in Sources */,
@@ -7991,6 +8045,7 @@
 				0A5491611C2BC32D0085F50D /* ZXDataMatrixEdifactEncoder.m in Sources */,
 				0A5491831C2BC32D0085F50D /* ZXRSSExpandedGeneralAppIdDecoder.m in Sources */,
 				0A5491CB1C2BC32D0085F50D /* ZXQRCodeAlignmentPattern.m in Sources */,
+				8D15905D1CB6577500B08BDC /* FamilyDownLoadImage.m in Sources */,
 				C758EE471C743E7A0081FFE1 /* HCRelativeDetailViewController.m in Sources */,
 				0A5491641C2BC32D0085F50D /* ZXDataMatrixHighLevelEncoder.m in Sources */,
 				8D131AA01C7D7C7F00F0D5A0 /* ZLPhotoRect.m in Sources */,

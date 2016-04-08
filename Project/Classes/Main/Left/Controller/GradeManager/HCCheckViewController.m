@@ -10,9 +10,16 @@
 #import "HCCheckTableViewCell.h"
 #import "HCCheckInfo.h"
 
+
+#import "NHCCheckTableViewCell.h"
+
+#import "HCFamilyapplyList.h"
+
+#import "HCFamilyValidationJoinApply.h"
+
 #define kCheckCellId @"checkcellid"
 
-@interface HCCheckViewController ()<HCCheckTableViewCellDelegate>
+@interface HCCheckViewController ()<HCCheckTableViewCellDelegate,SCSwipeTableViewCellDelegate>
 
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIView *customAlertView;
@@ -23,6 +30,7 @@
 @property (nonatomic,strong)  NSArray *relationArr;
 
 @property (nonatomic,strong) NSString *seleteStr;
+@property (nonatomic,strong) HCCheckInfo *selectInfo;
 
 @end
 
@@ -43,16 +51,32 @@
 {
     if (tableView == self.tableView)
     {
-        HCCheckTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCheckCellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.delegate = self;
-        cell.info = self.dataSource[indexPath.row];
+        UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
+        btn1.backgroundColor = COLOR(46, 122, 225, 1);
+        UIImageView *imageView1= [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 30, 30)];
+        imageView1.image = IMG(@"一呼百应详情－delete");
+        [btn1 addSubview:imageView1];
+    
+    
+        NSArray *buttonArr = @[btn1];
         
-        return cell;
+        static NSString *cellIdentifier = @"joinFamilycellID";
+        NHCCheckTableViewCell *cell = (NHCCheckTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil)
+        {
+          cell = [[NHCCheckTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                reuseIdentifier:@"joinFamilycellID"
+                                                       withBtns:buttonArr
+                                                      tableView:self.tableView];
+        cell.delegate = self;
+        }
+       cell.info = self.dataSource[indexPath.row];
+       return cell;
 
-    }
-    else
-    {
+
+        }
+       else
+        {
         static NSString *ID = @"chooseID"  ;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
         if (!cell)
@@ -65,25 +89,6 @@
     
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tableView == self.tableView)
-    {
-        return UITableViewCellEditingStyleDelete;
-
-    }
-    
-    return UITableViewCellEditingStyleNone;
-
-
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-    }
-}
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -128,6 +133,7 @@
 - (void)HCCheckTableViewCellSelectedModel:(HCCheckInfo *)info
 {
     [self.view addSubview:self.contentView];
+    self.selectInfo = info;
 }
 
 #pragma mark - private methods
@@ -150,6 +156,36 @@
     
     [self.view addSubview:smallTableView];
     
+}
+
+-(void)agreeBtnClick
+{
+     [self.contentView removeFromSuperview];
+    [self showHUDView:nil];
+    HCFamilyValidationJoinApply *api = [[HCFamilyValidationJoinApply alloc]init];
+    
+    api.applyUserId = self.selectInfo.applyUserId;
+    
+    [api startRequest:^(HCRequestStatus statusStatus, NSString *message, id respone) {
+        
+        if (statusStatus == HCRequestStatusSuccess)
+        {
+            [self hideHUDView];
+            [self showHUDText:@"通过申请"];
+            self.selectInfo.permitFlag = @"1";
+            [self.tableView reloadData];
+           
+        }
+        else
+        {
+            [self hideHUDView];
+            NSString *str = respone [@"message"];
+            [self showHUDError:str];
+        }
+        
+    }];
+
+
 }
 
 #pragma mark - setter or getter
@@ -222,6 +258,7 @@
         _agreeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _agreeBtn.frame = CGRectMake(15, MaxY(self.selectedBtn)+10, WIDTH(self.selectedBtn), 44);
         [_agreeBtn setTitle:@"同意" forState:UIControlStateNormal];
+        [_agreeBtn addTarget:self action:@selector(agreeBtnClick) forControlEvents:UIControlEventTouchUpInside];
         _agreeBtn.backgroundColor = kHCNavBarColor;
         ViewRadius(_agreeBtn, 4);
     }
@@ -243,15 +280,32 @@
 
 - (void)reqeustCheckData
 {
-    for (NSInteger i = 0; i < 3; i++)
-    {
-        HCCheckInfo *info = [[HCCheckInfo alloc] init];
-        info.imageName = @"2Dbarcode_message_HeadPortraits";
-        info.nickName = @"名字";
-        info.detail = @"请求加入班级";
-        [self.dataSource addObject:info];
-    }
-    [self.tableView reloadData];
+   
+    HCFamilyapplyList *api = [[HCFamilyapplyList alloc]init];
+    
+    api.familyId = [HCAccountMgr manager].loginInfo.createFamilyId;
+    api.endUserId = @"";
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+      
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            
+            NSArray *array = respone[@"Data"][@"rows"];
+            
+            for (int i = 0; i<array.count; i++) {
+                
+                NSDictionary *dic = array[i];
+                HCCheckInfo *info = [HCCheckInfo mj_objectWithKeyValues:dic];
+                [self.dataSource addObject:info];
+            }
+        }
+        
+        [self.tableView reloadData];
+        
+    }];
+    
+    
 }
 
 

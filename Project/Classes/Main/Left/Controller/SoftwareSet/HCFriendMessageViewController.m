@@ -47,9 +47,9 @@ static NSString * const reuseIdentifier = @"FriendCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HCFriendMessageInfo *info = self.dataSource[indexPath.section*4 + indexPath.row];
-    if ([info.uid integerValue])
+    if ([info.userId integerValue])
     {
-        DLog(@"点击了---%@", info.name);
+        DLog(@"点击了---%@", info.nickName);
     }else
     {
         HCAddFriendViewController *addFriend = [[HCAddFriendViewController alloc] init];

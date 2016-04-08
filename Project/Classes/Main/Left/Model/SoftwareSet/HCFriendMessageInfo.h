@@ -10,8 +10,8 @@
 
 @interface HCFriendMessageInfo : NSObject
 
-@property (nonatomic, strong) NSString *uid;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *imageName;
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *nickName;
+@property (nonatomic, strong) UIImage *image;
 
 @end

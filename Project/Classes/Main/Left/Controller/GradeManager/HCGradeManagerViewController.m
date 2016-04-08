@@ -14,6 +14,8 @@
 #import "HCAddFriendViewController.h"
 #import "UIImageView+WebCache.h"
 #import "HCFriendMessageApi.h"
+#import "HCCreateGradeInfo.h"
+#import "sigleFamilyMessage.h"
 
 static NSString * const reuseIdentifier = @"FriendCell";
 
@@ -21,6 +23,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
 
 @property (nonatomic, strong) UIImageView *headImageView;
 @property (nonatomic, strong) UILabel *signatureLabel;
+@property (nonatomic,strong) HCCreateGradeInfo *info;
 
 @end
 
@@ -32,6 +35,11 @@ static NSString * const reuseIdentifier = @"FriendCell";
     self.title = @"家庭名字";
     [self setupBackItem];
     self.tableView.tableHeaderView = self.headImageView;
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     [self requestGradeManager];
 }
 
@@ -43,6 +51,8 @@ static NSString * const reuseIdentifier = @"FriendCell";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     cell.array = self.dataSource;
+    cell.info = _info;
+    cell.image = IMG(@"1");
     cell.indexPath = indexPath;
     return cell;
 }
@@ -53,6 +63,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
     if (indexPath.section == 0 && indexPath.row == 0)
     {
         vc = [[HCCodeLookViewController alloc] init];
+        vc.data = @{@"info":self.info};
     }else if (indexPath.section == 1 && indexPath.row == 0)
     {
         vc = [[HCCheckViewController alloc] init];
@@ -106,7 +117,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
     }else
     {
         HCFriendMessageInfo *info = self.dataSource[tag];
-        DLog(@"点击了某个人---%@", info.name);
+        DLog(@"点击了某个人---%@", info.nickName);
     }
 }
 
@@ -144,41 +155,33 @@ static NSString * const reuseIdentifier = @"FriendCell";
 
 - (void)requestGradeManager
 {
-    // 测试
-    NSMutableArray *arrayM = [NSMutableArray array];
-    for (NSInteger i = 1; i < 11; i++)
-    {
-        HCFriendMessageInfo *info = [[HCFriendMessageInfo alloc] init];
-        info.uid = [NSString stringWithFormat:@"%@", @(i)];
-        info.name = [NSString stringWithFormat:@"姓名-%@", @(i)];
-        info.imageName = @"2Dbarcode_message_HeadPortraits";
-        if (i == 2 || i == 5)
-        {
-            info.imageName = @"2Dbarcode_message_HeadPortraits";
-        }else if (i == 3 || i ==8)
-        {
-            info.imageName = @"2Dbarcode_message_HeadPortraits";
-        }
-        [arrayM addObject:info];
-    }
     
-    HCFriendMessageInfo *info = [[HCFriendMessageInfo alloc] init];
-    info.uid = @"0";
-    info.name = @"添加";
-    info.imageName = @"add-members";
-    [arrayM addObject:info];
-    [self.dataSource addObjectsFromArray:arrayM];
-    
-    //////
-    HCFriendMessageApi *api = [[HCFriendMessageApi alloc] init];
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+    sigleFamilyMessage *api = [[sigleFamilyMessage alloc]init];
+    api.familyId = [HCAccountMgr manager].loginInfo.createFamilyId;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        
         if (requestStatus == HCRequestStatusSuccess)
         {
-        }else
-        {
+            NSDictionary *dic = respone[@"Data"][@"FamilyInf"];
+            self.info = [HCCreateGradeInfo  mj_objectWithKeyValues:dic];
             
         }
+        
+        NSArray *array = respone[@"Data"][@"row"];
+        
+        [self.dataSource removeAllObjects];
+        
+        for (NSDictionary *dic in array)
+        {
+            HCFriendMessageInfo *friendInfo = [[HCFriendMessageInfo alloc]init];
+            friendInfo.userId = dic[@"userId"];
+            friendInfo.nickName = dic[@"nickName"];
+            
+            [self.dataSource addObject:friendInfo];
+            
+        }
+        
+        [self.tableView reloadData];
     }];
 }
 

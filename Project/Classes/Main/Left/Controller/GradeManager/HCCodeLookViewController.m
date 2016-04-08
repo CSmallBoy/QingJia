@@ -11,6 +11,8 @@
 #import "KMQRCode.h"
 #import "UIImage+RoundedRectImage.h"
 
+#import "HCCreateGradeInfo.h"
+
 @interface HCCodeLookViewController ()
 
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
@@ -23,6 +25,8 @@
 @property (nonatomic, strong) UILabel *classSingle;
 
 @property (nonatomic, strong) UIImageView *codeImgView;
+@property (nonatomic,strong) HCCreateGradeInfo *info;
+
 
 @end
 
@@ -35,6 +39,7 @@
     [self setupBackItem];
     self.title = @"家庭二维码";
     
+    self.info = self.data[@"info"];
     [self.view addSubview:self.grayView];
     UIBarButtonItem *bar = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Share_QrCode"] style:UIBarButtonItemStylePlain target:self action:@selector(barClick)];
     self.navigationItem.rightBarButtonItem = bar;
@@ -60,7 +65,7 @@
 
 - (void)createCode
 {
-    NSString *source = @"http://baidu.com";
+    NSString *source = [HCAccountMgr manager].loginInfo.createFamilyId;
     
     //使用iOS 7后的CIFilter对象操作，生成二维码图片imgQRCode（会拉伸图片，比较模糊，效果不佳）
     CIImage *imgQRCode = [KMQRCode createQRCodeImage:source];
@@ -121,8 +126,8 @@
 {
     if (!_contentView)
     {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, WIDTH(self.view)-30, WIDTH(self.view)-30)];
-        _contentView.center = self.view.center;
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(15,150/667.0*SCREEN_HEIGHT, WIDTH(self.view)-30, WIDTH(self.view))];
+    
         _contentView.backgroundColor = [UIColor whiteColor];
         ViewRadius(_contentView, 5);
         
@@ -138,7 +143,7 @@
 {
     if (!_classImgView)
     {
-        _classImgView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, WIDTH(self.contentView)*0.3, WIDTH(self.view)*0.16)];
+        _classImgView = [[UIImageView alloc] initWithFrame:CGRectMake(25, 15, WIDTH(self.contentView)*0.3, WIDTH(self.view)*0.16)];
         _classImgView.image = OrigIMG(@"head.jpg");
         ViewRadius(_classImgView, 3);
     }
@@ -150,7 +155,7 @@
     if (!_classTitle)
     {
         _classTitle = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(self.classImgView)+10, 20, WIDTH(self.contentView)-WIDTH(self.classImgView), 20)];
-        _classTitle.text = @"XXX家庭";
+        _classTitle.text = [NSString stringWithFormat:@"%@家庭",self.info.familyNickName];
         _classTitle.font = [UIFont systemFontOfSize:15];
         _classTitle.textColor = DarkGrayColor;
     }
@@ -163,7 +168,7 @@
     {
         _classSingle = [[UILabel alloc] initWithFrame:CGRectMake(MinX(self.classTitle), MaxY(self.classTitle)+5, WIDTH(self.classTitle), 20)];
         _classSingle.textColor = DarkGrayColor;
-        _classSingle.text = @"家庭的个性签名！";
+        _classSingle.text = self.info.familyDescription;
         _classSingle.font = [UIFont systemFontOfSize:12];
     }
     return _classSingle;
@@ -173,7 +178,7 @@
 {
     if (!_codeImgView)
     {
-        _codeImgView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH(self.contentView)*0.15, MaxY(self.classImgView)+10, WIDTH(self.contentView)*0.7, WIDTH(self.contentView)*0.7)];
+        _codeImgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.classImgView.frame.origin.x, MaxY(self.classImgView)+10, WIDTH(self.contentView)-50, WIDTH(self.contentView)-50)];
     }
     return _codeImgView;
 }

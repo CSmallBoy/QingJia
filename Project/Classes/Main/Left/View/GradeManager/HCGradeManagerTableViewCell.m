@@ -9,6 +9,8 @@
 #import "HCGradeManagerTableViewCell.h"
 #import "HCFriendMessageInfo.h"
 
+#import "HCCreateGradeInfo.h"
+
 @interface HCGradeManagerTableViewCell()
 
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -44,26 +46,29 @@
     {
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.textField];
-        
+        self.textField.enabled = NO;
         if (indexPath.row == 0)
         {
             self.titleLabel.text = @"名片";
+            
             self.textField.placeholder = @"家庭二维码";
             [self.contentView addSubview:self.codeImgView];
         }else if (indexPath.row == 1)
         {
             self.titleLabel.text = @"祖籍";
+            self.textField.text = _info.ancestralHome;
             self.textField.placeholder = @"请输入祖籍";
         }else if (indexPath.row == 2)
         {
             self.titleLabel.text = @"地址";
+            self.textField.text = _info.contactAddr;
             self.textField.placeholder = @"请输入家庭地址";
         }
     }else
     {
         if (indexPath.row == 0)
         {
-            self.titleLabel.text = @"家庭成员(3人)";
+            self.titleLabel.text = [NSString stringWithFormat:@"家庭成员（%d）",_array.count];
             self.titleLabel.frame = CGRectMake(15, 10, 100, 24);
             [self.contentView addSubview:self.titleLabel];
             [self.contentView addSubview:self.statusLabel];
@@ -78,13 +83,14 @@
                 CGFloat buttonY = i/4 *(width+20) + ((i/4+1)*10);
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                 button.frame = CGRectMake(buttonX, buttonY, width, width);
-                [button setImage:OrigIMG(info.imageName) forState:UIControlStateNormal];
+                [button setImage:_image forState:UIControlStateNormal];
                 button.tag = i;
                 [button addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
+                ViewRadius(button, width/2);
                 [self.contentView addSubview:button];
                 
                 UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(button.frame.origin.x, MaxY(button), button.frame.size.width, 20)];
-                title.text = info.name;
+                title.text = info.nickName;
                 title.textAlignment = NSTextAlignmentCenter;
                 title.font = [UIFont systemFontOfSize:13];
                 [self.contentView addSubview:title];

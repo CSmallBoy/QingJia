@@ -9,6 +9,8 @@
 #import "HCCheckTableViewCell.h"
 #import "HCCheckInfo.h"
 
+
+
 @interface HCCheckTableViewCell()
 
 @property (nonatomic, strong) UIImageView *headImgView;
@@ -33,19 +35,36 @@
     return self;
 }
 
-- (void)handleAgreeButton
+- (void)clickAgreeButton:(UIButton *)button
 {
-    if ([self.delegate respondsToSelector:@selector(HCCheckTableViewCellSelectedModel:)])
+
+    
+    if ([button.titleLabel.text isEqualToString:@"同意"])
     {
-        [self.delegate HCCheckTableViewCellSelectedModel:_info];
+        
+        if ([self.delegate respondsToSelector:@selector(HCCheckTableViewCellSelectedModel:)])
+        {
+            [self.delegate HCCheckTableViewCellSelectedModel:_info];
+        }
+        
     }
+    
 }
 
 - (void)setInfo:(HCCheckInfo *)info
 {
-    self.headImgView.image = OrigIMG(info.imageName);
-    self.titleLabel.text = info.nickName;
-    self.detailLabel.text = info.detail;
+    _info = info;
+    self.headImgView.image = IMG(@"1");
+    self.titleLabel.text = info.applyUserNickName;
+    self.detailLabel.text = info.joinMessage;
+    
+    if ([info.permitFlag isEqualToString:@"1"])
+    {
+        self.agreeBtn.backgroundColor = [UIColor whiteColor];
+        [self.agreeBtn setTitle:@"已同意" forState:UIControlStateNormal];
+        [self.agreeBtn setTitleColor:kHCNavBarColor forState:UIControlStateNormal];
+    }
+    
 }
 
 - (UIImageView *)headImgView
@@ -88,7 +107,7 @@
         _agreeBtn.frame = CGRectMake(SCREEN_WIDTH-65, 15, 55, 30);
         [_agreeBtn setTitle:@"同意" forState:UIControlStateNormal];
         _agreeBtn.backgroundColor = kHCNavBarColor;
-        [_agreeBtn addTarget:self action:@selector(handleAgreeButton) forControlEvents:UIControlEventTouchUpInside];
+        [_agreeBtn addTarget:self action:@selector(clickAgreeButton:) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(_agreeBtn, 4);
     }
     return _agreeBtn;

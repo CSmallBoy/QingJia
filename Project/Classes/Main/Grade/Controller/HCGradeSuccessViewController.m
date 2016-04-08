@@ -35,6 +35,18 @@
     ViewRadius(_nextBtn, 4);
     
     _info = self.data[@"data"];
+    self.gradeIdNum.text = @"恭喜您完胜了家庭创建";
+    self.gradeIdNum.font = [UIFont systemFontOfSize:14];
+    self.gradeIdNum.textColor = kHCNavBarColor;
+    
+    UILabel *familuIdLB = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxX(self.gradeIdNum.frame)+20, SCREEN_WIDTH-20, 20)];
+    familuIdLB.text = [NSString stringWithFormat:@"您的家庭ID是%@",_info.familyId];
+    familuIdLB.font = [UIFont systemFontOfSize:14];
+    familuIdLB.textAlignment = NSTextAlignmentCenter;
+    familuIdLB.textColor = kHCNavBarColor;
+    
+    [self.view addSubview:familuIdLB];
+    
     NSError *error = nil;
     ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
     ZXBitMatrix* result = [writer encode:_info.familyId

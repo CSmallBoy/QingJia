@@ -11,7 +11,9 @@
 #import "HCSoftwareSettingViewController.h"
 #import "HCUserMessageViewController.h"
 #import "HCGradeManagerViewController.h"
+#import "HCJoinGradeViewController.h"
 #import "MyFamilyViewController.h"
+#import "HCCreateGradeViewController.h"
 #import "HCLeftView.h"
 #import "HCLeftGradeView.h"
 
@@ -28,6 +30,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toCreateFamilyVC) name:@"toCreateFamilyVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toJoinFamilyVC) name:@"toJoinFamilyVC" object:nil];
+    
+    
     self.view.backgroundColor = RGB(34, 35, 37);
 //    [self.view addSubview:self.leftView];
     [self.view addSubview:self.tableView];
@@ -38,6 +45,8 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -102,6 +111,20 @@
     vc.hidesBottomBarWhenPushed = YES;
     [app.leftSlideController closeLeftView];
     [app.homeNavController pushViewController:vc animated:YES];
+}
+
+
+-(void)toCreateFamilyVC
+{
+    HCCreateGradeViewController *createFamilyVC = [[HCCreateGradeViewController alloc]init];
+    [self pushViewController:createFamilyVC];
+}
+
+-(void)toJoinFamilyVC
+{
+    HCJoinGradeViewController *JoinFamilyVC = [[HCJoinGradeViewController alloc]init];
+    [self pushViewController:JoinFamilyVC];
+
 }
 
 #pragma mark - setter or getter

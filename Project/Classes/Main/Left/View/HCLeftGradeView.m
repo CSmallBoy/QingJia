@@ -9,6 +9,13 @@
 #import "HCLeftGradeView.h"
 #import "UIButton+WebCache.h"
 #import "MyFamilyViewController.h"
+#import "HCCreateGradeViewController.h"
+
+#import "findFamilyMessage.h"
+#import "FamilyDownLoadImage.h"
+
+#import "HCCreateGradeInfo.h"
+
 //下载头像
 #import "NHCDownloadImageApi.h"
 @interface HCLeftGradeView(){
@@ -18,6 +25,9 @@
 @property (nonatomic, strong) UIButton *sofewareSetBtn;
 @property (nonatomic, strong) UIImageView *setImgView;
 @property (nonatomic, strong) UIImageView *setImgView2;
+@property (nonatomic,strong)  UIView *smallView;
+
+@property (nonatomic,strong) HCCreateGradeInfo *info;
 
 @end
 
@@ -45,12 +55,91 @@
         [self addSubview:self.nickName];
         [self addSubview:self.sofewareSetBtn];
         [self addSubview:self.familyButton];
+
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestFamilyMessage) name:@"showFamilyMessage" object:nil];
+        
+        NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
+        
+        if (IsEmpty(str) || [str isKindOfClass:[NSURL class]])
+        {
+           
+            self.gradeName.text =[HCAccountMgr manager].loginInfo.NickName;
+            self.nickName.hidden = YES;
+            self.familyButton.hidden = YES;
+            self.headButton.hidden = YES;
+            
+            [self addSubview:self.smallView];
+            
+        }
+        else
+        {
+            
+            if (str.length == 10)
+            {
+                [self requestFamilyMessage];
+            }
+            else
+            {
+                self.gradeName.text =[HCAccountMgr manager].loginInfo.NickName;
+                self.nickName.hidden = YES;
+                self.familyButton.hidden = YES;
+                self.headButton.hidden = YES;
+                
+                [self addSubview:self.smallView];
+
+            }
+        }
+        
        
     }
     return self;
 }
 
 #pragma mark - private methods
+
+-(void)requestFamilyMessage
+{
+
+    findFamilyMessage *api = [[findFamilyMessage alloc]init];
+    FamilyDownLoadImage *downLoadApi = [[FamilyDownLoadImage alloc]init];
+     NSString *str =[readUserInfo getReadDic][@"UserInf"][@"createFamilyId"];
+    if (IsEmpty(str)) {
+        api.familyId =[HCAccountMgr manager].loginInfo.createFamilyId;
+        downLoadApi.familyId = [HCAccountMgr manager].loginInfo.createFamilyId;
+    }
+    else
+    {
+        api.familyId = str;
+        downLoadApi.familyId = [HCAccountMgr manager].loginInfo.createFamilyId;
+    }
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        
+        if (requestStatus == HCRequestStatusSuccess) {
+              NSDictionary *dic = respone[@"Data"][@"FamilyInf"];
+            
+            _info = [HCCreateGradeInfo mj_objectWithKeyValues:dic];
+            
+            self.gradeName.text = _info.familyNickName;
+            self.nickName.text = [HCAccountMgr manager].loginInfo.TrueName;
+            
+            self.nickName.hidden = NO;
+            self.familyButton.hidden = NO;
+            self.headButton.hidden = NO;
+            
+            self.smallView.hidden = YES;
+        }
+    }];
+    
+    [downLoadApi startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+       
+        if (requestStatus == HCRequestStatusSuccess) {
+            NSString *str = respone[@"Data"][@"Data"];
+            NSLog(@"图片下载成功");
+        }
+        
+    }];
+}
 
 - (UIButton *)gradeHeadButton
 {
@@ -61,7 +150,6 @@
         _gradeHeadButton.frame = CGRectMake(30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3);
         [_gradeHeadButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(_gradeHeadButton, 5);
-        
         [_gradeHeadButton sd_setImageWithURL:[NSURL URLWithString:@"http://xiaodaohang.cn/2.jpg"] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
     }
     return _gradeHeadButton;
@@ -74,7 +162,6 @@
         _gradeName = [[UILabel alloc] initWithFrame:CGRectMake(0, MaxY(self.gradeHeadButton)+20, WIDTH(self)*0.7, 20)];
         _gradeName.textAlignment = NSTextAlignmentCenter;
         _gradeName.textColor = [UIColor whiteColor];
-        _gradeName.text = @"班级名称";
     }
     return _gradeName;
 }
@@ -88,6 +175,19 @@
 }
 
 #pragma mark - setter or getter
+
+// 点击了创建家庭按钮
+-(void)createFamily
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"toCreateFamilyVC" object:nil];
+    
+}
+//点击了加入家庭按钮
+-(void)toJoinFamily
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"toJoinFamilyVC" object:nil];
+}
+
 
 //我的家族
 - (UIButton *)familyButton{
@@ -179,6 +279,35 @@
     }
     return _setImgView2;
 }
+
+
+- (UIView *)smallView
+{
+    if(!_smallView){
+        _smallView = [[UIView alloc]initWithFrame:CGRectMake((WIDTH(self)*0.7-100)/2, 320/667.0*SCREEN_HEIGHT, 100, 100)];
+        
+    
+        UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        button1.frame = CGRectMake(0, 0, 100, 20) ;
+        [button1 setTitle:@"创建家庭" forState:UIControlStateNormal];
+        [button1 addTarget:self action:@selector(createFamily) forControlEvents:UIControlEventTouchUpInside];
+        [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        button2.frame = CGRectMake(0, 60, 100, 20);
+        [button2 setTitle:@"加入家庭" forState:UIControlStateNormal];
+        [button2 addTarget:self action:@selector(toJoinFamily) forControlEvents:UIControlEventTouchUpInside];
+        [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_smallView  addSubview:button1];
+        [_smallView addSubview:button2];
+        
+        
+    }
+    return _smallView;
+}
+
+
 
 
 @end

@@ -12,11 +12,12 @@
 #import "HCCreateGradeTableViewCell.h"
 #import "HCCreateGradeInfo.h"
 #import "HCFooterView.h"
-#import "HCImageUploadApi.h"
+
 #import "HCImageUploadInfo.h"
 #import "HCCreateGradeApi.h"
 
 #import "NHCCreatefamilyApi.h"
+#import "FamilyUploadImageApi.h"
 
 #define HCCreateGrade @"HCCreateGrade"
 
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) HCCreateGradeInfo *info;
 
 @property (nonatomic, strong) HCFooterView *footerView;
+@property (nonatomic,strong) UIImage *image;
 
 @end
 
@@ -59,6 +61,7 @@
             if (result)
             {
                 _info.uploadImage = image;
+                self.image = image;
                 [self.tableView reloadData];
             }
         }];
@@ -109,21 +112,21 @@
 
 - (void)checkCreateGradeData
 {
-//    if (IsEmpty(_info.familyNickName))
-//    {
-//        [self showHUDText:@"家庭昵称不能为空"];
-//        return;
-//    }
-//    if (IsEmpty(_info.familyDescription))
-//    {
-//        [self showHUDText:@"家庭签名不能为空"];
-//        return;
-//    }
-//    if (IsEmpty(_info.contactAddr))
-//    {
-//        [self showHUDText:@"学校地址不能为空!"];
-//        return;
-//    }
+    if (IsEmpty(_info.familyNickName))
+    {
+        [self showHUDText:@"家庭昵称不能为空"];
+        return;
+    }
+    if (IsEmpty(_info.familyDescription))
+    {
+        [self showHUDText:@"家庭签名不能为空"];
+        return;
+    }
+    if (IsEmpty(_info.contactAddr))
+    {
+        [self showHUDText:@"学校地址不能为空!"];
+        return;
+    }
     
 
     [self requestCreateGrade];
@@ -157,12 +160,9 @@
             NSDictionary *dic = respone[@"Data"][@"UserEntity"];
             
             _info = [HCCreateGradeInfo mj_objectWithKeyValues:dic];
+            [HCAccountMgr manager].loginInfo.createFamilyId = _info.familyId;
             
-            HCGradeSuccessViewController *finishVC = [[HCGradeSuccessViewController alloc]init];
-            
-            finishVC.data = @{@"data":_info};
-            [self.navigationController pushViewController:finishVC animated:YES];
-            
+            [self upLoadImage];
         }
         
         
@@ -170,6 +170,37 @@
     
 }
 
+
+-(void)upLoadImage
+{
+    FamilyUploadImageApi *api = [[FamilyUploadImageApi alloc]init];
+    
+    api.familyId = _info.familyId ;
+    api.type = @"1";
+    
+    api.photoStr = [readUserInfo imageString:self.image];
+    
+    [self showHUDView:nil];
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+        
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self hideHUDView];
+            HCGradeSuccessViewController *finishVC = [[HCGradeSuccessViewController alloc]init];
+            finishVC.data = @{@"data":_info};
+            [self.navigationController pushViewController:finishVC animated:YES];
+            NSLog(@"上传成功");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"showFamilyMessage" object:nil];
+            
+        }
+        else
+        {
+            [self showHUDError:message];
+        }
+        
+    }];
+}
 - (void)requestImageUpload
 {
     [self showHUDView:nil];
