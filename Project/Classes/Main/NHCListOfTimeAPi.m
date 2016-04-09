@@ -18,13 +18,23 @@
 }
 -(id)requestArgument{
     NSDictionary *dict = [readUserInfo getReadDic];
+    NSString *str;
+    if (IsEmpty(dict[@"UserInf"][@"createFamilyId"])) {
+        if (IsEmpty(dict[@"UserInf"][@"allFamilyIds"])) {
+            str = @"0";
+        }else{
+            str = dict[@"UserInf"][@"allFamilyIds"];
+        }
+    }else{
+        str = dict[@"UserInf"][@"createFamilyId"];
+    }
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     NSDictionary *para = @{@"rangeType":@"0",
                            @"start":@"0",
                            @"count":@"20",
-                           @"rangeId":dict[@"UserInf"][@"createFamilyId"]};
+                           @"rangeId":str};
     
     
     return @{@"Head":head,@"Para":para};

@@ -138,7 +138,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
-
+//检查评论内容
 - (void)checkCommentData
 {
     if (IsEmpty(_info.FTContent))
@@ -148,6 +148,7 @@
     }
     if (_info.FTImages.count > 1)
     {
+     //图片上传
         [self requestImageUpload];
     }else
     {

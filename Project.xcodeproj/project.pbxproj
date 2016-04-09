@@ -660,6 +660,8 @@
 		C79E0EC51CA69AD300717D9B /* NHCloginInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C79E0EC41CA69AD300717D9B /* NHCloginInfoModel.m */; };
 		C79E0EC81CA69D0C00717D9B /* readUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C79E0EC71CA69D0C00717D9B /* readUserInfo.m */; };
 		C79F9A841CB73F3600EEF224 /* HCLeftGradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79F9A831CB73F3600EEF224 /* HCLeftGradeView.m */; };
+		C79F9A8A1CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C79F9A891CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m */; };
+		C79F9A8D1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C79F9A8C1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m */; };
 		C7AFFABF1C48BEC900D4A628 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7AFFA871C48BEC900D4A628 /* UMSocialLocalizable.strings */; };
 		C7AFFAC01C48BEC900D4A628 /* libUMSocial_Sdk_4.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AFFA951C48BEC900D4A628 /* libUMSocial_Sdk_4.4.a */; };
 		C7AFFAC11C48BEC900D4A628 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7AFFA971C48BEC900D4A628 /* UMSCommentDetailController.xib */; };
@@ -2336,6 +2338,10 @@
 		C79E0EC61CA69D0C00717D9B /* readUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = readUserInfo.h; sourceTree = "<group>"; };
 		C79E0EC71CA69D0C00717D9B /* readUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = readUserInfo.m; sourceTree = "<group>"; };
 		C79F9A831CB73F3600EEF224 /* HCLeftGradeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLeftGradeView.m; sourceTree = "<group>"; };
+		C79F9A881CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeTimeDeleteApi.h; sourceTree = "<group>"; };
+		C79F9A891CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeDeleteApi.m; sourceTree = "<group>"; };
+		C79F9A8B1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeTimeThumbupApi.h; sourceTree = "<group>"; };
+		C79F9A8C1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeThumbupApi.m; sourceTree = "<group>"; };
 		C7AFFA881C48BEC900D4A628 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		C7AFFA8A1C48BEC900D4A628 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		C7AFFA8B1C48BEC900D4A628 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -4783,6 +4789,10 @@
 				C74D2B001CB6628A00A260A4 /* NHCReleaseTimeApi.m */,
 				C74D2B021CB664E600A260A4 /* NHCListOfTimeAPi.h */,
 				C74D2B031CB664E600A260A4 /* NHCListOfTimeAPi.m */,
+				C79F9A881CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.h */,
+				C79F9A891CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m */,
+				C79F9A8B1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.h */,
+				C79F9A8C1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m */,
 			);
 			name = HomeApi;
 			sourceTree = "<group>";
@@ -7916,6 +7926,7 @@
 				8D9790441CB3A03F00FE3C12 /* HCReceiveAddressCell.m in Sources */,
 				0A8BE3B71C7E8D7C008E8100 /* HCGradeManagerTableViewCell.m in Sources */,
 				8D05FF7F1CB39EB1005AC51C /* HCSureTheOrderController.m in Sources */,
+				C79F9A8D1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m in Sources */,
 				C7B00B9F1C5F26050010F93B /* PSTGridLayoutInfo.m in Sources */,
 				0A2B47621C7F12C800AAA157 /* HCHomePublishApi.m in Sources */,
 				0A5491A51C2BC32D0085F50D /* ZXUPCEANReader.m in Sources */,
@@ -8130,6 +8141,7 @@
 				C78D7C8F1C5F2C1200622CE2 /* HCHeathViewController.m in Sources */,
 				8D9790301CB3A00B00FE3C12 /* HCAddressInfo.m in Sources */,
 				0A2B47661C7F12C800AAA157 /* HCGetCodeApi.m in Sources */,
+				C79F9A8A1CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m in Sources */,
 				0A5491181C2BC32D0085F50D /* ZXExpandedProductResultParser.m in Sources */,
 				0A5491951C2BC32D0085F50D /* ZXEAN13Reader.m in Sources */,
 				0A5491491C2BC32D0085F50D /* ZXStringUtils.m in Sources */,

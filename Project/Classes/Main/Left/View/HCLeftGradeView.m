@@ -42,6 +42,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserPhoto:) name:@"changeUserPhoto" object:nil];
     
     self = [super initWithFrame:frame];
+    //用户
     NHCDownloadImageApi *api = [[NHCDownloadImageApi alloc]init];
     api.type = @"0";//0 代表个人
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *photostr) {
@@ -68,7 +69,7 @@
         NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
         NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
         
-        if ((IsEmpty(str) || [str isKindOfClass:[NSURL class]])&& IsEmpty(strFamilyId))
+        if ((IsEmpty(str) || [str isKindOfClass:[NSNull class]])&& IsEmpty(strFamilyId))
         {
             // 显示没有创建家庭的侧边
             
@@ -209,6 +210,8 @@
             UIImage *image = [readUserInfo image64:respone [@"Data"][@"photo"]];
             
             [self.gradeHeadButton setImage:image forState:UIControlStateNormal];
+        }else{
+            [self.gradeHeadButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
         }
         
     }];

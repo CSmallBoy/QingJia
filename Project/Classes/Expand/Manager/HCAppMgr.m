@@ -116,7 +116,6 @@ static HCAppMgr *_sharedManager = nil;
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"您的登录会话已失效，请重新登录。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
 
-    
     [alert handlerClickedButton:^(UIAlertView *alert, NSInteger index){
         // 环信登出
         [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
@@ -156,6 +155,7 @@ static HCAppMgr *_sharedManager = nil;
             [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
         }
     } onQueue:nil];
+    
 }
 
 
