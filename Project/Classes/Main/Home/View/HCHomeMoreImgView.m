@@ -51,6 +51,7 @@
         button.tag = i;
         [button addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         [button sd_setImageWithURL:[NSURL URLWithString:array[i]] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
+        [button setImage:array[i] forState:UIControlStateNormal];
         [self addSubview:button];
         
         if (i == 2)

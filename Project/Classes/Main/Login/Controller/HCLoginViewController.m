@@ -138,9 +138,9 @@
         if (requestStatus == HCRequestStatusSuccess)
         {
             //之前环信的版本
-            [self loginWithUsername:_accountTextField.text password:_keyTextField.text loginInfo:loginInfo];
+//            [self loginWithUsername:_accountTextField.text password:_keyTextField.text loginInfo:loginInfo];
             //服务器的版本
-//            [self loginWithUsername:loginInfo.chatName password:loginInfo.chatPwd loginInfo:loginInfo];
+            [self loginWithUsername:loginInfo.chatName password:loginInfo.chatPwd loginInfo:loginInfo];
         }else
         {
             [self showHUDError:message];

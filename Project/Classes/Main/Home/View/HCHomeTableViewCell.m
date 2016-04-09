@@ -161,6 +161,7 @@
     // 图片
     if (!IsEmpty(info.FTImages))
     {
+        //图片在这里赋值
         self.moreImgView.hidden = NO;
         self.moreImgView.imageUrlArr = info.FTImages;
 //        [self.moreImgView hchomeMoreImgViewWithUrlStringArray:info.FTImages];

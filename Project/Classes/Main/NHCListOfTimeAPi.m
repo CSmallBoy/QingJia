@@ -33,7 +33,7 @@
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     NSDictionary *para = @{@"rangeType":@"0",
                            @"start":@"0",
-                           @"count":@"20",
+                           @"count":@"10",
                            @"rangeId":str};
     
     
@@ -56,6 +56,7 @@
         info.CreateAddrSmall = arr[i][@"createAddrSmall"];
         info.NickName = arr[i][@"creatorName"];
         info.CreateTime = arr[i][@"createTime"];
+        info.TimeID = arr[i][@"timesId"];
         [arring addObject:info];
     }
     return arring;

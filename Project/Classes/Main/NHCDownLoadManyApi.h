@@ -7,7 +7,11 @@
 //
 
 #import "HCRequest.h"
+typedef void (^NHCMangDownLoad)(HCRequestStatus requestStatus, NSString *message, NSArray *array);
 
 @interface NHCDownLoadManyApi : HCRequest
-
+@property (nonatomic,copy) NSString * type;
+@property (nonatomic,copy) NSString * photoStr;
+@property (nonatomic,copy) NSString * TimeID;
+-(void)startRequest:(NHCMangDownLoad)requestBlock;
 @end

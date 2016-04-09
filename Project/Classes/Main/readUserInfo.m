@@ -56,7 +56,7 @@
 + (NSString*)imageString:(UIImage*)imagestr{
     UIImage *_originImage = [[UIImage alloc]init];
     _originImage = imagestr;
-    NSData *_data = UIImageJPEGRepresentation(_originImage, 0.001f);
+    NSData *_data = UIImageJPEGRepresentation(_originImage, 0.2f);
     NSString *_encodedImageStr = [_data base64Encoding];
     return _encodedImageStr;
     

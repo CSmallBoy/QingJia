@@ -17,6 +17,8 @@
 #import "NHCUploadImageMangApi.h"
 //获取时光列表
 #import "NHCListOfTimeAPi.h"
+//获取时光多图
+#import "NHCDownLoadManyApi.h"
 #define HCPublishCell @"HCPublishCell"
 
 @interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate>
@@ -44,11 +46,13 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCPublishTableViewCell class] forCellReuseIdentifier:HCPublishCell];
-//    //获取时光
-//    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
-//    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id data) {
+    //下载多图  测试 可以用
+//    NHCDownLoadManyApi *api = [[NHCDownLoadManyApi alloc]init];
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
 //        
+
 //    }];
+//   
 
 }
 
@@ -176,8 +180,8 @@
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-{
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+{//不编辑图片
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
     if (_info.FTImages.count >= 10)
     {

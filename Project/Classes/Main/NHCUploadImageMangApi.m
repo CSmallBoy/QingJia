@@ -16,7 +16,7 @@
 
 - (NSString *)requestUrl
 {
-    return @"Photo/uploadOne.do";
+    return @"Photo/uploadMany.do";
 }
 - (id)requestArgument
 {

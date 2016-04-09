@@ -390,13 +390,13 @@
 }
 
 #pragma mark - action
-
+//公共的群组列表
 - (void)showPublicGroupList
 {
     PublicGroupListViewController *publicController = [[PublicGroupListViewController alloc] initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:publicController animated:YES];
 }
-
+//创建群组列表
 - (void)createGroup
 {
     CreateGroupViewController *createChatroom = [[CreateGroupViewController alloc] init];

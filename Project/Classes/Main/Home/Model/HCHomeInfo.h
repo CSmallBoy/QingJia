@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSString *CreateLocation;
 @property (nonatomic, strong) NSString *CreateAddrSmall;
 @property (nonatomic, strong) NSString *CreateAddr;
+@property (nonatomic, strong) NSString *TimeID;
 
 @property (nonatomic, strong) NSString *ParentId;
 @property (nonatomic, strong) NSString *FTID;

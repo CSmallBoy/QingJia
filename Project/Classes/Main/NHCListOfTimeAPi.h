@@ -7,7 +7,7 @@
 //
 
 #import "HCRequest.h"
-typedef void (^NHCListTime)(HCRequestStatus resquestStatus,NSString *message,NSArray* array);
+typedef void (^NHCListTime)(HCRequestStatus resquestStatus,NSString *message,id  Data);
 @interface NHCListOfTimeAPi : HCRequest
 - (void)startRequest:(NHCListTime)requestBlock;
 @property (nonatomic,copy)NSString *start_num;
