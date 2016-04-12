@@ -48,7 +48,8 @@
         [_headButton setBackgroundImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
     }else{
         //4.11日修改
-        [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kUser] forState:UIControlStateNormal];
+        
+        [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
     }
     //获取健康 信息
     if (IsEmpty(str)) {
