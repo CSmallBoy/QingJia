@@ -148,6 +148,12 @@
 
 - (void)requestCreateGrade
 {
+     [self upLoadImage];
+}
+
+-(void)createFamily
+{
+
     HCCreateGradeApi *api = [[HCCreateGradeApi alloc] init];
     api.gradeInfo = _info;
     
@@ -164,43 +170,57 @@
             [HCAccountMgr manager].familyInfo = _info;
             
             [readUserInfo createFamileDic:dic];
-            
-            [self upLoadImage];
-        }
-    }];
-    
-}
-
-
--(void)upLoadImage
-{
-    FamilyUploadImageApi *api = [[FamilyUploadImageApi alloc]init];
-    
-    api.familyId = _info.familyId ;
-    api.type = @"1";
-    
-    api.photoStr = [readUserInfo imageString:self.image];
-    
-    [self showHUDView:nil];
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-        
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self hideHUDView];
             HCGradeSuccessViewController *finishVC = [[HCGradeSuccessViewController alloc]init];
             finishVC.data = @{@"data":_info};
             [self.navigationController pushViewController:finishVC animated:YES];
-            NSLog(@"上传成功");
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"showFamilyMessage" object:nil];
             
         }
-        else
-        {
-            [self showHUDError:message];
-        }
+    }];
+
+}
+
+-(void)upLoadImage
+{
+    
+    NSString *token = [HCAccountMgr manager].loginInfo.Token;
+    NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
+    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkFamail,uuid,token]];
+    [KLHttpTool uploadImageWithUrl:str image:self.image success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        self.info.imageName = responseObject[@"Data"][@"files"][0];
+        [self createFamily];
+        
+
+    } failure:^(NSError *error) {
         
     }];
+//    FamilyUploadImageApi *api = [[FamilyUploadImageApi alloc]init];
+//    
+//    api.familyId = _info.familyId ;
+//    api.type = @"1";
+//    
+//    api.photoStr = [readUserInfo imageString:self.image];
+//    
+//    [self showHUDView:nil];
+//    
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            [self hideHUDView];
+//            HCGradeSuccessViewController *finishVC = [[HCGradeSuccessViewController alloc]init];
+//            finishVC.data = @{@"data":_info};
+//            [self.navigationController pushViewController:finishVC animated:YES];
+//            NSLog(@"上传成功");
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"showFamilyMessage" object:nil];
+//            
+//        }
+//        else
+//        {
+//            [self showHUDError:message];
+//        }
+//        
+//    }];
 }
 - (void)requestImageUpload
 {

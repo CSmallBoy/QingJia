@@ -156,4 +156,10 @@
     NSURL *url = [NSURL URLWithString:string];
     return url;
 }
+
++ (NSURL *)originUrl:(NSString *)imageName :(NSString *)pathName{
+    NSString * string = [kOriginImageUrl stringByAppendingString:[NSString stringWithFormat:@"%@/%@",pathName,imageName]];
+    NSURL *url = [NSURL URLWithString:string];
+    return url;
+}
 @end

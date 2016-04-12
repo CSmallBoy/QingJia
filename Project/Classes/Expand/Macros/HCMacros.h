@@ -19,6 +19,9 @@
 #define kUPImageUrl  @"http://damaotech.com/rest/Photo/upload.do?"
 //图片下载
 #define kDWloadImageUrl  @"http://damaotech.com/uploads/thumbnail/"
+
+#define kOriginImageUrl @"http://damaotech.com/uploads/origin/"
+
 //上传图片  下载图片  所需路径
 //用户
 #define kkUser   @"user"

@@ -40,4 +40,7 @@ typedef void (^NHCReadBack)(NSString *str);
 //获取单张图片的方法
 
 + (NSURL *)url:(NSString*)imageName:(NSString *)pathName;
+
+// 获取单张图片原图URl
++ (NSURL *)originUrl:(NSString *)imageName :(NSString *)pathName;
 @end
