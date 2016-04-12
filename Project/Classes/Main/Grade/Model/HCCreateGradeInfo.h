@@ -17,9 +17,7 @@
 @property (nonatomic, strong) NSString *familyPhoto; // 家庭头像
 @property (nonatomic, strong) NSString *contactAddr;// 学校地址
 @property (nonatomic, strong) UIImage *createTime; // 创建时间
-
-
-
+@property (nonatomic,strong) NSString *imageName;// 图片名字
 
 
 

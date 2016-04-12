@@ -156,10 +156,17 @@
     NSURL *url = [NSURL URLWithString:string];
     return url;
 }
+<<<<<<< HEAD
+
++ (NSURL *)originUrl:(NSString *)imageName :(NSString *)pathName{
+    NSString * string = [kOriginImageUrl stringByAppendingString:[NSString stringWithFormat:@"%@/%@",pathName,imageName]];
+    NSURL *url = [NSURL URLWithString:string];
+=======
 //上传
 + (NSString *)url:(NSString *)theType{
     NSString *str = [NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",theType,[HCAccountMgr manager].loginInfo.UUID,[HCAccountMgr manager].loginInfo.Token];
     NSString *url = [kUPImageUrl stringByAppendingString:str];
+>>>>>>> 52184e345c03b7669b9ee180842d8cbda84a84f2
     return url;
 }
 

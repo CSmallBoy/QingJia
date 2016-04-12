@@ -25,7 +25,7 @@
 {
 
     
-    NSDictionary *head = @{@"platForm": @"IOS9.2",
+    NSDictionary *head = @{@"platForm": [readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     
@@ -35,7 +35,8 @@
     NSDictionary *para = @{@"ancestralHome":_gradeInfo.ancestralHome,
                            @"familyNickName":_gradeInfo.familyNickName,
                            @"familyDescription":_gradeInfo.familyDescription,
- 
+                           @"imageName":_gradeInfo.imageName,
+                           @"photoType":@"jpg",
                            @"contactAddr":_gradeInfo.contactAddr};
     
     return @{@"Head":head,@"Para":para};
