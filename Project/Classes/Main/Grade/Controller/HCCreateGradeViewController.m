@@ -165,10 +165,8 @@
             
             [readUserInfo createFamileDic:dic];
             
-//            [self upLoadImage];
+            [self upLoadImage];
         }
-        
-        
     }];
     
 }

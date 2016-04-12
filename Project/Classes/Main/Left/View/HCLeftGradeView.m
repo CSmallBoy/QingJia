@@ -57,7 +57,7 @@
     if (IsEmpty(dict[@"UserInf"][@"imageName"])) {
        [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
     }else{
-        [_headButton sd_setImageWithURL:[readUserInfo url:dict[@"UserInf"][@"imageName"]] forState:UIControlStateNormal];
+        [_headButton sd_setImageWithURL:[readUserInfo url:dict[@"UserInf"][@"imageName"]:kkUser] forState:UIControlStateNormal];
     }
     
     if (self)
@@ -95,7 +95,8 @@
                 //没有图片的时候显示的默认头像
                 [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
             }else{
-                 [_gradeHeadButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"]] forState:UIControlStateNormal];
+                //用户
+                 [_gradeHeadButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
             }
         }
         else
@@ -126,7 +127,7 @@
                     [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
                 }else{
                     
-                    [_gradeHeadButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"]] forState:UIControlStateNormal];
+                     [_gradeHeadButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
                 }
 
             }
@@ -305,7 +306,7 @@
         }else{
             //4.11改
             
-            [_headButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"]] forState:UIControlStateNormal];
+            [_headButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"]:kkUser] forState:UIControlStateNormal];
         }
        
     }
