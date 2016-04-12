@@ -39,5 +39,5 @@ typedef void (^NHCReadBack)(NSString *str);
 + (BOOL)JudgmentInformation:(NSString *)ture;
 //获取单张图片的方法
 
-+ (NSURL *)url:(NSString*)imageName;
++ (NSURL *)url:(NSString*)imageName:(NSString *)pathName;
 @end

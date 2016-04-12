@@ -150,8 +150,9 @@
 
 
 }
-+ (NSURL *)url:(NSString *)imageName{
-    NSString * string = [kDWloadImageUrl stringByAppendingString:[NSString stringWithFormat:@"user/%@",imageName]];
+
++ (NSURL *)url:(NSString *)imageName :(NSString *)pathName{
+    NSString * string = [kDWloadImageUrl stringByAppendingString:[NSString stringWithFormat:@"%@/%@",pathName,imageName]];
     NSURL *url = [NSURL URLWithString:string];
     return url;
 }

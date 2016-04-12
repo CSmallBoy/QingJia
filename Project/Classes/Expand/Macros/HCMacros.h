@@ -19,7 +19,21 @@
 #define kUPImageUrl  @"http://damaotech.com/rest/Photo/upload.do?"
 //图片下载
 #define kDWloadImageUrl  @"http://damaotech.com/uploads/thumbnail/"
-
+//上传图片  下载图片  所需路径
+//用户
+#define kkUser   @"user"
+//家庭
+#define kkFamail   @"family"
+//家族
+#define kkRelation   @"relation"
+//标签
+#define kkLabel   @"label"
+//标签对象
+#define kkObject   @"object"
+//时光
+#define kkTimes   @"times"
+//时光评论
+#define kkComment   @"comment"
 //appstore更新地址
 #define APP_STORE_URL   @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=890849784"
 
