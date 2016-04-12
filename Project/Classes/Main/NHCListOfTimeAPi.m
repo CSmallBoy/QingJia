@@ -45,14 +45,16 @@
     for (int i = 0 ; i < arr.count; i ++) {
         HCHomeInfo *info = [[HCHomeInfo alloc]init];
         info.FTContent = arr[i][@"content"];
-        NSMutableArray *array = [NSMutableArray array];
-        for (NSInteger j = 0; j < i; j++)
-        {
-            NSString *imageStr = [NSString stringWithFormat:@"http://img2.3lian.com/img2007/10/28/%@.jpg", @(120+j)];
-            DLog(@"%@", imageStr);
-            [array addObject:imageStr];
-        }
-        info.FTImages = array;
+       
+//        for (NSInteger j = 0; j < i; j++)
+//        {
+//            NSString *imageStr = [NSString stringWithFormat:@"http://img2.3lian.com/img2007/10/28/%@.jpg", @(120+j)];
+//            DLog(@"%@", imageStr);
+//            [array addObject:imageStr];
+//        }
+        NSString *str_image = arr[i][@"imageNames"];
+        NSArray *b = [str_image componentsSeparatedByString:@","];
+        info.FTImages = b;
         info.CreateAddrSmall = arr[i][@"createAddrSmall"];
         info.NickName = arr[i][@"creatorName"];
         info.CreateTime = arr[i][@"createTime"];

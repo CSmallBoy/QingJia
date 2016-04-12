@@ -48,16 +48,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCPublishTableViewCell class] forCellReuseIdentifier:HCPublishCell];
 
-//  上传多图
-//    NSString * string = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"times",[HCAccountMgr manager].loginInfo.UUID,[readUserInfo getReadDic][@"Token"]]];
-//    UIImage *image = [UIImage imageNamed:@"text.jpg"];
-//    NSArray *arr = @[image,image];
-//    [KLHttpTool uploadImageWithUrl:string image:arr success:^(id responseObject) {
-//        
-//    } failure:^(NSError *error) {
-//        
-//    }];
-    
 
 
 }
@@ -198,7 +188,7 @@
     
     [_info.FTImages insertObject:image atIndex:_info.FTImages.count-1];
     [self.tableView reloadData];
-    
+
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -242,42 +232,63 @@
 - (void)requestPublistData
 {
     [self showHUDView:nil];
-    //先上传 图片  在发布时光  获取到图片的名字  放入数组中
-    NSString *str = [readUserInfo url:kkTimes];
     NSMutableArray *arr_image_path = [NSMutableArray array];
+    // 先上传 图片  在发布时光  获取到图片的名字  放入数组中  主线程
+    NSString *str = [readUserInfo url:kkTimes];
+    
     for (int i = 0 ; i < _info.FTImages.count-1 ; i ++) {
         [KLHttpTool uploadImageWithUrl:str image:_info.FTImages[i] success:^(id responseObject) {
             NSLog(@"%@",responseObject);
-            NSString *str = responseObject[@"Data"][@"files"][0];
-            [arr_image_path addObject:str];
+            NSString *str1 = responseObject[@"Data"][@"files"][0];
+            [arr_image_path addObject:str1];
+            NSString *str2;
+            NSString *str_all = [NSMutableString string];
+            if (arr_image_path.count == _info.FTImages.count-1) {
+                for (int i = 0 ; i < arr_image_path.count ; i ++) {
+                    if (i == 0) {
+                        str2 = arr_image_path[0];
+                        str_all = [str2 stringByAppendingString:str_all];
+                    }else{
+                        str2 = [arr_image_path[i] stringByAppendingString:@","];
+                        str_all = [str2 stringByAppendingString:str_all];
+                    }
+                }
+                
+                
+                NHCReleaseTimeApi *api = [[NHCReleaseTimeApi alloc]init];
+                api.content = _info.FTContent;
+                api.openAddress = _info.OpenAddress;
+                api.imageNames = str_all;
+                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *Tid) {
+                    
+                }];
+            }
         } failure:^(NSError *error) {
             
         }];
-        
     }
-    
-    
-    
-    NHCReleaseTimeApi *api2 = [[NHCReleaseTimeApi alloc]init];
-    api2.content =_info.FTContent;
-    api2.openAddress = _info.OpenAddress;
-    [api2 startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *Tid) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self hideHUDView];
-            //发布成功后     执行上传照片  先进行判断  是否有照片
-            if (IsEmpty(_info.FTImages)) {
-                
-            }else{
-                [self uploadManyImage:Tid];
-            }
-            
-        }else
-        {
-            [self showHUDError:message];
-        }
-        
-    }];
+}
+
+//    NHCReleaseTimeApi *api2 = [[NHCReleaseTimeApi alloc]init];
+//    api2.content =_info.FTContent;
+//    api2.openAddress = _info.OpenAddress;
+//    [api2 startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *Tid) {
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            [self hideHUDView];
+//            //发布成功后     执行上传照片  先进行判断  是否有照片
+//            if (IsEmpty(_info.FTImages)) {
+//                
+//            }else{
+//                [self uploadManyImage:Tid];
+//            }
+//            
+//        }else
+//        {
+//            [self showHUDError:message];
+//        }
+//        
+//    }];
     
     
     
@@ -302,9 +313,9 @@
 //            [self showHUDError:message];
 //        }
 //    }];
-}
 
-//多图上传
+
+////多图上传
 - (void)uploadManyImage:(NSString*)Tid{
     //将数组中的图片  变成字符串
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
@@ -323,7 +334,7 @@
             str_all = [str2 stringByAppendingString:str_all];
         }
     }
-    NSLog(@"%@",str_all);
+    //NSLog(@"%@",str_all);
     NHCUploadImageMangApi *api = [[NHCUploadImageMangApi alloc]init];
     api.TimeID = Tid;
     api.photoStr = str_all;

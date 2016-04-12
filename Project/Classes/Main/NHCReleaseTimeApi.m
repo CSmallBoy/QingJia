@@ -21,7 +21,7 @@
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":dict[@"UserInf"][@"uuid"]};
-    NSDictionary *para = @{@"content":_content,
+    NSDictionary *para = @{@"content":_content,@"imageNames":_imageNames,
                            @"openAddress":@"1",
                            @"permitType":@"0",
                            @"createLocation":@"30,118",

@@ -144,7 +144,7 @@
 }
 
 #pragma mark - HCHomeTableViewCellDelegate
-
+//功能
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath functionIndex:(NSInteger)index
 {
     HCHomeInfo *info = self.dataSource[indexPath.section];
@@ -173,7 +173,7 @@
         [self requestLikeCount:info indexPath:indexPath];
     }
 }
-
+//图片
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath moreImgView:(NSInteger)index
 {
     HCHomePictureDetailViewController *pictureDetail = [[HCHomePictureDetailViewController alloc] init];
@@ -181,7 +181,7 @@
     pictureDetail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pictureDetail animated:YES];
 }
-
+//功能按钮
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn
 {
     HCHomeInfo *info = self.dataSource[indexPath.section];
@@ -260,19 +260,11 @@
     NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
     api.start_num = @"0";
     [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
-                [self.tableView.mj_header endRefreshing];
-        
-                    [self.dataSource removeAllObjects];
-                    [self.dataSource addObjectsFromArray:Data];
-    
-                    [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+        [self.dataSource removeAllObjects];
+        [self.dataSource addObjectsFromArray:Data];
+        [self.tableView reloadData];
     }];
-
-        
-
-        
- 
-
     _baseRequest = api;
 }
 
