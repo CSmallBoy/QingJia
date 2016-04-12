@@ -58,7 +58,7 @@
 //        
 //    }];
     
-    [readUserInfo url:kkUser];
+
 
 }
 
@@ -187,7 +187,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {//不编辑图片
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     
     if (_info.FTImages.count >= 10)
     {
@@ -242,6 +242,22 @@
 - (void)requestPublistData
 {
     [self showHUDView:nil];
+    //先上传 图片  在发布时光  获取到图片的名字  放入数组中
+    NSString *str = [readUserInfo url:kkTimes];
+    NSMutableArray *arr_image_path = [NSMutableArray array];
+    for (int i = 0 ; i < _info.FTImages.count-1 ; i ++) {
+        [KLHttpTool uploadImageWithUrl:str image:_info.FTImages[i] success:^(id responseObject) {
+            NSLog(@"%@",responseObject);
+            NSString *str = responseObject[@"Data"][@"files"][0];
+            [arr_image_path addObject:str];
+        } failure:^(NSError *error) {
+            
+        }];
+        
+    }
+    
+    
+    
     NHCReleaseTimeApi *api2 = [[NHCReleaseTimeApi alloc]init];
     api2.content =_info.FTContent;
     api2.openAddress = _info.OpenAddress;
