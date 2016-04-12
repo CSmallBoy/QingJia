@@ -457,6 +457,21 @@
 		8D1590631CB67D3400B08BDC /* HCFamilyapplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590621CB67D3400B08BDC /* HCFamilyapplyList.m */; };
 		8D1590661CB683C400B08BDC /* HCFamilyValidationJoinApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590651CB683C400B08BDC /* HCFamilyValidationJoinApply.m */; };
 		8D1590691CB68FC400B08BDC /* NHCCheckTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590681CB68FC400B08BDC /* NHCCheckTableViewCell.m */; };
+		8D15E53F1CBB39EA00FA3B11 /* HCTagAddObjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E53E1CBB39EA00FA3B11 /* HCTagAddObjectApi.m */; };
+		8D15E5431CBB3D5600FA3B11 /* HCNewTagInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E5421CBB3D5600FA3B11 /* HCNewTagInfo.m */; };
+		8D15E5461CBB430A00FA3B11 /* HCTagChangeObjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E5451CBB430A00FA3B11 /* HCTagChangeObjectApi.m */; };
+		8D15E5491CBB486700FA3B11 /* HCTagDeleteObjectApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E5481CBB486700FA3B11 /* HCTagDeleteObjectApi.m */; };
+		8D15E54C1CBB4AAC00FA3B11 /* HCObjectListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E54B1CBB4AAC00FA3B11 /* HCObjectListApi.m */; };
+		8D15E54F1CBB4C6400FA3B11 /* HCAddContactPersonApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E54E1CBB4C6400FA3B11 /* HCAddContactPersonApi.m */; };
+		8D15E5521CBB4DE400FA3B11 /* HCTagContactInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E5511CBB4DE400FA3B11 /* HCTagContactInfo.m */; };
+		8D15E5551CBB549500FA3B11 /* HCTagActivateApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E5541CBB549500FA3B11 /* HCTagActivateApi.m */; };
+		8D15E5581CBB550C00FA3B11 /* HCChangeContactPersonApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E5571CBB550C00FA3B11 /* HCChangeContactPersonApi.m */; };
+		8D15E55B1CBB6CB400FA3B11 /* HCDeleteContactPersonApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E55A1CBB6CB400FA3B11 /* HCDeleteContactPersonApi.m */; };
+		8D15E55E1CBB6F0800FA3B11 /* HCContractPersonListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E55D1CBB6F0800FA3B11 /* HCContractPersonListApi.m */; };
+		8D15E5611CBB726600FA3B11 /* HCTagEditApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E5601CBB726600FA3B11 /* HCTagEditApi.m */; };
+		8D15E5641CBB742E00FA3B11 /* HCTagStopUseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E5631CBB742E00FA3B11 /* HCTagStopUseApi.m */; };
+		8D15E5671CBB75C400FA3B11 /* HCTagDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E5661CBB75C400FA3B11 /* HCTagDetailApi.m */; };
+		8D15E56A1CBB778100FA3B11 /* HCTagAmostDetailListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15E5691CBB778100FA3B11 /* HCTagAmostDetailListApi.m */; };
 		8D21CA091C61D2B80071B32A /* HCMedicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */; };
 		8D21CA0C1C61D6310071B32A /* HCMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0B1C61D6310071B32A /* HCMedicalCell.m */; };
 		8D21CA0F1C61D6D10071B32A /* HCMedicalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0E1C61D6D10071B32A /* HCMedicalInfo.m */; };
@@ -1956,6 +1971,36 @@
 		8D1590651CB683C400B08BDC /* HCFamilyValidationJoinApply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFamilyValidationJoinApply.m; sourceTree = "<group>"; };
 		8D1590671CB68FC400B08BDC /* NHCCheckTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCCheckTableViewCell.h; sourceTree = "<group>"; };
 		8D1590681CB68FC400B08BDC /* NHCCheckTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCCheckTableViewCell.m; sourceTree = "<group>"; };
+		8D15E53D1CBB39EA00FA3B11 /* HCTagAddObjectApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagAddObjectApi.h; sourceTree = "<group>"; };
+		8D15E53E1CBB39EA00FA3B11 /* HCTagAddObjectApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagAddObjectApi.m; sourceTree = "<group>"; };
+		8D15E5411CBB3D5600FA3B11 /* HCNewTagInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNewTagInfo.h; sourceTree = "<group>"; };
+		8D15E5421CBB3D5600FA3B11 /* HCNewTagInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNewTagInfo.m; sourceTree = "<group>"; };
+		8D15E5441CBB430A00FA3B11 /* HCTagChangeObjectApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagChangeObjectApi.h; sourceTree = "<group>"; };
+		8D15E5451CBB430A00FA3B11 /* HCTagChangeObjectApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagChangeObjectApi.m; sourceTree = "<group>"; };
+		8D15E5471CBB486700FA3B11 /* HCTagDeleteObjectApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagDeleteObjectApi.h; sourceTree = "<group>"; };
+		8D15E5481CBB486700FA3B11 /* HCTagDeleteObjectApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagDeleteObjectApi.m; sourceTree = "<group>"; };
+		8D15E54A1CBB4AAC00FA3B11 /* HCObjectListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCObjectListApi.h; sourceTree = "<group>"; };
+		8D15E54B1CBB4AAC00FA3B11 /* HCObjectListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCObjectListApi.m; sourceTree = "<group>"; };
+		8D15E54D1CBB4C6400FA3B11 /* HCAddContactPersonApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddContactPersonApi.h; sourceTree = "<group>"; };
+		8D15E54E1CBB4C6400FA3B11 /* HCAddContactPersonApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddContactPersonApi.m; sourceTree = "<group>"; };
+		8D15E5501CBB4DE400FA3B11 /* HCTagContactInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagContactInfo.h; sourceTree = "<group>"; };
+		8D15E5511CBB4DE400FA3B11 /* HCTagContactInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagContactInfo.m; sourceTree = "<group>"; };
+		8D15E5531CBB549500FA3B11 /* HCTagActivateApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagActivateApi.h; sourceTree = "<group>"; };
+		8D15E5541CBB549500FA3B11 /* HCTagActivateApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagActivateApi.m; sourceTree = "<group>"; };
+		8D15E5561CBB550C00FA3B11 /* HCChangeContactPersonApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCChangeContactPersonApi.h; sourceTree = "<group>"; };
+		8D15E5571CBB550C00FA3B11 /* HCChangeContactPersonApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCChangeContactPersonApi.m; sourceTree = "<group>"; };
+		8D15E5591CBB6CB400FA3B11 /* HCDeleteContactPersonApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDeleteContactPersonApi.h; sourceTree = "<group>"; };
+		8D15E55A1CBB6CB400FA3B11 /* HCDeleteContactPersonApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDeleteContactPersonApi.m; sourceTree = "<group>"; };
+		8D15E55C1CBB6F0800FA3B11 /* HCContractPersonListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCContractPersonListApi.h; sourceTree = "<group>"; };
+		8D15E55D1CBB6F0800FA3B11 /* HCContractPersonListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCContractPersonListApi.m; sourceTree = "<group>"; };
+		8D15E55F1CBB726600FA3B11 /* HCTagEditApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagEditApi.h; sourceTree = "<group>"; };
+		8D15E5601CBB726600FA3B11 /* HCTagEditApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagEditApi.m; sourceTree = "<group>"; };
+		8D15E5621CBB742E00FA3B11 /* HCTagStopUseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagStopUseApi.h; sourceTree = "<group>"; };
+		8D15E5631CBB742E00FA3B11 /* HCTagStopUseApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagStopUseApi.m; sourceTree = "<group>"; };
+		8D15E5651CBB75C400FA3B11 /* HCTagDetailApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagDetailApi.h; sourceTree = "<group>"; };
+		8D15E5661CBB75C400FA3B11 /* HCTagDetailApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagDetailApi.m; sourceTree = "<group>"; };
+		8D15E5681CBB778100FA3B11 /* HCTagAmostDetailListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagAmostDetailListApi.h; sourceTree = "<group>"; };
+		8D15E5691CBB778100FA3B11 /* HCTagAmostDetailListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagAmostDetailListApi.m; sourceTree = "<group>"; };
 		8D21CA071C61D2B80071B32A /* HCMedicalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalViewController.h; sourceTree = "<group>"; };
 		8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalViewController.m; sourceTree = "<group>"; };
 		8D21CA0A1C61D6310071B32A /* HCMedicalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalCell.h; sourceTree = "<group>"; };
@@ -3260,6 +3305,7 @@
 				0A2B474B1C7F12C800AAA157 /* HCTagManagerApi.m */,
 				0A2B474C1C7F12C800AAA157 /* HCUnactivatedTagApi.h */,
 				0A2B474D1C7F12C800AAA157 /* HCUnactivatedTagApi.m */,
+				8D15E53C1CBB39CA00FA3B11 /* NewTagApi */,
 			);
 			path = TagManager;
 			sourceTree = "<group>";
@@ -4655,6 +4701,50 @@
 			path = Photo;
 			sourceTree = "<group>";
 		};
+		8D15E53C1CBB39CA00FA3B11 /* NewTagApi */ = {
+			isa = PBXGroup;
+			children = (
+				8D15E53D1CBB39EA00FA3B11 /* HCTagAddObjectApi.h */,
+				8D15E53E1CBB39EA00FA3B11 /* HCTagAddObjectApi.m */,
+				8D15E5441CBB430A00FA3B11 /* HCTagChangeObjectApi.h */,
+				8D15E5451CBB430A00FA3B11 /* HCTagChangeObjectApi.m */,
+				8D15E5471CBB486700FA3B11 /* HCTagDeleteObjectApi.h */,
+				8D15E5481CBB486700FA3B11 /* HCTagDeleteObjectApi.m */,
+				8D15E54A1CBB4AAC00FA3B11 /* HCObjectListApi.h */,
+				8D15E54B1CBB4AAC00FA3B11 /* HCObjectListApi.m */,
+				8D15E54D1CBB4C6400FA3B11 /* HCAddContactPersonApi.h */,
+				8D15E54E1CBB4C6400FA3B11 /* HCAddContactPersonApi.m */,
+				8D15E5561CBB550C00FA3B11 /* HCChangeContactPersonApi.h */,
+				8D15E5571CBB550C00FA3B11 /* HCChangeContactPersonApi.m */,
+				8D15E5591CBB6CB400FA3B11 /* HCDeleteContactPersonApi.h */,
+				8D15E55A1CBB6CB400FA3B11 /* HCDeleteContactPersonApi.m */,
+				8D15E55C1CBB6F0800FA3B11 /* HCContractPersonListApi.h */,
+				8D15E55D1CBB6F0800FA3B11 /* HCContractPersonListApi.m */,
+				8D15E5531CBB549500FA3B11 /* HCTagActivateApi.h */,
+				8D15E5541CBB549500FA3B11 /* HCTagActivateApi.m */,
+				8D15E55F1CBB726600FA3B11 /* HCTagEditApi.h */,
+				8D15E5601CBB726600FA3B11 /* HCTagEditApi.m */,
+				8D15E5621CBB742E00FA3B11 /* HCTagStopUseApi.h */,
+				8D15E5631CBB742E00FA3B11 /* HCTagStopUseApi.m */,
+				8D15E5651CBB75C400FA3B11 /* HCTagDetailApi.h */,
+				8D15E5661CBB75C400FA3B11 /* HCTagDetailApi.m */,
+				8D15E5681CBB778100FA3B11 /* HCTagAmostDetailListApi.h */,
+				8D15E5691CBB778100FA3B11 /* HCTagAmostDetailListApi.m */,
+			);
+			path = NewTagApi;
+			sourceTree = "<group>";
+		};
+		8D15E5401CBB3D0400FA3B11 /* NewTagModel */ = {
+			isa = PBXGroup;
+			children = (
+				8D15E5411CBB3D5600FA3B11 /* HCNewTagInfo.h */,
+				8D15E5421CBB3D5600FA3B11 /* HCNewTagInfo.m */,
+				8D15E5501CBB4DE400FA3B11 /* HCTagContactInfo.h */,
+				8D15E5511CBB4DE400FA3B11 /* HCTagContactInfo.m */,
+			);
+			path = NewTagModel;
+			sourceTree = "<group>";
+		};
 		8D97900D1CB3A00B00FE3C12 /* ProductCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -5271,6 +5361,7 @@
 		C78D79A81C5F28F700622CE2 /* TagManager */ = {
 			isa = PBXGroup;
 			children = (
+				8D15E5401CBB3D0400FA3B11 /* NewTagModel */,
 				C78D79A91C5F28F700622CE2 /* HCTagManagerInfo.h */,
 				C78D79AA1C5F28F700622CE2 /* HCTagManagerInfo.m */,
 			);
@@ -7447,6 +7538,7 @@
 				0A5491221C2BC32D0085F50D /* ZXSMSParsedResult.m in Sources */,
 				8D131A921C7D7C7F00F0D5A0 /* ZLPhotoPickerBrowserPhotoImageView.m in Sources */,
 				0A2B475C1C7F12C800AAA157 /* HCCreateGradeApi.m in Sources */,
+				8D15E54F1CBB4C6400FA3B11 /* HCAddContactPersonApi.m in Sources */,
 				C78D7AF21C5F28F700622CE2 /* HCNotificationDetailViewController.m in Sources */,
 				0A5491AD1C2BC32D0085F50D /* ZXPDF417BoundingBox.m in Sources */,
 				0A5491B71C2BC32D0085F50D /* ZXPDF417.m in Sources */,
@@ -7470,6 +7562,7 @@
 				0A54913D1C2BC32D0085F50D /* ZXBitSource.m in Sources */,
 				8D97903C1CB3A00B00FE3C12 /* HCProductIntroductionInfo.m in Sources */,
 				C7B00B551C5F26050010F93B /* AddFriendViewController.m in Sources */,
+				8D15E5641CBB742E00FA3B11 /* HCTagStopUseApi.m in Sources */,
 				C78D7C981C5F2C1200622CE2 /* Scan_VC.m in Sources */,
 				C7B00B851C5F26050010F93B /* DACircularProgressView.m in Sources */,
 				8D9790331CB3A00B00FE3C12 /* HCApplyReissueResonInfo.m in Sources */,
@@ -7491,6 +7584,7 @@
 				8D131A8D1C7D7C7F00F0D5A0 /* ZLCameraViewController.m in Sources */,
 				0A54910F1C2BC32D0085F50D /* ZXAddressBookDoCoMoResultParser.m in Sources */,
 				C78D7C911C5F2C1200622CE2 /* HCTagManagerDetailViewController.m in Sources */,
+				8D15E5671CBB75C400FA3B11 /* HCTagDetailApi.m in Sources */,
 				0A5491661C2BC32D0085F50D /* ZXDataMatrixSymbolInfo144.m in Sources */,
 				C752A8771CB4F6B7006719F1 /* HCUserHeathViewController.m in Sources */,
 				C7B00B2E1C5F26050010F93B /* EMGifImage.m in Sources */,
@@ -7626,6 +7720,7 @@
 				C74D2B0A1CB683EE00A260A4 /* NHCDownLoadManyApi.m in Sources */,
 				0A8BE3961C7E8D6A008E8100 /* HCCheckInfo.m in Sources */,
 				0A5491C71C2BC32D0085F50D /* ZXQRCodeErrorCorrectionLevel.m in Sources */,
+				8D15E5461CBB430A00FA3B11 /* HCTagChangeObjectApi.m in Sources */,
 				0A5491091C2BC32D0085F50D /* ZXAztecToken.m in Sources */,
 				0A54918F1C2BC32D0085F50D /* ZXCodaBarWriter.m in Sources */,
 				0A5491B61C2BC32D0085F50D /* ZXPDF417DetectorResult.m in Sources */,
@@ -7661,6 +7756,7 @@
 				C78D7D4C1C5F342700622CE2 /* UUDatePicker_DateModel.m in Sources */,
 				0A54917B1C2BC32D0085F50D /* ZXAnyAIDecoder.m in Sources */,
 				C7B00B571C5F26050010F93B /* ApplyViewController.m in Sources */,
+				8D15E5611CBB726600FA3B11 /* HCTagEditApi.m in Sources */,
 				0A5491B81C2BC32D0085F50D /* ZXPDF417BarcodeMatrix.m in Sources */,
 				0A54912E1C2BC32D0085F50D /* ZXVINResultParser.m in Sources */,
 				C7B00B451C5F26050010F93B /* ChatGroupDetailViewController.m in Sources */,
@@ -7762,6 +7858,7 @@
 				C7B00B9E1C5F26050010F93B /* PSTCollectionViewUpdateItem.m in Sources */,
 				0A5491201C2BC32D0085F50D /* ZXResultParser.m in Sources */,
 				0A5491961C2BC32D0085F50D /* ZXEAN13Writer.m in Sources */,
+				8D15E5581CBB550C00FA3B11 /* HCChangeContactPersonApi.m in Sources */,
 				0A5491771C2BC32D0085F50D /* ZXAI013x0xDecoder.m in Sources */,
 				8D05FF6F1CB39EB1005AC51C /* HCMtalkAuditingController.m in Sources */,
 				0A2B46F71C7F12AF00AAA157 /* HCPraiseTagListView.m in Sources */,
@@ -7781,12 +7878,14 @@
 				C752A87F1CB515A6006719F1 /* NHCGetUserHeathApi.m in Sources */,
 				C7B00B351C5F26050010F93B /* NSDate+Category.m in Sources */,
 				0A5491691C2BC32D0085F50D /* ZXDataMatrixReader.m in Sources */,
+				8D15E5491CBB486700FA3B11 /* HCTagDeleteObjectApi.m in Sources */,
 				C7B00B371C5F26050010F93B /* NSString+Valid.m in Sources */,
 				0A5491501C2BC32D0085F50D /* ZXErrors.m in Sources */,
 				C7B00BB01C5F26050010F93B /* EaseMessageReadManager.m in Sources */,
 				8D131A9B1C7D7C7F00F0D5A0 /* ZLPhotoPickerGroup.m in Sources */,
 				0A6B7F191BF1EB74008D54B3 /* UIAlertView+HTBlock.m in Sources */,
 				0A8BE3B61C7E8D7C008E8100 /* HCCheckTableViewCell.m in Sources */,
+				8D15E54C1CBB4AAC00FA3B11 /* HCObjectListApi.m in Sources */,
 				8D1191201C5F3CDD003505D3 /* HCNotifcationMessageCell.m in Sources */,
 				C752A87C1CB4FF22006719F1 /* NHCUserHeathApi.m in Sources */,
 				0A2B47781C7F12C800AAA157 /* HCPromisedAddCallMessageAPI.m in Sources */,
@@ -7918,6 +8017,7 @@
 				C78D7CA61C5F2C4D00622CE2 /* HCTagManagerTableViewCell.m in Sources */,
 				0A6B7F231BF1EB74008D54B3 /* HCDataMgr.m in Sources */,
 				C78D7D541C5F342700622CE2 /* HCPromisedContactTableViewCell.m in Sources */,
+				8D15E53F1CBB39EA00FA3B11 /* HCTagAddObjectApi.m in Sources */,
 				0A5491511C2BC32D0085F50D /* ZXInvertedLuminanceSource.m in Sources */,
 				C78D7B931C5F28F700622CE2 /* HCTableViewController.m in Sources */,
 				0A5491651C2BC32D0085F50D /* ZXDataMatrixSymbolInfo.m in Sources */,
@@ -7962,6 +8062,7 @@
 				0A5491C51C2BC32D0085F50D /* ZXQRCodeDecoder.m in Sources */,
 				C7B00B651C5F26050010F93B /* SettingsViewController.m in Sources */,
 				0A5491781C2BC32D0085F50D /* ZXAI01AndOtherAIs.m in Sources */,
+				8D15E5521CBB4DE400FA3B11 /* HCTagContactInfo.m in Sources */,
 				C7B00BB61C5F26050010F93B /* EaseLocationViewController.m in Sources */,
 				C78D7B211C5F28F700622CE2 /* HCNotifcationMessageInfo.m in Sources */,
 				C78D7AF61C5F28F700622CE2 /* HCSaveNotificationViewController.m in Sources */,
@@ -8005,6 +8106,7 @@
 				0A5491AC1C2BC32D0085F50D /* ZXPDF417BarcodeValue.m in Sources */,
 				0A54919F1C2BC32D0085F50D /* ZXOneDReader.m in Sources */,
 				0A2B47711C7F12C800AAA157 /* HCApplyReissueResonApi.m in Sources */,
+				8D15E55B1CBB6CB400FA3B11 /* HCDeleteContactPersonApi.m in Sources */,
 				C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */,
 				C7B00B861C5F26050010F93B /* EMSDImageCache.m in Sources */,
 				8D131A961C7D7C7F00F0D5A0 /* ZLPhotoPickerCollectionView.m in Sources */,
@@ -8088,7 +8190,9 @@
 				C73C0B861CA28ABE0034E42E /* NHCResgistVerifyApi.m in Sources */,
 				C7B00B321C5F26050010F93B /* SRSlimeView.m in Sources */,
 				C7B00BB21C5F26050010F93B /* EaseEmojiEmoticons.m in Sources */,
+				8D15E5431CBB3D5600FA3B11 /* HCNewTagInfo.m in Sources */,
 				8D9790551CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m in Sources */,
+				8D15E56A1CBB778100FA3B11 /* HCTagAmostDetailListApi.m in Sources */,
 				0A6B7F261BF1EB74008D54B3 /* HCVersionMgr.m in Sources */,
 				C7B00B4B1C5F26050010F93B /* GroupSettingViewController.m in Sources */,
 				0A54915C1C2BC32D0085F50D /* ZXDataMatrixDetector.m in Sources */,
@@ -8102,6 +8206,7 @@
 				0A5491531C2BC32D0085F50D /* ZXPlanarYUVLuminanceSource.m in Sources */,
 				0A5491A31C2BC32D0085F50D /* ZXUPCEANExtension5Support.m in Sources */,
 				0A2B47651C7F12C800AAA157 /* HCCheckCodeApi.m in Sources */,
+				8D15E55E1CBB6F0800FA3B11 /* HCContractPersonListApi.m in Sources */,
 				0A5491AE1C2BC32D0085F50D /* ZXPDF417Codeword.m in Sources */,
 				C7B00B8D1C5F26050010F93B /* MKAnnotationView+EMWebCache.m in Sources */,
 				8D131A871C7D7C7F00F0D5A0 /* UIView+ZLExtension.m in Sources */,
@@ -8110,6 +8215,7 @@
 				0A2B476D1C7F12C800AAA157 /* HCNotificationDeleteApi.m in Sources */,
 				8D9790371CB3A00B00FE3C12 /* HCLogisticsInfo.m in Sources */,
 				0A2B46E61C7F12AF00AAA157 /* HCHomeViewController.m in Sources */,
+				8D15E5551CBB549500FA3B11 /* HCTagActivateApi.m in Sources */,
 				0A5491B01C2BC32D0085F50D /* ZXPDF417DecodedBitStreamParser.m in Sources */,
 				C7BE0E3B1C71A02A007D97A5 /* HCMailListViewController.m in Sources */,
 				C7B00B921C5F26050010F93B /* UIImage+EMWebP.m in Sources */,
