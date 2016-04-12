@@ -19,13 +19,6 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
        
-//        NSMutableData *imageData = [NSMutableData data];
-//        NSData *data;
-//        for (UIImage *image in imageArr) {
-//            data = UIImageJPEGRepresentation(image, 0.5);
-//            [imageData appendData:data];
-//        }
-//        
         NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyyMMddHHmmss";

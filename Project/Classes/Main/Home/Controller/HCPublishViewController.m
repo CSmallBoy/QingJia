@@ -49,14 +49,16 @@
     [self.tableView registerClass:[HCPublishTableViewCell class] forCellReuseIdentifier:HCPublishCell];
 
 //  上传多图
-    NSString * string = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"times",[HCAccountMgr manager].loginInfo.UUID,[readUserInfo getReadDic][@"Token"]]];
-    UIImage *image = [UIImage imageNamed:@"text.jpg"];
-    NSArray *arr = @[image,image];
-    [KLHttpTool uploadImageWithUrl:string image:arr success:^(id responseObject) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
+//    NSString * string = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"times",[HCAccountMgr manager].loginInfo.UUID,[readUserInfo getReadDic][@"Token"]]];
+//    UIImage *image = [UIImage imageNamed:@"text.jpg"];
+//    NSArray *arr = @[image,image];
+//    [KLHttpTool uploadImageWithUrl:string image:arr success:^(id responseObject) {
+//        
+//    } failure:^(NSError *error) {
+//        
+//    }];
+    
+    [readUserInfo url:kkUser];
 
 }
 
