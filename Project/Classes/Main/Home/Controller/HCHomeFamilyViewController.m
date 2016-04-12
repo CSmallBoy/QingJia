@@ -267,104 +267,12 @@
     
                     [self.tableView reloadData];
     }];
-//    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
-//    api.start_num = @"0";
-//    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
-//        [self.tableView.mj_header endRefreshing];
-//        [self.dataSource removeAllObjects];
-//   
-//        NSArray *arr = Data[@"Data"][@"rows"];
-//        NSMutableArray *arring = [NSMutableArray array];
-//        for (int i = 0 ; i < arr.count; i ++) {
-//            HCHomeInfo *info = [[HCHomeInfo alloc]init];
-//            info.FTContent = arr[i][@"content"];
-//            info.TimeID = arr[i][@"timesId"];
-//            info.CreateAddrSmall = arr[i][@"createAddrSmall"];
-//            info.NickName = arr[i][@"creatorName"];
-//            info.CreateTime = arr[i][@"createTime"];
-//            info.TimeID = arr[i][@"timesId"];
-//            //这一步应该放到最后
-//            //[arring addObject:info];
-//           
-//            NHCDownLoadManyApi *api = [[NHCDownLoadManyApi alloc]init];
-//            
-//            api.TimeID = info.TimeID;
-//            NSMutableArray *arr_ftImages= [NSMutableArray array];
-//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-//                
-//                for (int i = 0; i < array.count; i++) {
-//                    if (i==0) {
-//                        //出去没用图片
-//                    }else{
-//                        //这里是  图片 uiimage
-//                        if (IsEmpty(array[i])) {
-//                            
-//                        }else{
-//                            [arr_ftImages addObject:[readUserInfo image64:array[i]]];
-//                        }
-//                       
-//                    }
-//                }
-//                //图片赋值因为  有空值 要进行判断   设置一个通知  下载完成后  添加到[self.dataSource addObjectsFromArray:arring];  然后再刷新
-//                info.FTImages = arr_ftImages;
-//                //不在这个地方写
-//            }];
-//
-//            [arring addObject:info];
-//            [self.dataSource addObjectsFromArray:arring];
-//            [self.tableView reloadData];
-//            
-//        }
 
-       // 在下载图片中执行这个操作 [self.dataSource addObjectsFromArray:array];
-        //所有时光图片  arr_image_all
         
-        //在此处获取到 时光的东西找到对用的timeId 然后在加载
-//        for (int i = 0; i < array.count; i ++) {
-//            NHCDownLoadManyApi *api = [[NHCDownLoadManyApi alloc]init];
-//            HCHomeInfo *info = self.dataSource[i];
-//            api.TimeID = info.TimeID;
-//             NSMutableArray *arr_ftImages= [NSMutableArray array];
-//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-//               
-//                for (int i = 0; i < array.count; i++) {
-//                    if (i==0) {
-//                        //出去没用图片
-//                    }else{
-//                        //这里是  图片 uiimage
-//                        [arr_ftImages addObject:[readUserInfo image64:array[i]]];
-//                    }
-//                }
-//                [self.tableView reloadData];
-//                
-//            }];
-//            [arr_image_all addObject:arr_ftImages];
-//            
-//        }
-//        
-//       
+
         
-        
-        
-//        HCHomeInfo *lastInfo = [array lastObject];
-//        api.start_num = lastInfo.KeyId;
-//        [self writeLocationData:array];
-        
-            
-//    HCHomeApi *api = [[HCHomeApi alloc] init];
-//    api.Start = @"0";
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-//        [self.tableView.mj_header endRefreshing];
-//
-//            [self.dataSource removeAllObjects];
-//            [self.dataSource addObjectsFromArray:array];
-//            
-//            HCHomeInfo *lastInfo = [array lastObject];
-//            api.Start = lastInfo.KeyId;
-//            
-//            [self writeLocationData:array];
-//            [self.tableView reloadData];
-//    }];
+ 
+
     _baseRequest = api;
 }
 

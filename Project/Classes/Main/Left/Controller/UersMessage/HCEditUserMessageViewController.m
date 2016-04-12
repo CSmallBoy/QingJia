@@ -15,6 +15,8 @@
 #import "NHCUploadImageApi.h"
 //医疗信息卡
 #import "HCUserHeathViewController.h"
+
+
 #import "HCPickerView.h"
 
 
@@ -256,58 +258,87 @@
 {
     
     [self.tableView reloadData];
-    api.myModel = model;
+ 
     
     [self showHUDView:nil];
     
      NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac){
-        if (requestStatus == HCRequestStatusSuccess) {
-            
-         
-            [dic setObject:str forKey:@"birthday"];
-            [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
-            [dic setObject:model.PhotoStr forKey:@"PhotoStr"];
-            [dic setObject:model.nickName forKey:@"nickName"];
-            [dic setObject:model.age forKey:@"age"];
-            [dic setObject:model.adress forKey:@"adress"];
-            [dic setObject:model.company forKey:@"company"];
-            [dic setObject:model.professional forKey:@"professional"];
-            
-            [readUserInfo Dicdelete];
-            [readUserInfo creatDic:dic];
-        }
+   //先上传图片 在完善用户信息
+    NSString * string = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"user",[HCAccountMgr manager].loginInfo.UUID,[readUserInfo getReadDic][@"Token"]]];
+    //chosse 是选择好的图片
+    UIImage *image = choose;
+    [KLHttpTool uploadImageWithUrl:string image:choose success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        //在这个地方执行上传文字的操作
+        model.userPhoto = responseObject[@"Data"][@"files"][0];
+        api.myModel = model;
         
-    }];
-    //代理方法传值
-    [_delegate userInfoName:model];
-    //图片上传
-    NHCUploadImageApi *api_image = [[NHCUploadImageApi alloc]init];
-    api_image.type = @"0";
-    api_image.photoStr = model.PhotoStr;
-    [api_image startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-        
-        [self hideHUDView];
-        if (requestStatus == HCRequestStatusSuccess) {
-            
-            for (UIViewController *temp in self.navigationController.viewControllers) {
-                if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
-                    
-                    [self.navigationController popToViewController:temp animated:YES];
-                }
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac) {
+            if (requestStatus == HCRequestStatusSuccess) {
+                [dic setObject:str forKey:@"birthday"];
+                [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
+                [dic setObject:model.userPhoto forKey:@"PhotoStr"];
+                [dic setObject:model.nickName forKey:@"nickName"];
+                [dic setObject:model.age forKey:@"age"];
+                [dic setObject:model.adress forKey:@"adress"];
+                [dic setObject:model.company forKey:@"company"];
+                [dic setObject:model.professional forKey:@"professional"];
+                [readUserInfo Dicdelete];
+                [readUserInfo creatDic:dic];
             }
-            
-            NSDictionary *dict = @{@"photo":choose};
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserPhoto" object:nil userInfo:dict];
-            [self showHUDSuccess:@"保存成功"];
-        }
-        else
-        {
-            [self showHUDSuccess:@"保存失败"];
-        }
+        }];
+        
+    } failure:^(NSError *error) {
         
     }];
+//    //完善用户信息
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac){
+//        if (requestStatus == HCRequestStatusSuccess) {
+//            
+//         
+//            [dic setObject:str forKey:@"birthday"];
+//            [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
+//            [dic setObject:model.PhotoStr forKey:@"PhotoStr"];
+//            [dic setObject:model.nickName forKey:@"nickName"];
+//            [dic setObject:model.age forKey:@"age"];
+//            [dic setObject:model.adress forKey:@"adress"];
+//            [dic setObject:model.company forKey:@"company"];
+//            [dic setObject:model.professional forKey:@"professional"];
+//            
+//            [readUserInfo Dicdelete];
+//            [readUserInfo creatDic:dic];
+//        }
+//        
+//    }];
+//    //代理方法传值
+//    [_delegate userInfoName:model];
+//    //图片上传
+//    NHCUploadImageApi *api_image = [[NHCUploadImageApi alloc]init];
+//    api_image.type = @"0";
+//    api_image.photoStr = model.PhotoStr;
+//    [api_image startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        
+//        [self hideHUDView];
+//        if (requestStatus == HCRequestStatusSuccess) {
+//            
+//            for (UIViewController *temp in self.navigationController.viewControllers) {
+//                if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
+//                    
+//                    [self.navigationController popToViewController:temp animated:YES];
+//                }
+//            }
+//            
+//            NSDictionary *dict = @{@"photo":choose};
+//            
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserPhoto" object:nil userInfo:dict];
+//            [self showHUDSuccess:@"保存成功"];
+//        }
+//        else
+//        {
+//            [self showHUDSuccess:@"保存失败"];
+//        }
+//        
+//    }];
     
     
     

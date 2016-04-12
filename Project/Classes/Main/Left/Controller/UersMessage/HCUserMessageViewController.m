@@ -18,6 +18,7 @@
 #import "NHCGetUserHeathApi.h"
 #import "NHCDownloadImageApi.h"
 #import "HCUserHeathViewController.h"
+#import "UIButton+EMWebCache.h"
 #define HCUserCell @"HCUserMessageTableViewCell"
 
 @interface HCUserMessageViewController ()<HCPickerViewDelegate,userInfoDelegate>{
@@ -41,31 +42,13 @@
 @implementation HCUserMessageViewController
 - (void)viewWillAppear:(BOOL)animated{
     _dict = [readUserInfo getReadDic];
-    //若果本地没有头像就要去下载  如果就没有上传
-    //这个是判断本地是否上传过头像
-    if (IsEmpty(_dict[@"PhotoStr"])) {
-        
-        if (IsEmpty(_dict[@"UserInf"][@"company"])) {
-            //默认头像
-             [_headButton setBackgroundImage:OrigIMG(@"2Dbarcode_message_Background") forState:UIControlStateNormal];
-        }else{
-            //下载
-            NHCDownloadImageApi *api  = [[NHCDownloadImageApi alloc]init];
-            api.type = @"0";
-            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *photostr) {
-                [_headButton setBackgroundImage:[readUserInfo image64:photostr] forState:UIControlStateNormal];
-                str = photostr;
-               
-                NSDictionary *dict = [readUserInfo getReadDic];
-                [dict setValue:str forKey:@"PhotoStr"];
-                [readUserInfo Dicdelete];
-                [readUserInfo creatDic:dict];
-            
-            }];
-        }
-       
+    //先判断本地有没有 没有 则是没有上传  自己手机上有没有
+    if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
+
+        [_headButton setBackgroundImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
     }else{
-        [_headButton setBackgroundImage:[readUserInfo image64:_dict[@"PhotoStr"]] forState:UIControlStateNormal];
+        //4.11日修改
+        [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"]] forState:UIControlStateNormal];
     }
     //获取健康 信息
     if (IsEmpty(str)) {
@@ -274,7 +257,7 @@
 {
     HCUserHeadImageViewController *headImage = [[HCUserHeadImageViewController alloc] init];
     if (IsEmpty(str)) {
-        headImage.head_image = [readUserInfo imageString:IMG(@"1.png")];
+//        headImage.head_image = [readUserInfo imageString:IMG(@"1.png")];
     }else{
          headImage.head_image = str;
     }

@@ -19,6 +19,7 @@
 #import "NHCListOfTimeAPi.h"
 //获取时光多图
 #import "NHCDownLoadManyApi.h"
+#import "KLHttpTool.h"
 #define HCPublishCell @"HCPublishCell"
 
 @interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate>
@@ -46,13 +47,16 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCPublishTableViewCell class] forCellReuseIdentifier:HCPublishCell];
-    //下载多图  测试 可以用
-//    NHCDownLoadManyApi *api = [[NHCDownLoadManyApi alloc]init];
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-//        
 
-//    }];
-//   
+//  上传多图
+    NSString * string = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"times",[HCAccountMgr manager].loginInfo.UUID,[readUserInfo getReadDic][@"Token"]]];
+    UIImage *image = [UIImage imageNamed:@"text.jpg"];
+    NSArray *arr = @[image,image];
+    [KLHttpTool uploadImageWithUrl:string image:arr success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 
 }
 

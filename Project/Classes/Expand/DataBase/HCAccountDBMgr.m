@@ -116,6 +116,7 @@ static HCAccountDBMgr *_sharedManager = nil;
                          HomeAddress TEXT, \
                          Company TEXT, \
                          Career TEXT, \
+                         imageName TEXT, \
                          chineseZodiac ,\
                          status TEXT);",
                          kHCDBTableUser];
@@ -136,48 +137,95 @@ static HCAccountDBMgr *_sharedManager = nil;
 {
     //清空表数据
     [self truncateTable];
-    
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO '%@'(\
-                           Token,\
-                           UUID,\
-                           PhoneNo,\
-                           UserName,\
-                           TrueName,\
-                           NickName,\
-                           Sex,\
-                           birthDay,\
-                           createFamilyId,\
-                           DefaultFamilyID,\
-                           UserDescription,\
-                           allFamilyIds,\
-                           HomeAddress,\
-                           Company,\
-                           Career,\
-                           chatName,\
-                           chatPwd,\
-                           chineseZodiac ,\
-                           status)\
-                           VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');",
-                           kHCDBTableUser,
-                           loginInfo.Token,
-                           loginInfo.UUID,
-                           loginInfo.PhoneNo,
-                           loginInfo.UserName,
-                           loginInfo.TrueName,
-                           loginInfo.NickName,
-                           loginInfo.Sex,
-                           loginInfo.birthday,
-                           loginInfo.createFamilyId,
-                           loginInfo.DefaultFamilyID,
-                           loginInfo.UserDescription,
-                           loginInfo.allFamilyIds,
-                           loginInfo.HomeAddress,
-                           loginInfo.Company,
-                           loginInfo.Career,
-                           loginInfo.chatName,
-                           loginInfo.chatPwd,
-                           loginInfo.chineseZodiac,
-                           loginInfo.status];
+    NSString *insertSql;
+    if (IsEmpty(loginInfo.userHeadPhoto)) {
+        insertSql = [NSString stringWithFormat:@"INSERT INTO '%@'(\
+                               Token,\
+                               UUID,\
+                               PhoneNo,\
+                               UserName,\
+                               TrueName,\
+                               NickName,\
+                               Sex,\
+                               birthDay,\
+                               createFamilyId,\
+                               DefaultFamilyID,\
+                               UserDescription,\
+                               allFamilyIds,\
+                               HomeAddress,\
+                               Company,\
+                               Career,\
+                               chatName,\
+                               chatPwd,\
+                               chineseZodiac ,\
+                               imageName ,\
+                               status)\
+                               VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@',  '%@','%@');",
+                               kHCDBTableUser,
+                               loginInfo.Token,
+                               loginInfo.UUID,
+                               loginInfo.PhoneNo,
+                               loginInfo.UserName,
+                               loginInfo.TrueName,
+                               loginInfo.NickName,
+                               loginInfo.Sex,
+                               loginInfo.birthday,
+                               loginInfo.createFamilyId,
+                               loginInfo.DefaultFamilyID,
+                               loginInfo.UserDescription,
+                               loginInfo.allFamilyIds,
+                               loginInfo.HomeAddress,
+                               loginInfo.Company,
+                               loginInfo.Career,
+                               loginInfo.chatName,
+                               loginInfo.chatPwd,
+                               loginInfo.chineseZodiac,
+                               loginInfo.userHeadPhoto,
+                               loginInfo.status];
+    }else{
+      insertSql   = [NSString stringWithFormat:@"INSERT INTO '%@'(\
+                               Token,\
+                               UUID,\
+                               PhoneNo,\
+                               UserName,\
+                               TrueName,\
+                               NickName,\
+                               Sex,\
+                               birthDay,\
+                               createFamilyId,\
+                               DefaultFamilyID,\
+                               UserDescription,\
+                               allFamilyIds,\
+                               HomeAddress,\
+                               Company,\
+                               Career,\
+                               chatName,\
+                               chatPwd,\
+                               chineseZodiac ,\
+                               status)\
+                               VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@',  '%@');",
+                               kHCDBTableUser,
+                               loginInfo.Token,
+                               loginInfo.UUID,
+                               loginInfo.PhoneNo,
+                               loginInfo.UserName,
+                               loginInfo.TrueName,
+                               loginInfo.NickName,
+                               loginInfo.Sex,
+                               loginInfo.birthday,
+                               loginInfo.createFamilyId,
+                               loginInfo.DefaultFamilyID,
+                               loginInfo.UserDescription,
+                               loginInfo.allFamilyIds,
+                               loginInfo.HomeAddress,
+                               loginInfo.Company,
+                               loginInfo.Career,
+                               loginInfo.chatName,
+                               loginInfo.chatPwd,
+                               loginInfo.chineseZodiac,
+                               loginInfo.status];
+    }
+   
     BOOL res = [self executeUpdate:insertSql];
     return res;
 }
@@ -244,6 +292,7 @@ static HCAccountDBMgr *_sharedManager = nil;
             loginInfo.Career = StringFromObject([set stringForColumn:@"career"]);
             loginInfo.chatName = StringFromObject([set stringForColumn:@"chatName"]);
             loginInfo.chatPwd = StringFromObject([set stringForColumn:@"chatPwd"]);
+             loginInfo.chatPwd = StringFromObject([set stringForColumn:@"imageName"]);
             accountInfo(loginInfo);
             [set close];
             

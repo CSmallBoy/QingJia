@@ -46,7 +46,7 @@
     
     _accountTextField.text = [self lastLoginUsername];
     //环信注册
-    [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:@"18300673331" password:@"csy1234"];
+    //[[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:@"18300673331" password:@"csy1234"];
 
     
 }

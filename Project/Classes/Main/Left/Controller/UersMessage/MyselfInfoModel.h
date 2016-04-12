@@ -20,4 +20,5 @@
 @property (nonatomic,copy)NSString *professional;
 @property (nonatomic,copy)NSString *PhotoStr;
 @property (nonatomic,copy)NSString *chineseZodiac;
+@property (nonatomic,copy)NSString *userPhoto;
 @end

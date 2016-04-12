@@ -28,8 +28,9 @@
                            @"homeAddress":_myModel.adress,
                            @"career":_myModel.professional,
                            @"userDescription":@"日行一善",
-                           @"company":_myModel.company
-                           ,@"birthDay":_myModel.birday
+                           @"company":_myModel.company,
+                           @"birthDay":_myModel.birday,
+                           @"imageName":_myModel.userPhoto
                            };
     NSDictionary *body = @{@"Para":para,@"Head":head};
     return body;

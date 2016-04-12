@@ -522,10 +522,13 @@
 		C758EE5A1C743E7A0081FFE1 /* red_tel.png in Resources */ = {isa = PBXBuildFile; fileRef = C758EE211C743E7A0081FFE1 /* red_tel.png */; };
 		C758EE5B1C743E7A0081FFE1 /* select_no.png in Resources */ = {isa = PBXBuildFile; fileRef = C758EE221C743E7A0081FFE1 /* select_no.png */; };
 		C758EE5C1C743E7A0081FFE1 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C758EE231C743E7A0081FFE1 /* selected.png */; };
+		C75EFD771CB939EF008C4C52 /* NHCHomeCommentsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C75EFD761CB939EF008C4C52 /* NHCHomeCommentsApi.m */; };
 		C762D1661CA53660006D2BB4 /* MyselfInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C762D1651CA53660006D2BB4 /* MyselfInfoModel.m */; };
 		C7692F561C3A4B2200582A10 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F511C3A4B2200582A10 /* MDCFocalPointView.m */; };
 		C7692F571C3A4B2200582A10 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F531C3A4B2200582A10 /* MDCFocusView.m */; };
 		C7692F581C3A4B2200582A10 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F551C3A4B2200582A10 /* MDCSpotlightView.m */; };
+		C77C2F601CBB7B5B0011233C /* KLHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */; };
+		C77C2F621CBB7FA50011233C /* caosiyuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C77C2F611CBB7FA50011233C /* caosiyuan.jpg */; };
 		C78D7AA51C5F28F700622CE2 /* HCCreateGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78571C5F28F600622CE2 /* HCCreateGradeViewController.m */; };
 		C78D7AA61C5F28F700622CE2 /* HCGradeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78591C5F28F600622CE2 /* HCGradeSuccessViewController.m */; };
 		C78D7AA71C5F28F700622CE2 /* HCGradeSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C78D785A1C5F28F600622CE2 /* HCGradeSuccessViewController.xib */; };
@@ -662,6 +665,7 @@
 		C79F9A841CB73F3600EEF224 /* HCLeftGradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79F9A831CB73F3600EEF224 /* HCLeftGradeView.m */; };
 		C79F9A8A1CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C79F9A891CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m */; };
 		C79F9A8D1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C79F9A8C1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m */; };
+		C7A270A41CBB8BE000B6FC9D /* text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7A270A31CBB8BE000B6FC9D /* text.jpg */; };
 		C7AFFABF1C48BEC900D4A628 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7AFFA871C48BEC900D4A628 /* UMSocialLocalizable.strings */; };
 		C7AFFAC01C48BEC900D4A628 /* libUMSocial_Sdk_4.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AFFA951C48BEC900D4A628 /* libUMSocial_Sdk_4.4.a */; };
 		C7AFFAC11C48BEC900D4A628 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7AFFA971C48BEC900D4A628 /* UMSCommentDetailController.xib */; };
@@ -2075,6 +2079,8 @@
 		C758EE211C743E7A0081FFE1 /* red_tel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_tel.png; path = ../red_tel.png; sourceTree = "<group>"; };
 		C758EE221C743E7A0081FFE1 /* select_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = select_no.png; path = ../select_no.png; sourceTree = "<group>"; };
 		C758EE231C743E7A0081FFE1 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = ../selected.png; sourceTree = "<group>"; };
+		C75EFD751CB939EF008C4C52 /* NHCHomeCommentsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeCommentsApi.h; sourceTree = "<group>"; };
+		C75EFD761CB939EF008C4C52 /* NHCHomeCommentsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeCommentsApi.m; sourceTree = "<group>"; };
 		C762D1641CA53660006D2BB4 /* MyselfInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfInfoModel.h; sourceTree = "<group>"; };
 		C762D1651CA53660006D2BB4 /* MyselfInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfInfoModel.m; sourceTree = "<group>"; };
 		C7692F501C3A4B2200582A10 /* MDCFocalPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocalPointView.h; sourceTree = "<group>"; };
@@ -2083,6 +2089,9 @@
 		C7692F531C3A4B2200582A10 /* MDCFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCFocusView.m; sourceTree = "<group>"; };
 		C7692F541C3A4B2200582A10 /* MDCSpotlightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSpotlightView.h; sourceTree = "<group>"; };
 		C7692F551C3A4B2200582A10 /* MDCSpotlightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCSpotlightView.m; sourceTree = "<group>"; };
+		C77C2F5E1CBB7B5B0011233C /* KLHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLHttpTool.h; sourceTree = "<group>"; };
+		C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLHttpTool.m; sourceTree = "<group>"; };
+		C77C2F611CBB7FA50011233C /* caosiyuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = caosiyuan.jpg; sourceTree = "<group>"; };
 		C78D78561C5F28F600622CE2 /* HCCreateGradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateGradeViewController.h; sourceTree = "<group>"; };
 		C78D78571C5F28F600622CE2 /* HCCreateGradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateGradeViewController.m; sourceTree = "<group>"; };
 		C78D78581C5F28F600622CE2 /* HCGradeSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGradeSuccessViewController.h; sourceTree = "<group>"; };
@@ -2342,6 +2351,7 @@
 		C79F9A891CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeDeleteApi.m; sourceTree = "<group>"; };
 		C79F9A8B1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeTimeThumbupApi.h; sourceTree = "<group>"; };
 		C79F9A8C1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeThumbupApi.m; sourceTree = "<group>"; };
+		C7A270A31CBB8BE000B6FC9D /* text.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = text.jpg; sourceTree = "<group>"; };
 		C7AFFA881C48BEC900D4A628 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		C7AFFA8A1C48BEC900D4A628 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		C7AFFA8B1C48BEC900D4A628 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -4793,6 +4803,8 @@
 				C79F9A891CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m */,
 				C79F9A8B1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.h */,
 				C79F9A8C1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m */,
+				C75EFD751CB939EF008C4C52 /* NHCHomeCommentsApi.h */,
+				C75EFD761CB939EF008C4C52 /* NHCHomeCommentsApi.m */,
 			);
 			name = HomeApi;
 			sourceTree = "<group>";
@@ -4815,6 +4827,10 @@
 		C752A8791CB4FE53006719F1 /* public */ = {
 			isa = PBXGroup;
 			children = (
+				C7A270A31CBB8BE000B6FC9D /* text.jpg */,
+				C77C2F611CBB7FA50011233C /* caosiyuan.jpg */,
+				C77C2F5E1CBB7B5B0011233C /* KLHttpTool.h */,
+				C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */,
 				C79E0EC61CA69D0C00717D9B /* readUserInfo.h */,
 				C79E0EC71CA69D0C00717D9B /* readUserInfo.m */,
 				C752A86F1CB4E6F8006719F1 /* NHCDownloadImageApi.h */,
@@ -7109,6 +7125,7 @@
 				C758EE5C1C743E7A0081FFE1 /* selected.png in Resources */,
 				C78D7B9A1C5F28F700622CE2 /* noticeMusic.wav in Resources */,
 				C7B00C631C5F26050010F93B /* chatBar_recordSelected@2x.png in Resources */,
+				C7A270A41CBB8BE000B6FC9D /* text.jpg in Resources */,
 				C7B00C621C5F26050010F93B /* chatBar_recordSelected.png in Resources */,
 				C7B00C2C1C5F26050010F93B /* VoiceSearchFeedback018.png in Resources */,
 				C7B00BD51C5F26050010F93B /* chat_receiver_bg@2x.png in Resources */,
@@ -7290,6 +7307,7 @@
 				C7B00C231C5F26050010F93B /* VoiceSearchFeedback013@2x.png in Resources */,
 				C7B00C8D1C5F26050010F93B /* groupPrivateHeader@2x.png in Resources */,
 				C7B00BFD1C5F26050010F93B /* VoiceSearchFeedback011@2x.png in Resources */,
+				C77C2F621CBB7FA50011233C /* caosiyuan.jpg in Resources */,
 				C7B00C0A1C5F26050010F93B /* VoiceSearchFeedback001.png in Resources */,
 				C7B00BD81C5F26050010F93B /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
 				0A67B21D1C0D63B300FB87C8 /* 0.jpg in Resources */,
@@ -7949,6 +7967,7 @@
 				C78D7AF61C5F28F700622CE2 /* HCSaveNotificationViewController.m in Sources */,
 				0A5491431C2BC32D0085F50D /* ZXDetectorResult.m in Sources */,
 				C7B00B331C5F26050010F93B /* THProgressView.m in Sources */,
+				C77C2F601CBB7B5B0011233C /* KLHttpTool.m in Sources */,
 				0A5491C81C2BC32D0085F50D /* ZXQRCodeFormatInformation.m in Sources */,
 				C78D7C901C5F2C1200622CE2 /* HClabelDetaViewController.m in Sources */,
 				0A8BE3B81C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.m in Sources */,
@@ -8064,6 +8083,7 @@
 				8D97903B1CB3A00B00FE3C12 /* HCMyOrderFollowInfo.m in Sources */,
 				8D131A8F1C7D7C7F00F0D5A0 /* ZLPhotoAssets.m in Sources */,
 				8D131A891C7D7C7F00F0D5A0 /* ViewController.m in Sources */,
+				C75EFD771CB939EF008C4C52 /* NHCHomeCommentsApi.m in Sources */,
 				C7B00B4D1C5F26050010F93B /* PublicGroupDetailViewController.m in Sources */,
 				C73C0B861CA28ABE0034E42E /* NHCResgistVerifyApi.m in Sources */,
 				C7B00B321C5F26050010F93B /* SRSlimeView.m in Sources */,

@@ -31,6 +31,7 @@
 @property (nonatomic, strong) NSString      *chatPwd;
 @property (nonatomic, strong) NSString      *chineseZodiac;
 @property (nonatomic, strong) NSString      *allFamilyIds;
+@property (nonatomic ,copy) NSString        *userHeadPhoto;
 
 
 @end

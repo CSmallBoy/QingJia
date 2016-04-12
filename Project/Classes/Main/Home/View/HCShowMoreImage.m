@@ -19,7 +19,7 @@
     }
 }
 
-//图片赋值
+//图片赋值  每一个图片都是一个button
 - (void)setImageUrlArr:(NSArray *)imageUrlArr
 {
     _imageUrlArr = imageUrlArr;

@@ -15,6 +15,10 @@
 //#define kAPIURL             @"https://baidu.com"
 
 #define kIMGURL        @"http://192.168.10.199:8008/"
+//图片上传
+#define kUPImageUrl  @"http://damaotech.com/rest/Photo/upload.do?"
+//图片下载
+#define kDWloadImageUrl  @"http://damaotech.com/uploads/thumbnail/"
 
 //appstore更新地址
 #define APP_STORE_URL   @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=890849784"

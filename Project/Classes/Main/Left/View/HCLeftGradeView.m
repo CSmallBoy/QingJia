@@ -43,16 +43,23 @@
     
     self = [super initWithFrame:frame];
     //用户
-    NHCDownloadImageApi *api = [[NHCDownloadImageApi alloc]init];
-    api.type = @"0";//0 代表个人
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *photostr) {
-        if (IsEmpty(photostr)) {
-            [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
-        }else{
-             [_headButton setImage:[readUserInfo image64:photostr] forState:UIControlStateNormal];
-        }
-       
-    }];
+//    NHCDownloadImageApi *api = [[NHCDownloadImageApi alloc]init];
+//    api.type = @"0";//0 代表个人
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *photostr) {
+//        if (IsEmpty(photostr)) {
+//            [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
+//        }else{
+//            
+//        }
+//       
+//    }];
+    NSDictionary *dict = [readUserInfo getFaimilyDic];
+    if (IsEmpty(dict[@"UserInf"][@"imageName"])) {
+       [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
+    }else{
+        [_headButton sd_setImageWithURL:[readUserInfo url:dict[@"UserInf"][@"imageName"]] forState:UIControlStateNormal];
+    }
+    
     if (self)
     {
         self.backgroundColor = RGB(34, 35, 37);
@@ -88,8 +95,7 @@
                 //没有图片的时候显示的默认头像
                 [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
             }else{
-                UIImage *image = [readUserInfo image64:dict[@"PhotoStr"]];
-                [_gradeHeadButton setImage:image forState:UIControlStateNormal];
+                 [_gradeHeadButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"]] forState:UIControlStateNormal];
             }
         }
         else
@@ -119,8 +125,8 @@
                     //没有图片的时候显示的默认头像
                     [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
                 }else{
-                    UIImage *image = [readUserInfo image64:dict[@"PhotoStr"]];
-                    [_gradeHeadButton setImage:image forState:UIControlStateNormal];
+                    
+                    [_gradeHeadButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"]] forState:UIControlStateNormal];
                 }
 
             }
@@ -158,7 +164,7 @@
     
     }
 }
-
+//家庭
 -(void)requestFamilyMessage
 {
 
@@ -292,12 +298,14 @@
         
         NSDictionary *dict = [readUserInfo getReadDic];
         
-        if (dict[@"PhotoStr"]==nil) {
+        if (IsEmpty(dict[@"UserInf"][@"imageName"])) {
             //没有图片的时候显示的默认头像
-            [_headButton sd_setImageWithURL:[NSURL URLWithString:@"http://xiaodaohang.cn/3.jpg"] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
+            [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
+            
         }else{
-            UIImage *image = [readUserInfo image64:dict[@"PhotoStr"]];
-            [_headButton setImage:image forState:UIControlStateNormal];
+            //4.11改
+            
+            [_headButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"]] forState:UIControlStateNormal];
         }
        
     }

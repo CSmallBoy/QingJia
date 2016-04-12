@@ -57,6 +57,11 @@
     loginInfo.UserName = dic[@"UserInf"][@"userName"];
     loginInfo.HomeAddress = dic[@"UserInf"][@"homeAddress"];
     loginInfo.UserId = dic[@"UserInf"][@"UserId"];
+    if (IsEmpty(dic[@"UserInf"][@"imageName"])) {
+        
+    }else{
+        loginInfo.userHeadPhoto = dic[@"UserInf"][@"imageName"];
+    }
     [readUserInfo Dicdelete];
     [readUserInfo creatDic:dic];
 

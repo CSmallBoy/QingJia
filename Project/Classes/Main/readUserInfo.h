@@ -37,4 +37,7 @@ typedef void (^NHCReadBack)(NSString *str);
 
 + (UIImage*)creatQrCode:(NSString*)CodeInfo;
 + (BOOL)JudgmentInformation:(NSString *)ture;
+//获取单张图片的方法
+
++ (NSURL *)url:(NSString*)imageName;
 @end
