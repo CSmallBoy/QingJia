@@ -61,20 +61,6 @@
     [alert show];
     
     
-//    switch (tag) {
-//        case 100:
-//            [self showHUDText:@"删除成功"];
-//            break;
-//        case 200:
-//            [self showHUDText:@"举报成功"];
-//            break;
-//        case 300:
-//            [self showHUDText:@"收藏成功"];
-//            break;
-//        default:
-//            break;
-//    }
-//    
     
 }
 

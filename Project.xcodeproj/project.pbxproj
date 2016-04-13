@@ -410,6 +410,13 @@
 		8D0ACCED1C75C00C008A8A55 /* higlightedBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0ACCE91C75C00C008A8A55 /* higlightedBarBackground@2x.png */; };
 		8D0ACCEE1C75C00C008A8A55 /* TLTiltSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0ACCEB1C75C00C008A8A55 /* TLTiltSlider.m */; };
 		8D0ACCEF1C75C00C008A8A55 /* trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0ACCEC1C75C00C008A8A55 /* trackBackground@2x.png */; };
+		8D0AE5B41CBDE5CA00E97D7D /* HCTagMangerMangerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AE5B31CBDE5CA00E97D7D /* HCTagMangerMangerController.m */; };
+		8D0AE5B71CBDECB600E97D7D /* HCContactPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AE5B61CBDECB600E97D7D /* HCContactPersonController.m */; };
+		8D0AE5BE1CBDF75A00E97D7D /* HCTagContactPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AE5BD1CBDF75A00E97D7D /* HCTagContactPersonCell.m */; };
+		8D0AE5C11CBE0C6C00E97D7D /* HCTagEditContractPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AE5C01CBE0C6C00E97D7D /* HCTagEditContractPersonController.m */; };
+		8D0AE5C41CBE1E4300E97D7D /* HCTagUserMangerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AE5C31CBE1E4300E97D7D /* HCTagUserMangerController.m */; };
+		8D0AE5C71CBE2BE100E97D7D /* HCTagUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AE5C61CBE2BE100E97D7D /* HCTagUserDetailController.m */; };
+		8D0AE5CA1CBE308A00E97D7D /* HCTagUserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AE5C91CBE308A00E97D7D /* HCTagUserDetailCell.m */; };
 		8D0B71371C97A14700B091AA /* HCPromisedReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B71361C97A14700B091AA /* HCPromisedReportController.m */; };
 		8D0F9FBE1C7E9A290096A3B9 /* HCEditUserMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0F9FBD1C7E9A290096A3B9 /* HCEditUserMessageViewController.m */; };
 		8D0F9FC11C7E9F320096A3B9 /* HCEditUserMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0F9FC01C7E9F320096A3B9 /* HCEditUserMessageTableViewCell.m */; };
@@ -1878,6 +1885,20 @@
 		8D0ACCEA1C75C00C008A8A55 /* TLTiltSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTiltSlider.h; sourceTree = "<group>"; };
 		8D0ACCEB1C75C00C008A8A55 /* TLTiltSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTiltSlider.m; sourceTree = "<group>"; };
 		8D0ACCEC1C75C00C008A8A55 /* trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trackBackground@2x.png"; sourceTree = "<group>"; };
+		8D0AE5B21CBDE5CA00E97D7D /* HCTagMangerMangerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagMangerMangerController.h; sourceTree = "<group>"; };
+		8D0AE5B31CBDE5CA00E97D7D /* HCTagMangerMangerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagMangerMangerController.m; sourceTree = "<group>"; };
+		8D0AE5B51CBDECB600E97D7D /* HCContactPersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCContactPersonController.h; sourceTree = "<group>"; };
+		8D0AE5B61CBDECB600E97D7D /* HCContactPersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCContactPersonController.m; sourceTree = "<group>"; };
+		8D0AE5BC1CBDF75A00E97D7D /* HCTagContactPersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagContactPersonCell.h; sourceTree = "<group>"; };
+		8D0AE5BD1CBDF75A00E97D7D /* HCTagContactPersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagContactPersonCell.m; sourceTree = "<group>"; };
+		8D0AE5BF1CBE0C6C00E97D7D /* HCTagEditContractPersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagEditContractPersonController.h; sourceTree = "<group>"; };
+		8D0AE5C01CBE0C6C00E97D7D /* HCTagEditContractPersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagEditContractPersonController.m; sourceTree = "<group>"; };
+		8D0AE5C21CBE1E4300E97D7D /* HCTagUserMangerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagUserMangerController.h; sourceTree = "<group>"; };
+		8D0AE5C31CBE1E4300E97D7D /* HCTagUserMangerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagUserMangerController.m; sourceTree = "<group>"; };
+		8D0AE5C51CBE2BE100E97D7D /* HCTagUserDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagUserDetailController.h; sourceTree = "<group>"; };
+		8D0AE5C61CBE2BE100E97D7D /* HCTagUserDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagUserDetailController.m; sourceTree = "<group>"; };
+		8D0AE5C81CBE308A00E97D7D /* HCTagUserDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagUserDetailCell.h; sourceTree = "<group>"; };
+		8D0AE5C91CBE308A00E97D7D /* HCTagUserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagUserDetailCell.m; sourceTree = "<group>"; };
 		8D0B71351C97A14700B091AA /* HCPromisedReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedReportController.h; sourceTree = "<group>"; };
 		8D0B71361C97A14700B091AA /* HCPromisedReportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedReportController.m; sourceTree = "<group>"; };
 		8D0F9FBC1C7E9A290096A3B9 /* HCEditUserMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEditUserMessageViewController.h; sourceTree = "<group>"; };
@@ -4625,6 +4646,34 @@
 			path = TLTilitSilder;
 			sourceTree = "<group>";
 		};
+		8D0AE5B11CBDE5A700E97D7D /* HCTagMangerManger */ = {
+			isa = PBXGroup;
+			children = (
+				8D0AE5B21CBDE5CA00E97D7D /* HCTagMangerMangerController.h */,
+				8D0AE5B31CBDE5CA00E97D7D /* HCTagMangerMangerController.m */,
+				8D0AE5B51CBDECB600E97D7D /* HCContactPersonController.h */,
+				8D0AE5B61CBDECB600E97D7D /* HCContactPersonController.m */,
+				8D0AE5BF1CBE0C6C00E97D7D /* HCTagEditContractPersonController.h */,
+				8D0AE5C01CBE0C6C00E97D7D /* HCTagEditContractPersonController.m */,
+				8D0AE5C21CBE1E4300E97D7D /* HCTagUserMangerController.h */,
+				8D0AE5C31CBE1E4300E97D7D /* HCTagUserMangerController.m */,
+				8D0AE5C51CBE2BE100E97D7D /* HCTagUserDetailController.h */,
+				8D0AE5C61CBE2BE100E97D7D /* HCTagUserDetailController.m */,
+			);
+			path = HCTagMangerManger;
+			sourceTree = "<group>";
+		};
+		8D0AE5B81CBDF35200E97D7D /* HCTagMangerCell */ = {
+			isa = PBXGroup;
+			children = (
+				8D0AE5BC1CBDF75A00E97D7D /* HCTagContactPersonCell.h */,
+				8D0AE5BD1CBDF75A00E97D7D /* HCTagContactPersonCell.m */,
+				8D0AE5C81CBE308A00E97D7D /* HCTagUserDetailCell.h */,
+				8D0AE5C91CBE308A00E97D7D /* HCTagUserDetailCell.m */,
+			);
+			path = HCTagMangerCell;
+			sourceTree = "<group>";
+		};
 		8D0FAEB41C6077B80038B0BD /* HeadAnnimotion */ = {
 			isa = PBXGroup;
 			children = (
@@ -5642,6 +5691,7 @@
 		C78D7C701C5F2C1200622CE2 /* TagManager */ = {
 			isa = PBXGroup;
 			children = (
+				8D0AE5B11CBDE5A700E97D7D /* HCTagMangerManger */,
 				C78D7C711C5F2C1200622CE2 /* HCActivatedTag */,
 				C78D7C7C1C5F2C1200622CE2 /* HCClosedTag */,
 				C78D7C811C5F2C1200622CE2 /* HCCourseViewController.h */,
@@ -5706,6 +5756,7 @@
 				C78D7CA01C5F2C4D00622CE2 /* HCTagManagerHeader.m */,
 				C78D7CA11C5F2C4D00622CE2 /* HCTagManagerTableViewCell.h */,
 				C78D7CA21C5F2C4D00622CE2 /* HCTagManagerTableViewCell.m */,
+				8D0AE5B81CBDF35200E97D7D /* HCTagMangerCell */,
 			);
 			path = TagManager;
 			sourceTree = "<group>";
@@ -7649,6 +7700,7 @@
 				8D131A901C7D7C7F00F0D5A0 /* ZLPhotoPickerAssetsViewController.m in Sources */,
 				C78D7AEC1C5F28F700622CE2 /* HCAddFriendTableViewCell.m in Sources */,
 				C7B00BC21C5F26050010F93B /* EaseBubbleView+Text.m in Sources */,
+				8D0AE5BE1CBDF75A00E97D7D /* HCTagContactPersonCell.m in Sources */,
 				0A2B46F11C7F12AF00AAA157 /* HCEditCommentView.m in Sources */,
 				0A54917E1C2BC32D0085F50D /* ZXRSSExpandedDecodedChar.m in Sources */,
 				C7B00B511C5F26050010F93B /* MyChatroomListViewController.m in Sources */,
@@ -7859,8 +7911,10 @@
 				8D0F9FC41C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.m in Sources */,
 				C78D7B201C5F28F700622CE2 /* HCMoreInfo.m in Sources */,
 				C7B00B831C5F26050010F93B /* MWTapDetectingView.m in Sources */,
+				8D0AE5CA1CBE308A00E97D7D /* HCTagUserDetailCell.m in Sources */,
 				C7B00B661C5F26050010F93B /* UserProfileEditViewController.m in Sources */,
 				0A54913A1C2BC32D0085F50D /* ZXReedSolomonEncoder.m in Sources */,
+				8D0AE5C11CBE0C6C00E97D7D /* HCTagEditContractPersonController.m in Sources */,
 				0A5491C11C2BC32D0085F50D /* ZXQRCodeBitMatrixParser.m in Sources */,
 				C78D7D471C5F342700622CE2 /* HCAddPromiseViewController1.m in Sources */,
 				C7B00B5F1C5F26050010F93B /* RobotListViewController.m in Sources */,
@@ -8114,6 +8168,7 @@
 				0A2B477B1C7F12C800AAA157 /* HCPromisedListAPI.m in Sources */,
 				C78D7AEB1C5F28F700622CE2 /* HCAddFriendlistTableViewCell.m in Sources */,
 				0A8BE3BA1C7E8D7C008E8100 /* HCinviteFamilyTableViewCell.m in Sources */,
+				8D0AE5B41CBDE5CA00E97D7D /* HCTagMangerMangerController.m in Sources */,
 				0A5491AC1C2BC32D0085F50D /* ZXPDF417BarcodeValue.m in Sources */,
 				0A54919F1C2BC32D0085F50D /* ZXOneDReader.m in Sources */,
 				0A2B47711C7F12C800AAA157 /* HCApplyReissueResonApi.m in Sources */,
@@ -8131,6 +8186,7 @@
 				C78D7D491C5F342700622CE2 /* HCPromisedTagMangerViewController.m in Sources */,
 				0A5491A91C2BC32D0085F50D /* ZXModulusPoly.m in Sources */,
 				8D9790351CB3A00B00FE3C12 /* HCBuyRecordInfo.m in Sources */,
+				8D0AE5C41CBE1E4300E97D7D /* HCTagUserMangerController.m in Sources */,
 				0A5491751C2BC32D0085F50D /* ZXAI01393xDecoder.m in Sources */,
 				C78D7AF41C5F28F700622CE2 /* HCNotificationViewController.m in Sources */,
 				C78D7AF51C5F28F700622CE2 /* HCOtherNotificationViewController.m in Sources */,
@@ -8233,6 +8289,7 @@
 				C7B00B921C5F26050010F93B /* UIImage+EMWebP.m in Sources */,
 				C7B00B3D1C5F26050010F93B /* AppDelegate+EaseMobDebug.m in Sources */,
 				0AC89D6C1C28F32A003EED90 /* OTCover.m in Sources */,
+				8D0AE5C71CBE2BE100E97D7D /* HCTagUserDetailController.m in Sources */,
 				0A5491D61C2BC32D0085F50D /* ZXMultiDetector.m in Sources */,
 				C7B00B461C5F26050010F93B /* ContactSelectionViewController.m in Sources */,
 				0A8BE3BE1C7E8D7C008E8100 /* HCMergingFamilyView.m in Sources */,
@@ -8273,6 +8330,7 @@
 				0A2B46F41C7F12AF00AAA157 /* HCHomeDetailTableViewCell.m in Sources */,
 				C7B00BBD1C5F26050010F93B /* EaseMessageCell.m in Sources */,
 				C78D7AA61C5F28F700622CE2 /* HCGradeSuccessViewController.m in Sources */,
+				8D0AE5B71CBDECB600E97D7D /* HCContactPersonController.m in Sources */,
 				C78D7D571C5F342700622CE2 /* HCPromisedAddCell.m in Sources */,
 				C7B00BCA1C5F26050010F93B /* EaseFaceView.m in Sources */,
 				C7B00BA21C5F26050010F93B /* PSTGridLayoutSection.m in Sources */,

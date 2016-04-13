@@ -11,13 +11,13 @@
 #import "HCUnactivatedTagViewController.h"
 #import "HCClosedTagViewController.h"
 #import "HCCourseViewController.h"
+#import "HCTagMangerMangerController.h"
 
 @interface HCTagManagerViewController ()
 
 @property (nonatomic,strong) UISegmentedControl *segmented;
 
 @property (nonatomic,strong) HCActivatedTableViewController *activatedTagVC;
-@property (nonatomic,strong) HCUnactivatedTagViewController *unactivatedTagVC;
 @property (nonatomic,strong) HCClosedTagViewController *closedTagVC;
 
 @property (nonatomic,strong) UIBarButtonItem *rightItem;
@@ -34,9 +34,23 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.view addSubview:self.segmented];
     [self.view addSubview:self.activatedTagVC.view];
+    
+    // 管理按钮
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(manageBtnClick:)];
+    self.navigationItem.rightBarButtonItem = right;
+    
 }
 
 #pragma mark -----private methods
+
+// 点击了管理按钮
+-(void)manageBtnClick:(UIBarButtonItem *)right
+{
+    HCTagMangerMangerController *mangerVC = [[HCTagMangerMangerController alloc]init];
+    
+    [self.navigationController pushViewController:mangerVC animated:YES];
+    
+}
 
 -(void)handleRightItem
 {
@@ -61,8 +75,9 @@
 {
     if (segment.selectedSegmentIndex == 0)
     {
-        self.navigationItem.rightBarButtonItem = nil;
-        [self.unactivatedTagVC.view removeFromSuperview];
+        UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(manageBtnClick:)];
+        self.navigationItem.rightBarButtonItem = right;
+
         [self.closedTagVC.view removeFromSuperview];
         [self.view addSubview:self.activatedTagVC.view];
     }
@@ -72,12 +87,10 @@
         self.navigationItem.rightBarButtonItem = self.rightItem;
         [self.activatedTagVC.view removeFromSuperview];
         [self.closedTagVC.view removeFromSuperview];
-        [self.view addSubview:self.unactivatedTagVC.view];
     }else if (segment.selectedSegmentIndex == 2)
     {
         self.navigationItem.rightBarButtonItem = nil;
         [self.activatedTagVC.view removeFromSuperview];
-        [self.unactivatedTagVC.view removeFromSuperview];
         [self.view addSubview:self.closedTagVC.view];
     }
 }
@@ -88,7 +101,7 @@
 {
     if (!_segmented)
     {
-        _segmented = [[UISegmentedControl alloc] initWithItems:@[@"已激活", @"未激活",@"已停用"]];
+        _segmented = [[UISegmentedControl alloc] initWithItems:@[@"已激活",@"已停用"]];
         _segmented.selectedSegmentIndex = 0;
         _segmented.frame = CGRectMake(20, 74, SCREEN_WIDTH-40, 30);
         _segmented.backgroundColor = [UIColor whiteColor];
@@ -107,17 +120,6 @@
         [self addChildViewController:_activatedTagVC];
     }
     return _activatedTagVC;
-}
-
--(HCUnactivatedTagViewController *)unactivatedTagVC
-{
-    if (!_unactivatedTagVC)
-    {
-        _unactivatedTagVC = [[HCUnactivatedTagViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        _unactivatedTagVC.view.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-114);
-        [self addChildViewController:_unactivatedTagVC];
-    }
-    return _unactivatedTagVC;
 }
 
 -(HCClosedTagViewController *)closedTagVC
