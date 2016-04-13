@@ -97,7 +97,10 @@
         if (!IsEmpty(_info.uploadImage))
         {
             self.title.hidden = YES;
-            self.selectedImgView.image = _info.uploadImage;
+             UIImageView *imageView = [[UIImageView alloc]initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 120)];
+            imageView.image = _info.uploadImage;
+            [self addSubview:imageView];
+//            self.selectedImgView.image = _info.uploadImage;
         }
     }
     

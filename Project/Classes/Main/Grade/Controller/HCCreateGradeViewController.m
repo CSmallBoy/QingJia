@@ -194,33 +194,7 @@
     } failure:^(NSError *error) {
         
     }];
-//    FamilyUploadImageApi *api = [[FamilyUploadImageApi alloc]init];
-//    
-//    api.familyId = _info.familyId ;
-//    api.type = @"1";
-//    
-//    api.photoStr = [readUserInfo imageString:self.image];
-//    
-//    [self showHUDView:nil];
-//    
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-//        
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self hideHUDView];
-//            HCGradeSuccessViewController *finishVC = [[HCGradeSuccessViewController alloc]init];
-//            finishVC.data = @{@"data":_info};
-//            [self.navigationController pushViewController:finishVC animated:YES];
-//            NSLog(@"上传成功");
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"showFamilyMessage" object:nil];
-//            
-//        }
-//        else
-//        {
-//            [self showHUDError:message];
-//        }
-//        
-//    }];
+
 }
 - (void)requestImageUpload
 {
