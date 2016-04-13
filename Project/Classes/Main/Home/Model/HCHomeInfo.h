@@ -28,6 +28,10 @@
 @property (nonatomic, strong) NSString *ParentId;
 @property (nonatomic, strong) NSString *FTID;
 @property (nonatomic, strong) NSString *ItemId;
+@property (nonatomic, strong) NSString *creator;
+@property (nonatomic, strong) NSString *isLike;
+@property (nonatomic, strong) NSString *fromFamily;
+
 
 
 @end

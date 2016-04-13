@@ -1059,6 +1059,7 @@
 		C7B00C901C5F26050010F93B /* newFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2B1C5F26050010F93B /* newFriends@2x.png */; };
 		C7B90BDD1CA4E4D80022C60C /* NHCCreatefamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */; };
 		C7B90BE01CA4EB1B0022C60C /* NHCApplyToFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B90BDF1CA4EB1B0022C60C /* NHCApplyToFamily.m */; };
+		C7BBF01E1CBDF74400E9691C /* NHCHomeLikeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBF01D1CBDF74400E9691C /* NHCHomeLikeApi.m */; };
 		C7BE0E3B1C71A02A007D97A5 /* HCMailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3A1C71A02A007D97A5 /* HCMailListViewController.m */; };
 		C7BE0E411C71A041007D97A5 /* HCMailListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3D1C71A041007D97A5 /* HCMailListModel.m */; };
 		C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3F1C71A041007D97A5 /* pinyin.c */; };
@@ -2984,6 +2985,8 @@
 		C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCCreatefamilyApi.m; sourceTree = "<group>"; };
 		C7B90BDE1CA4EB1B0022C60C /* NHCApplyToFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCApplyToFamily.h; sourceTree = "<group>"; };
 		C7B90BDF1CA4EB1B0022C60C /* NHCApplyToFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCApplyToFamily.m; sourceTree = "<group>"; };
+		C7BBF01C1CBDF74400E9691C /* NHCHomeLikeApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeLikeApi.h; sourceTree = "<group>"; };
+		C7BBF01D1CBDF74400E9691C /* NHCHomeLikeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeLikeApi.m; sourceTree = "<group>"; };
 		C7BE0E391C71A02A007D97A5 /* HCMailListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMailListViewController.h; sourceTree = "<group>"; };
 		C7BE0E3A1C71A02A007D97A5 /* HCMailListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMailListViewController.m; sourceTree = "<group>"; };
 		C7BE0E3C1C71A041007D97A5 /* HCMailListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMailListModel.h; sourceTree = "<group>"; };
@@ -4895,6 +4898,8 @@
 				C79F9A8C1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m */,
 				C75EFD751CB939EF008C4C52 /* NHCHomeCommentsApi.h */,
 				C75EFD761CB939EF008C4C52 /* NHCHomeCommentsApi.m */,
+				C7BBF01C1CBDF74400E9691C /* NHCHomeLikeApi.h */,
+				C7BBF01D1CBDF74400E9691C /* NHCHomeLikeApi.m */,
 			);
 			name = HomeApi;
 			sourceTree = "<group>";
@@ -8029,6 +8034,7 @@
 				0A67B22A1C0D63B300FB87C8 /* ImgShowViewController.m in Sources */,
 				C7B00B841C5F26050010F93B /* MWZoomingScrollView.m in Sources */,
 				8D1590511CB5F94200B08BDC /* FamilyUploadImageApi.m in Sources */,
+				C7BBF01E1CBDF74400E9691C /* NHCHomeLikeApi.m in Sources */,
 				0A5491AB1C2BC32D0085F50D /* ZXPDF417BarcodeMetadata.m in Sources */,
 				C78D7B9B1C5F28F700622CE2 /* QRCodeReaderView.m in Sources */,
 				0A54914F1C2BC32D0085F50D /* ZXEncodeHints.m in Sources */,

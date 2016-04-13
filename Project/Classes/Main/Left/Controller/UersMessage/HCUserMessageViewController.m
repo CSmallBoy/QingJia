@@ -204,7 +204,7 @@
     if (indexPath.row == 1)
     {
         HCUserCodeViewController *VC = [[HCUserCodeViewController alloc] init];
-        VC.head_image = str;
+        VC.head_image = _dict[@"UserInf"][@"imageName"];
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.row==8){
       HCUserHeathViewController * Vc= [[HCUserHeathViewController alloc]init];
@@ -295,7 +295,7 @@
     {
         _headBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), WIDTH(self.view)*0.45)];
       
-            _headBackground.image = OrigIMG(@"2Dbarcode_message_Background");
+        _headBackground.image = OrigIMG(@"2Dbarcode_message_Background");
         _headBackground.userInteractionEnabled = YES;
         [_headBackground addSubview:self.headButton];
         [_headBackground addSubview:self.nickName];

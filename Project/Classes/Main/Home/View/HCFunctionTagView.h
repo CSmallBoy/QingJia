@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *valueArr;
 
 @property (nonatomic,strong) NSMutableArray *valueLableArr;
+@property (nonatomic,strong) NSString *like;
 
 @property (nonatomic, weak) id<HCFunctionTagViewDelegate>delegate;
 

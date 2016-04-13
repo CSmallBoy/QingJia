@@ -260,7 +260,7 @@
     [self.tableView reloadData];
  
     
-    [self showHUDView:nil];
+    // [self showHUDView:nil];
     
      NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
    //先上传图片 在完善用户信息
@@ -285,6 +285,27 @@
                 [dic setObject:model.professional forKey:@"professional"];
                 [readUserInfo Dicdelete];
                 [readUserInfo creatDic:dic];
+                
+                
+                [self hideHUDView];
+                if (requestStatus == HCRequestStatusSuccess) {
+                    
+                    for (UIViewController *temp in self.navigationController.viewControllers) {
+                        if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
+                            
+                            [self.navigationController popToViewController:temp animated:YES];
+                        }
+                    }
+                    
+                    NSDictionary *dict = @{@"photo":choose};
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserPhoto" object:nil userInfo:dict];
+                    [self showHUDSuccess:@"保存成功"];
+                }
+                else
+                {
+                    [self showHUDSuccess:@"保存失败"];
+                }
             }
         }];
         

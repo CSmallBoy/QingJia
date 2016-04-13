@@ -46,7 +46,7 @@
     _currentIndex = scrollView.contentOffset.x / SCREEN_WIDTH;
     if (_currentIndex == 0)
     {
-        self.title = @"哆啦A梦的家庭";
+        self.title = @"时光";
     }else if(_currentIndex == 1)
     {
         self.title = @"XXXX的家族";

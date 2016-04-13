@@ -253,14 +253,11 @@
                         str_all = [str2 stringByAppendingString:str_all];
                     }
                 }
-                
-                
                 NHCReleaseTimeApi *api = [[NHCReleaseTimeApi alloc]init];
                 api.content = _info.FTContent;
                 api.openAddress = _info.OpenAddress;
                 api.imageNames = str_all;
                 [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *Tid) {
-                    
                 }];
             }
         } failure:^(NSError *error) {

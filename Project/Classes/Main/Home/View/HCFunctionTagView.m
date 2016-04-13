@@ -37,6 +37,9 @@
         NSArray *valueArr = array[i];
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH(button)*0.25, 8, 15, 15)];
         imgView.image = OrigIMG(valueArr[0]);
+//        if(i == 0&&[_like isEqualToString:@"0"]){
+//            imgView.image = IMG(@"1.png");
+//        }
         [button addSubview:imgView];
         
         UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(imgView)+10, 0, WIDTH(button)*0.7, self.frame.size.height)];

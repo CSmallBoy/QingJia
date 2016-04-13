@@ -14,4 +14,7 @@
 @property (nonatomic,copy)NSString *createLocation;
 @property (nonatomic,copy)NSString *createAddrSmall;
 @property (nonatomic,copy)NSString *ToUserId;
+@property (nonatomic,copy)NSString *imageNames;
+//发表评论
+@property (nonatomic,copy)NSString *createAddr;
 @end

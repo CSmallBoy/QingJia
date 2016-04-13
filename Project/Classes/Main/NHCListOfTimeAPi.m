@@ -14,7 +14,7 @@
 }
 -(NSString *)requestUrl{
     // 时光列表
-    return @"Times/listTimes.do";
+    return @"Times/listTimesForFamily.do";
 }
 -(id)requestArgument{
     NSDictionary *dict = [readUserInfo getReadDic];
@@ -31,10 +31,12 @@
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-    NSDictionary *para = @{@"rangeType":@"0",
-                           @"start":@"0",
-                           @"count":@"10",
-                           @"rangeId":str};
+  //  NSDictionary *para = @{@"rangeType":@"0",
+//                           @"start":@"0",
+//                           @"count":@"10",
+//                           @"rangeId":str};
+    NSDictionary *para = @{@"start":@"0",
+                           @"count":@"10"};
     
     
     return @{@"Head":head,@"Para":para};
@@ -45,13 +47,6 @@
     for (int i = 0 ; i < arr.count; i ++) {
         HCHomeInfo *info = [[HCHomeInfo alloc]init];
         info.FTContent = arr[i][@"content"];
-       
-//        for (NSInteger j = 0; j < i; j++)
-//        {
-//            NSString *imageStr = [NSString stringWithFormat:@"http://img2.3lian.com/img2007/10/28/%@.jpg", @(120+j)];
-//            DLog(@"%@", imageStr);
-//            [array addObject:imageStr];
-//        }
         NSString *str_image = arr[i][@"imageNames"];
         NSArray *b = [str_image componentsSeparatedByString:@","];
         info.FTImages = b;
@@ -59,6 +54,9 @@
         info.NickName = arr[i][@"creatorName"];
         info.CreateTime = arr[i][@"createTime"];
         info.TimeID = arr[i][@"timesId"];
+        info.creator = arr[i][@"creator"];
+        info.isLike = arr[i][@"isLike"];
+        info.fromFamily = arr[i][@"fromFamily"];
         [arring addObject:info];
     }
     return arring;
