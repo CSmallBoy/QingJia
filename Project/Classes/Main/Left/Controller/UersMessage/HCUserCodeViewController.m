@@ -49,6 +49,7 @@
         
     }else{
         Image_head.image = [readUserInfo image64:_head_image];
+        
     }
    
     [view_back addSubview:Image_head];

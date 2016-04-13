@@ -13,6 +13,8 @@
 #import "HCImageUploadApi.h"
 #import "HCImageUploadInfo.h"
 #import "HCEditCommentView.h"
+//评论api
+#import "NHCHomeCommentsApi.h"
 
 @interface HCEditCommentViewController ()<HCEditCommentViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -178,16 +180,15 @@
 }
 
 #pragma mark - network
-
+//回复的api
 - (void)requestEditComment
 {
     [self showHUDView:nil];
-    
-    HCEditCommentApi *api = [[HCEditCommentApi alloc] init];
+    NHCHomeCommentsApi *api  = [[NHCHomeCommentsApi alloc]init];
     HCHomeInfo *homeInfo = self.data[@"data"];
-    _info.FTID = homeInfo.KeyId;
-    api.commentInfo = _info;
-    api.FTImages = _FTImages;
+    api.Timesid = homeInfo.TimeID;
+    api.ToUserId =homeInfo.creator;
+    api.content = _info.FTContent;
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
         if (requestStatus == HCRequestStatusSuccess)
@@ -198,7 +199,24 @@
         {
             [self showHUDError:message];
         }
+
     }];
+//    HCEditCommentApi *api = [[HCEditCommentApi alloc] init];
+//    HCHomeInfo *homeInfo = self.data[@"data"];
+//    _info.FTID = homeInfo.KeyId;
+//    api.commentInfo = _info;
+//    api.FTImages = _FTImages;
+//    
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            [self showHUDSuccess:@"评论成功"];
+//            [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
+//        }else
+//        {
+//            [self showHUDError:message];
+//        }
+//    }];
 }
 
 - (void)requestImageUpload

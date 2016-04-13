@@ -21,7 +21,8 @@
 //下载 时光的图片
 #import "NHCDownLoadManyApi.h"
 #import "NHCListOfTimeAPi.h"
-
+//点赞
+#import "NHCHomeLikeApi.h"
 #import "HCCreateGradeViewController.h"
 
 #define HCHomeCell @"HCHomeTableViewCell"
@@ -89,19 +90,7 @@
     HCHomeInfo *info = self.dataSource[indexPath.section];
     
     height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
-    //暂时行不通
-//    if (!IsEmpty(arr_image_all[indexPath.section])) {
-//        NSArray *Arr = arr_image_all[indexPath.section];
-//        if (Arr.count < 5)
-//        {
-//            NSInteger row = ((int)Arr.count/3) + 1;
-//            height += WIDTH(self.view) * 0.33 * row;
-//        }else
-//        {
-//            NSInteger row = ((int)MIN(Arr.count, 9)/3.5) + 1;
-//            height += WIDTH(self.view) * 0.33 * row;
-//        }
-//    }
+
     if (!IsEmpty(info.FTImages))
     {
         if (info.FTImages.count < 5)
@@ -144,7 +133,7 @@
 }
 
 #pragma mark - HCHomeTableViewCellDelegate
-//功能
+//功能 都是点击事件
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath functionIndex:(NSInteger)index
 {
     HCHomeInfo *info = self.dataSource[indexPath.section];
@@ -169,7 +158,7 @@
         HCShareViewController  *shareVC = [[HCShareViewController alloc] init];
         [self presentViewController:shareVC animated:YES completion:nil];
     }else if (index == 0)
-    {
+    {//     点赞触发的方法
         [self requestLikeCount:info indexPath:indexPath];
     }
 }
@@ -294,18 +283,26 @@
 // 请求点赞
 - (void)requestLikeCount:(HCHomeInfo *)info indexPath:(NSIndexPath *)indexPath
 {
-    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
-    api.TimesId = info.KeyId;
+    NHCHomeLikeApi *api = [[NHCHomeLikeApi alloc]init];
+    api.TimeID = info.TimeID;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            info.FTLikeCount = [NSString stringWithFormat:@"%@", @([info.FTLikeCount integerValue]+1)];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        }else
-        {
-            [self showHUDError:message];
-        }
+        [self.tableView reloadData];
     }];
+    
+    
+    
+//    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
+//    api.TimesId = info.KeyId;
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            info.FTLikeCount = [NSString stringWithFormat:@"%@", @([info.FTLikeCount integerValue]+1)];
+//            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//        }else
+//        {
+//            [self showHUDError:message];
+//        }
+//    }];
 }
 
 

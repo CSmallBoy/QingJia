@@ -50,8 +50,8 @@
                 buttonY = row * buttonW + (row+1)*5;
             }
             button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonW);
-        
-            [button sd_setImageWithURL:[NSURL URLWithString:imageUrlArr[i]] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
+          [button sd_setImageWithURL:[readUserInfo url:imageUrlArr[i] :kkTimes] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
+            //[button sd_setImageWithURL:[NSURL URLWithString:imageUrlArr[i]] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
             [self addSubview:button];
         }
     }

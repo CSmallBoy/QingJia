@@ -57,7 +57,7 @@
 }
 
 #pragma mark - private methods
-
+//下面三个的功能键
 - (void)handleButton:(UIButton *)button
 {
     if ([self.delegate respondsToSelector:@selector(hceditCommentViewWithButtonIndex:)])
@@ -65,7 +65,7 @@
         [self.delegate hceditCommentViewWithButtonIndex:button.tag];
     }
 }
-
+//删除
 - (void)handleDeleteButton:(UIButton *)button
 {
     if ([self.delegate respondsToSelector:@selector(hceditCommentViewWithDeleteImageButton:)])
@@ -73,7 +73,7 @@
         [self.delegate hceditCommentViewWithDeleteImageButton:button.tag];
     }
 }
-
+//图片
 - (void)handleImageButton:(UIButton *)button
 {
     if ([self.delegate respondsToSelector:@selector(hceditCommentViewWithimageButton:)])

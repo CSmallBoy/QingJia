@@ -146,7 +146,7 @@
     self.times.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd HH:mm"];
     // 手机来源
 //    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
-    self.deveceModel.text = @"来至:iphone6s";
+    self.deveceModel.text = info.fromFamily;
     
     // 内容设置行间距
     if (!IsEmpty(info.FTContent))
@@ -183,9 +183,17 @@
     }
     NSString *zanNum = ([info.FTLikeCount integerValue]) ? info.FTLikeCount : @"点赞";
     NSString *commentNum = ([info.FTReplyCount integerValue]) ? info.FTReplyCount : @"评论";
-    NSArray *functionArr = @[@[@"Like_nor", zanNum],
-                             @[@"Share_nor", @"分享"],
-                             @[@"Bubble_nor", commentNum]];
+    NSArray *functionArr;
+    if ([info.isLike isEqualToString:@"0"]){   
+        functionArr = @[@[@"Like_nor", zanNum],
+                        @[@"Share_nor", @"分享"],
+                        @[@"Bubble_nor", commentNum]];
+    }else{
+        functionArr = @[@[@"Like_sel", @"已点赞"],
+                        @[@"Share_nor", @"分享"],
+                        @[@"Bubble_nor", commentNum]];
+    }
+    
     [self.functionTagView functionTagWithArrary:functionArr];
 }
 
@@ -274,6 +282,7 @@
     if (!_functionTagView)
     {
         _functionTagView = [[HCFunctionTagView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+       
         _functionTagView.delegate = self;
     }
     return _functionTagView;
