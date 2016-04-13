@@ -144,6 +144,11 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     _startEdit = YES;
+    for (UIView *view in self.photoView.subviews)
+    {
+        [self.images removeAllObjects];
+        [view removeFromSuperview];
+    }
     [self.photoView removeFromSuperview];
     self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
@@ -181,21 +186,21 @@
                 }
                 for (int i = 0; i< self.images.count; i++)
                 {
-                    UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i * SCREEN_WIDTH/3, 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3)];
+                    UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+i * SCREEN_WIDTH/3, 10, SCREEN_WIDTH/3-20, SCREEN_WIDTH/3-20)];
                     imageView.userInteractionEnabled = YES;
                     imageView.image = self.images[i];
                     UILongPressGestureRecognizer  *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(deletePhoto:)];
                     [imageView addGestureRecognizer:longPress];
+                    imageView.tag = 100+i;
                     [self.photoView addSubview:imageView];
                 }
                 [UIView animateWithDuration:0.05 animations:^{
                     
-                        self.view.bounds = CGRectMake(0,SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_HEIGHT);
-                
+                    self.view.bounds = CGRectMake(0,SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_HEIGHT);
+                    
                 }completion:^(BOOL finished) {
                     
-                        [self.view addSubview:self.photoView];
-                    
+                    [self.view addSubview:self.photoView];
                 }];
             };
             [self presentViewController:zlpVC animated:YES completion:nil];
@@ -211,28 +216,28 @@
 
 -(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     [self.images addObject: image];
-
+    
     for (int i = 0; i< self.images.count; i++)
     {
-        UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i * SCREEN_WIDTH/3, 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3)];
+        UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+i * SCREEN_WIDTH/3, 10, SCREEN_WIDTH/3-20, SCREEN_WIDTH/3-20)];
         imageView.image = self.images[i];
         [self.photoView addSubview:imageView];
     }
-
-     [UIView animateWithDuration:0.05 animations:^{
+    
+    [UIView animateWithDuration:0.05 animations:^{
         
         self.view.bounds = CGRectMake(0,SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_HEIGHT);
-         
-     }completion:^(BOOL finished) {
-         
+        
+    }completion:^(BOOL finished) {
+        
         [self.view addSubview:self.photoView];
-         
-     }];
+        
+    }];
     
-     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3 * (_photoCount-1), 0,  SCREEN_WIDTH/3, SCREEN_WIDTH/3)];
-        imageView.image = image;
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+SCREEN_WIDTH/3 * (_photoCount-1), 10,  SCREEN_WIDTH/3-20, SCREEN_WIDTH/3-30)];
+    imageView.image = image;
     [self.photoView addSubview:imageView];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -242,11 +247,44 @@
 
 -(void)deletePhoto:(UILongPressGestureRecognizer *)longPress
 {
-    UIView  *view = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3-20,0, 20, 20)];
-    view.backgroundColor = [UIColor redColor];
-    [longPress.view addSubview:view];
- 
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(SCREEN_WIDTH/3-40,0, 20, 20);
+    button.backgroundColor = [UIColor  redColor];
+    [button addTarget:self action:@selector(smallBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [longPress.view addSubview:button];
 }
+
+-(void)smallBtnClick:(UIButton *)btn
+{
+    UIView *view = btn.superview;
+    
+    NSInteger index = view.tag-100;
+    [self.images removeObjectAtIndex:index];
+    
+    for (UIView *view in self.photoView.subviews)
+    {
+        [view removeFromSuperview];
+    }
+    
+    for (int i = 0; i< self.images.count; i++)
+    {
+        UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+i * SCREEN_WIDTH/3, 10, SCREEN_WIDTH/3-20, SCREEN_WIDTH/3-20)];
+        imageView.userInteractionEnabled = YES;
+        imageView.image = self.images[i];
+        UILongPressGestureRecognizer  *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(deletePhoto:)];
+        [imageView addGestureRecognizer:longPress];
+        imageView.tag = 100+i;
+        [self.photoView addSubview:imageView];
+    }
+    
+    if (self.images.count == 0)
+    {
+        [self.photoView removeFromSuperview];
+        self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    }
+    
+}
+
 
 -(void)removeBigImageView:(UITapGestureRecognizer *)tap
 {
