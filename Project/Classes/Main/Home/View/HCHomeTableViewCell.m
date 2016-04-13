@@ -187,11 +187,11 @@
     if ([info.isLike isEqualToString:@"0"]){   
         functionArr = @[@[@"Like_nor", zanNum],
                         @[@"Share_nor", @"分享"],
-                        @[@"Bubble_nor", commentNum]];
+                        @[@"Bubble_nor", info.FTReplyCount]];
     }else{
         functionArr = @[@[@"Like_sel", @"已点赞"],
                         @[@"Share_nor", @"分享"],
-                        @[@"Bubble_nor", commentNum]];
+                        @[@"Bubble_nor", info.FTReplyCount]];
     }
     
     [self.functionTagView functionTagWithArrary:functionArr];

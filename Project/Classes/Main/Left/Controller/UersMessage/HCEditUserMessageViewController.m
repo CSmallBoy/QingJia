@@ -55,9 +55,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toChangeNumber) name:@"toChangeNumber" object:nil];
     Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"年龄",@"生日",@"属相",@"住址",@"公司",@"职业",@"健康"],
                   @[@"绑定手机号"]];
-    arr2= @[@[@"请点击点击选择头像",@"请输入昵称",@"XXX",@"X",@"XX",@"XXXX-XX-XX",@"X",@"XXXXXXXXXXX",@"XXXXX",@"XXX",@"我的医疗急救卡"],
-                           @[@"181109722222"]];
- 
+    NSDictionary *dic = [readUserInfo getReadDic];
+    if (IsEmpty(dic[@"UserInf"][@"imageNames"])) {
+        arr2= @[@[@"请点击点击选择头像",@"请输入昵称",@"XXX",@"X",@"XX",@"XXXX-XX-XX",@"X",@"XXXXXXXXXXX",@"XXXXX",@"XXX",@"我的医疗急救卡"],
+                @[@"181109722222"]];
+    }else{
+       
+    }
+   
+
 }
 
 #pragma mark --- UITableViewDelegate
@@ -97,55 +103,34 @@
 {
     return 0.1;
 }
-
+//修改触发的方法
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSIndexPath *index = [self.tableView indexPathForCell:(UITableViewCell*)textField.superview];
-    
     if (index.section==0) {
         switch (index.row) {
-                
             case 1:
-            {
                 model.nickName = textField.text;
-            }
                 break;
             case 2:
-            {
                 model.tureName = textField.text;
-            }
                 break;
             case 3:
-            {
                 model.sex = textField.text;
-            }
                 break;
             case 4:
-            {
                 model.age = textField.text;
-            }
                 break;
             case 6:
-            {
                 model.Animalsign= textField.text;
-                
-            }
                 break;
             case 7:
-            {
                 model.adress= textField.text;
-                
-            }
                 break;
             case 8:
-            {
                 model.company= textField.text;
-                
-            }
                 break;
             case 9:
-            {
                 model.professional = textField.text;
-            }
                 break;
             default:
                 break;

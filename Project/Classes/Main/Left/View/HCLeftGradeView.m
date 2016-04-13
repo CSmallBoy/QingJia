@@ -64,7 +64,7 @@
         [self addSubview:self.sofewareSetBtn];
         [self addSubview:self.familyButton];
 
-        
+        //家庭
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestFamilyMessage) name:@"showFamilyMessage" object:nil];
         
         NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;

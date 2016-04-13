@@ -1060,6 +1060,7 @@
 		C7B90BDD1CA4E4D80022C60C /* NHCCreatefamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */; };
 		C7B90BE01CA4EB1B0022C60C /* NHCApplyToFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B90BDF1CA4EB1B0022C60C /* NHCApplyToFamily.m */; };
 		C7BBF01E1CBDF74400E9691C /* NHCHomeLikeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBF01D1CBDF74400E9691C /* NHCHomeLikeApi.m */; };
+		C7BBF0211CBE1F9E00E9691C /* NHCHomeCommentListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBF0201CBE1F9E00E9691C /* NHCHomeCommentListApi.m */; };
 		C7BE0E3B1C71A02A007D97A5 /* HCMailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3A1C71A02A007D97A5 /* HCMailListViewController.m */; };
 		C7BE0E411C71A041007D97A5 /* HCMailListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3D1C71A041007D97A5 /* HCMailListModel.m */; };
 		C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3F1C71A041007D97A5 /* pinyin.c */; };
@@ -2987,6 +2988,8 @@
 		C7B90BDF1CA4EB1B0022C60C /* NHCApplyToFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCApplyToFamily.m; sourceTree = "<group>"; };
 		C7BBF01C1CBDF74400E9691C /* NHCHomeLikeApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeLikeApi.h; sourceTree = "<group>"; };
 		C7BBF01D1CBDF74400E9691C /* NHCHomeLikeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeLikeApi.m; sourceTree = "<group>"; };
+		C7BBF01F1CBE1F9E00E9691C /* NHCHomeCommentListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeCommentListApi.h; sourceTree = "<group>"; };
+		C7BBF0201CBE1F9E00E9691C /* NHCHomeCommentListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeCommentListApi.m; sourceTree = "<group>"; };
 		C7BE0E391C71A02A007D97A5 /* HCMailListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMailListViewController.h; sourceTree = "<group>"; };
 		C7BE0E3A1C71A02A007D97A5 /* HCMailListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMailListViewController.m; sourceTree = "<group>"; };
 		C7BE0E3C1C71A041007D97A5 /* HCMailListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMailListModel.h; sourceTree = "<group>"; };
@@ -4900,6 +4903,8 @@
 				C75EFD761CB939EF008C4C52 /* NHCHomeCommentsApi.m */,
 				C7BBF01C1CBDF74400E9691C /* NHCHomeLikeApi.h */,
 				C7BBF01D1CBDF74400E9691C /* NHCHomeLikeApi.m */,
+				C7BBF01F1CBE1F9E00E9691C /* NHCHomeCommentListApi.h */,
+				C7BBF0201CBE1F9E00E9691C /* NHCHomeCommentListApi.m */,
 			);
 			name = HomeApi;
 			sourceTree = "<group>";
@@ -8120,6 +8125,7 @@
 				C7B00B381C5F26050010F93B /* UIImageView+HeadImage.m in Sources */,
 				C78D7AF11C5F28F700622CE2 /* HCMyNotificationViewController.m in Sources */,
 				0A5491551C2BC32D0085F50D /* ZXResultPoint.m in Sources */,
+				C7BBF0211CBE1F9E00E9691C /* NHCHomeCommentListApi.m in Sources */,
 				0A6B7F181BF1EB74008D54B3 /* NSString+MD5.m in Sources */,
 				0A5491C31C2BC32D0085F50D /* ZXQRCodeDataMask.m in Sources */,
 				C78D7D491C5F342700622CE2 /* HCPromisedTagMangerViewController.m in Sources */,

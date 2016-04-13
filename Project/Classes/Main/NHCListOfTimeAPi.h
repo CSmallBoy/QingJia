@@ -11,4 +11,5 @@ typedef void (^NHCListTime)(HCRequestStatus resquestStatus,NSString *message,id 
 @interface NHCListOfTimeAPi : HCRequest
 - (void)startRequest:(NHCListTime)requestBlock;
 @property (nonatomic,copy)NSString *start_num;
+@property (nonatomic,copy)NSString *home_conut;
 @end

@@ -15,6 +15,8 @@
 #import "HCHomeDetailUserInfo.h"
 #import "HCHomeInfo.h"
 #import "HCHomeDetailApi.h"
+//评论列表
+#import "NHCHomeCommentListApi.h"
 
 #define HCHomeDetailCell @"HCHomeDetailTableViewCell"
 #define HCHomeDetailComment @"HCHomeDetailCommentTableViewCell"
@@ -203,21 +205,28 @@
 {
     [self showHUDView:nil];
     HCHomeInfo *info = self.data[@"data"];
-    HCHomeDetailApi *api = [[HCHomeDetailApi alloc] init];
-    api.FTID = info.KeyId;
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self hideHUDView];
-            [self.dataSource removeAllObjects];
-            _detailInfo = info;
-            [self.tableView reloadData];
-        }else
-        {
-            [self showHUDError:message];
-        }
+    NHCHomeCommentListApi *api = [[NHCHomeCommentListApi alloc]init];
+    api.TimeID = info.TimeID;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        
     }];
+    
+    
+//    HCHomeDetailApi *api = [[HCHomeDetailApi alloc] init];
+//    api.FTID = info.KeyId;
+//    
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info) {
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            [self hideHUDView];
+//            [self.dataSource removeAllObjects];
+//            _detailInfo = info;
+//            [self.tableView reloadData];
+//        }else
+//        {
+//            [self showHUDError:message];
+//        }
+//    }];
 }
 
 

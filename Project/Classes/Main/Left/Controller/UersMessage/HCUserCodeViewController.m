@@ -44,7 +44,7 @@
         if (IsEmpty(dict[@"PhotoStr"])) {
             
         }else{
-            Image_head.image = [readUserInfo image64:dict[@"PhotoStr"]];
+            [Image_head sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"] :kkUser] placeholderImage:IMG(@"1.png")];
         }
         
     }else{

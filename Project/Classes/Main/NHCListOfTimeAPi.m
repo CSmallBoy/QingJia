@@ -31,12 +31,12 @@
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-  //  NSDictionary *para = @{@"rangeType":@"0",
+//    NSDictionary *para = @{@"rangeType":@"0",
 //                           @"start":@"0",
 //                           @"count":@"10",
 //                           @"rangeId":str};
-    NSDictionary *para = @{@"start":@"0",
-                           @"count":@"10"};
+    NSDictionary *para = @{@"start":_start_num,
+                           @"count":_home_conut};
     
     
     return @{@"Head":head,@"Para":para};
@@ -44,7 +44,7 @@
 -(id)formatResponseObject:(id)responseObject{
     NSArray *arr = responseObject[@"Data"][@"rows"];
     NSMutableArray *arring = [NSMutableArray array];
-    for (int i = 0 ; i < arr.count; i ++) {
+    for (int i = 0 ; i < arr.count; i ++){
         HCHomeInfo *info = [[HCHomeInfo alloc]init];
         info.FTContent = arr[i][@"content"];
         NSString *str_image = arr[i][@"imageNames"];
@@ -57,6 +57,7 @@
         info.creator = arr[i][@"creator"];
         info.isLike = arr[i][@"isLike"];
         info.fromFamily = arr[i][@"fromFamily"];
+        info.FTReplyCount = arr[i][@"replyCount"];
         [arring addObject:info];
     }
     return arring;

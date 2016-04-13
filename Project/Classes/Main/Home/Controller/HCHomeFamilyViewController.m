@@ -29,6 +29,7 @@
 
 @interface HCHomeFamilyViewController ()<HCHomeTableViewCellDelegate>{
     NSMutableArray *arr_image_all;
+    int m;
 }
 
 @property (nonatomic, strong) NSString *start;
@@ -43,6 +44,7 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
     arr_image_all = [NSMutableArray array];
     [self readLocationData];
@@ -56,8 +58,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated
-{
+{   m = 0;
     [super viewWillAppear:animated];
+    [self requestHomeData];
     [self.tableView reloadData];
 }
 
@@ -73,7 +76,7 @@
     cell.info = info;
     return cell;
 }
-
+//时光详情
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCHomeInfo *info = self.dataSource[indexPath.section];
@@ -248,6 +251,7 @@
 {
     NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
     api.start_num = @"0";
+    api.home_conut = @"10";
     [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
         [self.tableView.mj_header endRefreshing];
         [self.dataSource removeAllObjects];
@@ -256,23 +260,20 @@
     }];
     _baseRequest = api;
 }
-
+//更多数据  下拉刷新
 - (void)requestMoreHomeData
 {
-    HCHomeApi *api = [[HCHomeApi alloc] init];
-    api.Start = _start;
-    
+    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc] init];
+    api.start_num = [NSString stringWithFormat:@"%d",10 * (m+1)];
+    api.home_conut = @"10";
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         [self.tableView.mj_footer endRefreshing];
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource addObjectsFromArray:array];
-            
-            HCHomeInfo *lastInfo = [array lastObject];
-            api.Start = lastInfo.KeyId;
-            
-            [self writeLocationData:array];
+            //[self writeLocationData:array];
             [self.tableView reloadData];
+            m ++;
         }else
         {
             [self showHUDError:message];
@@ -288,9 +289,7 @@
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
         [self.tableView reloadData];
     }];
-    
-    
-    
+  
 //    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
 //    api.TimesId = info.KeyId;
 //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
@@ -303,6 +302,7 @@
 //            [self showHUDError:message];
 //        }
 //    }];
+    
 }
 
 

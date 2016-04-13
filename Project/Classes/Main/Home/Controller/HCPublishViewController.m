@@ -20,6 +20,8 @@
 //获取时光多图
 #import "NHCDownLoadManyApi.h"
 #import "KLHttpTool.h"
+//时光
+#import "HCHomeViewController.h"
 #define HCPublishCell @"HCPublishCell"
 
 @interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate>
@@ -33,6 +35,7 @@
 @end
 
 @implementation HCPublishViewController
+
 
 - (void)viewDidLoad
 {
@@ -185,7 +188,6 @@
         [picker dismissViewControllerAnimated:YES completion:nil];
         return;
     }
-    
     [_info.FTImages insertObject:image atIndex:_info.FTImages.count-1];
     [self.tableView reloadData];
 
@@ -231,13 +233,14 @@
 
 - (void)requestPublistData
 {
-    [self showHUDView:nil];
+    //[self showHUDView:nil];
     NSMutableArray *arr_image_path = [NSMutableArray array];
     // 先上传 图片  在发布时光  获取到图片的名字  放入数组中  主线程
     NSString *str = [readUserInfo url:kkTimes];
     
     for (int i = 0 ; i < _info.FTImages.count-1 ; i ++) {
         [KLHttpTool uploadImageWithUrl:str image:_info.FTImages[i] success:^(id responseObject) {
+            [self showHUDView:@"发表成功"];
             NSLog(@"%@",responseObject);
             NSString *str1 = responseObject[@"Data"][@"files"][0];
             [arr_image_path addObject:str1];
@@ -253,11 +256,23 @@
                         str_all = [str2 stringByAppendingString:str_all];
                     }
                 }
+                
+                //发表文字时光
                 NHCReleaseTimeApi *api = [[NHCReleaseTimeApi alloc]init];
                 api.content = _info.FTContent;
                 api.openAddress = _info.OpenAddress;
                 api.imageNames = str_all;
                 [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *Tid) {
+                   
+                    [self hideHUDView];
+                    for (UIViewController *temp in self.navigationController.viewControllers) {
+                        if ([temp isKindOfClass:[HCHomeViewController class]])
+                        {
+                            [self.navigationController popToViewController:temp animated:YES];
+                        }
+                    }
+
+                    
                 }];
             }
         } failure:^(NSError *error) {

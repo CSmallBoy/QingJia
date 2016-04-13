@@ -42,13 +42,13 @@
 @implementation HCUserMessageViewController
 - (void)viewWillAppear:(BOOL)animated{
     _dict = [readUserInfo getReadDic];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headbuttonImage) name:@"changeUserPhoto" object:nil];
     //先判断本地有没有 没有 则是没有上传  自己手机上有没有
     if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
-
         [_headButton setBackgroundImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
     }else{
         //4.11日修改
-        
         [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
     }
     //获取健康 信息
@@ -65,15 +65,17 @@
     [self.tableView reloadData];
   
 }
+-(void)headbuttonImage{
+    NSString *str_url = [readUserInfo getReadDic][@"PhotoStr"];
+    [_headButton sd_setImageWithURL:[readUserInfo url:str_url :kkUser] forState:UIControlStateNormal];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setupBackItem];
     self.title = @"个人信息";
     self.navigationItem.rightBarButtonItem = self.rightItem;
-    
     _info = [[HCUserMessageInfo alloc] init];
-    
     self.tableView.tableHeaderView = self.headBackground;
     [self.tableView registerClass:[HCUserMessageTableViewCell class] forCellReuseIdentifier:HCUserCell];
 }
@@ -253,15 +255,16 @@
 -(void)userInfoName:(MyselfInfoModel *)model{
    _model  = model;
 }
-
+//头像处理
 - (void)handleHeadButton
 {
     HCUserHeadImageViewController *headImage = [[HCUserHeadImageViewController alloc] init];
     if (IsEmpty(str)) {
 //        headImage.head_image = [readUserInfo imageString:IMG(@"1.png")];
     }else{
-         headImage.head_image = str;
+         headImage.head_image = [readUserInfo getReadDic][@"PhotoStr"];
     }
+    headImage.head_image = [readUserInfo getReadDic][@"UserInf"][@"imageName"];
    
     [self.navigationController pushViewController:headImage animated:YES];
 }

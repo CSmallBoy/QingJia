@@ -143,9 +143,11 @@
     HCHomeInfo *info = self.data[@"data"];
     NSInteger index = [self.data[@"index"] integerValue];
      imageView.contentMode = UIViewContentModeScaleAspectFill;
-    UIImage *image = [UIImage sd_imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info.FTImages[index]]]];
-    _image = image;
-    imageView.image = image;
+    NSString *image_url = info.FTImages[index];
+//    UIImage *image = [UIImage sd_imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info.FTImages[index]]]];
+//    _image = image;
+//    imageView.image = image;
+    [imageView sd_setImageWithURL:[readUserInfo url:image_url :kkTimes] placeholderImage:IMG(@"1.png")];
     self.imageView = imageView;
     
     [self.tableView insertSubview:self.imageView atIndex:0];
