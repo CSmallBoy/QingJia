@@ -24,4 +24,16 @@
 @property (nonatomic,strong) NSString *cureCondition; // 医疗状况
 @property (nonatomic,strong) NSString *cureNote;  // 医疗笔记
 
+@property (nonatomic,strong) NSString *relation1;   // 关系1
+@property (nonatomic,strong) NSString *contactorId1;   // 联系人1 ID
+@property (nonatomic,strong) NSString *contactorTrueName1; //联系人1 ID
+@property (nonatomic,strong) NSString *contactorPhoneNo1;  //联系人1 手机号
+@property (nonatomic,strong) NSString *relation2; // 关系2
+@property (nonatomic,strong) NSString *contactorId2;  // 联系人2ID
+@property (nonatomic,strong) NSString *contactorTrueName2; // 联系人2 ID
+@property (nonatomic,strong) NSString *contactorPhoneNo2;  //联系人2 手机号
+
+@property (nonatomic,strong) NSString *objectId;
+
+
 @end

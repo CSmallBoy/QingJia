@@ -26,10 +26,11 @@
 
 -(id)requestArgument
 {
-    NSDictionary *head = @{@"":[readUserInfo GetPlatForm],
-                           @"":[HCAccountMgr manager].loginInfo.Token,
-                           @"":[HCAccountMgr manager].loginInfo.UUID};
-    NSDictionary *para =[_info mj_keyValues];
+    NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
+                           @"token":[HCAccountMgr manager].loginInfo.Token,
+                           @"UUID":[HCAccountMgr manager].loginInfo.UUID};
+    NSDictionary *para =@{@"trueName":_trueName,
+                          @"phoneNo":_phoneNo};
     
     return @{@"Head":head,
              @"Para":para};

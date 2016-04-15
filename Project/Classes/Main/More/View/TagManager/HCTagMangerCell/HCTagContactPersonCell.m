@@ -22,8 +22,8 @@
 }
 
 @property (nonatomic,strong) UILabel *trueNameLabel;
-@property (nonatomic,strong) UILabel *relativeLabel;
 @property (nonatomic,strong) UILabel *phoneNoLabel;
+@property (nonatomic,strong) UIImageView *headIV;
 
 
 
@@ -83,14 +83,15 @@
     
     self.trueNameLabel.text = info.trueName;
     self.phoneNoLabel.text = info.phoneNo;
-    self.relativeLabel.text = [NSString stringWithFormat:@"(%@)",info.relative];
+    NSURL *url = [readUserInfo originUrl:info.imageName :kkUser];
+    [self.headIV sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
     
 }
 
 - (UILabel *)trueNameLabel
 {
     if(!_trueNameLabel){
-        _trueNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 100, 30)];
+        _trueNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 20, 100, 30)];
         _trueNameLabel.textColor = [UIColor blackColor];
         _trueNameLabel.adjustsFontSizeToFitWidth = YES;
     }
@@ -98,28 +99,26 @@
 }
 
 
-- (UILabel *)relativeLabel
-{
-    if(!_relativeLabel){
-        _relativeLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 10, 80, 20)];
-        _relativeLabel.textColor = [UIColor grayColor];
-        _relativeLabel.adjustsFontSizeToFitWidth = YES;
-    }
-    return _relativeLabel;
-}
-
-
-
-
 -(UILabel *)phoneNoLabel
 {
     if(!_phoneNoLabel){
-        _phoneNoLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 40, 200, 20)];
+        _phoneNoLabel = [[UILabel alloc]initWithFrame:CGRectMake(170, 25, 200, 20)];
         _phoneNoLabel.textColor = [UIColor blackColor];
         _phoneNoLabel.adjustsFontSizeToFitWidth = YES;
     }
     return _phoneNoLabel;
 }
+
+
+- (UIImageView *)headIV
+{
+    if(!_headIV){
+        _headIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 50, 50)];
+        ViewRadius(_headIV, 25);
+    }
+    return _headIV;
+}
+
 
 #pragma mark prepareForReuser
 - (void)prepareForReuse
@@ -186,8 +185,8 @@
     }
     
     [_SCContentView addSubview:self.phoneNoLabel];
-    [_SCContentView addSubview:self.relativeLabel];
     [_SCContentView addSubview:self.trueNameLabel];
+    [_SCContentView addSubview:self.headIV];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

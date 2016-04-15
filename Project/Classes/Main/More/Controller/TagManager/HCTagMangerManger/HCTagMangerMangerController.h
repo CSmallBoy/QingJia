@@ -8,6 +8,6 @@
 
 #import "HCTableViewController.h"
 
-@interface HCTagMangerMangerController : HCTableViewController
+@interface HCTagMangerMangerController : HCViewController
 
 @end

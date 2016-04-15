@@ -11,6 +11,12 @@
 #import "HCTagContactPersonCell.h"
 #import "HCTagEditContractPersonController.h"
 
+#import "HCContractPersonListApi.h"
+#import "HCDeleteContactPersonApi.h"
+
+#import "HCTagContactInfo.h"
+
+
 @interface HCContactPersonController ()<UITableViewDataSource,UITableViewDelegate,SCSwipeTableViewCellDelegate>
 
 @property (nonatomic,strong) NSMutableArray *dataArr;
@@ -89,7 +95,24 @@
 
 }
 
+#pragma mark --- SCSwipeTableViewCellDelegate
 
+- (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath
+{
+    HCTagContactInfo *info = self.dataArr[indexpath.row];
+    
+    HCDeleteContactPersonApi *api = [[HCDeleteContactPersonApi alloc]init];
+    api.contactorId = info.contactorId;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+
+        if (requestStatus == HCRequestStatusSuccess) {
+            
+            [self.dataArr removeObjectAtIndex:indexpath.row];
+            [self.myTableView reloadData];
+            
+        }
+    }];
+}
 
 #pragma mark --- private mothod
 
@@ -161,16 +184,27 @@
 
 -(void)requestData
 {
+    HCContractPersonListApi *api = [[HCContractPersonListApi alloc]init];
     
-    for (int i = 0; i<6; i++) {
+
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+       
+        if (requestStatus == HCRequestStatusSuccess) {
+            NSArray *array = respone[@"Data"][@"rows"];
+            
+            for (NSDictionary *dic in array) {
+                HCTagContactInfo *info = [HCTagContactInfo  mj_objectWithKeyValues:dic];
+                
+                [self.dataArr addObject:info];
+                
+                
+            }
+            
+            [self.myTableView reloadData];
+            
+        }
         
-        HCTagContactInfo *info = [[HCTagContactInfo alloc]init];
-        info.trueName = [NSString stringWithFormat:@"联系人%d",i];
-        info.phoneNo = @"13888888888";
-        info.relative = @"关系";
-        [self.dataArr addObject:info];
-        
-    }
+    }];
     
    
 }

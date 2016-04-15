@@ -17,7 +17,8 @@ typedef void (^HCAddContactPersonBlock) (HCRequestStatus requesStatus,NSString *
 
 @interface HCAddContactPersonApi : HCRequest
 
-@property (nonatomic,strong)HCTagContactInfo *info;
+@property (nonatomic,strong) NSString *trueName;
+@property (nonatomic,strong) NSString *phoneNo;
 
 -(void)startRequest:(HCAddContactPersonBlock)requestBlock;
 

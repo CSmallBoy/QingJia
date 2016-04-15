@@ -7,12 +7,13 @@
 //----------------------编辑或新增紧急联系人界面------------------------------------
 
 #import "HCTagEditContractPersonController.h"
-
+#import "HCAddContactPersonApi.h"
 #import "HCTagContactInfo.h"
 
 @interface HCTagEditContractPersonController ()
 
-
+@property (nonatomic,strong)UITextField *textField1;
+@property (nonatomic,strong)UITextField *textField2;
 @end
 
 @implementation HCTagEditContractPersonController
@@ -31,6 +32,8 @@
     
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
+    
 }
 
 #pragma mark ---  UITableViewDelegate
@@ -42,7 +45,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 2;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -74,7 +77,8 @@
         textField.placeholder = @"点击输入姓名";
         textField.text = _info.trueName;
         textField.textColor = [UIColor blackColor];
-        [cell addSubview:textField];
+        self.textField1 = textField;
+        [cell addSubview:self.textField1];
         
     }
     else if (indexPath.row == 1)
@@ -88,7 +92,9 @@
         textField.placeholder = @"点击输入手机号";
         textField.text = _info.phoneNo;
         textField.textColor = [UIColor blackColor];
-        [cell addSubview:textField];
+        self.textField2 = textField;
+        
+        [cell addSubview:self.textField2];
     }
     else
     {
@@ -107,6 +113,36 @@
     
     return cell;
     
+}
+
+#pragma mark --- provate mothods
+
+-(void)itemClick:(UIBarButtonItem *)item
+{
+    [self requestData];
+}
+
+
+
+#pragma mark --- netWork
+
+-(void)requestData
+{
+    HCAddContactPersonApi *api = [[HCAddContactPersonApi alloc]init];
+    
+    [api startRequest:^(HCRequestStatus requesStatus, NSString *message, id respone) {
+       
+        if (requesStatus == HCRequestStatusSuccess) {
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            [self showHUDText:@"保存失败"];
+        }
+        
+    }];
+   
 }
 
 - (void)didReceiveMemoryWarning {

@@ -29,7 +29,18 @@
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     
-    NSDictionary *para = [_info mj_keyValues];
+    NSDictionary *para = @{@"trueName":_info.trueName,
+                           @"imageName":_info.imageName,
+                           @"sex":_info.sex,
+                           @"birthDay":_info.birthDay,
+                           @"homeAddress":_info.homeAddress,
+                           @"school":_info.school,
+                           @"height":_info.height,
+                           @"weight":_info.weight,
+                           @"bloodType":_info.bloodType,
+                           @"allergic":_info.allergic,
+                           @"cureCondition":_info.cureCondition,
+                           @"cureNote":_info.cureNote};
     
     return @{@"Head":head,
              @"Para":para};
