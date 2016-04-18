@@ -74,6 +74,8 @@
     if (!group || row != indexPath.row)
     {
         [self.button0 setBackgroundImage:OrigIMG(self.info.imgArr[count]) forState:UIControlStateNormal];
+        
+        
         self.label0.text = self.info.tagNameArr[count];
         [self.button1 setBackgroundImage:OrigIMG(self.info.imgArr[count+1]) forState:UIControlStateNormal];
         self.label1.text = self.info.tagNameArr[count+1];

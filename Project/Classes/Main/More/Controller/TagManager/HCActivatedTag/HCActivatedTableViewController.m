@@ -12,6 +12,7 @@
 #import "HCTagManagerInfo.h"
 #import "HCTagManagerApi.h"
 
+#import "HCTagAmostDetailListApi.h"
 #import "HCTagManagerHeader.h"
 #import "HCTagManagerTableViewCell.h"
 
@@ -133,48 +134,110 @@
 
 - (void)requestHomeData
 {
-//    HCTagManagerApi *api = [[HCTagManagerApi alloc] init];
-//    api.Start = 1000;
-//    api.Count = 20;
-//    api.LabelStatus = @"已激活";
-//    
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self.dataSource removeAllObjects];
-//            [self.dataSource addObjectsFromArray:array];
-//            [self.tableView reloadData];
-//        }else
-//        {
-//            [self showHUDError:message];
-//        }
-//    }];
+
+    HCTagAmostDetailListApi *api = [[HCTagAmostDetailListApi alloc]init];
+    api.labelStatus = @"0";
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        if (requestStatus == HCRequestStatusSuccess) {
+            
+            
+            NSArray *oldArr = respone[@"Data"][@"rows"];
+            
+            
+            
+            NSMutableArray *smallArr = [NSMutableArray array];
+            NSMutableArray *bigArr = [NSMutableArray array];
+            
+            [bigArr addObject:smallArr];
+            
+            for (int i = 0; i<oldArr.count; i++)
+            {
+                if (i == 0)
+                {
+                    [smallArr addObject:oldArr[i]];
+                    
+                }
+                else
+                {
+                    for (int j = 0; j<bigArr.count; j++)
+                    {
+                        
+                        NSString *bigStr =bigArr[j][0][@"trueName"];
+                        NSString *oldStr =oldArr[i][@"trueName"];
+                        
+                        if ([bigStr isEqualToString:oldStr])
+                        {
+                            [bigArr[j] addObject:oldArr[i]];
+                            break;
+                            
+                            
+                        }else
+                        {
+                            if (j == bigArr.count-1)
+                            {
+                                NSMutableArray *newArr = [NSMutableArray array];
+                                [newArr addObject:oldArr[i]];
+                                [bigArr addObject:newArr];
+                                break;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            
+            NSLog(@"%@",bigArr);
+            
+            for (int i = 0; i<bigArr.count; i++) {
+                NSArray *smallArr = bigArr[i];
+                HCTagManagerInfo *info = [[HCTagManagerInfo alloc] init];
+                info.tagUserName = [NSString stringWithFormat:@"%@",smallArr[0][@"trueName"]];
+                NSMutableArray *tagNameArr =[NSMutableArray array];
+                
+                for (int j = 0; j<smallArr.count; j++) {
+                    [tagNameArr addObject:smallArr[j][@"labelTitle"] ];
+                }
+                info.tagNameArr = tagNameArr;
+                
+                NSMutableArray *imgArr = [NSMutableArray array];
+                for (int  k = 0; k<smallArr.count; k++) {
+                    [imgArr addObject:@"time_picture"];
+                }
+                info.imgArr = imgArr;
+                
+                [self.dataSource addObject:info];
+                [self.tableView reloadData];
+            }
+            
+            NSLog(@"*********标签概要信息列表*************");
+        }
+    }];
     
-    for (int i = 0; i<4; i++) {
-        
-        HCTagManagerInfo *info = [[HCTagManagerInfo alloc] init];
-
-        info.tagUserName = [NSString stringWithFormat:@"王一%d",i];
-        info.imgArr = @[@"time_picture",@"time_picture",@"time_picture",@"time_picture"];
-        info.tagNameArr = @[@"衬衣上的1号标签",@"书包上的2号标签",@"裤子上的3号标签",@"帽子上的4号标签"];
-        info.tagIDArr = @[@"111111",@"222222",@"333333",@"444444"];
-        info.contactImgArr = @[@"cards_but_phone",@"cards_but_phone"];
-        info.contactNameArr = @[@"周一",@"王大"];
-        info.contactRelationShipArr = @[@"母亲",@"父亲"];
-        info.contactPhoneArr = @[@"11111111111",@"22222222222"];
-        info.cardName = @"我是谁";
-        info.cardImg = @"label";
-        info.userGender = @"男";
-        info.userAge = @"15";
-        info.userBrithday = @"2015-12-12";
-        info.userAddress = @"上海市闵行区梅陇镇集心路168号4号楼201室";
-        info.userSchool = @"闵行中心第一小学";
-        info.userJob = @"学生";
-        info.userHealth = @"健康";
-        
-        [self.dataSource addObject:info];
-
-    }
+//    for (int i = 0; i<4; i++) {
+//
+//        HCTagManagerInfo *info = [[HCTagManagerInfo alloc] init];
+//
+//        info.tagUserName = [NSString stringWithFormat:@"王一%d",i];
+//        info.imgArr = @[@"time_picture",@"time_picture",@"time_picture",@"time_picture"];
+//        info.tagNameArr = @[@"衬衣上的1号标签",@"书包上的2号标签",@"裤子上的3号标签",@"帽子上的4号标签"];
+//        info.tagIDArr = @[@"111111",@"222222",@"333333",@"444444"];
+//        info.contactImgArr = @[@"cards_but_phone",@"cards_but_phone"];
+//        info.contactNameArr = @[@"周一",@"王大"];
+//        info.contactRelationShipArr = @[@"母亲",@"父亲"];
+//        info.contactPhoneArr = @[@"11111111111",@"22222222222"];
+//        info.cardName = @"我是谁";
+//        info.cardImg = @"label";
+//        info.userGender = @"男";
+//        info.userAge = @"15";
+//        info.userBrithday = @"2015-12-12";
+//        info.userAddress = @"上海市闵行区梅陇镇集心路168号4号楼201室";
+//        info.userSchool = @"闵行中心第一小学";
+//        info.userJob = @"学生";
+//        info.userHealth = @"健康";
+//        
+//        [self.dataSource addObject:info];
+//
+//    }
     
     
 }

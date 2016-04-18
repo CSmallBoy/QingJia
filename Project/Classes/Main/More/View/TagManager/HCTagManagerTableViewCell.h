@@ -19,6 +19,8 @@
 
 @interface HCTagManagerTableViewCell : UITableViewCell
 
+
+
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
 @property (nonatomic,strong) HCTagManagerInfo *info;

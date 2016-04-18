@@ -34,7 +34,9 @@
                           @"labelTitle":_labelTitle,
                           @"objectId":_objectId,
                           @"contactorId1":_contactorId1,
-                          @"contactorId2":_contactorId2};
+                          @"contactorId2":_contactorId2,
+                          @"relation1":@"父亲",
+                          @"relation2":@"母亲"};
     
     return @{@"Head":head,
              @"Para":para};

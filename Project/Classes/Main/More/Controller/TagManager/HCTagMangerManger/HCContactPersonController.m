@@ -33,7 +33,7 @@
     [super viewDidLoad];
     self.title = @"紧急联系人";
     [self setupBackItem];
-    [self requestData];
+    
     [self.view addSubview:self.myTableView];
     
     [self.view addSubview:self.footerView];
@@ -41,6 +41,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tuNextVC:) name:@"tuNextVC" object:nil];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self requestData];
+}
 
 #pragma mark --- UITableViewDelegate
 
@@ -190,6 +195,8 @@
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        
         if (requestStatus == HCRequestStatusSuccess) {
+            
+            [self.dataArr removeAllObjects];
             NSArray *array = respone[@"Data"][@"rows"];
             
             for (NSDictionary *dic in array) {

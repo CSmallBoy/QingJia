@@ -482,6 +482,8 @@
 		8D16D1341CC46B9C008DC6D7 /* HCBindTagController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D16D1331CC46B9C008DC6D7 /* HCBindTagController.m */; };
 		8D16D1381CC46BAB008DC6D7 /* JT3DScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D16D1371CC46BAB008DC6D7 /* JT3DScrollView.m */; };
 		8D16D13B1CC46BCA008DC6D7 /* HCTagUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D16D13A1CC46BCA008DC6D7 /* HCTagUserCell.m */; };
+		8D16D14D1CC52029008DC6D7 /* HCTagInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D16D14C1CC52029008DC6D7 /* HCTagInfo.m */; };
+		8D16D1501CC52054008DC6D7 /* HCAddTagUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D16D14F1CC52054008DC6D7 /* HCAddTagUserController.m */; };
 		8D21CA091C61D2B80071B32A /* HCMedicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */; };
 		8D21CA0C1C61D6310071B32A /* HCMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0B1C61D6310071B32A /* HCMedicalCell.m */; };
 		8D21CA0F1C61D6D10071B32A /* HCMedicalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0E1C61D6D10071B32A /* HCMedicalInfo.m */; };
@@ -2034,6 +2036,10 @@
 		8D16D1371CC46BAB008DC6D7 /* JT3DScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JT3DScrollView.m; sourceTree = "<group>"; };
 		8D16D1391CC46BCA008DC6D7 /* HCTagUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagUserCell.h; sourceTree = "<group>"; };
 		8D16D13A1CC46BCA008DC6D7 /* HCTagUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagUserCell.m; sourceTree = "<group>"; };
+		8D16D14B1CC52029008DC6D7 /* HCTagInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagInfo.h; sourceTree = "<group>"; };
+		8D16D14C1CC52029008DC6D7 /* HCTagInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagInfo.m; sourceTree = "<group>"; };
+		8D16D14E1CC52054008DC6D7 /* HCAddTagUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddTagUserController.h; sourceTree = "<group>"; };
+		8D16D14F1CC52054008DC6D7 /* HCAddTagUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddTagUserController.m; sourceTree = "<group>"; };
 		8D21CA071C61D2B80071B32A /* HCMedicalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalViewController.h; sourceTree = "<group>"; };
 		8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalViewController.m; sourceTree = "<group>"; };
 		8D21CA0A1C61D6310071B32A /* HCMedicalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalCell.h; sourceTree = "<group>"; };
@@ -4673,6 +4679,8 @@
 				8D16D1301CC46B87008DC6D7 /* HCTagUserMangerViewController.m */,
 				8D0AE5C51CBE2BE100E97D7D /* HCTagUserDetailController.h */,
 				8D0AE5C61CBE2BE100E97D7D /* HCTagUserDetailController.m */,
+				8D16D14E1CC52054008DC6D7 /* HCAddTagUserController.h */,
+				8D16D14F1CC52054008DC6D7 /* HCAddTagUserController.m */,
 			);
 			path = HCTagMangerManger;
 			sourceTree = "<group>";
@@ -4808,6 +4816,8 @@
 		8D15E5401CBB3D0400FA3B11 /* NewTagModel */ = {
 			isa = PBXGroup;
 			children = (
+				8D16D14B1CC52029008DC6D7 /* HCTagInfo.h */,
+				8D16D14C1CC52029008DC6D7 /* HCTagInfo.m */,
 				8D15E5411CBB3D5600FA3B11 /* HCNewTagInfo.h */,
 				8D15E5421CBB3D5600FA3B11 /* HCNewTagInfo.m */,
 				8D15E5501CBB4DE400FA3B11 /* HCTagContactInfo.h */,
@@ -7770,6 +7780,7 @@
 				C7B00BBF1C5F26050010F93B /* EaseBubbleView+File.m in Sources */,
 				0A5491561C2BC32D0085F50D /* ZXRGBLuminanceSource.m in Sources */,
 				0A2B476B1C7F12C800AAA157 /* HCNotificationCenterFollowAPI.m in Sources */,
+				8D16D1501CC52054008DC6D7 /* HCAddTagUserController.m in Sources */,
 				0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */,
 				C7B00BB91C5F26050010F93B /* EaseUsersListViewController.m in Sources */,
 				0A2B46F31C7F12AF00AAA157 /* HCHomeDetailCommentTableViewCell.m in Sources */,
@@ -7816,6 +7827,7 @@
 				0A5491091C2BC32D0085F50D /* ZXAztecToken.m in Sources */,
 				0A54918F1C2BC32D0085F50D /* ZXCodaBarWriter.m in Sources */,
 				0A5491B61C2BC32D0085F50D /* ZXPDF417DetectorResult.m in Sources */,
+				8D16D14D1CC52029008DC6D7 /* HCTagInfo.m in Sources */,
 				C7B00B341C5F26050010F93B /* TTGlobalUICommon.m in Sources */,
 				0A2B46F01C7F12AF00AAA157 /* HCPublishInfo.m in Sources */,
 				0A6B7F241BF1EB74008D54B3 /* HCDictionaryMgr.m in Sources */,

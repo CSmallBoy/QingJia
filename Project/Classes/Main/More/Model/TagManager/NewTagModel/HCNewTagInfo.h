@@ -28,10 +28,13 @@
 @property (nonatomic,strong) NSString *contactorId1;   // 联系人1 ID
 @property (nonatomic,strong) NSString *contactorTrueName1; //联系人1 ID
 @property (nonatomic,strong) NSString *contactorPhoneNo1;  //联系人1 手机号
+@property (nonatomic,strong) NSString *imageName1;
+
 @property (nonatomic,strong) NSString *relation2; // 关系2
 @property (nonatomic,strong) NSString *contactorId2;  // 联系人2ID
 @property (nonatomic,strong) NSString *contactorTrueName2; // 联系人2 ID
 @property (nonatomic,strong) NSString *contactorPhoneNo2;  //联系人2 手机号
+@property (nonatomic,strong) NSString *imageName2;
 
 @property (nonatomic,strong) NSString *objectId;
 

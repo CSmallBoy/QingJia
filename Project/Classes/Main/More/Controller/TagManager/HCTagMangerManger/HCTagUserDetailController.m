@@ -7,18 +7,26 @@
 //
 
 #import "HCTagUserDetailController.h"
+#import "HCAddTagUserController.h"
 #import "HCNewTagInfo.h"
 #import "HCTagUserDetailCell.h"
 #import "HCPickerView.h"
 #import "HCAvatarMgr.h"
 
 #import "HCTagAddObjectApi.h"
+#import "HCContractPersonListApi.h"
+
+#import "HCTagContactInfo.h"// 联系人模型
+
 
 @interface HCTagUserDetailController ()<HCPickerViewDelegate>
 @property (nonatomic,strong) HCPickerView *datePicker;
 @property (nonatomic,strong) NSString *myTitle;
 @property (nonatomic,strong) HCNewTagInfo *info;
 @property (nonatomic,strong) UIImage *image;
+
+@property (nonatomic,strong) UIScrollView *scrollView;
+@property (nonatomic,strong) NSMutableArray *contactArr;// 联系人数组
 
 @end
 
@@ -28,39 +36,60 @@
     [super viewDidLoad];
     self.myTitle = self.data[@"title"];
     self.info = self.data[@"info"];
+    
+    
     self.myTitle = self.info.trueName;
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
+    
+    
+    HCTagContactInfo *info1 = [[HCTagContactInfo alloc]init];
+    info1.trueName = self.info.contactorTrueName1;
+    info1.phoneNo = self.info.contactorPhoneNo1;
+    info1.relative = self.info.relation1;
+    info1.imageName = self.info.imageName1;
+    
+    HCTagContactInfo *info2 = [[HCTagContactInfo alloc]init];
+    info2.trueName = self.info.contactorTrueName2;
+    info2.phoneNo = self.info.contactorPhoneNo2;
+    info2.relative = self.info.relation2;
+    info2.relative = self.info.imageName2;
+    
+    [self.contactArr addObject:info1];
+    [self.contactArr addObject:info2];
+    
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:2];
+    
+    [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
     
     [self setupBackItem];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
-    if (self.info.trueName != nil) {
-        item.title = @"编辑";
-        self.title = [NSString stringWithFormat:@"%@的信息",self.myTitle];
-    }else
-    {
-       item.title = @"保存";
-        self.title = @"新增标签使用者";
-    }
+    item.title = @"编辑";
+    self.title = [NSString stringWithFormat:@"%@的信息",self.myTitle];
+ 
     
     self.navigationItem.rightBarButtonItem = item;
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeContactImg:) name:@"changeContactImg" object:nil];
 }
+
 
 #pragma mark --- UITableViewDelegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
+    if (section == 0 || section == 1)
     {
         return 6;
     }
     else
     {
-        return 6;
+        return 1;
     }
 }
 
@@ -88,6 +117,10 @@
         return 88;
         
     }
+    else if (indexPath.section == 2 )
+    {
+        return 150;
+    }
     else
     {
         return 44;
@@ -96,12 +129,55 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HCTagUserDetailCell *cell = [HCTagUserDetailCell cellWithTableView:tableView];
-    cell.info = self.data[@"info"];
-    cell.image = self.image;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.indexPath = indexPath;
-    return cell;
+    if (indexPath.section == 2) {
+        
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        
+        for (UIView *view in self.scrollView.subviews) {
+            
+            [view removeFromSuperview];
+        }
+        
+        for (int i = 0; i< self.contactArr.count; i++)
+        {
+            HCTagContactInfo *info = self.contactArr[i];
+            
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(i*93,0 , 93, 180)];
+            
+            // 头像
+            UIImageView *imageIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 20, 73, 73)];
+            
+            
+            NSURL *url = [readUserInfo originUrl:info.imageName :@"contactor"];
+            [imageIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
+            ViewRadius(imageIV, 73/2);
+            [view addSubview:imageIV];
+            
+            // 姓名label
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 93, 20)];
+            label.textColor = [UIColor blackColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.text = info.trueName;
+            [view addSubview:label];
+
+             [ self.scrollView addSubview:view];
+        }
+        
+        [cell addSubview:self.scrollView];
+        return cell;
+
+        
+    }else
+    {
+        HCTagUserDetailCell *cell = [HCTagUserDetailCell cellWithTableView:tableView];
+        cell.info = self.data[@"info"];
+        cell.image = self.image;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.indexPath = indexPath;
+        return cell;
+    }
+    
+   
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -112,7 +188,7 @@
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
         view.backgroundColor = kHCBackgroundColor;
         
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, 10, 100, 30)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 100, 30)];
         label.textColor = [UIColor blackColor];
         label.text = @"医疗急救卡";
         label.adjustsFontSizeToFitWidth = YES;
@@ -120,6 +196,22 @@
         
         return view;
         
+    }
+    else if (section ==2)
+    {
+        
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+        view.backgroundColor = kHCBackgroundColor;
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 100, 30)];
+        label.textColor = [UIColor blackColor];
+        label.text = @"紧急联系人";
+        label.adjustsFontSizeToFitWidth = YES;
+        [view addSubview:label];
+        
+        return view;
+        
+
     }
     
     return nil;
@@ -162,61 +254,10 @@
 
 -(void)itemClick:(UIBarButtonItem *)item
 {
-    if ([item.title isEqualToString:@"保存"])
-    {
-        // 保存按钮点击
-       
-        
-        if (IsEmpty(self.info.trueName)) {
-            [self showHUDText:@"请输入姓名"];
-            return;
-        }
-        if (IsEmpty(self.info.sex)) {
-            [self showHUDText:@"请输入生日"];
-            return;
-        }
-        if (IsEmpty(self.info.homeAddress)) {
-            [self showHUDText:@"请输入住址"];
-            return;
-        }
-        if (IsEmpty(self.info.school)) {
-            [self showHUDText:@"请输入学校"];
-            return;
-        }
-        if (IsEmpty(self.info.height)) {
-            [self showHUDText:@"请输入身高"];
-            return;
-        }
-        if (IsEmpty(self.info.weight)) {
-            [self showHUDText:@"请输入体重"];
-            return;
-        }
-        if (IsEmpty(self.info.bloodType)) {
-            [self showHUDText:@"请输入血型"];
-            return;
-        }
-        if (IsEmpty(self.info.allergic)) {
-            [self showHUDText:@"请输入过敏史"];
-            return;
-        }
-        if (IsEmpty(self.info.cureCondition)) {
-            [self showHUDText:@"请输入医疗状况"];
-            return;
-        }
-        if (IsEmpty(self.info.cureNote)) {
-            [self showHUDText:@"请输入医疗笔记"];
-            return;
-        }
-        
-        if (self.image) {
-            [self uploadImage];
-        }
-        
-    }
-    else
-    {
-       // 编辑按钮点击
-    }
+    HCAddTagUserController *addVC = [[HCAddTagUserController alloc]init];
+    addVC.data = @{@"info":self.info};
+    addVC.isEdit = YES;
+    [self.navigationController pushViewController:addVC animated:YES];
 }
 
 -(void)showAlbum
@@ -239,6 +280,22 @@
 
 }
 
+-(void)changeContactImg:(NSNotification *)noti
+{
+    NSDictionary *dic = noti.userInfo;
+    
+    [self.contactArr removeAllObjects];
+    
+    NSArray *arr = dic[@"arr"];
+    [self.contactArr addObjectsFromArray:arr];
+    
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:2];
+    
+    [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
+    
+    
+}
+
 #pragma mark--- setter Or getter
 
 - (HCPickerView *)datePicker
@@ -252,6 +309,27 @@
     }
     return _datePicker;
 }
+
+
+- (UIScrollView *)scrollView
+{
+    if(!_scrollView){
+        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
+        _scrollView.contentSize = CGSizeMake(93*2, 150);
+        _scrollView.backgroundColor = [UIColor whiteColor];
+    }
+    return _scrollView;
+}
+
+
+- (NSMutableArray *)contactArr
+{
+    if(!_contactArr){
+        _contactArr = [NSMutableArray array];
+    }
+    return _contactArr;
+}
+
 
 #pragma mark --- network
 

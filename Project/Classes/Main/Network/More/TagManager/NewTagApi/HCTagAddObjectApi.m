@@ -40,7 +40,11 @@
                            @"bloodType":_info.bloodType,
                            @"allergic":_info.allergic,
                            @"cureCondition":_info.cureCondition,
-                           @"cureNote":_info.cureNote};
+                           @"cureNote":_info.cureNote,
+                           @"relation1":_info.relation1,
+                           @"contactorId1":_info.contactorId1,
+                           @"relation2":_info.relation2,
+                           @"contactorId2":_info.contactorId2};
     
     return @{@"Head":head,
              @"Para":para};

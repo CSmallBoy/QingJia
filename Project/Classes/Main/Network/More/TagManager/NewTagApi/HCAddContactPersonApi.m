@@ -30,7 +30,9 @@
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     NSDictionary *para =@{@"trueName":_trueName,
-                          @"phoneNo":_phoneNo};
+                          @"phoneNo":_phoneNo,
+                          @"relative": @"关系",
+                          @"imageName":_imgStr};
     
     return @{@"Head":head,
              @"Para":para};

@@ -18,8 +18,11 @@
 
 @interface HCTagMangerMangerController ()<UIScrollViewDelegate>
 
-@property (nonatomic,strong) JT3DScrollView *scrollView;
-@property (nonatomic,strong) UIButton *button;
+@property (nonatomic,strong) UIButton *contantPersonBtn;
+@property (nonatomic,strong) UIButton  *taguserBtn;
+@property (nonatomic,strong) UILabel  *contantPersonLabel;
+@property (nonatomic,strong) UILabel  *tagUserLabel;
+
 
 @end
 
@@ -34,54 +37,16 @@
     // 扫描二维码的图标
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:IMG(@"ThinkChange_sel") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick1:)];
     self.navigationItem.rightBarButtonItem = right;
+
+    [self.view addSubview:self.contantPersonBtn];
+    [self.view addSubview:self.contantPersonLabel];
     
-    [self.view addSubview:self.scrollView];
-    [self createCardWithColor];
-    [self createCardWithColor];
-    
-    [self.view addSubview:self.button];
+    [self.view addSubview:self.taguserBtn];
+    [self.view addSubview:self.tagUserLabel];
 }
 
-- (void)createCardWithColor
-{
-    CGFloat width = CGRectGetWidth(self.scrollView.frame);
-    CGFloat height = CGRectGetHeight(self.scrollView.frame)-70;
-    
-    CGFloat x = self.scrollView.subviews.count * width;
-    
-    // 显示的view
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(x, 0, width, height)];
-    view.backgroundColor = [UIColor yellowColor];
-    
-    view.layer.cornerRadius = 8.;
-    
-    [self.scrollView addSubview:view];
-    self.scrollView.contentSize = CGSizeMake(x + width, height);
-}
 
-#pragma mark ---- scrollViewDelegate
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    [self updateButtons];
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    [self updateButtons];
-}
-
-- (void)updateButtons
-{
-    if(self.scrollView.currentPage == self.scrollView.subviews.count - 1){
-        
-        [self.button setTitle:@"标签使用者管理" forState:UIControlStateNormal];
-    }
-    else{
-       
-        [self.button setTitle:@"紧急联系人管理" forState:UIControlStateNormal];
-    }
-}
 
 #pragma mark --- private mothods
 
@@ -99,51 +64,80 @@
     
 }
 
-// 点击了管理按钮
-
--(void)buttonClick:(UIButton *)button
+// 点击紧急联系人
+-(void)contactBtnClick:(UIButton *)button
 {
-    if ([button.titleLabel.text isEqualToString:@"标签使用者管理"]) {
-        
-        HCTagUserMangerViewController *vc = [[HCTagUserMangerViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES
-         ];
-    }
-    else
-    {
-        HCContactPersonController *VC = [[HCContactPersonController alloc]init];
-        [self.navigationController pushViewController:VC animated:YES];
-    }
+    HCContactPersonController *vc = [[HCContactPersonController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
+
+-(void)taguserBtnClick:(UIButton *)button
+
+{
+    HCTagUserMangerViewController *vc = [[HCTagUserMangerViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 #pragma mark --- settet Or getter
 
 
-- (JT3DScrollView *)scrollView
+- (UIButton *)contantPersonBtn
 {
-    if(!_scrollView){
-        _scrollView = [[JT3DScrollView alloc]initWithFrame:CGRectMake(50, 120, SCREEN_WIDTH-100, SCREEN_HEIGHT-180)];
-        _scrollView.effect = JT3DScrollViewEffectCarousel;
-        _scrollView.delegate = self;
+    if(!_contantPersonBtn){
+        _contantPersonBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGFloat  btnW = 210/375.0*SCREEN_WIDTH;
+        CGFloat  btnH = 200/667.0*SCREEN_HEIGHT;
+        _contantPersonBtn.frame = CGRectMake(SCREEN_WIDTH/2-btnW/2, 95/667.0*SCREEN_HEIGHT, btnW, btnH);
+        [_contantPersonBtn addTarget:self action:@selector(contactBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        ViewRadius(_contantPersonBtn, 5);
+        _contantPersonBtn.backgroundColor = [UIColor yellowColor];
     }
-    return _scrollView;
+    return _contantPersonBtn;
 }
 
 
-- (UIButton *)button
+- (UIButton *)taguserBtn
 {
-    if(!_button){
-        _button = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button.frame = CGRectMake(50, SCREEN_HEIGHT-80, SCREEN_WIDTH-100, 40);
-        _button.backgroundColor = kHCNavBarColor;
-        [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_button setTitle:@"紧急联系人管理" forState:UIControlStateNormal];
-        [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        ViewRadius(_button, 8);
+    if(!_taguserBtn){
+        _taguserBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGFloat  btnW = 210/375.0*SCREEN_WIDTH;
+        CGFloat  btnH = 200/667.0*SCREEN_HEIGHT;
+        _taguserBtn.frame = CGRectMake(SCREEN_WIDTH/2-btnW/2,380/667.0*SCREEN_HEIGHT, btnW, btnH);
+        [_taguserBtn addTarget:self action:@selector(taguserBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        ViewRadius(_taguserBtn, 5);
+        _taguserBtn.backgroundColor = [UIColor yellowColor];
     }
-    return _button;
+    return _taguserBtn;
 }
 
+
+- (UILabel *)contantPersonLabel
+{
+    if(!_contantPersonLabel){
+        CGFloat labelW =210/375.0*SCREEN_WIDTH;
+        CGFloat labelH = 30/667.0 *SCREEN_HEIGHT;
+        _contantPersonLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-labelW/2, 310/667.0*SCREEN_HEIGHT, labelW,labelH)];
+        _contantPersonLabel.text = @"紧急联系人管理";
+        _contantPersonLabel.textColor = [UIColor blackColor];
+        _contantPersonLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _contantPersonLabel;
+}
+
+
+- (UILabel *)tagUserLabel
+{
+    if(!_tagUserLabel){
+        CGFloat labelW =210/375.0*SCREEN_WIDTH;
+        CGFloat labelH = 30/667.0 *SCREEN_HEIGHT;
+        _tagUserLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-labelW/2, 595/667.0 *SCREEN_HEIGHT, labelW, labelH)];
+        _tagUserLabel.text = @"标签试用者管理";
+        _tagUserLabel.textColor = [UIColor blackColor];
+        _tagUserLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _tagUserLabel;
+}
 
 
 - (void)didReceiveMemoryWarning {
