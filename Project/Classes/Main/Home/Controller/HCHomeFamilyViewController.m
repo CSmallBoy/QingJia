@@ -143,6 +143,7 @@
 
     if (index == 2)
     {
+        //评论界面
         HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
         editComment.data = @{@"data": info};
         UIViewController *rootController = self.view.window.rootViewController;
@@ -165,7 +166,7 @@
         [self requestLikeCount:info indexPath:indexPath];
     }
 }
-//图片
+//图片详情
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath moreImgView:(NSInteger)index
 {
     HCHomePictureDetailViewController *pictureDetail = [[HCHomePictureDetailViewController alloc] init];
@@ -173,7 +174,7 @@
     pictureDetail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pictureDetail animated:YES];
 }
-//功能按钮
+//时光详情
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn
 {
     HCHomeInfo *info = self.dataSource[indexPath.section];
@@ -287,6 +288,9 @@
     NHCHomeLikeApi *api = [[NHCHomeLikeApi alloc]init];
     api.TimeID = info.TimeID;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        if (requestStatus == 401) {
+            [self showHUDText:@"您已经点过赞了,请刷新"];
+        }
         [self.tableView reloadData];
     }];
   

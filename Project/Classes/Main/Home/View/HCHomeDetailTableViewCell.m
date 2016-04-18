@@ -22,14 +22,14 @@
 @property (nonatomic, strong) UILabel *deveceModel;
 @property (nonatomic, strong) UILabel *times;
 @property (nonatomic, strong) UILabel *contents;
-
+//多图片
 @property (nonatomic, strong) HCHomeMoreImgView *moreImgView;
 @property (nonatomic, strong) HCPraiseTagListView *praiseTag;
 
 @end
 
 @implementation HCHomeDetailTableViewCell
-
+//时光详情
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -119,7 +119,8 @@
     }
     
     self.nickName.text = info.NickName;
-    self.times.text = [Utils transformServerDate:[info.CreateTime integerValue]];
+    self.times.text = info.CreateTime;
+    //self.times.text = [Utils transformServerDate:[info.CreateTime integerValue]];
     // 设备型号
 //    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
     

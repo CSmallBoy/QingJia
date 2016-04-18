@@ -7,8 +7,11 @@
 //
 
 #import "HCRequest.h"
+@class HCHomeDetailInfo;
+
+typedef void(^NHCHomeDetailBlock)(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info);
 
 @interface NHCHomeCommentListApi : HCRequest
 @property (nonatomic,copy) NSString *TimeID;
-
+- (void)startRequest:(NHCHomeDetailBlock)requestBlock;
 @end

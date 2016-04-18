@@ -69,7 +69,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1 + _detailInfo.commentsArr.count;
+    //return 1 + _detailInfo.commentsArr.count;
+    //评论
+    if (_detailInfo.commentsArr.count==0) {
+        return 1;
+    }else{
+        return 2;
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -161,7 +168,7 @@
 }
 
 #pragma mark -  HCHomeDetailTableViewCellDelegate
-
+//第几张图片
 - (void)hchomeDetailTableViewCellSelectedImage:(NSInteger)index
 {
     HCHomeInfo *info = self.data[@"data"];
@@ -200,17 +207,26 @@
 }
 
 #pragma mark - network
-
+//获取评论
 - (void)requestHomeDetail
 {
     [self showHUDView:nil];
     HCHomeInfo *info = self.data[@"data"];
     NHCHomeCommentListApi *api = [[NHCHomeCommentListApi alloc]init];
     api.TimeID = info.TimeID;
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-        
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self hideHUDView];
+            [self.dataSource removeAllObjects];
+            _detailInfo = info;
+            [self.tableView reloadData];
+        }else
+        {
+            [self showHUDError:message];
+        }
     }];
-    
+   
     
 //    HCHomeDetailApi *api = [[HCHomeDetailApi alloc] init];
 //    api.FTID = info.KeyId;

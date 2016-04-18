@@ -15,6 +15,8 @@
 #import "HCEditCommentView.h"
 //评论api
 #import "NHCHomeCommentsApi.h"
+//上传图片的api
+
 
 @interface HCEditCommentViewController ()<HCEditCommentViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -151,12 +153,12 @@
     if (_info.FTImages.count > 1)
     {
      //图片上传
-        [self requestImageUpload];
+       // [self requestImageUpload];
     }else
     {
        [self requestEditComment];
     }
-    
+    [self requestEditComment];
 }
 
 - (void)handleBackButton
@@ -189,18 +191,54 @@
     api.Timesid = homeInfo.TimeID;
     api.ToUserId =homeInfo.creator;
     api.content = _info.FTContent;
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self showHUDSuccess:@"评论成功"];
-            [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
-        }else
-        {
-            [self showHUDError:message];
+    //先判断是否有图片上传
+    if (IsEmpty(_info.FTImages)) {
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+            if (requestStatus == HCRequestStatusSuccess)
+            {
+                [self showHUDSuccess:@"评论成功"];
+                [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
+            }else
+            {
+                [self showHUDError:message];
+            }
+            
+        }];
+    }else{
+        //有图片就执行这个操作
+        //第一步 上传图片
+        //第二部整合 图片名字
+        NSMutableArray *arr_image_path = [NSMutableArray array];
+        for (int i = 0; i < _info.FTImages.count-1; i ++) {
+            [KLHttpTool uploadImageWithUrl:[readUserInfo url:kkComment] image:_info.FTImages[i] success:^(id responseObject) {
+                NSString *str1 = responseObject[@"Data"][@"files"][0];
+                [arr_image_path addObject:str1];
+                NSString *str2;
+                NSString *str_all = [NSMutableString string];
+                if (arr_image_path.count == _info.FTImages.count-1) {
+                    for (int i = 0 ; i < arr_image_path.count ; i ++) {
+                        if (i == 0) {
+                            str2 = arr_image_path[0];
+                            str_all = [str2 stringByAppendingString:str_all];
+                        }else{
+                            str2 = [arr_image_path[i] stringByAppendingString:@","];
+                            str_all = [str2 stringByAppendingString:str_all];
+                        }
+                    }
+                }
+                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+                    NSLog(@"%@",responseObject);
+                }];
+            } failure:^(NSError *error) {
+                
+            }];
         }
-
-    }];
+        
+        
+    }
+    
+   
+    
 //    HCEditCommentApi *api = [[HCEditCommentApi alloc] init];
 //    HCHomeInfo *homeInfo = self.data[@"data"];
 //    _info.FTID = homeInfo.KeyId;

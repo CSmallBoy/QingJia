@@ -137,16 +137,19 @@
     if (!IsEmpty(info.HeadImg))
     {
         [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.HeadImg] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
+    
     }else
     {
         [self.headButton setImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
     }
+    //时光头像设置
+     [self.headButton setImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
     self.nickName.text = info.NickName;
     NSDate *date = [Utils getDateWithString:info.CreateTime format:@"yyyy-MM-dd HH:mm:ss"];
     self.times.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd HH:mm"];
     // 手机来源
 //    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
-    self.deveceModel.text = info.fromFamily;
+    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@",info.fromFamily];
     
     // 内容设置行间距
     if (!IsEmpty(info.FTContent))
@@ -204,6 +207,7 @@
     if (!_headButton)
     {
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_headButton setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
         [_headButton addTarget:self action:@selector(handleHeadButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _headButton;

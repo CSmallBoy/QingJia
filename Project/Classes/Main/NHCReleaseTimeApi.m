@@ -21,13 +21,24 @@
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":dict[@"UserInf"][@"uuid"]};
-    NSDictionary *para = @{@"content":_content,
-                           @"imageNames":_imageNames,
-                           @"openAddress":@"1",
-                           @"permitType":@"0",
-                           @"createLocation":@"30,118",
-                           @"createAddrSmall":@"上海市，闵行区",
-                           @"createAddr":@"上海市,闵行区,集心路168号"};
+    NSDictionary *para;
+    if (IsEmpty(_imageNames)) {
+        para = @{@"content":_content,
+                 @"openAddress":@"1",
+                 @"permitType":@"0",
+                 @"createLocation":@"30,118",
+                 @"createAddrSmall":@"上海市，闵行区",
+                 @"createAddr":@"上海市,闵行区,集心路168号"};
+    }else{
+        para = @{@"content":_content,
+                 @"imageNames":_imageNames,
+                 @"openAddress":@"1",
+                 @"permitType":@"0",
+                 @"createLocation":@"30,118",
+                 @"createAddrSmall":@"上海市，闵行区",
+                 @"createAddr":@"上海市,闵行区,集心路168号"};
+    }
+    
     return @{@"Head":head,@"Para":para};
 }
 -(id)formatResponseObject:(id)responseObject{
