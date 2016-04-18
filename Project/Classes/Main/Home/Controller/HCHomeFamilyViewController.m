@@ -55,6 +55,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -135,7 +136,7 @@
     return 1;
 }
 
-#pragma mark - HCHomeTableViewCellDelegate
+#pragma mark - HCHomeTableViewCellDelegate 功能 都是点击事件
 //功能 都是点击事件
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath functionIndex:(NSInteger)index
 {
@@ -166,7 +167,7 @@
         [self requestLikeCount:info indexPath:indexPath];
     }
 }
-//图片详情
+#pragma mark  图片详情
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath moreImgView:(NSInteger)index
 {
     HCHomePictureDetailViewController *pictureDetail = [[HCHomePictureDetailViewController alloc] init];
@@ -174,7 +175,7 @@
     pictureDetail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pictureDetail animated:YES];
 }
-//时光详情
+#pragma mark 时光详情
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn
 {
     HCHomeInfo *info = self.dataSource[indexPath.section];
@@ -184,7 +185,7 @@
     [self.navigationController pushViewController:userTime animated:YES];
 }
 
-#pragma mark - private methods
+#pragma mark - private methods 加载数据 保存数据 写入数据
 
 - (void)readLocationData
 {
@@ -216,7 +217,7 @@
     [arrayM writeToFile:path atomically:YES];
 }
 
-#pragma mark - setter or getter
+#pragma mark - setter or getter 视图创建
 
 - (void)setGradeId:(NSString *)gradeId
 {
@@ -240,14 +241,9 @@
     }
 }
 
-#pragma mark - network
-- (void)getData{
-    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
-    
-    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id data) {
-        
-    }];
-}
+#pragma mark - network  网络请求
+
+//上啦刷新
 - (void)requestHomeData
 {
     NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
@@ -261,7 +257,7 @@
     }];
     _baseRequest = api;
 }
-//更多数据  下拉刷新
+//更多数据  下拉加载
 - (void)requestMoreHomeData
 {
     NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc] init];
@@ -291,7 +287,8 @@
         if (requestStatus == 401) {
             [self showHUDText:@"您已经点过赞了,请刷新"];
         }
-        [self.tableView reloadData];
+        //暂时  不对  一会修改
+       //[self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
   
 //    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];

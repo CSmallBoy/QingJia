@@ -22,9 +22,14 @@
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-    NSDictionary *para = @{@"timesId":_TimeID,
-                           @"start":@"0",
-                           @"count":@"100"};
+    
+    NSDictionary *para;
+    if (IsEmpty(_imageName)) {
+        para = @{@"timesId":_TimeID};
+    }else{
+        para = @{@"timesId":_TimeID,
+                 @"imageName":_imageName};
+    }
     return @{@"Head":head,@"Para":para};
 }
 -(id)formatResponseObject:(id)responseObject

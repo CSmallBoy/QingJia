@@ -58,6 +58,7 @@
         info.isLike = arr[i][@"isLike"];
         info.fromFamily = arr[i][@"fromFamily"];
         info.FTReplyCount = arr[i][@"replyCount"];
+        info.HeadImg = arr[i][@"imageName"];
         [arring addObject:info];
     }
     return arring;

@@ -136,14 +136,16 @@
     
     if (!IsEmpty(info.HeadImg))
     {
-        [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.HeadImg] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
+        //头像的url
+        
+        [self.headButton sd_setImageWithURL:[readUserInfo url:info.HeadImg :kkUser] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
     
     }else
     {
         [self.headButton setImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
     }
     //时光头像设置
-     [self.headButton setImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
+     //[self.headButton setImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
     self.nickName.text = info.NickName;
     NSDate *date = [Utils getDateWithString:info.CreateTime format:@"yyyy-MM-dd HH:mm:ss"];
     self.times.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd HH:mm"];

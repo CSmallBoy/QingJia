@@ -9,5 +9,6 @@
 #import "HCViewController.h"
 
 @interface HCEditCommentViewController : HCViewController
+@property (nonatomic ,copy)NSString *single;
 
 @end

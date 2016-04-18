@@ -90,7 +90,7 @@
     self.nickName.text = info.NickName;
     self.times.text = info.CreateTime;
     self.commentLable.text = info.FTContent;
-    
+    [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal]; 
     self.headButton.frame = CGRectMake(10, 10, 40, 40);
     ViewRadius(self.headButton, 20);
     
@@ -111,6 +111,7 @@
     if (!_headButton)
     {
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        
     }
     return _headButton;
 }
@@ -159,6 +160,7 @@
         _commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_commentBtn addTarget:self action:@selector(handleCommentButton) forControlEvents:UIControlEventTouchUpInside];
         UIImageView *imgView = [[UIImageView alloc] initWithImage:OrigIMG(@"Comment_but_Bubbles")];
+        
         imgView.frame = CGRectMake(0, 0, 20, 20);
         [_commentBtn addSubview:imgView];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 40, 20)];

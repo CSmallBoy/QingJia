@@ -112,7 +112,7 @@
     
     if (!IsEmpty(info.HeadImg))
     {
-        [self.headButton sd_setImageWithURL:[NSURL URLWithString:info.HeadImg] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
+        [self.headButton sd_setImageWithURL:[readUserInfo url:info.HeadImg :kkUser] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
     }else
     {
         [self.headButton setImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
@@ -139,8 +139,7 @@
     }else
     {
         self.moreImgView.hidden = YES;
-    }
-    
+    }    
     if (!IsEmpty(_praiseArr) && !self.praiseTag.subviews.count)
     {
         [self.praiseTag setPraiseTagListWithTagArray:_praiseArr];

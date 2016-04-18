@@ -1067,6 +1067,7 @@
 		C7B00C8E1C5F26050010F93B /* groupPublicHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B291C5F26050010F93B /* groupPublicHeader@2x.png */; };
 		C7B00C8F1C5F26050010F93B /* nav_createGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2A1C5F26050010F93B /* nav_createGroup@2x.png */; };
 		C7B00C901C5F26050010F93B /* newFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2B1C5F26050010F93B /* newFriends@2x.png */; };
+		C7B1E1951CC4863A0087D330 /* NHCHomeSingleFigureApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B1E1941CC4863A0087D330 /* NHCHomeSingleFigureApi.m */; };
 		C7B90BDD1CA4E4D80022C60C /* NHCCreatefamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */; };
 		C7B90BE01CA4EB1B0022C60C /* NHCApplyToFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B90BDF1CA4EB1B0022C60C /* NHCApplyToFamily.m */; };
 		C7BBF01E1CBDF74400E9691C /* NHCHomeLikeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBF01D1CBDF74400E9691C /* NHCHomeLikeApi.m */; };
@@ -3012,6 +3013,8 @@
 		C7B00B2A1C5F26050010F93B /* nav_createGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_createGroup@2x.png"; sourceTree = "<group>"; };
 		C7B00B2B1C5F26050010F93B /* newFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newFriends@2x.png"; sourceTree = "<group>"; };
 		C7B00B2C1C5F26050010F93B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C7B1E1931CC4863A0087D330 /* NHCHomeSingleFigureApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeSingleFigureApi.h; sourceTree = "<group>"; };
+		C7B1E1941CC4863A0087D330 /* NHCHomeSingleFigureApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeSingleFigureApi.m; sourceTree = "<group>"; };
 		C7B90BDB1CA4E4D80022C60C /* NHCCreatefamilyApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCCreatefamilyApi.h; sourceTree = "<group>"; };
 		C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCCreatefamilyApi.m; sourceTree = "<group>"; };
 		C7B90BDE1CA4EB1B0022C60C /* NHCApplyToFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCApplyToFamily.h; sourceTree = "<group>"; };
@@ -4976,6 +4979,8 @@
 				C7BBF01D1CBDF74400E9691C /* NHCHomeLikeApi.m */,
 				C7BBF01F1CBE1F9E00E9691C /* NHCHomeCommentListApi.h */,
 				C7BBF0201CBE1F9E00E9691C /* NHCHomeCommentListApi.m */,
+				C7B1E1931CC4863A0087D330 /* NHCHomeSingleFigureApi.h */,
+				C7B1E1941CC4863A0087D330 /* NHCHomeSingleFigureApi.m */,
 			);
 			name = HomeApi;
 			sourceTree = "<group>";
@@ -7854,6 +7859,7 @@
 				C78D7B4C1C5F28F700622CE2 /* HCApplyReturnOrderCell.m in Sources */,
 				C758EE401C743E7A0081FFE1 /* HCaddRelativeViewController.m in Sources */,
 				8D16D1311CC46B87008DC6D7 /* HCTagUserMangerViewController.m in Sources */,
+				C7B1E1951CC4863A0087D330 /* NHCHomeSingleFigureApi.m in Sources */,
 				0A54918A1C2BC32D0085F50D /* ZXRSSDataCharacter.m in Sources */,
 				0A5491DC1C2BC32D0085F50D /* ZXMultiFormatWriter.m in Sources */,
 				C78D7B451C5F28F700622CE2 /* HCLogisticsInfoTableViewCell.m in Sources */,

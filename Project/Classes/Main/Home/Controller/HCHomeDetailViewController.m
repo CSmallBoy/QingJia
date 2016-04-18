@@ -37,9 +37,7 @@
     [super viewDidLoad];
     self.title = @"时光详情";
     [self setupBackItem];
-    
     [self requestHomeDetail];
-    
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.tableView registerClass:[HCHomeDetailCommentTableViewCell class] forCellReuseIdentifier:HCHomeDetailComment];
 }
@@ -141,14 +139,11 @@
         {
             title = info.nickName;
         }
-        
         NSDictionary *attriDic = @{NSFontAttributeName: [UIFont systemFontOfSize:13]};
         CGSize size_value = [title sizeWithAttributes:attriDic];
         size_value.width ++;
         size_value.height ++;
-        
         CGRect newRect = CGRectZero;
-        
         if (previousFrame.origin.x+previousFrame.size.width+size_value.width > WIDTH(self.view)-20)
         {
             newRect.origin = CGPointMake(0, previousFrame.origin.y + size_value.height);
@@ -161,7 +156,6 @@
         
         newRect.size = size_value;
         previousFrame = newRect;
-        
         _praiseHeight = totalHeight;
     }
     return _praiseHeight;
@@ -183,7 +177,7 @@
     [self showHUDText:[NSString stringWithFormat:@"点击了id为--%@--的用户", @(index)]];
 }
 
-#pragma mark - HCHomeDetailCommentTableViewCellDelegate
+#pragma mark - HCHomeDetailCommentTableViewCellDelegate 跳向评论的代理方法
 
 - (void)hchomeDetailCommentTableViewCellCommentHeight:(CGFloat)commentHeight
 {
@@ -227,22 +221,6 @@
         }
     }];
    
-    
-//    HCHomeDetailApi *api = [[HCHomeDetailApi alloc] init];
-//    api.FTID = info.KeyId;
-//    
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self hideHUDView];
-//            [self.dataSource removeAllObjects];
-//            _detailInfo = info;
-//            [self.tableView reloadData];
-//        }else
-//        {
-//            [self showHUDError:message];
-//        }
-//    }];
 }
 
 

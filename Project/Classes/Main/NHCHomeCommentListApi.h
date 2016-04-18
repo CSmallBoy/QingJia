@@ -13,5 +13,6 @@ typedef void(^NHCHomeDetailBlock)(HCRequestStatus requestStatus, NSString *messa
 
 @interface NHCHomeCommentListApi : HCRequest
 @property (nonatomic,copy) NSString *TimeID;
+@property (nonatomic,copy) NSString *imageName;
 - (void)startRequest:(NHCHomeDetailBlock)requestBlock;
 @end

@@ -157,7 +157,7 @@
     return url;
 }
 
-
+//下载原图
 + (NSURL *)originUrl:(NSString *)imageName :(NSString *)pathName{
     NSString * string = [kOriginImageUrl stringByAppendingString:[NSString stringWithFormat:@"%@/%@",pathName,imageName]];
     NSURL *url = [NSURL URLWithString:string];
@@ -170,6 +170,47 @@
     return url;
 }
 
-
-
+/**
+ * 计算指定时间与当前的时间差
+ * @param compareDate   某一指定时间
+ * @return 多少(秒or分or天or月or年)+前 (比如，3天前、10分钟前)
+ */
++(NSString *) compareCurrentTime:(NSDate*) compareDate
+{
+    NSTimeInterval  timeInterval = [compareDate timeIntervalSinceNow];
+    timeInterval = -timeInterval;
+    long temp = 0;
+    NSString *result;
+    if (timeInterval < 60) {
+        result = [NSString stringWithFormat:@"刚刚"];
+    }
+    else if((temp = timeInterval/60) <60){
+        result = [NSString stringWithFormat:@"%ld分前",temp];
+    }
+    
+    else if((temp = temp/60) <24){
+        result = [NSString stringWithFormat:@"%ld小时前",temp];
+    }
+    
+    else if((temp = temp/24) <30){
+        result = [NSString stringWithFormat:@"%ld天前",temp];
+    }
+    
+    else if((temp = temp/30) <12){
+        result = [NSString stringWithFormat:@"%ld月前",temp];
+    }
+    else{
+        temp = temp/12;
+        result = [NSString stringWithFormat:@"%ld年前",temp];
+    }
+    return  result;
+}
+//字符串转成date
++(NSDate*)dateDetail: (NSString*)datesting{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"y-M-d HH:mm:ss"];
+    NSDate *date=[dateFormatter dateFromString:datesting];
+    return date;
+}
 @end

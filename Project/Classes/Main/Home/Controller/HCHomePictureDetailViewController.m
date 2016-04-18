@@ -12,16 +12,28 @@
 #import "HCHomeInfo.h"
 #import "HCHomeDetailCommentTableViewCell.h"
 #import "HCHomePictureDetailApi.h"
-
+//评论视图
+#import "HCEditCommentView.h"
+#import "HCEditCommentViewController.h"
+//单图pingl
+#import "NHCHomeSingleFigureApi.h"
+//单张图的评论列表
+#import "NHCHomeCommentListApi.h"
+#import "HCHomeDetailInfo.h"
 #define HCHomeDetailComment @"HCHomeDetailCommentTableViewCell"
 
 @interface HCHomePictureDetailViewController ()<HCHomeDetailCommentTableViewCellDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     BOOL  _isAdd;
     UIImage   *_image;
+  
 }
+@property (nonatomic, strong) HCEditCommentView *contentView;
+@property (nonatomic, strong) HCHomeInfo *info;
+@property (nonatomic, strong) HCHomeDetailInfo *detailInfo;
 @property (nonatomic, assign) CGFloat commentHeight;
 @property(nonatomic,strong)UIImageView *imageView;
+@property(nonatomic,strong)UIButton *commentbutton;
 
 @end
 
@@ -35,11 +47,12 @@
     self.title = @"图文详情";
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupBackItem];
-    
+    _info = self.data[@"data"];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.contentInset =  UIEdgeInsetsMake(200, 0, 0, 0);
     [self createHeaderView];
     
+    [self.view addSubview:[self button]];
     [self requestPictureDetail];
 }
 
@@ -52,9 +65,9 @@
     {
         cell = [[HCHomeDetailCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HCHomeDetailComment];
     }
-    cell.commentBtn.hidden = YES;
+    //cell.commentBtn.hidden = NO;
     cell.delegate = self;
-    cell.info = self.dataSource[indexPath.row];
+    cell.info = _detailInfo.commentsArr[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -71,7 +84,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    return _detailInfo.commentsArr.count;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,7 +138,7 @@
     DLog(@"点击了头部图片");
 }
 
-#pragma mark - setter or getter
+#pragma mark - setter or getter  评论按钮  评论视图
 
 -(UIImageView *)imageView
 {
@@ -133,9 +147,122 @@
     }
     return _imageView;
 }
+- (UIButton *)button{
+    if (!_commentbutton) {
+        _commentbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_commentbutton setFrame:CGRectMake(0, SCREEN_HEIGHT- 49, SCREEN_WIDTH, 49)];
+        [_commentbutton setBackgroundColor:[UIColor orangeColor]];
+        [_commentbutton setTitle:@"评论" forState:UIControlStateNormal];
+        _commentbutton.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_commentbutton addTarget:self  action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _commentbutton;
+}
+- (HCEditCommentView *)contentView
+{
+    if (!_contentView)
+    {
+        _contentView = [[HCEditCommentView alloc] initWithFrame:CGRectMake(10, 0, WIDTH(self.view)-20, HEIGHT(self.view)*0.5)];
+        _contentView.delegate = self;
+        _contentView.center = CGPointMake(self.view.center.x, self.view.center.y);
+        ViewRadius(_contentView, 5);
+        _contentView.backgroundColor = [UIColor whiteColor];
+    }
+    return _contentView;
+}
+#pragma mark - 评论点击事件
+-(void)commentClick{
+    
+    //评论界面
+    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
+    editComment.data = @{@"data": _info,@"index":self.data[@"index"]};
+    UIViewController *rootController = self.view.window.rootViewController;
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        editComment.modalPresentationStyle=
+        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+    }else
+    {
+        rootController.modalPresentationStyle=
+        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+    }
+    editComment.single = @"评论单图";
+    [rootController presentViewController:editComment animated:YES completion:nil];
+}
+#pragma mark - HCEditCommentViewDelegate的代理方法
 
+- (void)hceditCommentViewWithButtonIndex:(NSInteger)index
+{
+    if (index)
+    {
+        [self handleTapGestureRecognizer:nil];
+    }else
+    {
+        [self checkCommentData];
+    }
+}
+
+- (void)hceditCommentViewWithDeleteImageButton:(NSInteger)index
+{
+//    [_info.FTImages removeObjectAtIndex:index];
+//    [self.contentView setImageArr:_info.FTImages];
+}
+
+- (void)hceditCommentViewWithimageButton:(NSInteger)index
+{
+    if (_info.FTImages.count == index + 1)
+    {
+        UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
+        [action showInView:self.view];
+    }
+}
+
+- (void)hceditCommentViewFeedbackTextViewdidBeginEditing
+{
+    CGRect frame = self.contentView.frame;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentView.frame = CGRectMake(frame.origin.x, 64, WIDTH(self.view)-20, HEIGHT(self.view)*0.5);
+    }];
+    
+}
+
+- (void)hceditCommentViewFeedbackTextViewdidEndEditingWithText:(NSString *)text
+{
+    //_info.FTContent = text;
+    CGRect frame = self.contentView.frame;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentView.frame = CGRectMake(frame.origin.x, 0, WIDTH(self.view)-20, HEIGHT(self.view)*0.5);
+        _contentView.center = CGPointMake(self.view.center.x, self.view.center.y);
+    }];
+}
 
 #pragma mark - Private methods
+- (void)handleTapGestureRecognizer:(UITapGestureRecognizer *)tap
+{
+    CGPoint tapPoint = [tap locationInView:self.view];
+    if (!CGRectContainsPoint(self.contentView.frame, tapPoint))
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+//检查评论内容
+- (void)checkCommentData
+{
+    if (IsEmpty(_info.FTContent))
+    {
+        [self showHUDText:@"评论内容不能为空！"];
+        return;
+    }
+    if (_info.FTImages.count > 1)
+    {
+
+    }else
+    {
+        //[self requestEditComment];
+    }
+}
+
 
 -(void)createHeaderView
 {
@@ -147,9 +274,8 @@
 //    UIImage *image = [UIImage sd_imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info.FTImages[index]]]];
 //    _image = image;
 //    imageView.image = image;
-    [imageView sd_setImageWithURL:[readUserInfo url:image_url :kkTimes] placeholderImage:IMG(@"1.png")];
+    [imageView sd_setImageWithURL:[readUserInfo originUrl:image_url :kkTimes] placeholderImage:IMG(@"1.png")];
     self.imageView = imageView;
-    
     [self.tableView insertSubview:self.imageView atIndex:0];
 }
 
@@ -158,12 +284,12 @@
 {
     self.tableView.hidden = YES;
     [UIView animateWithDuration:0.5 animations:^{
-        imageView.backgroundColor = [UIColor blackColor];
+        //imageView.backgroundColor = [UIColor blackColor];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.frame = self.view.frame;
-//        self.view.backgroundColor = [UIColor blackColor];
+        imageView.image = self.imageView.image;
+        self.view.backgroundColor = [UIColor blackColor];
     }completion:^(BOOL finished) {
-        
         UIButton  *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
         saveButton.frame = CGRectMake(0, SCREEN_HEIGHT-44, SCREEN_WIDTH, 44);
         saveButton.backgroundColor = RGBCOLOR(8, 19, 34);
@@ -172,28 +298,23 @@
         [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [saveButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
         [imageView addSubview:saveButton];
-        
     }];
 }
-
 //手势方法
 -(void)tap:(UITapGestureRecognizer *)tap
 {
     self.navigationController.navigationBarHidden = NO;
     [tap.view removeAllSubviews];
-
     [UIView animateWithDuration:0.5 animations:^{
-    tap.view.frame = CGRectMake(0, 64, SCREEN_WIDTH, 200);
+        tap.view.frame = CGRectMake(0, 64, SCREEN_WIDTH, 200);
     }completion:^(BOOL finished) {
-    
         UIImageView *imageView = (UIImageView*)tap.view;
-        imageView.backgroundColor = [UIColor clearColor];
-     [tap.view removeFromSuperview];
+        //imageView.backgroundColor = [UIColor clearColor];
+        imageView  = self.imageView;
+        [tap.view removeFromSuperview];
     }];
-    
     _isAdd = NO;
     self.tableView.hidden = NO;
-    
 }
 
 //保存按钮的点击方法
@@ -202,7 +323,6 @@
     UIImageView *imageView = (UIImageView *)button.superview;
     UIImage *image = imageView.image;
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-
 }
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     if (error) {
@@ -219,19 +339,16 @@
 - (void)requestPictureDetail
 {
     [self showHUDView:nil];
-    
-    HCHomePictureDetailApi *api = [[HCHomePictureDetailApi alloc] init];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self hideHUDView];
-            [self.dataSource removeAllObjects];
-            [self.dataSource addObjectsFromArray:array];
-            [self.tableView reloadData];
-        }else
-        {
-            [self showHUDError:message];
-        }
+    NHCHomeCommentListApi *api2 = [[NHCHomeCommentListApi alloc]init];
+    int a = [self.data[@"index"] intValue];
+    api2.TimeID = _info.TimeID;
+    api2.imageName = _info.FTImages[a];
+    [api2 startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info) {
+        [self hideHUDView];
+        [self.dataSource removeAllObjects];
+        _detailInfo = info;
+        [self.tableView reloadData];
+        
     }];
 }
 

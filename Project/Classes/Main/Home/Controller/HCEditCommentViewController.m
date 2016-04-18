@@ -16,7 +16,7 @@
 //评论api
 #import "NHCHomeCommentsApi.h"
 //上传图片的api
-
+#import "NHCHomeSingleFigureApi.h"
 
 @interface HCEditCommentViewController ()<HCEditCommentViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -42,7 +42,8 @@
     [self.view addGestureRecognizer:tap];
 }
 
-#pragma mark - HCEditCommentViewDelegate
+#pragma mark - HCEditCommentViewDelegate的代理方法
+//根据第几个button去执行相应的操作
 
 - (void)hceditCommentViewWithButtonIndex:(NSInteger)index
 {
@@ -152,13 +153,19 @@
     }
     if (_info.FTImages.count > 1)
     {
-     //图片上传
-       // [self requestImageUpload];
+        //图片上传
+        // [self requestImageUpload];
     }else
     {
-       [self requestEditComment];
+        if (IsEmpty(_single)) {
+            
+            [self requestEditComment];
+        }else{
+            //单图评
+            [self resquestCommentS];
+        }
     }
-    [self requestEditComment];
+    
 }
 
 - (void)handleBackButton
@@ -183,6 +190,58 @@
 
 #pragma mark - network
 //回复的api
+//单图的api
+-(void)resquestCommentS{
+ //只有文字的时候上传
+    NHCHomeSingleFigureApi *api  = [[NHCHomeSingleFigureApi alloc]init];
+    HCHomeInfo *homeinfo = self.data[@"data"];
+    api.TimeID = homeinfo.TimeID;
+    api.toUser = homeinfo.creator;
+    api.Content = _info.FTContent;
+    NSString *str = self.data[@"index"];
+    int a = [str intValue];
+    api.ToimageName = homeinfo.FTImages[a];
+    if (_info.FTImages.count==1) {
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+            if (requestStatus == HCRequestStatusSuccess) {
+                [self showHUDSuccess:@"评论成功"];
+            }
+        }];
+    }else{//这个有图片  需要先上传图片
+        
+        
+        //有图片就执行这个操作
+        //第一步 上传图片
+        //第二部整合 图片名字
+        NSMutableArray *arr_image_path = [NSMutableArray array];
+        for (int i = 0; i < _info.FTImages.count-1; i ++) {
+            [KLHttpTool uploadImageWithUrl:[readUserInfo url:kkComment] image:_info.FTImages[i] success:^(id responseObject) {
+                NSString *str1 = responseObject[@"Data"][@"files"][0];
+                [arr_image_path addObject:str1];
+                NSString *str2;
+                NSString *str_all = [NSMutableString string];
+                if (arr_image_path.count == _info.FTImages.count-1) {
+                    for (int i = 0 ; i < arr_image_path.count ; i ++) {
+                        if (i == 0) {
+                            str2 = arr_image_path[0];
+                            str_all = [str2 stringByAppendingString:str_all];
+                        }else{
+                            str2 = [arr_image_path[i] stringByAppendingString:@","];
+                            str_all = [str2 stringByAppendingString:str_all];
+                        }
+                    }
+                }
+                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+                    NSLog(@"%@",responseObject);
+                }];
+            } failure:^(NSError *error) {
+                
+            }];
+        }
+
+    }
+}
+//所有的
 - (void)requestEditComment
 {
     [self showHUDView:nil];
@@ -192,7 +251,7 @@
     api.ToUserId =homeInfo.creator;
     api.content = _info.FTContent;
     //先判断是否有图片上传
-    if (IsEmpty(_info.FTImages)) {
+    if (_info.FTImages.count==1) {
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
             if (requestStatus == HCRequestStatusSuccess)
             {
