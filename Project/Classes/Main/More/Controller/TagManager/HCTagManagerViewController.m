@@ -9,7 +9,7 @@
 #import "HCTagManagerViewController.h"
 #import "HCActivatedTableViewController.h"
 #import "HCUnactivatedTagViewController.h"
-#import "HCClosedTagViewController.h"
+#import "HCTagCloseTableViewController.h"
 #import "HCCourseViewController.h"
 #import "HCTagMangerMangerController.h"
 
@@ -18,7 +18,7 @@
 @property (nonatomic,strong) UISegmentedControl *segmented;
 
 @property (nonatomic,strong) HCActivatedTableViewController *activatedTagVC;
-@property (nonatomic,strong) HCClosedTagViewController *closedTagVC;
+@property (nonatomic,strong) HCTagCloseTableViewController *closedTagVC;
 
 @property (nonatomic,strong) UIBarButtonItem *rightItem;
 
@@ -34,6 +34,8 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.view addSubview:self.segmented];
     [self.view addSubview:self.activatedTagVC.view];
+    [self.view addSubview:self.closedTagVC.view];
+    self.closedTagVC.view.hidden = YES;
     
     // 管理按钮
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(manageBtnClick:)];
@@ -78,20 +80,16 @@
         UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(manageBtnClick:)];
         self.navigationItem.rightBarButtonItem = right;
 
-        [self.closedTagVC.view removeFromSuperview];
-        [self.view addSubview:self.activatedTagVC.view];
+        self.closedTagVC.view.hidden = YES;
+        self.activatedTagVC.view.hidden = NO;
     }
     else if (segment.selectedSegmentIndex == 1)
     {
         
-        self.navigationItem.rightBarButtonItem = self.rightItem;
-        [self.activatedTagVC.view removeFromSuperview];
-        [self.closedTagVC.view removeFromSuperview];
-    }else if (segment.selectedSegmentIndex == 2)
-    {
-        self.navigationItem.rightBarButtonItem = nil;
-        [self.activatedTagVC.view removeFromSuperview];
-        [self.view addSubview:self.closedTagVC.view];
+        
+        self.activatedTagVC.view.hidden = YES;
+        self.closedTagVC.view.hidden = NO;
+   
     }
 }
 
@@ -122,26 +120,16 @@
     return _activatedTagVC;
 }
 
--(HCClosedTagViewController *)closedTagVC
+-(HCTagCloseTableViewController *)closedTagVC
 {
     if (!_closedTagVC)
     {
-        _closedTagVC = [[HCClosedTagViewController alloc]initWithStyle:UITableViewStyleGrouped];
+        _closedTagVC = [[HCTagCloseTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
         _closedTagVC.view.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-114);
         [self addChildViewController:_closedTagVC];
     }
     return _closedTagVC;
 }
 
-- (UIBarButtonItem *)rightItem
-{
-    if (!_rightItem)
-    {
-        _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"") style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem)];
-        _rightItem.title = @"教程";
-        
-    }
-    return _rightItem;
-}
 
 @end

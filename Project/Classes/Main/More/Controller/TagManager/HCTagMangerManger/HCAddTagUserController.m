@@ -26,10 +26,15 @@
 @property (nonatomic,strong) NSString *myTitle;
 @property (nonatomic,strong) HCNewTagInfo *info;
 @property (nonatomic,strong) UIImage *image;
+@property (nonatomic,strong) UIView *medicalView;
 
 @property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) NSMutableArray *contactArr;// 联系人数组
 @property (nonatomic,strong) NSMutableArray *selectArr;
+
+@property (nonatomic,strong) NSString* openHealthCard;
+@property (nonatomic,assign) BOOL  isHide;
+@property (nonatomic,strong) UISwitch *sw;
 
 @end
 
@@ -51,6 +56,10 @@
     self.title = @"新增标签使用者";
     
     self.navigationItem.rightBarButtonItem = item;
+    
+    HCNewTagInfo *info = self.data[@"info"];
+    info.openHealthCard = self.openHealthCard;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -67,9 +76,25 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0 || section == 1)
-    {
+    if (section == 0) {
+        
         return 6;
+    }
+    else if (section == 1)
+    {
+        if (_isHide) {
+            return 0;
+        }
+        
+        HCNewTagInfo *info = self.data[@"info"];
+        if ([info.openHealthCard isEqualToString:@"0"]) {
+            
+            return 0;
+        }
+        
+        return 6;
+        
+        
     }
     else
     {
@@ -197,16 +222,7 @@
     
     if (section == 1)
     {
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-        view.backgroundColor = kHCBackgroundColor;
-        
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 100, 30)];
-        label.textColor = [UIColor blackColor];
-        label.text = @"医疗急救卡";
-        label.adjustsFontSizeToFitWidth = YES;
-        [view addSubview:label];
-        
-        return view;
+         return self.medicalView;
         
     }
     else if (section ==2)
@@ -285,6 +301,9 @@
             [self showHUDText:@"请输入学校"];
             return;
         }
+    
+    if ([self.openHealthCard isEqualToString:@"1"]) {
+        
         if (IsEmpty(self.info.height)) {
             [self showHUDText:@"请输入身高"];
             return;
@@ -309,17 +328,13 @@
             [self showHUDText:@"请输入医疗笔记"];
             return;
         }
-        
+    }
         if (self.selectArr.count != 2) {
             
             [self showHUDText:@"必须绑定连个紧急联系人"];
             return;
         }
-    
-    
 
-    
-    
     if (_isEdit)
     {
         if (self.image) {
@@ -405,6 +420,35 @@
 
 }
 
+
+// 点击医疗急救卡的
+-(void)swClick:(UISwitch *)sw
+{
+    if (sw.on) {
+        self.openHealthCard = @"1";
+        sw.on = YES;
+        _isHide = NO;
+        
+        HCNewTagInfo *info = self.data[@"info"];
+        info.openHealthCard = @"1";
+        [self.tableView reloadData];
+        
+    }
+    else
+    {
+        self.openHealthCard = @"0";
+        sw.on = NO;
+        _isHide = YES;
+        
+        HCNewTagInfo *info = self.data[@"info"];
+        info.openHealthCard = @"0";
+        
+        [self.tableView reloadData];
+        
+    }
+    
+}
+
 #pragma mark--- setter Or getter
 
 - (HCPickerView *)datePicker
@@ -447,6 +491,37 @@
     return _selectArr;
 }
 
+- (UIView *)medicalView
+{
+    if(!_medicalView){
+        _medicalView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+        _medicalView.backgroundColor = kHCBackgroundColor;
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 100, 30)];
+        label.textColor = [UIColor blackColor];
+        label.text = @"医疗急救卡";
+        label.adjustsFontSizeToFitWidth = YES;
+        [_medicalView addSubview:label];
+        
+        _sw = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-60, 5, 40, 30)];
+        
+        HCNewTagInfo *info = self.data[@"info"];
+        if ([info.openHealthCard isEqualToString:@"0"]) {
+            
+            _sw.on = NO;;
+        }
+        else
+        {
+           _sw.on = YES;
+        }
+        
+        
+        [_sw addTarget:self action:@selector(swClick:) forControlEvents:UIControlEventValueChanged];
+        [_medicalView addSubview:_sw];
+        
+    }
+    return _medicalView;
+}
 
 
 #pragma mark --- network
@@ -475,6 +550,8 @@
     
 
 }
+// 添加对象的Api
+
 -(void)requestData
 {
 
@@ -490,6 +567,8 @@
     self.info.contactorId2 = info2.contactorId;
     
     api.info = self.info;
+    
+    api.openHealthCard = self.openHealthCard;
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        
@@ -518,15 +597,18 @@
     self.info.relation2 = @"关系2";
     self.info.contactorId2 = info2.contactorId;
     
+    api.openHealthCard = self.openHealthCard;
+    
     api.info =  self.info;
     
     [api startRequest:^(HCRequestStatus requestStautus, NSString *message, id respone) {
        
         if (requestStautus == HCRequestStatusSuccess) {
     
-            NSDictionary *dic = @{@"arr":self.selectArr};
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"changeContactImg" object:nil userInfo:dic];
-             [self.navigationController popViewControllerAnimated:YES];
+//            NSDictionary *dic = @{@"arr":self.selectArr};
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"changeContactImg" object:nil userInfo:dic];
+            UIViewController *vc = self.navigationController.viewControllers[3];
+             [self.navigationController popToViewController:vc animated:YES];
             
         }
     }];

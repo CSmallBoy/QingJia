@@ -16,6 +16,7 @@
 
 @property (nonatomic,strong)UITextField *textField1;
 @property (nonatomic,strong)UITextField *textField2;
+@property (nonatomic,strong)UITextField *textField3;
 @property (nonatomic,strong) NSString *imgStr;
 @property (nonatomic,strong) UIImage *image;
 
@@ -67,49 +68,50 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 140;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, 20, 80, 20)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(110, 20, 80, 20)];
     titleLabel.text = @"姓名";
     titleLabel.textColor = [UIColor blackColor];
     [cell addSubview:titleLabel];
         
-    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(160, 20, 200, 20)];
+    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(180, 20, 200, 20)];
     textField.placeholder = @"点击输入姓名";
     textField.text = _info.trueName;
     textField.textColor = [UIColor blackColor];
     self.textField1 = textField;
     [cell addSubview:self.textField1];
     
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(90, 42, 200, 1)];
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(110, 42, 200, 1)];
     lineView.backgroundColor = [UIColor grayColor];
     
     [cell addSubview:lineView];
     
-    UILabel *titleLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(90, 50, 80, 20)];
+    UILabel *titleLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(110, 50, 80, 20)];
     titleLabel1.text = @"手机号";
     titleLabel1.textColor = [UIColor blackColor];
     [cell addSubview:titleLabel1];
         
-    UITextField *textField1 = [[UITextField alloc]initWithFrame:CGRectMake(160, 50, 200, 20)];
+    UITextField *textField1 = [[UITextField alloc]initWithFrame:CGRectMake(180, 50, 200, 20)];
     textField1.placeholder = @"点击输入手机号";
     textField1.text = _info.phoneNo;
     textField1.textColor = [UIColor blackColor];
     self.textField2 = textField1;
     [cell addSubview:self.textField2];
     
-    UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(90, 72, 200, 1)];
+    UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(110, 72, 200, 1)];
     lineView1.backgroundColor = [UIColor grayColor];
     
     [cell addSubview:lineView1];
 
     
    _headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _headBtn.frame = CGRectMake(10, 10, 60, 60);
+    _headBtn.frame = CGRectMake(10, 10, 80, 80);
+    ViewRadius(_headBtn, 40);
     
     if (self.image) {
         [_headBtn setImage:self.image forState:UIControlStateNormal];
@@ -121,6 +123,22 @@
    
     [_headBtn addTarget:self action:@selector(showAlbum) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:_headBtn];
+    
+    UILabel *titleLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(110, 80, 200, 20)];
+    titleLabel2.text = @"与标签使用者关系";
+    titleLabel2.textColor = [UIColor blackColor];
+    [cell addSubview:titleLabel2];
+    
+    UITextField *textField2 = [[UITextField alloc]initWithFrame:CGRectMake(270, 80, 100, 20)];
+    textField2.placeholder = @"点击输入";
+    textField2.text = _info.phoneNo;
+    textField2.textColor = [UIColor blackColor];
+    self.textField3 = textField2;
+    [cell addSubview:self.textField3];
+    
+    UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(10, 102, SCREEN_WIDTH-20, 1)];
+    lineView2.backgroundColor = [UIColor grayColor];
+    [cell addSubview:lineView2];
     
     return cell;
     
@@ -162,6 +180,7 @@
     api.trueName = self.textField1.text;
     api.phoneNo = self.textField2.text;
     api.imgStr = self.imgStr;
+    api.relative = self.textField3.text;
     
     [api startRequest:^(HCRequestStatus requesStatus, NSString *message, id respone) {
        

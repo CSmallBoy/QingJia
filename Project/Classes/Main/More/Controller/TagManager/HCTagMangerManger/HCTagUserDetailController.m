@@ -15,6 +15,7 @@
 
 #import "HCTagAddObjectApi.h"
 #import "HCContractPersonListApi.h"
+#import "HCTagUserFindApi.h"
 
 #import "HCTagContactInfo.h"// 联系人模型
 
@@ -24,9 +25,13 @@
 @property (nonatomic,strong) NSString *myTitle;
 @property (nonatomic,strong) HCNewTagInfo *info;
 @property (nonatomic,strong) UIImage *image;
+@property (nonatomic,strong) UIView *medicalView;
 
 @property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) NSMutableArray *contactArr;// 联系人数组
+@property (nonatomic,assign) NSInteger openHealthCard;
+@property (nonatomic,assign) BOOL  isHide;
+
 
 @end
 
@@ -34,29 +39,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self requestData];
     self.myTitle = self.data[@"title"];
     self.info = self.data[@"info"];
     
     
     self.myTitle = self.info.trueName;
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
-    
-    
-    HCTagContactInfo *info1 = [[HCTagContactInfo alloc]init];
-    info1.trueName = self.info.contactorTrueName1;
-    info1.phoneNo = self.info.contactorPhoneNo1;
-    info1.relative = self.info.relation1;
-    info1.imageName = self.info.imageName1;
-    
-    HCTagContactInfo *info2 = [[HCTagContactInfo alloc]init];
-    info2.trueName = self.info.contactorTrueName2;
-    info2.phoneNo = self.info.contactorPhoneNo2;
-    info2.relative = self.info.relation2;
-    info2.relative = self.info.imageName2;
-    
-    [self.contactArr addObject:info1];
-    [self.contactArr addObject:info2];
-    
+
     NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:2];
     
     [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
@@ -70,8 +61,6 @@
     
     self.navigationItem.rightBarButtonItem = item;
     
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeContactImg:) name:@"changeContactImg" object:nil];
 }
 
 
@@ -83,9 +72,26 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0 || section == 1)
-    {
+    
+    if (section == 0) {
+        
         return 6;
+    }
+    else if (section == 1)
+    {
+        if (_isHide) {
+            return 0;
+        }
+        
+        
+        if ([_info.openHealthCard isEqualToString:@"0"]) {
+            
+            return 0;
+        }
+        
+        return 6;
+        
+      
     }
     else
     {
@@ -147,7 +153,6 @@
             // 头像
             UIImageView *imageIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 20, 73, 73)];
             
-            
             NSURL *url = [readUserInfo originUrl:info.imageName :@"contactor"];
             [imageIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
             ViewRadius(imageIV, 73/2);
@@ -170,7 +175,7 @@
     }else
     {
         HCTagUserDetailCell *cell = [HCTagUserDetailCell cellWithTableView:tableView];
-        cell.info = self.data[@"info"];
+        cell.info = self.info;
         cell.image = self.image;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.indexPath = indexPath;
@@ -185,16 +190,7 @@
     
     if (section == 1)
     {
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-        view.backgroundColor = kHCBackgroundColor;
-        
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 100, 30)];
-        label.textColor = [UIColor blackColor];
-        label.text = @"医疗急救卡";
-        label.adjustsFontSizeToFitWidth = YES;
-        [view addSubview:label];
-        
-        return view;
+        return self.medicalView;
         
     }
     else if (section ==2)
@@ -280,21 +276,6 @@
 
 }
 
--(void)changeContactImg:(NSNotification *)noti
-{
-    NSDictionary *dic = noti.userInfo;
-    
-    [self.contactArr removeAllObjects];
-    
-    NSArray *arr = dic[@"arr"];
-    [self.contactArr addObjectsFromArray:arr];
-    
-    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:2];
-    
-    [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
-    
-    
-}
 
 #pragma mark--- setter Or getter
 
@@ -322,6 +303,15 @@
 }
 
 
+- (NSInteger)openHealthCard
+{
+    if(!_openHealthCard){
+        _openHealthCard = 1;
+    }
+    return _openHealthCard;
+}
+
+
 - (NSMutableArray *)contactArr
 {
     if(!_contactArr){
@@ -331,41 +321,60 @@
 }
 
 
+- (UIView *)medicalView
+{
+    if(!_medicalView){
+        _medicalView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+        _medicalView.backgroundColor = kHCBackgroundColor;
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 100, 30)];
+        label.textColor = [UIColor blackColor];
+        label.text = @"医疗急救卡";
+        label.adjustsFontSizeToFitWidth = YES;
+        [_medicalView addSubview:label];
+
+    }
+    return _medicalView;
+}
+
+
 #pragma mark --- network
 
--(void)uploadImage
-{
-    NSString *token = [HCAccountMgr manager].loginInfo.Token;
-    NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
-    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkUser,uuid,token]];
-    [KLHttpTool uploadImageWithUrl:str image:self.image success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
-        self.info.imageName = responseObject[@"Data"][@"files"][0];
-        
-        [self requestData];
-    } failure:^(NSError *error) {
-        
-    }];
-    
 
-}
 -(void)requestData
 {
-
-    HCTagAddObjectApi *api = [[HCTagAddObjectApi alloc]init];
+    HCTagUserFindApi *api = [[HCTagUserFindApi alloc]init];
     
-    api.info = self.info;
+    HCNewTagInfo *info = self.data[@"info"];
+    
+    api.objectId = info.objectId;
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-       
+      
         if (requestStatus == HCRequestStatusSuccess) {
-            [self showHUDText:@"添加标签使用者成功"];
+            
+            NSDictionary *dic = respone[@"Data"][@"objectInf"];
+            self.info = [HCNewTagInfo mj_objectWithKeyValues:dic];
+            
+            HCTagContactInfo *info1 = [[HCTagContactInfo alloc]init];
+            info1.trueName = self.info.contactorTrueName1;
+            info1.phoneNo = self.info.contactorPhoneNo1;
+            info1.relative = self.info.relation1;
+            info1.imageName = self.info.imageName1;
+            
+            HCTagContactInfo *info2 = [[HCTagContactInfo alloc]init];
+            info2.trueName = self.info.contactorTrueName2;
+            info2.phoneNo = self.info.contactorPhoneNo2;
+            info2.relative = self.info.relation2;
+            info2.imageName = self.info.imageName2;
+            
+            [self.contactArr addObject:info1];
+            [self.contactArr addObject:info2];
+            
+            [self.tableView reloadData];
         }
         
-        [self.navigationController popViewControllerAnimated:YES];
-        
     }];
-    
 }
 
 

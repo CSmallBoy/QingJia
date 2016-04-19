@@ -17,6 +17,8 @@
 @property (nonatomic,strong) NSString *homeAddress; // 家庭住址
 @property (nonatomic,strong) NSString *school;   // 学校
 
+@property (nonatomic,strong) NSString *openHealthCard; // 是否公开
+
 @property (nonatomic,strong) NSString *height;   // 身高
 @property (nonatomic,strong) NSString *weight;   // 体重
 @property (nonatomic,strong) NSString *bloodType; //血型
@@ -37,6 +39,9 @@
 @property (nonatomic,strong) NSString *imageName2;
 
 @property (nonatomic,strong) NSString *objectId;
+
+
+@property (nonatomic,strong) NSString *labelTitle;
 
 
 @end

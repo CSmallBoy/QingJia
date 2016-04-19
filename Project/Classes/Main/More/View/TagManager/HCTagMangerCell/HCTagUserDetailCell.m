@@ -246,7 +246,7 @@
             {
                 self.textField.hidden = YES;
                 self.textView.placeholder = self.medicalPlaceHolderArr[indexPath.row];
-                if (self.info.allergic) {
+                if (!IsEmpty(self.info.allergic)) {
                     self.textView.textView.text = self.info.allergic;
                     self.textView.textView.textColor = [UIColor blackColor];
                 }
@@ -259,7 +259,7 @@
                 self.textField.hidden = YES;
                
                 self.textView.placeholder = self.medicalPlaceHolderArr[indexPath.row];
-                if (self.info.cureNote) {
+                if (!IsEmpty(self.info.cureNote)) {
                      self.textView.textView.text = self.info.cureNote;
                      self.textView.textView.textColor = [UIColor blackColor];
                 }
@@ -271,7 +271,7 @@
                 self.textField.hidden = YES;
                 self.textView.hidden = NO;
                 self.textView.placeholder = self.medicalPlaceHolderArr[indexPath.row];
-                if (self.info.cureCondition) {
+                if (!IsEmpty(self.info.cureCondition)) {
                     self.textView.textView.text = self.info.cureCondition;
                      self.textView.textView.textColor = [UIColor blackColor];
                 }

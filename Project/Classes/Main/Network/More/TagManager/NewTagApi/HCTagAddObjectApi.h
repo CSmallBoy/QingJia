@@ -18,6 +18,8 @@ typedef void(^HCTagAddObjectBlock) (HCRequestStatus  requestStatus,NSString *mes
 
 @property (nonatomic,strong) HCNewTagInfo *info;
 
+@property (nonatomic,strong) NSString *openHealthCard;
+
 -(void)startRequest:(HCTagAddObjectBlock)requestBlock;
 
 @end

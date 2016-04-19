@@ -10,6 +10,6 @@
 
 @interface HCBindTagController : HCTableViewController
 
-@property (nonatomic,strong) NSString *tagID;
+
 
 @end

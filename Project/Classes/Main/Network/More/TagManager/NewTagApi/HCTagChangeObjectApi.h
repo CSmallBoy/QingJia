@@ -20,6 +20,8 @@ typedef void(^HCTagChangeObjectBlock) (HCRequestStatus requestStautus,NSString *
 
 @property (nonatomic,strong) NSString *objectId;
 
+@property (nonatomic,strong) NSString  *openHealthCard;
+
 -(void)startRequest:(HCTagChangeObjectBlock)requestBlock;
 
 @end

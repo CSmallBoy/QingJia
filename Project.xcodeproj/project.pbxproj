@@ -454,6 +454,9 @@
 		8D131A9F1C7D7C7F00F0D5A0 /* ZLPhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D131A831C7D7C7F00F0D5A0 /* ZLPhotoPickerViewController.m */; };
 		8D131AA01C7D7C7F00F0D5A0 /* ZLPhotoRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D131A851C7D7C7F00F0D5A0 /* ZLPhotoRect.m */; };
 		8D131AA21C7D872800F0D5A0 /* ZLPhotoLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8D131AA11C7D872800F0D5A0 /* ZLPhotoLib.bundle */; };
+		8D156B881CC5DFD10025CB1C /* HCTagUserAmostListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D156B871CC5DFD10025CB1C /* HCTagUserAmostListApi.m */; };
+		8D156B8B1CC5E1B90025CB1C /* HCTagUserFindApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D156B8A1CC5E1B90025CB1C /* HCTagUserFindApi.m */; };
+		8D156B8E1CC60D2F0025CB1C /* HCTagCloseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D156B8D1CC60D2F0025CB1C /* HCTagCloseTableViewController.m */; };
 		8D1590511CB5F94200B08BDC /* FamilyUploadImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590501CB5F94200B08BDC /* FamilyUploadImageApi.m */; };
 		8D1590541CB5F94800B08BDC /* applyToFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590531CB5F94800B08BDC /* applyToFamily.m */; };
 		8D1590571CB5FF7F00B08BDC /* findFamilyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1590561CB5FF7F00B08BDC /* findFamilyMessage.m */; };
@@ -653,7 +656,6 @@
 		C78D7C8F1C5F2C1200622CE2 /* HCHeathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7C771C5F2C1200622CE2 /* HCHeathViewController.m */; };
 		C78D7C901C5F2C1200622CE2 /* HClabelDetaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7C791C5F2C1200622CE2 /* HClabelDetaViewController.m */; };
 		C78D7C911C5F2C1200622CE2 /* HCTagManagerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7C7B1C5F2C1200622CE2 /* HCTagManagerDetailViewController.m */; };
-		C78D7C921C5F2C1200622CE2 /* HCClosedTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7C7E1C5F2C1200622CE2 /* HCClosedTagViewController.m */; };
 		C78D7C931C5F2C1200622CE2 /* HCTagClosedDetailViewControllwe.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7C801C5F2C1200622CE2 /* HCTagClosedDetailViewControllwe.m */; };
 		C78D7C941C5F2C1200622CE2 /* HCCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7C821C5F2C1200622CE2 /* HCCourseViewController.m */; };
 		C78D7C951C5F2C1200622CE2 /* HCTagManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7C841C5F2C1200622CE2 /* HCTagManagerViewController.m */; };
@@ -1980,6 +1982,12 @@
 		8D131A841C7D7C7F00F0D5A0 /* ZLPhotoRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoRect.h; sourceTree = "<group>"; };
 		8D131A851C7D7C7F00F0D5A0 /* ZLPhotoRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoRect.m; sourceTree = "<group>"; };
 		8D131AA11C7D872800F0D5A0 /* ZLPhotoLib.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoLib.bundle; sourceTree = "<group>"; };
+		8D156B861CC5DFD10025CB1C /* HCTagUserAmostListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagUserAmostListApi.h; sourceTree = "<group>"; };
+		8D156B871CC5DFD10025CB1C /* HCTagUserAmostListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagUserAmostListApi.m; sourceTree = "<group>"; };
+		8D156B891CC5E1B90025CB1C /* HCTagUserFindApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagUserFindApi.h; sourceTree = "<group>"; };
+		8D156B8A1CC5E1B90025CB1C /* HCTagUserFindApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagUserFindApi.m; sourceTree = "<group>"; };
+		8D156B8C1CC60D2F0025CB1C /* HCTagCloseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagCloseTableViewController.h; sourceTree = "<group>"; };
+		8D156B8D1CC60D2F0025CB1C /* HCTagCloseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagCloseTableViewController.m; sourceTree = "<group>"; };
 		8D15904F1CB5F94200B08BDC /* FamilyUploadImageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyUploadImageApi.h; sourceTree = "<group>"; };
 		8D1590501CB5F94200B08BDC /* FamilyUploadImageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyUploadImageApi.m; sourceTree = "<group>"; };
 		8D1590521CB5F94800B08BDC /* applyToFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applyToFamily.h; sourceTree = "<group>"; };
@@ -2359,8 +2367,6 @@
 		C78D7C791C5F2C1200622CE2 /* HClabelDetaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClabelDetaViewController.m; sourceTree = "<group>"; };
 		C78D7C7A1C5F2C1200622CE2 /* HCTagManagerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagManagerDetailViewController.h; sourceTree = "<group>"; };
 		C78D7C7B1C5F2C1200622CE2 /* HCTagManagerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagManagerDetailViewController.m; sourceTree = "<group>"; };
-		C78D7C7D1C5F2C1200622CE2 /* HCClosedTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCClosedTagViewController.h; sourceTree = "<group>"; };
-		C78D7C7E1C5F2C1200622CE2 /* HCClosedTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCClosedTagViewController.m; sourceTree = "<group>"; };
 		C78D7C7F1C5F2C1200622CE2 /* HCTagClosedDetailViewControllwe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagClosedDetailViewControllwe.h; sourceTree = "<group>"; };
 		C78D7C801C5F2C1200622CE2 /* HCTagClosedDetailViewControllwe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagClosedDetailViewControllwe.m; sourceTree = "<group>"; };
 		C78D7C811C5F2C1200622CE2 /* HCCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCourseViewController.h; sourceTree = "<group>"; };
@@ -4791,6 +4797,10 @@
 				8D15E5481CBB486700FA3B11 /* HCTagDeleteObjectApi.m */,
 				8D15E54A1CBB4AAC00FA3B11 /* HCObjectListApi.h */,
 				8D15E54B1CBB4AAC00FA3B11 /* HCObjectListApi.m */,
+				8D156B861CC5DFD10025CB1C /* HCTagUserAmostListApi.h */,
+				8D156B871CC5DFD10025CB1C /* HCTagUserAmostListApi.m */,
+				8D156B891CC5E1B90025CB1C /* HCTagUserFindApi.h */,
+				8D156B8A1CC5E1B90025CB1C /* HCTagUserFindApi.m */,
 				8D15E54D1CBB4C6400FA3B11 /* HCAddContactPersonApi.h */,
 				8D15E54E1CBB4C6400FA3B11 /* HCAddContactPersonApi.m */,
 				8D15E5561CBB550C00FA3B11 /* HCChangeContactPersonApi.h */,
@@ -5761,8 +5771,8 @@
 		C78D7C7C1C5F2C1200622CE2 /* HCClosedTag */ = {
 			isa = PBXGroup;
 			children = (
-				C78D7C7D1C5F2C1200622CE2 /* HCClosedTagViewController.h */,
-				C78D7C7E1C5F2C1200622CE2 /* HCClosedTagViewController.m */,
+				8D156B8C1CC60D2F0025CB1C /* HCTagCloseTableViewController.h */,
+				8D156B8D1CC60D2F0025CB1C /* HCTagCloseTableViewController.m */,
 				C78D7C7F1C5F2C1200622CE2 /* HCTagClosedDetailViewControllwe.h */,
 				C78D7C801C5F2C1200622CE2 /* HCTagClosedDetailViewControllwe.m */,
 			);
@@ -7687,6 +7697,7 @@
 				0A5491661C2BC32D0085F50D /* ZXDataMatrixSymbolInfo144.m in Sources */,
 				C752A8771CB4F6B7006719F1 /* HCUserHeathViewController.m in Sources */,
 				C7B00B2E1C5F26050010F93B /* EMGifImage.m in Sources */,
+				8D156B881CC5DFD10025CB1C /* HCTagUserAmostListApi.m in Sources */,
 				C78D7C951C5F2C1200622CE2 /* HCTagManagerViewController.m in Sources */,
 				0A5491361C2BC32D0085F50D /* ZXWhiteRectangleDetector.m in Sources */,
 				0A67B22B1C0D63B300FB87C8 /* MRImgShowView.m in Sources */,
@@ -8064,6 +8075,7 @@
 				0A5491C91C2BC32D0085F50D /* ZXQRCodeMode.m in Sources */,
 				0A2B47851C7F12C800AAA157 /* HCRequest.m in Sources */,
 				C78D7B3B1C5F28F700622CE2 /* HCNotificationMessageCallCell.m in Sources */,
+				8D156B8E1CC60D2F0025CB1C /* HCTagCloseTableViewController.m in Sources */,
 				0A2B47821C7F12C800AAA157 /* HCVatarUploadApi.m in Sources */,
 				0A5491C21C2BC32D0085F50D /* ZXQRCodeDataBlock.m in Sources */,
 				0A2B47791C7F12C800AAA157 /* HCPromisedAddSelectAPI.m in Sources */,
@@ -8208,8 +8220,8 @@
 				0A2B47721C7F12C800AAA157 /* HCBuyRecordApi.m in Sources */,
 				0A54912C1C2BC32D0085F50D /* ZXVEventResultParser.m in Sources */,
 				0A72D8FB1C3E4675006D1C62 /* LeftSlideViewController.m in Sources */,
+				8D156B8B1CC5E1B90025CB1C /* HCTagUserFindApi.m in Sources */,
 				0A54913F1C2BC32D0085F50D /* ZXByteArray.m in Sources */,
-				C78D7C921C5F2C1200622CE2 /* HCClosedTagViewController.m in Sources */,
 				0A2B477B1C7F12C800AAA157 /* HCPromisedListAPI.m in Sources */,
 				C78D7AEB1C5F28F700622CE2 /* HCAddFriendlistTableViewCell.m in Sources */,
 				0A8BE3BA1C7E8D7C008E8100 /* HCinviteFamilyTableViewCell.m in Sources */,

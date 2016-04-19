@@ -30,26 +30,49 @@
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-    
-    NSDictionary *para =@{@"objectId":_objectId,
-                          @"imageName":_info.imageName,
-                          @"birthDay":_info.birthDay,
-                          @"homeAddress":_info.homeAddress,
-                          @"school":_info.school,
-                          @"height":_info.height,
-                          @"weight":_info.weight,
-                          @"bloodType":_info.bloodType,
-                          @"allergic":_info.allergic,
-                          @"cureCondition":_info.cureCondition,
-                          @"cureNote":_info.cureNote,
-                          @"relation1":_info.relation1,
-                          @"contactorId1":_info.contactorId1,
-                          @"relation2":_info.relation2,
-                          @"contactorId2":_info.contactorId2};
-    
-    return  @{@"Head":head,
-              @"Para":para};
-    
+
+    if ([_openHealthCard isEqualToString:@"0"]) {
+        
+        NSDictionary *para2 = @{@"objectId":_objectId,
+                                @"imageName":_info.imageName,
+                                @"birthDay":_info.birthDay,
+                                @"homeAddress":_info.homeAddress,
+                                @"school":_info.school,
+                                
+                                @"openHealthCard":_openHealthCard,
+                                
+                                @"relation1":_info.relation1,
+                                @"contactorId1":_info.contactorId1,
+                                @"relation2":_info.relation2,
+                                @"contactorId2":_info.contactorId2};
+        return  @{@"Head":head,
+                  @"Para":para2};
+    }
+    else
+    {
+        NSDictionary *para1 =@{@"objectId":_objectId,
+                               @"imageName":_info.imageName,
+                               @"birthDay":_info.birthDay,
+                               @"homeAddress":_info.homeAddress,
+                               @"school":_info.school,
+                               
+                               @"openHealthCard":_openHealthCard,
+                               
+                               @"height":_info.height,
+                               @"weight":_info.weight,
+                               @"bloodType":_info.bloodType,
+                               @"allergic":_info.allergic,
+                               @"cureCondition":_info.cureCondition,
+                               @"cureNote":_info.cureNote,
+                               
+                               
+                               @"relation1":_info.relation1,
+                               @"contactorId1":_info.contactorId1,
+                               @"relation2":_info.relation2,
+                               @"contactorId2":_info.contactorId2};
+        return  @{@"Head":head,
+                  @"Para":para1};
+    }
 }
 
 -(id)formatResponseObject:(id)responseObject

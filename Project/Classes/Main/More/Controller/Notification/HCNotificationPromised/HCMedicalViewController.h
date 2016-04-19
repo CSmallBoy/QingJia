@@ -10,5 +10,11 @@
 
 @interface HCMedicalViewController : HCTableViewController
 
+@property (nonatomic,strong) NSString *height ;
+@property (nonatomic,strong) NSString *weight ;
+@property (nonatomic,strong) NSString *bloodType ;
+@property (nonatomic,strong) NSString *allergic ;
+@property (nonatomic,strong) NSString *cureCondition ;
+@property (nonatomic,strong) NSString *cureNote ;
 
 @end

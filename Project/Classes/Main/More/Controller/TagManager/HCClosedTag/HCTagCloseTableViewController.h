@@ -1,5 +1,5 @@
 //
-//  HCClosedTagViewController.h
+//  HCActivatedTableViewController.h
 //  Project
 //
 //  Created by 朱宗汉 on 15/12/27.
@@ -8,6 +8,6 @@
 
 #import "HCTableViewController.h"
 
-@interface HCClosedTagViewController : HCTableViewController
+@interface HCTagCloseTableViewController : HCTableViewController
 
 @end

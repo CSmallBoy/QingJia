@@ -16,6 +16,7 @@
 #import "HCNewTagInfo.h"
 
 #import "HCObjectListApi.h"
+#import "HCTagUserAmostListApi.h"
 #import "HCTagDeleteObjectApi.h"
 
 @interface HCTagUserMangerViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,SCSwipeTableViewCellDelegate>
@@ -219,29 +220,29 @@
 
 -(void)requestData
 {
-    HCObjectListApi *api = [[HCObjectListApi alloc]init];
+    HCTagUserAmostListApi *api = [[HCTagUserAmostListApi alloc]init];
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-        
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataArr removeAllObjects];
-            NSArray *array = respone [@"Data"][@"rows"];
+             NSArray *array = respone [@"Data"][@"rows"];
             
-            for (NSDictionary *dic in array) {
-                HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
-                [self.dataArr addObject:info];
-                [self.myTableView reloadData];
-            }
+            for (NSDictionary *dic in array)
+            {
+            HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
+            [self.dataArr addObject:info];
+            [self.myTableView reloadData];
+             }
             
         }
-        else
-        {
+       else
+       {
             [self showHUDError:@"请求数据失败"];
         }
+
     }];
-    
-    
+
 }
 
 - (void)didReceiveMemoryWarning {

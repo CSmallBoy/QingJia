@@ -17,6 +17,7 @@
 @property (nonatomic,strong) NSMutableArray * objectArr;
 @property (nonatomic,assign) NSInteger  index;
 @property (nonatomic,strong) HCNewTagInfo *seletedInfo;
+@property (nonatomic,strong) UITextField *textField;
 
 @property (nonatomic,strong) UILabel *nameLabel;
 @property (nonatomic,strong) UILabel *nomalLabel;
@@ -67,7 +68,7 @@
 {
     if (indexPath.row == 0)
     {
-        return 220;
+        return 240;
     }
     else
     {
@@ -95,6 +96,8 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.text = [NSString stringWithFormat:@"ID:%@",@"12345678"];
         [cell addSubview:label];
+        
+        [cell addSubview:self.textField];
         
     }
     else if (indexPath.row ==1)
@@ -157,9 +160,9 @@
 {
     HCTagActivateApi *api = [[HCTagActivateApi alloc]init];
     
-    api.labelGuid = @"8f0a-4aed-0000";
+    api.labelGuid = @"8f0a-4aed-2222";
     api.imageName = self.seletedInfo.imageName;
-    api.labelTitle = @"儿子";
+    api.labelTitle = self.textField.text;
     api.objectId = self.seletedInfo.objectId;
     api.contactorId1 = self.seletedInfo.contactorId1;
     api.contactorId2 = self.seletedInfo.contactorId2;
@@ -169,6 +172,14 @@
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self showHUDSuccess:@"激活成功"];
+            UIViewController *vc = self.navigationController.viewControllers[1];
+            
+            [self.navigationController popToViewController:vc animated:YES];
+            
+        }
+        else
+        {
+            [self showHUDError:@"激活失败"];
         }
         
     }];
@@ -219,6 +230,18 @@
         _nomalLabel.text = @"选择绑定为标签试用者";
     }
     return _nomalLabel;
+}
+
+
+- (UITextField *)textField
+{
+    if(!_textField){
+        _textField = [[UITextField alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-65, 180, 130, 30)];
+        _textField.placeholder  = @"请输入标签名字";
+        _textField.layer.borderWidth = 1;
+        _textField.layer.borderColor = kHCBackgroundColor.CGColor;
+    }
+    return _textField;
 }
 
 

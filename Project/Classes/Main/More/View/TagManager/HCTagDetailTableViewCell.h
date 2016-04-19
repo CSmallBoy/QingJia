@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class HCTagManagerInfo;
+@class HCNewTagInfo;
 
 @interface HCTagDetailTableViewCell : UITableViewCell
 
 @property (nonatomic,strong) NSIndexPath *indexPath;
-@property (nonatomic,strong) HCTagManagerInfo *info;
+@property (nonatomic,strong) HCNewTagInfo *info;
 
 
 @end

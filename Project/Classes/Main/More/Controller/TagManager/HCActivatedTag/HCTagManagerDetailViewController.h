@@ -12,4 +12,6 @@
 
 @property (nonatomic,assign)NSInteger index;
 
+@property (nonatomic,strong) NSString *tagID;
+
 @end

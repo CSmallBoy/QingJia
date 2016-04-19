@@ -59,6 +59,7 @@
 {
     if ([self.delegate respondsToSelector:@selector(HCTagManagerTableViewCell:tag:)])
     {
+        
         [self.delegate HCTagManagerTableViewCell:_indexPath tag:button.tag];
     }
 }
@@ -73,24 +74,24 @@
     NSInteger count = indexPath.row*3;
     if (!group || row != indexPath.row)
     {
-        [self.button0 setBackgroundImage:OrigIMG(self.info.imgArr[count]) forState:UIControlStateNormal];
         
+        [self.button0 setBackgroundImage:self.info.imgArr[count] forState:UIControlStateNormal];
         
         self.label0.text = self.info.tagNameArr[count];
-        [self.button1 setBackgroundImage:OrigIMG(self.info.imgArr[count+1]) forState:UIControlStateNormal];
+        [self.button1 setBackgroundImage:self.info.imgArr[count+1] forState:UIControlStateNormal];
         self.label1.text = self.info.tagNameArr[count+1];
-        [self.button2 setBackgroundImage:OrigIMG(self.info.imgArr[count+2]) forState:UIControlStateNormal];
+        [self.button2 setBackgroundImage:self.info.imgArr[count+2] forState:UIControlStateNormal];
         self.label2.text = self.info.tagNameArr[count+2];
     }else if (group == 1 && row == indexPath.row)
     {
-        [self.button0 setBackgroundImage:OrigIMG(self.info.imgArr[count]) forState:
+        [self.button0 setBackgroundImage:self.info.imgArr[count] forState:
          UIControlStateNormal];
         self.label0.text = self.info.tagNameArr[count];
     }else if (group == 2 && row == indexPath.row)
     {
         
-        [self.button0 setBackgroundImage:OrigIMG(self.info.imgArr[count]) forState:UIControlStateNormal];
-        [self.button1 setBackgroundImage:OrigIMG(self.info.imgArr[count+1]) forState:UIControlStateNormal];
+        [self.button0 setBackgroundImage:self.info.imgArr[count] forState:UIControlStateNormal];
+        [self.button1 setBackgroundImage:self.info.imgArr[count+1] forState:UIControlStateNormal];
         self.label0.text = self.info.tagNameArr[count];
         self.label1.text = self.info.tagNameArr[count+1];
     }

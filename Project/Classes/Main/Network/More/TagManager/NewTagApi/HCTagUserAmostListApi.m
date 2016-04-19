@@ -1,27 +1,23 @@
 //
-//  HCAddContactPersonApi.m
+//  HCTagUserAmostListApi.m
 //  Project
 //
-//  Created by 朱宗汉 on 16/4/11.
+//  Created by 朱宗汉 on 16/4/19.
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "HCAddContactPersonApi.h"
+#import "HCTagUserAmostListApi.h"
 
-#import "HCTagContactInfo.h"
+@implementation HCTagUserAmostListApi
 
-// -------------------添加紧急联系人----------------------
-
-@implementation HCAddContactPersonApi
-
--(void)startRequest:(HCAddContactPersonBlock)requestBlock
+-(void)startRequest:(HCTagUserAmostListBlock)requestBlock
 {
     [super startRequest:requestBlock];
 }
 
 -(NSString *)requestUrl
 {
-    return @"Label/createUrgentContactor.do";
+     return @"Label/listObjectSummary.do";
 }
 
 -(id)requestArgument
@@ -29,14 +25,13 @@
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-    NSDictionary *para =@{@"trueName":_trueName,
-                          @"phoneNo":_phoneNo,
-                          @"relative": _relative,
-                          @"imageName":_imgStr};
+    NSDictionary *para = @{};
+    
     
     return @{@"Head":head,
              @"Para":para};
 }
+
 
 -(id)formatResponseObject:(id)responseObject
 {

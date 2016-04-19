@@ -8,7 +8,7 @@
 //已激活标签详情
 
 #import "HCTagManagerDetailViewController.h"
-#import "HCTagManagerInfo.h"
+#import "HCNewTagInfo.h"
 
 #import "HCTagDetailHeaderView.h"
 #import "HCTagDetailTableViewCell.h"
@@ -16,6 +16,13 @@
 #import "HCHeathViewController.h"
 #import "HCeditingViewController.h"
 #import "HCTagClosedDetailViewControllwe.h"
+
+#import "HCTagDetailApi.h"
+
+#import "HCMedicalViewController.h"
+#import "HCTagUserDetailController.h"
+
+
 #define TagManagerDetailCell @"TagManagerDetailCell"
 
 @interface HCTagManagerDetailViewController (){
@@ -27,7 +34,12 @@
 }
 
 @property (nonatomic,strong) UIView *headerView;
-@property (nonatomic,strong) HCTagManagerInfo *info;
+@property (nonatomic,strong) HCNewTagInfo *info;
+
+@property (nonatomic,strong)UIImageView *header_button;
+
+
+
 
 @end
 
@@ -36,13 +48,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self requestData];
     [self setupBackItem];
     _info = self.data[@"data"];
     self.tableView.tableHeaderView = self.headerView;
     self.title = @"标签详情";
     [self.tableView registerClass:[HCTagDetailTableViewCell class] forCellReuseIdentifier:TagManagerDetailCell];
     UIBarButtonItem *add_bar_button = [[UIBarButtonItem alloc]initWithImage:IMG(@"导航条－inclass_Plus") style:UIBarButtonItemStylePlain target:self action:@selector(add_click)];
-//    UIBarButtonItem *add_bar_button = [[UIBarButtonItem alloc]initWithTitle:@"添加" style:UIBarButtonItemStyleDone  target:self action:@selector(add_click)];
     ool = YES;
     self.navigationItem.rightBarButtonItem = add_bar_button;
     
@@ -64,6 +77,32 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        
+        // 电话图标  联系人
+        NSString *contact1 = [NSString stringWithFormat:@"%@(%@)",_info.relation1,_info.contactorPhoneNo1];
+        NSString *contact2 = [NSString stringWithFormat:@"%@(%@)",_info.relation2,_info.contactorPhoneNo2];
+        
+        NSArray *arr =@[contact1,contact2];
+        UIView *view2 = [[UIView  alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+        view2.backgroundColor = kHCBackgroundColor;
+        for (int i = 0 ; i < 2; i ++) {
+            UIImageView *image_phone = [[UIImageView alloc]initWithFrame:CGRectMake(100 + i * 130, 15, 20, 20)];//父亲电话图标
+            image_phone.image = [UIImage imageNamed:@"PHONE-2"];
+            UILabel *phone_num = [[UILabel alloc]initWithFrame:CGRectMake(130 + i * 130, 12, 100, 30)];
+            phone_num.font = [UIFont systemFontOfSize:13];
+            phone_num.text = arr[i];
+            [view2 addSubview:image_phone];
+            [view2 addSubview:phone_num];
+        }
+        
+        [cell addSubview:view2];
+        
+        return cell;
+        
+    }
+    
     HCTagDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TagManagerDetailCell];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.info = self.info;
@@ -81,7 +120,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 7;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -89,8 +128,17 @@
     return 1;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row==5) {
-        HCHeathViewController *heathVc = [[HCHeathViewController alloc]init];
+    if (indexPath.row==6) {
+        
+        HCMedicalViewController *heathVc= [[HCMedicalViewController alloc]init];
+//        HCHeathViewController *heathVc = [[HCHeathViewController alloc]init];
+        
+        heathVc.height = _info.height;
+        heathVc.weight = _info.weight;
+        heathVc.bloodType = _info.bloodType;
+        heathVc.allergic = _info.allergic;
+        heathVc.cureCondition = _info.cureCondition;
+        heathVc.cureNote = _info.cureNote;
         [self.navigationController pushViewController:heathVc animated:YES];
     }
 }
@@ -100,80 +148,15 @@
 {
     if (!_headerView)
     {
-        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,210)];
+        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,200)];
         _headerView.backgroundColor = [UIColor whiteColor];
-//
-//        HCTagDetailHeaderView *view1 = [[HCTagDetailHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 110)];
-//        
-//        view1.tagIMGView.image = OrigIMG(_info.imgArr[_index]);
-//        view1.tagNameLab.text = _info.tagNameArr[_index] ;
-//        view1.tagIDLab.text = _info.tagIDArr[_index] ;
-//        view1.tagIMGView.frame = CGRectMake(0, 0,SCREEN_WIDTH, 100);
-//        view1.tagNameLab.frame = CGRectMake(120, 10, SCREEN_WIDTH-130, 60);
-//        view1.tagIDLab.frame = CGRectMake(120, 70, SCREEN_WIDTH-130, 40);
-        UIImageView *image_head = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
-        image_head.image = OrigIMG(_info.imgArr[_index]);
-         [self.headerView addSubview:image_head];
         
-        UILabel *idLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 140, 110, 20)];
-        idLabel.text = @"ID:123456789";
-        idLabel.adjustsFontSizeToFitWidth = YES;
-        idLabel.textColor = [UIColor blackColor];
-        [self.headerView addSubview:idLabel];
-       //[self.view addSubview:image_head];
-        //[self.headerView addSubview:view1];
-       
-        
-//        HCTagDetailHeaderView *view2 = [[HCTagDetailHeaderView alloc]initWithFrame:CGRectMake(0, 110, SCREEN_WIDTH/2, 100)];
-//        
-//        view2.tagIMGView.image = OrigIMG(_info.contactImgArr[0]);
-//        view2.tagNameLab.text = [NSString stringWithFormat:@"%@(紧急联系人)",_info.contactNameArr[0]];
-//        view2.tagNameLab.numberOfLines = 0;
-//        view2.tagIDLab.text = [NSString stringWithFormat:@"电话：\n%@",_info.contactPhoneArr[0]];
-//        view2.tagIMGView.frame = CGRectMake(10, 10, 60, 60);
-//        view2.tagNameLab.frame = CGRectMake(75, 0, view2.bounds.size.width-75, 50);
-//        view2.tagNameLab.font = [UIFont systemFontOfSize:14];
-//        view2.tagIDLab.frame = CGRectMake(75, 50, view2.bounds.size.width-75, 50);
-//        view2.tagIDLab.font = [UIFont systemFontOfSize:12];
-//        view2.tagIDLab.numberOfLines = 0;
-        NSArray *arr =@[@"父亲(紧急联系人)",@"母亲(紧急联系人)"];
-        UIView *view2 = [[UIView  alloc]initWithFrame:CGRectMake(0, 160, SCREEN_WIDTH, 50)];
-        view2.backgroundColor = kHCBackgroundColor;
-        for (int i = 0 ; i < 2; i ++) {
-            UIImageView *image_phone = [[UIImageView alloc]initWithFrame:CGRectMake(100 + i * 130, 15, 20, 20)];//父亲电话图标
-            image_phone.image = [UIImage imageNamed:@"PHONE-2"];
-            UILabel *phone_num = [[UILabel alloc]initWithFrame:CGRectMake(130 + i * 130, 12, 100, 30)];
-            phone_num.font = [UIFont systemFontOfSize:13];
-            phone_num.text = arr[i];
-            [view2 addSubview:image_phone];
-            [view2 addSubview:phone_num];
-        }
-        
-        
-        [self.headerView addSubview:view2];
-        
-//        if (_info.contactImgArr.count  != 1 )
-//        {
-//            HCTagDetailHeaderView *view3 = [[HCTagDetailHeaderView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2, 110, SCREEN_WIDTH/2, 100)];
-//            view3.tagIMGView.image = OrigIMG(_info.contactImgArr[1]);
-//            view3.tagNameLab.text = [NSString stringWithFormat:@"%@(紧急联系人)",_info.contactNameArr[1]];
-//            view3.tagNameLab.numberOfLines = 0;
-//            view3.tagIDLab.text = [NSString stringWithFormat:@"电话：\n%@",_info.contactPhoneArr[1]];
-//            view3.tagIMGView.frame = CGRectMake(10, 10, 60, 60);
-//            view3.tagNameLab.frame = CGRectMake(75, 0, view2.bounds.size.width-75, 50);
-//            view3.tagNameLab.font = [UIFont systemFontOfSize:14];
-//            view3.tagIDLab.frame = CGRectMake(75, 50, view2.bounds.size.width-75, 50);
-//            view3.tagIDLab.font = [UIFont systemFontOfSize:12];
-//            view3.tagIDLab.numberOfLines = 0;
-//            [self.headerView addSubview:view3];
-//        }
     }
-    UIButton *header_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    header_button.frame = CGRectMake(10, 130, 70, 70);
-    header_button.layer.masksToBounds = YES;
-    header_button.layer.cornerRadius = 35;
-    [header_button setImage:[UIImage imageNamed:@"image_hea.jpg"] forState:UIControlStateNormal];
-    [_headerView addSubview:header_button];
+    // 头像
+    UIImageView *header_button = [[UIImageView alloc]initWithFrame:CGRectMake(10, 170, 70, 70)];
+    _header_button = header_button;
+    ViewRadius(_header_button, 35);
+    [_headerView addSubview:_header_button];
     
     //添加的button
     button_view= [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 0, 90, 63)];
@@ -202,8 +185,11 @@
 }
 //编辑标签
 -(void)editingClick{
-    HCeditingViewController *vc = [[HCeditingViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+//    HCTagUserDetailController *detailVC = [[HCTagUserDetailController alloc]init];
+//    detailVC.data = @{@"info":_info};
+//    
+//    [self.navigationController pushViewController:detailVC animated:YES];
     
 }
 -(void)stopClick{
@@ -254,4 +240,32 @@
     }
     
 }
+
+
+
+
+#pragma mark --- network
+
+-(void)requestData
+{
+    HCTagDetailApi *api = [[HCTagDetailApi alloc]init];
+    
+    api.labelId = self.tagID;
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        
+        NSDictionary *dic = respone[@"Data"][@"labelInf"];
+        
+        HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
+        self.info = info;
+        
+        NSURL *url = [readUserInfo originUrl:_info.imageName :kkUser];
+        
+        [_header_button sd_setImageWithURL:url placeholderImage:IMG(@"2Dbarcode_message_HeadPortraits")];
+        [self.tableView reloadData];
+        
+    }];
+  
+}
+
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "HCTagDetailTableViewCell.h"
-#import "HCTagManagerInfo.h"
+#import "HCNewTagInfo.h"
 
 @interface HCTagDetailTableViewCell ()
 
@@ -45,38 +45,38 @@
 {
     _indexPath = indexPath;
     self.titleLabel.text = self.titleArr[indexPath.row];
-    if (indexPath.row == 0)
+    if (indexPath.row == 1)
     {
-        self.detailInfoLab.text = self.info.tagUserName;
+        self.detailInfoLab.text = self.info.trueName;
     }
-    else if (indexPath.row == 1)
+    else if (indexPath.row == 2)
     {
         //self.detailInfoLab.text = self.info.cardName;
 //        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-50, 5, 35, 35)];
 //        imageView.image = OrigIMG(@"person-message_2D-barcode");
 //        [self.contentView addSubview:imageView];
         
-        self.detailInfoLab.text = self.info.userGender;
+        self.detailInfoLab.text = self.info.sex;
     }
-    else if (indexPath.row == 2)
-    {self.detailInfoLab.text = self.info.userBrithday;
+    else if (indexPath.row == 3)
+    {self.detailInfoLab.text = self.info.birthDay;
         //self.detailInfoLab.text = self.info.userGender;
         //self.detailInfoLab.text = self.info.userBrithday;
     }
-    else if (indexPath.row == 3)
+    else if (indexPath.row == 4)
     {   //self.detailInfoLab.text = self.info.userBrithday;
         
         //self.detailInfoLab.text = self.info.userAge;
-        self.detailInfoLab.text = self.info.userAddress;
-    }
-    else if (indexPath.row == 4)
-    {
-        self.detailInfoLab.text = self.info.userSchool;
-        //self.detailInfoLab.text = self.info.userBrithday;
+        self.detailInfoLab.text = self.info.homeAddress;
     }
     else if (indexPath.row == 5)
     {
-        self.detailInfoLab.text = self.info.userHealth;
+        self.detailInfoLab.text = self.info.school;
+        //self.detailInfoLab.text = self.info.userBrithday;
+    }
+    else if (indexPath.row == 6)
+    {
+        self.detailInfoLab.text = @"我的医疗急救卡";
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         //self.detailInfoLab.text = self.info.userAddress;
     }
@@ -96,7 +96,7 @@
 }
 
 
--(void)setInfo:(HCTagManagerInfo *)info
+-(void)setInfo:(HCNewTagInfo *)info
 {
     _info = info;
 }
@@ -133,7 +133,7 @@
 {
     if (!_titleArr)
     {
-        _titleArr = @[@"姓名",@"性别",@"生日",@"住址",
+        _titleArr = @[@"",@"姓名",@"性别",@"生日",@"住址",
                       @"学校",@"健康"];
     }
     return _titleArr;

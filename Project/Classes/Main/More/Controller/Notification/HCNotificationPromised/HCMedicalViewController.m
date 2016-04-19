@@ -26,7 +26,7 @@
     self.title = @"医疗急救卡";
     
     self.dataArr = [[NSMutableArray alloc]init];
-    NSArray  *arr =@[@"120",@"35",@"AB",@"对龙虾等海鲜过敏，另外某些抗生素的药物叶过敏",@"飒飒大嘎嘎啊大大干大事地方 发电公司的分公司阿斯顿噶大概阿达的感受到",@"地方噶的嘎嘎多发发斯蒂芬阿斯顿发送到发送到发送到发达时发生的发生的 发生地方的股份公司分公司大嘎达地方萨芬的"];
+    NSArray  *arr =@[_height,_weight,_bloodType,_allergic,_cureCondition,_cureNote];
     for (int i = 0;i<6 ; i++)
     {
         HCMedicalFrameIfo  *info = [[HCMedicalFrameIfo alloc]init];

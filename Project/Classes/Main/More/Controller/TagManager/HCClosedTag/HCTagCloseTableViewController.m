@@ -6,7 +6,7 @@
 //  Copyright © 2015年 com.xxx. All rights reserved.
 //------------------------已激活界面------------------------------------
 
-#import "HCActivatedTableViewController.h"
+#import "HCTagCloseTableViewController.h"
 #import "HCTagManagerDetailViewController.h"
 
 #import "HCTagManagerInfo.h"
@@ -16,13 +16,13 @@
 #import "HCTagManagerHeader.h"
 #import "HCTagManagerTableViewCell.h"
 
-#define activatedcell @"activatedcell"
-@interface HCActivatedTableViewController ()<HCTagManagerTableViewCellDelegate>
+#define activatedcell @"Closecell"
+@interface HCTagCloseTableViewController ()<HCTagManagerTableViewCellDelegate>
 
 @property (nonatomic,strong) NSMutableArray *categoryArray;
 @end
 
-@implementation HCActivatedTableViewController
+@implementation HCTagCloseTableViewController
 
 
 - (void)viewDidLoad
@@ -30,14 +30,13 @@
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
     [self.tableView registerClass:[HCTagManagerTableViewCell class] forCellReuseIdentifier:activatedcell];
 
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-      [self requestHomeData];
+    [self requestHomeData];
 }
 
 #pragma mark---UITableViewDelegate
@@ -143,13 +142,11 @@
 {
 
     HCTagAmostDetailListApi *api = [[HCTagAmostDetailListApi alloc]init];
-    api.labelStatus = @"0";
+    api.labelStatus = @"1";
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         if (requestStatus == HCRequestStatusSuccess) {
             
-            
             [self.dataSource removeAllObjects];
-            
             NSArray *oldArr = respone[@"Data"][@"rows"];
             NSMutableArray *smallArr = [NSMutableArray array];
             NSMutableArray *bigArr = [NSMutableArray array];
@@ -175,6 +172,8 @@
                         {
                             [bigArr[j] addObject:oldArr[i]];
                             break;
+                            
+                            
                         }else
                         {
                             if (j == bigArr.count-1)
@@ -204,8 +203,7 @@
                 info.tagNameArr = tagNameArr;
                 
                 NSMutableArray *imgArr = [NSMutableArray array];
-                for (int  k = 0; k<smallArr.count; k++)
-                {
+                for (int  k = 0; k<smallArr.count; k++) {
                     
                     NSURL *url = [readUserInfo originUrl:smallArr[k][@"imageName"] :kkUser];
 
@@ -228,7 +226,6 @@
                 }
                 info.tagIDArr = tagIDArr;
                 
-                
                 [self.dataSource addObject:info];
                 [self.tableView reloadData];
             }
@@ -236,8 +233,8 @@
             NSLog(@"*********标签概要信息列表*************");
         }
     }];
-
     
+
     
 }
 
