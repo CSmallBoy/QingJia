@@ -14,7 +14,7 @@
 #import "EaseConversationCell.h"
 #import "EaseConvertToCommonEmoticonsHelper.h"
 #import "NSDate+Category.h"
-
+//会话列表
 @interface EaseConversationListViewController () <IChatManagerDelegate>
 
 @end
@@ -60,7 +60,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{//每一个cell
     NSString *CellIdentifier = [EaseConversationCell cellIdentifierWithModel:nil];
     EaseConversationCell *cell = (EaseConversationCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -73,14 +73,17 @@
     cell.model = model;
     
     if (_dataSource && [_dataSource respondsToSelector:@selector(conversationListViewController:latestMessageTitleForConversationModel:)]) {
+        //这个是消息的赋值
         cell.detailLabel.text = [_dataSource conversationListViewController:self latestMessageTitleForConversationModel:model];
     } else {
         cell.detailLabel.text = [self _latestMessageTitleForConversationModel:model];
     }
     
     if (_dataSource && [_dataSource respondsToSelector:@selector(conversationListViewController:latestMessageTimeForConversationModel:)]) {
+        //时间赋值
         cell.timeLabel.text = [_dataSource conversationListViewController:self latestMessageTimeForConversationModel:model];
     } else {
+        
         cell.timeLabel.text = [self _latestMessageTimeForConversationModel:model];
     }
     

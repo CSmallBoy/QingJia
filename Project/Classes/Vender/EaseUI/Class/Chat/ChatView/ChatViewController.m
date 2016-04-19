@@ -14,7 +14,7 @@
 #import "UserProfileViewController.h"
 #import "UserProfileManager.h"
 #import "ContactListSelectViewController.h"
-
+//聊天框中显示消息里地头像和昵称
 @interface ChatViewController ()<UIAlertViewDelegate, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
 {
     UIMenuItem *_copyMenuItem;
@@ -147,6 +147,9 @@
             sendCell = [[CustomMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model];
             sendCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        //设置头像和昵称
+//        model.avatarURLPath = model.message.ext[@"img"];
+//        model.nickname = model.message.ext[@"accountName"];
         sendCell.model = model;
         return sendCell;
     }

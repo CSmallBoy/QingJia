@@ -87,6 +87,8 @@
 }
 
 #pragma mark - EMUserListViewControllerDataSource
+
+//联系人列表扩展
 - (id<IUserModel>)userListViewController:(EaseUsersListViewController *)userListViewController
                            modelForBuddy:(EMBuddy *)buddy
 {
@@ -109,6 +111,7 @@
     if (profileEntity) {
         model.nickname= profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
         model.avatarURLPath = profileEntity.imageUrl;
+        
     }
     return model;
 }

@@ -26,7 +26,7 @@ CGFloat const EaseConversationCellPadding = 10;
 @end
 
 @implementation EaseConversationCell
-
+//头像
 + (void)initialize
 {
     // UIAppearance Proxy Defaults

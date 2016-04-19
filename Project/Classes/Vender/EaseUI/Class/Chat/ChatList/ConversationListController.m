@@ -253,6 +253,7 @@
             model.avatarImage = [UIImage imageNamed:imageName];
         }
     }
+    
     return model;
 }
 

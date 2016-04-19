@@ -17,7 +17,9 @@
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 
 @property (nonatomic, strong) UIScrollView *mainView;
+//对话列表控制器
 @property (nonatomic, strong) ConversationListController *messageListVC;
+//联系人列表视图控制器
 @property (nonatomic, strong) ContactListViewController *contactsVC;
 
 @end
@@ -29,6 +31,7 @@
     self = [super init];
     if (self)
     {
+        
         [self addChildViewController:self.messageListVC];
         [self addChildViewController:self.contactsVC];
         self.segmentedControl.selectedSegmentIndex = 0;
@@ -47,14 +50,14 @@
 }
 
 #pragma mark - private methods
-
+//添加好友
 - (void)handleRightItem
 {
     AddFriendViewController *addController = [[AddFriendViewController alloc] initWithStyle:UITableViewStylePlain];
     addController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:addController animated:YES];
 }
-
+//切换视图
 - (void)handleSegmentedControl:(UISegmentedControl *)segmentedControl
 {
     NSInteger index = segmentedControl.selectedSegmentIndex;
