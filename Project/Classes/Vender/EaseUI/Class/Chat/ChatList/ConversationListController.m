@@ -54,15 +54,11 @@
     self.showRefreshHeader = YES;
     self.delegate = self;
     self.dataSource = self;
-    
     [self tableViewDidTriggerHeaderRefresh];
-    
     [self.view addSubview:self.searchBar];
     self.tableView.frame = CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height);
     [self networkStateView];
-    
     [self searchController];
-    
     [self removeEmptyConversationsFromDB];
 }
 

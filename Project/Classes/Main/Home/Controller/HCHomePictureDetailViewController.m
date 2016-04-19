@@ -65,7 +65,7 @@
     {
         cell = [[HCHomeDetailCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HCHomeDetailComment];
     }
-    //cell.commentBtn.hidden = NO;
+    cell.commentBtn.hidden = NO;
     cell.delegate = self;
     cell.info = _detailInfo.commentsArr[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -158,18 +158,7 @@
     }
     return _commentbutton;
 }
-- (HCEditCommentView *)contentView
-{
-    if (!_contentView)
-    {
-        _contentView = [[HCEditCommentView alloc] initWithFrame:CGRectMake(10, 0, WIDTH(self.view)-20, HEIGHT(self.view)*0.5)];
-        _contentView.delegate = self;
-        _contentView.center = CGPointMake(self.view.center.x, self.view.center.y);
-        ViewRadius(_contentView, 5);
-        _contentView.backgroundColor = [UIColor whiteColor];
-    }
-    return _contentView;
-}
+
 #pragma mark - 评论点击事件
 -(void)commentClick{
     
@@ -189,53 +178,6 @@
     editComment.single = @"评论单图";
     [rootController presentViewController:editComment animated:YES completion:nil];
 }
-#pragma mark - HCEditCommentViewDelegate的代理方法
-
-- (void)hceditCommentViewWithButtonIndex:(NSInteger)index
-{
-    if (index)
-    {
-        [self handleTapGestureRecognizer:nil];
-    }else
-    {
-        [self checkCommentData];
-    }
-}
-
-- (void)hceditCommentViewWithDeleteImageButton:(NSInteger)index
-{
-//    [_info.FTImages removeObjectAtIndex:index];
-//    [self.contentView setImageArr:_info.FTImages];
-}
-
-- (void)hceditCommentViewWithimageButton:(NSInteger)index
-{
-    if (_info.FTImages.count == index + 1)
-    {
-        UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
-        [action showInView:self.view];
-    }
-}
-
-- (void)hceditCommentViewFeedbackTextViewdidBeginEditing
-{
-    CGRect frame = self.contentView.frame;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.contentView.frame = CGRectMake(frame.origin.x, 64, WIDTH(self.view)-20, HEIGHT(self.view)*0.5);
-    }];
-    
-}
-
-- (void)hceditCommentViewFeedbackTextViewdidEndEditingWithText:(NSString *)text
-{
-    //_info.FTContent = text;
-    CGRect frame = self.contentView.frame;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.contentView.frame = CGRectMake(frame.origin.x, 0, WIDTH(self.view)-20, HEIGHT(self.view)*0.5);
-        _contentView.center = CGPointMake(self.view.center.x, self.view.center.y);
-    }];
-}
-
 #pragma mark - Private methods
 - (void)handleTapGestureRecognizer:(UITapGestureRecognizer *)tap
 {

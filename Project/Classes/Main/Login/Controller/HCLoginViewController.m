@@ -68,7 +68,9 @@
 //保存最后一次登录名
 - (void)saveLastLoginUsername
 {
-    NSString *username = [[[EaseMob sharedInstance].chatManager loginInfo] objectForKey:kSDKUsername];
+    //NSString *username = [[[EaseMob sharedInstance].chatManager loginInfo] objectForKey:kSDKUsername];
+    
+    NSString *username = [readUserInfo getReadDic][@"UserInf"][@"phoneNo"];
     if (username && username.length > 0) {
         NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         [ud setObject:username forKey:[NSString stringWithFormat:@"em_lastLogin_%@",kSDKUsername]];

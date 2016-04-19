@@ -16,7 +16,6 @@
     return @"Photo/downloadOne.do";
 }
 - (id)requestArgument{
-    NSDictionary *dict = [readUserInfo getReadDic];
     NSDictionary *head = @{@"UUID":[HCAccountMgr manager].loginInfo.UUID,
                            @"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token};

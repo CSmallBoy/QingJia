@@ -48,7 +48,7 @@
         }
         
     }else{
-        Image_head.image = [readUserInfo image64:_head_image];
+        [Image_head sd_setImageWithURL:[readUserInfo url:_head_image :kkUser] placeholderImage:IMG(@"1.png")];
         
     }
    

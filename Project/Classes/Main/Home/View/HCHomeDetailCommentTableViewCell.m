@@ -11,7 +11,8 @@
 #import "UIButton+WebCache.h"
 #import "HCHomeInfo.h"
 #import "MLEmojiLabel.h"
-
+#import "HCEditCommentViewController.h"
+//时光评论详情的cell
 @interface HCHomeDetailCommentTableViewCell()<MLEmojiLabelDelegate>
 
 @property (nonatomic, strong) UIButton *headButton;
@@ -70,7 +71,31 @@
     if ([self.delegate respondsToSelector:@selector(hchomeDetailCommentTableViewCellCommentButton)])
     {
         [self.delegate hchomeDetailCommentTableViewCellCommentButton];
+    }else{
+        NSLog(@"触发了");
+        //这个地方触发   弹出评论
+        [self commentSingle];
     }
+
+}
+//数据没写  等会再验证
+-(void)commentSingle{
+    //评论界面
+    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
+    //editComment.data = @{@"data": _info,@"index":self.data[@"index"]};
+    UIViewController *rootController = self.superview.window.rootViewController;
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        editComment.modalPresentationStyle=
+        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+    }else
+    {
+        rootController.modalPresentationStyle=
+        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+    }
+    editComment.single = @"评论单图的回复";
+    [rootController presentViewController:editComment animated:YES completion:nil];
+
 }
 
 #pragma mark - setter or getter

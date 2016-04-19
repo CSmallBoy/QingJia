@@ -17,7 +17,8 @@
 #import "HCHomeDetailApi.h"
 //评论列表
 #import "NHCHomeCommentListApi.h"
-
+//下边功能按钮
+#import "HCFunctionTagView.h"
 #define HCHomeDetailCell @"HCHomeDetailTableViewCell"
 #define HCHomeDetailComment @"HCHomeDetailCommentTableViewCell"
 
@@ -38,6 +39,7 @@
     self.title = @"时光详情";
     [self setupBackItem];
     [self requestHomeDetail];
+    [self makefootView];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.tableView registerClass:[HCHomeDetailCommentTableViewCell class] forCellReuseIdentifier:HCHomeDetailComment];
 }
@@ -199,7 +201,12 @@
     }
     [rootController presentViewController:editComment animated:YES completion:nil];
 }
-
+- (void)makefootView{
+    HCFunctionTagView *view = [[HCFunctionTagView alloc]init];
+    view.frame = CGRectMake(0, SCREEN_HEIGHT - 49, SCREEN_WIDTH, 49);
+    view.backgroundColor = [UIColor redColor];
+    [self.view addSubview:view];
+}
 #pragma mark - network
 //获取评论
 - (void)requestHomeDetail

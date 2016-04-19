@@ -59,7 +59,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated
-{   m = 0;
+{
+    m = 0;
     [super viewWillAppear:animated];
     [self requestHomeData];
     [self.tableView reloadData];
