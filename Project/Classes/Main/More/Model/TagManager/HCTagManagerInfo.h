@@ -80,4 +80,7 @@
 
 @property (nonatomic, assign) BOOL isShowRow;
 
+
+@property (nonatomic,strong) NSArray *objectIdArr;
+
 @end

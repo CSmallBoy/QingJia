@@ -106,13 +106,17 @@
 
 -(void)HCTagManagerTableViewCell:(NSIndexPath *)indexPath tag:(NSInteger)tag
 {
+    
     NSInteger index = tag+indexPath.row*3;
     HCTagManagerInfo *info = self.dataSource[indexPath.section];
     
     NSArray *tagIdArr = info.tagIDArr;
+    NSArray *objectIdArr = info.objectIdArr;
     
     HCTagManagerDetailViewController *detailVC = [[HCTagManagerDetailViewController alloc]init];
-    detailVC.tagID = tagIdArr[tag];
+    detailVC.tagID = tagIdArr[index];
+    detailVC.objectId =objectIdArr[index];
+    
     detailVC.index = index;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
@@ -142,6 +146,7 @@
 - (void)requestHomeData
 {
 
+    [self showHUDView:nil];
     HCTagAmostDetailListApi *api = [[HCTagAmostDetailListApi alloc]init];
     api.labelStatus = @"0";
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
@@ -192,49 +197,61 @@
             
             NSLog(@"%@",bigArr);
             
-            for (int i = 0; i<bigArr.count; i++) {
-                NSArray *smallArr = bigArr[i];
-                HCTagManagerInfo *info = [[HCTagManagerInfo alloc] init];
-                info.tagUserName = [NSString stringWithFormat:@"%@",smallArr[0][@"trueName"]];
-                NSMutableArray *tagNameArr =[NSMutableArray array];
-                
-                for (int j = 0; j<smallArr.count; j++) {
-                    [tagNameArr addObject:smallArr[j][@"labelTitle"] ];
-                }
-                info.tagNameArr = tagNameArr;
-                
-                NSMutableArray *imgArr = [NSMutableArray array];
-                for (int  k = 0; k<smallArr.count; k++)
-                {
+            if (bigArr.count > 1)
+            {
+                for (int i = 0; i<bigArr.count; i++) {
+                    NSArray *smallArr = bigArr[i];
+                    HCTagManagerInfo *info = [[HCTagManagerInfo alloc] init];
+                    info.tagUserName = [NSString stringWithFormat:@"%@",smallArr[0][@"trueName"]];
+                    NSMutableArray *tagNameArr =[NSMutableArray array];
                     
-                    NSURL *url = [readUserInfo originUrl:smallArr[k][@"imageName"] :kkUser];
-
-                    UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+                    for (int j = 0; j<smallArr.count; j++) {
+                        [tagNameArr addObject:smallArr[j][@"labelTitle"] ];
+                    }
+                    info.tagNameArr = tagNameArr;
                     
-                    if (imgFromUrl == nil) {
-                        imgFromUrl = IMG(@"time_picture");
+                    NSMutableArray *imgArr = [NSMutableArray array];
+                    for (int  k = 0; k<smallArr.count; k++)
+                    {
+                        
+                        NSURL *url = [readUserInfo originUrl:smallArr[k][@"imageName"] :kkUser];
+                        
+                        UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+                        
+                        if (imgFromUrl == nil) {
+                            imgFromUrl = IMG(@"time_picture");
+                        }
+                        
+                        [imgArr addObject:imgFromUrl];
                     }
                     
-                    [imgArr addObject:imgFromUrl];
+                    info.imgArr = imgArr;
+                    
+                    NSMutableArray *tagIDArr = [NSMutableArray array];
+                    
+                    for (int m = 0; m< smallArr.count; m++)
+                    {
+                        [tagIDArr addObject:smallArr[m][@"labelId"]];
+                    }
+                    info.tagIDArr = tagIDArr;
+                    
+                    NSMutableArray *objectIdArr = [NSMutableArray array];
+                    for (int m = 0; m< smallArr.count; m++)
+                    {
+                        [objectIdArr addObject:smallArr[m][@"objectId"]];
+                    }
+                    
+                    info.objectIdArr = objectIdArr;
+                    [self.dataSource addObject:info];
+                    [self.tableView reloadData];
                 }
                 
-                info.imgArr = imgArr;
-                
-                NSMutableArray *tagIDArr = [NSMutableArray array];
-                
-                for (int m = 0; m< smallArr.count; m++)
-                {
-                    [tagIDArr addObject:smallArr[m][@"labelId"]];
-                }
-                info.tagIDArr = tagIDArr;
-                
-                
-                [self.dataSource addObject:info];
-                [self.tableView reloadData];
+                NSLog(@"*********标签概要信息列表*************");
             }
-            
-            NSLog(@"*********标签概要信息列表*************");
+            [self hideHUDView];
         }
+            
+            
     }];
 
     

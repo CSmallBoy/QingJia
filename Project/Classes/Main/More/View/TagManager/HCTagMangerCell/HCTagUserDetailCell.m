@@ -189,6 +189,7 @@
             case 2:
             {
                 self.headBtn.hidden = YES;
+                self.textField.hidden = NO;
                 self.textField.text = self.info.sex;
             }
                 break;
@@ -245,6 +246,7 @@
             case 3:
             {
                 self.textField.hidden = YES;
+                self.textView.hidden = NO;
                 self.textView.placeholder = self.medicalPlaceHolderArr[indexPath.row];
                 if (!IsEmpty(self.info.allergic)) {
                     self.textView.textView.text = self.info.allergic;

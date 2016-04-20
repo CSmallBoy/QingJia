@@ -203,6 +203,10 @@
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
     NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"contactor",uuid,token]];
+    if (self.image == nil)
+    {
+        self.image = IMG(@"Head-Portraits");
+    }
     [KLHttpTool uploadImageWithUrl:str image:self.image success:^(id responseObject) {
         NSLog(@"%@",responseObject);
         self.imgStr = responseObject[@"Data"][@"files"][0];

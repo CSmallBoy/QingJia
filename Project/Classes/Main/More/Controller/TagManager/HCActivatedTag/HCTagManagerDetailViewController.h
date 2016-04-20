@@ -14,4 +14,6 @@
 
 @property (nonatomic,strong) NSString *tagID;
 
+@property (nonatomic,strong) NSString *objectId;
+
 @end

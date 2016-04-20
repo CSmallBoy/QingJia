@@ -191,47 +191,51 @@
             
             NSLog(@"%@",bigArr);
             
-            for (int i = 0; i<bigArr.count; i++) {
-                NSArray *smallArr = bigArr[i];
-                HCTagManagerInfo *info = [[HCTagManagerInfo alloc] init];
-                info.tagUserName = [NSString stringWithFormat:@"%@",smallArr[0][@"trueName"]];
-                NSMutableArray *tagNameArr =[NSMutableArray array];
-                
-                for (int j = 0; j<smallArr.count; j++) {
-                    [tagNameArr addObject:smallArr[j][@"labelTitle"] ];
-                }
-                info.tagNameArr = tagNameArr;
-                
-                NSMutableArray *imgArr = [NSMutableArray array];
-                for (int  k = 0; k<smallArr.count; k++) {
+            if (bigArr.count > 1) {
+                for (int i = 0; i<bigArr.count; i++) {
+                    NSArray *smallArr = bigArr[i];
+                    HCTagManagerInfo *info = [[HCTagManagerInfo alloc] init];
+                    info.tagUserName = [NSString stringWithFormat:@"%@",smallArr[0][@"trueName"]];
+                    NSMutableArray *tagNameArr =[NSMutableArray array];
                     
-                    NSURL *url = [readUserInfo originUrl:smallArr[k][@"imageName"] :kkUser];
-
-                    UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+                    for (int j = 0; j<smallArr.count; j++) {
+                        [tagNameArr addObject:smallArr[j][@"labelTitle"] ];
+                    }
+                    info.tagNameArr = tagNameArr;
                     
-                    if (imgFromUrl == nil) {
-                        imgFromUrl = IMG(@"time_picture");
+                    NSMutableArray *imgArr = [NSMutableArray array];
+                    for (int  k = 0; k<smallArr.count; k++) {
+                        
+                        NSURL *url = [readUserInfo originUrl:smallArr[k][@"imageName"] :kkUser];
+                        
+                        UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+                        
+                        if (imgFromUrl == nil) {
+                            imgFromUrl = IMG(@"time_picture");
+                        }
+                        
+                        [imgArr addObject:imgFromUrl];
                     }
                     
-                    [imgArr addObject:imgFromUrl];
+                    info.imgArr = imgArr;
+                    
+                    NSMutableArray *tagIDArr = [NSMutableArray array];
+                    
+                    for (int m = 0; m< smallArr.count; m++)
+                    {
+                        [tagIDArr addObject:smallArr[m][@"labelId"]];
+                    }
+                    info.tagIDArr = tagIDArr;
+                    
+                    [self.dataSource addObject:info];
+                    [self.tableView reloadData];
                 }
                 
-                info.imgArr = imgArr;
-                
-                NSMutableArray *tagIDArr = [NSMutableArray array];
-                
-                for (int m = 0; m< smallArr.count; m++)
-                {
-                    [tagIDArr addObject:smallArr[m][@"labelId"]];
-                }
-                info.tagIDArr = tagIDArr;
-                
-                [self.dataSource addObject:info];
-                [self.tableView reloadData];
+                NSLog(@"*********标签概要信息列表*************");
             }
-            
-            NSLog(@"*********标签概要信息列表*************");
         }
+            
+            
     }];
     
 

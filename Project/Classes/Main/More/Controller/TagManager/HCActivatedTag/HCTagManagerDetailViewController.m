@@ -20,7 +20,9 @@
 #import "HCTagDetailApi.h"
 
 #import "HCMedicalViewController.h"
-#import "HCTagUserDetailController.h"
+#import "HCAddTagUserController.h"
+
+#import "HCTagStopUseApi.h"
 
 
 #define TagManagerDetailCell @"TagManagerDetailCell"
@@ -49,7 +51,7 @@
 {
     [super viewDidLoad];
     
-    [self requestData];
+    
     [self setupBackItem];
     _info = self.data[@"data"];
     self.tableView.tableHeaderView = self.headerView;
@@ -60,6 +62,14 @@
     self.navigationItem.rightBarButtonItem = add_bar_button;
     
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self requestData];
+}
+
 -(void)add_click{
     NSLog(@"%d",ool);
     if (ool) {
@@ -186,10 +196,12 @@
 //编辑标签
 -(void)editingClick{
     
-//    HCTagUserDetailController *detailVC = [[HCTagUserDetailController alloc]init];
-//    detailVC.data = @{@"info":_info};
-//    
-//    [self.navigationController pushViewController:detailVC animated:YES];
+    HCAddTagUserController *editVC = [[HCAddTagUserController alloc]init];
+    editVC.data = @{@"info":self.info};
+    editVC.isEdit = YES;
+    editVC.isEditTag = YES;
+    [self.navigationController pushViewController:editVC animated:YES];
+
     
 }
 -(void)stopClick{
@@ -226,8 +238,7 @@
     switch (buttton.tag) {
         case 1000:
         {
-            HCTagClosedDetailViewControllwe *Vc = [[HCTagClosedDetailViewControllwe alloc]init];
-            [self.navigationController pushViewController:Vc animated:YES];
+            [self requestStopApi];
         }
             break;
         case 1001:
@@ -257,7 +268,9 @@
         NSDictionary *dic = respone[@"Data"][@"labelInf"];
         
         HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
+        
         self.info = info;
+        self.info.objectId = self.objectId;
         
         NSURL *url = [readUserInfo originUrl:_info.imageName :kkUser];
         
@@ -266,6 +279,24 @@
         
     }];
   
+}
+
+
+-(void)requestStopApi
+{
+    HCTagStopUseApi *api = [[HCTagStopUseApi alloc]init];
+    
+    api.labelId = self.tagID;
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+       
+        if (requestStatus == HCRequestStatusSuccess) {
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+    }];
+
 }
 
 @end
