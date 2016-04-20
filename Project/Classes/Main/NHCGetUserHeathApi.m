@@ -28,14 +28,26 @@
 }
 - (id)formatResponseObject:(id)responseObject
 {
-    NSDictionary *dic = responseObject[@"Data"][@"healthCard"];
-    NSString *str1 = dic[@"height"];
-    NSString *str2 = dic[@"weight"];
-    NSString *str3 = dic[@"bloodType"];
-    NSString *Str4 = dic[@"allergic"];
-    NSString *str5 = dic[@"cureCondition"];
-    NSString *str6 = dic[@"cureNote"];
-    NSArray *arr = @[str1,str2,str3,Str4,str5,str6];
-    return arr;
+    NSString *str1;
+    NSString *str2;
+    NSString *str3;
+    NSString *str4;
+    NSString *str5;
+    NSString *str6;
+    NSArray *arr ;
+    if (IsEmpty(responseObject[@"Data"][@"healthCard"])) {
+        arr =  nil;
+    }else{
+        NSDictionary *dic = responseObject[@"Data"][@"healthCard"];
+        str1 = dic[@"height"];
+        str2 = dic[@"weight"];
+        str3 = dic[@"bloodType"];
+        str4 = dic[@"allergic"];
+        str5 = dic[@"cureCondition"];
+        str6 = dic[@"cureNote"];
+      arr = @[str1,str2,str3,str4,str5,str6];
+        
+    }
+   return arr;
 }
 @end

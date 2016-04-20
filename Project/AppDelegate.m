@@ -13,7 +13,7 @@
 #import "HCHomeViewController.h"
 #import "HCLoginViewController.h"
 #import "HCLeftViewController.h"
-#import "APService.h"
+#import "JPUSHService.h"
 
 #import "AppDelegate+EaseMob.h"
 #import "AppDelegate+Parse.h"

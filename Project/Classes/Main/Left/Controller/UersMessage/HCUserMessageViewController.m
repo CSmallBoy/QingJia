@@ -52,16 +52,17 @@
         [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
     }
     //获取健康 信息
-    if (IsEmpty(str)) {
-        arr = @[@"请输入您的身高信息",@"请输入您的体重信息",@"请输入您的血型信息",@"请输入您的过敏史信息",@"最近就医状况",@"最近就医笔记"];
-    }else{
-        NHCGetUserHeathApi *API= [[NHCGetUserHeathApi alloc]init];
-        [API startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-            if (requestStatus == HCRequestStatusSuccess) {
+    NHCGetUserHeathApi *API= [[NHCGetUserHeathApi alloc]init];
+    [API startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        if (requestStatus == HCRequestStatusSuccess) {
+            if (IsEmpty(responseObject)) {
+                
+            }else{
                 arr = responseObject;
             }
-        }];
-    }
+            
+        }
+    }];
     [self.tableView reloadData];
   
 }
@@ -91,6 +92,28 @@
         //有两种可能  一已经完善过  另一种没有完善
         if (IsEmpty(_dict[@"UserInf"][@"company"])) {
             //此种情况下 是没有 完善信息  不操作
+            if (indexPath.section==0) {
+                switch (indexPath.row) {
+                    case 0:
+                        cell.textField.text = _dict[@"UserInf"][@"trueName"];
+                        break;
+                    case 2:
+                        cell.textField.text = _dict[@"UserInf"][@"sex"];
+                        break;
+                    case 4:
+                        cell.textField.text = _dict[@"UserInf"][@"chineseZodiac"];
+                        break;
+                    case 3:
+                        cell.textField.text = _dict[@"UserInf"][@"birthDay"];
+                        break;
+                    default:
+                        break;
+                }
+            }
+                    
+            
+           
+            
         }else{
             //此种情况是完善过后  的赋值
             switch (indexPath.row) {
@@ -142,6 +165,7 @@
             }
 
         }
+        
         
     }else{
         switch (indexPath.row) {
@@ -212,7 +236,7 @@
       HCUserHeathViewController * Vc= [[HCUserHeathViewController alloc]init];
         
         if (IsEmpty(arr[0])) {
-            Vc.arr_heath = @[@"175",@"40",@"d",@"w",@"w",@"w"];
+            Vc.arr_heath = @[@"请输入身高",@"请输入体重",@"请输入血型",@"有无过敏史",@"医疗状况",@"医疗笔记"];
         }else{
             Vc.arr_heath = arr;
         }
@@ -237,10 +261,10 @@
 
 - (void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result
 {
-    NSDate *date = result[@"date"];
-    HCUserMessageTableViewCell *cell = (HCUserMessageTableViewCell *)
-    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
-    cell.textField.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
+//    NSDate *date = result[@"date"];
+//    HCUserMessageTableViewCell *cell = (HCUserMessageTableViewCell *)
+//    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+//    cell.textField.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
 }
 
 #pragma mark - private methods
@@ -249,6 +273,14 @@
 {
     HCEditUserMessageViewController *editVC = [[HCEditUserMessageViewController alloc]init];
     editVC.delegate = self;
+    editVC.ture_name = _dict[@"UserInf"][@"trueName"];
+    editVC.sex = _dict[@"UserInf"][@"sex"];
+    editVC.shuxiang = _dict[@"UserInf"][@"chineseZodiac"];
+    editVC.birthday = _dict[@"UserInf"][@"birthday"];
+    editVC.adress = _dict[@"UserInf"][@"adress"];
+    editVC.copany = _dict[@"UserInf"][@"company"];
+    editVC.professional = _dict[@"UserInf"][@"professional"];
+    
     [self.navigationController pushViewController:editVC animated:YES];
     
 }

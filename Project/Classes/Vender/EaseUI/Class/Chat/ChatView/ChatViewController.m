@@ -242,7 +242,17 @@
 {
     id<IMessageModel> model = nil;
     model = [[EaseMessageModel alloc] initWithMessage:message];
-    model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
+    //环信默认的头像
+    //model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
+    if (model.isSender) {
+        UIImageView *image = [[UIImageView alloc]init];
+        [image sd_setImageWithURL:[readUserInfo url:[readUserInfo getReadDic][@"UserInf"][@"imageName"] :kkUser]];
+        model.avatarImage = image.image;
+        model.nickname = @"曹思远";
+    }else{
+        model.avatarImage = IMG(@"2.jpg");
+        model.nickname = @"大哥哥";
+    }
     UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.nickname];
     if (profileEntity) {
         model.avatarURLPath = profileEntity.imageUrl;

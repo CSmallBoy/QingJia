@@ -14,5 +14,11 @@
 @interface HCEditUserMessageViewController : HCTableViewController
 
 @property (nonatomic,assign)id<userInfoDelegate>delegate;
-
+@property (nonatomic,copy) NSString *ture_name;
+@property (nonatomic,copy) NSString *sex;
+@property (nonatomic,copy) NSString *shuxiang;
+@property (nonatomic,copy) NSString *birthday;
+@property (nonatomic,copy) NSString *adress;
+@property (nonatomic,copy) NSString *professional;
+@property (nonatomic,copy) NSString *copany;
 @end

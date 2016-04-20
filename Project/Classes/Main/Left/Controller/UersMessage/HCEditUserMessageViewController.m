@@ -53,11 +53,12 @@
     model = [[MyselfInfoModel alloc]init];
     api = [[NHCUSerInfoApi alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toChangeNumber) name:@"toChangeNumber" object:nil];
-    Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"年龄",@"生日",@"属相",@"住址",@"公司",@"职业",@"健康"],
+    Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"年龄",@"生日",@"属相",@"住址",@"公司",@"职业"],
                   @[@"绑定手机号"]];
     NSDictionary *dic = [readUserInfo getReadDic];
     if (IsEmpty(dic[@"UserInf"][@"imageNames"])) {
-        arr2= @[@[@"请点击点击选择头像",@"请输入昵称",@"XXX",@"X",@"XX",@"XXXX-XX-XX",@"X",@"XXXXXXXXXXX",@"XXXXX",@"XXX",@"我的医疗急救卡"],
+        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,@"XX",@"XXXX-XX-XX",_shuxiang,@"XXXXXXXXXXX",@"XXXXX",@"XXX"];
+        arr2= @[arr,
                 @[@"181109722222"]];
     }else{
        
@@ -76,7 +77,7 @@
 {
     if (section == 0)
     {
-        return  11;
+        return  10;
     }else
     {
         return 1;
@@ -149,10 +150,11 @@
             [view1 removeFromSuperview];
         }
     }
-    if (cell==nil) {
+    if (cell==nil)
+    {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier
                 ];
-        }
+    }
     if (indexPath.section == 0 ) {
         if (indexPath.row == 0) {
             UIImageView *headImage = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-50, 2, 40, 40)];
@@ -164,6 +166,20 @@
         NSDictionary *dict_catch = [readUserInfo getReadDic];
         //需要先看网络上有没有   在判断本地有没有
         if (IsEmpty(dict_catch[@"UserInf"][@"career"])) {
+            switch (indexPath.row) {
+                case 2:
+                    text_tf.text = arr2[indexPath.section][indexPath.row];
+                    break;
+                case 3:
+                    text_tf.text = arr2[indexPath.section][indexPath.row];
+                    break;
+                case 6:
+                    text_tf.text = arr2[indexPath.section][indexPath.row];
+                    break;
+        
+                default:
+                    break;
+            }
             text_tf.placeholder = arr2[indexPath.section][indexPath.row];
         }else{
             text_tf.text = arr2[indexPath.section][indexPath.row];
@@ -186,8 +202,6 @@
         [cell addSubview:text_tf];
         
     }
-    
-    
     return cell;
 
 }
@@ -205,6 +219,7 @@
         }];
         UIAlertAction *paizhao = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             //打开相机
+            
         }];
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
@@ -241,62 +256,61 @@
 
 -(void)saveClick:(UIBarButtonItem *)item
 {
-    
-    [self.tableView reloadData];
- 
-    
-    // [self showHUDView:nil];
-    
-     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
-   //先上传图片 在完善用户信息
-    NSString * string = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"user",[HCAccountMgr manager].loginInfo.UUID,[readUserInfo getReadDic][@"Token"]]];
-    //chosse 是选择好的图片
-    UIImage *image = choose;
-    [KLHttpTool uploadImageWithUrl:string image:choose success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
-        //在这个地方执行上传文字的操作
-        model.userPhoto = responseObject[@"Data"][@"files"][0];
-        api.myModel = model;
-        
-        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac) {
-            if (requestStatus == HCRequestStatusSuccess) {
-                [dic setObject:str forKey:@"birthday"];
-                [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
-                [dic setObject:model.userPhoto forKey:@"PhotoStr"];
-                [dic setObject:model.nickName forKey:@"nickName"];
-                [dic setObject:model.age forKey:@"age"];
-                [dic setObject:model.adress forKey:@"adress"];
-                [dic setObject:model.company forKey:@"company"];
-                [dic setObject:model.professional forKey:@"professional"];
-                [readUserInfo Dicdelete];
-                [readUserInfo creatDic:dic];
-                
-                
-                [self hideHUDView];
+    //先验证是否否输入
+    if (IsEmpty(choose)||IsEmpty(model.nickName)||IsEmpty(model.age)||IsEmpty(model.birday)||IsEmpty(model.adress)||IsEmpty(model.company)||IsEmpty(model.professional)) {
+        [self showHUDSuccess:@"您还有为填写的内容"];
+    }else{
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
+        //先上传图片 在完善用户信息
+        NSString * string = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"user",[HCAccountMgr manager].loginInfo.UUID,[readUserInfo getReadDic][@"Token"]]];
+        //chosse 是选择好的图片
+        [KLHttpTool uploadImageWithUrl:string image:choose success:^(id responseObject) {
+            NSLog(@"%@",responseObject);
+            //在这个地方执行上传文字的操作
+            model.userPhoto = responseObject[@"Data"][@"files"][0];
+            api.myModel = model;
+            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac) {
                 if (requestStatus == HCRequestStatusSuccess) {
+                    [dic setObject:str forKey:@"birthday"];
+                    [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
+                    [dic setObject:model.userPhoto forKey:@"PhotoStr"];
+                    [dic setObject:model.nickName forKey:@"nickName"];
+                    [dic setObject:model.age forKey:@"age"];
+                    [dic setObject:model.adress forKey:@"adress"];
+                    [dic setObject:model.company forKey:@"company"];
+                    [dic setObject:model.professional forKey:@"professional"];
+                    [readUserInfo Dicdelete];
+                    [readUserInfo creatDic:dic];
                     
-                    for (UIViewController *temp in self.navigationController.viewControllers) {
-                        if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
-                            
-                            [self.navigationController popToViewController:temp animated:YES];
+                    
+                    [self hideHUDView];
+                    if (requestStatus == HCRequestStatusSuccess) {
+                        
+                        for (UIViewController *temp in self.navigationController.viewControllers) {
+                            if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
+                                
+                                [self.navigationController popToViewController:temp animated:YES];
+                            }
                         }
+                        
+                        NSDictionary *dict = @{@"photo":choose};
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserPhoto" object:nil userInfo:dict];
+                        [self showHUDSuccess:@"保存成功"];
                     }
-                    
-                    NSDictionary *dict = @{@"photo":choose};
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserPhoto" object:nil userInfo:dict];
-                    [self showHUDSuccess:@"保存成功"];
+                    else
+                    {
+                        [self showHUDSuccess:@"保存失败"];
+                    }
                 }
-                else
-                {
-                    [self showHUDSuccess:@"保存失败"];
-                }
-            }
+            }];
+            
+        } failure:^(NSError *error) {
+            
         }];
-        
-    } failure:^(NSError *error) {
-        
-    }];
+    }
+    
+
 //    //完善用户信息
 //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac){
 //        if (requestStatus == HCRequestStatusSuccess) {

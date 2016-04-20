@@ -75,7 +75,6 @@
 		0A2B47831C7F12C800AAA157 /* HCImageUploadApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B47571C7F12C800AAA157 /* HCImageUploadApi.m */; };
 		0A2B47841C7F12C800AAA157 /* HCJsonRequestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B47591C7F12C800AAA157 /* HCJsonRequestApi.m */; };
 		0A2B47851C7F12C800AAA157 /* HCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B475B1C7F12C800AAA157 /* HCRequest.m */; };
-		0A418C1D1C147D4B0024DAC3 /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A418C1C1C147D4B0024DAC3 /* libPushSDK-1.8.8.a */; };
 		0A418C1F1C148E9C0024DAC3 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A418C1E1C148E9C0024DAC3 /* PushConfig.plist */; };
 		0A5491011C2BC32D0085F50D /* ZXAztecDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A548F1B1C2BC32C0085F50D /* ZXAztecDecoder.m */; };
 		0A5491021C2BC32D0085F50D /* ZXAztecDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A548F1E1C2BC32C0085F50D /* ZXAztecDetector.m */; };
@@ -557,6 +556,10 @@
 		C7692F561C3A4B2200582A10 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F511C3A4B2200582A10 /* MDCFocalPointView.m */; };
 		C7692F571C3A4B2200582A10 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F531C3A4B2200582A10 /* MDCFocusView.m */; };
 		C7692F581C3A4B2200582A10 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F551C3A4B2200582A10 /* MDCSpotlightView.m */; };
+		C777FF1F1CC74D23007ED160 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C777FF1E1CC74D23007ED160 /* CFNetwork.framework */; };
+		C777FF211CC74D2E007ED160 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C777FF201CC74D2E007ED160 /* CoreFoundation.framework */; };
+		C777FF231CC74D6D007ED160 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C777FF221CC74D6D007ED160 /* Foundation.framework */; };
+		C777FF251CC74E47007ED160 /* jpush-ios-2.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C777FF241CC74E47007ED160 /* jpush-ios-2.1.0.a */; };
 		C77C2F601CBB7B5B0011233C /* KLHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */; };
 		C77C2F621CBB7FA50011233C /* caosiyuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C77C2F611CBB7FA50011233C /* caosiyuan.jpg */; };
 		C78D7AA51C5F28F700622CE2 /* HCCreateGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78571C5F28F600622CE2 /* HCCreateGradeViewController.m */; };
@@ -1233,8 +1236,6 @@
 		0A2B47591C7F12C800AAA157 /* HCJsonRequestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCJsonRequestApi.m; sourceTree = "<group>"; };
 		0A2B475A1C7F12C800AAA157 /* HCRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCRequest.h; sourceTree = "<group>"; };
 		0A2B475B1C7F12C800AAA157 /* HCRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCRequest.m; sourceTree = "<group>"; };
-		0A418C1B1C147D4B0024DAC3 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
-		0A418C1C1C147D4B0024DAC3 /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
 		0A418C1E1C148E9C0024DAC3 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		0A548F1A1C2BC32C0085F50D /* ZXAztecDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAztecDecoder.h; sourceTree = "<group>"; };
 		0A548F1B1C2BC32C0085F50D /* ZXAztecDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAztecDecoder.m; sourceTree = "<group>"; };
@@ -2181,6 +2182,11 @@
 		C7692F531C3A4B2200582A10 /* MDCFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCFocusView.m; sourceTree = "<group>"; };
 		C7692F541C3A4B2200582A10 /* MDCSpotlightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSpotlightView.h; sourceTree = "<group>"; };
 		C7692F551C3A4B2200582A10 /* MDCSpotlightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCSpotlightView.m; sourceTree = "<group>"; };
+		C777FF1E1CC74D23007ED160 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C777FF201CC74D2E007ED160 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		C777FF221CC74D6D007ED160 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C777FF241CC74E47007ED160 /* jpush-ios-2.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.0.a"; sourceTree = "<group>"; };
+		C777FF261CC74E65007ED160 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		C77C2F5E1CBB7B5B0011233C /* KLHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLHttpTool.h; sourceTree = "<group>"; };
 		C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLHttpTool.m; sourceTree = "<group>"; };
 		C77C2F611CBB7FA50011233C /* caosiyuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = caosiyuan.jpg; sourceTree = "<group>"; };
@@ -3050,14 +3056,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A6AFD731BFC059A0073982C /* Security.framework in Frameworks */,
+				C777FF231CC74D6D007ED160 /* Foundation.framework in Frameworks */,
+				0A6AFD771BFC05B30073982C /* CoreGraphics.framework in Frameworks */,
+				0A6AFD711BFC058C0073982C /* SystemConfiguration.framework in Frameworks */,
+				0A6AFD7B1BFC05D00073982C /* CoreTelephony.framework in Frameworks */,
+				C777FF211CC74D2E007ED160 /* CoreFoundation.framework in Frameworks */,
+				C777FF1F1CC74D23007ED160 /* CFNetwork.framework in Frameworks */,
 				C7AFFAC01C48BEC900D4A628 /* libUMSocial_Sdk_4.4.a in Frameworks */,
 				C7B00B7B1C5F26050010F93B /* libopencore-amrnb.a in Frameworks */,
 				0AA0EB9A1C1536FB007F7EAB /* AddressBookUI.framework in Frameworks */,
 				C7AFFACE1C48BEC900D4A628 /* libSocialQQ.a in Frameworks */,
 				0AA0EB981C1536F3007F7EAB /* AddressBook.framework in Frameworks */,
+				C777FF251CC74E47007ED160 /* jpush-ios-2.1.0.a in Frameworks */,
 				0A6AFD7D1BFC05DC0073982C /* libstdc++.6.0.9.tbd in Frameworks */,
 				0A6AFD791BFC05C30073982C /* libsqlite3.0.tbd in Frameworks */,
-				0A6AFD731BFC059A0073982C /* Security.framework in Frameworks */,
 				C7AFFACB1C48BEC900D4A628 /* libSocialSinaSSO.a in Frameworks */,
 				C7AFFACF1C48BEC900D4A628 /* TencentOpenAPI.framework in Frameworks */,
 				C7AFFACA1C48BEC900D4A628 /* libSocialSina.a in Frameworks */,
@@ -3066,12 +3079,8 @@
 				0AAB69A71C0600E500A0A2E8 /* OpenGLES.framework in Frameworks */,
 				0AAB69A51C0600D800A0A2E8 /* QuartzCore.framework in Frameworks */,
 				0A6AFD7F1BFC05E80073982C /* libz.1.1.3.tbd in Frameworks */,
-				0A418C1D1C147D4B0024DAC3 /* libPushSDK-1.8.8.a in Frameworks */,
-				0A6AFD7B1BFC05D00073982C /* CoreTelephony.framework in Frameworks */,
-				0A6AFD771BFC05B30073982C /* CoreGraphics.framework in Frameworks */,
 				C7AFFAD21C48BEC900D4A628 /* libWeChatSDK.a in Frameworks */,
 				0A6AFD751BFC05A70073982C /* libiconv.2.4.0.tbd in Frameworks */,
-				0A6AFD711BFC058C0073982C /* SystemConfiguration.framework in Frameworks */,
 				0A79B2831BF313DD00788A66 /* CoreLocation.framework in Frameworks */,
 				C7AFFAD11C48BEC900D4A628 /* libSocialWechat.a in Frameworks */,
 				3AA0DCFA47C83622EEE93AA9 /* libPods.a in Frameworks */,
@@ -3391,8 +3400,7 @@
 		0A418C1A1C147D4B0024DAC3 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				0A418C1B1C147D4B0024DAC3 /* APService.h */,
-				0A418C1C1C147D4B0024DAC3 /* libPushSDK-1.8.8.a */,
+				C777FF261CC74E65007ED160 /* JPUSHService.h */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -4931,6 +4939,10 @@
 		B3F788F61B430EBC07B60CDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C777FF241CC74E47007ED160 /* jpush-ios-2.1.0.a */,
+				C777FF221CC74D6D007ED160 /* Foundation.framework */,
+				C777FF201CC74D2E007ED160 /* CoreFoundation.framework */,
+				C777FF1E1CC74D23007ED160 /* CFNetwork.framework */,
 				0AA0EB991C1536FB007F7EAB /* AddressBookUI.framework */,
 				0AA0EB971C1536F3007F7EAB /* AddressBook.framework */,
 				0A5EFC231C117474008B3548 /* ContactsUI.framework */,
@@ -8609,6 +8621,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_4.4",
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
+					"\"$(SRCROOT)/Project/Classes/Vender/lib/JPUSHService.h\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8646,6 +8659,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_4.4",
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
+					"\"$(SRCROOT)/Project/Classes/Vender/lib/JPUSHService.h\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "$(TARGET_NAME)";

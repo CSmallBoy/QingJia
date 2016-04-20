@@ -73,7 +73,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *arr2 = @[@"身高",@"体重",@"血型",@"过敏史",
                      @"医疗状况",@"医疗笔记"];
-    NSArray *arr_detil =@[@"请输入身高",@"请输入体重",@"请输入血型",@"过敏史",@"医疗状况",@"医疗笔记"];
+    //NSArray *arr_detil =@[@"请输入身高",@"请输入体重",@"请输入血型",@"过敏史",@"医疗状况",@"医疗笔记"];
     static NSString *identifier = @"identifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
       UITextField *label2 = [[UITextField alloc]initWithFrame:CGRectMake(100, 5, 150, 40)];
@@ -85,8 +85,8 @@
         
         label.text = arr2[indexPath.row];
         
-        if (_arr_heath==nil) {
-            label2.placeholder = arr_detil[indexPath.row];
+        if ([_arr_heath[0] isEqualToString:@"请输入身高"]) {
+            label2.placeholder = _arr_heath[indexPath.row];
         }else{
             label2.text = _arr_heath[indexPath.row];
         }
