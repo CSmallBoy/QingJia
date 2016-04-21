@@ -9,6 +9,7 @@
 #import "readUserInfo.h"
 #import "KMQRCode.h"
 #import "UIImage+RoundedRectImage.h"
+#import "NHCChatUserInfoApi.h"
 @implementation readUserInfo
 //创建
 +(void)creatDic:(NSDictionary*)dic{
@@ -213,4 +214,17 @@
     NSDate *date=[dateFormatter dateFromString:datesting];
     return date;
 }
+//聊天获取头像
++(NSDictionary*)userInfo:(NSString *)datesting{
+    NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
+    api.chatName = datesting;
+    __block NSDictionary *dicting;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+        dicting = dict;
+    }];
+    return dicting;
+}
+
+
+
 @end

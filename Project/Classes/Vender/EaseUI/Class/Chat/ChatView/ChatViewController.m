@@ -14,6 +14,8 @@
 #import "UserProfileViewController.h"
 #import "UserProfileManager.h"
 #import "ContactListSelectViewController.h"
+//个人用户
+#import "NHCChatUserInfoApi.h"
 //聊天框中显示消息里地头像和昵称
 @interface ChatViewController ()<UIAlertViewDelegate, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
 {
@@ -244,12 +246,16 @@
     model = [[EaseMessageModel alloc] initWithMessage:message];
     //环信默认的头像
     //model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
+    
+    
     if (model.isSender) {
         UIImageView *image = [[UIImageView alloc]init];
+        
         [image sd_setImageWithURL:[readUserInfo url:[readUserInfo getReadDic][@"UserInf"][@"imageName"] :kkUser]];
         model.avatarImage = image.image;
         model.nickname = @"曹思远";
     }else{
+        
         model.avatarImage = IMG(@"2.jpg");
         model.nickname = @"大哥哥";
     }

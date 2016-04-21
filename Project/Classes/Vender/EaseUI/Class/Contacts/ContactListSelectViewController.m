@@ -113,6 +113,7 @@
         model.avatarURLPath = profileEntity.imageUrl;
         
     }
+
     return model;
 }
 

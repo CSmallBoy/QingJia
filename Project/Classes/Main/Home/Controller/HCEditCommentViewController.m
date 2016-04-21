@@ -160,7 +160,11 @@
         if (IsEmpty(_single)) {
             
             [self requestEditComment];
-        }else{
+        }else if (IsEmpty(_all_coment_to))
+        {
+            
+        }
+        else{
             //单图评
             [self resquestCommentS];
         }

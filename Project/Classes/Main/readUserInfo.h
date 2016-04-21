@@ -55,5 +55,6 @@ typedef void (^NHCReadBack)(NSString *str);
 +(NSString *) compareCurrentTime:(NSDate*) compareDate;
 //转成date
 +(NSDate*)dateDetail: (NSString*)datesting;
-
+//获取到一个字典 环信个人用户
++(NSDictionary*)userInfo: (NSString*)datesting;
 @end

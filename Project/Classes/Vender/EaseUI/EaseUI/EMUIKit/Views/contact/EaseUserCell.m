@@ -36,9 +36,9 @@ CGFloat const EaseUserCellPadding = 10;
               reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
+    if (self)
+    {
         [self _setupSubview];
-        
         UILongPressGestureRecognizer *headerLongPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(headerLongPress:)];
         [self addGestureRecognizer:headerLongPress];
     }
@@ -53,7 +53,6 @@ CGFloat const EaseUserCellPadding = 10;
     _avatarView = [[EaseImageView alloc] init];
     _avatarView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:_avatarView];
-    
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _titleLabel.numberOfLines = 2;
@@ -61,7 +60,6 @@ CGFloat const EaseUserCellPadding = 10;
     _titleLabel.font = _titleLabelFont;
     _titleLabel.textColor = _titleLabelColor;
     [self.contentView addSubview:_titleLabel];
-    
     [self _setupAvatarViewConstraints];
     [self _setupTitleLabelConstraints];
 }
@@ -95,14 +93,17 @@ CGFloat const EaseUserCellPadding = 10;
 
 - (void)setShowAvatar:(BOOL)showAvatar
 {
-    if (_showAvatar != showAvatar) {
+    if (_showAvatar != showAvatar)
+    {
         _showAvatar = showAvatar;
         self.avatarView.hidden = !showAvatar;
-        if (_showAvatar) {
+        if (_showAvatar)
+        {
             [self removeConstraint:self.titleWithoutAvatarLeftConstraint];
             [self addConstraint:self.titleWithAvatarLeftConstraint];
         }
-        else{
+        else
+        {
             [self removeConstraint:self.titleWithAvatarLeftConstraint];
             [self addConstraint:self.titleWithoutAvatarLeftConstraint];
         }
@@ -113,17 +114,28 @@ CGFloat const EaseUserCellPadding = 10;
 {
     _model = model;
     
-    if ([_model.nickname length] > 0) {
+    if ([_model.nickname length] > 0)
+    {
         self.titleLabel.text = _model.nickname;
     }
-    else{
+    else
+    {
        self.titleLabel.text = _model.buddy.username;
     }
+    //昵称设置
+    //根据chatid   网络请求 查询到手机号  或者是用户昵称  然后在赋值
+    //self.titleLabel.text = @"123";
     
-    if ([_model.avatarURLPath length] > 0){
+    
+    
+   
+    if ([_model.avatarURLPath length] > 0)
+    {
         [self.avatarView.imageView sd_setImageWithURL:[NSURL URLWithString:_model.avatarURLPath] placeholderImage:_model.avatarImage];
-    } else {
-        if (_model.avatarImage) {
+    } else
+    {
+        if (_model.avatarImage)
+        {
             self.avatarView.image = _model.avatarImage;
         }
     }
@@ -156,7 +168,8 @@ CGFloat const EaseUserCellPadding = 10;
 #pragma mark - action
 - (void)headerLongPress:(UILongPressGestureRecognizer *)longPress
 {
-    if (longPress.state == UIGestureRecognizerStateBegan) {
+    if (longPress.state == UIGestureRecognizerStateBegan)
+    {
         if(_delegate && _indexPath && [_delegate respondsToSelector:@selector(cellLongPressAtIndexPath:)])
         {
             [_delegate cellLongPressAtIndexPath:self.indexPath];
@@ -167,14 +180,17 @@ CGFloat const EaseUserCellPadding = 10;
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    if (_avatarView.badge) {
+    if (_avatarView.badge)
+    {
         _avatarView.badgeBackgroudColor = [UIColor redColor];
     }
 }
 
--(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
     [super setHighlighted:highlighted animated:animated];
-    if (_avatarView.badge) {
+    if (_avatarView.badge)
+    {
         _avatarView.badgeBackgroudColor = [UIColor redColor];
     }
 }

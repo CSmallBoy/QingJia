@@ -552,6 +552,8 @@
 		C758EE5B1C743E7A0081FFE1 /* select_no.png in Resources */ = {isa = PBXBuildFile; fileRef = C758EE221C743E7A0081FFE1 /* select_no.png */; };
 		C758EE5C1C743E7A0081FFE1 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C758EE231C743E7A0081FFE1 /* selected.png */; };
 		C75EFD771CB939EF008C4C52 /* NHCHomeCommentsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C75EFD761CB939EF008C4C52 /* NHCHomeCommentsApi.m */; };
+		C75F8A821CC87E4500AB7975 /* NHCChatUserInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C75F8A811CC87E4500AB7975 /* NHCChatUserInfoApi.m */; };
+		C75F8A851CC8CB9F00AB7975 /* NHCChatUserIfoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C75F8A841CC8CB9F00AB7975 /* NHCChatUserIfoListApi.m */; };
 		C762D1661CA53660006D2BB4 /* MyselfInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C762D1651CA53660006D2BB4 /* MyselfInfoModel.m */; };
 		C7692F561C3A4B2200582A10 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F511C3A4B2200582A10 /* MDCFocalPointView.m */; };
 		C7692F571C3A4B2200582A10 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F531C3A4B2200582A10 /* MDCFocusView.m */; };
@@ -560,6 +562,7 @@
 		C777FF211CC74D2E007ED160 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C777FF201CC74D2E007ED160 /* CoreFoundation.framework */; };
 		C777FF231CC74D6D007ED160 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C777FF221CC74D6D007ED160 /* Foundation.framework */; };
 		C777FF251CC74E47007ED160 /* jpush-ios-2.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C777FF241CC74E47007ED160 /* jpush-ios-2.1.0.a */; };
+		C777FF2A1CC7783E007ED160 /* NHCMessageSearchUserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C777FF291CC7783E007ED160 /* NHCMessageSearchUserApi.m */; };
 		C77C2F601CBB7B5B0011233C /* KLHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */; };
 		C77C2F621CBB7FA50011233C /* caosiyuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C77C2F611CBB7FA50011233C /* caosiyuan.jpg */; };
 		C78D7AA51C5F28F700622CE2 /* HCCreateGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78571C5F28F600622CE2 /* HCCreateGradeViewController.m */; };
@@ -2174,6 +2177,10 @@
 		C758EE231C743E7A0081FFE1 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = ../selected.png; sourceTree = "<group>"; };
 		C75EFD751CB939EF008C4C52 /* NHCHomeCommentsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeCommentsApi.h; sourceTree = "<group>"; };
 		C75EFD761CB939EF008C4C52 /* NHCHomeCommentsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeCommentsApi.m; sourceTree = "<group>"; };
+		C75F8A801CC87E4500AB7975 /* NHCChatUserInfoApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCChatUserInfoApi.h; sourceTree = "<group>"; };
+		C75F8A811CC87E4500AB7975 /* NHCChatUserInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCChatUserInfoApi.m; sourceTree = "<group>"; };
+		C75F8A831CC8CB9F00AB7975 /* NHCChatUserIfoListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCChatUserIfoListApi.h; sourceTree = "<group>"; };
+		C75F8A841CC8CB9F00AB7975 /* NHCChatUserIfoListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCChatUserIfoListApi.m; sourceTree = "<group>"; };
 		C762D1641CA53660006D2BB4 /* MyselfInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfInfoModel.h; sourceTree = "<group>"; };
 		C762D1651CA53660006D2BB4 /* MyselfInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfInfoModel.m; sourceTree = "<group>"; };
 		C7692F501C3A4B2200582A10 /* MDCFocalPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocalPointView.h; sourceTree = "<group>"; };
@@ -2187,6 +2194,8 @@
 		C777FF221CC74D6D007ED160 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C777FF241CC74E47007ED160 /* jpush-ios-2.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.0.a"; sourceTree = "<group>"; };
 		C777FF261CC74E65007ED160 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		C777FF281CC7783E007ED160 /* NHCMessageSearchUserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCMessageSearchUserApi.h; sourceTree = "<group>"; };
+		C777FF291CC7783E007ED160 /* NHCMessageSearchUserApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCMessageSearchUserApi.m; sourceTree = "<group>"; };
 		C77C2F5E1CBB7B5B0011233C /* KLHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLHttpTool.h; sourceTree = "<group>"; };
 		C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLHttpTool.m; sourceTree = "<group>"; };
 		C77C2F611CBB7FA50011233C /* caosiyuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = caosiyuan.jpg; sourceTree = "<group>"; };
@@ -4966,6 +4975,7 @@
 		C73C0B761CA27A020034E42E /* newjiekou */ = {
 			isa = PBXGroup;
 			children = (
+				C777FF271CC777F3007ED160 /* messageApi */,
 				C74D2AFE1CB6625000A260A4 /* HomeApi */,
 				C752A8791CB4FE53006719F1 /* public */,
 				C752A8781CB4FE33006719F1 /* userApi */,
@@ -5144,6 +5154,19 @@
 			children = (
 			);
 			name = FamilyManage;
+			sourceTree = "<group>";
+		};
+		C777FF271CC777F3007ED160 /* messageApi */ = {
+			isa = PBXGroup;
+			children = (
+				C777FF281CC7783E007ED160 /* NHCMessageSearchUserApi.h */,
+				C777FF291CC7783E007ED160 /* NHCMessageSearchUserApi.m */,
+				C75F8A801CC87E4500AB7975 /* NHCChatUserInfoApi.h */,
+				C75F8A811CC87E4500AB7975 /* NHCChatUserInfoApi.m */,
+				C75F8A831CC8CB9F00AB7975 /* NHCChatUserIfoListApi.h */,
+				C75F8A841CC8CB9F00AB7975 /* NHCChatUserIfoListApi.m */,
+			);
+			name = messageApi;
 			sourceTree = "<group>";
 		};
 		C78D78531C5F28F600622CE2 /* Main */ = {
@@ -7732,6 +7755,7 @@
 				8D131A9A1C7D7C7F00F0D5A0 /* ZLPhotoPickerFooterCollectionReusableView.m in Sources */,
 				C78D7AED1C5F28F700622CE2 /* HCAddItemViewController.m in Sources */,
 				0A5491161C2BC32D0085F50D /* ZXEmailDoCoMoResultParser.m in Sources */,
+				C75F8A821CC87E4500AB7975 /* NHCChatUserInfoApi.m in Sources */,
 				0A5491921C2BC32D0085F50D /* ZXCode39Reader.m in Sources */,
 				0A5491DB1C2BC32D0085F50D /* ZXMultiFormatReader.m in Sources */,
 				0A5491371C2BC32D0085F50D /* ZXGenericGF.m in Sources */,
@@ -8196,6 +8220,7 @@
 				0A5491C51C2BC32D0085F50D /* ZXQRCodeDecoder.m in Sources */,
 				C7B00B651C5F26050010F93B /* SettingsViewController.m in Sources */,
 				0A5491781C2BC32D0085F50D /* ZXAI01AndOtherAIs.m in Sources */,
+				C75F8A851CC8CB9F00AB7975 /* NHCChatUserIfoListApi.m in Sources */,
 				8D15E5521CBB4DE400FA3B11 /* HCTagContactInfo.m in Sources */,
 				C7B00BB61C5F26050010F93B /* EaseLocationViewController.m in Sources */,
 				C78D7B211C5F28F700622CE2 /* HCNotifcationMessageInfo.m in Sources */,
@@ -8416,6 +8441,7 @@
 				0A2B477C1C7F12C800AAA157 /* HCRescueCenterApi.m in Sources */,
 				C758EE451C743E7A0081FFE1 /* HCLikeFamilyViewController.m in Sources */,
 				C7B00B781C5F26050010F93B /* amrFileCodec.mm in Sources */,
+				C777FF2A1CC7783E007ED160 /* NHCMessageSearchUserApi.m in Sources */,
 				0A54915A1C2BC32D0085F50D /* ZXDataMatrixDecoder.m in Sources */,
 				0A54919E1C2BC32D0085F50D /* ZXOneDimensionalCodeWriter.m in Sources */,
 				0A5491941C2BC32D0085F50D /* ZXCode93Reader.m in Sources */,

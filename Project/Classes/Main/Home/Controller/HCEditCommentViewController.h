@@ -10,5 +10,8 @@
 
 @interface HCEditCommentViewController : HCViewController
 @property (nonatomic ,copy)NSString *single;
+@property (nonatomic ,copy)NSString *all_coment_to;
+//**num_P 代表第几个*//
+@property (nonatomic ,copy)NSString *num_P;
 
 @end

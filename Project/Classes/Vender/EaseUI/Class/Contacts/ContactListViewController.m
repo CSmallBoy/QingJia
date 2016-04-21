@@ -19,7 +19,8 @@
 #import "UserProfileManager.h"
 #import "RealtimeSearchUtil.h"
 #import "UserProfileManager.h"
-
+//获取用户信息的网络请求
+#import "NHCChatUserInfoApi.h"
 @implementation EMBuddy (search)
 
 //根据用户昵称进行搜索
@@ -54,10 +55,6 @@
     _contactsSource = [NSMutableArray array];
     _sectionTitles = [NSMutableArray array];
     
-
-//    [self.view addSubview:self.searchBar];
-//    self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
-//    self.tableView.frame = CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height);
     [self searchController];
 
     [self reloadDataSource];
@@ -66,6 +63,7 @@
     
     self.tableView.tableHeaderView = self.searchBar;
     [self tableViewDidTriggerHeaderRefresh];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -194,7 +192,6 @@
     {
         cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
     if (indexPath.section == 0)
     {
         cell.model = nil;
@@ -220,13 +217,33 @@
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
         EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
         UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy.username];
-        if (profileEntity) {
+        if (profileEntity)
+        {
             model.avatarURLPath = profileEntity.imageUrl;
             model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
         }
-        cell.indexPath = indexPath;
-        cell.delegate = self;
-        cell.model = model;
+        //联系人的用户头像
+        
+        //此处写网络请求 然后复制
+        NSLog(@"%@",model.buddy.username);
+        if (indexPath.section==1) {
+            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+            api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                model.nickname = dict[@"nickName"];
+                // UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
+                UIImageView *image = [[UIImageView alloc]init];
+                [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+                model.avatarImage = image.image;
+                cell.model = model;
+            }];
+            
+            cell.indexPath = indexPath;
+            cell.delegate = self;
+            
+
+        }
+        
     }
     
     return cell;
@@ -538,7 +555,6 @@
         EaseUserModel *model = [[self.dataArray objectAtIndex:(_currentLongPressIndex.section - 1)] objectAtIndex:_currentLongPressIndex.row];
         [self hideHud];
         [self showHudInView:self.view hint:NSLocalizedString(@"wait", @"Pleae wait...")];
-        
         __weak typeof(self) weakSelf = self;
         [[EaseMob sharedInstance].chatManager asyncBlockBuddy:model.buddy.username relationship:eRelationshipFrom withCompletion:^(NSString *username, EMError *error){
             typeof(weakSelf) strongSelf = weakSelf;
@@ -587,13 +603,14 @@
 }
 
 #pragma mark - public
-
+//获取数据
 - (void)reloadDataSource
 {
     [self.dataArray removeAllObjects];
     [self.contactsSource removeAllObjects];
-    
+    //好友列表
     NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
+    //屏蔽名单
     NSArray *blockList = [[EaseMob sharedInstance].chatManager blockedList];
     for (EMBuddy *buddy in buddyList) {
         if (![blockList containsObject:buddy.username]) {
@@ -607,28 +624,26 @@
         EMBuddy *loginBuddy = [EMBuddy buddyWithUsername:loginUsername];
         [self.contactsSource addObject:loginBuddy];
     }
-    
     [self _sortDataArray:self.contactsSource];
-    
     [self.tableView reloadData];
+    
 }
-
+//加载申请视图
 - (void)reloadApplyView
 {
     NSInteger count = [[[ApplyViewController shareController] dataSource] count];
     self.unapplyCount = count;
     [self.tableView reloadData];
 }
-
+//加载群组
 - (void)reloadGroupView
 {
     [self reloadApplyView];
-    
     if (_groupController) {
         [_groupController reloadDataSource];
     }
 }
-
+//添加好友
 - (void)addFriendAction
 {
     AddFriendViewController *addController = [[AddFriendViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -640,6 +655,13 @@
 - (void)didUpdateBlockedList:(NSArray *)blockedList
 {
     [self reloadDataSource];
+   
 }
-
+//-(void)getImage{
+//    NSArray *arr = self.dataArray[0];
+//    for (int i = 0; i < arr.count; i ++) {
+//        EaseUserModel *model_getimage = arr[i];
+//        NSString *image = model_getimage.buddy.username;
+//    }
+//}
 @end

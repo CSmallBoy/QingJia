@@ -202,24 +202,35 @@
 - (id<IConversationModel>)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
                                     modelForConversation:(EMConversation *)conversation
 {
+    //获取到聊天列表的信息
+    //可以在这个地方  更具 个人 账号model.title 找到个人信息
     EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
-    if (model.conversation.conversationType == eConversationTypeChat) {
-        if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter]) {
+    if (model.conversation.conversationType == eConversationTypeChat)
+    {
+        if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter])
+        {
             model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
-        } else {
+        }
+        else
+        {
             UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:conversation.chatter];
-            if (profileEntity) {
+            if (profileEntity)
+            {
                 model.title = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
                 model.avatarURLPath = profileEntity.imageUrl;
             }
         }
-    } else if (model.conversation.conversationType == eConversationTypeGroupChat) {
+    }//这个地方是判断是否是群聊天  不是就直接返回model
+    else if (model.conversation.conversationType == eConversationTypeGroupChat)
+    {
         NSString *imageName = @"groupPublicHeader";
         if (![conversation.ext objectForKey:@"groupSubject"] || ![conversation.ext objectForKey:@"isPublic"])
         {
             NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-            for (EMGroup *group in groupArray) {
-                if ([group.groupId isEqualToString:conversation.chatter]) {
+            for (EMGroup *group in groupArray)
+            {
+                if ([group.groupId isEqualToString:conversation.chatter])
+                {
                     model.title = group.groupSubject;
                     imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
                     model.avatarImage = [UIImage imageNamed:imageName];
@@ -231,12 +242,15 @@
                     break;
                 }
             }
-        } else {
+        }
+        else
+        {
+            //获取到群聊天的列表
             NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
             for (EMGroup *group in groupArray) {
-                if ([group.groupId isEqualToString:conversation.chatter]) {
+                if ([group.groupId isEqualToString:conversation.chatter])
+                {
                     imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
-                    
                     NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
                     [ext setObject:group.groupSubject forKey:@"groupSubject"];
                     [ext setObject:[NSNumber numberWithBool:group.isPublic] forKey:@"isPublic"];
@@ -249,11 +263,15 @@
                 }
             }
             model.title = [conversation.ext objectForKey:@"groupSubject"];
+            //这个是设置组的聊天名字
+           // model.title = @"456";
             imageName = [[conversation.ext objectForKey:@"isPublic"] boolValue] ? @"groupPublicHeader" : @"groupPrivateHeader";
             model.avatarImage = [UIImage imageNamed:imageName];
         }
+        
     }
-    
+    //model.title = @"456";   //这个地方是显示聊天列表的谁发的消息
+    NSLog(@"%@",model.title);
     return model;
 }
 
