@@ -29,7 +29,8 @@
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     
     NSDictionary *Para = @{@"contactorId":_contactorId,
-                           @"phoneNo":_phoneNo};
+                           @"phoneNo":_phoneNo,
+                           @"imageName":_imageName};
     
     return @{@"Head":head,
              @"Para":Para};

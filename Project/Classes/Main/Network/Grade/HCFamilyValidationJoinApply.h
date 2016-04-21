@@ -13,7 +13,7 @@ typedef void (^ValidationJoinApplyBlock) (HCRequestStatus statusStatus,NSString 
 @interface HCFamilyValidationJoinApply : HCRequest
 
 @property (nonatomic,strong) NSString *applyUserId;
-
+@property (nonatomic,strong) NSString *relation;
 -(void)startRequest:(ValidationJoinApplyBlock)requestBlock;
 
 @end

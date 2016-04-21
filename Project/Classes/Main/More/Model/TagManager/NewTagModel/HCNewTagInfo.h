@@ -42,6 +42,8 @@
 
 
 @property (nonatomic,strong) NSString *labelTitle;
+@property (nonatomic,strong) NSString *labelId;
 
+@property (nonatomic,assign) BOOL  isBlack;
 
 @end

@@ -9,7 +9,7 @@
 #import "HCTagEditContractPersonController.h"
 #import "HCAddContactPersonApi.h"
 #import "HCTagContactInfo.h"
-
+#import "HCChangeContactPersonApi.h"
 #import "HCAvatarMgr.h"
 
 @interface HCTagEditContractPersonController ()
@@ -68,7 +68,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 140;
+    return 110;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,28 +117,19 @@
         [_headBtn setImage:self.image forState:UIControlStateNormal];
     }else
     {
-         [_headBtn setImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
+        
+        NSURL *url = [readUserInfo originUrl:self.info.imageName :@"contactor"];
+        UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+        if (image) {
+              [_headBtn setImage:image forState:UIControlStateNormal];
+        }
+        else
+        {
+             [_headBtn setImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
+        }
     }
-    
-   
     [_headBtn addTarget:self action:@selector(showAlbum) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:_headBtn];
-    
-    UILabel *titleLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(110, 80, 200, 20)];
-    titleLabel2.text = @"与标签使用者关系";
-    titleLabel2.textColor = [UIColor blackColor];
-    [cell addSubview:titleLabel2];
-    
-    UITextField *textField2 = [[UITextField alloc]initWithFrame:CGRectMake(270, 80, 100, 20)];
-    textField2.placeholder = @"点击输入";
-    textField2.text = _info.phoneNo;
-    textField2.textColor = [UIColor blackColor];
-    self.textField3 = textField2;
-    [cell addSubview:self.textField3];
-    
-    UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(10, 102, SCREEN_WIDTH-20, 1)];
-    lineView2.backgroundColor = [UIColor grayColor];
-    [cell addSubview:lineView2];
     
     return cell;
     
@@ -148,7 +139,21 @@
 
 -(void)itemClick:(UIBarButtonItem *)item
 {
+    if (self.info) {
+        
+        if (self.image) {
+            [self upLoadImage];
+        }else
+        {
+            [self chanageContactPerson];
+        }
+        
+    }
+    else
+    {
     [self upLoadImage];
+    }
+    
     
 }
 
@@ -211,13 +216,49 @@
         NSLog(@"%@",responseObject);
         self.imgStr = responseObject[@"Data"][@"files"][0];
         
-        [self requestData];
+        if (_info) {
+        // 变更紧急联系人
+            [self chanageContactPerson];
+        }
+        else
+        {
+        // 添加紧急联系人
+            [self requestData];
+        }
+        
+        
        
     } failure:^(NSError *error) {
         
     }];
 
  
+}
+
+-(void)chanageContactPerson
+{
+
+    HCChangeContactPersonApi *api = [[HCChangeContactPersonApi alloc]init];
+    api.contactorId = self.info.contactorId;
+    api.phoneNo = self.textField2.text;
+    
+    if (self.imgStr) {
+        api.imageName = self.imgStr;
+    }
+    else
+    {
+        api.imageName = self.info.imageName;
+    }
+
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        if (requestStatus == HCRequestStatusSuccess) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+             [self showHUDText:@"保存失败"];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
