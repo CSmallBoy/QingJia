@@ -12,9 +12,7 @@
 #import "HCPromisedViewController.h"
 
 #import "HCNotificationDetailInfo.h"
-#import "HCNotificationDetailApi.h"
 
-#import "HCNotificationUnreadChangeApi.h"
 #import "Utils.h"
 
 @interface HCNotificationDetailViewController ()
@@ -174,33 +172,12 @@
     
     [self.dataSource addObjectsFromArray:@[@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1"]];
     
-//    HCNotificationDetailApi *api = [[HCNotificationDetailApi alloc] init];
-//    api.NoticeId = 1000000004;
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCNotificationDetailInfo *info)
-//     {
-//         if (requestStatus == HCRequestStatusSuccess)
-//         {
-//             _info = info;
-//                 [self changeReadState];
-//         }
-//         else
-//         {
-//             _info = info;
-//             [self showHUDError:message];
-//         }
-//     }];
+
 }
 
 
 -(void)changeReadState
 {
-    HCNotificationUnreadChangeApi *api = [[HCNotificationUnreadChangeApi alloc]init];
-    api.NoticeId = [_info.KeyId integerValue];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id info) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            
-        }
-    }];
+
 }
 @end

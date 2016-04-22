@@ -16,4 +16,6 @@
 
 @property (nonatomic,strong) NSString *objectId;
 
+@property (nonatomic,assign) BOOL  isStop;
+
 @end

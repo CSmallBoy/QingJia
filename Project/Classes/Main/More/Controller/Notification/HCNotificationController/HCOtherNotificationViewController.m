@@ -18,7 +18,7 @@
 
 #import "HCMessageCenterListApi.h"
 #import "HCNotificationCenterInfo.h"
-#import "HCNotificationDeleteApi.h"
+
 
 @interface HCOtherNotificationViewController ()<UISearchBarDelegate,SCSwipeTableViewCellDelegate>
 {
@@ -320,6 +320,8 @@
             [self.dataSource addObject:info];
             
         }
+        
+        NSLog(@"-----------------信息中心列表获取成功--------------------")
         
     }];
 

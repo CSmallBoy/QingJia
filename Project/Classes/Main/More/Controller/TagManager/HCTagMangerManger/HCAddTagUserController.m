@@ -474,6 +474,7 @@
     _blackView.backgroundColor = [UIColor blackColor];
     _blackView.alpha = 0.2;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    [_blackView addGestureRecognizer:tap];
     [self.view addSubview:_blackView];
     
     // 白色
@@ -539,8 +540,8 @@
 
 -(void)tap:(UITapGestureRecognizer *)tap
 {
-    [self.blackView removeFromSuperview];
-    [self.whiteView removeFromSuperview];
+//    [self.blackView removeFromSuperview];
+//    [self.whiteView removeFromSuperview];
 
 }
 
@@ -638,6 +639,7 @@
     }
     
 }
+
 
 #pragma mark--- setter Or getter
 
@@ -819,6 +821,7 @@
     
             if (_isEditTag) {
                 [self.navigationController popViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"requestData" object:nil];
             }
             else
             {

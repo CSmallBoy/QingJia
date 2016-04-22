@@ -30,15 +30,14 @@
     [super viewDidLoad];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    [self requestHomeData];
     [self.tableView registerClass:[HCTagManagerTableViewCell class] forCellReuseIdentifier:activatedcell];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"requestData" object:nil];
 
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-      [self requestHomeData];
-}
+
 
 #pragma mark---UITableViewDelegate
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

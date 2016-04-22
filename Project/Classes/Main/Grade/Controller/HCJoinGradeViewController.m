@@ -316,6 +316,7 @@
             info.familyNickName = dic[@"familyNickName"];
             info.familyPhoto = dic[@"familyPhoto"];
             info.contactAddr = dic[@"contactAddr"];
+            info.imageName = dic[@"imageName"];
             
             HCFamilyMessageViewController *familyMessageVC = [[HCFamilyMessageViewController alloc]init];
             familyMessageVC.data = @{@"info":info,@"message":self.textField1.text};

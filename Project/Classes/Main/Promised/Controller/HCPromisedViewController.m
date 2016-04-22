@@ -27,6 +27,7 @@
 #import "HCTagUserAmostListApi.h"
 #import "HCNewTagInfo.h"
 #import "HCPromisedTagUserDetailController.h"
+#import "HCAddTagUserController.h"
 
 @interface HCPromisedViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -84,10 +85,10 @@
         _radarView = radarView;
         _radarView.userInteractionEnabled = NO;
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = self.headBtn.frame;
-        [button addTarget:self action:@selector(radarTap:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:button];
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.frame = self.headBtn.frame;
+//        [button addTarget:self action:@selector(radarTap:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.view addSubview:button];
         
         _headBtn.hidden = YES;
         [self.view addSubview:_radarView];
@@ -124,10 +125,10 @@
         _radarView.userInteractionEnabled = NO;
         
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = self.headBtn.frame;
-        [button addTarget:self action:@selector(radarTap:) forControlEvents:UIControlEventTouchUpInside];
-        [_radarView addSubview:button];
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.frame = self.headBtn.frame;
+//        [button addTarget:self action:@selector(radarTap:) forControlEvents:UIControlEventTouchUpInside];
+//        [_radarView addSubview:button];
         
         _headBtn.hidden = YES;
         [self.view addSubview:_radarView];
@@ -187,20 +188,27 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     HCNewTagInfo *info =self.dataArr[indexPath.row];
     cell.info = info;
-
-    for (UIImageView * image in cell.subviews) {
-        if ([image isKindOfClass:[UIImageView class]])
-        {
-
-        }
-    }
     cell.buttonW = self.smallTableView.frame.size.width;
     cell.buttonH = self.smallTableView.frame.size.height/5;
     cell.block = ^(NSString  *buttonTitle,HCNewTagInfo *info)
     {
-        info.isBlack = YES;
-        self.nextVCInfo = info;
-        [self.smallTableView reloadData];
+        if ([buttonTitle isEqualToString:@"+ 新增录入"]) {
+            
+            HCPromisedTagUserDetailController *detailVC = [[HCPromisedTagUserDetailController alloc]init];
+            detailVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }
+        else
+        {
+            for (HCNewTagInfo *info1 in self.dataArr) {
+                info1.isBlack = NO;
+            }
+            info.isBlack = YES;
+            self.nextVCInfo = info;
+            [self.smallTableView reloadData];
+        }
+        
+        
     };
     return cell;
 }
@@ -253,25 +261,12 @@
 
 -(void)pushVC
 {
-    if ([self.nextVCTitle isEqualToString:@"+ 新增录入"])
-    {  //跳转到添加界面
-        HCAddPromiseViewController1  *addVC = [[HCAddPromiseViewController1 alloc]init];
-        addVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:addVC animated:YES];
-    }
-    else
-    {
         //跳转到信息界面
         HCPromisedTagUserDetailController *detailVC = [[HCPromisedTagUserDetailController alloc]init];
         detailVC.data = @{@"info":self.nextVCInfo};
         detailVC.hidesBottomBarWhenPushed = YES;
-//        detailVC.block = ^(BOOL isShow){
-//        
-//            isShouldWhow = isShow;
-//        
-//        };
         [self.navigationController pushViewController:detailVC animated:YES];
-    }
+    
 }
 -(void)createTableView
 {
@@ -302,14 +297,15 @@
 -(void)headButtonClick:(UIButton *)button
 {
   
+    if (self.nextVCInfo) {
         CGFloat  headerViewW = 115/383.0*_bgImage.frame.size.height;
         WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*3 , headerViewW*3)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
         CGFloat  headerViewY = _bgImage.frame.origin.y-20;
         radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
         _radarView = radarView;
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(radarTap:)];
-        [_radarView addGestureRecognizer:tap];
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(radarTap:)];
+//        [_radarView addGestureRecognizer:tap];
         
         _headBtn.hidden = YES;
         [self.view addSubview:_radarView];
@@ -317,7 +313,7 @@
         [self.view sendSubviewToBack:_bgImage];
         
         [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(pushVC) userInfo:nil repeats:NO];
-    
+    }
 }
 
 -(void)handleSegmentedControl:(UISegmentedControl *)segmented
@@ -360,10 +356,7 @@
         _smallTableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 55, StabX, StabH) style:UITableViewStylePlain];
         _smallTableView.delegate = self;
         _smallTableView.dataSource = self;
-      
-//        _smallTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
-//        _smallTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreData)];
-//          [_smallTableView.mj_header beginRefreshing];
+    
     }
     _smallTableView.showsVerticalScrollIndicator = NO;
     return _smallTableView;
@@ -430,7 +423,6 @@
 //上拉加载更多数据
 -(void)requestMoreData
 {
- 
     if (self.dataArr.count>1)
     {
         HCPromisedListAPI  *api = [[HCPromisedListAPI alloc]init];
@@ -448,8 +440,6 @@
                     [self.smallTableView reloadData];
                 
                 [self.smallTableView.mj_footer endRefreshing];
-                
-                
             }
             else
             {

@@ -305,7 +305,7 @@
         
         api.info = self.info;
         api.lossImageName = self.imgStr;
-        [api startRequest:^(HCRequestStatus request, NSString *message, id respone) {
+       [api startRequest:^(HCRequestStatus request, NSString *message, id respone)      {
             
             if (request == HCRequestStatusSuccess)
             {

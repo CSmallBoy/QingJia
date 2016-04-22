@@ -21,6 +21,7 @@
 #import "HCTagChangeObjectApi.h"
 
 #import "HCTagContactInfo.h"// 联系人模型
+#import "HCPromisedMissMessageControll.h"
 
 
 @interface HCPromisedTagUserDetailController ()<HCPickerViewDelegate>
@@ -59,14 +60,17 @@
     self.myTitle = self.data[@"title"];
     self.info = self.data[@"info"];
     
-    [self requestData];
-    self.myTitle = self.info.trueName;
+    if (self.info) {
+         [self requestData];
+    }
+    else
+    {
+         self.title = @"手动输入";
+    }
+    
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
     self.openHealthCard = @"1";
-    
-    self.title = [NSString stringWithFormat:@"%@的标签",self.info.trueName];
-    
     HCNewTagInfo *info = self.data[@"info"];
     info.openHealthCard = self.openHealthCard;
     
@@ -240,7 +244,9 @@
                     //选中按钮
                     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                     button.frame = CGRectMake(31, 130, 30, 30);
+
                     [button setImage:IMG(@"buttonNormal") forState:UIControlStateNormal];
+        
                     [button addTarget:self action:@selector(selectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                     button.tag = 100+i  ;
                     [view addSubview:button];
@@ -401,7 +407,11 @@
     // 黑色
     _blackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _blackView.backgroundColor = [UIColor blackColor];
-    _blackView.alpha = 0.2;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    [_blackView addGestureRecognizer:tap];
+    [self.view addSubview:_blackView];_blackView.alpha = 0.2;
+    
     [self.view addSubview:_blackView];
     
     // 白色
@@ -462,6 +472,17 @@
     
 
 }
+// 点击黑色视图移除 添加的小时图
+
+-(void)tap:(UITapGestureRecognizer *)tap
+{
+//    
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//    [self.blackView removeFromSuperview];
+//    [self.whiteView removeFromSuperview];
+    
+}
 
 -(void)relBtnClick:(UIButton *)button
 {
@@ -481,13 +502,24 @@
 
 -(void)shoreBtnClick:(UIButton *)button
 {
-    HCTagContactInfo *info = self.contactArr[self.index];
-    info.relative = self.relBtn.titleLabel.text;
     
-    [self.selectArr addObject:info];
+    if ([self.relBtn.titleLabel.text isEqualToString:@"点击选择关系"]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择关系" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+    else
+    {
+        HCTagContactInfo *info = self.contactArr[self.index];
+        info.relative = self.relBtn.titleLabel.text;
+        
+        [self.selectArr addObject:info];
+        
+        [self.whiteView removeFromSuperview];
+        [self.blackView removeFromSuperview];
+    }
     
-    [self.whiteView removeFromSuperview];
-    [self.blackView removeFromSuperview];
+    
 }
 
 // 跳转到 新增紧急联系人界面
@@ -552,12 +584,34 @@
 
 -(void)nextBtnClick
 {
-    HCPromiedTagWhenMissController *vc = [[HCPromiedTagWhenMissController alloc]init];
-    vc.info = self.info;
-    vc.contactArr = self.selectArr;
-    vc.dataArr = self.tagArr;
-    [self.navigationController pushViewController:vc animated:YES];
-
+    
+    if (self.info) {
+        HCPromiedTagWhenMissController *vc = [[HCPromiedTagWhenMissController alloc]init];
+        vc.info = self.info;
+        vc.contactArr = self.selectArr;
+        vc.dataArr = self.tagArr;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else
+    {
+        
+        if (self.selectArr.count== 2) {
+            
+            HCPromisedMissMessageControll*vc = [[HCPromisedMissMessageControll alloc]init];
+            NSMutableArray *tagArr = [NSMutableArray array];
+            
+            vc.info = self.info;
+            vc.tagArr = tagArr;
+            vc.contactArr = self.contactArr;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+        else
+        {
+             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"必须选择两个紧急联系人" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+    }
 }
 #pragma mark--- setter Or getter
 
@@ -705,6 +759,9 @@
             NSDictionary *dic = respone[@"Data"][@"objectInf"];
             self.info = [HCNewTagInfo mj_objectWithKeyValues:dic];
             self.info.openHealthCard = @"1";
+            
+            self.title = [NSString stringWithFormat:@"%@的标签",self.info.trueName];
+            
             NSArray *array = respone[@"Data"][@"rows"];
             [self.tableView reloadData];
             for (NSDictionary *dic in array) {

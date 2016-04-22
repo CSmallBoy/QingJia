@@ -53,6 +53,8 @@
                                @"lossImageName":_lossImageName,
                                @"openHealthCard":self.info.openHealthCard};
         
+  
+        
         return @{@"Head":head,
                 @"Para":para};
         

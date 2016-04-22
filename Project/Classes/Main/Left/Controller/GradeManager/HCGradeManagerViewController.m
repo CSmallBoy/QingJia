@@ -63,7 +63,10 @@ static NSString * const reuseIdentifier = @"FriendCell";
     if (indexPath.section == 0 && indexPath.row == 0)
     {
         vc = [[HCCodeLookViewController alloc] init];
-        vc.data = @{@"info":self.info};
+        NSURL *url = [readUserInfo originUrl:self.info.imageName :kkFamail];
+        
+        UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+        vc.data = @{@"info":self.info,@"image":image};
     }else if (indexPath.section == 1 && indexPath.row == 0)
     {
         vc = [[HCCheckViewController alloc] init];
@@ -131,7 +134,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
     if (!_headImageView)
     {
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), WIDTH(self.view)*0.5)];
-        _headImageView.image = OrigIMG(@"head.jpg");
+//        _headImageView.image = OrigIMG(@"head.jpg");
         [_headImageView addSubview:self.signatureLabel];
     }
     return _headImageView;
@@ -181,7 +184,11 @@ static NSString * const reuseIdentifier = @"FriendCell";
             
         }
         
+        self.signatureLabel.text = self.info.familyDescription;
+        
         [self.tableView reloadData];
+        NSURL *url = [readUserInfo originUrl:self.info.imageName :kkFamail];
+        [self.headImageView sd_setImageWithURL:url placeholderImage:IMG(@"head.jpg")];
     }];
 }
 

@@ -1,5 +1,5 @@
 //
-//  HCAboutMeApi.h
+//  HCMySaveListApi.h
 //  Project
 //
 //  Created by 朱宗汉 on 16/4/22.
@@ -7,13 +7,12 @@
 //
 
 #import "HCRequest.h"
-// ---------------与我相关列表------------------------
+//  -----------------收藏列表----------------------
+typedef void(^HCMySaveListBlock) (HCRequestStatus requestStatus,NSString *message,id respone);
 
-typedef void(^HCAboutMeBlock) (HCRequestStatus requestStatus,NSString *message,id respone);
+@interface HCMySaveListApi : HCRequest
 
-@interface HCAboutMeApi : HCRequest
-
-- (void)startRequest:(HCAboutMeBlock)requestBlock;
+- (void)startRequest:(HCMySaveListBlock)requestBlock;
 
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, strong) NSString *_start;
