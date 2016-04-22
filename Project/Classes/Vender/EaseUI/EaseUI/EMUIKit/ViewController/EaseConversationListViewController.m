@@ -14,6 +14,7 @@
 #import "EaseConversationCell.h"
 #import "EaseConvertToCommonEmoticonsHelper.h"
 #import "NSDate+Category.h"
+#import "NHCChatUserInfoApi.h"
 //会话列表
 @interface EaseConversationListViewController () <IChatManagerDelegate>
 
@@ -58,7 +59,7 @@
     // Return the number of rows in the section.
     return [self.dataArray count];
 }
-
+//聊天回话的列表
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {//每一个cell
     NSString *CellIdentifier = [EaseConversationCell cellIdentifierWithModel:nil];
@@ -68,9 +69,18 @@
     if (cell == nil) {
         cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
     id<IConversationModel> model = [self.dataArray objectAtIndex:indexPath.row];
-    cell.model = model;
+    NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+    api.chatName = [model.conversation.chatter stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+        model.title = dict[@"nickName"];
+        UIImageView *image = [[UIImageView alloc]init];
+        [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+        model.avatarImage = image.image;
+        cell.model = model;
+    }];
+    //环信之前的
+    //cell.model = model;
     
     if (_dataSource && [_dataSource respondsToSelector:@selector(conversationListViewController:latestMessageTitleForConversationModel:)]) {
         //这个是消息的赋值
@@ -122,7 +132,7 @@
 }
 
 #pragma mark - data
-
+//刷新时通讯录的数据
 - (void)tableViewDidTriggerHeaderRefresh
 {
     NSArray *conversations = [[EaseMob sharedInstance].chatManager conversations];

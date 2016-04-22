@@ -15,7 +15,8 @@
 #import "RobotChatViewController.h"
 #import "UserProfileManager.h"
 #import "RealtimeSearchUtil.h"
-
+//个人头像和昵称
+#import "NHCChatUserInfoApi.h"
 @implementation EMConversation (search)
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
@@ -207,19 +208,34 @@
     EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
     if (model.conversation.conversationType == eConversationTypeChat)
     {
-        if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter])
-        {
-            model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
-        }
-        else
-        {
-            UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:conversation.chatter];
-            if (profileEntity)
-            {
-                model.title = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
-                model.avatarURLPath = profileEntity.imageUrl;
-            }
-        }
+        //赋值的操作取消
+//        if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter])
+//        {
+//            model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
+//        }
+//        else
+//        {
+//            UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:conversation.chatter];
+//            if (profileEntity)
+//            {
+//                model.title = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
+//                model.avatarURLPath = profileEntity.imageUrl;
+//              
+//            }
+//       
+//        }
+//        
+        
+        //测试
+        NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
+        api.chatName = [model.conversation.chatter stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+            model.title = dict[@"nickName"];
+            model.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
+             [self.tableView reloadData];
+        }];
+       
+        
     }//这个地方是判断是否是群聊天  不是就直接返回model
     else if (model.conversation.conversationType == eConversationTypeGroupChat)
     {
@@ -264,14 +280,12 @@
             }
             model.title = [conversation.ext objectForKey:@"groupSubject"];
             //这个是设置组的聊天名字
-           // model.title = @"456";
+            //model.title = @"456";
             imageName = [[conversation.ext objectForKey:@"isPublic"] boolValue] ? @"groupPublicHeader" : @"groupPrivateHeader";
             model.avatarImage = [UIImage imageNamed:imageName];
         }
         
     }
-    //model.title = @"456";   //这个地方是显示聊天列表的谁发的消息
-    NSLog(@"%@",model.title);
     return model;
 }
 

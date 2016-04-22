@@ -17,9 +17,10 @@
     self = [super init];
     if (self) {
         _conversation = conversation;
-        _title = _conversation.chatter;
+        //_title = _conversation.chatter;
         if (conversation.conversationType == eConversationTypeChat) {
-            _avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
+            //默认的个人头像  聊天列表的
+            //_avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
         }
         else{
             _avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/group"];

@@ -10,6 +10,7 @@
 
 #import "ChatViewController.h"
 #import "UserProfileManager.h"
+#import "NHCChatUserInfoApi.h"
 
 @interface ContactListSelectViewController () <EMUserListViewControllerDelegate,EMUserListViewControllerDataSource>
 
@@ -99,6 +100,15 @@
         model.nickname= profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
         model.avatarURLPath = profileEntity.imageUrl;
     }
+//    NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
+//    api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+//        model.nickname = dict[@"nickName"];
+//        model.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
+//    }];
+    
+   
+    
     return model;
 }
 
@@ -111,7 +121,6 @@
     if (profileEntity) {
         model.nickname= profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
         model.avatarURLPath = profileEntity.imageUrl;
-        
     }
 
     return model;

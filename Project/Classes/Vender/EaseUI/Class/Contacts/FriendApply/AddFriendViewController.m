@@ -236,7 +236,7 @@
         [self.tableView reloadData];
     }
 }
-
+//搜索添加的好友
 - (void)searchAction
 {
     [_textField resignFirstResponder];
@@ -272,12 +272,13 @@
         
         NSMutableArray *mutableArr = [NSMutableArray array];
         [mutableArr addObject:_textField.text];
+        //联系人的信息界面
         HCMessagePersonInfoVC *MessagePVC = [[HCMessagePersonInfoVC alloc]init];
         MessagePVC.dataSource = mutableArr;
         [self.navigationController pushViewController:MessagePVC animated:YES];
     }
 }
-
+//扫描
 -(void)clickScan
 {
     lhScanQCodeViewController *lhScanVC = [[lhScanQCodeViewController alloc]init];
