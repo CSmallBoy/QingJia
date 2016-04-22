@@ -17,12 +17,14 @@
 #import "HCNotifcationMessageCell.h"
 #import "HCNotificationMessageCallCell.h"
 
-#import "HCNotificationCenterApi.h"
+
 #import "HCNotificationDeleteApi.h"
 #import "HCNotificationUnreadChangeApi.h"
 
 #import "HCNotificationCenterInfo.h"
 #import "HCNotifcationMessageInfo.h"
+
+#import "HCAboutMeApi.h"
 
 @interface HCMyNotificationViewController ()<UISearchDisplayDelegate,UISearchBarDelegate,UISearchControllerDelegate>
 
@@ -219,15 +221,7 @@
     [self.resultView removeFromSuperview];
     [self.seatchBar endEditing:YES];
 }
-//
-//-(void)keyboardWasShown:(NSNotification *)noti
-//{
-//        CGRect keyBoardFrame = [noti.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//    
-//    NSLog(@"——————————————%lf",keyBoardFrame.size.height);
-//    self.resultTableView.frame= CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-283.5-144);
-//
-//}
+
 
 
 
@@ -289,84 +283,30 @@
 
 #pragma mark - network
 
-//-(void)requestDelete:(NSIndexPath *)indexPath
-//{
-//    HCNotificationDeleteApi *api = [[HCNotificationDeleteApi alloc]init];
-//    api.NoticeId = 1000000004;
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id info) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            
-//        }
-//    }];
-//}
-//
-//-(void)changeReadState:(NSIndexPath *)indexPath
-//{
-//    HCNotificationUnreadChangeApi *api = [[HCNotificationUnreadChangeApi alloc]init];
-//    api.NoticeId = 1000000004;
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id info) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            
-//        }
-//    }];
-//}
-//
 - (void)requestData
 {
     
-    for (int i = 0; i<1; i++)
-    {
-        HCNotificationCenterInfo *info = [[HCNotificationCenterInfo alloc]init];
-        info.image = @"0000000";
-        info.name  = [NSString stringWithFormat:@"王小二 %d",i];
-        info.sex = @"男";
-        info.age = @"5";
-        info.sendTime = @"2015-12-12";
-        info.missDesc = @"某年某月某日，我的儿子王小二，在人民广场与我走失，5岁，平头，穿着宝蓝色上衣，黑色裤子，他性格腼腆，不害羞内向，希望有心人看见了，能即时与我联系，不胜感激，好人一生平安";
+
+    HCAboutMeApi *api = [[HCAboutMeApi alloc]init];
+    api.key = @"0";
+    api._start = @"0";
+    api._count = @"20";
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
-        [self.dataSource addObject:info];
-    }
-    
-    for (int i = 0; i<3; i++)
-    {
+        if (requestStatus == HCRequestStatusSuccess) {
+            
+            NSLog(@"与我相关列表获取成功");
+            
+        }
         
-        HCNotifcationMessageInfo  * messageInfo = [[HCNotifcationMessageInfo alloc]init];
-        messageInfo.image = @"0000000";
-        messageInfo.title = @"给Tom的留言";
-        messageInfo.message = @"我在人民广场看到了，与你描述相符的小男孩，他独自一个人坐在百货大楼的门口，你赶紧过来看看吧";
-        messageInfo.time = @"2016-12-12";
-        [self.messageArr addObject:messageInfo];
-    }
+    }];
     
-    HCNotifcationMessageInfo  * messageInfo = [[HCNotifcationMessageInfo alloc]init];
-    messageInfo.title = @"与Tom进行了童话";
-    messageInfo.isCall = YES;
-    [self.messageArr addObject:messageInfo];
+    HCNotificationCenterInfo *info = [[HCNotificationCenterInfo alloc]init];
     
+    [self.dataSource addObject:info];
     
-    
-//    HCNotificationCenterApi *api = [[HCNotificationCenterApi alloc] init];
-//    api.NoticeType = 100;
-//    api.theStatus = @"未读";
-//    api.Start = 1000;
-//    api.Count = 20;
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self.dataSource removeAllObjects];
-//            [self.dataSource addObjectsFromArray:array];
-//            [self.tableView reloadData];
-//        }
-//        else
-//        {
-//            [self.dataSource removeAllObjects];
-//            [self.dataSource addObjectsFromArray:array];
-//            [self.tableView reloadData];
-//            [self showHUDError:message];
-//        }
-//    }];
+
 }
 
 @end

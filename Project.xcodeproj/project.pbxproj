@@ -47,9 +47,6 @@
 		0A2B47671C7F12C800AAA157 /* HCLoginApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B47171C7F12C800AAA157 /* HCLoginApi.m */; };
 		0A2B47681C7F12C800AAA157 /* HCLogoutApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B47191C7F12C800AAA157 /* HCLogoutApi.m */; };
 		0A2B47691C7F12C800AAA157 /* HCPerfectMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B471B1C7F12C800AAA157 /* HCPerfectMessageApi.m */; };
-		0A2B476A1C7F12C800AAA157 /* HCNotificationCenterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B471F1C7F12C800AAA157 /* HCNotificationCenterApi.m */; };
-		0A2B476B1C7F12C800AAA157 /* HCNotificationCenterFollowAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B47211C7F12C800AAA157 /* HCNotificationCenterFollowAPI.m */; };
-		0A2B476C1C7F12C800AAA157 /* HCNotificationCenterReadApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B47231C7F12C800AAA157 /* HCNotificationCenterReadApi.m */; };
 		0A2B476D1C7F12C800AAA157 /* HCNotificationDeleteApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B47251C7F12C800AAA157 /* HCNotificationDeleteApi.m */; };
 		0A2B476E1C7F12C800AAA157 /* HCNotificationDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B47271C7F12C800AAA157 /* HCNotificationDetailApi.m */; };
 		0A2B476F1C7F12C800AAA157 /* HCNotificationUnreadChangeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B47291C7F12C800AAA157 /* HCNotificationUnreadChangeApi.m */; };
@@ -428,6 +425,8 @@
 		8D1075061CC91170008511ED /* HCPromiedTagWhenMissController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1075051CC91170008511ED /* HCPromiedTagWhenMissController.m */; };
 		8D1075091CC91189008511ED /* HCPromisedMissMessageControll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1075081CC91189008511ED /* HCPromisedMissMessageControll.m */; };
 		8D10750C1CC91197008511ED /* HCPromisedTagUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D10750B1CC91197008511ED /* HCPromisedTagUserDetailController.m */; };
+		8D10B1DB1CC9C3E800A63276 /* HCAboutMeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D10B1DA1CC9C3E800A63276 /* HCAboutMeApi.m */; };
+		8D10B1DE1CC9C96C00A63276 /* HCMessageCenterListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D10B1DD1CC9C96C00A63276 /* HCMessageCenterListApi.m */; };
 		8D11911D1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */; };
 		8D1191201C5F3CDD003505D3 /* HCNotifcationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911F1C5F3CDD003505D3 /* HCNotifcationMessageCell.m */; };
 		8D131A861C7D7C7F00F0D5A0 /* UIImage+ZLPhotoLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D131A4F1C7D7C7F00F0D5A0 /* UIImage+ZLPhotoLib.m */; };
@@ -1187,12 +1186,6 @@
 		0A2B47191C7F12C800AAA157 /* HCLogoutApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLogoutApi.m; sourceTree = "<group>"; };
 		0A2B471A1C7F12C800AAA157 /* HCPerfectMessageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPerfectMessageApi.h; sourceTree = "<group>"; };
 		0A2B471B1C7F12C800AAA157 /* HCPerfectMessageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPerfectMessageApi.m; sourceTree = "<group>"; };
-		0A2B471E1C7F12C800AAA157 /* HCNotificationCenterApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationCenterApi.h; sourceTree = "<group>"; };
-		0A2B471F1C7F12C800AAA157 /* HCNotificationCenterApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationCenterApi.m; sourceTree = "<group>"; };
-		0A2B47201C7F12C800AAA157 /* HCNotificationCenterFollowAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationCenterFollowAPI.h; sourceTree = "<group>"; };
-		0A2B47211C7F12C800AAA157 /* HCNotificationCenterFollowAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationCenterFollowAPI.m; sourceTree = "<group>"; };
-		0A2B47221C7F12C800AAA157 /* HCNotificationCenterReadApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationCenterReadApi.h; sourceTree = "<group>"; };
-		0A2B47231C7F12C800AAA157 /* HCNotificationCenterReadApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationCenterReadApi.m; sourceTree = "<group>"; };
 		0A2B47241C7F12C800AAA157 /* HCNotificationDeleteApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationDeleteApi.h; sourceTree = "<group>"; };
 		0A2B47251C7F12C800AAA157 /* HCNotificationDeleteApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNotificationDeleteApi.m; sourceTree = "<group>"; };
 		0A2B47261C7F12C800AAA157 /* HCNotificationDetailApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotificationDetailApi.h; sourceTree = "<group>"; };
@@ -1939,6 +1932,10 @@
 		8D1075081CC91189008511ED /* HCPromisedMissMessageControll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedMissMessageControll.m; sourceTree = "<group>"; };
 		8D10750A1CC91197008511ED /* HCPromisedTagUserDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedTagUserDetailController.h; sourceTree = "<group>"; };
 		8D10750B1CC91197008511ED /* HCPromisedTagUserDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedTagUserDetailController.m; sourceTree = "<group>"; };
+		8D10B1D91CC9C3E800A63276 /* HCAboutMeApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAboutMeApi.h; sourceTree = "<group>"; };
+		8D10B1DA1CC9C3E800A63276 /* HCAboutMeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAboutMeApi.m; sourceTree = "<group>"; };
+		8D10B1DC1CC9C96C00A63276 /* HCMessageCenterListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessageCenterListApi.h; sourceTree = "<group>"; };
+		8D10B1DD1CC9C96C00A63276 /* HCMessageCenterListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessageCenterListApi.m; sourceTree = "<group>"; };
 		8D11911B1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyNotificationCenterTableViewCell.h; sourceTree = "<group>"; };
 		8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMyNotificationCenterTableViewCell.m; sourceTree = "<group>"; };
 		8D11911E1C5F3CDD003505D3 /* HCNotifcationMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotifcationMessageCell.h; sourceTree = "<group>"; };
@@ -3312,12 +3309,10 @@
 		0A2B471D1C7F12C800AAA157 /* NotificationCenter */ = {
 			isa = PBXGroup;
 			children = (
-				0A2B471E1C7F12C800AAA157 /* HCNotificationCenterApi.h */,
-				0A2B471F1C7F12C800AAA157 /* HCNotificationCenterApi.m */,
-				0A2B47201C7F12C800AAA157 /* HCNotificationCenterFollowAPI.h */,
-				0A2B47211C7F12C800AAA157 /* HCNotificationCenterFollowAPI.m */,
-				0A2B47221C7F12C800AAA157 /* HCNotificationCenterReadApi.h */,
-				0A2B47231C7F12C800AAA157 /* HCNotificationCenterReadApi.m */,
+				8D10B1DC1CC9C96C00A63276 /* HCMessageCenterListApi.h */,
+				8D10B1DD1CC9C96C00A63276 /* HCMessageCenterListApi.m */,
+				8D10B1D91CC9C3E800A63276 /* HCAboutMeApi.h */,
+				8D10B1DA1CC9C3E800A63276 /* HCAboutMeApi.m */,
 				0A2B47241C7F12C800AAA157 /* HCNotificationDeleteApi.h */,
 				0A2B47251C7F12C800AAA157 /* HCNotificationDeleteApi.m */,
 				0A2B47261C7F12C800AAA157 /* HCNotificationDetailApi.h */,
@@ -7856,7 +7851,6 @@
 				C7B00BB11C5F26050010F93B /* EaseEmoji.m in Sources */,
 				C7B00BBF1C5F26050010F93B /* EaseBubbleView+File.m in Sources */,
 				0A5491561C2BC32D0085F50D /* ZXRGBLuminanceSource.m in Sources */,
-				0A2B476B1C7F12C800AAA157 /* HCNotificationCenterFollowAPI.m in Sources */,
 				8D16D1501CC52054008DC6D7 /* HCAddTagUserController.m in Sources */,
 				0AF9B83E1BF5887700DCA75A /* KWFormViewQuickBuilder.m in Sources */,
 				C7B00BB91C5F26050010F93B /* EaseUsersListViewController.m in Sources */,
@@ -7876,7 +7870,6 @@
 				C7B00B801C5F26050010F93B /* MWPhoto.m in Sources */,
 				C78D7AA51C5F28F700622CE2 /* HCCreateGradeViewController.m in Sources */,
 				C78D7AE41C5F28F700622CE2 /* HCLoginInfo.m in Sources */,
-				0A2B476C1C7F12C800AAA157 /* HCNotificationCenterReadApi.m in Sources */,
 				8D1075091CC91189008511ED /* HCPromisedMissMessageControll.m in Sources */,
 				8D16D13B1CC46BCA008DC6D7 /* HCTagUserCell.m in Sources */,
 				0A8BE3751C7E8CA9008E8100 /* HCAboutMTalkViewController.m in Sources */,
@@ -7932,6 +7925,7 @@
 				0A5491A81C2BC32D0085F50D /* ZXModulusGF.m in Sources */,
 				0A54910A1C2BC32D0085F50D /* ZXAztecDetectorResult.m in Sources */,
 				C78D7D561C5F342700622CE2 /* HCPromisedMissCell.m in Sources */,
+				8D10B1DE1CC9C96C00A63276 /* HCMessageCenterListApi.m in Sources */,
 				C7B00B521C5F26050010F93B /* ContactListSelectViewController.m in Sources */,
 				0A2B475D1C7F12C800AAA157 /* HCEditCommentApi.m in Sources */,
 				8D05FF7C1CB39EB1005AC51C /* HCProductDetailController.m in Sources */,
@@ -8281,7 +8275,6 @@
 				8D15905A1CB6007100B08BDC /* HCFamilyMessageViewController.m in Sources */,
 				8D131A911C7D7C7F00F0D5A0 /* ZLPhotoPickerBrowserPhoto.m in Sources */,
 				C7B00B771C5F26050010F93B /* EMCDDeviceManagerBase.m in Sources */,
-				0A2B476A1C7F12C800AAA157 /* HCNotificationCenterApi.m in Sources */,
 				0A6B7F9C1BF1EB74008D54B3 /* TOWebViewController.m in Sources */,
 				C78D7B441C5F28F700622CE2 /* HCBuyRecordTableViewCell.m in Sources */,
 				8D1590541CB5F94800B08BDC /* applyToFamily.m in Sources */,
@@ -8364,6 +8357,7 @@
 				0A5491D91C2BC32D0085F50D /* ZXQRCodeReader.m in Sources */,
 				0A5491861C2BC32D0085F50D /* ZXRSSExpandedReader.m in Sources */,
 				C7B00B4F1C5F26050010F93B /* ChatroomDetailViewController.m in Sources */,
+				8D10B1DB1CC9C3E800A63276 /* HCAboutMeApi.m in Sources */,
 				C78D7ADD1C5F28F700622CE2 /* HCLoginViewController.m in Sources */,
 				0A5491611C2BC32D0085F50D /* ZXDataMatrixEdifactEncoder.m in Sources */,
 				0A5491831C2BC32D0085F50D /* ZXRSSExpandedGeneralAppIdDecoder.m in Sources */,

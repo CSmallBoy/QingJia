@@ -214,7 +214,7 @@
     
     
     
-    api.relation = self.selectedBtn.titleLabel.text;
+   
     
     
     [api startRequest:^(HCRequestStatus statusStatus, NSString *message, id respone) {

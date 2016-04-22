@@ -78,14 +78,14 @@
 {
     _info = info;
     
-    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ %@ %@岁",info.name,info.sex,info.age]];
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ %@ %@岁",info.trueName,info.sex,info.age]];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13], NSForegroundColorAttributeName: [UIColor lightGrayColor]} range:NSMakeRange(attStr.length-4, 4)];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} range:NSMakeRange(0, attStr.length-4)];
     self.NameSexAgeLB.attributedText = attStr;
     
-    self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%@",info.sendTime];
+    self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%@",info.createTime];
     
-    self.missLabel.text = [NSString stringWithFormat:@"走失时间 %@",info.missDesc];
+    self.missLabel.text = [NSString stringWithFormat:@"走失描述：%@",info.lossDesciption];
     
 }
 

@@ -40,8 +40,6 @@
         }
         
         NSString *str = [arr componentsJoinedByString:@","];
-        
-        
         NSDictionary *para = @{@"objectId":self.info.objectId,
                                @"relation1":info1.relative,
                                @"contactorId1":info1.contactorId,
@@ -55,9 +53,9 @@
                                @"lossImageName":_lossImageName,
                                @"openHealthCard":self.info.openHealthCard};
         
-        
         return @{@"Head":head,
-                 @"Para":para};
+                @"Para":para};
+        
         
     }
     else
@@ -72,17 +70,18 @@
         NSString *str = [arr componentsJoinedByString:@","];
 
         NSDictionary *para = @{@"objectId ":self.info.objectId,
-                                @"labelIds":str,
-                               @"lossTime":_lossTime,
+                            @"labelIds":str,
+                            @"lossTime":_lossTime,
                                @"callLocation":_callLocation,
                                @"lossAddress":_lossAddress,
                                @"lossDesciption":_lossDesciption,
                                @"lossImageName":_lossImageName,
                                @"openHealthCard":self.info.openHealthCard};
         
+        NSDictionary *nody =  @{@"Head":head,
+                                @"Para":para};
         
-        return @{@"Head":head,
-                 @"Para":para};
+        return nody;
     }
    
 }

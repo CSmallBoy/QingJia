@@ -258,7 +258,7 @@
         CGFloat nameLabelX = self.sexIV.frame.origin.x + self.sexIV.frame.size.width+10;
         _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(nameLabelX,30/600.0*SCREEN_HEIGHT,75,20)];
         _nameLabel.adjustsFontSizeToFitWidth = YES;
-        _nameLabel.text = self.info.name;
+        _nameLabel.text = self.info.trueName;
         _nameLabel.textAlignment = NSTextAlignmentCenter;
         _nameLabel.textColor = [UIColor blackColor];
     }
@@ -383,7 +383,7 @@
 {
     if(!_missMessageLabel)
     {
-        NSString *str = [NSString stringWithFormat:@"走失描述：%@",self.info.missDesc];
+        NSString *str = [NSString stringWithFormat:@"走失描述：%@",self.info.lossDesciption];
         CGSize  size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-40, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17],NSForegroundColorAttributeName : [UIColor grayColor]} context:nil].size;
         _missMessageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20,80/600.0*SCREEN_HEIGHT,size.width,size.height)];
         _missMessageLabel.font = [UIFont fontWithName:@"PingFangTC-Thin" size:17];
@@ -403,7 +403,7 @@
         _missTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(missTimeLabelX, 60/600.0*SCREEN_HEIGHT, 200, 20)];
         _missTimeLabel.textColor = [UIColor blackColor];
         _missTimeLabel.font = [UIFont systemFontOfSize:14];
-        _missTimeLabel.text = [NSString stringWithFormat:@"走失时间：%@",self.info.sendTime];
+        _missTimeLabel.text = [NSString stringWithFormat:@"走失时间：%@",self.info.lossTime];
     }
     return _missTimeLabel;
 }

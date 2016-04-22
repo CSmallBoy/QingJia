@@ -42,4 +42,8 @@
  */
 @property (nonatomic,strong) NSString *AddressCode;
 
+// 新的接口模型字段
+
+
+
 @end

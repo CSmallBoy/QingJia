@@ -16,7 +16,7 @@
 
 #import "HCMyNotificationCenterTableViewCell.h"
 
-#import "HCNotificationCenterApi.h"
+#import "HCMessageCenterListApi.h"
 #import "HCNotificationCenterInfo.h"
 #import "HCNotificationDeleteApi.h"
 
@@ -87,10 +87,7 @@
 {
     if (tableView == self.tableView)
     {
-//        HCMyNotificationCenterTableViewCell *cell = [HCMyNotificationCenterTableViewCell cellWithTableView:tableView];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.info = self.dataSource[indexPath.row];
-//        return cell;
+
         
         UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
         btn1.backgroundColor = COLOR(247, 68, 76, 1);
@@ -138,7 +135,7 @@
         }
         HCNotificationCenterInfo *info = self.results[indexPath.row];
         
-        cell.textLabel.text = info.name;
+        cell.textLabel.text = info.trueName;
         cell.imageView.image = [UIImage imageNamed:@"label_Head-Portraits"];
         return cell;
     }
@@ -212,7 +209,7 @@
     }
     [self.results removeAllObjects];
     for ( HCNotificationCenterInfo *info in self.dataSource) {
-        NSRange  range = [info.name rangeOfString:searchText];
+        NSRange  range = [info.trueName rangeOfString:searchText];
         if (range.location != NSNotFound) {
             [self.results addObject:info];
             
@@ -310,41 +307,22 @@
 
 - (void)requestData
 {
-
-        for (int i = 0; i<20; i++)
-        {
-            HCNotificationCenterInfo *info = [[HCNotificationCenterInfo alloc]init];
-            info.image = @"0000000";
-            info.name  = [NSString stringWithFormat:@"小红 %d",i];
-            info.sex = @"女";
-            info.age = @"6";
-            info.sendTime = @"2015-12-12";
-            info.missDesc = @"某年某月某日，我的女儿小红，在人民广场与我走失，6岁，马尾辫，穿着宝红色上衣，白色裤子，她性格腼腆，不害羞内向，希望有心人看见了，能即时与我联系，不胜感激，好人一生平安";
+    HCMessageCenterListApi *api = [[HCMessageCenterListApi alloc]init];
+    api.key = @"";
+    api._start = @"0";
+    api._count = @"20";
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+       
+        for (NSDictionary *dic in array) {
+            HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
             
             [self.dataSource addObject:info];
+            
         }
+        
+    }];
 
-//    HCNotificationCenterApi *api = [[HCNotificationCenterApi alloc] init];
-//    api.NoticeType = 100;
-//    api.theStatus = @"已读";
-//    api.Start = 1000;
-//    api.Count = 20;
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array)
-//    {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self.dataSource removeAllObjects];
-//            [self.dataSource addObjectsFromArray:array];
-//            [self.tableView reloadData];
-//        }
-//        else
-//        {
-//            [self.dataSource removeAllObjects];
-//            [self.dataSource addObjectsFromArray:array];
-//            [self.tableView reloadData];
-//            [self showHUDError:message];
-//        }
-//    }];
 
 }
 @end

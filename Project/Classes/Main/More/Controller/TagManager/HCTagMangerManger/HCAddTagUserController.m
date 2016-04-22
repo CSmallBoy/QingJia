@@ -473,6 +473,7 @@
     _blackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _blackView.backgroundColor = [UIColor blackColor];
     _blackView.alpha = 0.2;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
     [self.view addSubview:_blackView];
     
     // 白色
@@ -534,6 +535,15 @@
 
 }
 
+// 点击黑色视图移除 添加的小时图
+
+-(void)tap:(UITapGestureRecognizer *)tap
+{
+    [self.blackView removeFromSuperview];
+    [self.whiteView removeFromSuperview];
+
+}
+
 -(void)relBtnClick:(UIButton *)button
 {
     _smallIV.image = IMG(@"list_open");
@@ -552,13 +562,23 @@
 
 -(void)shoreBtnClick:(UIButton *)button
 {
-    HCTagContactInfo *info = self.contactArr[self.index];
-    info.relative = self.relBtn.titleLabel.text;
+    if ([self.relBtn.titleLabel.text isEqualToString:@"点击选择关系"]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请点击确定关系" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+    else
+    {
+        HCTagContactInfo *info = self.contactArr[self.index];
+        info.relative = self.relBtn.titleLabel.text;
+        
+        [self.selectArr addObject:info];
+        
+        [self.whiteView removeFromSuperview];
+        [self.blackView removeFromSuperview];
+    }
     
-    [self.selectArr addObject:info];
-    
-    [self.whiteView removeFromSuperview];
-    [self.blackView removeFromSuperview];
+   
 }
 
 // 跳转到 新增紧急联系人界面
