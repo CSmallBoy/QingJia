@@ -63,7 +63,7 @@
 {
     return (section == 0) ? 10 : 80;
 }
-
+//确认添加按钮
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIButton *button  = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -82,7 +82,7 @@
 }
 
 #pragma mark---private methods
-
+//确认添加
 -(void)clickAdd
 {
     NSString *buddyName = self.dataSource[0];
@@ -170,7 +170,7 @@
                                  message:messageStr];
     }
 }
-
+//f
 - (void)sendFriendApplyAtIndexPath:(NSIndexPath *)indexPath
                            message:(NSString *)message
 {

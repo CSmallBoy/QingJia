@@ -106,9 +106,11 @@
     }
     return _searchBar;
 }
-
+//搜索
 - (EMSearchDisplayController *)searchController
 {
+   __block NSDictionary *dict_all;
+    __block NSMutableArray *arr = [NSMutableArray array];
     if (_searchController == nil)
     {
         _searchController = [[EMSearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
@@ -127,9 +129,15 @@
             }
             
             EMBuddy *buddy = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-            cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
-            cell.textLabel.text = buddy.username;
-            cell.username = buddy.username;
+            NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
+            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                cell.textLabel.text = dict[@"nickName"];
+                cell.username = dict[@"nickName"];
+                [cell.imageView sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+                dict_all = dict;
+                [arr addObject:dict_all];
+            }];
             ViewRadius(cell.imageView, 17);
             
             return cell;
@@ -159,7 +167,9 @@
             [weakSelf.searchController.searchBar endEditing:YES];
             ChatViewController *chatVC = [[ChatViewController alloc] initWithConversationChatter:buddy.username
                                                                                 conversationType:eConversationTypeChat];
-            chatVC.title = [[UserProfileManager sharedInstance] getNickNameWithUsername:buddy.username];
+             //搜索结果的展示
+            chatVC.title = [[UserProfileManager sharedInstance] getNickNameWithUsername:dict_all[@"nickName"]];
+             chatVC.title = [[UserProfileManager sharedInstance] getNickNameWithUsername:arr[indexPath.row][@"nickName"]];
             chatVC.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:chatVC animated:YES];
         }];
@@ -210,10 +220,12 @@
         else if (indexPath.row == 1) {
             cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
             cell.titleLabel.text = NSLocalizedString(@"title.group", @"Group");
+            return cell;
         }
 
     }
-    else{
+    else{//下面分组的
+        
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
         EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
         UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy.username];
@@ -223,26 +235,21 @@
             model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
         }
         //联系人的用户头像
-        
-        //此处写网络请求 然后复制
-        NSLog(@"%@",model.buddy.username);
-        if (indexPath.section==1) {
-            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
-            api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-                model.nickname = dict[@"nickName"];
-                // UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
-                UIImageView *image = [[UIImageView alloc]init];
-                [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-                model.avatarImage = image.image;
-                cell.model = model;
-            }];
-            
+        NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+        api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+            model.nickname = dict[@"nickName"];
+            UIImageView *image = [[UIImageView alloc]init];
+            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+            model.avatarImage = image.image;
+            cell.model = model;
+        }];
+      
             cell.indexPath = indexPath;
             cell.delegate = self;
             
 
-        }
+       
         
     }
     
@@ -273,7 +280,6 @@
     {
         return nil;
     }
-    
     UIView *contentView = [[UIView alloc] init];
     [contentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 22)];
@@ -291,7 +297,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     if (section == 0) {
@@ -343,7 +348,6 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     if (indexPath.section == 0) {
         return NO;
     }
@@ -446,7 +450,7 @@
 }
 
 #pragma mark - action
-
+//添加联系人
 - (void)addContactAction
 {
     AddFriendViewController *addController = [[AddFriendViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -505,11 +509,9 @@
             
             NSString *firstLetter2 = [EaseChineseToPinyin pinyinFromChineseString:obj2.buddy.username];
             firstLetter2 = [[firstLetter2 substringToIndex:1] uppercaseString];
-            
             return [firstLetter1 caseInsensitiveCompare:firstLetter2];
         }];
-        
-        
+
         [sortedArray replaceObjectAtIndex:i withObject:[NSMutableArray arrayWithArray:array]];
     }
     
@@ -573,6 +575,7 @@
 }
 
 #pragma mark - data
+//获取  数据
 
 - (void)tableViewDidTriggerHeaderRefresh
 {
@@ -590,7 +593,6 @@
                     EMBuddy *loginBuddy = [EMBuddy buddyWithUsername:loginUsername];
                     [self.contactsSource addObject:loginBuddy];
                 }
-                
                 [weakSelf _sortDataArray:self.contactsSource];
             }
             else{
@@ -617,7 +619,6 @@
             [self.contactsSource addObject:buddy];
         }
     }
-    
     NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
     NSString *loginUsername = [loginInfo objectForKey:kSDKUsername];
     if (loginUsername && loginUsername.length > 0) {
@@ -657,11 +658,5 @@
     [self reloadDataSource];
    
 }
-//-(void)getImage{
-//    NSArray *arr = self.dataArray[0];
-//    for (int i = 0; i < arr.count; i ++) {
-//        EaseUserModel *model_getimage = arr[i];
-//        NSString *image = model_getimage.buddy.username;
-//    }
-//}
+
 @end
