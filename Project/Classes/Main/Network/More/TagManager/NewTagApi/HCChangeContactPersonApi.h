@@ -16,6 +16,7 @@ typedef void (^HCChangeContactPersonBlock) (HCRequestStatus requestStatus,NSStri
 
 @property (nonatomic,strong) NSString *contactorId;
 @property (nonatomic,strong) NSString *phoneNo;
+@property (nonatomic,strong) NSString *imageName;
 
 -(void)startRequest:(HCChangeContactPersonBlock)requestBlock;
 

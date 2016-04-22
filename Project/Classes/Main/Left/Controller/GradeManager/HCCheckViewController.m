@@ -166,6 +166,57 @@
     
     api.applyUserId = self.selectInfo.applyUserId;
     
+    if ([self.selectedBtn.titleLabel.text isEqualToString:@"曾祖父"]) {
+        api.relation = @"0";
+    }else if ([self.selectedBtn.titleLabel.text isEqualToString:@"曾祖母"])
+    {
+        api.relation = @"1";
+    }else if ([self.selectedBtn.titleLabel.text isEqualToString:@"祖父"])
+    {
+        api.relation = @"2";
+    }
+    else if ([self.selectedBtn.titleLabel.text isEqualToString:@"祖母"])
+    {
+        api.relation = @"3";
+    }
+    else if ([self.selectedBtn.titleLabel.text isEqualToString:@"父亲"])
+    {
+        api.relation = @"4";
+    }
+    else if ([self.selectedBtn.titleLabel.text isEqualToString:@"母亲"])
+    {
+        api.relation = @"5";
+    }
+    else if ([self.selectedBtn.titleLabel.text isEqualToString:@"兄弟"])
+    {
+        api.relation = @"6";
+    }
+    else if ([self.selectedBtn.titleLabel.text isEqualToString:@"姐妹"])
+    {
+        api.relation = @"7";
+    }
+    else if ([self.selectedBtn.titleLabel.text isEqualToString:@"儿子"])
+    {
+        api.relation = @"8";
+    }
+    else if ([self.selectedBtn.titleLabel.text isEqualToString:@"女儿"])
+    {
+        api.relation = @"9";
+    }
+    else if ([self.selectedBtn.titleLabel.text isEqualToString:@"孙子"])
+    {
+        api.relation = @"10";
+    }
+    else if ([self.selectedBtn.titleLabel.text isEqualToString:@"孙女"])
+    {
+        api.relation = @"11";
+    }
+    
+    
+    
+    api.relation = self.selectedBtn.titleLabel.text;
+    
+    
     [api startRequest:^(HCRequestStatus statusStatus, NSString *message, id respone) {
         
         if (statusStatus == HCRequestStatusSuccess)
@@ -178,7 +229,7 @@
         }
         else
         {
-            [self hideHUDView];
+            
             NSString *str = respone [@"message"];
             [self showHUDError:str];
         }
@@ -269,7 +320,7 @@
 - (NSArray *)relationArr
 {
     if(!_relationArr){
-        _relationArr = @[@"父亲",@"母亲",@"姐妹",@"兄弟",@"姐弟",@"兄妹"];
+        _relationArr = @[@"曾祖父",@"曾祖母",@"祖父",@"祖母",@"父亲",@"母亲",@"兄弟",@"姐妹",@"儿子",@"女儿",@"孙子",@"孙女"];
     }
     return _relationArr;
 }

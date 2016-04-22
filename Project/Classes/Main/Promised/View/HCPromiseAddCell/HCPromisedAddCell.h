@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-@class HCPromisedListInfo;
-typedef void (^block)(NSString *title,HCPromisedListInfo *info);
+@class HCNewTagInfo;
+typedef void (^block)(NSString *title,HCNewTagInfo *info);
 
 
 @interface HCPromisedAddCell : UITableViewCell
@@ -18,7 +18,7 @@ typedef void (^block)(NSString *title,HCPromisedListInfo *info);
 @property(nonatomic,assign) CGFloat  buttonW;
 @property(nonatomic,assign) CGFloat  buttonH;
 @property(nonatomic,copy)NSString  *title;
-@property(nonatomic,strong) HCPromisedListInfo *info;
+@property(nonatomic,strong) HCNewTagInfo *info;
 @property(nonatomic,strong)block  block;
 
 +(instancetype)customCellWithTable:(UITableView *)tableView;

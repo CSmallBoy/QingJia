@@ -133,24 +133,22 @@
 
 #pragma mark --- UIScrollViewDelegate
 
--(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    CGFloat offset = scrollView.contentOffset.x;
-    NSLog(@"%f",offset);
 
-}
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-
-    CGFloat offset = scrollView.contentOffset.x;
-    NSLog(@"%f",offset);
-    self.index = offset/SCREEN_WIDTH;
+    if (scrollView != self.tableView) {
+        CGFloat offset = scrollView.contentOffset.x;
+        NSLog(@"%f",offset);
+        self.index = offset/SCREEN_WIDTH;
+        
+        NSLog(@"%ld",self.index);
+        
+        self.seletedInfo = self.objectArr[self.index];
+        self.nameLabel.text = self.seletedInfo.trueName;
+    }
     
-    NSLog(@"%ld",self.index);
-    
-    self.seletedInfo = self.objectArr[self.index];
-    self.nameLabel.text = self.seletedInfo.trueName;
+   
     
 }
 
@@ -181,13 +179,8 @@
         {
             [self showHUDError:@"激活失败"];
         }
-        
     }];
-    
- 
 }
-
-
 
 - (UIScrollView *)scrollView
 {
@@ -260,13 +253,13 @@
                 HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues: dic];
                 [self.objectArr addObject:info];
             }
-            
-            self.seletedInfo = self.objectArr[0];
-            self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * (self.objectArr.count), 230);
-            NSIndexPath *indexPath =[NSIndexPath indexPathForRow:1 inSection:0];
-            
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        
+            if (self.objectArr.count >0) {
+                self.seletedInfo = self.objectArr[0];
+                self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * (self.objectArr.count), 230);
+                NSIndexPath *indexPath =[NSIndexPath indexPathForRow:1 inSection:0];
+                
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            }
         }
         
     }];

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class HCPromisedTagInfo;
+@class HCNewTagInfo;
 @interface HCPromisedTagCell : UICollectionViewCell
 
-@property (nonatomic,strong) HCPromisedTagInfo  *tagInfo;
+@property (nonatomic,strong) HCNewTagInfo  *info;
+
+
 
 +(instancetype)cellWithCollectionView:(UICollectionView *)collectionView andIndexPath:(NSIndexPath *)indexPath;
 

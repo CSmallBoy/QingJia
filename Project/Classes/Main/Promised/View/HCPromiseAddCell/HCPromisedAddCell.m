@@ -7,7 +7,7 @@
 //
 
 #import "HCPromisedAddCell.h"
-#import "HCPromisedListInfo.h"
+#import "HCNewTagInfo.h"
 
 @interface HCPromisedAddCell ()
 @property(nonatomic,strong) UIButton  *button;
@@ -79,10 +79,10 @@
 }
 
 
--(void)setInfo:(HCPromisedListInfo *)info
+-(void)setInfo:(HCNewTagInfo *)info
 {
     _info = info;
-     [_button setTitle:info.name forState:UIControlStateNormal];
+     [_button setTitle:info.trueName forState:UIControlStateNormal];
     [_button setTitleColor:[UIColor colorWithRed:242/256.0 green:63/256.0 blue:68/256.0 alpha:1] forState:UIControlStateNormal];
     if (info.isBlack)
     {
@@ -93,11 +93,11 @@
         _button.backgroundColor = [UIColor whiteColor];
     }
     
-    if (info.isSend)
-    {
-        [self addSubview:self.smallIV];
-        self.button.selected = NO;
-    }
+//    if (info.isSend)
+//    {
+//        [self addSubview:self.smallIV];
+//        self.button.selected = NO;
+//    }
 
 }
 

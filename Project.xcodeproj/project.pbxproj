@@ -423,6 +423,11 @@
 		8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAEB21C604ECA0038B0BD /* HCNotiMySaveCell.m */; };
 		8D0FAEB71C6077B80038B0BD /* WKFRadarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAEB61C6077B80038B0BD /* WKFRadarView.m */; };
 		8D1003B21CB4DFFA00D8AE4D /* MyLoginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1003B11CB4DFFA00D8AE4D /* MyLoginInfo.m */; };
+		8D1075021CC91118008511ED /* HCInitSendMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1074FF1CC91118008511ED /* HCInitSendMessageApi.m */; };
+		8D1075031CC91118008511ED /* HCPromisedSendApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1075011CC91118008511ED /* HCPromisedSendApi.m */; };
+		8D1075061CC91170008511ED /* HCPromiedTagWhenMissController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1075051CC91170008511ED /* HCPromiedTagWhenMissController.m */; };
+		8D1075091CC91189008511ED /* HCPromisedMissMessageControll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1075081CC91189008511ED /* HCPromisedMissMessageControll.m */; };
+		8D10750C1CC91197008511ED /* HCPromisedTagUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D10750B1CC91197008511ED /* HCPromisedTagUserDetailController.m */; };
 		8D11911D1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */; };
 		8D1191201C5F3CDD003505D3 /* HCNotifcationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911F1C5F3CDD003505D3 /* HCNotifcationMessageCell.m */; };
 		8D131A861C7D7C7F00F0D5A0 /* UIImage+ZLPhotoLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D131A4F1C7D7C7F00F0D5A0 /* UIImage+ZLPhotoLib.m */; };
@@ -676,7 +681,6 @@
 		C78D7CA61C5F2C4D00622CE2 /* HCTagManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7CA21C5F2C4D00622CE2 /* HCTagManagerTableViewCell.m */; };
 		C78D7D471C5F342700622CE2 /* HCAddPromiseViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7D131C5F342700622CE2 /* HCAddPromiseViewController1.m */; };
 		C78D7D481C5F342700622CE2 /* HCPromiseDetailViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7D151C5F342700622CE2 /* HCPromiseDetailViewController1.m */; };
-		C78D7D491C5F342700622CE2 /* HCPromisedTagMangerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7D171C5F342700622CE2 /* HCPromisedTagMangerViewController.m */; };
 		C78D7D4A1C5F342700622CE2 /* HCPromisedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7D191C5F342700622CE2 /* HCPromisedViewController.m */; };
 		C78D7D4B1C5F342700622CE2 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7D1C1C5F342700622CE2 /* UUDatePicker.m */; };
 		C78D7D4C1C5F342700622CE2 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7D1E1C5F342700622CE2 /* UUDatePicker_DateModel.m */; };
@@ -1926,6 +1930,16 @@
 		8D0FAEB61C6077B80038B0BD /* WKFRadarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKFRadarView.m; sourceTree = "<group>"; };
 		8D1003B01CB4DFFA00D8AE4D /* MyLoginInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginInfo.h; sourceTree = "<group>"; };
 		8D1003B11CB4DFFA00D8AE4D /* MyLoginInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginInfo.m; sourceTree = "<group>"; };
+		8D1074FE1CC91118008511ED /* HCInitSendMessageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInitSendMessageApi.h; sourceTree = "<group>"; };
+		8D1074FF1CC91118008511ED /* HCInitSendMessageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInitSendMessageApi.m; sourceTree = "<group>"; };
+		8D1075001CC91118008511ED /* HCPromisedSendApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedSendApi.h; sourceTree = "<group>"; };
+		8D1075011CC91118008511ED /* HCPromisedSendApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedSendApi.m; sourceTree = "<group>"; };
+		8D1075041CC91170008511ED /* HCPromiedTagWhenMissController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromiedTagWhenMissController.h; sourceTree = "<group>"; };
+		8D1075051CC91170008511ED /* HCPromiedTagWhenMissController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromiedTagWhenMissController.m; sourceTree = "<group>"; };
+		8D1075071CC91189008511ED /* HCPromisedMissMessageControll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedMissMessageControll.h; sourceTree = "<group>"; };
+		8D1075081CC91189008511ED /* HCPromisedMissMessageControll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedMissMessageControll.m; sourceTree = "<group>"; };
+		8D10750A1CC91197008511ED /* HCPromisedTagUserDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedTagUserDetailController.h; sourceTree = "<group>"; };
+		8D10750B1CC91197008511ED /* HCPromisedTagUserDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedTagUserDetailController.m; sourceTree = "<group>"; };
 		8D11911B1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyNotificationCenterTableViewCell.h; sourceTree = "<group>"; };
 		8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMyNotificationCenterTableViewCell.m; sourceTree = "<group>"; };
 		8D11911E1C5F3CDD003505D3 /* HCNotifcationMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotifcationMessageCell.h; sourceTree = "<group>"; };
@@ -2410,8 +2424,6 @@
 		C78D7D131C5F342700622CE2 /* HCAddPromiseViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddPromiseViewController1.m; sourceTree = "<group>"; };
 		C78D7D141C5F342700622CE2 /* HCPromiseDetailViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromiseDetailViewController1.h; sourceTree = "<group>"; };
 		C78D7D151C5F342700622CE2 /* HCPromiseDetailViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromiseDetailViewController1.m; sourceTree = "<group>"; };
-		C78D7D161C5F342700622CE2 /* HCPromisedTagMangerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedTagMangerViewController.h; sourceTree = "<group>"; };
-		C78D7D171C5F342700622CE2 /* HCPromisedTagMangerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedTagMangerViewController.m; sourceTree = "<group>"; };
 		C78D7D181C5F342700622CE2 /* HCPromisedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedViewController.h; sourceTree = "<group>"; };
 		C78D7D191C5F342700622CE2 /* HCPromisedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedViewController.m; sourceTree = "<group>"; };
 		C78D7D1B1C5F342700622CE2 /* UUDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker.h; sourceTree = "<group>"; };
@@ -3355,6 +3367,7 @@
 				0A2B47431C7F12C800AAA157 /* HCPromisedListAPI.m */,
 				8DC747861C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.h */,
 				8DC747871C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m */,
+				8D1074FD1CC91118008511ED /* NewPeomisedAPI */,
 			);
 			path = "Promised ";
 			sourceTree = "<group>";
@@ -4733,6 +4746,17 @@
 			path = HeadAnnimotion;
 			sourceTree = "<group>";
 		};
+		8D1074FD1CC91118008511ED /* NewPeomisedAPI */ = {
+			isa = PBXGroup;
+			children = (
+				8D1074FE1CC91118008511ED /* HCInitSendMessageApi.h */,
+				8D1074FF1CC91118008511ED /* HCInitSendMessageApi.m */,
+				8D1075001CC91118008511ED /* HCPromisedSendApi.h */,
+				8D1075011CC91118008511ED /* HCPromisedSendApi.m */,
+			);
+			path = NewPeomisedAPI;
+			sourceTree = "<group>";
+		};
 		8D11911A1C5F3ADA003505D3 /* HCMyNotification */ = {
 			isa = PBXGroup;
 			children = (
@@ -5862,14 +5886,18 @@
 		C78D7D111C5F342700622CE2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8D1075041CC91170008511ED /* HCPromiedTagWhenMissController.h */,
+				8D1075051CC91170008511ED /* HCPromiedTagWhenMissController.m */,
 				C78D7D121C5F342700622CE2 /* HCAddPromiseViewController1.h */,
 				C78D7D131C5F342700622CE2 /* HCAddPromiseViewController1.m */,
 				C78D7D141C5F342700622CE2 /* HCPromiseDetailViewController1.h */,
 				C78D7D151C5F342700622CE2 /* HCPromiseDetailViewController1.m */,
-				C78D7D161C5F342700622CE2 /* HCPromisedTagMangerViewController.h */,
-				C78D7D171C5F342700622CE2 /* HCPromisedTagMangerViewController.m */,
 				C78D7D181C5F342700622CE2 /* HCPromisedViewController.h */,
 				C78D7D191C5F342700622CE2 /* HCPromisedViewController.m */,
+				8D1075071CC91189008511ED /* HCPromisedMissMessageControll.h */,
+				8D1075081CC91189008511ED /* HCPromisedMissMessageControll.m */,
+				8D10750A1CC91197008511ED /* HCPromisedTagUserDetailController.h */,
+				8D10750B1CC91197008511ED /* HCPromisedTagUserDetailController.m */,
 				8D0FAEB41C6077B80038B0BD /* HeadAnnimotion */,
 				C78D7D1A1C5F342700622CE2 /* UUDatePicker_Block */,
 			);
@@ -7749,6 +7777,7 @@
 				C78D7D4A1C5F342700622CE2 /* HCPromisedViewController.m in Sources */,
 				C7B00B821C5F26050010F93B /* MWTapDetectingImageView.m in Sources */,
 				0A5491CA1C2BC32D0085F50D /* ZXQRCodeVersion.m in Sources */,
+				8D1075021CC91118008511ED /* HCInitSendMessageApi.m in Sources */,
 				0A5491BA1C2BC32D0085F50D /* ZXPDF417Dimensions.m in Sources */,
 				0A6B7F1F1BF1EB74008D54B3 /* UIViewController+HCAOP.m in Sources */,
 				C74D2B041CB664E600A260A4 /* NHCListOfTimeAPi.m in Sources */,
@@ -7762,6 +7791,7 @@
 				0A5491161C2BC32D0085F50D /* ZXEmailDoCoMoResultParser.m in Sources */,
 				C75F8A821CC87E4500AB7975 /* NHCChatUserInfoApi.m in Sources */,
 				0A5491921C2BC32D0085F50D /* ZXCode39Reader.m in Sources */,
+				8D1075031CC91118008511ED /* HCPromisedSendApi.m in Sources */,
 				0A5491DB1C2BC32D0085F50D /* ZXMultiFormatReader.m in Sources */,
 				0A5491371C2BC32D0085F50D /* ZXGenericGF.m in Sources */,
 				C7B00B7D1C5F26050010F93B /* MWCaptionView.m in Sources */,
@@ -7853,6 +7883,7 @@
 				C78D7AA51C5F28F700622CE2 /* HCCreateGradeViewController.m in Sources */,
 				C78D7AE41C5F28F700622CE2 /* HCLoginInfo.m in Sources */,
 				0A2B476C1C7F12C800AAA157 /* HCNotificationCenterReadApi.m in Sources */,
+				8D1075091CC91189008511ED /* HCPromisedMissMessageControll.m in Sources */,
 				8D16D13B1CC46BCA008DC6D7 /* HCTagUserCell.m in Sources */,
 				0A8BE3751C7E8CA9008E8100 /* HCAboutMTalkViewController.m in Sources */,
 				C78D7C8E1C5F2C1200622CE2 /* HCeditingViewController.m in Sources */,
@@ -8283,7 +8314,6 @@
 				C7BBF0211CBE1F9E00E9691C /* NHCHomeCommentListApi.m in Sources */,
 				0A6B7F181BF1EB74008D54B3 /* NSString+MD5.m in Sources */,
 				0A5491C31C2BC32D0085F50D /* ZXQRCodeDataMask.m in Sources */,
-				C78D7D491C5F342700622CE2 /* HCPromisedTagMangerViewController.m in Sources */,
 				0A5491A91C2BC32D0085F50D /* ZXModulusPoly.m in Sources */,
 				8D9790351CB3A00B00FE3C12 /* HCBuyRecordInfo.m in Sources */,
 				0A5491751C2BC32D0085F50D /* ZXAI01393xDecoder.m in Sources */,
@@ -8351,6 +8381,7 @@
 				0A5491021C2BC32D0085F50D /* ZXAztecDetector.m in Sources */,
 				8D97903B1CB3A00B00FE3C12 /* HCMyOrderFollowInfo.m in Sources */,
 				8D131A8F1C7D7C7F00F0D5A0 /* ZLPhotoAssets.m in Sources */,
+				8D1075061CC91170008511ED /* HCPromiedTagWhenMissController.m in Sources */,
 				8D131A891C7D7C7F00F0D5A0 /* ViewController.m in Sources */,
 				C75EFD771CB939EF008C4C52 /* NHCHomeCommentsApi.m in Sources */,
 				C7B00B4D1C5F26050010F93B /* PublicGroupDetailViewController.m in Sources */,
@@ -8385,6 +8416,7 @@
 				8D15E5551CBB549500FA3B11 /* HCTagActivateApi.m in Sources */,
 				0A5491B01C2BC32D0085F50D /* ZXPDF417DecodedBitStreamParser.m in Sources */,
 				C7BE0E3B1C71A02A007D97A5 /* HCMailListViewController.m in Sources */,
+				8D10750C1CC91197008511ED /* HCPromisedTagUserDetailController.m in Sources */,
 				C7B00B921C5F26050010F93B /* UIImage+EMWebP.m in Sources */,
 				C7B00B3D1C5F26050010F93B /* AppDelegate+EaseMobDebug.m in Sources */,
 				0AC89D6C1C28F32A003EED90 /* OTCover.m in Sources */,

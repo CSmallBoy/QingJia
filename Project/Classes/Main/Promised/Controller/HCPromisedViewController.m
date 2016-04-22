@@ -22,8 +22,11 @@
 #import "HCPromisedAddCell.h"
 #import "HCPromisedListAPI.h"
 #import "HCPromisedListInfo.h"
+#import "HCObjectListApi.h"
 
-
+#import "HCTagUserAmostListApi.h"
+#import "HCNewTagInfo.h"
+#import "HCPromisedTagUserDetailController.h"
 
 @interface HCPromisedViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -36,7 +39,7 @@
 @property(nonatomic,strong)UIButton        *headBtn;
 @property(nonatomic,strong)WKFRadarView    *radarView;
 @property(nonatomic,strong)NSString        *nextVCTitle;
-@property(nonatomic,strong)HCPromisedListInfo  *nextVCInfo;
+@property(nonatomic,strong)HCNewTagInfo  *nextVCInfo;
 
 @property (nonatomic,strong) UISegmentedControl  *segmented;
 
@@ -56,7 +59,7 @@
     self.navigationController.navigationItem.backBarButtonItem = nil;
     
     
-    [self requestData];
+    [self requestData]; // 请求对象列表
     [self  createUI];
     [self  createTableView];
     [self.view addSubview:self.notiVC.view];
@@ -182,38 +185,22 @@
     HCPromisedAddCell  *cell = [HCPromisedAddCell customCellWithTable:tableView];
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    HCPromisedListInfo *info =self.dataArr[indexPath.row];
+    HCNewTagInfo *info =self.dataArr[indexPath.row];
     cell.info = info;
 
     for (UIImageView * image in cell.subviews) {
         if ([image isKindOfClass:[UIImageView class]])
         {
-            if (!info.isSend)
-            {
-                [image removeFromSuperview];
-            }
+
         }
     }
     cell.buttonW = self.smallTableView.frame.size.width;
     cell.buttonH = self.smallTableView.frame.size.height/5;
-    cell.block = ^(NSString  *buttonTitle,HCPromisedListInfo *info)
+    cell.block = ^(NSString  *buttonTitle,HCNewTagInfo *info)
     {
+        info.isBlack = YES;
         self.nextVCInfo = info;
-        self.nextVCTitle = buttonTitle;
-        for (NSInteger i = 0; i< self.dataArr.count; i++) {
-            HCPromisedListInfo *info1 = self.dataArr[i];
-            
-            if (i==indexPath.row)
-            {
-                continue;
-            }
-            else
-            {
-                info1.isBlack = NO;
-            }
-        }
-          [self.smallTableView reloadData];
-          jump = YES;
+        [self.smallTableView reloadData];
     };
     return cell;
 }
@@ -254,6 +241,7 @@
     UIImageView  *leftIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, -15, 30, 30)];
     leftIV.image = [UIImage imageNamed:@"yihubaiying_nail.png"];
     [_bgImage addSubview:leftIV];
+    _bgImage.userInteractionEnabled = YES;
     
     CGFloat  rightIVX = _bgImage.frame.size.width - 10-30;
     UIImageView   *rightIV = [[UIImageView alloc]initWithFrame:CGRectMake(rightIVX, -15, 30, 30)];
@@ -274,14 +262,14 @@
     else
     {
         //跳转到信息界面
-        HCPromiseDetailViewController1 *detailVC = [[HCPromiseDetailViewController1 alloc]init];
-        detailVC.data = @{@"ObjectId":self.nextVCInfo.ObjectId,@"ListInfo":self.nextVCInfo};
+        HCPromisedTagUserDetailController *detailVC = [[HCPromisedTagUserDetailController alloc]init];
+        detailVC.data = @{@"info":self.nextVCInfo};
         detailVC.hidesBottomBarWhenPushed = YES;
-        detailVC.block = ^(BOOL isShow){
-        
-            isShouldWhow = isShow;
-        
-        };
+//        detailVC.block = ^(BOOL isShow){
+//        
+//            isShouldWhow = isShow;
+//        
+//        };
         [self.navigationController pushViewController:detailVC animated:YES];
     }
 }
@@ -313,8 +301,7 @@
 
 -(void)headButtonClick:(UIButton *)button
 {
-    if (jump)
-    {
+  
         CGFloat  headerViewW = 115/383.0*_bgImage.frame.size.height;
         WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*3 , headerViewW*3)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
         CGFloat  headerViewY = _bgImage.frame.origin.y-20;
@@ -330,7 +317,7 @@
         [self.view sendSubviewToBack:_bgImage];
         
         [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(pushVC) userInfo:nil repeats:NO];
-    }
+    
 }
 
 -(void)handleSegmentedControl:(UISegmentedControl *)segmented
@@ -374,9 +361,9 @@
         _smallTableView.delegate = self;
         _smallTableView.dataSource = self;
       
-        _smallTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
-        _smallTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreData)];
-          [_smallTableView.mj_header beginRefreshing];
+//        _smallTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
+//        _smallTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreData)];
+//          [_smallTableView.mj_header beginRefreshing];
     }
     _smallTableView.showsVerticalScrollIndicator = NO;
     return _smallTableView;
@@ -411,29 +398,33 @@
 
 #pragma mark --- network
 
-// 下拉刷新请求数据
 -(void)requestData
 {
-    HCPromisedListAPI  *api = [[HCPromisedListAPI alloc]init];
-    api.Start = 0;
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSMutableArray *array) {
-        
+    [self showHUDView:nil];
+    
+     HCTagUserAmostListApi *api = [[HCTagUserAmostListApi alloc]init];
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+       
+        [self hideHUDView];
         if (requestStatus == HCRequestStatusSuccess) {
             [self.dataArr removeAllObjects];
-            self.dataArr = array;
-            HCPromisedListInfo *info = [[HCPromisedListInfo alloc]init];
-
-            info.name=@"+ 新增录入";
+            
+            NSArray *array = respone[@"Data"][@"rows"];
+            for (NSDictionary *dic in array) {
+                
+                HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
+                [self.dataArr addObject:info];
+            }
+            
+            HCNewTagInfo *info = [[HCNewTagInfo alloc]init];
+            info.trueName = @"+ 新增录入";
             [self.dataArr addObject:info];
-            [self.smallTableView.mj_header endRefreshing];
             [self.smallTableView reloadData];
-
-        }else
-        {
-           [self.smallTableView.mj_header endRefreshing];
-           [self showHUDError:message];
+ 
         }
-        }];
+        
+    }];
 }
 
 //上拉加载更多数据
