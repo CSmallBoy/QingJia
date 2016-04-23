@@ -19,6 +19,8 @@
 #import "HCMessageCenterListApi.h"
 #import "HCNotificationCenterInfo.h"
 
+#import "HCSaveCallApi.h"
+#import "HCNewTagInfo.h"
 
 @interface HCOtherNotificationViewController ()<UISearchBarDelegate,SCSwipeTableViewCellDelegate>
 {
@@ -42,24 +44,43 @@
     self.tableView.tableHeaderView.backgroundColor = [UIColor yellowColor];
     [self.tableView.tableHeaderView addSubview:self.seatchBar];
     [self requestData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
 
 
     
+}
+
+-(void)show
+{
+    [self requestData];
 }
 
 #pragma mark ---  SCSwipeTableViewCellDelegate
 
 //点击 侧滑出来的button
 - (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath{
-//    NSLog(@"you choose the %ldth btn in section %ld row %ld",(long)tag,(long)indexpath.section,(long)indexpath.row);
-    NSString *message = [NSString stringWithFormat:@"你选择了第%ld组第%ld行第%ld个按钮",(long)indexpath.section,(long)indexpath.row,(long)tag];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"tips"
-                                                   message:message
-                                                  delegate:self
-                                         cancelButtonTitle:@"ok"
-                                         otherButtonTitles:nil, nil];
-    [alert show];
+
     
+    if (tag == 2) {
+        
+        HCNotificationCenterInfo *info = self.dataSource[indexpath.row];
+        
+        
+        HCSaveCallApi *api =[[HCSaveCallApi alloc]init];
+        api.callId = info.callId;
+        
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+          
+            if (requestStatus == HCRequestStatusSuccess) {
+                
+                [self showHUDText:@"收藏成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"showSave" object:nil];
+            }
+            
+        }];
+        
+    }
     
     
 }
@@ -110,7 +131,7 @@
         imageView3.image = IMG(@"信息中心－favourite");
         [btn3 addSubview:imageView3];
         btn3.tag = 300;
-        btnArr = [[NSMutableArray alloc]initWithObjects:btn2,btn1,btn3,nil];
+        btnArr = [[NSMutableArray alloc]initWithObjects:btn1,btn2,btn3,nil];
 
         
         static NSString *cellIdentifier = @"Cellllll";
@@ -169,11 +190,6 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.1;
-}
-
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
 }
 
 
@@ -292,19 +308,6 @@
 
 #pragma mark - network
 
-//-(void)requestDelete:(NSIndexPath *)indexPath
-//{
-//    HCNotificationDeleteApi *api = [[HCNotificationDeleteApi alloc]init];
-//    api.NoticeId = 1000000004;
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id info) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            
-//        }
-//    }];
-//}
-
-
 - (void)requestData
 {
     HCMessageCenterListApi *api = [[HCMessageCenterListApi alloc]init];
@@ -312,17 +315,24 @@
     api._start = @"0";
     api._count = @"20";
     
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        
-        for (NSDictionary *dic in array) {
-            HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+        if (requestStatus == HCRequestStatusSuccess) {
             
-            [self.dataSource addObject:info];
+            [self.dataSource removeAllObjects];
             
+            NSArray *array = respone[@"Data"][@"rows"];
+            
+            for (NSDictionary *dic in array) {
+                HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+                
+                [self.dataSource addObject:info];
+                
+            }
+            
+            [self.tableView reloadData];
+            NSLog(@"-----------------信息中心列表获取成功--------------------")
         }
-        
-        NSLog(@"-----------------信息中心列表获取成功--------------------")
-        
     }];
 
 

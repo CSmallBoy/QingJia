@@ -17,4 +17,6 @@
 @property (nonatomic,strong) NSString *cureCondition ;
 @property (nonatomic,strong) NSString *cureNote ;
 
+@property (nonatomic,strong) NSString *objectId;
+
 @end

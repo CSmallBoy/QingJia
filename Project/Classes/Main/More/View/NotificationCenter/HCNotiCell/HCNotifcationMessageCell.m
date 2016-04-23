@@ -8,6 +8,7 @@
 
 #import "HCNotifcationMessageCell.h"
 #import "HCNotifcationMessageInfo.h"
+#import "HCNewTagInfo.h"
 
 #define INTERVAL 10
 
@@ -60,13 +61,13 @@
 #pragma mark --- getter Or setter
 
 
--(void)setMessageInfo:(HCNotifcationMessageInfo *)messageInfo
+-(void)setMessageInfo:(HCNewTagInfo *)messageInfo
 {
     _messageInfo = messageInfo;
     
-    self.titleLabel.text = messageInfo.title;
-    self.timeLabel.text = [NSString stringWithFormat:@"留言时间：%@",messageInfo.time];
-    self.messageLabel.text = messageInfo.message;
+    self.titleLabel.text = [NSString stringWithFormat:@"给%@留言",messageInfo.trueName];
+    self.timeLabel.text = [NSString stringWithFormat:@"留言时间:%@",messageInfo.createTime];
+    self.messageLabel.text = messageInfo.lossAddress;
   
 }
 

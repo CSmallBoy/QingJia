@@ -10,11 +10,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class HCNotifcationMessageInfo;
+@class HCNewTagInfo;
 
 @interface HCNotificationMessageCallCell : UITableViewCell
 
-@property (nonatomic,strong) HCNotifcationMessageInfo  *messageInfo;
+@property (nonatomic,strong) HCNewTagInfo  *messageInfo;
 
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end

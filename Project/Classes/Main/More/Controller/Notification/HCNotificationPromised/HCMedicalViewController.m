@@ -12,6 +12,9 @@
 
 #import "HCMedicalInfo.h"
 #import "HCMedicalFrameIfo.h"
+
+#import "HCGetMedicalApi.h"
+
 @interface HCMedicalViewController ()
 
 @property (nonatomic,strong) HCMedicalFrameIfo  *info;
@@ -26,13 +29,7 @@
     self.title = @"医疗急救卡";
     
     self.dataArr = [[NSMutableArray alloc]init];
-    NSArray  *arr =@[_height,_weight,_bloodType,_allergic,_cureCondition,_cureNote];
-    for (int i = 0;i<6 ; i++)
-    {
-        HCMedicalFrameIfo  *info = [[HCMedicalFrameIfo alloc]init];
-        info.title = arr[i];
-        [self.dataArr addObject:info];
-    }
+    [self requestData];
 
     self.tableView.tableHeaderView = HCTabelHeadView(1);
     [self setupBackItem];
@@ -51,7 +48,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return self.dataArr.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -88,7 +85,46 @@
 -(void)requestData
 {
     
+    if (self.objectId) {
 
+        HCGetMedicalApi *api = [[HCGetMedicalApi alloc]init];
+        api.objectId = self.objectId;
+        
+        [api startRequest:^(HCRequestStatus requestStauts, NSString *message, id respone) {
+            
+            if (requestStauts == HCRequestStatusSuccess) {
+                
+                NSDictionary *dic = respone[@"Data"][@"objectInf"];
+                
+                NSArray *arr = @[dic[@"height"],dic[@"weight"],dic[@"bloodType"],dic[@"allergic"],dic[@"cureCondition"],dic[@"cureNote"]];
+                for (int i = 0;i<6 ; i++)
+                {
+                    HCMedicalFrameIfo  *info = [[HCMedicalFrameIfo alloc]init];
+                    info.title = arr[i];
+                    [self.dataArr addObject:info];
+                }
+                
+                [self.tableView reloadData];
+                
+            }
+            
+        }];
+    }
+    else
+    {
+
+        
+        NSArray  *arr =@[_height,_weight,_bloodType,_allergic,_cureCondition,_cureNote];
+        for (int i = 0;i<6 ; i++)
+        {
+            HCMedicalFrameIfo  *info = [[HCMedicalFrameIfo alloc]init];
+            info.title = arr[i];
+            [self.dataArr addObject:info];
+        }
+        [self.tableView reloadData];
+    }
+    
+   
     
     
 }

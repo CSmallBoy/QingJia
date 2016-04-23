@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HCNotificationCenterInfo.h"
+#import "HCNewTagInfo.h"
 @protocol SCSwipeTableViewCellDelegate <NSObject>
 
 - (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath;
@@ -23,7 +23,7 @@
 
 @interface HCNotiMySaveCell : UITableViewCell
 @property (nonatomic,assign) BOOL isSaveCell;
-@property (nonatomic,strong) HCNotificationCenterInfo *info;
+@property (nonatomic,strong)  HCNewTagInfo*info;
 @property (nonatomic, weak)id<SCSwipeTableViewCellDelegate>delegate;
 
 /**

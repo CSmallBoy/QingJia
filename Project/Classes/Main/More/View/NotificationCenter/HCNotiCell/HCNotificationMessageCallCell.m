@@ -8,6 +8,7 @@
 
 #import "HCNotificationMessageCallCell.h"
 #import "HCNotifcationMessageInfo.h"
+#import "HCNewTagInfo.h"
 
 #define INTERVAL 10
 
@@ -52,11 +53,15 @@
 #pragma mark --- setter Or getter
 
 
--(void)setMessageInfo:(HCNotifcationMessageInfo *)messageInfo
+-(void)setMessageInfo:(HCNewTagInfo *)messageInfo
 {
     _messageInfo = messageInfo;
     
-    self.titleLabel.text = messageInfo.title; 
+    self.titleLabel.text = [NSString stringWithFormat:@"给%@留言",messageInfo.trueName];
+    
+    NSURL *url = [readUserInfo originUrl:messageInfo.imageName :kkUser];
+    [self.headIV sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
+    
 }
 
 

@@ -309,6 +309,9 @@
             
             if (request == HCRequestStatusSuccess)
             {
+                UIViewController *vc= self.navigationController.viewControllers[0];
+                [self.navigationController popToViewController:vc animated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"show" object:nil];
                 NSLog(@"发呼应成功");
             }
             

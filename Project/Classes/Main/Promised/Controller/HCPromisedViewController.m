@@ -70,6 +70,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextMyDetailController:) name:@"ToNextMyController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextOtherController:) name:@"ToNextOtherController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showRadarView) name:@"showRadarView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -84,11 +85,6 @@
         radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
         _radarView = radarView;
         _radarView.userInteractionEnabled = NO;
-        
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        button.frame = self.headBtn.frame;
-//        [button addTarget:self action:@selector(radarTap:) forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:button];
         
         _headBtn.hidden = YES;
         [self.view addSubview:_radarView];
@@ -124,12 +120,6 @@
         _radarView = radarView;
         _radarView.userInteractionEnabled = NO;
         
-        
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        button.frame = self.headBtn.frame;
-//        [button addTarget:self action:@selector(radarTap:) forControlEvents:UIControlEventTouchUpInside];
-//        [_radarView addSubview:button];
-        
         _headBtn.hidden = YES;
         [self.view addSubview:_radarView];
         [self.view sendSubviewToBack:_radarView];
@@ -151,6 +141,26 @@
     
     [self.smallTableView reloadData];
 
+}
+
+// 呼 发送成功后  显示雷达效果
+-(void)show
+{
+    
+    [_radarView removeFromSuperview];
+    CGFloat  headerViewW =  _headBtn.frame.size.width;
+    WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*3 , headerViewW*3)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
+    CGFloat  headerViewY = _bgImage.frame.origin.y-20;
+    radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
+    _radarView = radarView;
+    _radarView.userInteractionEnabled = NO;
+    
+    _headBtn.hidden = YES;
+    [self.view addSubview:_radarView];
+    [self.view sendSubviewToBack:_radarView];
+    [self.view sendSubviewToBack:_bgImage];
+    
+    isShouldWhow = YES;
 }
 
 -(void)HeadImage:(NSNotification *)info

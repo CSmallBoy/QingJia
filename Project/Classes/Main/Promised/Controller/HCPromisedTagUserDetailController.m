@@ -71,6 +71,7 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
     self.openHealthCard = @"1";
+    
     HCNewTagInfo *info = self.data[@"info"];
     info.openHealthCard = self.openHealthCard;
     
@@ -275,6 +276,7 @@
             cell.image = self.image;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.indexPath = indexPath;
+
             return cell;
         }
     }
@@ -753,12 +755,14 @@
     HCInitSendMessageApi *api = [[HCInitSendMessageApi alloc]init];
     
     api.objectId = self.info.objectId;
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
         if (requestStatus == HCRequestStatusSuccess) {
             NSDictionary *dic = respone[@"Data"][@"objectInf"];
             self.info = [HCNewTagInfo mj_objectWithKeyValues:dic];
             self.info.openHealthCard = @"1";
+            self.info.openHomeAddress = @"1";
             
             self.title = [NSString stringWithFormat:@"%@的标签",self.info.trueName];
             

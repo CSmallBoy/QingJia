@@ -17,7 +17,7 @@
 @property (nonatomic,strong) UITextField *textField;
 @property (nonatomic,strong) HCFeedbackTextView *textView;
 @property (nonatomic,strong) UIImageView *headBtn ;
-
+@property (nonatomic,strong) UISwitch *addressSW;
 
 
 @property (nonatomic,strong) NSArray *baseTitles;
@@ -149,6 +149,30 @@
     [self.contentView addSubview:self.textField];
     [self.contentView addSubview:self.headBtn];
     [self.contentView addSubview:self.textView];
+
+        
+    _addressSW = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-50, 7, 30, 30)];
+    _addressSW.on = YES;
+    _addressSW.hidden = YES;
+    [_addressSW addTarget:self action:@selector(addressSWClick:) forControlEvents:UIControlEventValueChanged];
+    [self addSubview:_addressSW];
+        
+    
+    
+}
+
+-(void)addressSWClick:(UISwitch *)sw
+{
+  
+    if (sw.on) {
+        self.info.openHomeAddress = @"1";
+    }
+    else
+    {
+        self.info.openHomeAddress = @"0";
+    }
+    
+    
 }
 
 
@@ -202,6 +226,7 @@
                 break;
             case 4:
             {
+                _addressSW.hidden = NO;
                 self.headBtn.hidden = YES;
                 self.textField.text = self.info.homeAddress;
             }
@@ -287,6 +312,11 @@
         self.textView.textView.tag = 300 +indexPath.row;
         
     }
+    
+    
+    
+
+    
     
 }
 

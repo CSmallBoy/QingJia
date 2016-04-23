@@ -19,6 +19,8 @@
 #import "HCNotificationCenterInfo.h"
 #import "HCMySaveListApi.h"
 
+#import "HCNewTagInfo.h"
+#import "HCCancelSaveApi.h"
 
 @interface HCSaveNotificationViewController ()<UISearchBarDelegate,SCSwipeTableViewCellDelegate>
 {
@@ -42,37 +44,42 @@
     self.tableView.tableHeaderView.backgroundColor = [UIColor yellowColor];
     [self.tableView.tableHeaderView addSubview:self.seatchBar];
     [self requestData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"showSave" object:nil];
 }
 
+-(void)show
+{
+    [self requestData];
+}
 
 #pragma mark ---  SCSwipeTableViewCellDelegate
 
 //点击 侧滑出来的button
 - (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath{
-    //    NSLog(@"you choose the %ldth btn in section %ld row %ld",(long)tag,(long)indexpath.section,(long)indexpath.row);
-    NSString *message = [NSString stringWithFormat:@"你选择了第%ld组第%ld行第%ld个按钮",(long)indexpath.section,(long)indexpath.row,(long)tag];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"tips"
-                                                   message:message
-                                                  delegate:self
-                                         cancelButtonTitle:@"ok"
-                                         otherButtonTitles:nil, nil];
-    [alert show];
+
+    if (tag == 0) {
+//----------------------取消收藏返回404--------------------------------------
+        
+        
+        HCNotificationCenterInfo *info = self.dataSource[indexpath.row];
+        HCCancelSaveApi *api = [[HCCancelSaveApi alloc]init];
+        api.callId = info.callId;
+        
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+           
+            if (requestStatus == HCRequestStatusSuccess) {
+                [self showHUDText:@"取消收藏成功"];
+                [self.dataSource removeObjectAtIndex:indexpath.row];
+                [self.tableView reloadData];
+                
+            }
+            
+        }];
+        
+    }
     
-    
-    //    switch (tag) {
-    //        case 100:
-    //            [self showHUDText:@"删除成功"];
-    //            break;
-    //        case 200:
-    //            [self showHUDText:@"举报成功"];
-    //            break;
-    //        case 300:
-    //            [self showHUDText:@"收藏成功"];
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //
+
     
 }
 
@@ -317,6 +324,17 @@
        
         if (requestStatus == HCRequestStatusSuccess) {
             
+            [self.dataSource removeAllObjects];
+            
+            NSArray *array = respone[@"Data"][@"rows"];
+            
+            for (NSDictionary *dic in array) {
+               
+                HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic ];
+                [self.dataSource addObject:info];
+            }
+            
+            [self.tableView reloadData];
             NSLog(@"----------------我的收藏列表获取成功------------");
         }
         

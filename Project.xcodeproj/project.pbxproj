@@ -417,6 +417,9 @@
 		8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAEB21C604ECA0038B0BD /* HCNotiMySaveCell.m */; };
 		8D0FAEB71C6077B80038B0BD /* WKFRadarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAEB61C6077B80038B0BD /* WKFRadarView.m */; };
 		8D1003B21CB4DFFA00D8AE4D /* MyLoginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1003B11CB4DFFA00D8AE4D /* MyLoginInfo.m */; };
+		8D105E301CCB63FD004BD80D /* HCGetMedicalApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D105E2F1CCB63FD004BD80D /* HCGetMedicalApi.m */; };
+		8D105E331CCB69F1004BD80D /* HCCancelSaveApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D105E321CCB69F1004BD80D /* HCCancelSaveApi.m */; };
+		8D105E361CCB6D7A004BD80D /* HCCommentListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D105E351CCB6D7A004BD80D /* HCCommentListApi.m */; };
 		8D1075021CC91118008511ED /* HCInitSendMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1074FF1CC91118008511ED /* HCInitSendMessageApi.m */; };
 		8D1075031CC91118008511ED /* HCPromisedSendApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1075011CC91118008511ED /* HCPromisedSendApi.m */; };
 		8D1075061CC91170008511ED /* HCPromiedTagWhenMissController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1075051CC91170008511ED /* HCPromiedTagWhenMissController.m */; };
@@ -1914,6 +1917,12 @@
 		8D0FAEB61C6077B80038B0BD /* WKFRadarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKFRadarView.m; sourceTree = "<group>"; };
 		8D1003B01CB4DFFA00D8AE4D /* MyLoginInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginInfo.h; sourceTree = "<group>"; };
 		8D1003B11CB4DFFA00D8AE4D /* MyLoginInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginInfo.m; sourceTree = "<group>"; };
+		8D105E2E1CCB63FD004BD80D /* HCGetMedicalApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGetMedicalApi.h; sourceTree = "<group>"; };
+		8D105E2F1CCB63FD004BD80D /* HCGetMedicalApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGetMedicalApi.m; sourceTree = "<group>"; };
+		8D105E311CCB69F1004BD80D /* HCCancelSaveApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCancelSaveApi.h; sourceTree = "<group>"; };
+		8D105E321CCB69F1004BD80D /* HCCancelSaveApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCancelSaveApi.m; sourceTree = "<group>"; };
+		8D105E341CCB6D7A004BD80D /* HCCommentListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCommentListApi.h; sourceTree = "<group>"; };
+		8D105E351CCB6D7A004BD80D /* HCCommentListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCommentListApi.m; sourceTree = "<group>"; };
 		8D1074FE1CC91118008511ED /* HCInitSendMessageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInitSendMessageApi.h; sourceTree = "<group>"; };
 		8D1074FF1CC91118008511ED /* HCInitSendMessageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInitSendMessageApi.m; sourceTree = "<group>"; };
 		8D1075001CC91118008511ED /* HCPromisedSendApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedSendApi.h; sourceTree = "<group>"; };
@@ -3313,6 +3322,12 @@
 				8D10B1E01CCA22B000A63276 /* HCMySaveListApi.m */,
 				8D10B1E21CCA2D1400A63276 /* HCSaveCallApi.h */,
 				8D10B1E31CCA2D1400A63276 /* HCSaveCallApi.m */,
+				8D105E311CCB69F1004BD80D /* HCCancelSaveApi.h */,
+				8D105E321CCB69F1004BD80D /* HCCancelSaveApi.m */,
+				8D105E2E1CCB63FD004BD80D /* HCGetMedicalApi.h */,
+				8D105E2F1CCB63FD004BD80D /* HCGetMedicalApi.m */,
+				8D105E341CCB6D7A004BD80D /* HCCommentListApi.h */,
+				8D105E351CCB6D7A004BD80D /* HCCommentListApi.m */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -7310,7 +7325,7 @@
 				TargetAttributes = {
 					0A6B7D971BF1EB6A008D54B3 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = TUQVNVJWWD;
+						DevelopmentTeam = DWB73FX47H;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -7710,6 +7725,7 @@
 				C7B00B5D1C5F26050010F93B /* EMRotbotChatViewCell.m in Sources */,
 				0A5491BB1C2BC32D0085F50D /* ZXPDF417ErrorCorrection.m in Sources */,
 				C7B00B311C5F26050010F93B /* SRRefreshView.m in Sources */,
+				8D105E361CCB6D7A004BD80D /* HCCommentListApi.m in Sources */,
 				C7B00B7E1C5F26050010F93B /* MWGridCell.m in Sources */,
 				C7B00BA01C5F26050010F93B /* PSTGridLayoutItem.m in Sources */,
 				C758EE431C743E7A0081FFE1 /* HCInviteFamilyViewController.m in Sources */,
@@ -7825,6 +7841,7 @@
 				0A8BE3B51C7E8D7C008E8100 /* ButtonView.m in Sources */,
 				0A5491331C2BC32D0085F50D /* ZXImage.m in Sources */,
 				0A54916A1C2BC32D0085F50D /* ZXDataMatrixWriter.m in Sources */,
+				8D105E301CCB63FD004BD80D /* HCGetMedicalApi.m in Sources */,
 				C78D7B1F1C5F28F700622CE2 /* HCTimeViewController.m in Sources */,
 				0A5491071C2BC32D0085F50D /* ZXAztecSimpleToken.m in Sources */,
 				0A5491031C2BC32D0085F50D /* ZXAztecBinaryShiftToken.m in Sources */,
@@ -7982,6 +7999,7 @@
 				0A54919B1C2BC32D0085F50D /* ZXITFWriter.m in Sources */,
 				8D131A941C7D7C7F00F0D5A0 /* ZLPhotoPickerBrowserPhotoView.m in Sources */,
 				C78D7D5C1C5F342700622CE2 /* HCPromisedTagCell.m in Sources */,
+				8D105E331CCB69F1004BD80D /* HCCancelSaveApi.m in Sources */,
 				0A5491391C2BC32D0085F50D /* ZXReedSolomonDecoder.m in Sources */,
 				C7B00BAB1C5F26050010F93B /* NSString+Valid.m in Sources */,
 				0A2B46E11C7F12AF00AAA157 /* HCHomeDetailViewController.m in Sources */,
@@ -8642,8 +8660,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8669,7 +8687,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "292d05f5-7530-45b7-b20b-43edcc2be8ba";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8680,8 +8698,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8707,7 +8725,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "292d05f5-7530-45b7-b20b-43edcc2be8ba";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

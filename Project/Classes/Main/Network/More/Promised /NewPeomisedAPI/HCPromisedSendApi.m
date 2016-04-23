@@ -30,6 +30,7 @@
     
     if (self.ContractArr.count>0) {
         
+        
         HCTagContactInfo *info1 = self.ContractArr[0];
         HCTagContactInfo*info2 = self.ContractArr[1];
         
@@ -51,7 +52,8 @@
                                @"lossAddress":_lossAddress,
                                @"lossDesciption":_lossDesciption,
                                @"lossImageName":_lossImageName,
-                               @"openHealthCard":self.info.openHealthCard};
+                               @"openHealthCard":self.info.openHealthCard,
+                               @"openHomeAddress":self.info.openHomeAddress};
         
   
         
@@ -72,13 +74,14 @@
         NSString *str = [arr componentsJoinedByString:@","];
 
         NSDictionary *para = @{@"objectId ":self.info.objectId,
-                            @"labelIds":str,
-                            @"lossTime":_lossTime,
+                               @"labelIds":str,
+                               @"lossTime":_lossTime,
                                @"callLocation":_callLocation,
                                @"lossAddress":_lossAddress,
                                @"lossDesciption":_lossDesciption,
                                @"lossImageName":_lossImageName,
-                               @"openHealthCard":self.info.openHealthCard};
+                               @"openHealthCard":self.info.openHealthCard,
+                               @"openHomeAddress":self.info.openHomeAddress};
         
         NSDictionary *nody =  @{@"Head":head,
                                 @"Para":para};

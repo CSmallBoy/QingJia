@@ -17,6 +17,7 @@
 #import "HCNotifcationMessageCell.h"
 #import "HCNotificationMessageCallCell.h"
 
+#import "HCNewTagInfo.h"
 
 #import "HCNotificationCenterInfo.h"
 #import "HCNotifcationMessageInfo.h"
@@ -42,6 +43,8 @@
     self.tableView.tableHeaderView.backgroundColor = [UIColor yellowColor];
     [self.tableView.tableHeaderView addSubview:self.seatchBar];
     [self requestData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
 
 }
 
@@ -50,7 +53,9 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-        if (indexPath.section == 0 && tableView == self.tableView) {
+    if (tableView == self.tableView) {
+        
+        if (indexPath.section == 0 ) {
             HCMyNotificationCenterTableViewCell *cell = [HCMyNotificationCenterTableViewCell cellWithTableView:tableView];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.info = self.dataSource[indexPath.row];
@@ -59,23 +64,21 @@
         }
         else
         {
-            HCNotifcationMessageInfo *messInfo = self.messageArr[indexPath.row];
-            if (messInfo.isCall)
-            {
-                HCNotificationMessageCallCell *cell = [HCNotificationMessageCallCell cellWithTableView:tableView];
-                cell.messageInfo = messInfo;
-               cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
-            else
-            {
-                HCNotifcationMessageCell  *cell = [HCNotifcationMessageCell cellWithTableView:tableView];
-                cell.messageInfo = messInfo;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
+            
+            HCNewTagInfo *messInfo = self.messageArr[indexPath.row];
+            HCNotifcationMessageCell  *cell = [HCNotifcationMessageCell cellWithTableView:tableView];
+            cell.messageInfo = messInfo;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
             
         }
+        
+    }
+  
+    return nil;
+
+    
+    
 
 }
 
@@ -120,7 +123,7 @@
     {
         if (section == 0)
         {
-            return 1;
+            return self.dataSource.count;
         }
         else
         {
@@ -220,6 +223,12 @@
 }
 
 
+#pragma mark --- provite mothods
+
+-(void)show
+{
+    [self requestData];
+}
 
 
 #pragma mark --- getter Or setter
@@ -292,6 +301,26 @@
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
         if (requestStatus == HCRequestStatusSuccess) {
+            
+            [self.dataSource removeAllObjects];
+            
+            NSArray *array1 = respone[@"Data"][@"rows1"];
+            
+            for (NSDictionary *dic in array1) {
+                HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+                [self.dataSource addObject:info];
+            }
+            
+            NSArray *array2 = respone[@"Data"][@"rows2"];
+            
+            for (NSDictionary *dic in array2) {
+                
+                HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+                [self.messageArr addObject:info];
+                
+            }
+            
+            [self.tableView reloadData];
             
             NSLog(@"--------------与我相关列表获取成功------------");
             

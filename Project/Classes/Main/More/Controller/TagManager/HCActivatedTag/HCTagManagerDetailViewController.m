@@ -37,6 +37,7 @@
 
 @property (nonatomic,strong) UIView *headerView;
 @property (nonatomic,strong) HCNewTagInfo *info;
+@property (nonatomic,strong) UIImageView *tagImageView;
 
 @property (nonatomic,strong)UIImageView *header_button;
 
@@ -168,6 +169,9 @@
     {
         _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,200)];
         _headerView.backgroundColor = [UIColor whiteColor];
+        [_headerView addSubview:self.tagImageView];
+
+        
         
     }
     // 头像
@@ -263,6 +267,16 @@
     
 }
 
+#pragma mark --- setter Or getter
+
+
+- (UIImageView *)tagImageView
+{
+    if(!_tagImageView){
+        _tagImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+    }
+    return _tagImageView;
+}
 
 
 
@@ -286,6 +300,10 @@
         NSURL *url = [readUserInfo originUrl:_info.imageName :kkUser];
         
         [_header_button sd_setImageWithURL:url placeholderImage:IMG(@"2Dbarcode_message_HeadPortraits")];
+        
+        NSURL *url1 = [readUserInfo originUrl:_info.labelImageName :kkUser];
+        [self.tagImageView sd_setImageWithURL:url1 placeholderImage:IMG(@"head.jpg")];
+        
         [self.tableView reloadData];
         
     }];

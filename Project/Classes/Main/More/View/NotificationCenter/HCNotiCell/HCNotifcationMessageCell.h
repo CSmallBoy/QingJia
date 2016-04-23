@@ -10,11 +10,11 @@
 
 // -------------------------------------- 与我相关 给XXX留言cell--------------------------------
 
-@class HCNotifcationMessageInfo;
+@class HCNewTagInfo;
 
 @interface HCNotifcationMessageCell : UITableViewCell
 
-@property (nonatomic,strong) HCNotifcationMessageInfo  *messageInfo;
+@property (nonatomic,strong) HCNewTagInfo  *messageInfo;
 
 +(instancetype)cellWithTableView:(UITableView  *)tableView;
 

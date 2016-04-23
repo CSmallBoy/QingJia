@@ -17,7 +17,10 @@
 @property (nonatomic,strong) NSString *homeAddress; // 家庭住址
 @property (nonatomic,strong) NSString *school;   // 学校
 
-@property (nonatomic,strong) NSString *openHealthCard; // 是否公开
+@property (nonatomic,strong) NSString *age;
+
+@property (nonatomic,strong) NSString *openHealthCard; // 是否公开医疗卡
+@property (nonatomic,strong) NSString *openHomeAddress;// 是否公开家庭住址
 
 @property (nonatomic,strong) NSString *height;   // 身高
 @property (nonatomic,strong) NSString *weight;   // 体重
@@ -38,6 +41,9 @@
 @property (nonatomic,strong) NSString *contactorPhoneNo2;  //联系人2 手机号
 @property (nonatomic,strong) NSString *imageName2;
 
+@property (nonatomic,strong) NSString *labelImageName; // 标签图片
+
+
 @property (nonatomic,strong) NSString *objectId;
 
 
@@ -46,4 +52,10 @@
 
 @property (nonatomic,assign) BOOL  isBlack;
 
+@property (nonatomic,strong) NSString *lossTime;
+@property (nonatomic,strong) NSString *callId;
+@property (nonatomic,strong) NSString *lossAddress;
+@property (nonatomic,strong) NSString *lossImageName;
+@property (nonatomic,strong) NSString *createTime;
+@property (nonatomic,strong) NSString *lossDesciption;
 @end

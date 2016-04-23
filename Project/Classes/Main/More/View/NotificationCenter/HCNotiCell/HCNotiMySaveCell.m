@@ -7,7 +7,7 @@
 //
 
 #import "HCNotiMySaveCell.h"
-
+#import "HCNewTagInfo.h"
 #define SC_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define INTERVAL 10
 
@@ -74,18 +74,52 @@
     [self addNotify];
 }
 
--(void)setInfo:(HCNotificationCenterInfo *)info
+-(void)setInfo:(HCNewTagInfo *)info
 {
     _info = info;
     
-    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ %@ %@岁",info.trueName,info.sex,info.age]];
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ %@ %@",info.trueName,info.sex,info.age]];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13], NSForegroundColorAttributeName: [UIColor lightGrayColor]} range:NSMakeRange(attStr.length-4, 4)];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} range:NSMakeRange(0, attStr.length-4)];
     self.NameSexAgeLB.attributedText = attStr;
     
     self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%@",info.createTime];
     
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlag =  NSMonthCalendarUnit | NSDayCalendarUnit |NSHourCalendarUnit| NSMinuteCalendarUnit|NSSecondCalendarUnit ;
+    NSDateComponents *cmp = [calendar components:unitFlag fromDate:[NSDate dateWithTimeIntervalSince1970:[info.createTime integerValue]]];
+    NSDateComponents *cmp1 = [calendar components:unitFlag fromDate:[NSDate date]];
+    
+    
+    if ([cmp minute] == [cmp1 minute]) {
+        self.sendLabel.text = @"发布时间：刚刚";
+    }
+    else if([cmp hour] == [cmp1 hour])
+    {
+        self.sendLabel.text= [NSString stringWithFormat:@"发布时间：%ld分钟前",cmp.minute];
+    }
+    else  if([cmp day] == [cmp1 day])
+    {
+        self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%ld小时前",cmp1.hour- cmp.hour];
+    }
+    else if(cmp1.day-cmp.day ==1)
+    {
+        self.sendLabel.text = @"发布时间：昨天";
+    }
+    else
+    {
+        self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%ld月%ld日",cmp.month,cmp.day];
+    }
+    
+    
     self.missLabel.text = [NSString stringWithFormat:@"走失描述： %@",info.lossDesciption];
+    
+    NSURL *url = [readUserInfo originUrl:self.info.imageName :kkUser];
+    
+    UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+    [self.button setImage:image forState:UIControlStateNormal];
+    
+    
     
 }
 
@@ -136,7 +170,7 @@
     if(!_missLabel){
         _missLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 40, SCREEN_WIDTH-80, 30)];
         _missLabel.font = [UIFont systemFontOfSize:14];
-        _missLabel.textAlignment = NSTextAlignmentRight;
+        _missLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _missLabel;
 }

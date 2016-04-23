@@ -29,8 +29,7 @@
 
 -(id)formatResponseObject:(id)responseObject{
     
-    NSDictionary*dict = responseObject[@"Data"][@"UserInf"];
-    return dict;
+    return responseObject;
 }
 
 
