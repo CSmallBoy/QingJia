@@ -42,7 +42,6 @@
 @implementation HCUserMessageViewController
 - (void)viewWillAppear:(BOOL)animated{
     _dict = [readUserInfo getReadDic];
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headbuttonImage) name:@"changeUserPhoto" object:nil];
     //先判断本地有没有 没有 则是没有上传  自己手机上有没有
     if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
@@ -276,11 +275,11 @@
     editVC.ture_name = _dict[@"UserInf"][@"trueName"];
     editVC.sex = _dict[@"UserInf"][@"sex"];
     editVC.shuxiang = _dict[@"UserInf"][@"chineseZodiac"];
-    editVC.birthday = _dict[@"UserInf"][@"birthday"];
-    editVC.adress = _dict[@"UserInf"][@"adress"];
+    editVC.birthday = _dict[@"UserInf"][@"birthDay"];
+    editVC.adress = _dict[@"UserInf"][@"homeAddress"];
     editVC.copany = _dict[@"UserInf"][@"company"];
-    editVC.professional = _dict[@"UserInf"][@"professional"];
-    
+    editVC.professional = _dict[@"UserInf"][@"career"];
+    editVC.headimage = _dict[@"UserInf"][@"imageName"];
     [self.navigationController pushViewController:editVC animated:YES];
     
 }

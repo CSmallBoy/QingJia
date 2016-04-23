@@ -21,4 +21,5 @@
 @property (nonatomic,copy) NSString *adress;
 @property (nonatomic,copy) NSString *professional;
 @property (nonatomic,copy) NSString *copany;
+@property (nonatomic,copy) NSString *headimage;
 @end

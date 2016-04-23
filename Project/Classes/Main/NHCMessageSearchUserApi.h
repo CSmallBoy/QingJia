@@ -7,7 +7,8 @@
 //
 
 #import "HCRequest.h"
-typedef void(^NHCMeaaageUser)(HCRequestStatus requestStatus,NSString *message,NSString * Tid);
+typedef void(^NHCMeaaageUser)(HCRequestStatus requestStatus,NSString *message,NSString * chatUserName);
 @interface NHCMessageSearchUserApi : HCRequest
 -(void)startRequest:(NHCMeaaageUser)requestBlock;
+@property (nonatomic,copy) NSString *UserChatID;
 @end

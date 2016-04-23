@@ -569,7 +569,6 @@
 		C777FF251CC74E47007ED160 /* jpush-ios-2.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C777FF241CC74E47007ED160 /* jpush-ios-2.1.0.a */; };
 		C777FF2A1CC7783E007ED160 /* NHCMessageSearchUserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C777FF291CC7783E007ED160 /* NHCMessageSearchUserApi.m */; };
 		C77C2F601CBB7B5B0011233C /* KLHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */; };
-		C77C2F621CBB7FA50011233C /* caosiyuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C77C2F611CBB7FA50011233C /* caosiyuan.jpg */; };
 		C78D7AA51C5F28F700622CE2 /* HCCreateGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78571C5F28F600622CE2 /* HCCreateGradeViewController.m */; };
 		C78D7AA61C5F28F700622CE2 /* HCGradeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78591C5F28F600622CE2 /* HCGradeSuccessViewController.m */; };
 		C78D7AA71C5F28F700622CE2 /* HCGradeSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C78D785A1C5F28F600622CE2 /* HCGradeSuccessViewController.xib */; };
@@ -704,7 +703,6 @@
 		C79F9A841CB73F3600EEF224 /* HCLeftGradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79F9A831CB73F3600EEF224 /* HCLeftGradeView.m */; };
 		C79F9A8A1CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C79F9A891CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m */; };
 		C79F9A8D1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C79F9A8C1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m */; };
-		C7A270A41CBB8BE000B6FC9D /* text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7A270A31CBB8BE000B6FC9D /* text.jpg */; };
 		C7AFFABF1C48BEC900D4A628 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7AFFA871C48BEC900D4A628 /* UMSocialLocalizable.strings */; };
 		C7AFFAC01C48BEC900D4A628 /* libUMSocial_Sdk_4.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AFFA951C48BEC900D4A628 /* libUMSocial_Sdk_4.4.a */; };
 		C7AFFAC11C48BEC900D4A628 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7AFFA971C48BEC900D4A628 /* UMSCommentDetailController.xib */; };
@@ -2212,7 +2210,6 @@
 		C777FF291CC7783E007ED160 /* NHCMessageSearchUserApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCMessageSearchUserApi.m; sourceTree = "<group>"; };
 		C77C2F5E1CBB7B5B0011233C /* KLHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLHttpTool.h; sourceTree = "<group>"; };
 		C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLHttpTool.m; sourceTree = "<group>"; };
-		C77C2F611CBB7FA50011233C /* caosiyuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = caosiyuan.jpg; sourceTree = "<group>"; };
 		C78D78561C5F28F600622CE2 /* HCCreateGradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateGradeViewController.h; sourceTree = "<group>"; };
 		C78D78571C5F28F600622CE2 /* HCCreateGradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateGradeViewController.m; sourceTree = "<group>"; };
 		C78D78581C5F28F600622CE2 /* HCGradeSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGradeSuccessViewController.h; sourceTree = "<group>"; };
@@ -2468,7 +2465,6 @@
 		C79F9A891CB7DBFC00EEF224 /* NHCHomeTimeDeleteApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeDeleteApi.m; sourceTree = "<group>"; };
 		C79F9A8B1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeTimeThumbupApi.h; sourceTree = "<group>"; };
 		C79F9A8C1CB7DDD300EEF224 /* NHCHomeTimeThumbupApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeThumbupApi.m; sourceTree = "<group>"; };
-		C7A270A31CBB8BE000B6FC9D /* text.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = text.jpg; sourceTree = "<group>"; };
 		C7AFFA881C48BEC900D4A628 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		C7AFFA8A1C48BEC900D4A628 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		C7AFFA8B1C48BEC900D4A628 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -5069,8 +5065,6 @@
 		C752A8791CB4FE53006719F1 /* public */ = {
 			isa = PBXGroup;
 			children = (
-				C7A270A31CBB8BE000B6FC9D /* text.jpg */,
-				C77C2F611CBB7FA50011233C /* caosiyuan.jpg */,
 				C77C2F5E1CBB7B5B0011233C /* KLHttpTool.h */,
 				C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */,
 				C79E0EC61CA69D0C00717D9B /* readUserInfo.h */,
@@ -7388,7 +7382,6 @@
 				C758EE5C1C743E7A0081FFE1 /* selected.png in Resources */,
 				C78D7B9A1C5F28F700622CE2 /* noticeMusic.wav in Resources */,
 				C7B00C631C5F26050010F93B /* chatBar_recordSelected@2x.png in Resources */,
-				C7A270A41CBB8BE000B6FC9D /* text.jpg in Resources */,
 				C7B00C621C5F26050010F93B /* chatBar_recordSelected.png in Resources */,
 				C7B00C2C1C5F26050010F93B /* VoiceSearchFeedback018.png in Resources */,
 				C7B00BD51C5F26050010F93B /* chat_receiver_bg@2x.png in Resources */,
@@ -7570,7 +7563,6 @@
 				C7B00C231C5F26050010F93B /* VoiceSearchFeedback013@2x.png in Resources */,
 				C7B00C8D1C5F26050010F93B /* groupPrivateHeader@2x.png in Resources */,
 				C7B00BFD1C5F26050010F93B /* VoiceSearchFeedback011@2x.png in Resources */,
-				C77C2F621CBB7FA50011233C /* caosiyuan.jpg in Resources */,
 				C7B00C0A1C5F26050010F93B /* VoiceSearchFeedback001.png in Resources */,
 				C7B00BD81C5F26050010F93B /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
 				0A67B21D1C0D63B300FB87C8 /* 0.jpg in Resources */,
@@ -8656,8 +8648,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8683,7 +8675,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "292d05f5-7530-45b7-b20b-43edcc2be8ba";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8694,8 +8686,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8721,7 +8713,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "292d05f5-7530-45b7-b20b-43edcc2be8ba";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

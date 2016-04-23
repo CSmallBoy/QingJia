@@ -157,16 +157,22 @@
         // [self requestImageUpload];
     }else
     {
-        if (IsEmpty(_single)) {
+        if ([_single isEqualToString:@"评论单图"]) {
             
-            [self requestEditComment];
-        }else if (IsEmpty(_all_coment_to))
-        {
             
-        }
-        else{
             //单图评
             [self resquestCommentS];
+        }else if (IsEmpty(_all_coment_to)){
+            //所有的
+             [self requestEditComment];
+        }else {
+            //单图评
+            //[self resquestCommentS];
+            ///
+            
+            
+            
+           
         }
     }
     
@@ -197,6 +203,8 @@
 //单图的api
 -(void)resquestCommentS{
  //只有文字的时候上传
+    
+    
     NHCHomeSingleFigureApi *api  = [[NHCHomeSingleFigureApi alloc]init];
     HCHomeInfo *homeinfo = self.data[@"data"];
     api.TimeID = homeinfo.TimeID;

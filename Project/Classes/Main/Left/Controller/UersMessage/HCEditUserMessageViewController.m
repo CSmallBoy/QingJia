@@ -56,12 +56,15 @@
     Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"年龄",@"生日",@"属相",@"住址",@"公司",@"职业"],
                   @[@"绑定手机号"]];
     NSDictionary *dic = [readUserInfo getReadDic];
-    if (IsEmpty(dic[@"UserInf"][@"imageNames"])) {
-        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,@"XX",@"XXXX-XX-XX",_shuxiang,@"XXXXXXXXXXX",@"XXXXX",@"XXX"];
+    if (IsEmpty(dic[@"UserInf"][@"imageName"])) {
+        //为空的话数组之间的赋值要变的
+        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,@"XX",_birthday,_shuxiang,@"请输入住址",@"请输入公司",@"请输入职位"];
         arr2= @[arr,
                 @[@"181109722222"]];
     }else{
-       
+        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,@"XX",_birthday,_shuxiang,_adress,_copany,_professional];
+        arr2= @[arr,
+                @[@"181109722222"]];
     }
    
 
@@ -158,7 +161,22 @@
     if (indexPath.section == 0 ) {
         if (indexPath.row == 0) {
             UIImageView *headImage = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-50, 2, 40, 40)];
-            headImage.image = choose;
+            if (IsEmpty(_headimage)) {
+                //这个88 代表的是 宽度 和 高度 就是小差
+                if (choose.size.width==88) {
+                    
+                }else{
+                    headImage.image = choose;
+                }
+            }else{
+                if (choose.size.width==88) {
+                    [headImage sd_setImageWithURL:[readUserInfo url:_headimage :kkUser]];
+                }else{
+                    headImage.image = choose;
+                }
+            }
+            
+          
             [cell addSubview:headImage];
         }
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(12, 10, 50, 20)];

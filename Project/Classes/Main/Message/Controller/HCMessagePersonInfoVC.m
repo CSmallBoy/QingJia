@@ -10,7 +10,8 @@
 #import "AddFriendCell.h"
 #import "InvitationManager.h"
 #import "HCAddFriendTableViewCell.h"
-
+//获取个人信息
+#import "NHCMessageSearchUserApi.h"
 @interface HCMessagePersonInfoVC ()
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @end
@@ -73,11 +74,9 @@
     button.frame = CGRectMake(20, 40, WIDTH(self.view)-40, 40);
     ViewRadius(button, 3);
     [button addTarget:self action:@selector(clickAdd) forControlEvents:UIControlEventTouchUpInside];
-    
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH(self.view), 80)];
     footerView.backgroundColor = CLEARCOLOR;
     [footerView addSubview:button];
-    
     return (section == 0) ? nil : footerView;
 }
 
@@ -170,7 +169,7 @@
                                  message:messageStr];
     }
 }
-//f
+//发送请求
 - (void)sendFriendApplyAtIndexPath:(NSIndexPath *)indexPath
                            message:(NSString *)message
 {
@@ -178,17 +177,22 @@
     if (buddyName && buddyName.length > 0)
     {
         [self showHudInView:self.view hint:NSLocalizedString(@"friend.sendApply", @"sending application...")];
-        EMError *error;
-        [[EaseMob sharedInstance].chatManager addBuddy:buddyName message:message error:&error];
-        [self hideHud];
-        if (error)
-        {
-            [self showHint:NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again")];
-        }
-        else
-        {
-            [self showHint:NSLocalizedString(@"添加信息已发送", @"send successfully")];
-        }
+        __block EMError *error;
+        NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
+        api.UserChatID = buddyName;
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
+            [[EaseMob sharedInstance].chatManager addBuddy:chatUserName message:message error:&error];
+            [self hideHud];
+            if (error)
+            {
+                [self showHint:NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again")];
+            }
+            else
+            {
+                [self showHint:NSLocalizedString(@"添加信息已发送", @"send successfully")];
+            }
+        }];
+    
     }
 }
 

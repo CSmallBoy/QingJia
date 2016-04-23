@@ -33,7 +33,7 @@
 }
 
 @property (nonatomic, strong) NSString *start;
-
+@property (nonatomic, assign) NSIndexPath *inter;
 @property (nonatomic, strong) HCWelcomeJoinGradeViewController *welcomJoinGrade;
 
 @end
@@ -55,6 +55,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
+    //_inter = 999999;
 
 }
 
@@ -75,6 +76,14 @@
     cell.indexPath = indexPath;
     cell.delegate = self;
     HCHomeInfo *info = self.dataSource[indexPath.section];
+    if (IsEmpty(_inter)) {
+        
+    }else{
+        if (indexPath.section == _inter.section) {
+            info.isLike = @"1";
+        }
+    }
+    
     cell.info = info;
     return cell;
 }
@@ -282,14 +291,18 @@
 // 请求点赞
 - (void)requestLikeCount:(HCHomeInfo *)info indexPath:(NSIndexPath *)indexPath
 {
+    _inter = indexPath;
     NHCHomeLikeApi *api = [[NHCHomeLikeApi alloc]init];
     api.TimeID = info.TimeID;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        
         if (requestStatus == 401) {
             [self showHUDText:@"您已经点过赞了,请刷新"];
+            
         }
-        //暂时  不对  一会修改
-       //[self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        //有问题暂时先不改
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+       
     }];
   
 //    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];

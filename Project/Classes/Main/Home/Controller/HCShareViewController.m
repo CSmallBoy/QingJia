@@ -63,7 +63,6 @@
 {
     [self shareTentceWithTypes:@[UMShareToWechatTimeline] content:@"M-talk" imageName:@"landingpage_Background" location:nil urlResource:nil];
 }
-
 //腾讯微博
 - (IBAction)tengxunweiboBtn:(UIButton *)sender
 {

@@ -73,7 +73,7 @@
         [self.delegate hchomeDetailCommentTableViewCellCommentButton];
     }else{
         NSLog(@"触发了");
-        //这个地方触发   弹出评论
+        //这个地方触发   弹出回复评论
         [self commentSingle];
     }
 

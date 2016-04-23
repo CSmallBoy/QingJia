@@ -13,36 +13,21 @@
     [super startRequest:requestBlock];
 }
 -(NSString *)requestUrl{
-    // 时光列表
+   
     return @"Chat/searchUser.do";
 }
 -(id)requestArgument{
-    NSDictionary *dict = [readUserInfo getReadDic];
-    NSString *str;
-    if (IsEmpty(dict[@"UserInf"][@"createFamilyId"])) {
-        if (IsEmpty(dict[@"UserInf"][@"allFamilyIds"])) {
-            str = @"0";
-        }else{
-            str = dict[@"UserInf"][@"allFamilyIds"];
-        }
-    }else{
-        str = dict[@"UserInf"][@"createFamilyId"];
-    }
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-    //    NSDictionary *para = @{@"rangeType":@"0",
-    //                           @"start":@"0",
-    //                           @"count":@"10",
-    //                           @"rangeId":str};
-    NSDictionary *para = @{@"key":@"123434"};
+    NSDictionary *para = @{@"key":_UserChatID};
     
     
     return @{@"Head":head,@"Para":para};
 }
 
 -(id)formatResponseObject:(id)responseObject{
-
-    return responseObject;
+    NSString *str = responseObject[@"Data"][@"UserInf"][@"chatName"];
+    return str;
 }
 @end
