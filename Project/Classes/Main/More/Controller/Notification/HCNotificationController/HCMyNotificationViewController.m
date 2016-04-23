@@ -18,9 +18,6 @@
 #import "HCNotificationMessageCallCell.h"
 
 
-#import "HCNotificationDeleteApi.h"
-#import "HCNotificationUnreadChangeApi.h"
-
 #import "HCNotificationCenterInfo.h"
 #import "HCNotifcationMessageInfo.h"
 
@@ -296,7 +293,7 @@
         
         if (requestStatus == HCRequestStatusSuccess) {
             
-            NSLog(@"与我相关列表获取成功");
+            NSLog(@"--------------与我相关列表获取成功------------");
             
         }
         

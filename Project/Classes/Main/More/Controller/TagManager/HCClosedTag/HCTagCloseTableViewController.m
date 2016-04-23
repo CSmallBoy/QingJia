@@ -28,15 +28,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self requestHomeData];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCTagManagerTableViewCell class] forCellReuseIdentifier:activatedcell];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"requestData" object:nil];
 
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [self requestHomeData];
 }
 
 #pragma mark---UITableViewDelegate
@@ -111,6 +109,7 @@
     NSArray *tagIdArr = info.tagIDArr;
     
     HCTagManagerDetailViewController *detailVC = [[HCTagManagerDetailViewController alloc]init];
+    detailVC.isStop = YES;
     detailVC.tagID = tagIdArr[tag];
     detailVC.index = index;
     [self.navigationController pushViewController:detailVC animated:YES];

@@ -109,7 +109,10 @@
     
     if (indexPath.section ==0) {
         
-        [cell.contentView addSubview:self.headImg];
+        NSURL *url = [readUserInfo originUrl:self.info.imageName :kkFamail];
+        [self.headImg sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
+        
+        [cell.contentView addSubview:self.headImg]; 
         [cell.contentView addSubview:self.familyNickNameLabel];
     }else if (indexPath.section ==1 && indexPath.row == 0) {
         

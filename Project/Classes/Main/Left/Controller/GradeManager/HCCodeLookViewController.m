@@ -144,7 +144,7 @@
     if (!_classImgView)
     {
         _classImgView = [[UIImageView alloc] initWithFrame:CGRectMake(25, 15, WIDTH(self.contentView)*0.3, WIDTH(self.view)*0.16)];
-        _classImgView.image = OrigIMG(@"head.jpg");
+        _classImgView.image = self.data[@"image"];
         ViewRadius(_classImgView, 3);
     }
     return _classImgView;

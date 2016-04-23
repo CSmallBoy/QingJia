@@ -50,16 +50,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
     [self setupBackItem];
     _info = self.data[@"data"];
     self.tableView.tableHeaderView = self.headerView;
     self.title = @"标签详情";
     [self.tableView registerClass:[HCTagDetailTableViewCell class] forCellReuseIdentifier:TagManagerDetailCell];
-    UIBarButtonItem *add_bar_button = [[UIBarButtonItem alloc]initWithImage:IMG(@"导航条－inclass_Plus") style:UIBarButtonItemStylePlain target:self action:@selector(add_click)];
-    ool = YES;
-    self.navigationItem.rightBarButtonItem = add_bar_button;
+    if (_isStop) {
+        
+        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"已停用" style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.rightBarButtonItem = item;
+    }
+    else
+    {
+        UIBarButtonItem *add_bar_button = [[UIBarButtonItem alloc]initWithImage:IMG(@"导航条－inclass_Plus") style:UIBarButtonItemStylePlain target:self action:@selector(add_click)];
+        ool = YES;
+        self.navigationItem.rightBarButtonItem = add_bar_button;
+    }
+    
+    
     
 }
 
@@ -196,6 +204,9 @@
 //编辑标签
 -(void)editingClick{
     
+    [button2 removeFromSuperview];
+    [button_view removeFromSuperview];
+    
     HCAddTagUserController *editVC = [[HCAddTagUserController alloc]init];
     editVC.data = @{@"info":self.info};
     editVC.isEdit = YES;
@@ -293,6 +304,7 @@
         if (requestStatus == HCRequestStatusSuccess) {
             
             [self.navigationController popViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"requestData" object:nil];
         }
         
     }];

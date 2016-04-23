@@ -8,7 +8,7 @@
 
 #import "HCRequest.h"
 
-//
+// ------------------信息中心列表--------------------------
 typedef void(^HCMessageCenterListBlock) (HCRequestStatus requestStatus,NSString *message,id respone);
 
 @interface HCMessageCenterListApi : HCRequest

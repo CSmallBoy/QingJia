@@ -17,9 +17,8 @@
 #import "HCMyNotificationCenterTableViewCell.h"
 
 #import "HCNotificationCenterInfo.h"
+#import "HCMySaveListApi.h"
 
-
-#import "HCNotificationDeleteApi.h"
 
 @interface HCSaveNotificationViewController ()<UISearchBarDelegate,SCSwipeTableViewCellDelegate>
 {
@@ -308,7 +307,20 @@
 
 - (void)requestData
 {
-
+    HCMySaveListApi *api = [[HCMySaveListApi alloc]init];
+    
+    api.key = @"";
+    api._start = @"0";
+    api._count = @"20";
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+       
+        if (requestStatus == HCRequestStatusSuccess) {
+            
+            NSLog(@"----------------我的收藏列表获取成功------------");
+        }
+        
+    }];
 
 
 }
