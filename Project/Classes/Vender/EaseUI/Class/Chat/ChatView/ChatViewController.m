@@ -255,9 +255,17 @@
         model.avatarImage = image.image;
         model.nickname = @"曹思远";
     }else{
-        
-        model.avatarImage = IMG(@"2.jpg");
-        model.nickname = @"大哥哥";
+        NSLog(@"%@",model.message.from);
+        //model.message.from
+        NHCChatUserInfoApi *Api = [[NHCChatUserInfoApi alloc]init];
+        Api.chatName = [model.message.from stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+        [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+            model.nickname = dict[@"nickName"];
+            UIImageView *image = [[UIImageView alloc]init];
+            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+            model.avatarImage = image.image;
+        }];
+       
     }
     UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.nickname];
     if (profileEntity) {

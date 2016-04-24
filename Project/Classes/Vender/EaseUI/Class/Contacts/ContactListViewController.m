@@ -60,7 +60,8 @@
     [self reloadDataSource];
     // 环信UIdemo中有用到Parse, 加载用户好友个人信息
     [[UserProfileManager sharedInstance] loadUserProfileInBackgroundWithBuddy:self.contactsSource saveToLoacal:YES completion:NULL];
-    
+    self.showRefreshFooter = NO;
+    self.showRefreshHeader = NO;
     self.tableView.tableHeaderView = self.searchBar;
     [self tableViewDidTriggerHeaderRefresh];
     
@@ -197,21 +198,14 @@
 {
     NSString *CellIdentifier = [EaseUserCell cellIdentifierWithModel:nil];
     EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     if (cell == nil)
     {
         cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     if (indexPath.section == 0)
     {
-        cell.model = nil;
         if (indexPath.row == 0)
         {
-            NSString *CellIdentifier = @"addFriend";
-            EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
             cell.avatarView.image = [UIImage imageNamed:@"newFriends"];
             cell.titleLabel.text = NSLocalizedString(@"title.apply", @"Application and notification");
             cell.avatarView.badge = self.unapplyCount;
@@ -244,13 +238,9 @@
             model.avatarImage = image.image;
             cell.model = model;
         }];
-      
-            cell.indexPath = indexPath;
-            cell.delegate = self;
-            
+        cell.indexPath = indexPath;
+        cell.delegate = self;
 
-       
-        
     }
     
     return cell;

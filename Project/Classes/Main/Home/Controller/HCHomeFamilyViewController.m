@@ -29,7 +29,10 @@
 
 @interface HCHomeFamilyViewController ()<HCHomeTableViewCellDelegate>{
     NSMutableArray *arr_image_all;
+    //下拉加载 用到的m
     int m;
+
+    
 }
 
 @property (nonatomic, strong) NSString *start;
@@ -55,13 +58,13 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
-    //_inter = 999999;
 
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     m = 0;
+    _inter=nil;
     [super viewWillAppear:animated];
     [self requestHomeData];
     [self.tableView reloadData];
@@ -83,7 +86,6 @@
             info.isLike = @"1";
         }
     }
-    
     cell.info = info;
     return cell;
 }
@@ -151,7 +153,6 @@
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath functionIndex:(NSInteger)index
 {
     HCHomeInfo *info = self.dataSource[indexPath.section];
-
     if (index == 2)
     {
         //评论界面
@@ -168,8 +169,7 @@
             UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
         }
         [rootController presentViewController:editComment animated:YES completion:nil];
-    }else if (index == 1)
-    {
+    }else if (index == 1){
         HCShareViewController  *shareVC = [[HCShareViewController alloc] init];
         [self presentViewController:shareVC animated:YES completion:nil];
     }else if (index == 0)
@@ -292,6 +292,7 @@
 - (void)requestLikeCount:(HCHomeInfo *)info indexPath:(NSIndexPath *)indexPath
 {
     _inter = indexPath;
+    
     NHCHomeLikeApi *api = [[NHCHomeLikeApi alloc]init];
     api.TimeID = info.TimeID;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
@@ -300,7 +301,7 @@
             [self showHUDText:@"您已经点过赞了,请刷新"];
             
         }
-        //有问题暂时先不改
+       
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
        
     }];

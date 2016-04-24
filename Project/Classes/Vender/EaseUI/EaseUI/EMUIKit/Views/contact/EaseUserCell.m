@@ -11,7 +11,7 @@
 #import "EaseImageView.h"
 #import "EMBuddy.h"
 #import "UIImageView+EMWebCache.h"
-
+#import "NHCChatUserInfoApi.h"
 CGFloat const EaseUserCellPadding = 10;
 
 @interface EaseUserCell()
@@ -122,11 +122,6 @@ CGFloat const EaseUserCellPadding = 10;
     {
        self.titleLabel.text = _model.buddy.username;
     }
-    //昵称设置
-    //根据chatid   网络请求 查询到手机号  或者是用户昵称  然后在赋值
-    //self.titleLabel.text = @"123";
-    
-    
     
    
     if ([_model.avatarURLPath length] > 0)

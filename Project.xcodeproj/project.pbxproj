@@ -560,7 +560,6 @@
 		C75EFD771CB939EF008C4C52 /* NHCHomeCommentsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C75EFD761CB939EF008C4C52 /* NHCHomeCommentsApi.m */; };
 		C75F8A821CC87E4500AB7975 /* NHCChatUserInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C75F8A811CC87E4500AB7975 /* NHCChatUserInfoApi.m */; };
 		C75F8A851CC8CB9F00AB7975 /* NHCChatUserIfoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C75F8A841CC8CB9F00AB7975 /* NHCChatUserIfoListApi.m */; };
-		C75F8A881CC90E8000AB7975 /* NHCtext.m in Sources */ = {isa = PBXBuildFile; fileRef = C75F8A871CC90E8000AB7975 /* NHCtext.m */; };
 		C762D1661CA53660006D2BB4 /* MyselfInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C762D1651CA53660006D2BB4 /* MyselfInfoModel.m */; };
 		C7692F561C3A4B2200582A10 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F511C3A4B2200582A10 /* MDCFocalPointView.m */; };
 		C7692F571C3A4B2200582A10 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7692F531C3A4B2200582A10 /* MDCFocusView.m */; };
@@ -761,7 +760,6 @@
 		C7B00B4E1C5F26050010F93B /* PublicGroupListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B0091D1C5F26040010F93B /* PublicGroupListViewController.m */; };
 		C7B00B4F1C5F26050010F93B /* ChatroomDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B009201C5F26040010F93B /* ChatroomDetailViewController.m */; };
 		C7B00B501C5F26050010F93B /* ChatroomListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B009221C5F26040010F93B /* ChatroomListViewController.m */; };
-		C7B00B511C5F26050010F93B /* MyChatroomListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B009241C5F26040010F93B /* MyChatroomListViewController.m */; };
 		C7B00B521C5F26050010F93B /* ContactListSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B009271C5F26040010F93B /* ContactListSelectViewController.m */; };
 		C7B00B531C5F26050010F93B /* ContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B009291C5F26040010F93B /* ContactListViewController.m */; };
 		C7B00B541C5F26050010F93B /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B0092C1C5F26040010F93B /* AddFriendCell.m */; };
@@ -2197,8 +2195,6 @@
 		C75F8A811CC87E4500AB7975 /* NHCChatUserInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCChatUserInfoApi.m; sourceTree = "<group>"; };
 		C75F8A831CC8CB9F00AB7975 /* NHCChatUserIfoListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCChatUserIfoListApi.h; sourceTree = "<group>"; };
 		C75F8A841CC8CB9F00AB7975 /* NHCChatUserIfoListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCChatUserIfoListApi.m; sourceTree = "<group>"; };
-		C75F8A861CC90E8000AB7975 /* NHCtext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCtext.h; sourceTree = "<group>"; };
-		C75F8A871CC90E8000AB7975 /* NHCtext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCtext.m; sourceTree = "<group>"; };
 		C762D1641CA53660006D2BB4 /* MyselfInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfInfoModel.h; sourceTree = "<group>"; };
 		C762D1651CA53660006D2BB4 /* MyselfInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfInfoModel.m; sourceTree = "<group>"; };
 		C7692F501C3A4B2200582A10 /* MDCFocalPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocalPointView.h; sourceTree = "<group>"; };
@@ -2591,7 +2587,6 @@
 		C7B009211C5F26040010F93B /* ChatroomListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatroomListViewController.h; sourceTree = "<group>"; };
 		C7B009221C5F26040010F93B /* ChatroomListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatroomListViewController.m; sourceTree = "<group>"; };
 		C7B009231C5F26040010F93B /* MyChatroomListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyChatroomListViewController.h; sourceTree = "<group>"; };
-		C7B009241C5F26040010F93B /* MyChatroomListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyChatroomListViewController.m; sourceTree = "<group>"; };
 		C7B009261C5F26040010F93B /* ContactListSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListSelectViewController.h; sourceTree = "<group>"; };
 		C7B009271C5F26040010F93B /* ContactListSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListSelectViewController.m; sourceTree = "<group>"; };
 		C7B009281C5F26040010F93B /* ContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListViewController.h; sourceTree = "<group>"; };
@@ -5009,8 +5004,6 @@
 				C752A8781CB4FE33006719F1 /* userApi */,
 				C7B90BDA1CA4E4710022C60C /* family */,
 				C73C0B7D1CA27B830034E42E /* login */,
-				C75F8A861CC90E8000AB7975 /* NHCtext.h */,
-				C75F8A871CC90E8000AB7975 /* NHCtext.m */,
 			);
 			name = newjiekou;
 			sourceTree = "<group>";
@@ -6324,7 +6317,6 @@
 				C7B009211C5F26040010F93B /* ChatroomListViewController.h */,
 				C7B009221C5F26040010F93B /* ChatroomListViewController.m */,
 				C7B009231C5F26040010F93B /* MyChatroomListViewController.h */,
-				C7B009241C5F26040010F93B /* MyChatroomListViewController.m */,
 			);
 			path = Chatroom;
 			sourceTree = "<group>";
@@ -7822,7 +7814,6 @@
 				8D0AE5BE1CBDF75A00E97D7D /* HCTagContactPersonCell.m in Sources */,
 				0A2B46F11C7F12AF00AAA157 /* HCEditCommentView.m in Sources */,
 				0A54917E1C2BC32D0085F50D /* ZXRSSExpandedDecodedChar.m in Sources */,
-				C7B00B511C5F26050010F93B /* MyChatroomListViewController.m in Sources */,
 				0A54916E1C2BC32D0085F50D /* ZXMaxiCodeReader.m in Sources */,
 				8D05FF6E1CB39EB1005AC51C /* HCMTalkApplyAfterSaleController.m in Sources */,
 				0A2B47641C7F12C800AAA157 /* HCChangePwdApi.m in Sources */,
@@ -7845,7 +7836,6 @@
 				C78D7B1F1C5F28F700622CE2 /* HCTimeViewController.m in Sources */,
 				0A5491071C2BC32D0085F50D /* ZXAztecSimpleToken.m in Sources */,
 				0A5491031C2BC32D0085F50D /* ZXAztecBinaryShiftToken.m in Sources */,
-				C75F8A881CC90E8000AB7975 /* NHCtext.m in Sources */,
 				0A2B46EF1C7F12AF00AAA157 /* HCHomeInfo.m in Sources */,
 				0A54915E1C2BC32D0085F50D /* ZXDataMatrixBase256Encoder.m in Sources */,
 				C78D7C991C5F2C1200622CE2 /* UIView+SDExtension.m in Sources */,

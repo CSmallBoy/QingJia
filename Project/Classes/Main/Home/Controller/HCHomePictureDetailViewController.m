@@ -213,9 +213,7 @@
     NSInteger index = [self.data[@"index"] integerValue];
      imageView.contentMode = UIViewContentModeScaleAspectFill;
     NSString *image_url = info.FTImages[index];
-//    UIImage *image = [UIImage sd_imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info.FTImages[index]]]];
-//    _image = image;
-//    imageView.image = image;
+                                                
     [imageView sd_setImageWithURL:[readUserInfo originUrl:image_url :kkTimes] placeholderImage:IMG(@"1.png")];
     self.imageView = imageView;
     [self.tableView insertSubview:self.imageView atIndex:0];
@@ -284,6 +282,7 @@
     NHCHomeCommentListApi *api2 = [[NHCHomeCommentListApi alloc]init];
     int a = [self.data[@"index"] intValue];
     api2.TimeID = _info.TimeID;
+    //第几张图获取到的是第几张的评论列表
     api2.imageName = _info.FTImages[a];
     [api2 startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info) {
         [self hideHUDView];

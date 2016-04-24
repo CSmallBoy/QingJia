@@ -158,8 +158,6 @@
     }else
     {
         if ([_single isEqualToString:@"评论单图"]) {
-            
-            
             //单图评
             [self resquestCommentS];
         }else if (IsEmpty(_all_coment_to)){
@@ -168,10 +166,7 @@
         }else {
             //单图评
             //[self resquestCommentS];
-            ///
-            
-            
-            
+            // 下一种评论情况
            
         }
     }

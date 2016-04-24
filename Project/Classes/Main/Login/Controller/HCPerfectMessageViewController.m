@@ -114,39 +114,7 @@
 
     }];
     
-    
-    
-    
-//    HCPerfectMessageApi *api = [[HCPerfectMessageApi alloc] init];
-//    api.UserName = self.data[@"phonenumber"];
-//    api.Token = self.data[@"token"];
-//    api.TrueName = _nameTextField.text;
-//    api.UserPWD = _password.text;
-//    api.Address = [HCAppMgr manager].address;
-//    NSString *key = @"0";
-//    if (_womenBtn.selected)
-//    {
-//        key = @"1";
-//    }
-//    api.Sex = [HCDictionaryMgr getSexStringWithKey:key];
-//    
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self hideHUDView];
-//            
-//            [HCAccountMgr manager].loginInfo = loginInfo;
-//            
-//            [[HCAccountMgr manager] saveLoginInfoToDB];
-//            [HCAccountMgr manager].isLogined = YES;
-//            
-//            HCGradeViewController *grade = [[HCGradeViewController alloc] init];
-//            [self.navigationController pushViewController:grade animated:YES];
-//        }else
-//        {
-//            [self showHUDError:message];
-//        }
-//    }];
+
 }
 //创建时间选择器
 - (IBAction)CreatDatePicker:(UIButton *)sender {

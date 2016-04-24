@@ -49,7 +49,6 @@
     loginInfo.UUID = dic[@"UserInf"][@"uuid"];
     loginInfo.DefaultFamilyID = dic[@"UserInf"][@"defaultFamilyID"];
     loginInfo.Career = dic[@"UserInf"][@"career"];
-    
     loginInfo.chatName = dic[@"UserInf"][@"chatName"];
     loginInfo.chatPwd = dic[@"UserInf"][@"chatPwd"];
     loginInfo.allFamilyIds = dic[@"UserInf"][@"allFamilyIds"];

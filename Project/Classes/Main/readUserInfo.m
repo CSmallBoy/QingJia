@@ -130,7 +130,7 @@
     //先获取基本路径
     NSString * temp =NSTemporaryDirectory();
     //在获取文件路径
-    NSString *filePath = [temp stringByAppendingString:@"acchiver.plist"];
+    NSString *filePath = [temp stringByAppendingString:@"acchiver1.plist"];
     [data writeToFile:filePath atomically:YES];
 
 }
@@ -139,7 +139,7 @@
 {
     //获取本地路径
     NSString *temp =NSTemporaryDirectory();
-    NSString *filePath = [temp stringByAppendingString:@"acchiver.plist"];
+    NSString *filePath = [temp stringByAppendingString:@"acchiver1.plist"];
     //读文件
     NSLog(@"%@",filePath);
     NSData *data = [NSData dataWithContentsOfFile:filePath];

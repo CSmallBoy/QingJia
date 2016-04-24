@@ -45,7 +45,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headbuttonImage) name:@"changeUserPhoto" object:nil];
     //先判断本地有没有 没有 则是没有上传  自己手机上有没有
     if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
-        [_headButton setBackgroundImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
+        if (IsEmpty(_dict[@"PhotoStr"])) {
+            [_headButton setBackgroundImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
+        }else{
+            [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
+        }
     }else{
         //4.11日修改
         [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
@@ -290,12 +294,18 @@
 - (void)handleHeadButton
 {
     HCUserHeadImageViewController *headImage = [[HCUserHeadImageViewController alloc] init];
-    if (IsEmpty(str)) {
-//        headImage.head_image = [readUserInfo imageString:IMG(@"1.png")];
+    //这个地方需要改
+    if (IsEmpty(_dict[@"UserInf"][@"imageName"]))
+    {
+        if (IsEmpty(_dict[@"PhotoStr"])) {
+            headImage.head_image = [readUserInfo imageString:IMG(@"1.png")];
+        }else{
+            headImage.head_image = [readUserInfo getReadDic][@"PhotoStr"];
+        }
     }else{
-         headImage.head_image = [readUserInfo getReadDic][@"PhotoStr"];
+        headImage.head_image = [readUserInfo getReadDic][@"UserInf"][@"imageName"];
     }
-    headImage.head_image = [readUserInfo getReadDic][@"UserInf"][@"imageName"];
+   // headImage.head_image = [readUserInfo getReadDic][@"UserInf"][@"imageName"];
    
     [self.navigationController pushViewController:headImage animated:YES];
 }
