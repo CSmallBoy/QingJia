@@ -66,6 +66,11 @@ static NSString * const reuseIdentifier = @"FriendCell";
         NSURL *url = [readUserInfo originUrl:self.info.imageName :kkFamail];
         
         UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+        if (image == nil) {
+            
+            image = IMG(@"head.jpg");
+        }
+        
         vc.data = @{@"info":self.info,@"image":image};
     }else if (indexPath.section == 1 && indexPath.row == 0)
     {

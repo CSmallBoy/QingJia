@@ -10,26 +10,15 @@
 
 @interface HCPromisedCommentInfo : NSObject
 
-/**
- *  头像地址
- */
-@property (nonatomic,strong) NSString  *image;
-/**
- *  用户昵称
- */
-@property (nonatomic,strong) NSString  *nickName;
-/**
- *  发布时间
- */
-@property (nonatomic,strong) NSString  *time;
-/**
- *  评论内容
- */
-@property (nonatomic,strong) NSString  *comment;
-/**
- *  图片数组
- */
-@property (nonatomic,strong) NSArray   *imageArr;
-
-
+@property (nonatomic,strong) NSString *fromId;
+@property (nonatomic,strong) NSString *nickName;
+@property (nonatomic,strong) NSString *imageName;
+@property (nonatomic,strong) NSString *phoneNo;
+@property (nonatomic,strong) NSString *createLocation;
+@property (nonatomic,strong) NSString *imageNames;
+@property (nonatomic,strong) NSString *content;
+@property (nonatomic,strong) NSString *createTime;
+@property (nonatomic,strong) NSString *toId;
+@property (nonatomic,strong) NSString *toNickName;
+@property (nonatomic,strong) NSString *isScan;
 @end

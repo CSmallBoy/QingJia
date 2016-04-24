@@ -35,12 +35,22 @@
         HCTagContactInfo*info2 = self.ContractArr[1];
         
         NSMutableArray *arr  = [NSMutableArray array];
-        for (HCNewTagInfo *info in self.tagArr) {
+        NSString *str;
+        
+        if (self.tagArr.count>0) {
+            for (HCNewTagInfo *info in self.tagArr) {
+                
+                [arr addObject:info.labelId];
+            }
             
-            [arr addObject:info.labelId];
+          str = [arr componentsJoinedByString:@","];
+        }
+        else
+        {
+           str = @"";
         }
         
-        NSString *str = [arr componentsJoinedByString:@","];
+        
         NSDictionary *para = @{@"objectId":self.info.objectId,
                                @"relation1":info1.relative,
                                @"contactorId1":info1.contactorId,
@@ -57,6 +67,9 @@
         
   
         
+        [Utils stringWithObject:@{@"Head":head,
+                                  @"Para":para}];
+        
         return @{@"Head":head,
                 @"Para":para};
         
@@ -64,14 +77,22 @@
     }
     else
     {
-        
         NSMutableArray *arr  = [NSMutableArray array];
-        for (HCNewTagInfo *info in self.tagArr) {
-            
-            [arr addObject:info.labelTitle];
-        }
+        NSString *str;
         
-        NSString *str = [arr componentsJoinedByString:@","];
+        if (self.tagArr.count>0) {
+            for (HCNewTagInfo *info in self.tagArr) {
+                
+                [arr addObject:info.labelId];
+            }
+            
+            str = [arr componentsJoinedByString:@","];
+        }
+        else
+        {
+            str = @"";
+        }
+
 
         NSDictionary *para = @{@"objectId ":self.info.objectId,
                                @"labelIds":str,

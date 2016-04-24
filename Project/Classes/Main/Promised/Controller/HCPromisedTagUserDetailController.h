@@ -10,7 +10,6 @@
 
 @interface HCPromisedTagUserDetailController : HCTableViewController
 
-@property (nonatomic,assign) BOOL  isEdit;
+@property (nonatomic,assign) BOOL isNewObject;
 
-@property (nonatomic,assign) BOOL isEditTag;
 @end

@@ -148,6 +148,28 @@
 
 - (void)requestCreateGrade
 {
+    
+    if (IsEmpty(self.image)) {
+        [self showHUDText:@"请上传递家庭图片"];
+        return;
+    }
+    if (IsEmpty(self.info.ancestralHome)) {
+        [self showHUDText:@"请输入祖籍"];
+        return;
+    }
+    if (IsEmpty(self.info.familyNickName)) {
+        [self showHUDText:@"请输入家庭昵称"];
+        return;
+    }
+    if (IsEmpty(self.info.familyDescription)) {
+        [self showHUDText:@"请输入家庭签名"];
+        return;
+    }
+    if (IsEmpty(self.info.contactAddr)) {
+        [self showHUDText:@"请输入家庭住址"];
+        return;
+    }
+    
      [self upLoadImage];
 }
 

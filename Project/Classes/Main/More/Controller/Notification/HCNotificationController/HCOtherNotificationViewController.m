@@ -22,6 +22,8 @@
 #import "HCSaveCallApi.h"
 #import "HCNewTagInfo.h"
 
+#import "MJRefresh.h"
+
 @interface HCOtherNotificationViewController ()<UISearchBarDelegate,SCSwipeTableViewCellDelegate>
 {
     NSMutableArray *btnArr;
@@ -47,6 +49,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
 
+     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
 
     
 }
@@ -329,7 +332,7 @@
                 [self.dataSource addObject:info];
                 
             }
-            
+            [self.tableView.mj_header endRefreshing];
             [self.tableView reloadData];
             NSLog(@"-----------------信息中心列表获取成功--------------------")
         }

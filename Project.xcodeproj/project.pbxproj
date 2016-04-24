@@ -398,6 +398,7 @@
 		8D05FF7E1CB39EB1005AC51C /* HCReceiveAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D05FF681CB39EB1005AC51C /* HCReceiveAddressController.m */; };
 		8D05FF7F1CB39EB1005AC51C /* HCSureTheOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D05FF6A1CB39EB1005AC51C /* HCSureTheOrderController.m */; };
 		8D05FF801CB39EB1005AC51C /* HCProductionCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D05FF6C1CB39EB1005AC51C /* HCProductionCenterController.m */; };
+		8D091FAC1CCC8B6A00FA2EA7 /* HCScanApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D091FAB1CCC8B6A00FA2EA7 /* HCScanApi.m */; };
 		8D0AB98F1C9BD34F00DDAB7D /* HCMyOrderFollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AB98E1C9BD34F00DDAB7D /* HCMyOrderFollowCell.m */; };
 		8D0AB9D41C9C095E00DDAB7D /* segmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AB9D31C9C095E00DDAB7D /* segmentCell.m */; };
 		8D0ACCED1C75C00C008A8A55 /* higlightedBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D0ACCE91C75C00C008A8A55 /* higlightedBarBackground@2x.png */; };
@@ -1881,6 +1882,8 @@
 		8D05FF6A1CB39EB1005AC51C /* HCSureTheOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSureTheOrderController.m; sourceTree = "<group>"; };
 		8D05FF6B1CB39EB1005AC51C /* HCProductionCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCProductionCenterController.h; sourceTree = "<group>"; };
 		8D05FF6C1CB39EB1005AC51C /* HCProductionCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCProductionCenterController.m; sourceTree = "<group>"; };
+		8D091FAA1CCC8B6A00FA2EA7 /* HCScanApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCScanApi.h; sourceTree = "<group>"; };
+		8D091FAB1CCC8B6A00FA2EA7 /* HCScanApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCScanApi.m; sourceTree = "<group>"; };
 		8D0AB98D1C9BD34F00DDAB7D /* HCMyOrderFollowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyOrderFollowCell.h; sourceTree = "<group>"; };
 		8D0AB98E1C9BD34F00DDAB7D /* HCMyOrderFollowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMyOrderFollowCell.m; sourceTree = "<group>"; };
 		8D0AB9D21C9C095E00DDAB7D /* segmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = segmentCell.h; sourceTree = "<group>"; };
@@ -3328,6 +3331,8 @@
 				8D105E2F1CCB63FD004BD80D /* HCGetMedicalApi.m */,
 				8D105E341CCB6D7A004BD80D /* HCCommentListApi.h */,
 				8D105E351CCB6D7A004BD80D /* HCCommentListApi.m */,
+				8D091FAA1CCC8B6A00FA2EA7 /* HCScanApi.h */,
+				8D091FAB1CCC8B6A00FA2EA7 /* HCScanApi.m */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -8350,6 +8355,7 @@
 				C7B00B4C1C5F26050010F93B /* GroupSubjectChangingViewController.m in Sources */,
 				0A54912B1C2BC32D0085F50D /* ZXVCardResultParser.m in Sources */,
 				C7B00B8F1C5F26050010F93B /* UIButton+EMWebCache.m in Sources */,
+				8D091FAC1CCC8B6A00FA2EA7 /* HCScanApi.m in Sources */,
 				8D97904F1CB3A05D00FE3C12 /* HCMTalkAfterSaleCell.m in Sources */,
 				8D1590601CB6652300B08BDC /* sigleFamilyMessage.m in Sources */,
 				C78D7AEE1C5F28F700622CE2 /* HClassCalendarViewController.m in Sources */,

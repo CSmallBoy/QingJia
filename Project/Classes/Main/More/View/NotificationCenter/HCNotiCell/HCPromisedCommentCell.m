@@ -23,6 +23,7 @@
 @property (nonatomic,strong) UIButton  *button1;
 @property (nonatomic,strong) UIButton  *button2;
 @property (nonatomic,strong) UIButton  *button3;
+@property (nonatomic,strong) UITextField  *redTextField;
 @end
 
 
@@ -57,6 +58,7 @@
     [self addSubview:self.button1];
     [self addSubview:self.button2];
     [self addSubview:self.button3];
+    [self addSubview:self.redTextField];
 
 }
 //点击了头像
@@ -85,10 +87,10 @@
     self.nickLabel.text = commnetFrameInfo.commentInfo.nickName;
     
     self.timeLabel.frame = commnetFrameInfo.timeLabelFrame;
-    self.timeLabel.text = commnetFrameInfo.commentInfo.time;
+    self.timeLabel.text = commnetFrameInfo.commentInfo.createTime;
     
     self.commentLabel.frame = commnetFrameInfo.commentLabelFrame;
-    self.commentLabel.text = commnetFrameInfo.commentInfo.comment;
+    self.commentLabel.text = commnetFrameInfo.commentInfo.content;
     
     self.button1.frame = commnetFrameInfo.button1Frame;
 
@@ -97,6 +99,8 @@
 
     
     self.button3.frame = commnetFrameInfo.button3Frame;
+    
+    self.redTextField.frame = commnetFrameInfo.readTextFildFrame;
 
 
 }
@@ -127,8 +131,6 @@
 - (UILabel *)commentLabel
 {
     if(!_commentLabel){
-        
-//        commentRect  = [self.commnetInfo.comment boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.1+20, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12],NSForegroundColorAttributeName : [UIColor grayColor]} context:nil];
         
         _commentLabel = [[UILabel alloc]init];
         _commentLabel.font = [UIFont systemFontOfSize:12];
@@ -177,5 +179,19 @@
     }
     return _button3;
 }
+
+
+
+- (UITextField *)redTextField
+{
+    if(!_redTextField){
+        _redTextField = [[UITextField alloc]init];
+        _redTextField.layer.borderWidth = 1;
+        _redTextField.layer.borderColor = kHCNavBarColor.CGColor;
+        _redTextField.placeholder = @"评论";
+    }
+    return _redTextField;
+}
+
 
 @end
