@@ -272,6 +272,28 @@
 
 -(void)sendRequestData
 {
+    
+    if (IsEmpty(self.image)) {
+        
+        [self showHUDText:@"请点击上传走失时的图片"];
+        return;
+    }
+    if (IsEmpty(self.textField1.text)) {
+        
+        [self showHUDText:@"请输入走失时间"];
+        return;
+    }
+    if (IsEmpty(self.textField2.text)) {
+        
+        [self showHUDText:@"请输入走失地点"];
+        return;
+    }
+    if (IsEmpty(self.textView.text)) {
+        [self showHUDText:@"请输入走失描述"];
+        return;
+    }
+    
+    
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
     NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkUser,uuid,token]];
@@ -312,6 +334,9 @@
                 UIViewController *vc= self.navigationController.viewControllers[0];
                 [self.navigationController popToViewController:vc animated:YES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"show" object:nil];
+                
+                [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"showRadar"];// 发呼成功显示雷达效果
+                
                 NSLog(@"发呼应成功");
             }
             

@@ -9,6 +9,7 @@
 #import "HCOtherPromisedDetailController.h"
 #import "HCNotificationHeadImageController.h"
 #import "HCPromisedCommentController.h"
+#import "HCPromisedCommentController.h"
 #import "HCMedicalViewController.h"
 #import "HCPromisedReportController.h"
 
@@ -80,8 +81,12 @@
     // 导航栏上的加号“+”
     [self addItem];
     
-    NSURL *url = [readUserInfo originUrl:self.info.imageName :kkUser];
+    NSURL *url = [readUserInfo originUrl:self.info.lossImageName :kkUser];
     [self.imageView sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
+    
+    NSURL *url1 = [readUserInfo originUrl:self.info.imageName :kkUser];
+    UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url1]];
+    [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
     
 }
 
@@ -178,8 +183,9 @@
 
 -(void)SendMessage
 {
-    HCPromisedCommentController  *commentVC = [[HCPromisedCommentController alloc]init];
-    commentVC.data = @{@"info":self.info};
+
+    HCPromisedCommentController *commentVC = [[HCPromisedCommentController alloc]init];
+    commentVC.callId = self.info.callId;
     [self.navigationController pushViewController:commentVC animated:YES];
 }
 

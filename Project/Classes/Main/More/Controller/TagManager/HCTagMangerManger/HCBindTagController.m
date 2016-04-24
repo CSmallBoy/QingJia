@@ -166,6 +166,12 @@
 // 点击了确定按钮
 -(void)sureButtonClick:(UIBarButtonItem *)right
 {
+    if (self.image == nil) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"点击上传标签图片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+    
     [self upLoadImge];
 }
 
@@ -291,7 +297,7 @@
 {
     HCTagActivateApi *api = [[HCTagActivateApi alloc]init];
     
-    api.labelGuid = @"8f0a-4aed-0987";
+    api.labelGuid = @"8f0a-4aed-0000";
     api.imageName = self.imgStr;
     api.labelTitle = self.textField.text;
     api.objectId = self.seletedInfo.objectId;

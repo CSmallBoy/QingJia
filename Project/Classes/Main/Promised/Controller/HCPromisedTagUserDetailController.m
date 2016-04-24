@@ -66,14 +66,14 @@
     else
     {
          self.title = @"手动输入";
+        self.info = [[HCNewTagInfo alloc]init];
     }
     
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self setupBackItem];
     self.openHealthCard = @"1";
-    
-    HCNewTagInfo *info = self.data[@"info"];
-    info.openHealthCard = self.openHealthCard;
+
+    self.info.openHealthCard = self.openHealthCard;
     
 }
 
@@ -587,25 +587,102 @@
 -(void)nextBtnClick
 {
     
-    if (self.info) {
-        HCPromiedTagWhenMissController *vc = [[HCPromiedTagWhenMissController alloc]init];
-        vc.info = self.info;
-        vc.contactArr = self.selectArr;
-        vc.dataArr = self.tagArr;
-        [self.navigationController pushViewController:vc animated:YES];
+    if (IsEmpty(self.info.trueName)) {
+        [self showHUDText:@"请输入姓名"];
+        return;
     }
+    if (IsEmpty(self.info.sex)) {
+        [self showHUDText:@"请输入生日"];
+        return;
+    }
+    if (IsEmpty(self.info.homeAddress)) {
+        [self showHUDText:@"请输入住址"];
+        return;
+    }
+    if (IsEmpty(self.info.school)) {
+        [self showHUDText:@"请输入学校"];
+        return;
+    }
+    
+    if ([self.openHealthCard isEqualToString:@"1"]) {
+        
+        if (IsEmpty(self.info.height)) {
+            [self showHUDText:@"请输入身高"];
+            return;
+        }
+        if (IsEmpty(self.info.weight)) {
+            [self showHUDText:@"请输入体重"];
+            return;
+        }
+        if (IsEmpty(self.info.bloodType)) {
+            [self showHUDText:@"请输入血型"];
+            return;
+        }
+        if (IsEmpty(self.info.allergic)) {
+            [self showHUDText:@"请输入过敏史"];
+            return;
+        }
+        if (IsEmpty(self.info.cureCondition)) {
+            [self showHUDText:@"请输入医疗状况"];
+            return;
+        }
+        if (IsEmpty(self.info.cureNote)) {
+            [self showHUDText:@"请输入医疗笔记"];
+            return;
+        }
+    }
+        
+        if (_isNewObject) {
+            
+            // 新建对象
+            
+            if (self.selectArr.count != 2) {
+                
+                [self showHUDText:@"必须绑定连个紧急联系人"];
+                return;
+            }
+            HCTagAddObjectApi *api = [[HCTagAddObjectApi alloc]init];
+            
+            HCTagContactInfo *info1 =self.selectArr[0];
+            HCTagContactInfo *info2 = self.selectArr[1];
+            
+            self.info.relation1 = info1.relative;
+            self.info.contactorId1 = info1.contactorId;
+            
+            self.info.relation2 = info2.contactorId;
+            self.info.contactorId2 = info2.contactorId;
+            
+            api.info = self.info;
+            
+            api.openHealthCard = self.openHealthCard;
+            
+            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+                
+                if (requestStatus == HCRequestStatusSuccess) {
+                    [self showHUDText:@"添加标签使用者成功"];
+                    return ;
+                }
+                
+                HCPromisedMissMessageControll*vc = [[HCPromisedMissMessageControll alloc]init];
+                NSMutableArray *tagArr = [NSMutableArray array];
+                
+                vc.info = self.info;
+                vc.tagArr = tagArr;
+                vc.contactArr = self.contactArr;
+                [self.navigationController pushViewController:vc animated:YES];
+ 
+        }];
+        }
     else
     {
         
         if (self.selectArr.count== 2) {
-            
-            HCPromisedMissMessageControll*vc = [[HCPromisedMissMessageControll alloc]init];
-            NSMutableArray *tagArr = [NSMutableArray array];
-            
+            HCPromiedTagWhenMissController *vc = [[HCPromiedTagWhenMissController alloc]init];
             vc.info = self.info;
-            vc.tagArr = tagArr;
-            vc.contactArr = self.contactArr;
+            vc.contactArr = self.selectArr;
+            vc.dataArr = self.tagArr;
             [self.navigationController pushViewController:vc animated:YES];
+
             
         }
         else

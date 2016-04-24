@@ -42,17 +42,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserPhoto:) name:@"changeUserPhoto" object:nil];
     
     self = [super initWithFrame:frame];
-    //用户
-//    NHCDownloadImageApi *api = [[NHCDownloadImageApi alloc]init];
-//    api.type = @"0";//0 代表个人
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *photostr) {
-//        if (IsEmpty(photostr)) {
-//            [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
-//        }else{
-//            
-//        }
-//       
-//    }];
     
     if (self)
     {
@@ -88,23 +77,26 @@
             NSString *imgStrLogin = dict[@"UserInf"][@"imageName"];
             if (IsEmpty(imgStr) && IsEmpty(imgStrLogin)&&IsEmpty(dict[@"PhotoStr"])) {
                 
-                [_gradeHeadButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
+                [_gradeHeadButton setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
                 
             }else{
                 
                 if (!IsEmpty(imgStr)) {
                     NSURL *url = [readUserInfo originUrl:imgStr :kkUser];
-                    [_gradeHeadButton sd_setImageWithURL: url forState:UIControlStateNormal];
+                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                    [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
                 }
                 else if (!IsEmpty(dict[@"PhotoStr"]))
                 {
                     NSURL *url = [readUserInfo originUrl:dict[@"PhotoStr"] :kkUser];
-                    [_gradeHeadButton sd_setImageWithURL: url forState:UIControlStateNormal];
+                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                    [_gradeHeadButton  setBackgroundImage:image forState:UIControlStateNormal];
                 }
                 else
                 {
                     NSURL *url = [readUserInfo originUrl:imgStrLogin :kkUser];
-                    [_gradeHeadButton sd_setImageWithURL: url forState:UIControlStateNormal];
+                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                    [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
                    
                 }
             }
@@ -134,10 +126,13 @@
                 
                 if (dict[@"PhotoStr"]==nil) {
                     //没有图片的时候显示的默认头像
-                    [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
+                    [_gradeHeadButton  setBackgroundImage:IMG(@"1") forState:UIControlStateNormal];
                 }else{
                     
-                     [_gradeHeadButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
+                    NSURL *url =[readUserInfo url:dict[@"PhotoStr"] :kkUser];
+                    UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+                    
+                     [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
                 }
             }
         }
@@ -159,20 +154,21 @@
     if ((IsEmpty(str) || [str isKindOfClass:[NSURL class]])&& IsEmpty(strFamilyId))
     {
      
-        [self.gradeHeadButton setImage:image forState:UIControlStateNormal];
+        [self.gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
     
     }else
     {
          if (str.length == 10 )
          {
-         [self.headButton setImage:image forState:UIControlStateNormal];
+         [self.headButton setBackgroundImage: image forState:UIControlStateNormal];
          }
          else
          {
-         [self.gradeHeadButton setImage:image forState:UIControlStateNormal];
+         [self.gradeHeadButton setBackgroundImage: image forState:UIControlStateNormal];
          }
     
     }
+    
 }
 //家庭
 -(void)requestFamilyMessage
@@ -211,9 +207,13 @@
             ViewRadius(_gradeHeadButton, 5);
             if ([HCAccountMgr manager].familyInfo.imageName==nil) {
                 //没有图片的时候显示的默认头像
-                [_gradeHeadButton  setImage:IMG(@"1") forState:UIControlStateNormal];
+                [_gradeHeadButton  setBackgroundImage: IMG(@"1")forState:UIControlStateNormal];
             }else{
-                [_gradeHeadButton sd_setImageWithURL:[readUserInfo url:[HCAccountMgr manager].familyInfo.imageName :kkFamail] forState:UIControlStateNormal];
+                
+                NSURL *url = [readUserInfo url:[HCAccountMgr manager].familyInfo.imageName :kkFamail];
+                UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+                [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
+            
             }
             
             NSDictionary *dict = [readUserInfo getReadDic];
@@ -221,23 +221,27 @@
             NSString *imgStrLogin = dict[@"UserInf"][@"imageName"];
             if (IsEmpty(imgStr) && IsEmpty(imgStrLogin)&&IsEmpty(dict[@"PhotoStr"])) {
                 
-                [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
+                [_headButton setBackgroundImage: IMG(@"1.png") forState:UIControlStateNormal];
                 
             }else{
                 
                 if (!IsEmpty(imgStr)) {
                     NSURL *url = [readUserInfo originUrl:imgStr :kkUser];
-                    [_headButton sd_setImageWithURL: url forState:UIControlStateNormal];
+                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                    [_headButton setBackgroundImage:image forState:UIControlStateNormal];
                 }
                 else if (!IsEmpty(dict[@"PhotoStr"]))
                 {
                     NSURL *url = [readUserInfo originUrl:dict[@"PhotoStr"] :kkUser];
-                    [_headButton sd_setImageWithURL: url forState:UIControlStateNormal];
+                    
+                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                    [_headButton setBackgroundImage:image forState:UIControlStateNormal];
                 }
                 else
                 {
                     NSURL *url = [readUserInfo originUrl:imgStrLogin :kkUser];
-                    [_headButton sd_setImageWithURL: url forState:UIControlStateNormal];
+                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                    [_headButton setBackgroundImage:image forState:UIControlStateNormal];
                     
                 }
             }
@@ -254,7 +258,7 @@
         _gradeHeadButton.frame = CGRectMake(30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3);
         [_gradeHeadButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(_gradeHeadButton, 5);
-        [_gradeHeadButton sd_setImageWithURL:[NSURL URLWithString:@"http://xiaodaohang.cn/2.jpg"] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
+        [_gradeHeadButton setBackgroundImage:OrigIMG(@"publish_picture") forState:UIControlStateNormal];
     }
     return _gradeHeadButton;
 }
@@ -298,7 +302,7 @@
         _familyButton = [UIButton buttonWithType:UIButtonTypeCustom];
        [_familyButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         [_familyButton setTitle:@"我的家族" forState:UIControlStateNormal];
-        _familyButton.frame = CGRectMake(WIDTH(self)*0.2, HEIGHT(self)-130+30, 120, 40);
+        _familyButton.frame = CGRectMake(self.nickName.frame.origin.x+10, HEIGHT(self)-130+30, WIDTH(self)*0.7, 40);
         [_familyButton addSubview:self.setImgView2];
         _familyButton.tag = HCLeftGradeViewFamily;
     }
@@ -315,20 +319,7 @@
         _headButton.frame = CGRectMake(WIDTH(self)*0.2, 0, WIDTH(self)*0.3, WIDTH(self)*0.3);//WIDTH(self)*0.2, 0, 100, 100);//30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3
         ViewRadius(_headButton, WIDTH(self)*0.15);
         _headButton.center = CGPointMake(_headButton.center.x, self.center.y+30);
-    
-//        
-//        NSDictionary *dict = [readUserInfo getReadDic];
-//        
-//        if (IsEmpty(dict[@"UserInf"][@"imageName"])) {
-//            //没有图片的时候显示的默认头像
-//            [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
-//            
-//        }else{
-//            //4.11改
-//            
-//            [_headButton sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"]:kkUser] forState:UIControlStateNormal];
-//        }
-//       
+        [_headButton setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
     }
     return _headButton;
 }
@@ -360,7 +351,7 @@
         _sofewareSetBtn.tag = HCLeftGradeViewButtonTypeSoftwareSet;
         [_sofewareSetBtn addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         [_sofewareSetBtn setTitle:@"软件设置" forState:UIControlStateNormal];
-        _sofewareSetBtn.frame = CGRectMake(WIDTH(self)*0.2, HEIGHT(self)-70, 120, 40);
+        _sofewareSetBtn.frame = CGRectMake(self.nickName.frame.origin.x+10, HEIGHT(self)-70, WIDTH(self)*0.7, 40);
         [_sofewareSetBtn addSubview:self.setImgView];
     }
     return _sofewareSetBtn;
@@ -371,7 +362,7 @@
     if (!_setImgView)
     {
         _setImgView = [[UIImageView alloc] initWithImage:OrigIMG(@"Settings")];
-        _setImgView.frame = CGRectMake(0, 10, 20, 20);
+        _setImgView.frame = CGRectMake(WIDTH(self)*0.7/2-60, 10, 20, 20);
     }
     return _setImgView;
 }
@@ -380,7 +371,7 @@
     if (!_setImgView2)
     {
         _setImgView2 = [[UIImageView alloc] initWithImage:OrigIMG(@"Home")];
-        _setImgView2.frame = CGRectMake(0, 10, 20, 20);
+        _setImgView2.frame = CGRectMake(WIDTH(self)*0.7/2-60, 10, 20, 20);
     }
     return _setImgView2;
 }

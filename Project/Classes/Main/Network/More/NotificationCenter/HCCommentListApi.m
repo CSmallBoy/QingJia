@@ -27,9 +27,12 @@
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
 
-    NSDictionary *para = @{@"callId":_callId,
-                           @"start":__start,
-                           @"count":__count};
+    NSDictionary *para = @{@"callId":@"146139982051275",
+                           @"start":@"20",
+                           @"count":@"0"};
+    
+    [Utils stringWithObject:@{@"Head":head,
+                              @"Para":para}];
     
     return @{@"Head":head,
              @"Para":para};

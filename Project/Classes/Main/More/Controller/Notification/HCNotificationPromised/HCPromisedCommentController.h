@@ -10,4 +10,6 @@
 
 @interface HCPromisedCommentController : HCTableViewController
 
+@property (nonatomic,strong) NSString *callId;
+
 @end

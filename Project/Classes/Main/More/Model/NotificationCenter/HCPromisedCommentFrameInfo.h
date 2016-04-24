@@ -21,6 +21,8 @@
 @property (nonatomic,assign) CGRect  button2Frame;
 @property (nonatomic,assign) CGRect  button3Frame;
 
+@property (nonatomic,assign) CGRect  readTextFildFrame;
+
 @property(nonatomic,assign) CGFloat  cellHeight;
 
 @end

@@ -71,6 +71,18 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextOtherController:) name:@"ToNextOtherController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showRadarView) name:@"showRadarView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
+    
+    NSString *str  =  [[NSUserDefaults standardUserDefaults] objectForKey:@"showRadar"];
+    
+    if ([str isEqualToString:@"1"]) {
+        isShouldWhow = YES;
+    }
+    else
+    {
+        isShouldWhow = NO;
+    }
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated

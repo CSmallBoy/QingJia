@@ -21,6 +21,8 @@
 #import "HCAvatarMgr.h"
 #import "ZLPhotoAssets.h"
 
+#import "HCCommentListApi.h"
+
 @interface HCPromisedCommentController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 {
     NSInteger   _photoCount;
@@ -405,16 +407,54 @@
 
 -(void)requestData
 {
-    for (int i= 0; i<20; i++)
-    {
-        HCPromisedCommentFrameInfo *commentFrameInfo = [[HCPromisedCommentFrameInfo alloc]init];
-        HCPromisedCommentInfo *commentInfo = [[HCPromisedCommentInfo alloc]init];
-        commentInfo.nickName  = [NSString stringWithFormat:@"用户昵称%d",i ];
-        commentInfo.comment = @"我看到一个小孩子跟你描述的小孩子很像，在人民广场，你看看是不是你家小孩子";
-        commentInfo.time = @"一分钟前";
-        commentFrameInfo.commentInfo = commentInfo;
-        [self.dataSource addObject:commentFrameInfo];
-    }
+    HCCommentListApi *api = [[HCCommentListApi alloc]init];
+    api.callId = self.callId;
+    api._start = @"0";
+    api._count = @"20";
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+       
+        if (requestStatus == HCRequestStatusSuccess) {
+            
+            NSArray *array = respone[@"Data"][@"rows"];
+            
+            for (NSDictionary *dic in array) {
+                
+                 HCPromisedCommentFrameInfo *frameInfo = [[HCPromisedCommentFrameInfo alloc]init];
+                HCPromisedCommentInfo *info = [HCPromisedCommentInfo mj_objectWithKeyValues:dic];
+                frameInfo.commentInfo = info;
+                [self.dataSource addObject:frameInfo];
+                
+            }
+            [self.tableView reloadData];
+        }
+        
+    }];
+    
+    
+//    for (int i = 0; i<20; i++) {
+//         HCPromisedCommentFrameInfo *frameInfo = [[HCPromisedCommentFrameInfo alloc]init];
+//         HCPromisedCommentInfo *info = [[HCPromisedCommentInfo alloc]init];
+//        info.fromId = @"1111";
+//        info.nickName = @"昵称";
+//        info.imageName = @"0000";
+//        info.phoneNo = @"11111";
+//        info.createLocation = @"rdkfgj";
+//        info.imageNames = @"dfg";
+//        info.content = @"我看到你家的小孩，在人民广场";
+//        info.createTime = @"12123";
+//        info.toId = @"dfgdfg";
+//        info.toNickName = @"dfg";
+//        info.isScan = @"0";
+//        
+//        frameInfo.commentInfo = info;
+//        
+//        [self.dataSource addObject:frameInfo];
+//        
+//        
+//    }
+//    
+//    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
