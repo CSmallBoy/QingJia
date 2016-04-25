@@ -24,6 +24,7 @@
     if (IsEmpty(_imageNames)) {
         para = @{@"timesId":_Timesid,
                  @"content":_content,
+                 @"parentCommentId":@"0",
                  @"createLocation":@"30,118",
                  @"createAddrSmall":@"上海市,闵行区",
                  @"createAddr":@"郑州市,中原区,中原路路168号",
@@ -32,6 +33,7 @@
         para = @{@"timesId":_Timesid,
                  @"content":_content,
                  @"imageNames":_imageNames,
+                 @"parentCommentId":_parentCommentId,
                  @"createLocation":@"30,118",
                  @"createAddrSmall":@"上海市,闵行区",
                  @"createAddr":@"郑州市,中原区,中原路路168号",

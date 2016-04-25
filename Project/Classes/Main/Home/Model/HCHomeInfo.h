@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSString *ParentId;
 @property (nonatomic, strong) NSString *FTID;
 @property (nonatomic, strong) NSString *ItemId;
+//创建时光的人  就是userid
 @property (nonatomic, strong) NSString *creator;
 @property (nonatomic, strong) NSString *isLike;
 @property (nonatomic, strong) NSString *fromFamily;

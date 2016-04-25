@@ -14,8 +14,9 @@
 #import "HCHomeInfo.h"
 #import "HCHomeApi.h"
 #import "NHCListOfTimeAPi.h"
+#import "NHCMySelfTimeListApi.h"
 
-#define HCHomeUserTimeCell @"HCHomeUserTimeCell"
+#define HCHomeUserTimeCell @"HCHomeUserTimeCell2"
 
 @interface HCHomeUserTimeViewController ()<HCHomeTableViewCellDelegate>
 
@@ -55,7 +56,6 @@
     cell.indexPath = indexPath;
     HCHomeInfo *info = self.dataSource[indexPath.section];
     cell.info = info;
-    
     return cell;
 }
 
@@ -70,22 +70,40 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    CGFloat height = 60 + WIDTH(self.view)*0.15;
+//    
+//    HCHomeInfo *info = self.dataSource[indexPath.section];
+//    height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
+//    if (!IsEmpty(info.FTImages))
+//    {
+//        height = height + (WIDTH(self.view)-30)/3;
+//    }
+//    
+//    if (!IsEmpty(info.CreateAddrSmall))
+//    {
+//        height = height + 30;
+//    }
+//    return height;
+//    
     CGFloat height = 60 + WIDTH(self.view)*0.15;
-    
     HCHomeInfo *info = self.dataSource[indexPath.section];
-    
     height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
-    
     if (!IsEmpty(info.FTImages))
     {
-        height = height + (WIDTH(self.view)-30)/3;
+        if (info.FTImages.count < 5)
+        {
+            NSInteger row = ((int)info.FTImages.count/3) + 1;
+            height += WIDTH(self.view) * 0.33 * row;
+        }else
+        {
+            NSInteger row = ((int)MIN(info.FTImages.count, 9)/3.5) + 1;
+            height += WIDTH(self.view) * 0.33 * row;
+        }
     }
-    
     if (!IsEmpty(info.CreateAddrSmall))
     {
         height = height + 30;
     }
-    
     return height;
 }
 
@@ -173,26 +191,46 @@
 #pragma mark - network
 //获取家庭的时光
 - (void)requestHomeDataF{
-    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
-    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id data) {
-        
+//    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
+//    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id data) {
+//        
+//    }];
+
+    NHCMySelfTimeListApi *Api = [[NHCMySelfTimeListApi alloc]init];
+    Api.MyselfuserID = _userID;
+    [Api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
+        [self.tableView.mj_header endRefreshing];
+        [self.dataSource removeAllObjects];
+        [self.dataSource addObjectsFromArray:Data];
+        [self.tableView reloadData];
     }];
 }
+//加载数据
 - (void)requestHomeData
 {
-    HCHomeApi *api = [[HCHomeApi alloc] init];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-        [self.tableView.mj_header endRefreshing];
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self.dataSource removeAllObjects];
-            [self.dataSource addObjectsFromArray:array];
-            [self writeLocationData:array];
-            [self.tableView reloadData];
-        }else
-        {
-            [self showHUDError:message];
-        }
+//    HCHomeApi *api = [[HCHomeApi alloc] init];
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        [self.tableView.mj_header endRefreshing];
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            [self.dataSource removeAllObjects];
+//            [self.dataSource addObjectsFromArray:array];
+//            [self writeLocationData:array];
+//            [self.tableView reloadData];
+//        }else
+//        {
+//            [self showHUDError:message];
+//        }
+//    }];
+    NHCMySelfTimeListApi *Api = [[NHCMySelfTimeListApi alloc]init];
+    Api.MyselfuserID = _userID;
+    Api.start_num = @"0";
+    Api.home_conut = @"10";
+    [Api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
+        //[self.tableView.mj_header endRefreshing];
+        [self.dataSource removeAllObjects];
+        [self.dataSource addObjectsFromArray:Data];
+        [self.tableView reloadData];
     }];
 }
 
