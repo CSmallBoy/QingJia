@@ -191,6 +191,7 @@
     HCHomeInfo *info = self.dataSource[indexPath.section];
     HCHomeUserTimeViewController *userTime = [[HCHomeUserTimeViewController alloc] init];
     userTime.data = @{@"data": info};
+    userTime.userID = info.creator;
     userTime.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:userTime animated:YES];
 }

@@ -1,28 +1,29 @@
 //
-//  NHCListOfTimeAPi.m
+//  NHCMySelfTimeListApi.m
 //  Project
 //
-//  Created by 朱宗汉 on 16/4/7.
+//  Created by 朱宗汉 on 16/4/25.
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "NHCListOfTimeAPi.h"
+#import "NHCMySelfTimeListApi.h"
 #import "HCHomeInfo.h"
-@implementation NHCListOfTimeAPi
+@implementation NHCMySelfTimeListApi
 -(void)startRequest:(NHCListTime)requestBlock{
     [super startRequest:requestBlock];
 }
 -(NSString *)requestUrl{
     // 时光列表
-    return @"Times/listTimesForFamily.do";
+    return @"Times/listPersonTimesForFamily.do";
 }
 -(id)requestArgument{
-
+    
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-   NSDictionary * para = @{@"start":_start_num,
-             @"count":_home_conut};
+    NSDictionary * para = @{@"start":_start_num,
+                            @"count":_home_conut,
+                            @"userId":_MyselfuserID};
     return @{@"Head":head,@"Para":para};
 }
 -(id)formatResponseObject:(id)responseObject{

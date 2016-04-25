@@ -9,5 +9,5 @@
 #import "HCTableViewController.h"
 
 @interface HCHomeUserTimeViewController : HCTableViewController
-
+@property (nonatomic,copy)NSString *userID;
 @end

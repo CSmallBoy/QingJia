@@ -29,7 +29,6 @@
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
             success(responseObject);
-            
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {

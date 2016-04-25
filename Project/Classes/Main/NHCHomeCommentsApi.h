@@ -17,4 +17,6 @@
 @property (nonatomic,copy)NSString *imageNames;
 //发表评论
 @property (nonatomic,copy)NSString *createAddr;
+//评论的 parentCommentId   0 为顶层评论
+@property (nonatomic,copy)NSString *parentCommentId;
 @end
