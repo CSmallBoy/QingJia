@@ -22,6 +22,9 @@
 #import "KLHttpTool.h"
 //时光
 #import "HCHomeViewController.h"
+//多图片选择
+#import "ZLPhotoAssets.h"
+#import "ZLPhotoPickerViewController.h"
 #define HCPublishCell @"HCPublishCell"
 
 @interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate>
@@ -46,13 +49,9 @@
     _info = [[HCPublishInfo alloc] init];
     _info.OpenAddress = @"1";
     _info.PermitType = @"100";
-    
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCPublishTableViewCell class] forCellReuseIdentifier:HCPublishCell];
-
-   
-
 }
 
 #pragma mark - UITableView
@@ -74,7 +73,6 @@
         publishCell.indexPath = indexPath;
         cell = publishCell;
     }
-    
     return cell;
 }
 
@@ -167,32 +165,48 @@
         [self presentViewController:picker animated:YES completion:nil];
     }else if (buttonIndex == 1) // 相册
     {
-        UIImagePickerController * picker = [[UIImagePickerController alloc]init];
-        //        [[picker navigationBar] setTintColor:[UIColor whiteColor]];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentViewController:picker animated:YES completion:nil];
+        
+        ZLPhotoPickerViewController *vc = [[ZLPhotoPickerViewController alloc]init];
+        vc.callBack = ^(NSArray *arr){
+            
+            if (_info.FTImages.count >= 10)
+            {
+                [self showHUDText:@"最多只能发布9张图片"];
+                return;
+            }else{
+                for (ZLPhotoAssets *pho in arr) {
+                    UIImage *image = pho.originImage;
+                    [_info.FTImages insertObject:image atIndex:_info.FTImages.count - 1];
+                }
+                
+                [self.tableView reloadData];
+                
+            }
+        };
+        [self presentViewController:vc animated:YES completion:^{
+            
+        }];
+        
     }
 }
 
 #pragma mark - UIImagePickerControllerDelegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-{//不编辑图片
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    
-    if (_info.FTImages.count >= 10)
-    {
-        [self showHUDText:@"最多只能发布9张图片"];
-        [picker dismissViewControllerAnimated:YES completion:nil];
-        return;
-    }
-    [_info.FTImages insertObject:image atIndex:_info.FTImages.count-1];
-    [self.tableView reloadData];
-
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+//{//不编辑图片
+//    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+//    
+//    if (_info.FTImages.count >= 10)
+//    {
+//        [self showHUDText:@"最多只能发布9张图片"];
+//        [picker dismissViewControllerAnimated:YES completion:nil];
+//        return;
+//    }
+//    [_info.FTImages insertObject:image atIndex:_info.FTImages.count-1];
+//    [self.tableView reloadData];
+//
+//    [picker dismissViewControllerAnimated:YES completion:nil];
+//}
 
 #pragma mark - ACEExpandableTableViewDelegate
 
@@ -297,51 +311,8 @@
 }
 
 
-//    NHCReleaseTimeApi *api2 = [[NHCReleaseTimeApi alloc]init];
-//    api2.content =_info.FTContent;
-//    api2.openAddress = _info.OpenAddress;
-//    [api2 startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *Tid) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self hideHUDView];
-//            //发布成功后     执行上传照片  先进行判断  是否有照片
-//            if (IsEmpty(_info.FTImages)) {
-//                
-//            }else{
-//                [self uploadManyImage:Tid];
-//            }
-//            
-//        }else
-//        {
-//            [self showHUDError:message];
-//        }
-//        
-//    }];
     
     
-    
-    
-//    HCHomePublishApi *api = [[HCHomePublishApi alloc] init];
-//    
-//    api.FTImages = _uploadImageNameArr;
-//    api.FTContent = _info.FTContent;
-//    api.OpenAddress = _info.OpenAddress;
-//    api.PermitType = _info.PermitType;
-//    api.PermitUserArr = _info.PermitUserArr;
-//    
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeInfo *homeInfo) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self hideHUDView];
-//            
-//            NSMutableArray *arrayM = self.data[@"data"];
-//            [arrayM insertObject:homeInfo atIndex:0];
-//        }else
-//        {
-//            [self showHUDError:message];
-//        }
-//    }];
-
 
 ////多图上传
 - (void)uploadManyImage:(NSString*)Tid{

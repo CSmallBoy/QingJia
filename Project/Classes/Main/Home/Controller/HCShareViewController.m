@@ -15,7 +15,7 @@
 #import "UMSocialSinaHandler.h"
 #import "UMSocialSnsPlatformManager.h"
 #import "UMSocialSinaSSOHandler.h"
-
+#import "ZLPhotoAssets.h"
 @interface HCShareViewController ()<UMSocialUIDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *weixinBtn;

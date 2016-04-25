@@ -9,9 +9,7 @@
 #import "EaseUsersListViewController.h"
 
 #import "UIViewController+HUD.h"
-#import "NHCChatUserInfoApi.h"
-//用户的联系人列表
-#import "NHCChatUserInfoApi.h"
+
 @interface EaseUsersListViewController ()<EMChatManagerDelegate>
 
 @property (strong, nonatomic) UISearchBar *searchBar;
@@ -96,16 +94,6 @@
             model = [self.dataArray objectAtIndex:indexPath.row];
 
         }
-        //没什么作用
-//        NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
-//        api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-//        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-//            model.nickname = dict[@"nickName"];
-//            UIImageView *image = [[UIImageView alloc]init];
-//            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-//            model.avatarImage = image.image;
-//            cell.model = model;
-//        }];
         if (model) {
           cell.model = model;
         }

@@ -341,17 +341,13 @@
       
         if (requestStatus == HCRequestStatusSuccess)
         {
-            
             NSArray *array = respone[@"Data"][@"rows"];
-            
             for (int i = 0; i<array.count; i++) {
-                
                 NSDictionary *dic = array[i];
                 HCCheckInfo *info = [HCCheckInfo mj_objectWithKeyValues:dic];
                 [self.dataSource addObject:info];
             }
         }
-        
         [self.tableView reloadData];
         
     }];

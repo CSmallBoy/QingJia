@@ -15,4 +15,5 @@
 @property (nonatomic, strong) NSString *joinMessage;
 @property (nonatomic, strong) NSString *applyUserId;
 @property (nonatomic, strong) NSString *permitFlag;
+@property (nonatomic,copy) NSString *imageName;
 @end

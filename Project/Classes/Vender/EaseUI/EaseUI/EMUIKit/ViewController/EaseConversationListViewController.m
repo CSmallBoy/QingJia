@@ -70,6 +70,7 @@
         cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     id<IConversationModel> model = [self.dataArray objectAtIndex:indexPath.row];
+    
     NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
     api.chatName = [model.conversation.chatter stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {

@@ -253,7 +253,7 @@
         
         [image sd_setImageWithURL:[readUserInfo url:[readUserInfo getReadDic][@"UserInf"][@"imageName"] :kkUser]];
         model.avatarImage = image.image;
-        model.nickname = @"曹思远";
+        //model.nickname = @"曹思远";
     }else{
         NSLog(@"%@",model.message.from);
         //model.message.from

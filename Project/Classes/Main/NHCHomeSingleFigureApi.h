@@ -16,4 +16,8 @@
 @property (nonatomic,copy) NSString * createAddrSmall;
 @property (nonatomic,copy) NSString * createAddr;
 @property (nonatomic,copy) NSString * toUser;
+
+
+
+@property (nonatomic,copy) NSString *parentCommentId;
 @end

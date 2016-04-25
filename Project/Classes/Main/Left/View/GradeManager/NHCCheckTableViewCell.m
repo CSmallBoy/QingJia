@@ -93,7 +93,7 @@
 - (void)setInfo:(HCCheckInfo *)info
 {
     _info = info;
-    self.headImgView.image = IMG(@"1");
+    [self.headImgView sd_setImageWithURL:[readUserInfo url:info.imageName :kkUser]];
     self.titleLabel.text = info.applyUserNickName;
     self.detailLabel.text = info.joinMessage;
     
@@ -113,6 +113,7 @@
     if (!_headImgView)
     {
         _headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 50, 50)];
+        
         ViewRadius(_headImgView, 25);
     }
     return _headImgView;
@@ -156,18 +157,13 @@
 
 - (void)clickAgreeButton:(UIButton *)button
 {
-    
-    
     if ([button.titleLabel.text isEqualToString:@"同意"])
     {
-        
         if ([self.delegate respondsToSelector:@selector(HCCheckTableViewCellSelectedModel:)])
         {
             [self.delegate HCCheckTableViewCellSelectedModel:_info];
         }
-        
     }
-    
 }
 
 

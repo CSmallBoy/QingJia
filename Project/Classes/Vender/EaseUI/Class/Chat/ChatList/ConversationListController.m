@@ -206,34 +206,35 @@
     //获取到聊天列表的信息
     //可以在这个地方  更具 个人 账号model.title 找到个人信息
     EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
+    //个人的
     if (model.conversation.conversationType == eConversationTypeChat)
     {
         //赋值的操作取消
-//        if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter])
-//        {
-//            model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
-//        }
-//        else
-//        {
-//            UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:conversation.chatter];
-//            if (profileEntity)
-//            {
-//                model.title = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
-//                model.avatarURLPath = profileEntity.imageUrl;
-//              
-//            }
-//       
-//        }
-//        
+        if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter])
+        {
+            model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
+        }
+        else
+        {
+            UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:conversation.chatter];
+            if (profileEntity)
+            {
+                model.title = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
+                model.avatarURLPath = profileEntity.imageUrl;
+              
+            }
+       
+        }
+
         
         //测试
-        NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
-        api.chatName = [model.conversation.chatter stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-            model.title = dict[@"nickName"];
-            model.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
-             [self.tableView reloadData];
-        }];
+//        NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
+//        api.chatName = [model.conversation.chatter stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+//        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+//            model.title = dict[@"nickName"];
+//            model.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
+//             [self.tableView reloadData];
+//        }];
        
         
     }//这个地方是判断是否是群聊天  不是就直接返回model
@@ -250,7 +251,6 @@
                     model.title = group.groupSubject;
                     imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
                     model.avatarImage = [UIImage imageNamed:imageName];
-                    
                     NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
                     [ext setObject:group.groupSubject forKey:@"groupSubject"];
                     [ext setObject:[NSNumber numberWithBool:group.isPublic] forKey:@"isPublic"];

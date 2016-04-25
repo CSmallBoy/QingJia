@@ -273,13 +273,13 @@
 {
     NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc] init];
     api.start_num = [NSString stringWithFormat:@"%d",10 * (m+1)];
-    api.home_conut = @"10";
+    api.home_conut = [ NSString stringWithFormat:@"%d",10 * (m+2)];
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         [self.tableView.mj_footer endRefreshing];
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource addObjectsFromArray:array];
-            //[self writeLocationData:array];
+            [self writeLocationData:array];
             [self.tableView reloadData];
             m ++;
         }else

@@ -37,7 +37,7 @@
         [self.delegate HCGradeManagerTableViewCellSelectedTag:button.tag];
     }
 }
-
+//这个地方需要进行修改
 - (void)setIndexPath:(NSIndexPath *)indexPath
 {
     _indexPath = indexPath;
@@ -83,7 +83,10 @@
                 CGFloat buttonY = i/4 *(width+20) + ((i/4+1)*10);
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                 button.frame = CGRectMake(buttonX, buttonY, width, width);
-                [button setImage:_image forState:UIControlStateNormal];
+                //[button setImage:_image forState:UIControlStateNormal];
+                UIImageView *ima = [[UIImageView alloc]init];
+                [ima sd_setImageWithURL:[readUserInfo url:info.imageName :kkUser]];
+                [button setImage:ima.image forState:UIControlStateNormal];
                 button.tag = i;
                 [button addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
                 ViewRadius(button, width/2);

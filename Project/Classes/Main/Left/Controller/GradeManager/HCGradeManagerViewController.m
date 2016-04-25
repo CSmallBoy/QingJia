@@ -184,13 +184,12 @@ static NSString * const reuseIdentifier = @"FriendCell";
             HCFriendMessageInfo *friendInfo = [[HCFriendMessageInfo alloc]init];
             friendInfo.userId = dic[@"userId"];
             friendInfo.nickName = dic[@"nickName"];
-            
+            friendInfo.imageName = dic[@"imageName"];
             [self.dataSource addObject:friendInfo];
             
         }
         
         self.signatureLabel.text = self.info.familyDescription;
-        
         [self.tableView reloadData];
         NSURL *url = [readUserInfo originUrl:self.info.imageName :kkFamail];
         [self.headImageView sd_setImageWithURL:url placeholderImage:IMG(@"head.jpg")];

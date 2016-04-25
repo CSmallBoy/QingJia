@@ -50,15 +50,15 @@
         [self.delegate hcpublishTableViewCellImageViewIndex:button.tag];
     }
 }
-
+//显示已选中的图片
 - (void)setupImageView:(NSMutableArray *)arrayM
 {
-    NSInteger rows = arrayM.count / 3;
-    rows += (arrayM.count%3) ? 1 : 0;
-    self.contentImgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH/3)*rows);
+    NSInteger rows = arrayM.count / 4;
+    rows += (arrayM.count%4) ? 1 : 0;
+    self.contentImgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH/4)*rows);
     
     [self.contentImgView removeAllSubviews];
-    CGFloat buttonWidth = SCREEN_WIDTH/3;
+    CGFloat buttonWidth = SCREEN_WIDTH/4;
     for (NSInteger i = 1; i < arrayM.count+1; i++)
     {
         if (i <= 9)
@@ -66,8 +66,8 @@
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.tag = i;
             [button addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
-            CGFloat buttonX = ((i-1)%3) * buttonWidth;
-            CGFloat buttonY = ((int)(i-1) / 3) * buttonWidth;
+            CGFloat buttonX = ((i-1)%4) * buttonWidth;
+            CGFloat buttonY = ((int)(i-1) / 4) * buttonWidth;
             button.frame = CGRectMake(buttonX, buttonY, buttonWidth, buttonWidth);
             [button setImage:arrayM[i-1] forState:UIControlStateNormal];
             [self.contentImgView addSubview:button];

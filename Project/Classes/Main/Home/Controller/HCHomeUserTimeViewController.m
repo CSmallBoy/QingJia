@@ -225,17 +225,28 @@
     NHCMySelfTimeListApi *Api = [[NHCMySelfTimeListApi alloc]init];
     Api.MyselfuserID = _userID;
     Api.start_num = @"0";
-    Api.home_conut = @"10";
+    Api.home_conut = @"100";
+    [Api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
+        //[self.tableView.mj_header endRefreshing];
+        [self.dataSource removeAllObjects];
+        [self.dataSource addObjectsFromArray:Data];
+        [self writeLocationData:Data];
+        [self.tableView reloadData];
+    }];
+}
+//下啦刷新
+- (void)requestMoreHomeData
+{
+    NHCMySelfTimeListApi *Api = [[NHCMySelfTimeListApi alloc]init];
+    Api.MyselfuserID = _userID;
+    Api.start_num = @"0";
+    Api.home_conut = @"100";
     [Api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
         //[self.tableView.mj_header endRefreshing];
         [self.dataSource removeAllObjects];
         [self.dataSource addObjectsFromArray:Data];
         [self.tableView reloadData];
     }];
-}
-
-- (void)requestMoreHomeData
-{
     
 }
 
