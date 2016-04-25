@@ -11,7 +11,7 @@
 
 @interface HCMyNotificationCenterTableViewCell ()
 
-@property (nonatomic,strong) UIButton  *button;
+@property (nonatomic,strong) UIImageView  *headIV;
 @property (nonatomic,strong) UILabel   *NameSexAgeLB;
 @property (nonatomic,strong) UILabel   *sendLabel;
 @property (nonatomic,strong) UILabel   *missLabel;
@@ -42,7 +42,7 @@
         [view removeFromSuperview];
     }
     
-    [self addSubview:self.button];
+    [self addSubview:self.headIV];
     [self addSubview:self.NameSexAgeLB];
     [self addSubview:self.sendLabel];
     [self addSubview:self.missLabel];
@@ -61,28 +61,59 @@
     
     self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%@",info.createTime];
     
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlag =  NSMonthCalendarUnit | NSDayCalendarUnit |NSHourCalendarUnit| NSMinuteCalendarUnit|NSSecondCalendarUnit ;
+    NSDateComponents *cmp = [calendar components:unitFlag fromDate:[NSDate dateWithTimeIntervalSince1970:[info.createTime integerValue]]];
+    NSDateComponents *cmp1 = [calendar components:unitFlag fromDate:[NSDate date]];
+    
+    
+    if ([cmp minute] == [cmp1 minute]) {
+        self.sendLabel.text = @"发布时间：刚刚";
+    }
+    else if([cmp hour] == [cmp1 hour])
+    {
+        self.sendLabel.text= [NSString stringWithFormat:@"发布时间：%ld分钟前",cmp.minute];
+    }
+    else  if([cmp day] == [cmp1 day])
+    {
+        self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%ld小时前",cmp1.hour- cmp.hour];
+    }
+    else if(cmp1.day-cmp.day ==1)
+    {
+        self.sendLabel.text = @"发布时间：昨天";
+    }
+    else
+    {
+        self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%ld月%ld日",cmp.month,cmp.day];
+    }
+    
     self.missLabel.text = [NSString stringWithFormat:@"走失描述：%@",info.lossDesciption];
+
+    NSURL *url = [readUserInfo originUrl:self.info.imageName :kkUser];
+    [_headIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
   
 }
 
--(void)buttonClick:(UIButton *)button
+-(void)tap:(UITapGestureRecognizer *)tap
 {
-    UIImage *image = [button backgroundImageForState:UIControlStateNormal];
+    UIImage *image = _headIV.image;
     NSDictionary *dic = @{@"image" : image};
     [[NSNotificationCenter defaultCenter] postNotificationName:@"显示头像" object:nil userInfo:dic];
-
+    
 }
 
 // 头像的宽度为60
-- (UIButton *)button
+- (UIImageView *)headIV
 {
-    if(!_button){
-        _button  = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button.frame = CGRectMake(INTERVAL, INTERVAL, 60, 60);
-        [_button setBackgroundImage:[UIImage imageNamed:@"label_Head-Portraits"] forState:UIControlStateNormal];
-        [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    if(!_headIV){
+        _headIV  = [[UIImageView alloc]initWithFrame:CGRectMake(INTERVAL, INTERVAL, 60, 60)];
+
+        _headIV.userInteractionEnabled = YES;
+        UITapGestureRecognizer*tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+        [_headIV addGestureRecognizer:tap];
+        
     }
-    return _button;
+    return _headIV;
 }
 
 // 姓名 性别 年龄 的宽度  150

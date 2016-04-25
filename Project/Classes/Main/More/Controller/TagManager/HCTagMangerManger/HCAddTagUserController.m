@@ -53,7 +53,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.myTitle = self.data[@"title"];
-    self.info = self.data[@"info"];
+    
+    
     self.myTitle = self.info.trueName;
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     
@@ -67,8 +68,19 @@
     
     self.navigationItem.rightBarButtonItem = item;
     
+  
+    
     HCNewTagInfo *info = self.data[@"info"];
-    info.openHealthCard = self.openHealthCard;
+    
+    if (info.trueName) {
+        self.info = self.data[@"info"];
+    }
+    else
+    {
+        self.info=[[HCNewTagInfo alloc]init];
+    }
+    
+    self.info.openHealthCard = self.openHealthCard;
     
 }
 
@@ -258,7 +270,7 @@
         else
         {
             HCTagUserDetailCell *cell = [HCTagUserDetailCell cellWithTableView:tableView];
-            cell.info = self.data[@"info"];
+            cell.info = self.info;
             cell.image = self.image;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.indexPath = indexPath;
@@ -789,7 +801,7 @@
         if (requestStatus == HCRequestStatusSuccess) {
             [self showHUDText:@"添加标签使用者成功"];
         }
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshObjectData" object:nil];
         [self.navigationController popViewControllerAnimated:YES];
         
     }];
@@ -821,7 +833,7 @@
     
             if (_isEditTag) {
                 [self.navigationController popViewControllerAnimated:YES];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"requestData" object:nil];
+                
             }
             else
             {

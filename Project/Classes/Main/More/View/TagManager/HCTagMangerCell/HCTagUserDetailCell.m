@@ -220,6 +220,7 @@
             case 3:
             {
                 self.headBtn.hidden = YES;
+                self.textField.hidden = NO;
                 self.textField.text = self.info.birthDay;
                 self.textField.enabled = NO;// 生日
             }

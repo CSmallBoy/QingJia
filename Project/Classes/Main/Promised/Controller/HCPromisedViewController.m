@@ -71,6 +71,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextOtherController:) name:@"ToNextOtherController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showRadarView) name:@"showRadarView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"refreshObjectData" object:nil];
     
     NSString *str  =  [[NSUserDefaults standardUserDefaults] objectForKey:@"showRadar"];
     
@@ -216,9 +217,10 @@
     {
         if ([buttonTitle isEqualToString:@"+ 新增录入"]) {
             
-            HCPromisedTagUserDetailController *detailVC = [[HCPromisedTagUserDetailController alloc]init];
-            detailVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:detailVC animated:YES];
+            
+            HCAddTagUserController *addTagUser = [[HCAddTagUserController alloc]init];
+            addTagUser.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:addTagUser animated:YES];
         }
         else
         {

@@ -15,8 +15,9 @@
 
 @property (nonatomic,assign) CGRect  headBtnFrame;
 @property (nonatomic,assign) CGRect  nickLabelFrame;
-@property (nonatomic,assign) CGRect  commentLabelFrame;
 @property (nonatomic,assign) CGRect  timeLabelFrame;
+@property (nonatomic,assign) CGRect  commentLabelFrame;
+@property (nonatomic,assign) CGRect  backLabelFrame;
 @property (nonatomic,assign) CGRect  button1Frame;
 @property (nonatomic,assign) CGRect  button2Frame;
 @property (nonatomic,assign) CGRect  button3Frame;

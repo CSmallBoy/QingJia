@@ -294,6 +294,7 @@
     }
     
     
+    [self showHUDView:nil];
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
     NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkUser,uuid,token]];
@@ -331,6 +332,7 @@
             
             if (request == HCRequestStatusSuccess)
             {
+                [self hideHUDView];
                 UIViewController *vc= self.navigationController.viewControllers[0];
                 [self.navigationController popToViewController:vc animated:YES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"show" object:nil];

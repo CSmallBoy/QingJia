@@ -59,7 +59,7 @@
     // --------------------------发一呼百应---------------------------------
     self.myTitle = self.data[@"title"];
     self.info = self.data[@"info"];
-    
+    [self.view endEditing:YES];
     if (self.info) {
          [self requestData];
     }
@@ -631,51 +631,7 @@
             return;
         }
     }
-        
-        if (_isNewObject) {
-            
-            // 新建对象
-            
-            if (self.selectArr.count != 2) {
-                
-                [self showHUDText:@"必须绑定连个紧急联系人"];
-                return;
-            }
-            HCTagAddObjectApi *api = [[HCTagAddObjectApi alloc]init];
-            
-            HCTagContactInfo *info1 =self.selectArr[0];
-            HCTagContactInfo *info2 = self.selectArr[1];
-            
-            self.info.relation1 = info1.relative;
-            self.info.contactorId1 = info1.contactorId;
-            
-            self.info.relation2 = info2.contactorId;
-            self.info.contactorId2 = info2.contactorId;
-            
-            api.info = self.info;
-            
-            api.openHealthCard = self.openHealthCard;
-            
-            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-                
-                if (requestStatus == HCRequestStatusSuccess) {
-                    [self showHUDText:@"添加标签使用者成功"];
-                    return ;
-                }
-                
-                HCPromisedMissMessageControll*vc = [[HCPromisedMissMessageControll alloc]init];
-                NSMutableArray *tagArr = [NSMutableArray array];
-                
-                vc.info = self.info;
-                vc.tagArr = tagArr;
-                vc.contactArr = self.contactArr;
-                [self.navigationController pushViewController:vc animated:YES];
- 
-        }];
-        }
-    else
-    {
-        
+
         if (self.selectArr.count== 2) {
             HCPromiedTagWhenMissController *vc = [[HCPromiedTagWhenMissController alloc]init];
             vc.info = self.info;
@@ -690,7 +646,6 @@
              UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"必须选择两个紧急联系人" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
         }
-    }
 }
 #pragma mark--- setter Or getter
 

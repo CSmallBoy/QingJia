@@ -22,7 +22,7 @@
 }
 
 
-@property (nonatomic,strong) UIButton  *button;
+@property (nonatomic,strong) UIImageView *headIV;
 @property (nonatomic,strong) UILabel   *NameSexAgeLB;
 @property (nonatomic,strong) UILabel   *sendLabel;
 @property (nonatomic,strong) UILabel   *missLabel;
@@ -116,31 +116,33 @@
     
     NSURL *url = [readUserInfo originUrl:self.info.imageName :kkUser];
     
-    UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
-    [self.button setImage:image forState:UIControlStateNormal];
+  
+    [self.headIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
     
     
     
 }
 
--(void)buttonClick:(UIButton *)button
+-(void)tap1:(UITapGestureRecognizer *)tap
 {
-    UIImage *image = [button backgroundImageForState:UIControlStateNormal];
+    UIImage *image = _headIV.image;
     NSDictionary *dic = @{@"image" : image};
     [[NSNotificationCenter defaultCenter] postNotificationName:@"显示头像" object:nil userInfo:dic];
     
 }
 
 // 头像的宽度为60
-- (UIButton *)button
+-(UIImageView *)headIV
 {
-    if(!_button){
-        _button  = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button.frame = CGRectMake(INTERVAL, INTERVAL, 60, 60);
-        [_button setBackgroundImage:[UIImage imageNamed:@"label_Head-Portraits"] forState:UIControlStateNormal];
-        [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    if(!_headIV){
+        _headIV  = [[UIImageView alloc]initWithFrame:CGRectMake(INTERVAL, INTERVAL, 60, 60)];
+        _headIV.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer*tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap1:)];
+        [_headIV addGestureRecognizer:tap1];
+        
     }
-    return _button;
+    return _headIV;
 }
 
 // 姓名 性别 年龄 的宽度  150
@@ -240,7 +242,7 @@
         [view removeFromSuperview];
     }
     
-    [_SCContentView addSubview:self.button];
+    [_SCContentView addSubview:self.headIV];
     [_SCContentView addSubview:self.NameSexAgeLB];
     [_SCContentView addSubview:self.sendLabel];
     [_SCContentView addSubview:self.missLabel];

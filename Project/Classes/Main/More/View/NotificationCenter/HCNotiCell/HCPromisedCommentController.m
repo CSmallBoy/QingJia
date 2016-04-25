@@ -14,22 +14,27 @@
 
 
 #import "HCPromisedCommentCell.h"
+#import "HCPromisedSubCommentCell.h"
 
 #import "HCPromisedCommentFrameInfo.h"
 #import "HCPromisedCommentInfo.h"
 
 #import "HCAvatarMgr.h"
 #import "ZLPhotoAssets.h"
+#import "YTKNetworkAgent.h"
+#import "MBProgressHUD.h"
 
 #import "HCCommentListApi.h"
+#import "HCReplyLineApi.h"
 
-@interface HCPromisedCommentController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+@interface HCPromisedCommentController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     NSInteger   _photoCount;
     UIButton  * _addPhotoBtn;
     CGRect      _startFrame;
     BOOL        _startEdit;
 }
+
 @property (nonatomic,strong) UIView        *inputView;
 @property (nonatomic,strong) UIView        * photoView;
 @property (nonatomic,strong) UIButton      *imageBtn;
@@ -38,6 +43,8 @@
 @property (nonatomic,strong) UITextField   *textField;
 @property (nonatomic,strong) NSMutableArray    *images;
 
+@property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) NSMutableArray *imgStrArr;
 
 
 @end
@@ -48,19 +55,22 @@
     [super viewDidLoad];
     self.title = @"发现线索";
     _photoCount = 0;
-    self.tableView.hidden = YES;
-    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self requestData];
     [self.view addSubview:self.myTableView];
     [self.view addSubview:self.inputView];
     [self setupBackItem];
+    
+
 }
 
 #pragma mark --- tableViewDelegate
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    HCPromisedCommentFrameInfo *frameInfo = self.dataSource[indexPath.row];
+    HCPromisedCommentInfo *info = frameInfo.commentInfo;
+    
+    if (info.toId) {
         HCPromisedCommentCell *cell = [HCPromisedCommentCell cellWithTableView:tableView];
         cell.block = ^(UIButton *button){
             
@@ -95,9 +105,20 @@
             }
         };
         cell.commnetFrameInfo = self.dataSource[indexPath.row];
-        cell.selected = NO;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
+    }
+    else
+    {
+        HCPromisedSubCommentCell *cell = [HCPromisedSubCommentCell cellWithTableView:tableView];
+        cell.commnetFrameInfo = frameInfo;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    
+    }
+    
+
+    
 
 }
 
@@ -151,8 +172,10 @@
         [self.images removeAllObjects];
         [view removeFromSuperview];
     }
+    
+    
     [self.photoView removeFromSuperview];
-    self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -317,19 +340,34 @@
     [sheet  showInView:self.view];
 }
 
+// 点击了发送按钮
+-(void)sendBtnClick:(UIButton *)button
+{
+    
+    if (self.images.count>0) {
+        // 先上传图片
+        [self upLoadImages:1];
+        
+    }
+    else
+    {
+        [self upLoadData];
+    }
+    
+    
+
+}
 
 #pragma mark --- getter Or setter
-
 
 - (UIView *)inputView
 {
     if(!_inputView){
-        _inputView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-44, SCREEN_WIDTH,44)];
-        _inputView.backgroundColor = [UIColor redColor];
-        _inputView.backgroundColor =COLOR(222, 35, 46, 1);
+        _inputView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-44, SCREEN_WIDTH, 44)];
+        _inputView.backgroundColor = kHCNavBarColor;
+        [_inputView addSubview:self.sendBtn];
         [_inputView addSubview:self.textField];
         [_inputView addSubview:self.imageBtn];
-        [_inputView addSubview:self.sendBtn];
     }
     return _inputView;
 }
@@ -362,6 +400,7 @@
     if(!_sendBtn){
         _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _sendBtn.frame = CGRectMake(SCREEN_WIDTH - 60, 2, 60, 40);
+        [_sendBtn addTarget:self action:@selector(sendBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_sendBtn setTitle:@"发送" forState:UIControlStateNormal];
     }
     return _sendBtn;
@@ -402,6 +441,23 @@
 }
 
 
+- (NSMutableArray *)dataSource
+{
+    if(!_dataSource){
+        _dataSource = [NSMutableArray array];
+    }
+    return _dataSource;
+}
+
+
+- (NSMutableArray *)imgStrArr
+{
+    if(!_imgStrArr){
+        _imgStrArr = [NSMutableArray array];
+    }
+    return _imgStrArr;
+}
+
 
 #pragma mark ---  network
 
@@ -426,35 +482,58 @@
                 [self.dataSource addObject:frameInfo];
                 
             }
-            [self.tableView reloadData];
+            [self.myTableView reloadData];
         }
         
     }];
+}
+
+-(void)upLoadData
+{
+    HCReplyLineApi *api = [[HCReplyLineApi alloc]init];
     
+    HCPromisedCommentInfo *info = [[HCPromisedCommentInfo alloc]init];
+    NSString *str = [self.imgStrArr componentsJoinedByString:@","];
     
-//    for (int i = 0; i<20; i++) {
-//         HCPromisedCommentFrameInfo *frameInfo = [[HCPromisedCommentFrameInfo alloc]init];
-//         HCPromisedCommentInfo *info = [[HCPromisedCommentInfo alloc]init];
-//        info.fromId = @"1111";
-//        info.nickName = @"昵称";
-//        info.imageName = @"0000";
-//        info.phoneNo = @"11111";
-//        info.createLocation = @"rdkfgj";
-//        info.imageNames = @"dfg";
-//        info.content = @"我看到你家的小孩，在人民广场";
-//        info.createTime = @"12123";
-//        info.toId = @"dfgdfg";
-//        info.toNickName = @"dfg";
-//        info.isScan = @"0";
-//        
-//        frameInfo.commentInfo = info;
-//        
-//        [self.dataSource addObject:frameInfo];
-//        
-//        
-//    }
-//    
-//    [self.tableView reloadData];
+    info.imageNames = str;
+    info.content = self.textField.text;
+    
+    api.info = info;
+    api.callId = self.callId;
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        
+        if (requestStatus == HCRequestStatusSuccess) {
+            
+            NSLog(@"评论成功");
+        }
+        
+    }];
+}
+
+-(void)upLoadImages:(int)num
+{
+    if (num > self.images.count) {
+        
+        [self upLoadData];
+        
+        return;
+    }
+    UIImage *image = self.images[num-1];
+    NSString *token = [HCAccountMgr manager].loginInfo.Token;
+    NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
+    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkFamail,uuid,token]];
+    [KLHttpTool uploadImageWithUrl:str image:image success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSString *imgStr = responseObject[@"Data"][@"files"][0];
+        [self.imgStrArr addObject:imgStr];
+        int newNum = num +1;
+        [self upLoadImages:newNum];
+    
+    } failure:^(NSError *error) {
+        [self showHUDError:@"图片上传失败"];
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {

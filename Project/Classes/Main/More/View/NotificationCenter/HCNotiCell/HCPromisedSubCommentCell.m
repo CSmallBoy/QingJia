@@ -6,19 +6,20 @@
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "HCPromisedCommentCell.h"
+#import "HCPromisedSubCommentCell.h"
 #import "HCPromisedCommentFrameInfo.h"
 #import "HCPromisedCommentInfo.h"
 
-// -------------------------------------留言评论cell----------------------------------------
+// -------------------------------------留言子评论cell----------------------------------------
 
-@interface HCPromisedCommentCell ()
+@interface HCPromisedSubCommentCell ()
 {
      CGRect  commentRect;
 }
 @property (nonatomic,strong) UIButton  *headBtn;
 @property (nonatomic,strong) UILabel   *nickLabel;
 @property (nonatomic,strong) UILabel   *commentLabel;
+@property (nonatomic,strong) UILabel   *backLabel;
 @property (nonatomic,strong) UILabel   *timeLabel;
 @property (nonatomic,strong) UIButton  *button1;
 @property (nonatomic,strong) UIButton  *button2;
@@ -27,14 +28,14 @@
 @end
 
 
-@implementation HCPromisedCommentCell
+@implementation HCPromisedSubCommentCell
 
 +(instancetype)cellWithTableView:(UITableView *)tableView
 {
-   static  NSString  * ID = @"commentCell";
-    HCPromisedCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+   static  NSString  * ID = @"SubcommentCell";
+    HCPromisedSubCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
-        cell = [[HCPromisedCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell = [[HCPromisedSubCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         [cell addSubviews];
     }
    
@@ -54,11 +55,11 @@
     [self addSubview: self.headBtn];
     [self addSubview:self.nickLabel];
     [self addSubview:self.timeLabel];
+    [self addSubview:self.backLabel];
     [self addSubview:self.commentLabel];
     [self addSubview:self.button1];
     [self addSubview:self.button2];
     [self addSubview:self.button3];
-    [self addSubview:self.redTextField];
 
 }
 //点击了头像
@@ -86,11 +87,14 @@
     self.nickLabel.frame = commnetFrameInfo.nickLabelFrame;
     self.nickLabel.text = commnetFrameInfo.commentInfo.nickName;
     
-    self.timeLabel.frame = commnetFrameInfo.backLabelFrame;
+    self.timeLabel.frame = commnetFrameInfo.timeLabelFrame;
     self.timeLabel.text = commnetFrameInfo.commentInfo.createTime;
     
+    self.backLabel.frame = commnetFrameInfo.backLabelFrame;
+    
     self.commentLabel.frame = commnetFrameInfo.commentLabelFrame;
-    self.commentLabel.text = commnetFrameInfo.commentInfo.content;
+    NSString *str = [NSString stringWithFormat:@"%@回复%@:%@",commnetFrameInfo.commentInfo.nickName,commnetFrameInfo.commentInfo.toNickName,commnetFrameInfo.commentInfo.content];
+    self.commentLabel.text = str;
     
     self.button1.frame = commnetFrameInfo.button1Frame;
 
@@ -99,8 +103,7 @@
 
     
     self.button3.frame = commnetFrameInfo.button3Frame;
-    
-    self.redTextField.frame = commnetFrameInfo.readTextFildFrame;
+
 
 
 }
@@ -140,12 +143,25 @@
 }
 
 
+- (UILabel *)backLabel
+{
+    if(!_backLabel){
+        _backLabel = [[UILabel alloc]init];
+        _backLabel.font = [UIFont systemFontOfSize:15];
+        _backLabel.textColor = [UIColor grayColor];
+        _backLabel.text = @"回复";
+    }
+    return _backLabel;
+}
+
+
+
 - (UILabel *)timeLabel
 {
     if(!_timeLabel){
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.font = [UIFont systemFontOfSize:12];
-        _timeLabel.textColor = [UIColor grayColor];
+        _timeLabel.textColor = [UIColor blackColor];
     }
     return _timeLabel;
 }

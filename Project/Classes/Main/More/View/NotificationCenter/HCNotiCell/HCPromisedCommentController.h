@@ -10,7 +10,7 @@
 
 // -----------------------发现线索 控制器----------------------------
 
-@interface HCPromisedCommentController : HCTableViewController
+@interface HCPromisedCommentController : HCViewController
 
 @property (nonatomic,strong) NSString *callId;
 

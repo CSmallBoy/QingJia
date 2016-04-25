@@ -55,7 +55,7 @@
     
     if (tableView == self.tableView) {
         
-        if (indexPath.section == 0 ) {
+        if (indexPath.section == 0 ) {// 自己发出去的“呼”cell
             HCMyNotificationCenterTableViewCell *cell = [HCMyNotificationCenterTableViewCell cellWithTableView:tableView];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.info = self.dataSource[indexPath.row];
@@ -294,7 +294,7 @@
     
 
     HCAboutMeApi *api = [[HCAboutMeApi alloc]init];
-    api.key = @"0";
+    api.key = @"";
     api._start = @"0";
     api._count = @"20";
     

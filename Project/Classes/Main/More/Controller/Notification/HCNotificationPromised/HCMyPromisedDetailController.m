@@ -66,6 +66,15 @@
     
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.foundBtn];
+    
+    
+    NSURL *url = [readUserInfo originUrl:self.info.lossImageName :kkUser];
+    [self.imageView sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
+    
+    NSURL *url1 = [readUserInfo originUrl:self.info.imageName :kkUser];
+    UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url1]];
+    [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
+    
 }
 
 #pragma mark ---SKStoreProductViewControllerDelegate
@@ -93,6 +102,25 @@
     [self.view addSubview:self.blackView];
     [self.view addSubview:self.myAlertView];
 }
+
+// 点击联系人1
+-(void)FatherTelClick
+{
+    NSString *tel = [NSString stringWithFormat:@"tel://%@",self.info.contactorPhoneNo1];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel]];
+    [self showHUDText:@"拨打联系人1"];
+    
+    
+}
+
+// 点击联系人2
+-(void)MotherTelClick
+{
+    NSString *tel = [NSString stringWithFormat:@"tel://%@",self.info.contactorPhoneNo2];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel]];
+    [self showHUDText:@"拨打联系人2"];
+}
+
 
 // 点击了小按钮
 -(void)buttonClick:(UIButton  *)button
@@ -203,7 +231,7 @@
         [_imgeViewBottom addSubview:self.grayView];
         
         NSArray *btnArr = @[self.FatherTel,self.MotherTel];
-        NSArray *arr = @[@"联系人1",@"联系人2"];
+        NSArray *arr = @[self.info.relation1,self.info.relation2];
         for (int i = 0; i<2; i++)
         {
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX([btnArr[i] frame])+5,
@@ -231,6 +259,7 @@
                                      CGRectGetMaxY(self.numLabel.frame) +7,
                                      self.imageView.frame.size.height/7 * 25/50,
                                      self.imageView.frame.size.height/7 * 25/50) ;
+           [_FatherTel addTarget:self action:@selector(FatherTelClick) forControlEvents:UIControlEventTouchUpInside];
         [_FatherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
     }
     return _FatherTel;
@@ -244,6 +273,7 @@
                                      CGRectGetMaxY(self.numLabel.frame) +7,
                                      self.imageView.frame.size.height/7 * 25/50,
                                      self.imageView.frame.size.height/7 * 25/50) ;
+         [_MotherTel addTarget:self action:@selector(MotherTelClick) forControlEvents:UIControlEventTouchUpInside];
         [_MotherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
     }
     return _MotherTel;
@@ -252,8 +282,8 @@
 - (UILabel *)numLabel
 {
     if(!_numLabel){
-        _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.MedicalBtn.frame.size.width + 10,5,100/320.0*SCREEN_WIDTH,12/480.0*SCREEN_HEIGHT)];
-        _numLabel.text = @"编号：12345678";
+        _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.MedicalBtn.frame.size.width + 10,5,200/320.0*SCREEN_WIDTH,12/480.0*SCREEN_HEIGHT)];
+        _numLabel.text = [NSString stringWithFormat:@"编号:%@",self.info.callId];
         _numLabel.adjustsFontSizeToFitWidth = YES;
         _numLabel.textColor = [UIColor blackColor];
         
@@ -389,7 +419,7 @@
         _missTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(missTimeLabelX, 60/600.0*SCREEN_HEIGHT, 200, 20)];
         _missTimeLabel.textColor = [UIColor blackColor];
         _missTimeLabel.font = [UIFont systemFontOfSize:14];
-        _missTimeLabel.text = [NSString stringWithFormat:@"走失时间：%@",self.info.createTime];
+        _missTimeLabel.text = [NSString stringWithFormat:@"走失时间：%@",self.info.lossTime];
     }
     return _missTimeLabel;
 }

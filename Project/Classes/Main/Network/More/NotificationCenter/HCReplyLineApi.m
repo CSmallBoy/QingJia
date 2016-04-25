@@ -1,41 +1,48 @@
 //
-//  HCCommentListApi.m
+//  HCReplyLineApi.m
 //  Project
 //
-//  Created by 朱宗汉 on 16/4/23.
+//  Created by 朱宗汉 on 16/4/25.
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "HCCommentListApi.h"
+#import "HCReplyLineApi.h"
+#import "HCPromisedCommentInfo.h"
 
-@implementation HCCommentListApi
+@implementation HCReplyLineApi
 
--(void)startRequest:(HCCommentListBlock)requestBlock
+-(void)startRequest:(HCReplyLineBlock)requestBlock
 {
     [super startRequest:requestBlock];
 }
 
 -(NSString *)requestUrl
 {
-    return @"CallReply/listClue.do";
+    return @"CallReply/replyClue.do";
 }
 
 -(id)requestArgument
 {
-    
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-
-    NSDictionary *para = @{@"callId":_callId,
-                           @"start":@"20",
-                           @"count":@"0"};
     
-    [Utils stringWithObject:@{@"Head":head,
-                              @"Para":para}];
+    if (self.info.toId == nil) {
+        self.info.toId = @"";
+    }
+    
+    NSDictionary *para = @{@"callId":_callId,
+                           @"imageNames":self.info.imageNames,
+                           @"content":self.info.content,
+                           @"createLocation":@"121.76,31.05",
+                           @"toId":self.info.toId};
+    
     
     return @{@"Head":head,
              @"Para":para};
+    
+    
+  
 }
 
 -(id)formatResponseObject:(id)responseObject
