@@ -43,6 +43,8 @@
         info.fromFamily = arr[i][@"fromFamily"];
         info.FTReplyCount = arr[i][@"replyCount"];
         info.HeadImg = arr[i][@"imageName"];
+        NSString *str  = arr[i][@"likeNickNames"];
+        info.isLikeArr =  [str componentsSeparatedByString:@","];
         [arring addObject:info];
     }
     return arring;

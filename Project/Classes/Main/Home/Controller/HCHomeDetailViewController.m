@@ -52,7 +52,7 @@
         HCHomeDetailTableViewCell *detailCell = [[HCHomeDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HCHomeDetailCell];
         detailCell.praiseHeight = _praiseHeight;
         detailCell.delegates = self;
-        detailCell.praiseArr = _detailInfo.praiseArr;
+        detailCell.praiseArr = _detailInfo.praiseArr;  //这个是要传点赞人的信息的
         HCHomeInfo *info = self.data[@"data"];
         detailCell.info = info;
         cell = detailCell;

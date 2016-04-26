@@ -26,6 +26,17 @@
 
 @property (nonatomic, strong) UIButton *commentBtn;
 
+@property (nonatomic, strong) NSIndexPath *indexpath;
+
+//第几张图 的位置
+@property (nonatomic, copy) NSString *image_num;
+//图片详情的那张图片的名字
+@property (nonatomic, copy) NSString *image_name;
+//这个时光的timeid
+@property (nonatomic, copy) NSString *pic_time_id;
+//subrows子评论
+@property (nonatomic,strong)NSArray *subRows;
+
 @property (nonatomic, weak) id<HCHomeDetailCommentTableViewCellDelegate>delegate;
 
 @end

@@ -224,8 +224,6 @@
     
     if (indexPath.row == 4)
     {
-        [self.datePicker show];
-        [self.view endEditing:YES];
     }else
     {
         [self.datePicker remove];

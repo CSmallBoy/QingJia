@@ -81,7 +81,6 @@
             [needRemoveConversations addObject:conversation.chatter];
         }
     }
-    
     if (needRemoveConversations && needRemoveConversations.count > 0) {
         [[EaseMob sharedInstance].chatManager removeConversationsByChatters:needRemoveConversations
                                                              deleteMessages:YES

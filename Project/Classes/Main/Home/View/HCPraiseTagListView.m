@@ -66,6 +66,7 @@
         }else
         {
             [btn setTitle:title forState:UIControlStateNormal];
+            //[btn setTitle:arrayM[i] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(handleTagButton:) forControlEvents:UIControlEventTouchUpInside];
         }
 

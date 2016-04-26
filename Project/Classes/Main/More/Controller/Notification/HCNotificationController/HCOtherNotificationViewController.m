@@ -334,7 +334,7 @@
             }
             [self.tableView.mj_header endRefreshing];
             [self.tableView reloadData];
-            NSLog(@"-----------------信息中心列表获取成功--------------------")
+            NSLog(@"-----------------信息中心列表获取成功--------------------");
         }
     }];
 

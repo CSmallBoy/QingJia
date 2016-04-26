@@ -1091,6 +1091,7 @@
 		C7BE0E411C71A041007D97A5 /* HCMailListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3D1C71A041007D97A5 /* HCMailListModel.m */; };
 		C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3F1C71A041007D97A5 /* pinyin.c */; };
 		C7CC8DBF1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CC8DBE1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m */; };
+		C7F370471CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3077,6 +3078,8 @@
 		C7BE0E401C71A041007D97A5 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		C7CC8DBD1CCDBA64005CAF4A /* NHCMySelfTimeListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCMySelfTimeListApi.h; sourceTree = "<group>"; };
 		C7CC8DBE1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCMySelfTimeListApi.m; sourceTree = "<group>"; };
+		C7F370451CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeComentTwoListApi.h; sourceTree = "<group>"; };
+		C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeComentTwoListApi.m; sourceTree = "<group>"; };
 		C95F998133825127EECF22B1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E9376B27D02CD20170277F57 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -5064,6 +5067,8 @@
 				C7B1E1941CC4863A0087D330 /* NHCHomeSingleFigureApi.m */,
 				C7CC8DBD1CCDBA64005CAF4A /* NHCMySelfTimeListApi.h */,
 				C7CC8DBE1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m */,
+				C7F370451CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.h */,
+				C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */,
 			);
 			name = HomeApi;
 			sourceTree = "<group>";
@@ -8079,6 +8084,7 @@
 				0A54915F1C2BC32D0085F50D /* ZXDataMatrixC40Encoder.m in Sources */,
 				0A2B46EC1C7F12AF00AAA157 /* HCEditCommentInfo.m in Sources */,
 				C752A87F1CB515A6006719F1 /* NHCGetUserHeathApi.m in Sources */,
+				C7F370471CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m in Sources */,
 				C7B00B351C5F26050010F93B /* NSDate+Category.m in Sources */,
 				0A5491691C2BC32D0085F50D /* ZXDataMatrixReader.m in Sources */,
 				8D15E5491CBB486700FA3B11 /* HCTagDeleteObjectApi.m in Sources */,

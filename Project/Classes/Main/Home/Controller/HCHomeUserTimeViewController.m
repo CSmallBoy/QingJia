@@ -230,7 +230,8 @@
         //[self.tableView.mj_header endRefreshing];
         [self.dataSource removeAllObjects];
         [self.dataSource addObjectsFromArray:Data];
-        [self writeLocationData:Data];
+    //缓存暂时不加
+        //[self writeLocationData:Data];
         [self.tableView reloadData];
     }];
 }

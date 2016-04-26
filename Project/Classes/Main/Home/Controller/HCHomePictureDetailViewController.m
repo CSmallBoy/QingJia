@@ -67,7 +67,15 @@
     }
     cell.commentBtn.hidden = NO;
     cell.delegate = self;
+    //这个里面没有评论id cell.info 里面包含subrows
     cell.info = _detailInfo.commentsArr[indexPath.row];
+    cell.indexpath = indexPath;
+    cell.image_num = _imageNum;
+     //直接在这里传timeid  和头像名字
+    cell.pic_time_id = _info.TimeID;
+    int a = [self.data[@"index"] intValue];
+    cell.image_name = _info.FTImages[a];
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

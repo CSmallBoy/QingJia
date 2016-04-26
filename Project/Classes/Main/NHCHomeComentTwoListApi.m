@@ -1,17 +1,17 @@
 //
-//  NHCHomeCommentListApi.m
+//  NHCHomeComentTwoListApi.m
 //  Project
 //
-//  Created by 朱宗汉 on 16/4/13.
+//  Created by 朱宗汉 on 16/4/25.
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "NHCHomeCommentListApi.h"
+#import "NHCHomeComentTwoListApi.h"
 #import "HCHomeDetailUserInfo.h"
 #import "HCHomeInfo.h"
 #import "HCHomeDetailInfo.h"
-@implementation NHCHomeCommentListApi
--(void)startRequest:(NHCHomeDetailBlock)requestBlock{
+@implementation NHCHomeComentTwoListApi
+-(void)startRequest:(NHCHomecomentTwo)requestBlock{
     [super startRequest:requestBlock];
 }
 -(NSString *)requestUrl{
@@ -34,8 +34,8 @@
 }
 -(id)formatResponseObject:(id)responseObject
 {
-       NSArray *arr = responseObject[@"Data"][@"rows"];
-
+    NSArray *arr = responseObject[@"Data"][@"rows"];
+    
     NSMutableArray *userArr = [NSMutableArray array];
     for (int i = 0; i < arr.count; i ++) {
         //点赞显示的
@@ -44,11 +44,11 @@
         userInfo.nickName = arr[i][@"from"];
         [userArr addObject:userInfo];
         
-
+        
     }
     //去重方法
-//    NSSet *sab = [NSSet setWithArray:userArr];
-//    userArr= [sab allObjects];
+    //    NSSet *sab = [NSSet setWithArray:userArr];
+    //    userArr= [sab allObjects];
     NSMutableArray *commentsArr = [NSMutableArray array];
     for (NSInteger i = 0; i <arr.count; i++)
     {
@@ -58,11 +58,6 @@
         info.CreateTime = [NSString stringWithFormat:@"%@",arr[i][@"createTime"]];
         //info.FTContent = @"#李嬷嬷#回复:TableViewgithu@撒旦 哈哈哈哈#九歌#九邮m旦旦/:dsad旦/::)sss/::~啊是大三的拉了/::B/::|/:8-)/::</::$/链接:http://baidu.com dudl@qq.com";
         info.FTContent = arr[i][@"content"];
-        info.subRows = arr[i][@"subRows"];
-        info.fromImageName = arr[i][@"fromImageName"];
-        info.ParentId = arr[i][@"parentId"];
-        info.commentId = arr[i][@"commentId"];
-        info.TOUSER = arr[i][@"to"];
         [commentsArr addObject:info];
     }
     HCHomeDetailInfo *info = [[HCHomeDetailInfo alloc] init];

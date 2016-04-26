@@ -160,10 +160,14 @@
         if ([_single isEqualToString:@"评论单图"]) {
             //单图评
             [self resquestCommentS];
+        }
+        else if ([_single isEqualToString:@"评论单图的回复"]){
+            //重新下一个回复  别人评论的方法
+            [self resquestCommentTo];
         }else if (IsEmpty(_all_coment_to)){
             //所有的
              [self requestEditComment];
-        }else {
+        }else  {
             //单图评
             //[self resquestCommentS];
             // 下一种评论情况
@@ -194,6 +198,36 @@
 }
 
 #pragma mark - network
+
+- (void)resquestCommentTo{
+    NHCHomeSingleFigureApi *api  = [[NHCHomeSingleFigureApi alloc]init];
+    
+    api.TimeID = _time_id;
+    //api.toUser = _infomodel.creator;
+    api.Content = _info.FTContent;
+    api.parentCommentId = _commentId;
+    //int a = [_image_number intValue];
+    api.ToimageName = _image_name;
+    api.toUser = _touser;
+    ///还没有写完
+    
+    
+    
+    
+    
+    //这个地方要  timeId   ImageName  to_UserID Contact
+    
+    if (_info.FTImages.count==1) {
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+            if (requestStatus == HCRequestStatusSuccess) {
+                [self showHUDSuccess:@"评论成功"];
+            }
+        }];
+    }else{
+        //这个地方是判断是否有图片的
+ 
+    }
+}
 //回复的api
 //单图的api
 -(void)resquestCommentS{
@@ -205,6 +239,7 @@
     api.TimeID = homeinfo.TimeID;
     api.toUser = homeinfo.creator;
     api.Content = _info.FTContent;
+    api.parentCommentId = @"0";
     NSString *str = self.data[@"index"];
     int a = [str intValue];
     api.ToimageName = homeinfo.FTImages[a];

@@ -53,16 +53,16 @@
     model = [[MyselfInfoModel alloc]init];
     api = [[NHCUSerInfoApi alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toChangeNumber) name:@"toChangeNumber" object:nil];
-    Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"年龄",@"生日",@"属相",@"住址",@"公司",@"职业"],
+    Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"生日",@"属相",@"住址",@"公司",@"职业"],
                   @[@"绑定手机号"]];
     NSDictionary *dic = [readUserInfo getReadDic];
     if (IsEmpty(dic[@"UserInf"][@"imageName"])) {
         //为空的话数组之间的赋值要变的
-        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,@"XX",_birthday,_shuxiang,@"请输入住址",@"请输入公司",@"请输入职位"];
+        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,@"请输入住址",@"请输入公司",@"请输入职位"];
         arr2= @[arr,
                 @[@"181109722222"]];
     }else{
-        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,@"XX",_birthday,_shuxiang,_adress,_copany,_professional];
+        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,_adress,_copany,_professional];
         arr2= @[arr,
                 @[@"181109722222"]];
     }
@@ -80,7 +80,7 @@
 {
     if (section == 0)
     {
-        return  10;
+        return  9;
     }else
     {
         return 1;
@@ -122,7 +122,7 @@
                 model.sex = textField.text;
                 break;
             case 4:
-                model.age = textField.text;
+                //model.age = textField.text;
                 break;
             case 6:
                 model.Animalsign= textField.text;
@@ -204,10 +204,10 @@
         }
         
         text_tf.delegate =self;
-        if (indexPath.row==0||indexPath.row==3||indexPath.row==6||indexPath.row==2) {
+        if (indexPath.row==0||indexPath.row==3||indexPath.row==6||indexPath.row==2||indexPath.row==4) {
             text_tf.userInteractionEnabled = NO;
         }
-        if (indexPath.row == 5) {
+        if (indexPath.row == 4) {
             if (IsEmpty(str)) {
                 
             }else{
@@ -246,7 +246,7 @@
         [myalert addAction:paizhao];
         [myalert addAction:cancel];
         [self presentViewController:myalert animated:YES completion:nil];
-    }else if (indexPath.section == 0 &&indexPath.row==5){
+    }else if (indexPath.section == 0 &&indexPath.row==4){
         [self makeDatePicker];
     }else if (indexPath.section==1 && indexPath.row==0){
         [self toChangeNumber];
@@ -275,8 +275,8 @@
 -(void)saveClick:(UIBarButtonItem *)item
 {
     //先验证是否否输入
-    if (IsEmpty(choose)||IsEmpty(model.nickName)||IsEmpty(model.age)||IsEmpty(model.birday)||IsEmpty(model.adress)||IsEmpty(model.company)||IsEmpty(model.professional)) {
-        [self showHUDSuccess:@"您还有为填写的内容"];
+    if (IsEmpty(choose)||IsEmpty(model.nickName)||IsEmpty(model.birday)||IsEmpty(model.adress)||IsEmpty(model.company)||IsEmpty(model.professional)) {
+        [self showHUDSuccess:@"您还有未修改的内容"];
     }else{
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
         //先上传图片 在完善用户信息
@@ -412,7 +412,7 @@
     str = [formatrer stringFromDate:datePicker.date];
     //[ setTitle:str forState:UIControlStateNormal];
     [view_back removeFromSuperview];
-    NSIndexPath  *indexPath_1=[NSIndexPath indexPathForRow:5 inSection:0];
+    NSIndexPath  *indexPath_1=[NSIndexPath indexPathForRow:4 inSection:0];
     model.birday = str;
     NSArray*indexArray=[NSArray  arrayWithObject:indexPath_1];
     [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:(UITableViewRowAnimationAutomatic)];
