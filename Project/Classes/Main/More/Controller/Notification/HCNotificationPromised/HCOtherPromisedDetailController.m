@@ -81,12 +81,15 @@
     // 导航栏上的加号“+”
     [self addItem];
     
-    NSURL *url = [readUserInfo originUrl:self.info.lossImageName :kkUser];
+    NSURL *url = [readUserInfo originUrl:self.info.lossImageName :kkLoss];
     [self.imageView sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
     
-    NSURL *url1 = [readUserInfo originUrl:self.info.imageName :kkUser];
+    NSURL *url1 = [readUserInfo originUrl:self.info.imageName :kkObject];
     UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url1]];
-    [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
+    if (image) {
+        [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
+    }
+    
     
 }
 

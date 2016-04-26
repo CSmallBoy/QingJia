@@ -12,7 +12,7 @@
 
 // -------------------------------------留言评论cell----------------------------------------
 
-@interface HCPromisedCommentCell ()
+@interface HCPromisedCommentCell ()<UITextFieldDelegate>
 {
      CGRect  commentRect;
 }
@@ -23,7 +23,10 @@
 @property (nonatomic,strong) UIButton  *button1;
 @property (nonatomic,strong) UIButton  *button2;
 @property (nonatomic,strong) UIButton  *button3;
-@property (nonatomic,strong) UITextField  *redTextField;
+@property (nonatomic,strong) UIButton  *redTextField;
+
+@property (nonatomic,strong) NSArray   *btnArr;
+
 @end
 
 
@@ -55,9 +58,9 @@
     [self addSubview:self.nickLabel];
     [self addSubview:self.timeLabel];
     [self addSubview:self.commentLabel];
-    [self addSubview:self.button1];
-    [self addSubview:self.button2];
-    [self addSubview:self.button3];
+    
+    self.btnArr = @[self.button1,self.button2,self.button3];
+    
     [self addSubview:self.redTextField];
 
 }
@@ -75,31 +78,80 @@
       self.block (button);
 }
 
+
+-(void)backComment:(UIButton *)button
+{
+    self.subBlock(self.indexPath);
+}
+
+
+
 #pragma mark --- getter Or setter
 
 -(void)setCommnetFrameInfo:(HCPromisedCommentFrameInfo *)commnetFrameInfo
 {
+    
+    for (UIView *view in self.subviews)
+    {
+        [view removeFromSuperview];
+    }
+    [self addSubview: self.headBtn];
+    [self addSubview:self.nickLabel];
+    [self addSubview:self.timeLabel];
+    [self addSubview:self.commentLabel];
+    
+    self.btnArr = @[self.button1,self.button2,self.button3];
+    [self addSubview:self.redTextField];
+    
     _commnetFrameInfo = commnetFrameInfo;
 
     self.headBtn.frame = commnetFrameInfo.headBtnFrame;
+    
+    UIImageView *HeadIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.headBtn.frame.size.width, self.headBtn.frame.size.height)];
+    NSURL *url = [readUserInfo originUrl:commnetFrameInfo.commentInfo.imageName :kkUser];
+    [HeadIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
+    [self.headBtn addSubview:HeadIV];
+    
     
     self.nickLabel.frame = commnetFrameInfo.nickLabelFrame;
     self.nickLabel.text = commnetFrameInfo.commentInfo.nickName;
     
     self.timeLabel.frame = commnetFrameInfo.backLabelFrame;
-    self.timeLabel.text = commnetFrameInfo.commentInfo.createTime;
+    self.timeLabel.text = [commnetFrameInfo.commentInfo.createTime substringToIndex:9];
     
     self.commentLabel.frame = commnetFrameInfo.commentLabelFrame;
     self.commentLabel.text = commnetFrameInfo.commentInfo.content;
     
-    self.button1.frame = commnetFrameInfo.button1Frame;
+    
+    NSArray *arr = [commnetFrameInfo.commentInfo.imageNames componentsSeparatedByString:@","];
+    
+    
+    for (int i = 0; i<arr.count; i++) {
+        
+        
+        UIImageView *button =self.btnArr[i];
+        switch (i) {
+            case 0:
+                button.frame = commnetFrameInfo.button1Frame;
+                break;
+            case 1:
+                button.frame = commnetFrameInfo.button2Frame;
+                break;
+            case 2:
+                button.frame = commnetFrameInfo.button3Frame;
+                break;
+            default:
+                break;
+        }
+        
+        NSURL *url = [readUserInfo originUrl:arr[i] :kkUser];
+        UIImageView *imageView= [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, button.frame.size.width, button.frame.size.height)];
+        [imageView sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
+        [button addSubview:imageView];
+        
+        [self addSubview:button];
 
-    
-    self.button2.frame = commnetFrameInfo.button2Frame;
-
-    
-    self.button3.frame = commnetFrameInfo.button3Frame;
-    
+    }
     self.redTextField.frame = commnetFrameInfo.readTextFildFrame;
 
 
@@ -109,7 +161,7 @@
 {
     if(!_headBtn){
         _headBtn= [UIButton buttonWithType:UIButtonTypeCustom];
-        [_headBtn setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        [_headBtn setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
         ViewRadius(_headBtn, 25);
         [_headBtn addTarget:self action:@selector(headBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -146,6 +198,7 @@
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.font = [UIFont systemFontOfSize:12];
         _timeLabel.textColor = [UIColor grayColor];
+        _timeLabel.textAlignment = NSTextAlignmentRight;
     }
     return _timeLabel;
 }
@@ -182,13 +235,17 @@
 
 
 
-- (UITextField *)redTextField
+- (UIButton *)redTextField
 {
     if(!_redTextField){
-        _redTextField = [[UITextField alloc]init];
+        _redTextField = [UIButton buttonWithType:UIButtonTypeCustom];
         _redTextField.layer.borderWidth = 1;
         _redTextField.layer.borderColor = kHCNavBarColor.CGColor;
-        _redTextField.placeholder = @"评论";
+        [_redTextField addTarget:self action:@selector(backComment:) forControlEvents:UIControlEventTouchUpInside];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+        label.text = @"评论";
+        label.textColor = [UIColor lightGrayColor];
+        [_redTextField addSubview:label];
     }
     return _redTextField;
 }

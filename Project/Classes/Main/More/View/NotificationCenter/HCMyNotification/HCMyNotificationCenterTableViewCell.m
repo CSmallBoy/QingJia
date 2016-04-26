@@ -89,7 +89,7 @@
     
     self.missLabel.text = [NSString stringWithFormat:@"走失描述：%@",info.lossDesciption];
 
-    NSURL *url = [readUserInfo originUrl:self.info.imageName :kkUser];
+    NSURL *url = [readUserInfo originUrl:self.info.imageName :kkObject];
     [_headIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
   
 }

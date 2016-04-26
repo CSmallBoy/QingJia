@@ -12,12 +12,16 @@
 
 
 typedef void(^HCPromisedCommentCellBlock)(UIButton  *button) ;
+typedef void (^subCommentBlock)(NSIndexPath *indexPath);
 
 @class HCPromisedCommentFrameInfo;
 @interface HCPromisedSubCommentCell : UITableViewCell
 
 @property (nonatomic,strong) HCPromisedCommentFrameInfo  *commnetFrameInfo;
 @property (nonatomic,strong) HCPromisedCommentCellBlock block;
+
+@property (nonatomic,strong) subCommentBlock subBlock;
+@property (nonatomic,strong) NSIndexPath  *indexPath;
 
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 

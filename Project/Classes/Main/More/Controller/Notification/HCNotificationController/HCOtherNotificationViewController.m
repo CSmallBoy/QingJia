@@ -33,6 +33,7 @@
 @property(nonatomic,strong)UISearchBar      *seatchBar;
 @property (nonatomic,strong)UITableView     *resultTableView;
 @property (nonatomic,strong)UIView          *resultView;
+@property (nonatomic,strong) UITableView    *myTableView;
 @end
 
 @implementation HCOtherNotificationViewController
@@ -136,15 +137,14 @@
         btn3.tag = 300;
         btnArr = [[NSMutableArray alloc]initWithObjects:btn1,btn2,btn3,nil];
 
-        
-        static NSString *cellIdentifier = @"Cellllll";
-        HCNotifiMessageCenterCell *cell = (HCNotifiMessageCenterCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        static NSString *cellIdentifier = @"centermessageCell";
+        HCNotifiMessageCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
-            cell = [[HCNotifiMessageCenterCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                               reuseIdentifier:@"Celllll"
-                                                      withBtns:btnArr
-                                                     tableView:self.tableView];
-            cell.delegate = self;
+                cell = [[HCNotifiMessageCenterCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                        reuseIdentifier:@"centermessageCell"
+                                                               withBtns:btnArr
+                                                              tableView:self.tableView];
+                cell.delegate = self;
         }
         cell.info = self.dataSource[indexPath.row];
         return cell;

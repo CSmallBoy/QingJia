@@ -35,6 +35,7 @@
 #define kkObject   @"object"
 //时光
 #define kkTimes   @"times"
+#define kkLoss   @"loss"
 //时光评论
 #define kkComment   @"comment"
 //appstore更新地址

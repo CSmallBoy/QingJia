@@ -462,6 +462,7 @@
 		8D131AA21C7D872800F0D5A0 /* ZLPhotoLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8D131AA11C7D872800F0D5A0 /* ZLPhotoLib.bundle */; };
 		8D134CDC1CCDE6AB001B77EE /* HCPromisedSubCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D134CDB1CCDE6AB001B77EE /* HCPromisedSubCommentCell.m */; };
 		8D134CDF1CCE0698001B77EE /* HCReplyLineApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D134CDE1CCE0698001B77EE /* HCReplyLineApi.m */; };
+		8D134CE21CCE3F00001B77EE /* HCClosePromisedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D134CE11CCE3F00001B77EE /* HCClosePromisedApi.m */; };
 		8D156B881CC5DFD10025CB1C /* HCTagUserAmostListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D156B871CC5DFD10025CB1C /* HCTagUserAmostListApi.m */; };
 		8D156B8B1CC5E1B90025CB1C /* HCTagUserFindApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D156B8A1CC5E1B90025CB1C /* HCTagUserFindApi.m */; };
 		8D156B8E1CC60D2F0025CB1C /* HCTagCloseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D156B8D1CC60D2F0025CB1C /* HCTagCloseTableViewController.m */; };
@@ -2010,6 +2011,8 @@
 		8D134CDB1CCDE6AB001B77EE /* HCPromisedSubCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedSubCommentCell.m; sourceTree = "<group>"; };
 		8D134CDD1CCE0698001B77EE /* HCReplyLineApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReplyLineApi.h; sourceTree = "<group>"; };
 		8D134CDE1CCE0698001B77EE /* HCReplyLineApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReplyLineApi.m; sourceTree = "<group>"; };
+		8D134CE01CCE3F00001B77EE /* HCClosePromisedApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCClosePromisedApi.h; sourceTree = "<group>"; };
+		8D134CE11CCE3F00001B77EE /* HCClosePromisedApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCClosePromisedApi.m; sourceTree = "<group>"; };
 		8D156B861CC5DFD10025CB1C /* HCTagUserAmostListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagUserAmostListApi.h; sourceTree = "<group>"; };
 		8D156B871CC5DFD10025CB1C /* HCTagUserAmostListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTagUserAmostListApi.m; sourceTree = "<group>"; };
 		8D156B891CC5E1B90025CB1C /* HCTagUserFindApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTagUserFindApi.h; sourceTree = "<group>"; };
@@ -3339,6 +3342,8 @@
 				8D091FAB1CCC8B6A00FA2EA7 /* HCScanApi.m */,
 				8D134CDD1CCE0698001B77EE /* HCReplyLineApi.h */,
 				8D134CDE1CCE0698001B77EE /* HCReplyLineApi.m */,
+				8D134CE01CCE3F00001B77EE /* HCClosePromisedApi.h */,
+				8D134CE11CCE3F00001B77EE /* HCClosePromisedApi.m */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -7337,7 +7342,7 @@
 				TargetAttributes = {
 					0A6B7D971BF1EB6A008D54B3 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = TUQVNVJWWD;
+						DevelopmentTeam = DWB73FX47H;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -8427,6 +8432,7 @@
 				0A2B46E61C7F12AF00AAA157 /* HCHomeViewController.m in Sources */,
 				8D15E5551CBB549500FA3B11 /* HCTagActivateApi.m in Sources */,
 				0A5491B01C2BC32D0085F50D /* ZXPDF417DecodedBitStreamParser.m in Sources */,
+				8D134CE21CCE3F00001B77EE /* HCClosePromisedApi.m in Sources */,
 				C7BE0E3B1C71A02A007D97A5 /* HCMailListViewController.m in Sources */,
 				8D10750C1CC91197008511ED /* HCPromisedTagUserDetailController.m in Sources */,
 				C7B00B921C5F26050010F93B /* UIImage+EMWebP.m in Sources */,

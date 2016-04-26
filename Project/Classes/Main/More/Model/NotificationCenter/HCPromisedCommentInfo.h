@@ -21,4 +21,6 @@
 @property (nonatomic,strong) NSString *toId;
 @property (nonatomic,strong) NSString *toNickName;
 @property (nonatomic,strong) NSString *isScan;
+
+@property (nonatomic,strong) NSString *oldId;
 @end

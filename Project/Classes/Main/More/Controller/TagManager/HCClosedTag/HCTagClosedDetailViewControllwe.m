@@ -25,7 +25,7 @@
 
 @property (nonatomic,strong) UIView *headerView;
 
-@property (nonatomic,strong) HCTagManagerInfo *info;
+@property (nonatomic,strong) HCNewTagInfo *info;
 
 
 @end
@@ -149,7 +149,7 @@
 //        }
 //
         UIImageView *image_head = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
-        image_head.image = OrigIMG(_info.imgArr[_index]);
+//        image_head.image = OrigIMG(_info.imgArr[_index]);
         [self.headerView addSubview:image_head];
         
         UILabel *idLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 140, 110, 20)];

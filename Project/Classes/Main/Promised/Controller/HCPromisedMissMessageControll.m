@@ -297,7 +297,8 @@
     [self showHUDView:nil];
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
-    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkUser,uuid,token]];
+    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkLoss,uuid,token]];
+    
     [KLHttpTool uploadImageWithUrl:str image:self.image success:^(id responseObject) {
         NSLog(@"%@",responseObject);
         self.imgStr = responseObject[@"Data"][@"files"][0];
@@ -306,7 +307,6 @@
     } failure:^(NSError *error) {
         
     }];
-  
 
 }
 

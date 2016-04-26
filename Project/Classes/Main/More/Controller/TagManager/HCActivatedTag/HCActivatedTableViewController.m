@@ -219,7 +219,7 @@
                         for (int  k = 0; k<smallArr.count; k++)
                         {
                             
-                            NSURL *url = [readUserInfo originUrl:smallArr[k][@"imageName"] :kkUser];
+                            NSURL *url = [readUserInfo originUrl:smallArr[k][@"imageName"] :kkLabel];
                             
                             UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
                             
@@ -256,7 +256,6 @@
                 }
                
             }
-
         }
          [self hideHUDView];
             

@@ -15,6 +15,8 @@
 
 #import "HCNotificationCenterInfo.h"
 
+#import "HCClosePromisedApi.h"
+
 #import "HCButtonItem.h"
 @interface HCMyPromisedDetailController ()<SKStoreProductViewControllerDelegate>
 
@@ -68,10 +70,11 @@
     [self.view addSubview:self.foundBtn];
     
     
-    NSURL *url = [readUserInfo originUrl:self.info.lossImageName :kkUser];
+    NSURL *url = [readUserInfo originUrl:self.info.lossImageName :kkLoss];
+    
     [self.imageView sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
     
-    NSURL *url1 = [readUserInfo originUrl:self.info.imageName :kkUser];
+    NSURL *url1 = [readUserInfo originUrl:self.info.imageName :kkObject];
     UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url1]];
     [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
     
@@ -159,8 +162,30 @@
         
     }else  if ([button.titleLabel.text isEqualToString:@"关闭"])
     {
-        [self.blackView removeFromSuperview];
-        [self.myAlertView removeFromSuperview];
+        
+        //关闭一呼百应
+        [self showHUDView:nil];
+        HCClosePromisedApi *api = [[HCClosePromisedApi alloc]init];
+        api.callId = self.info.callId;
+        
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+           
+            if (requestStatus == HCRequestStatusSuccess) {
+                
+                [self hideHUDView];
+                
+                NSLog(@"-----------------------关闭一呼百应--------------------------");
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"aboutMeData" object:nil];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self.blackView removeFromSuperview];
+                [self.myAlertView removeFromSuperview];
+                
+            }
+            
+        }];
+        
+        
+        
     }
     else
     {
