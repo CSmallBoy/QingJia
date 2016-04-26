@@ -124,7 +124,7 @@
     }
     if (IsEmpty(_info.contactAddr))
     {
-        [self showHUDText:@"学校地址不能为空!"];
+        [self showHUDText:@"家庭地址不能为空!"];
         return;
     }
     
@@ -208,6 +208,7 @@
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
     NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkFamail,uuid,token]];
     [KLHttpTool uploadImageWithUrl:str image:self.image success:^(id responseObject) {
+        
         NSLog(@"%@",responseObject);
         self.info.imageName = responseObject[@"Data"][@"files"][0];
         [self createFamily];

@@ -192,21 +192,22 @@
 
 #pragma mark - UIImagePickerControllerDelegate
 
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-//{//不编辑图片
-//    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-//    
-//    if (_info.FTImages.count >= 10)
-//    {
-//        [self showHUDText:@"最多只能发布9张图片"];
-//        [picker dismissViewControllerAnimated:YES completion:nil];
-//        return;
-//    }
-//    [_info.FTImages insertObject:image atIndex:_info.FTImages.count-1];
-//    [self.tableView reloadData];
-//
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-//}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{//不编辑图片
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    if (_info.FTImages.count >= 10)
+    {
+        [self showHUDText:@"最多只能发布9张图片"];
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+    [_info.FTImages insertObject:image atIndex:_info.FTImages.count-1];
+    [self.tableView reloadData];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - ACEExpandableTableViewDelegate
 
