@@ -124,7 +124,7 @@
             view.backgroundColor = kHCNavBarColor;
             
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH-20, 210)];
-            NSURL *url = [readUserInfo originUrl:info.imageName :kkUser];
+            NSURL *url = [readUserInfo originUrl:info.imageName :kkObject];
             [imageView sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
             
             [view addSubview:imageView];
@@ -167,11 +167,16 @@
 -(void)sureButtonClick:(UIBarButtonItem *)right
 {
     if (self.image == nil) {
-        
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"点击上传标签图片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alert show];
-    }
     
+        [self showHUDText:@"请上传标签图片"];
+        return;
+    }
+
+    
+    if (self.textField.text == nil) {
+        [self showHUDText:@"标签名字"];
+        return;
+    }
     [self upLoadImge];
 }
 
@@ -280,7 +285,7 @@
     
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
-    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkUser,uuid,token]];
+    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkLabel,uuid,token]];
     [KLHttpTool uploadImageWithUrl:str image:self.image success:^(id responseObject) {
         NSLog(@"%@",responseObject);
         self.imgStr = responseObject[@"Data"][@"files"][0];
@@ -297,7 +302,9 @@
 {
     HCTagActivateApi *api = [[HCTagActivateApi alloc]init];
     
-    api.labelGuid = @"8f0a-4aed-0000";
+    NSString *str = [NSString stringWithFormat:@"%d",arc4random()%10000];
+    
+    api.labelGuid = [NSString stringWithFormat:@"8f0a-4aed-%@",str ];
     api.imageName = self.imgStr;
     api.labelTitle = self.textField.text;
     api.objectId = self.seletedInfo.objectId;

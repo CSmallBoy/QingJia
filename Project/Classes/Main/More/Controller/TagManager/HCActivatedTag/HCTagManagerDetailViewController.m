@@ -297,11 +297,11 @@
         self.info = info;
         self.info.objectId = self.objectId;
         
-        NSURL *url = [readUserInfo originUrl:_info.imageName :kkUser];
+        NSURL *url = [readUserInfo originUrl:_info.imageName :kkObject];
         
         [_header_button sd_setImageWithURL:url placeholderImage:IMG(@"2Dbarcode_message_HeadPortraits")];
         
-        NSURL *url1 = [readUserInfo originUrl:_info.labelImageName :kkUser];
+        NSURL *url1 = [readUserInfo originUrl:_info.labelImageName :kkLabel];
         [self.tagImageView sd_setImageWithURL:url1 placeholderImage:IMG(@"head.jpg")];
         
         [self.tableView reloadData];
@@ -322,7 +322,7 @@
         if (requestStatus == HCRequestStatusSuccess) {
             
             [self.navigationController popViewControllerAnimated:YES];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"requestData" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"requestStopData" object:nil];
         }
         
     }];

@@ -28,12 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self requestHomeData];
+    [self requestStopData];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCTagManagerTableViewCell class] forCellReuseIdentifier:activatedcell];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"requestData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestStopData) name:@"requestStopData" object:nil];
 
 }
 
@@ -137,7 +137,7 @@
 
 #pragma mark - network
 
-- (void)requestHomeData
+- (void)requestStopData
 {
 
     HCTagAmostDetailListApi *api = [[HCTagAmostDetailListApi alloc]init];
@@ -147,92 +147,97 @@
             
             [self.dataSource removeAllObjects];
             NSArray *oldArr = respone[@"Data"][@"rows"];
-            NSMutableArray *smallArr = [NSMutableArray array];
-            NSMutableArray *bigArr = [NSMutableArray array];
             
-            [bigArr addObject:smallArr];
-            
-            for (int i = 0; i<oldArr.count; i++)
-            {
-                if (i == 0)
+            if (oldArr.count>0) {
+                
+                NSMutableArray *smallArr = [NSMutableArray array];
+                NSMutableArray *bigArr = [NSMutableArray array];
+                
+                [bigArr addObject:smallArr];
+                
+                for (int i = 0; i<oldArr.count; i++)
                 {
-                    [smallArr addObject:oldArr[i]];
-                    
-                }
-                else
-                {
-                    for (int j = 0; j<bigArr.count; j++)
+                    if (i == 0)
                     {
+                        [smallArr addObject:oldArr[i]];
                         
-                        NSString *bigStr =bigArr[j][0][@"trueName"];
-                        NSString *oldStr =oldArr[i][@"trueName"];
-                        
-                        if ([bigStr isEqualToString:oldStr])
+                    }
+                    else
+                    {
+                        for (int j = 0; j<bigArr.count; j++)
                         {
-                            [bigArr[j] addObject:oldArr[i]];
-                            break;
                             
+                            NSString *bigStr =bigArr[j][0][@"trueName"];
+                            NSString *oldStr =oldArr[i][@"trueName"];
                             
-                        }else
-                        {
-                            if (j == bigArr.count-1)
+                            if ([bigStr isEqualToString:oldStr])
                             {
-                                NSMutableArray *newArr = [NSMutableArray array];
-                                [newArr addObject:oldArr[i]];
-                                [bigArr addObject:newArr];
+                                [bigArr[j] addObject:oldArr[i]];
                                 break;
+                                
+                                
+                            }else
+                            {
+                                if (j == bigArr.count-1)
+                                {
+                                    NSMutableArray *newArr = [NSMutableArray array];
+                                    [newArr addObject:oldArr[i]];
+                                    [bigArr addObject:newArr];
+                                    break;
+                                }
+                                
                             }
-                            
                         }
                     }
-                }
-            }
-            
-            NSLog(@"%@",bigArr);
-            
-            if (bigArr.count > 1) {
-                for (int i = 0; i<bigArr.count; i++) {
-                    NSArray *smallArr = bigArr[i];
-                    HCTagManagerInfo *info = [[HCTagManagerInfo alloc] init];
-                    info.tagUserName = [NSString stringWithFormat:@"%@",smallArr[0][@"trueName"]];
-                    NSMutableArray *tagNameArr =[NSMutableArray array];
-                    
-                    for (int j = 0; j<smallArr.count; j++) {
-                        [tagNameArr addObject:smallArr[j][@"labelTitle"] ];
-                    }
-                    info.tagNameArr = tagNameArr;
-                    
-                    NSMutableArray *imgArr = [NSMutableArray array];
-                    for (int  k = 0; k<smallArr.count; k++) {
-                        
-                        NSURL *url = [readUserInfo originUrl:smallArr[k][@"imageName"] :kkUser];
-                        
-                        UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
-                        
-                        if (imgFromUrl == nil) {
-                            imgFromUrl = IMG(@"time_picture");
-                        }
-                        
-                        [imgArr addObject:imgFromUrl];
-                    }
-                    
-                    info.imgArr = imgArr;
-                    
-                    NSMutableArray *tagIDArr = [NSMutableArray array];
-                    
-                    for (int m = 0; m< smallArr.count; m++)
-                    {
-                        [tagIDArr addObject:smallArr[m][@"labelId"]];
-                    }
-                    info.tagIDArr = tagIDArr;
-                    
-                    [self.dataSource addObject:info];
-                    [self.tableView reloadData];
                 }
                 
-                NSLog(@"*********标签概要信息列表*************");
+                NSLog(@"%@",bigArr);
+                
+                if (bigArr.count > 0) {
+                    for (int i = 0; i<bigArr.count; i++) {
+                        NSArray *smallArr = bigArr[i];
+                        HCTagManagerInfo *info = [[HCTagManagerInfo alloc] init];
+                        info.tagUserName = [NSString stringWithFormat:@"%@",smallArr[0][@"trueName"]];
+                        NSMutableArray *tagNameArr =[NSMutableArray array];
+                        
+                        for (int j = 0; j<smallArr.count; j++) {
+                            [tagNameArr addObject:smallArr[j][@"labelTitle"] ];
+                        }
+                        info.tagNameArr = tagNameArr;
+                        
+                        NSMutableArray *imgArr = [NSMutableArray array];
+                        for (int  k = 0; k<smallArr.count; k++) {
+                            
+                            NSURL *url = [readUserInfo originUrl:smallArr[k][@"imageName"] :kkLabel];
+                            
+                            UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+                            
+                            if (imgFromUrl == nil) {
+                                imgFromUrl = IMG(@"time_picture");
+                            }
+                            
+                            [imgArr addObject:imgFromUrl];
+                        }
+                        
+                        info.imgArr = imgArr;
+                        
+                        NSMutableArray *tagIDArr = [NSMutableArray array];
+                        
+                        for (int m = 0; m< smallArr.count; m++)
+                        {
+                            [tagIDArr addObject:smallArr[m][@"labelId"]];
+                        }
+                        info.tagIDArr = tagIDArr;
+                        
+                        [self.dataSource addObject:info];
+                        [self.tableView reloadData];
+                    }
+                    
+                    NSLog(@"*********标签概要信息列表*************");
+                }
             }
-        }
+
+            }
             
             
     }];

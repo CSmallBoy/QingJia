@@ -197,7 +197,7 @@
                 }
                 else
                 {
-                    NSURL *url = [readUserInfo originUrl:_info.imageName :kkUser];
+                    NSURL *url = [readUserInfo originUrl:_info.imageName :kkObject];
                     [self.headBtn sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
                 }
               

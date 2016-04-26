@@ -118,7 +118,7 @@
     
     self.missLabel.text = [NSString stringWithFormat:@"走失描述：%@",info.lossDesciption];
     
-    NSURL *url = [readUserInfo originUrl:self.info.imageName :kkUser];
+    NSURL *url = [readUserInfo originUrl:self.info.imageName :kkObject];
     [self.headIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
     
 }
@@ -305,7 +305,6 @@
     
     [self.SCContentView removeGestureRecognizer:_panGersture];
     [self.SCContentView removeGestureRecognizer:tap];
-    
     _panGersture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleGesture:)];
     _panGersture.delegate = self;
     [self.SCContentView addGestureRecognizer:_panGersture];

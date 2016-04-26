@@ -558,23 +558,19 @@
 -(void)swClick:(UISwitch *)sw
 {
     if (sw.on) {
-        self.openHealthCard = @"1";
+        self.info.openHealthCard = @"1";
         sw.on = YES;
         _isHide = NO;
-        
-        HCNewTagInfo *info = self.data[@"info"];
-        info.openHealthCard = @"1";
+
         [self.tableView reloadData];
         
     }
     else
     {
-        self.openHealthCard = @"0";
+        self.info.openHealthCard = @"0";
         sw.on = NO;
         _isHide = YES;
         
-        HCNewTagInfo *info = self.data[@"info"];
-        info.openHealthCard = @"0";
         
         [self.tableView reloadData];
         
@@ -604,7 +600,7 @@
         return;
     }
     
-    if ([self.openHealthCard isEqualToString:@"1"]) {
+    if ([self.info.openHealthCard isEqualToString:@"1"]) {
         
         if (IsEmpty(self.info.height)) {
             [self showHUDText:@"请输入身高"];
@@ -633,13 +629,23 @@
     }
 
         if (self.selectArr.count== 2) {
-            HCPromiedTagWhenMissController *vc = [[HCPromiedTagWhenMissController alloc]init];
-            vc.info = self.info;
-            vc.contactArr = self.selectArr;
-            vc.dataArr = self.tagArr;
-            [self.navigationController pushViewController:vc animated:YES];
-
+           
             
+            if (self.tagArr.count>0) {
+                HCPromiedTagWhenMissController *vc = [[HCPromiedTagWhenMissController alloc]init];
+                vc.info = self.info;
+                vc.contactArr = self.selectArr;
+                vc.dataArr = self.tagArr;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else
+            {
+                
+                HCPromisedMissMessageControll*vc = [[HCPromisedMissMessageControll alloc]init];
+                vc.info = self.info;
+                vc.tagArr = self.tagArr;
+                vc.contactArr = self.contactArr;
+                [self.navigationController pushViewController:vc animated:YES];
+            }    
         }
         else
         {
@@ -735,14 +741,16 @@
         
         _sw = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-60, 5, 40, 30)];
         
-        HCNewTagInfo *info = self.data[@"info"];
-        if ([info.openHealthCard isEqualToString:@"0"]) {
+
+        if (_sw.on) {
             
-            _sw.on = NO;;
+            _sw.on = NO;
+            self.info.openHealthCard = @"0";
         }
         else
         {
            _sw.on = YES;
+            self.info.openHealthCard = @"1";
         }
         
         

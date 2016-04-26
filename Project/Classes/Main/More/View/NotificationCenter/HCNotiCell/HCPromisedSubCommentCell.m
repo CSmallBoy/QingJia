@@ -19,12 +19,15 @@
 @property (nonatomic,strong) UIButton  *headBtn;
 @property (nonatomic,strong) UILabel   *nickLabel;
 @property (nonatomic,strong) UILabel   *commentLabel;
-@property (nonatomic,strong) UILabel   *backLabel;
+@property (nonatomic,strong) UIButton   *backLabel;
 @property (nonatomic,strong) UILabel   *timeLabel;
 @property (nonatomic,strong) UIButton  *button1;
 @property (nonatomic,strong) UIButton  *button2;
 @property (nonatomic,strong) UIButton  *button3;
 @property (nonatomic,strong) UITextField  *redTextField;
+
+@property (nonatomic,strong) NSArray   *btnArr;
+
 @end
 
 
@@ -57,10 +60,11 @@
     [self addSubview:self.timeLabel];
     [self addSubview:self.backLabel];
     [self addSubview:self.commentLabel];
-    [self addSubview:self.button1];
-    [self addSubview:self.button2];
-    [self addSubview:self.button3];
-
+   
+    self.btnArr = @[self.button1,self.button2,self.button3];
+    
+    [self addSubview:self.redTextField];
+    
 }
 //点击了头像
 -(void)headBtnClick:(UIButton *)button
@@ -76,6 +80,12 @@
       self.block (button);
 }
 
+-(void)backLabelClick:(UIButton *)button
+
+{
+     self.subBlock(self.indexPath);
+}
+
 #pragma mark --- getter Or setter
 
 -(void)setCommnetFrameInfo:(HCPromisedCommentFrameInfo *)commnetFrameInfo
@@ -83,6 +93,12 @@
     _commnetFrameInfo = commnetFrameInfo;
 
     self.headBtn.frame = commnetFrameInfo.headBtnFrame;
+    
+    UIImageView *HeadIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.headBtn.frame.size.width, self.headBtn.frame.size.height)];
+    NSURL *url = [readUserInfo originUrl:commnetFrameInfo.commentInfo.imageName :kkUser];
+    [HeadIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
+    [self.headBtn addSubview:HeadIV];
+    
     
     self.nickLabel.frame = commnetFrameInfo.nickLabelFrame;
     self.nickLabel.text = commnetFrameInfo.commentInfo.nickName;
@@ -94,15 +110,43 @@
     
     self.commentLabel.frame = commnetFrameInfo.commentLabelFrame;
     NSString *str = [NSString stringWithFormat:@"%@回复%@:%@",commnetFrameInfo.commentInfo.nickName,commnetFrameInfo.commentInfo.toNickName,commnetFrameInfo.commentInfo.content];
-    self.commentLabel.text = str;
     
-    self.button1.frame = commnetFrameInfo.button1Frame;
-
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:str];
+    [attStr addAttributes:@{NSForegroundColorAttributeName:COLOR(30, 110, 254, 1)} range:NSMakeRange(0,commnetFrameInfo.commentInfo.nickName.length)];
     
-    self.button2.frame = commnetFrameInfo.button2Frame;
-
+    [attStr addAttributes:@{NSForegroundColorAttributeName:COLOR(30, 110, 254, 1)} range:NSMakeRange(commnetFrameInfo.commentInfo.nickName.length+2,commnetFrameInfo.commentInfo.toNickName.length)];
+    self.commentLabel.attributedText = attStr;
     
-    self.button3.frame = commnetFrameInfo.button3Frame;
+    
+    
+    NSArray *arr = [commnetFrameInfo.commentInfo.imageNames componentsSeparatedByString:@","];
+    
+    
+    for (int i = 0; i<arr.count; i++) {
+        
+        
+        UIImageView *button =self.btnArr[i];
+        switch (i) {
+            case 0:
+                button.frame = commnetFrameInfo.button1Frame;
+                break;
+            case 1:
+                button.frame = commnetFrameInfo.button2Frame;
+                break;
+            case 2:
+                button.frame = commnetFrameInfo.button3Frame;
+                break;
+            default:
+                break;
+        }
+        
+        NSURL *url = [readUserInfo originUrl:arr[i] :kkUser];
+        UIImageView *imageView= [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, button.frame.size.width, button.frame.size.height)];
+        [imageView sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
+        [button addSubview:imageView];
+        
+        [self addSubview:button];
+    }
 
 
 
@@ -112,7 +156,7 @@
 {
     if(!_headBtn){
         _headBtn= [UIButton buttonWithType:UIButtonTypeCustom];
-        [_headBtn setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        [_headBtn setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
         ViewRadius(_headBtn, 25);
         [_headBtn addTarget:self action:@selector(headBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -143,13 +187,13 @@
 }
 
 
-- (UILabel *)backLabel
+- (UIButton *)backLabel
 {
     if(!_backLabel){
-        _backLabel = [[UILabel alloc]init];
-        _backLabel.font = [UIFont systemFontOfSize:15];
-        _backLabel.textColor = [UIColor grayColor];
-        _backLabel.text = @"回复";
+        _backLabel = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backLabel addTarget:self action:@selector(backLabelClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_backLabel setTitle:@"回复" forState:UIControlStateNormal];
+        [_backLabel setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     }
     return _backLabel;
 }
@@ -171,7 +215,7 @@
 {
     if(!_button1){
         _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button1 setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        [_button1 setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
         [_button1 addTarget:self action:@selector(imageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _button1;
@@ -181,7 +225,7 @@
 {
     if(!_button2){
         _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button2 setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        [_button2 setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
         [_button2 addTarget:self action:@selector(imageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _button2;
@@ -190,7 +234,7 @@
 {
     if(!_button3){
         _button3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button3 setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        [_button3 setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
         [_button3 addTarget:self action:@selector(imageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _button3;

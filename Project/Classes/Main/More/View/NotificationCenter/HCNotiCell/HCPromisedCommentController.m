@@ -41,7 +41,18 @@
 @property (nonatomic,strong) UIButton      *sendBtn;
 @property (nonatomic,strong) UITableView   *myTableView;
 @property (nonatomic,strong) UITextField   *textField;
+@property (nonatomic,strong) UITextField      *inputViewText;
+@property (nonatomic,strong) NSIndexPath   *subIndexPath;
+
+
+@property (nonatomic,strong) UIView * navView;// 假导航
+@property (nonatomic,strong) UIView *statusBarView;// 状态栏
+
+
 @property (nonatomic,strong) NSMutableArray    *images;
+
+@property (nonatomic,strong) NSString     * mySelfId;;
+@property (nonatomic,strong) NSString     * toID;
 
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) NSMutableArray *imgStrArr;
@@ -53,15 +64,92 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = kHCBackgroundColor;
     self.title = @"发现线索";
     _photoCount = 0;
     [self requestData];
+    
     [self.view addSubview:self.myTableView];
     [self.view addSubview:self.inputView];
     [self setupBackItem];
     
-
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
 }
+
+-(void)customBtnClick:(UIButton *)button
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notif {
+    
+//    
+    CGRect rect = [[notif.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat y = rect.origin.y;
+
+    self.view.bounds = CGRectMake(0, -y, SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    UIButton*customBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+  
+        
+    customBtn.frame = CGRectMake(17, 14, 30, 30);
+    [customBtn setImage:[UIImage imageNamed:@"barItem-back"] forState:UIControlStateNormal];
+    [customBtn addTarget:self action:@selector(customBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+   
+    
+    self.navView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, 54)];
+    self.navView.backgroundColor = COLOR(203, 33, 47, 1);
+    [self.navView addSubview:customBtn];
+    
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 9, SCREEN_WIDTH, 40)];
+    label.textColor = [UIColor whiteColor];
+    label.text = @"发现线索";
+    label.font = [UIFont systemFontOfSize:17 weight:3];
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [self.navView addSubview:label];
+    
+    [self.view addSubview:self.navView];
+    
+
+    
+    self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44-y, SCREEN_WIDTH, 44);
+
+    self.myTableView.frame = CGRectMake(0,-10, SCREEN_WIDTH, SCREEN_HEIGHT-y-34);
+    
+    _statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 20)];
+    
+    _statusBarView.backgroundColor=COLOR(203, 33, 47, 1);
+    
+    [self.view addSubview:_statusBarView];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    
+   
+}
+
+// 键盘收起来
+- (void)keyboardWillHide:(NSNotification *)notif {
+    
+    self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    self.myTableView.frame = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT-44);
+    [self.navView removeFromSuperview];
+    
+    self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44, SCREEN_WIDTH, 44);
+    [_statusBarView removeFromSuperview];
+}
+
 
 #pragma mark --- tableViewDelegate
 
@@ -70,11 +158,11 @@
     HCPromisedCommentFrameInfo *frameInfo = self.dataSource[indexPath.row];
     HCPromisedCommentInfo *info = frameInfo.commentInfo;
     
-    if (info.toId) {
+    if (info.toId == info.fromId) {
         HCPromisedCommentCell *cell = [HCPromisedCommentCell cellWithTableView:tableView];
+        cell.indexPath = indexPath;
         cell.block = ^(UIButton *button){
-            
-            
+
             if (_startEdit)
             {
                 [self.view endEditing:YES];
@@ -104,6 +192,12 @@
                 }];
             }
         };
+        cell.subBlock = ^(NSIndexPath *indexPath1){
+        
+            [self.textField becomeFirstResponder];
+            self.subIndexPath = indexPath1;
+        };
+        
         cell.commnetFrameInfo = self.dataSource[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -112,14 +206,18 @@
     {
         HCPromisedSubCommentCell *cell = [HCPromisedSubCommentCell cellWithTableView:tableView];
         cell.commnetFrameInfo = frameInfo;
+        cell.indexPath = indexPath;
+        cell.subBlock = ^(NSIndexPath *indexPath1){
+            
+            [self.textField becomeFirstResponder];
+            self.subIndexPath = indexPath1;
+        };
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     
     }
     
-
-    
-
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -136,6 +234,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCPromisedCommentFrameInfo *frameCell = self.dataSource[indexPath.row];
+    
     return frameCell.cellHeight;
 }
 
@@ -344,6 +443,14 @@
 -(void)sendBtnClick:(UIButton *)button
 {
     
+    
+    if (self.textField == nil && self.images.count==0) {
+        
+        [self showHUDView:@"请输入文字或者上传图片"];
+        return;
+        
+    }
+    
     if (self.images.count>0) {
         // 先上传图片
         [self upLoadImages:1];
@@ -376,7 +483,7 @@
 - (UITableView *)myTableView
 {
     if(!_myTableView){
-        _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44) style:UITableViewStyleGrouped];
+        _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-44) style:UITableViewStyleGrouped];
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
     }
@@ -459,12 +566,29 @@
 }
 
 
+
+- (UITextField *)inputViewText
+{
+    if(!_inputViewText){
+        _inputViewText = [[UITextField alloc]initWithFrame:CGRectMake(10,7,SCREEN_WIDTH-120, 30)];
+        _inputViewText.backgroundColor = [UIColor whiteColor];
+        ViewRadius(_textField, 4);
+        _inputViewText.delegate = self;
+        _inputViewText.backgroundColor = [UIColor yellowColor];
+    }
+    return _inputViewText;
+}
+
+
 #pragma mark ---  network
 
 -(void)requestData
 {
+    
+    
     HCCommentListApi *api = [[HCCommentListApi alloc]init];
     api.callId = self.callId;
+    
     api._start = @"0";
     api._count = @"20";
     
@@ -472,16 +596,28 @@
        
         if (requestStatus == HCRequestStatusSuccess) {
             
+            [self.dataSource removeAllObjects];
+            
             NSArray *array = respone[@"Data"][@"rows"];
             
             for (NSDictionary *dic in array) {
                 
+                if (array.count>0) {
+                    NSDictionary *dic = [array lastObject];
+                    HCPromisedCommentInfo *info = [HCPromisedCommentInfo mj_objectWithKeyValues:dic];
+                    self.mySelfId = info.toId;
+                }
+                
                  HCPromisedCommentFrameInfo *frameInfo = [[HCPromisedCommentFrameInfo alloc]init];
                 HCPromisedCommentInfo *info = [HCPromisedCommentInfo mj_objectWithKeyValues:dic];
+                info.oldId = self.mySelfId;
                 frameInfo.commentInfo = info;
                 [self.dataSource addObject:frameInfo];
                 
             }
+            
+            
+            
             [self.myTableView reloadData];
         }
         
@@ -490,6 +626,8 @@
 
 -(void)upLoadData
 {
+    [self showHUDView:@"发送中"];
+    
     HCReplyLineApi *api = [[HCReplyLineApi alloc]init];
     
     HCPromisedCommentInfo *info = [[HCPromisedCommentInfo alloc]init];
@@ -498,6 +636,10 @@
     info.imageNames = str;
     info.content = self.textField.text;
     
+    HCPromisedCommentFrameInfo *frameInfo = self.dataSource[self.subIndexPath.row];
+    HCPromisedCommentInfo *info1 = frameInfo.commentInfo;
+    
+    info.toId = info1.fromId;
     api.info = info;
     api.callId = self.callId;
     
@@ -505,7 +647,12 @@
         
         if (requestStatus == HCRequestStatusSuccess) {
             
+            [self hideHUDView];
             NSLog(@"评论成功");
+            self.textField.text = nil;
+            self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            
+            [self requestData];
         }
         
     }];
@@ -522,7 +669,7 @@
     UIImage *image = self.images[num-1];
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
-    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkFamail,uuid,token]];
+    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkUser,uuid,token]];
     [KLHttpTool uploadImageWithUrl:str image:image success:^(id responseObject) {
         NSLog(@"%@",responseObject);
         NSString *imgStr = responseObject[@"Data"][@"files"][0];

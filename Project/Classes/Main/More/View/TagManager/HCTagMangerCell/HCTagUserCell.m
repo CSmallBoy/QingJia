@@ -83,7 +83,7 @@
     _info = info;
     
     self.trueNameLabel.text = info.trueName;
-    NSURL *url = [readUserInfo originUrl:info.imageName :kkUser];
+    NSURL *url = [readUserInfo originUrl:info.imageName :kkObject];
     [self.headIV sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
     
 }
