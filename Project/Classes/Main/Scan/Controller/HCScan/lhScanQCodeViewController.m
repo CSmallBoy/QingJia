@@ -11,6 +11,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import "HCJoinGradeViewController.h"
 
 #define DeviceMaxHeight ([UIScreen mainScreen].bounds.size.height)
 #define DeviceMaxWidth ([UIScreen mainScreen].bounds.size.width)
@@ -23,6 +24,7 @@
     
     BOOL isFirst;//第一次进入该页面
     BOOL isPush;//跳转到下一级页面
+    int a ;
 }
 
 @property (strong, nonatomic) CIDetector *detector;
@@ -127,8 +129,13 @@
             NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
             AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
             AudioServicesPlaySystemSound(soundID);
+            if (a ==0) {
+                  [self accordingQcode:scannedResult];
+            }else{
+                
+            }
             
-            [self accordingQcode:scannedResult];
+          
         }];
         
     }
@@ -173,8 +180,30 @@
 #pragma mark - 扫描结果处理
 - (void)accordingQcode:(NSString *)str
 {
-    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alertView show];
+//    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//    [alertView show];
+    a = 1;
+    if (str.length==10) { //------------------家庭号码-----------------
+        
+        
+        if (_isJoinFamily)
+        {
+            self.block(str);
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            HCJoinGradeViewController *JoinFamilyVC = [[HCJoinGradeViewController alloc]init];
+            JoinFamilyVC.familyID = str;
+            [self.navigationController pushViewController:JoinFamilyVC animated:YES];
+        }
+    }
+    else{
+    
+    
+    
+    }
+    
     
 }
 

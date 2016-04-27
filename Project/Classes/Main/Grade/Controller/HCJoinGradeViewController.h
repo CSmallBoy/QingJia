@@ -10,4 +10,6 @@
 
 @interface HCJoinGradeViewController : HCTableViewController
 
+@property (nonatomic,strong) NSString *familyID;
+
 @end

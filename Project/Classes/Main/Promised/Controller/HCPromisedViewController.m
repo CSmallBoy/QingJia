@@ -315,6 +315,7 @@
 -(void)ToQrcodeController:(UIBarButtonItem *)right
 {
     lhScanQCodeViewController   *scanVC = [[lhScanQCodeViewController alloc]init];
+    scanVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:scanVC animated:YES];
 }
 

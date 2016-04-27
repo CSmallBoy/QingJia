@@ -35,6 +35,7 @@
 
 @property (strong, nonatomic) CIDetector *detector;
 
+
 @end
 
 @implementation HCJoinGradeViewController
@@ -214,6 +215,11 @@
 //    item.tag = !item.tag;
     
     _lhScanVC= [[lhScanQCodeViewController alloc]init];
+    _lhScanVC.block = ^(NSString *str){
+        
+        self.textField.text = str;
+    };
+    _lhScanVC.isJoinFamily = YES;
     [self.navigationController pushViewController:_lhScanVC animated:YES];
     
 }
@@ -266,6 +272,7 @@
     {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(80, 0, WIDTH(self.view)-80, 47)];
         _textField.font = [UIFont systemFontOfSize:15];
+        _textField.text = self.familyID;
         _textField.placeholder = @"请点击输入家庭ID号";
     }
     return _textField;
