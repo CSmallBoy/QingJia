@@ -23,6 +23,7 @@
 
 @interface HCEditUserMessageViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>{
     UIImagePickerController *_myPk;
+    UIImagePickerController * _picker;
     UIImageView *buttonImage;
     UIImage *choose;
     NSArray *Arr;
@@ -53,16 +54,16 @@
     model = [[MyselfInfoModel alloc]init];
     api = [[NHCUSerInfoApi alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toChangeNumber) name:@"toChangeNumber" object:nil];
-    Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"年龄",@"生日",@"属相",@"住址",@"公司",@"职业"],
+    Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"生日",@"属相",@"住址",@"公司",@"职业"],
                   @[@"绑定手机号"]];
     NSDictionary *dic = [readUserInfo getReadDic];
     if (IsEmpty(dic[@"UserInf"][@"imageName"])) {
         //为空的话数组之间的赋值要变的
-        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,@"XX",_birthday,_shuxiang,@"请输入住址",@"请输入公司",@"请输入职位"];
+        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,@"请输入住址",@"请输入公司",@"请输入职位"];
         arr2= @[arr,
                 @[@"181109722222"]];
     }else{
-        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,@"XX",_birthday,_shuxiang,_adress,_copany,_professional];
+        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,_adress,_copany,_professional];
         arr2= @[arr,
                 @[@"181109722222"]];
     }
@@ -80,7 +81,7 @@
 {
     if (section == 0)
     {
-        return  10;
+        return  9;
     }else
     {
         return 1;
@@ -121,9 +122,6 @@
             case 3:
                 model.sex = textField.text;
                 break;
-            case 4:
-                model.age = textField.text;
-                break;
             case 6:
                 model.Animalsign= textField.text;
                 break;
@@ -140,14 +138,12 @@
                 break;
         }
     }
-   
-   
+
 }
 -(UITableViewCell  *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"identifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
     for (UIView *view1 in cell.subviews) {
         if ([view1 isKindOfClass:[UIView class]]) {
             [view1 removeFromSuperview];
@@ -157,6 +153,18 @@
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier
                 ];
+    }
+    if(indexPath.section==1){
+        UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 44)];
+        label1.text = @"绑定手机号";
+        UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(120, 0, 120, 44)];
+        label2.text = @"18300673332";
+        UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 0, 50, 44)];
+        label3.text = @"修改";
+        [cell.contentView addSubview:label3];
+        [cell.contentView addSubview:label2];
+        [cell.contentView addSubview:label1];
+        
     }
     if (indexPath.section == 0 ) {
         if (indexPath.row == 0) {
@@ -175,8 +183,6 @@
                     headImage.image = choose;
                 }
             }
-            
-          
             [cell addSubview:headImage];
         }
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(12, 10, 50, 20)];
@@ -194,7 +200,6 @@
                 case 6:
                     text_tf.text = arr2[indexPath.section][indexPath.row];
                     break;
-        
                 default:
                     break;
             }
@@ -204,10 +209,10 @@
         }
         
         text_tf.delegate =self;
-        if (indexPath.row==0||indexPath.row==3||indexPath.row==6||indexPath.row==2) {
+        if (indexPath.row==0||indexPath.row==3||indexPath.row==6||indexPath.row==2||indexPath.row==4) {
             text_tf.userInteractionEnabled = NO;
         }
-        if (indexPath.row == 5) {
+        if (indexPath.row == 4) {
             if (IsEmpty(str)) {
                 
             }else{
@@ -224,7 +229,6 @@
 
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%ld",(long)indexPath.section);
     if (indexPath.section==0 &&indexPath.row ==0) {
         UIAlertController *myalert =[UIAlertController alertControllerWithTitle:@"选择图片来源" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *xiangce = [UIAlertAction actionWithTitle:@"从相册里选择" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -237,7 +241,11 @@
         }];
         UIAlertAction *paizhao = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             //打开相机
-            
+            _picker = [[UIImagePickerController alloc]init];
+            _picker.delegate = self;
+            _picker.allowsEditing = YES;
+            _picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:_picker animated:YES completion:nil];
         }];
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
@@ -246,7 +254,7 @@
         [myalert addAction:paizhao];
         [myalert addAction:cancel];
         [self presentViewController:myalert animated:YES completion:nil];
-    }else if (indexPath.section == 0 &&indexPath.row==5){
+    }else if (indexPath.section == 0 &&indexPath.row==4){
         [self makeDatePicker];
     }else if (indexPath.section==1 && indexPath.row==0){
         [self toChangeNumber];
@@ -255,13 +263,18 @@
     }
     
 }
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    //编辑后的的图片 也可以是没有边际的图片
-    choose = [info objectForKey:UIImagePickerControllerEditedImage];
-    NSString *chooseImageStr = [readUserInfo imageString:choose];
-    model.PhotoStr = chooseImageStr;
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    if (picker==_myPk)
+    {
+        choose = [info objectForKey:UIImagePickerControllerEditedImage];
+        [_myPk dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        choose = [info objectForKey:UIImagePickerControllerEditedImage];
+        [_picker dismissViewControllerAnimated:YES completion:nil];
+    }
     [self.tableView reloadData];
-    [_myPk dismissViewControllerAnimated:YES completion:nil];
+    
 }
 #pragma mark ---- private mothods
 // 跳转绑定手机页面
@@ -275,57 +288,57 @@
 -(void)saveClick:(UIBarButtonItem *)item
 {
     //先验证是否否输入
-    if (IsEmpty(choose)||IsEmpty(model.nickName)||IsEmpty(model.age)||IsEmpty(model.birday)||IsEmpty(model.adress)||IsEmpty(model.company)||IsEmpty(model.professional)) {
-        [self showHUDSuccess:@"您还有为填写的内容"];
+    if (IsEmpty(choose)||IsEmpty(model.nickName)||IsEmpty(model.birday)||IsEmpty(model.adress)||IsEmpty(model.company)||IsEmpty(model.professional)) {
+        [self showHUDSuccess:@"您还有未编辑的内容"];
     }else{
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDic]];
         //先上传图片 在完善用户信息
         NSString * string = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"user",[HCAccountMgr manager].loginInfo.UUID,[readUserInfo getReadDic][@"Token"]]];
         //chosse 是选择好的图片
-        [KLHttpTool uploadImageWithUrl:string image:choose success:^(id responseObject) {
-            NSLog(@"%@",responseObject);
-            //在这个地方执行上传文字的操作
-            model.userPhoto = responseObject[@"Data"][@"files"][0];
-            api.myModel = model;
-            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac) {
-                if (requestStatus == HCRequestStatusSuccess) {
-                    [dic setObject:str forKey:@"birthday"];
-                    [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
-                    [dic setObject:model.userPhoto forKey:@"PhotoStr"];
-                    [dic setObject:model.nickName forKey:@"nickName"];
-                    [dic setObject:model.age forKey:@"age"];
-                    [dic setObject:model.adress forKey:@"adress"];
-                    [dic setObject:model.company forKey:@"company"];
-                    [dic setObject:model.professional forKey:@"professional"];
-                    [readUserInfo Dicdelete];
-                    [readUserInfo creatDic:dic];
-                    
-                    
-                    [self hideHUDView];
-                    if (requestStatus == HCRequestStatusSuccess) {
-                        
-                        for (UIViewController *temp in self.navigationController.viewControllers) {
-                            if ([temp isKindOfClass:[HCUserMessageViewController class]]) {
-                                
-                                [self.navigationController popToViewController:temp animated:YES];
-                            }
-                        }
-                        
-                        NSDictionary *dict = @{@"photo":choose};
-                        
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserPhoto" object:nil userInfo:dict];
-                        [self showHUDSuccess:@"保存成功"];
-                    }
-                    else
-                    {
-                        [self showHUDSuccess:@"保存失败"];
-                    }
-                }
-            }];
-            
-        } failure:^(NSError *error) {
-            
-        }];
+        [KLHttpTool uploadImageWithUrl:string image:choose success:^(id responseObject)
+         {
+             NSLog(@"%@",responseObject);
+             //在这个地方执行上传文字的操作
+             model.userPhoto = responseObject[@"Data"][@"files"][0];
+             api.myModel = model;
+             [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac)
+              {
+                  if (requestStatus == HCRequestStatusSuccess)
+                  {
+                      [dic setObject:str forKey:@"birthday"];
+                      [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
+                      [dic setObject:model.userPhoto forKey:@"PhotoStr"];
+                      [dic setObject:model.nickName forKey:@"nickName"];
+                      [dic setObject:model.age forKey:@"age"];
+                      [dic setObject:model.adress forKey:@"adress"];
+                      [dic setObject:model.company forKey:@"company"];
+                      [dic setObject:model.professional forKey:@"professional"];
+                      [readUserInfo Dicdelete];
+                      [readUserInfo creatDic:dic];
+                      [self hideHUDView];
+                      if (requestStatus == HCRequestStatusSuccess)
+                      {
+                          for (UIViewController *temp in self.navigationController.viewControllers)
+                          {
+                              if ([temp isKindOfClass:[HCUserMessageViewController class]])
+                              {
+                                  [self.navigationController popToViewController:temp animated:YES];
+                              }
+                          }
+                          NSDictionary *dict = @{@"photo":choose};
+                          [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserPhoto" object:nil userInfo:dict];
+                          [self showHUDSuccess:@"保存成功"];
+                      }
+                      else
+                      {
+                          [self showHUDSuccess:@"保存失败"];
+                      }
+                  }
+              }];
+             
+         } failure:^(NSError *error) {
+             
+         }];
     }
     
 
@@ -412,7 +425,7 @@
     str = [formatrer stringFromDate:datePicker.date];
     //[ setTitle:str forState:UIControlStateNormal];
     [view_back removeFromSuperview];
-    NSIndexPath  *indexPath_1=[NSIndexPath indexPathForRow:5 inSection:0];
+    NSIndexPath  *indexPath_1=[NSIndexPath indexPathForRow:4 inSection:0];
     model.birday = str;
     NSArray*indexArray=[NSArray  arrayWithObject:indexPath_1];
     [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:(UITableViewRowAnimationAutomatic)];

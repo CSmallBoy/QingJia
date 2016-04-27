@@ -79,7 +79,7 @@
 
 }
 //数据没写  等会再验证
--(void)commentSingle{
+-(void)commentSingle{                                                                                                      
     //评论界面
     HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
     //editComment.data = @{@"data": _info,@"index":self.data[@"index"]};
@@ -94,6 +94,15 @@
         UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
     }
     editComment.single = @"评论单图的回复";
+    NSString *str  = [NSString stringWithFormat:@"%ld",self.indexpath.row];
+    editComment.num_P = str;
+    editComment.image_name = _image_name;
+    //editComment.infomodel = _info;
+    editComment.time_id = _pic_time_id;
+    editComment.commentId = self.info.commentId;
+    editComment.touser = self.info.TOUSER;
+    
+    //需要传过来的数据啊
     [rootController presentViewController:editComment animated:YES completion:nil];
 
 }
@@ -113,9 +122,37 @@
     }
     
     self.nickName.text = info.NickName;
-    self.times.text = info.CreateTime;
+    self.times.text = [info.CreateTime substringToIndex:16];
+    
     self.commentLable.text = info.FTContent;
-    [_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal]; 
+    //子评论
+    for (int i = 0 ; i < _info.subRows.count; i++) {
+        UILabel *label  =[[UILabel alloc]initWithFrame:CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20)];
+        //label.backgroundColor = [UIColor redColor];
+        
+        UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button1 setTitle:@"santiao" forState:UIControlStateNormal];
+        [button1 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        button1.titleLabel.font = [UIFont systemFontOfSize:14];
+        [button1 setFrame:CGRectMake(0, 0, 50, 18)];
+        UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button2 setTitle:@"sizi" forState:UIControlStateNormal];
+        [button2 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [button2 setFrame:CGRectMake(80, 0, 50, 18)];
+        button2.titleLabel.font = [UIFont systemFontOfSize:14];
+        UILabel *huifu  = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 30, 18)];
+        huifu.font = [UIFont systemFontOfSize:14];
+        huifu.text = @"回复";
+        huifu.textAlignment = NSTextAlignmentCenter;
+        [label addSubview:huifu];
+        [label addSubview:button2];
+        [label addSubview:button1];
+        [_commentLable addSubview:label];
+        
+    }
+    //默认的注释
+    //[_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
+    [_headButton sd_setImageWithURL:[readUserInfo url:_info.fromImageName :kkUser] forState:UIControlStateNormal];
     self.headButton.frame = CGRectMake(10, 10, 40, 40);
     ViewRadius(self.headButton, 20);
     
@@ -127,7 +164,8 @@
     self.commentLable.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.times), SCREEN_WIDTH-70, size.height);
     if ([self.delegate respondsToSelector:@selector(hchomeDetailCommentTableViewCellCommentHeight:)])
     {
-        [self.delegate hchomeDetailCommentTableViewCellCommentHeight:size.height];
+        //这个地方修改高度
+        [self.delegate hchomeDetailCommentTableViewCellCommentHeight:size.height + 23 *_info.subRows.count];
     }
 }
 
@@ -185,7 +223,6 @@
         _commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_commentBtn addTarget:self action:@selector(handleCommentButton) forControlEvents:UIControlEventTouchUpInside];
         UIImageView *imgView = [[UIImageView alloc] initWithImage:OrigIMG(@"Comment_but_Bubbles")];
-        
         imgView.frame = CGRectMake(0, 0, 20, 20);
         [_commentBtn addSubview:imgView];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 40, 20)];

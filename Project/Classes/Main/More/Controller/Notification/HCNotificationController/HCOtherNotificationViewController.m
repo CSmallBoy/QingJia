@@ -412,12 +412,14 @@
                 [self.dataSource addObject:info];
                 
             }
+
             HCNotificationCenterInfo *info = [self.dataSource lastObject];
             self.moreID = info.callId;
             
             [self.myTableView.mj_header endRefreshing];
             [self.myTableView reloadData];
             NSLog(@"-----------------信息中心列表获取成功--------------------")
+
         }
     }];
 

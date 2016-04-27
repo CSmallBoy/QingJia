@@ -20,14 +20,26 @@
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-    NSDictionary *para = @{@"timesId":_TimeID,
-                           @"imageName":_ToimageName,
-                           @"content":_Content,
-                           @"createLocation":@"30,120",
-                           @"createAddrSmall":@"123",
-                           @"createAddr":@"123",
-                           @"to":_toUser};
-   
+    NSDictionary *para;
+    if ([_parentCommentId isEqualToString:@"0"]) {
+        para = @{@"timesId":_TimeID,
+                 @"imageName":_ToimageName,
+                 @"content":_Content,
+                 @"parentCommentId":_parentCommentId,
+                 @"createLocation":@"30,120",
+                 @"createAddrSmall":@"123",
+                 @"createAddr":@"123",
+                 @"to":_toUser};
+    }else{
+        para = @{@"timesId":_TimeID,
+                 @"imageName":_ToimageName,
+                 @"content":_Content,
+                 @"parentCommentId":_parentCommentId,
+                 @"createLocation":@"30,120",
+                 @"createAddrSmall":@"123",
+                 @"createAddr":@"123",
+                 @"to":_toUser};
+    }
     return @{@"Head":head,@"Para":para};
 }
 -(id)formatResponseObject:(id)responseObject

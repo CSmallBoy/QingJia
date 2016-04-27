@@ -32,6 +32,16 @@
 @property (nonatomic, strong) NSString *creator;
 @property (nonatomic, strong) NSString *isLike;
 @property (nonatomic, strong) NSString *fromFamily;
+//创建一个数组
+@property (nonatomic, strong) NSArray *subRows;
+//来自谁的头像
+@property (nonatomic, copy)NSString *fromImageName;
+//点赞的人
+@property (nonatomic, strong) NSArray *isLikeArr;
+//
+@property (nonatomic, copy) NSString *commentId;
+//对用户
+@property (nonatomic, copy) NSString *TOUSER;
 
 
 

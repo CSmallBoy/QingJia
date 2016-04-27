@@ -10,7 +10,8 @@
 #import "HCGradeViewController.h"
 #import "HCPerfectMessageApi.h"
 #import "NHCRegisteredApi.h"
-@interface HCPerfectMessageViewController ()
+#import "HCPickerView.h"
+@interface HCPerfectMessageViewController ()<HCPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *birTime;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -118,18 +119,18 @@
 }
 //创建时间选择器
 - (IBAction)CreatDatePicker:(UIButton *)sender {
-    UIDatePicker *datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT*0.7, SCREEN_WIDTH, SCREEN_HEIGHT*0.3)];
-    datePicker.datePickerMode = UIDatePickerModeDate;
-    datePicker.backgroundColor = [UIColor grayColor];
-    [datePicker addTarget:self action:@selector(makeDate:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:datePicker];
+    HCPickerView *pick;
+    pick = [[HCPickerView alloc] initDatePickWithDate:[NSDate date]
+                                              datePickerMode:UIDatePickerModeDate isHaveNavControler:YES];
+    pick.datePicker.maximumDate = [NSDate date];
+    pick.delegate = self;
+    pick.delegate = self;
+    [self.view addSubview:pick];
 }
--(void)makeDate:(UIDatePicker*)sender{
-    NSDateFormatter *formatrer = [[NSDateFormatter alloc]init];
-    //格式化输出
-    [formatrer setDateFormat:@"yyyy--MM--dd"];
-    NSString *str= [formatrer stringFromDate:sender.date];
-    [_birTime setTitle:str forState:UIControlStateNormal];
-    [sender removeFromSuperview];
+-(void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result{
+    NSDate *date = result[@"date"];
+     [_birTime setTitle:[Utils getDateStringWithDate:date format:@"yyyy-MM-dd"] forState:UIControlStateNormal];
+    
 }
+
 @end

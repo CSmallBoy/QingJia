@@ -50,7 +50,13 @@
                 buttonY = row * buttonW + (row+1)*5;
             }
             button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonW);
-          [button sd_setImageWithURL:[readUserInfo url:imageUrlArr[i] :kkTimes] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
+            UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, (SCREEN_WIDTH-20)/3, (SCREEN_WIDTH-20)/3)];
+            imageview.contentMode = UIViewContentModeScaleAspectFill;
+            imageview.clipsToBounds  = YES;
+            [imageview sd_setImageWithURL:[readUserInfo url:imageUrlArr[i] :kkTimes]];
+            imageview.frame = button.bounds;
+          //[button sd_setImageWithURL:[readUserInfo url:imageUrlArr[i] :kkTimes] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
+            [button addSubview:imageview];
             //[button sd_setImageWithURL:[NSURL URLWithString:imageUrlArr[i]] forState:UIControlStateNormal placeholderImage:OrigIMG(@"publish_picture")];
             [self addSubview:button];
         }

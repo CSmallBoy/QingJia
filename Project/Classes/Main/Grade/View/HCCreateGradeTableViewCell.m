@@ -97,10 +97,11 @@
         if (!IsEmpty(_info.uploadImage))
         {
             self.title.hidden = YES;
-             UIImageView *imageView = [[UIImageView alloc]initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 120)];
+             UIImageView *imageView = [[UIImageView alloc]initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 150)];
             imageView.image = _info.uploadImage;
+            imageView.clipsToBounds = YES;
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
             [self addSubview:imageView];
-//            self.selectedImgView.image = _info.uploadImage;
         }
     }
     
@@ -158,7 +159,7 @@
 {
     if (!_titleArr)
     {
-        _titleArr = @[@"家庭昵称",@"家庭签名", @"学校住址", @"祖籍"];
+        _titleArr = @[@"家庭昵称",@"家庭签名", @"家庭住址", @"祖籍"];
     }
     return _titleArr;
 }
@@ -167,7 +168,7 @@
 {
     if (!_placeholderArr)
     {
-        _placeholderArr = @[@"点击输入家庭昵称",@"点击输入一句家庭签名", @"点击输入您的学校住址",@"请点击输入您的祖籍"];
+        _placeholderArr = @[@"点击输入家庭昵称",@"点击输入一句家庭签名", @"点击输入您的家庭住址",@"请点击输入您的祖籍"];
     }
     return _placeholderArr;
 }

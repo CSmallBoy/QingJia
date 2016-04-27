@@ -9,5 +9,5 @@
 #import "HCTableViewController.h"
 
 @interface HCHomePictureDetailViewController : HCTableViewController
-
+@property (nonatomic,copy) NSString * imageNum;
 @end
