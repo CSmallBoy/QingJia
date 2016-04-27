@@ -57,7 +57,7 @@
     self.nickName.frame = CGRectMake(MaxX(self.headButton)+10, HEIGHT(self.headButton)*0.3, 100, 20);
     self.deveceModel.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 200, 20);
     
-    self.times.frame = CGRectMake(WIDTH(self)-120, MinY(self.nickName), 110, 20);
+    self.times.frame = CGRectMake(WIDTH(self)-130, MinY(self.nickName), 120, 20);
     
     CGFloat contentsHeight = [Utils detailTextHeight:_info.FTContent lineSpage:4 width:WIDTH(self)-20 font:14];
     self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
@@ -119,7 +119,8 @@
     }
     
     self.nickName.text = info.NickName;
-    self.times.text = info.CreateTime;
+    NSString *time = [info.CreateTime substringToIndex:16];
+    self.times.text = time;
     //self.times.text = [Utils transformServerDate:[info.CreateTime integerValue]];
     // 设备型号
 //    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];

@@ -10,4 +10,7 @@
 
 @interface HCHomePictureDetailViewController : HCTableViewController
 @property (nonatomic,copy) NSString * imageNum;
+@property (nonatomic,copy) NSString * TimeId;
+
+
 @end

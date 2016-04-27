@@ -17,6 +17,8 @@
 #import "NHCHomeCommentsApi.h"
 //上传图片的api
 #import "NHCHomeSingleFigureApi.h"
+//评论所有时光的
+#import "NHCHomeTimeToComentApi.h"
 
 @interface HCEditCommentViewController ()<HCEditCommentViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -167,10 +169,8 @@
         }else if (IsEmpty(_all_coment_to)){
             //所有的
              [self requestEditComment];
-        }else  {
-            //单图评
-            //[self resquestCommentS];
-            // 下一种评论情况
+        }else if([_all_coment_to isEqualToString:@"评论时光的回复"]) {
+            [self requestAllComent];
            
         }
     }
@@ -198,10 +198,24 @@
 }
 
 #pragma mark - network
+//追加总的评论
+- (void)requestAllComent{
+    NSLog(@"出发了");
+    NHCHomeTimeToComentApi *api  = [[NHCHomeTimeToComentApi alloc]init];
+    api.Timesid = _time_id;
+    api.parentCommentId = _commentId;
+    api.ToUserId  = _touser;
+    api.content = _info.FTContent;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        
+    }];
+    
+}
+
+
 
 - (void)resquestCommentTo{
     NHCHomeSingleFigureApi *api  = [[NHCHomeSingleFigureApi alloc]init];
-    
     api.TimeID = _time_id;
     //api.toUser = _infomodel.creator;
     api.Content = _info.FTContent;

@@ -36,7 +36,10 @@
 @property (nonatomic, copy) NSString *pic_time_id;
 //subrows子评论
 @property (nonatomic,strong)NSArray *subRows;
-
+//时光的id
+@property (nonatomic,copy)NSString *timeID;
+// 对谁的回复
+@property (nonatomic,copy)NSString *toUSer;
 @property (nonatomic, weak) id<HCHomeDetailCommentTableViewCellDelegate>delegate;
 
 @end

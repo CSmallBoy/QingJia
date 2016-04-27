@@ -34,8 +34,7 @@
 }
 -(id)formatResponseObject:(id)responseObject
 {
-       NSArray *arr = responseObject[@"Data"][@"rows"];
-
+    NSArray *arr = responseObject[@"Data"][@"rows"];
     NSMutableArray *userArr = [NSMutableArray array];
     for (int i = 0; i < arr.count; i ++) {
         //点赞显示的
@@ -62,7 +61,7 @@
         info.fromImageName = arr[i][@"fromImageName"];
         info.ParentId = arr[i][@"parentId"];
         info.commentId = arr[i][@"commentId"];
-        info.TOUSER = arr[i][@"to"];
+        info.TOUSER = arr[i][@"from"];
         [commentsArr addObject:info];
     }
     HCHomeDetailInfo *info = [[HCHomeDetailInfo alloc] init];

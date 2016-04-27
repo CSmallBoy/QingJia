@@ -18,6 +18,11 @@
 @property (nonatomic, strong) UIButton *headButton;
 @property (nonatomic, strong) UILabel *nickName;
 @property (nonatomic, strong) UILabel *times;
+@property (nonatomic, strong) UIView *CommentView;
+@property (nonatomic, strong) UIButton *button1;
+@property (nonatomic, strong) UIButton *button2;
+@property (nonatomic, strong) UILabel *huifu;
+@property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) MLEmojiLabel *commentLable;
 
 @end
@@ -70,13 +75,39 @@
 {
     if ([self.delegate respondsToSelector:@selector(hchomeDetailCommentTableViewCellCommentButton)])
     {
-        [self.delegate hchomeDetailCommentTableViewCellCommentButton];
+        //[self.delegate hchomeDetailCommentTableViewCellCommentButton];
+        [self commentTime];
     }else{
         NSLog(@"触发了");
         //这个地方触发   弹出回复评论
         [self commentSingle];
     }
 
+}
+-(void)commentTime{
+    //评论界面
+    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
+    //editComment.data = @{@"data": _info,@"index":self.data[@"index"]};
+    UIViewController *rootController = self.superview.window.rootViewController;
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        editComment.modalPresentationStyle=
+        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+    }else
+    {
+        rootController.modalPresentationStyle=
+        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+    }
+    editComment.all_coment_to = @"评论时光的回复";
+    NSString *str  = [NSString stringWithFormat:@"%ld",self.indexpath.row];
+    editComment.num_P = str;
+    editComment.image_name = _image_name;
+    //editComment.infomodel = _info;
+    editComment.time_id = _timeID;
+    editComment.commentId = self.info.commentId;
+    editComment.touser = _toUSer;
+    //需要传过来的数据啊
+    [rootController presentViewController:editComment animated:YES completion:nil];
 }
 //数据没写  等会再验证
 -(void)commentSingle{                                                                                                      
@@ -98,10 +129,9 @@
     editComment.num_P = str;
     editComment.image_name = _image_name;
     //editComment.infomodel = _info;
-    editComment.time_id = _pic_time_id;
+    editComment.time_id = _timeID;
     editComment.commentId = self.info.commentId;
     editComment.touser = self.info.TOUSER;
-    
     //需要传过来的数据啊
     [rootController presentViewController:editComment animated:YES completion:nil];
 
@@ -126,28 +156,46 @@
     
     self.commentLable.text = info.FTContent;
     //子评论
+//    [self.label removeFromSuperview];
+//    [self.button2 removeFromSuperview];
+//    [self.button1 removeFromSuperview];
+//    [self.huifu removeFromSuperview];
+    for (UIView *view in self.subviews) {
+        if ([view isKindOfClass:[UILabel class]]) {
+            [view removeFromSuperview];
+        }
+    }
+    for (UIView *view in self.subviews) {
+        if ([view isKindOfClass:[UIButton class]]) {
+            [view removeFromSuperview];
+        }
+    }
     for (int i = 0 ; i < _info.subRows.count; i++) {
-        UILabel *label  =[[UILabel alloc]initWithFrame:CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20)];
-        //label.backgroundColor = [UIColor redColor];
-        
-        UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button1 setTitle:@"santiao" forState:UIControlStateNormal];
-        [button1 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        button1.titleLabel.font = [UIFont systemFontOfSize:14];
-        [button1 setFrame:CGRectMake(0, 0, 50, 18)];
-        UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button2 setTitle:@"sizi" forState:UIControlStateNormal];
-        [button2 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [button2 setFrame:CGRectMake(80, 0, 50, 18)];
-        button2.titleLabel.font = [UIFont systemFontOfSize:14];
-        UILabel *huifu  = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 30, 18)];
-        huifu.font = [UIFont systemFontOfSize:14];
-        huifu.text = @"回复";
-        huifu.textAlignment = NSTextAlignmentCenter;
-        [label addSubview:huifu];
-        [label addSubview:button2];
-        [label addSubview:button1];
-        [_commentLable addSubview:label];
+//        UILabel *label  =[[UILabel alloc]initWithFrame:CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20)];
+        //_label.frame =CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20);
+        _label  =[[UILabel alloc]initWithFrame:CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20)];
+        //UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_button1 setTitle:@"santiao" forState:UIControlStateNormal];
+        [_button1 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        _button1.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_button1 setFrame:CGRectMake(0, 0, 50, 18)];
+        //UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_button2 setTitle:@"sizi" forState:UIControlStateNormal];
+        [_button2 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [_button2 setFrame:CGRectMake(80, 0, 50, 18)];
+        _button2.titleLabel.font = [UIFont systemFontOfSize:14];
+        //UILabel *huifu  = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 30, 18)];
+        _huifu  = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 30, 18)];
+        _huifu.frame = CGRectMake(50, 0, 30, 18);
+        _huifu.font = [UIFont systemFontOfSize:14];
+        _huifu.text = @"回复";
+        _huifu.textAlignment = NSTextAlignmentCenter;
+        [_label addSubview:self.huifu];
+        [_label addSubview:self.button1];
+        [_label addSubview:self.button2];
+        [_commentLable addSubview:self.label];
         
     }
     //默认的注释
@@ -168,12 +216,48 @@
         [self.delegate hchomeDetailCommentTableViewCellCommentHeight:size.height + 23 *_info.subRows.count];
     }
 }
+//- (UIButton *)button2
+//{
+//    if (!_button2)
+//    {
+//        _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    }
+//    return _button2;
+//}
+//- (UIButton *)button1
+//{
+//    if (!_button1)
+//    {
+//        _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    }
+//    return _button1;
+//}
+//- (UILabel *)label
+//{
+//    if (!_label)
+//    {
+//        _label = [[UILabel alloc] init];
+//        _label.font = [UIFont systemFontOfSize:16];
+//        
+//    }
+//    return _label;
+//}
+//- (UILabel *)huifu
+//{
+//    if (!_huifu)
+//    {
+//        _huifu = [[UILabel alloc] init];
+//        _huifu.font = [UIFont systemFontOfSize:16];
+//    }
+//    return _huifu;
+//}
 
 - (UIButton *)headButton
 {
     if (!_headButton)
     {
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        
         
     }
     return _headButton;

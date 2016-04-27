@@ -75,7 +75,8 @@
     cell.pic_time_id = _info.TimeID;
     int a = [self.data[@"index"] intValue];
     cell.image_name = _info.FTImages[a];
-    
+    cell.timeID = _info.TimeID;
+    cell.toUSer = cell.info.TOUSER;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -239,7 +240,7 @@
         self.view.backgroundColor = [UIColor blackColor];
     }completion:^(BOOL finished) {
         UIButton  *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        saveButton.frame = CGRectMake(0, SCREEN_HEIGHT-44, SCREEN_WIDTH, 44);
+        saveButton.frame = CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49);
         saveButton.backgroundColor = RGBCOLOR(8, 19, 34);
         [saveButton setTitle:@"保存到手机" forState:UIControlStateNormal];
         [saveButton addTarget:self action:@selector(savePhoto:) forControlEvents:UIControlEventTouchUpInside];

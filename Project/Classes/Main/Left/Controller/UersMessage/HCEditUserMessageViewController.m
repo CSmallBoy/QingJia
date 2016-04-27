@@ -57,16 +57,33 @@
     Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"生日",@"属相",@"住址",@"公司",@"职业"],
                   @[@"绑定手机号"]];
     NSDictionary *dic = [readUserInfo getReadDic];
-    if (IsEmpty(dic[@"UserInf"][@"imageName"])) {
-        //为空的话数组之间的赋值要变的
-        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,@"请输入住址",@"请输入公司",@"请输入职位"];
-        arr2= @[arr,
-                @[@"181109722222"]];
+    //第一步  先判断是否本地编辑过
+    if(IsEmpty(dic[@"company"])){
+        if (IsEmpty(dic[@"UserInf"][@"imageName"]))
+        {
+            NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,@"请输入住址",@"请输入公司",@"请输入职位"];
+            arr2= @[arr,
+                    @[@"181109722222"]];
+        }else{
+            NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,_adress,_copany,_professional];
+            arr2= @[arr,
+                    @[@"181109722222"]];
+        }
     }else{
-        NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,_adress,_copany,_professional];
-        arr2= @[arr,
-                @[@"181109722222"]];
+        if (IsEmpty(dic[@"UserInf"][@"imageName"]))
+            //第二 判断以前手否编辑过
+        {
+            //为空的话数组之间的赋值要变的
+            NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,@"请输入住址",@"请输入公司",@"请输入职位"];
+            arr2= @[arr,
+                    @[@"181109722222"]];
+        }else{
+            NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,_adress,_copany,_professional];
+            arr2= @[arr,
+                    @[@"181109722222"]];
+        }
     }
+
    
 
 }
@@ -113,25 +130,24 @@
     NSIndexPath *index = [self.tableView indexPathForCell:(UITableViewCell*)textField.superview];
     if (index.section==0) {
         switch (index.row) {
+                //昵称
             case 1:
                 model.nickName = textField.text;
                 break;
-            case 2:
-                model.tureName = textField.text;
+                //生日
+            case 4:
+                model.birday = textField.text;
                 break;
-            case 3:
-                model.sex = textField.text;
-                break;
+                //住址
             case 6:
-                model.Animalsign= textField.text;
-                break;
-            case 7:
                 model.adress= textField.text;
                 break;
-            case 8:
+                //公司
+            case 7:
                 model.company= textField.text;
                 break;
-            case 9:
+                //职业
+            case 8:
                 model.professional = textField.text;
                 break;
             default:
@@ -209,7 +225,7 @@
         }
         
         text_tf.delegate =self;
-        if (indexPath.row==0||indexPath.row==3||indexPath.row==6||indexPath.row==2||indexPath.row==4) {
+        if (indexPath.row==0||indexPath.row==3||indexPath.row==5||indexPath.row==2||indexPath.row==4) {
             text_tf.userInteractionEnabled = NO;
         }
         if (indexPath.row == 4) {
@@ -287,6 +303,9 @@
 
 -(void)saveClick:(UIBarButtonItem *)item
 {
+    model.tureName = _ture_name;
+    model.sex = _sex;
+    
     //先验证是否否输入
     if (IsEmpty(choose)||IsEmpty(model.nickName)||IsEmpty(model.birday)||IsEmpty(model.adress)||IsEmpty(model.company)||IsEmpty(model.professional)) {
         [self showHUDSuccess:@"您还有未编辑的内容"];
@@ -309,7 +328,6 @@
                       [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
                       [dic setObject:model.userPhoto forKey:@"PhotoStr"];
                       [dic setObject:model.nickName forKey:@"nickName"];
-                      [dic setObject:model.age forKey:@"age"];
                       [dic setObject:model.adress forKey:@"adress"];
                       [dic setObject:model.company forKey:@"company"];
                       [dic setObject:model.professional forKey:@"professional"];

@@ -27,11 +27,14 @@
 #import "ZLPhotoPickerViewController.h"
 #define HCPublishCell @"HCPublishCell"
 
-@interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate>
+@interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate>{
+    int a ;
+}
 
 @property (nonatomic, strong) HCPublishInfo *info;
 @property (nonatomic, strong) UIBarButtonItem *publishBtnItem;
 @property (nonatomic, assign) CGFloat editHeight;
+@property (nonatomic, strong)UIImageView *backgrand;
 
 @property (nonatomic, strong) NSMutableArray *uploadImageNameArr;
 
@@ -45,7 +48,8 @@
     [super viewDidLoad];
     self.title = @"发布消息";
     [self setupBackItem];
-    self.navigationItem.rightBarButtonItem = self.publishBtnItem;
+
+    self.navigationItem.rightBarButtonItem =self.publishBtnItem;
     _info = [[HCPublishInfo alloc] init];
     _info.OpenAddress = @"1";
     _info.PermitType = @"100";
@@ -196,7 +200,6 @@
 {//不编辑图片
     
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    
     if (_info.FTImages.count >= 10)
     {
         [self showHUDText:@"最多只能发布9张图片"];
@@ -230,7 +233,13 @@
         [self showHUDText:@"发布内容不能为空"];
         return;
     }
-    [self  requestPublistData];
+    if (a == 1) {
+        
+    }else{
+        a = 1;
+       [self  requestPublistData];
+    }
+    
 }
 
 #pragma mark - setter or getter
@@ -247,16 +256,14 @@
 #pragma mark - network
 
 - (void)requestPublistData
-{
-    //没有图片发布时走这个
+{   //没有图片发布时走这个
     if (_info.FTImages.count>1) {
         NSMutableArray *arr_image_path = [NSMutableArray array];
         // 先上传 图片  在发布时光  获取到图片的名字  放入数组中  主线程
         NSString *str = [readUserInfo url:kkTimes];
         for (int i = 0 ; i < _info.FTImages.count-1 ; i ++) {
             [KLHttpTool uploadImageWithUrl:str image:_info.FTImages[i] success:^(id responseObject) {
-                [self showHUDView:@"发表成功"];
-                NSLog(@"%@",responseObject);
+                [self showHUDView:@"发表中..."];
                 NSString *str1 = responseObject[@"Data"][@"files"][0];
                 [arr_image_path addObject:str1];
                 NSString *str2;
@@ -277,7 +284,6 @@
                     api.openAddress = _info.OpenAddress;
                     api.imageNames = str_all;
                     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *Tid) {
-                        
                         [self hideHUDView];
                         for (UIViewController *temp in self.navigationController.viewControllers) {
                             if ([temp isKindOfClass:[HCHomeViewController class]])
@@ -285,8 +291,6 @@
                                 [self.navigationController popToViewController:temp animated:YES];
                             }
                         }
-                        
-                        
                     }];
                 }
             } failure:^(NSError *error) {
@@ -299,6 +303,7 @@
         api.content = _info.FTContent;
         api.openAddress = _info.OpenAddress;
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *Tid) {
+            
             [self hideHUDView];
             for (UIViewController *temp in self.navigationController.viewControllers) {
                 if ([temp isKindOfClass:[HCHomeViewController class]])

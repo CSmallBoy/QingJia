@@ -1093,6 +1093,7 @@
 		C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3F1C71A041007D97A5 /* pinyin.c */; };
 		C7CC8DBF1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CC8DBE1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m */; };
 		C7F370471CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */; };
+		C7F421081CD055A2006BDA77 /* NHCHomeTimeToComentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3083,6 +3084,8 @@
 		C7CC8DBE1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCMySelfTimeListApi.m; sourceTree = "<group>"; };
 		C7F370451CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeComentTwoListApi.h; sourceTree = "<group>"; };
 		C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeComentTwoListApi.m; sourceTree = "<group>"; };
+		C7F421061CD055A2006BDA77 /* NHCHomeTimeToComentApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeTimeToComentApi.h; sourceTree = "<group>"; };
+		C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeToComentApi.m; sourceTree = "<group>"; };
 		C95F998133825127EECF22B1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E9376B27D02CD20170277F57 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -5074,6 +5077,8 @@
 				C7CC8DBE1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m */,
 				C7F370451CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.h */,
 				C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */,
+				C7F421061CD055A2006BDA77 /* NHCHomeTimeToComentApi.h */,
+				C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */,
 			);
 			name = HomeApi;
 			sourceTree = "<group>";
@@ -8192,6 +8197,7 @@
 				0A6B7F211BF1EB74008D54B3 /* HCAppMgr.m in Sources */,
 				C79F9A841CB73F3600EEF224 /* HCLeftGradeView.m in Sources */,
 				0A5491791C2BC32D0085F50D /* ZXAI01decoder.m in Sources */,
+				C7F421081CD055A2006BDA77 /* NHCHomeTimeToComentApi.m in Sources */,
 				0A2B477D1C7F12C800AAA157 /* HCActivateTagApi.m in Sources */,
 				0A54911F1C2BC32D0085F50D /* ZXProductResultParser.m in Sources */,
 				0A5491761C2BC32D0085F50D /* ZXAI013x0x1xDecoder.m in Sources */,

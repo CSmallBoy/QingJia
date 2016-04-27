@@ -69,6 +69,7 @@
     [self.tableView reloadData];
   
 }
+//头像
 -(void)headbuttonImage{
     NSString *str_url = [readUserInfo getReadDic][@"PhotoStr"];
     [_headButton sd_setImageWithURL:[readUserInfo url:str_url :kkUser] forState:UIControlStateNormal];
