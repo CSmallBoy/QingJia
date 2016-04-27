@@ -158,7 +158,7 @@
     HCPromisedCommentFrameInfo *frameInfo = self.dataSource[indexPath.row];
     HCPromisedCommentInfo *info = frameInfo.commentInfo;
     
-    if (info.toId == info.fromId) {
+    if ([info.toId isEqualToString:self.mySelfId]) {
         HCPromisedCommentCell *cell = [HCPromisedCommentCell cellWithTableView:tableView];
         cell.indexPath = indexPath;
         cell.block = ^(UIButton *button){
@@ -175,19 +175,21 @@
                 }];
             }else
             {
-                _startFrame = [button convertRect:button.bounds toView:self.view];
-                UIImageView *imageview = [[UIImageView alloc]initWithFrame:_startFrame];
-                imageview.image = [button backgroundImageForState:UIControlStateNormal];
-                imageview.backgroundColor = [UIColor blackColor];
-                imageview.userInteractionEnabled = YES;
+                UIImageView *imageview = button.subviews[1];
+                _startFrame = [imageview convertRect:imageview.bounds toView:self.view];
+                UIImageView *selfIV = [[UIImageView alloc]initWithFrame:_startFrame];
+                selfIV.image = imageview.image;
+                selfIV.backgroundColor = [UIColor blackColor];
+                selfIV.userInteractionEnabled = YES;
+
                 UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImageView:)];
-                [imageview addGestureRecognizer:tap];
-                imageview.contentMode = UIViewContentModeScaleAspectFit;
-                [self.view addSubview:imageview];
+                [selfIV addGestureRecognizer:tap];
+                selfIV.contentMode = UIViewContentModeScaleAspectFit;
+                [self.view addSubview:selfIV];
                 self.navigationController.navigationBarHidden = YES;
                 [UIView animateWithDuration:0.4 animations:^{
                     
-                    imageview.frame = self.view.frame;
+                    selfIV.frame = self.view.frame;
                     
                 }];
             }
@@ -211,6 +213,39 @@
             
             [self.textField becomeFirstResponder];
             self.subIndexPath = indexPath1;
+        };
+        cell.block = ^(UIButton *button){
+            
+            if (_startEdit)
+            {
+                [self.view endEditing:YES];
+                
+                [UIView animateWithDuration:0.3 animations:^{
+                    
+                    self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                }completion:^(BOOL finished) {
+                    [self.photoView removeFromSuperview];
+                }];
+            }else
+            {
+                UIImageView *imageview = button.subviews[1];
+                _startFrame = [imageview convertRect:imageview.bounds toView:self.view];
+                UIImageView *selfIV = [[UIImageView alloc]initWithFrame:_startFrame];
+                selfIV.image = imageview.image;
+                selfIV.backgroundColor = [UIColor blackColor];
+                selfIV.userInteractionEnabled = YES;
+                
+                UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImageView:)];
+                [selfIV addGestureRecognizer:tap];
+                selfIV.contentMode = UIViewContentModeScaleAspectFit;
+                [self.view addSubview:selfIV];
+                self.navigationController.navigationBarHidden = YES;
+                [UIView animateWithDuration:0.4 animations:^{
+                    
+                    selfIV.frame = self.view.frame;
+                    
+                }];
+            }
         };
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -418,6 +453,7 @@
     [UIView animateWithDuration:0.4 animations:^{
         imageView.frame = _startFrame;
     }completion:^(BOOL finished) {
+        imageView.contentMode = UIViewContentModeScaleToFill;
         [imageView removeFromSuperview];
     }];
 
@@ -636,10 +672,17 @@
     info.imageNames = str;
     info.content = self.textField.text;
     
-    HCPromisedCommentFrameInfo *frameInfo = self.dataSource[self.subIndexPath.row];
-    HCPromisedCommentInfo *info1 = frameInfo.commentInfo;
+    if (self.subIndexPath) {
+        HCPromisedCommentFrameInfo *frameInfo = self.dataSource[self.subIndexPath.row];
+        HCPromisedCommentInfo *info1 = frameInfo.commentInfo;
+        info.toId = info1.fromId;
+    }
+    else
+    {
+       info.toId = @"";
+    }
+
     
-    info.toId = info1.fromId;
     api.info = info;
     api.callId = self.callId;
     
@@ -652,6 +695,7 @@
             self.textField.text = nil;
             self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             
+            self.subIndexPath = nil;
             [self requestData];
         }
         

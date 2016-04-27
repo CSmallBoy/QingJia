@@ -23,6 +23,7 @@
 
 
 @property (nonatomic,strong) UIImageView *headIV;
+@property (nonatomic,strong) UIButton  *headBtn;;
 @property (nonatomic,strong) UILabel   *NameSexAgeLB;
 @property (nonatomic,strong) UILabel   *sendLabel;
 @property (nonatomic,strong) UILabel   *missLabel;
@@ -77,73 +78,39 @@
 -(void)setInfo:(HCNotificationCenterInfo *)info
 {
     _info = info;
-    
 
-    
-    
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ %@ %@岁",info.trueName,info.sex,info.age]];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13], NSForegroundColorAttributeName: [UIColor lightGrayColor]} range:NSMakeRange(attStr.length-4, 4)];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} range:NSMakeRange(0, attStr.length-4)];
     self.NameSexAgeLB.attributedText = attStr;
     
     self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%@",info.createTime];
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger unitFlag =  NSMonthCalendarUnit | NSDayCalendarUnit |NSHourCalendarUnit| NSMinuteCalendarUnit|NSSecondCalendarUnit ;
-    NSDateComponents *cmp = [calendar components:unitFlag fromDate:[NSDate dateWithTimeIntervalSince1970:[info.createTime integerValue]]];
-    NSDateComponents *cmp1 = [calendar components:unitFlag fromDate:[NSDate date]];
-    
-    
-    if ([cmp minute] == [cmp1 minute]) {
-        self.sendLabel.text = @"发布时间：刚刚";
-    }
-    else if([cmp hour] == [cmp1 hour])
-    {
-        self.sendLabel.text= [NSString stringWithFormat:@"发布时间：%ld分钟前",cmp.minute];
-    }
-    else  if([cmp day] == [cmp1 day])
-    {
-        self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%ld小时前",cmp1.hour- cmp.hour];
-    }
-    else if(cmp1.day-cmp.day ==1)
-    {
-        self.sendLabel.text = @"发布时间：昨天";
-    }
-    else
-    {
-       self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%ld月%ld日",cmp.month,cmp.day];
-    }
 
-    
-    
     self.missLabel.text = [NSString stringWithFormat:@"走失描述：%@",info.lossDesciption];
     
     NSURL *url = [readUserInfo originUrl:self.info.imageName :kkObject];
-    [self.headIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
     
-}
-
--(void)tap1:(UITapGestureRecognizer *)tap
-{
-    UIImage *image = _headIV.image;
-    NSDictionary *dic = @{@"image" : image};
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"显示头像" object:nil userInfo:dic];
+    UIImageView *imageIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.headBtn.frame.size.width, self.headBtn.frame.size.height)];
+    [imageIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
+    [self.headBtn addSubview:imageIV];
     
 }
 
 // 头像的宽度为60
--(UIImageView *)headIV
-{
-    if(!_headIV){
-        _headIV  = [[UIImageView alloc]initWithFrame:CGRectMake(INTERVAL, INTERVAL, 60, 60)];
-        _headIV.userInteractionEnabled = YES;
-        
-        UITapGestureRecognizer*tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap1:)];
-        [_headIV addGestureRecognizer:tap1];
 
+- (UIButton *)headBtn
+{
+    if(!_headBtn){
+        _headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _headBtn.frame =CGRectMake(INTERVAL, INTERVAL, 60, 60);
+        [_headBtn setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
     }
-    return _headIV;
+    return _headBtn;
 }
+
+
+
+
 
 // 姓名 性别 年龄 的宽度  150
 - (UILabel *)NameSexAgeLB
@@ -243,7 +210,7 @@
     }
 
     
-    [_SCContentView addSubview:self.headIV];
+    [_SCContentView addSubview:self.headBtn];
     [_SCContentView addSubview:self.NameSexAgeLB];
     [_SCContentView addSubview:self.sendLabel];
     [_SCContentView addSubview:self.missLabel];
@@ -303,8 +270,6 @@
 
 - (void)addGesture{
     
-    [self.SCContentView removeGestureRecognizer:_panGersture];
-    [self.SCContentView removeGestureRecognizer:tap];
     _panGersture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleGesture:)];
     _panGersture.delegate = self;
     [self.SCContentView addGestureRecognizer:_panGersture];
@@ -331,9 +296,7 @@
 }
 
 - (void)handleGesture:(UIPanGestureRecognizer *)recognizer{
-    if (_isShowing||_isHiding) {
-        return;
-    }
+
     CGPoint translation = [_panGersture translationInView:self];
     CGPoint location = [_panGersture locationInView:self];
     NSLog(@"translation----(%f)----loaction(%f)",translation.x,location.y);

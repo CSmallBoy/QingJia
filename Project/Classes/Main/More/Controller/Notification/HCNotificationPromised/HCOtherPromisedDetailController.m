@@ -329,8 +329,6 @@
     if(!_imageView){
         _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(60/375.0*SCREEN_WIDTH, CGRectGetMaxY(self.missMessageLabel.frame) + 20, 250/375.0*SCREEN_WIDTH, 350/250.0*250/375.0*SCREEN_WIDTH)];
         ViewRadius(_imageView, 10);
-    
-//        [_imageView sd_setImageWithURL:imgUrl placeholderImage:IMG(@"label_Head-Portraits")];
         
         _imageView.userInteractionEnabled = YES;
         

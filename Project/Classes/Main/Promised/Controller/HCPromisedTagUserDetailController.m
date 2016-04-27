@@ -57,6 +57,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // --------------------------发一呼百应---------------------------------
+     [self requestContactData];
     self.myTitle = self.data[@"title"];
     self.info = self.data[@"info"];
     [self.view endEditing:YES];
@@ -77,11 +78,7 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-      [self requestContactData];
-}
+
 
 #pragma mark --- UITableViewDelegate
 
@@ -225,12 +222,6 @@
                     
                     NSURL *url = [readUserInfo originUrl:info.imageName :@"contactor"];
                     [imageIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
-                    
-                    UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
-                    if (imgFromUrl == nil) {
-                        imgFromUrl = IMG(@"Head-Portraits");
-                    }
-                    [self.imgArr addObject:imgFromUrl];
                     
                     ViewRadius(imageIV, 73/2);
                     [view addSubview:imageIV];
@@ -643,7 +634,7 @@
                 HCPromisedMissMessageControll*vc = [[HCPromisedMissMessageControll alloc]init];
                 vc.info = self.info;
                 vc.tagArr = self.tagArr;
-                vc.contactArr = self.contactArr;
+                vc.contactArr = self.selectArr;
                 [self.navigationController pushViewController:vc animated:YES];
             }    
         }
@@ -767,6 +758,7 @@
 // 请求联系人数组
 -(void)requestContactData
 {
+    [self showHUDView:nil];
     HCContractPersonListApi *api = [[HCContractPersonListApi alloc]init];
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
@@ -777,12 +769,23 @@
             for (NSDictionary *dic in array) {
                 HCTagContactInfo *info = [HCTagContactInfo  mj_objectWithKeyValues:dic];
                 [self.contactArr addObject:info];
+                
+                NSURL *url = [readUserInfo originUrl:info.imageName :@"contactor"];
+                UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+                if (imgFromUrl == nil) {
+                    imgFromUrl = IMG(@"Head-Portraits");
+                }
+                [self.imgArr addObject:imgFromUrl];
+                
             }
             HCTagContactInfo *info = [[HCTagContactInfo alloc]init];
             info.trueName = @"添加联系人";
             [self.contactArr insertObject:info atIndex:0];
             self.scrollView.contentSize = CGSizeMake(93 * self.contactArr.count, 120);
-             NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:2];
+            NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:2];
+            
+            [self hideHUDView];
+            
             [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
         }
         

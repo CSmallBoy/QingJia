@@ -97,7 +97,7 @@
 {
     if (!_myVC)
     {
-        _myVC = [[HCMyNotificationViewController alloc]initWithStyle:UITableViewStyleGrouped];
+        _myVC = [[HCMyNotificationViewController alloc]init];
         _myVC.view.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-50);
         _myVC.view.backgroundColor = [UIColor yellowColor];
         [self addChildViewController:_myVC];
@@ -109,7 +109,7 @@
 {
     if (!_otherVC)
     {
-        _otherVC = [[HCOtherNotificationViewController alloc]initWithStyle:UITableViewStyleGrouped];
+        _otherVC = [[HCOtherNotificationViewController alloc]init];
         _otherVC.view.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-50);
         [self addChildViewController:_otherVC];
     }
@@ -120,7 +120,7 @@
 {
     if (!_saveVC)
     {
-        _saveVC = [[HCSaveNotificationViewController alloc]initWithStyle:UITableViewStyleGrouped];
+        _saveVC = [[HCSaveNotificationViewController alloc]init];
         _saveVC.view.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-50);
         [self addChildViewController:_saveVC];
     }

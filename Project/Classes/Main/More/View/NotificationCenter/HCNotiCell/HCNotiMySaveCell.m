@@ -84,32 +84,7 @@
     self.NameSexAgeLB.attributedText = attStr;
     
     self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%@",info.createTime];
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger unitFlag =  NSMonthCalendarUnit | NSDayCalendarUnit |NSHourCalendarUnit| NSMinuteCalendarUnit|NSSecondCalendarUnit ;
-    NSDateComponents *cmp = [calendar components:unitFlag fromDate:[NSDate dateWithTimeIntervalSince1970:[info.createTime integerValue]]];
-    NSDateComponents *cmp1 = [calendar components:unitFlag fromDate:[NSDate date]];
-    
-    
-    if ([cmp minute] == [cmp1 minute]) {
-        self.sendLabel.text = @"发布时间：刚刚";
-    }
-    else if([cmp hour] == [cmp1 hour])
-    {
-        self.sendLabel.text= [NSString stringWithFormat:@"发布时间：%ld分钟前",cmp.minute];
-    }
-    else  if([cmp day] == [cmp1 day])
-    {
-        self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%ld小时前",cmp1.hour- cmp.hour];
-    }
-    else if(cmp1.day-cmp.day ==1)
-    {
-        self.sendLabel.text = @"发布时间：昨天";
-    }
-    else
-    {
-        self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%ld月%ld日",cmp.month,cmp.day];
-    }
+
     
     
     self.missLabel.text = [NSString stringWithFormat:@"走失描述： %@",info.lossDesciption];
@@ -159,7 +134,7 @@
 {
     if(!_sendLabel){
         _sendLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH -160, INTERVAL, 150, 20)];
-        _sendLabel.font = [UIFont systemFontOfSize:11];
+        _sendLabel.font = [UIFont systemFontOfSize:12];
         _sendLabel.textColor = [UIColor lightGrayColor];
         _sendLabel.textAlignment = NSTextAlignmentRight;
     }

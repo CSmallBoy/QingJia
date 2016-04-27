@@ -8,7 +8,7 @@
 
 #import "HCTableViewController.h"
 
-@interface HCOtherNotificationViewController : HCTableViewController
+@interface HCOtherNotificationViewController : HCViewController
 
 
 @property (nonatomic,assign) BOOL  isSave;

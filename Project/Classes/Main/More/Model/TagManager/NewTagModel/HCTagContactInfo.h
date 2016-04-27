@@ -16,4 +16,6 @@
 @property (nonatomic,strong) NSString *phoneNo;
 @property (nonatomic,strong) NSString *imageName;
 @property (nonatomic,strong) NSString *contactorId;
+
+@property (nonatomic,strong) UIImage *conactPersonImage;
 @end

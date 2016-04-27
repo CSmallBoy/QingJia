@@ -29,7 +29,8 @@
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     
     if (self.ContractArr.count>0) {
-        
+
+        // 重新绑定了联系人
         
         HCTagContactInfo *info1 = self.ContractArr[0];
         HCTagContactInfo*info2 = self.ContractArr[1];

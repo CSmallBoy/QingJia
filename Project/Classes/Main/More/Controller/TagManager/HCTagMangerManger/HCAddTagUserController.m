@@ -9,6 +9,7 @@
 #import "HCAddTagUserController.h"
 #import "HCTagEditContractPersonController.h"
 
+#import "UIImageView+WebCache.h"
 #import "HCNewTagInfo.h"
 #import "HCTagUserDetailCell.h"
 #import "HCPickerView.h"
@@ -21,7 +22,7 @@
 #import "HCTagContactInfo.h"// 联系人模型
 
 
-@interface HCAddTagUserController ()<HCPickerViewDelegate>
+@interface HCAddTagUserController ()<HCPickerViewDelegate,SDWebImageManagerDelegate>
 @property (nonatomic,strong) HCPickerView *datePicker;
 @property (nonatomic,strong) NSString *myTitle;
 @property (nonatomic,strong) HCNewTagInfo *info;
@@ -52,6 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     [self requestContactData];
     self.myTitle = self.data[@"title"];
     
     
@@ -82,13 +84,11 @@
     
     self.info.openHealthCard = self.openHealthCard;
     
+    // 添加了一个紧急联系人
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(addNewContractPerson:) name:@"addNewContractPerson" object:nil];
+    
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-      [self requestContactData];
-}
 
 #pragma mark --- UITableViewDelegate
 
@@ -233,12 +233,12 @@
                     NSURL *url = [readUserInfo originUrl:info.imageName :@"contactor"];
                     [imageIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
                     
-                    UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
-                    if (imgFromUrl == nil) {
-                        imgFromUrl = IMG(@"Head-Portraits");
-                    }
-                    [self.imgArr addObject:imgFromUrl];
-                    
+//                    UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+//                    if (imgFromUrl == nil) {
+//                        imgFromUrl = IMG(@"Head-Portraits");
+//                    }
+//                    [self.imgArr addObject:imageIV.image];
+    
                     ViewRadius(imageIV, 73/2);
                     [view addSubview:imageIV];
                     
@@ -361,7 +361,23 @@
 
 }
 
+
+
+
+
 #pragma mark --- private  mothods
+
+-(void)addNewContractPerson:(NSNotification *)noti
+{
+
+    [self requestContactData];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+
+    
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+
+}
 
 -(void)itemClick:(UIBarButtonItem *)item
 {
@@ -849,8 +865,10 @@
     
 }
 
+// 请求联系人
 -(void)requestContactData
 {
+    [self showHUDView:nil];
     HCContractPersonListApi *api = [[HCContractPersonListApi alloc]init];
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
@@ -863,15 +881,22 @@
                 
                 [self.contactArr addObject:info];
                 
+                NSURL *url = [readUserInfo originUrl:info.imageName :@"contactor"];
+                UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+                if (imgFromUrl == nil) {
+                    imgFromUrl = IMG(@"Head-Portraits");
+                }
+                [self.imgArr addObject:imgFromUrl];
                 
             }
+            
+            [self hideHUDView];
             
             HCTagContactInfo *info = [[HCTagContactInfo alloc]init];
             info.trueName = @"添加联系人";
             
             [self.contactArr insertObject:info atIndex:0];
-            
-            
+ 
             self.scrollView.contentSize = CGSizeMake(93 * self.contactArr.count, 120);
              NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:2];
             [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];

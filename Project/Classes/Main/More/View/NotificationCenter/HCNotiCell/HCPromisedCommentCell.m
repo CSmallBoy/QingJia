@@ -72,10 +72,12 @@
 }
 
 //点击了图片
--(void)imageBtnClick:(UIButton *)button
+-(void)imageBtnClick:(UIButton *)button;
 
 {
-      self.block (button);
+    UIImageView *IV = (UIImageView *)[button viewWithTag:100];
+    
+    self.block (button);
 }
 
 
@@ -147,6 +149,7 @@
         NSURL *url = [readUserInfo originUrl:arr[i] :kkUser];
         UIImageView *imageView= [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, button.frame.size.width, button.frame.size.height)];
         [imageView sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
+        imageView.tag ==100;
         [button addSubview:imageView];
         
         [self addSubview:button];
@@ -185,7 +188,7 @@
     if(!_commentLabel){
         
         _commentLabel = [[UILabel alloc]init];
-        _commentLabel.font = [UIFont systemFontOfSize:12];
+        _commentLabel.font = [UIFont systemFontOfSize:15];
         _commentLabel.numberOfLines = 0;
     }
     return _commentLabel;
