@@ -193,6 +193,12 @@
             
             [self.navigationController popViewControllerAnimated:YES];
             
+            HCTagContactInfo *info = [[HCTagContactInfo alloc]init];
+            info.trueName = self.textField1.text;
+            info.phoneNo = self.textField2.text;
+            info.imageName = self.imgStr;
+            info.conactPersonImage = self.image;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"addNewContractPerson" object:nil userInfo:@{@"info":info}];
         }
         else
         {

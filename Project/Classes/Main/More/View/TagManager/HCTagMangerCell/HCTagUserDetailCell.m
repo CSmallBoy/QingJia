@@ -285,7 +285,7 @@
             case 4:
             {
                 self.textField.hidden = YES;
-               
+                self.textView.hidden = NO;
                 self.textView.placeholder = self.medicalPlaceHolderArr[indexPath.row];
                 if (!IsEmpty(self.info.cureNote)) {
                      self.textView.textView.text = self.info.cureNote;

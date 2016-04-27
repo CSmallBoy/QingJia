@@ -67,8 +67,10 @@
     
     self.titleLabel.text = [NSString stringWithFormat:@"给%@留言",messageInfo.trueName];
     self.timeLabel.text = [NSString stringWithFormat:@"留言时间:%@",messageInfo.createTime];
-    self.messageLabel.text = messageInfo.lossAddress;
-  
+    self.messageLabel.text = messageInfo.lossDesciption;
+    
+    NSURL *url = [readUserInfo originUrl:messageInfo.imageName :kkObject];
+    [self.headIV sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
 }
 
 

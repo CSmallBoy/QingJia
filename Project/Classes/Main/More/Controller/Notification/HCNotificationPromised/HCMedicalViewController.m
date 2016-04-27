@@ -107,12 +107,16 @@
                 [self.tableView reloadData];
                 
             }
+            else
+            {
+               [self showHUDError:@"该一呼百应没有开放医疗急救卡"];
+            }
             
         }];
     }
     else
     {
-
+        
         
         NSArray  *arr =@[_height,_weight,_bloodType,_allergic,_cureCondition,_cureNote];
         for (int i = 0;i<6 ; i++)

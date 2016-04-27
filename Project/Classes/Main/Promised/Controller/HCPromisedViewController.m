@@ -348,6 +348,7 @@
     else
     {
         self.notiVC.view.hidden = NO;
+        self.notiVC.view.bounds = CGRectMake(0, -50, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
     
 }
@@ -423,7 +424,7 @@
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        
-        [self hideHUDView];
+        
         if (requestStatus == HCRequestStatusSuccess) {
             [self.dataArr removeAllObjects];
             
@@ -437,6 +438,9 @@
             HCNewTagInfo *info = [[HCNewTagInfo alloc]init];
             info.trueName = @"+ 新增录入";
             [self.dataArr addObject:info];
+            
+            [self hideHUDView];
+            
             [self.smallTableView reloadData];
  
         }

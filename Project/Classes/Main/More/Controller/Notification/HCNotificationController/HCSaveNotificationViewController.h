@@ -8,6 +8,6 @@
 
 #import "HCTableViewController.h"
 
-@interface HCSaveNotificationViewController : HCTableViewController
+@interface HCSaveNotificationViewController : HCViewController
 
 @end

@@ -12,6 +12,7 @@
 
 
 #import "HCButtonItem.h"
+#import "MJRefresh.h"
 
 #import "HCMyNotificationCenterTableViewCell.h"
 #import "HCNotifcationMessageCell.h"
@@ -24,13 +25,20 @@
 
 #import "HCAboutMeApi.h"
 
-@interface HCMyNotificationViewController ()<UISearchDisplayDelegate,UISearchBarDelegate,UISearchControllerDelegate>
+@interface HCMyNotificationViewController ()<UISearchDisplayDelegate,UISearchBarDelegate,UISearchControllerDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView     *resultTableView;
 @property (nonatomic,strong) UISearchBar     *seatchBar;
-@property (nonatomic,strong)NSMutableArray   *results;
+@property (nonatomic,strong)NSMutableArray   *resultMes;
+@property (nonatomic,strong)NSMutableArray   *resultOthers;
 @property (nonatomic,strong) NSMutableArray  *messageArr;
 @property (nonatomic,strong)UIView          *resultView;
+
+@property (nonatomic,strong) UITableView    *myTableView;
+@property (nonatomic,strong) NSMutableArray  *dataSource;
+
+@property (nonatomic,strong) NSString *start;
+
 @end
 
 @implementation HCMyNotificationViewController
@@ -39,15 +47,21 @@
 {
     //  呼·应---------与我相关--------
     [super viewDidLoad];
-    self.tableView.tableHeaderView = HCTabelHeadView(30);
-    self.tableView.tableHeaderView.backgroundColor = [UIColor yellowColor];
-    [self.tableView.tableHeaderView addSubview:self.seatchBar];
+    self.myTableView.tableHeaderView = HCTabelHeadView(30);
+    [self.myTableView.tableHeaderView addSubview:self.seatchBar];
     [self requestData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
     
+    [self.view addSubview:self.myTableView];
+    
+    self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
+    self.myTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreData)];
+    
+    self.view.backgroundColor = kHCBackgroundColor;
 
+    self.start = @"0";
 }
 
 #pragma mark----UITableViewDelegate
@@ -55,7 +69,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (tableView == self.tableView) {
+    if (tableView == self.myTableView) {
         
         if (indexPath.section == 0 ) {// 自己发出去的“呼”cell
             HCMyNotificationCenterTableViewCell *cell = [HCMyNotificationCenterTableViewCell cellWithTableView:tableView];
@@ -76,8 +90,41 @@
         }
         
     }
+    else
+    {
+        static NSString  *cellID = @"MineNormalCell";
+        UITableViewCell  * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID  ];
+            
+        }
+        HCNotificationCenterInfo *info;
+        if (indexPath.section == 0) {
+           info = self.resultMes[indexPath.row];
+        }else
+        {
+            info = self.resultOthers[indexPath.row];
+        }
+        for (UIView *view in cell.contentView.subviews) {
+            [view removeFromSuperview];
+        }
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(80, 20, 200, 40)];
+        label.textColor = [UIColor blackColor];
+        label.text = info.trueName;
+        [cell.contentView addSubview:label];
+        
+        
+        UIImageView *headIV = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 70, 70)];
+        NSURL  *url = [readUserInfo originUrl:info.imageName :kkObject];
+        [headIV sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
+        
+        [cell.contentView addSubview:headIV];
+        return cell;
+        
+    }
   
-    return nil;
+   
 
     
     
@@ -107,12 +154,12 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.tableView)
+    if (tableView == self.myTableView)
     {
         return 2;
     }else
     {
-        return 1;
+        return 2;
         
     }
     
@@ -121,7 +168,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    if (tableView == self.tableView)
+    if (tableView == self.myTableView)
     {
         if (section == 0)
         {
@@ -136,7 +183,15 @@
     else
     {
     
-        return self.results.count;
+        if (section == 0)
+        {
+            return self.resultMes.count;
+        }
+        else
+        {
+            return self.resultOthers.count;
+            
+        }
     }
 
 }
@@ -144,7 +199,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 {
-    if (indexPath.section == 0 && tableView == self.tableView)
+    if (indexPath.section == 0 && tableView == self.myTableView)
     {
       NSDictionary *dic = @{@"info" : self.dataSource[indexPath.row]};
       [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextMyController" object:nil userInfo:dic];
@@ -161,7 +216,7 @@
     [button setTitle:@"取消" forState:UIControlStateNormal];
     button.backgroundColor = COLOR(189, 189, 183, 1);
     [button addTarget:self action:@selector(canleButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.tableView.tableHeaderView addSubview:button];
+    [self.myTableView.tableHeaderView addSubview:button];
     
     [self.view addSubview:self.resultView];
     
@@ -180,29 +235,8 @@
     {
         [self.resultTableView removeFromSuperview];
     }
-    
-    [self.results removeAllObjects];
-    for ( HCNotifcationMessageInfo *info in self.messageArr) {
-        
-        NSRange  range = [info.message rangeOfString:searchText];
-        NSLog(@"%@",info.message);
-        if (range.location != NSNotFound)
-        {
-            [self.results addObject:info];
-            
-        }
-    }
-    
-    for (HCNotifcationMessageInfo *info in self.results) {
-        
-        if (info.message == nil) {
-            
-            [self.results removeObject:info];
-        }
-    }
-    
-    [self.resultTableView reloadData];
 
+    [self requestSearchData];
 }
 
 
@@ -217,7 +251,7 @@
 -(void)canleButton:(UIButton  *)button
 {
     self.seatchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 30);
-    [self.tableView.tableHeaderView bringSubviewToFront: self.seatchBar];
+    [self.myTableView.tableHeaderView bringSubviewToFront: self.seatchBar];
     self.seatchBar.text = nil;
     [self.resultTableView removeFromSuperview];
     [self.resultView removeFromSuperview];
@@ -236,14 +270,22 @@
 #pragma mark --- getter Or setter
 
 
-- (NSMutableArray *)results
+- (NSMutableArray *)resultMes
 {
-    if(!_results){
-        _results = [NSMutableArray array];
+    if(!_resultMes){
+        _resultMes = [NSMutableArray array];
     }
-    return _results;
+    return _resultMes;
 }
 
+
+- (NSMutableArray *)resultOthers
+{
+    if(!_resultOthers){
+        _resultOthers = [NSMutableArray array];
+    }
+    return _resultOthers;
+}
 
 - (NSMutableArray *)messageArr
 {
@@ -287,14 +329,30 @@
     return _resultTableView;
 }
 
+- (UITableView *)myTableView
+{
+    if(!_myTableView){
+        _myTableView= [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-44) style:UITableViewStyleGrouped];
+        _myTableView.backgroundColor = kHCBackgroundColor;
+        _myTableView.delegate = self;
+        _myTableView.dataSource = self;
+    }
+    return _myTableView;
+}
 
+
+- (NSMutableArray *)dataSource
+{
+    if(!_dataSource){
+        _dataSource = [NSMutableArray array];
+    }
+    return _dataSource;
+}
 
 #pragma mark - network
 
 - (void)requestData
 {
-    
-
     HCAboutMeApi *api = [[HCAboutMeApi alloc]init];
     api.key = @"";
     api._start = @"0";
@@ -313,6 +371,7 @@
                 [self.dataSource addObject:info];
             }
             
+            [self.messageArr removeAllObjects];
             NSArray *array2 = respone[@"Data"][@"rows2"];
             
             for (NSDictionary *dic in array2) {
@@ -322,7 +381,8 @@
                 
             }
             
-            [self.tableView reloadData];
+            [self.myTableView.mj_header endRefreshing];
+            [self.myTableView reloadData];
             
             NSLog(@"--------------与我相关列表获取成功------------");
             
@@ -333,8 +393,76 @@
     HCNotificationCenterInfo *info = [[HCNotificationCenterInfo alloc]init];
     
     [self.dataSource addObject:info];
-    
+}
 
+-(void)requestMoreData
+{
+    HCAboutMeApi *api = [[HCAboutMeApi alloc]init];
+    api.key = @"";
+    
+    int  num = [self.start intValue];
+    num = num +20;
+    self.start = [NSString stringWithFormat:@"%d",num];
+    api._start = self.start;
+    api._count = @"20";
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        
+        if (requestStatus == HCRequestStatusSuccess) {
+        
+            
+            NSArray *array2 = respone[@"Data"][@"rows2"];
+            
+            for (NSDictionary *dic in array2) {
+                
+                HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+                [self.messageArr addObject:info];
+                
+            }
+            
+            [self.myTableView.mj_footer endRefreshing];
+            [self.myTableView reloadData];
+            
+            NSLog(@"--------------与我相关列表获取成功------------");
+            
+        }
+        
+    }];
+}
+
+
+-(void)requestSearchData
+{
+    HCAboutMeApi *api = [[HCAboutMeApi alloc]init];
+    api.key = self.seatchBar.text;
+    api._start = @"0";
+    api._count = @"20";
+    
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        
+        if (requestStatus == HCRequestStatusSuccess) {
+        
+            [self.resultMes removeAllObjects];
+            [self.resultOthers removeAllObjects];
+            
+            NSArray *array1 = respone[@"Data"][@"rows1"];
+            
+            for (NSDictionary *dic in array1) {
+                HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+                [self.resultMes addObject:info];
+            }
+            
+            NSArray *array2 = respone[@"Data"][@"rows2"];
+            for (NSDictionary *dic in array2) {
+                HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+                [self.resultOthers addObject:info];
+            }
+
+            [self.resultTableView reloadData];
+            
+            NSLog(@"--------------搜索------------");
+        }
+    }];
 }
 
 @end

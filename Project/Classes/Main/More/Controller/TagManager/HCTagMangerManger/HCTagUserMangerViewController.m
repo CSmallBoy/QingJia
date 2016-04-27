@@ -136,7 +136,6 @@
 #pragma mark --- private mothods
 
 // 点击了新增标签使用者
-
 -(void)rightItemClick:(UIBarButtonItem *)item
 
 {
