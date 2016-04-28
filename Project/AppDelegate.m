@@ -167,7 +167,7 @@ didFinishLaunchingWithOptions:launchOptions
 
 - (void)setupMAMap
 {
-    [AMapLocationServices sharedServices].apiKey = @"2068adf060e2dd5d56bc0626e6232c82";
+    [AMapLocationServices sharedServices].apiKey = @"20e897d0e7d653770541a040a12065d8";
     self.locationManager = [[AMapLocationManager alloc] init];
     self.locationManager.delegate = self;
     [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置

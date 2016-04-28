@@ -27,7 +27,8 @@
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     
-    NSDictionary *para = @{@"labelGuid":_labelGuid};
+    NSDictionary *para = @{@"labelGuid":_labelGuid,
+                           @"createLocation":_createLocation};
     
     return @{@"Head":head,
              @"Para":para};
