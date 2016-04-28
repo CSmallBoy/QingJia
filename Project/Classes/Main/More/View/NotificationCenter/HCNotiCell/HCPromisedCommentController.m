@@ -33,6 +33,7 @@
     UIButton  * _addPhotoBtn;
     CGRect      _startFrame;
     BOOL        _startEdit;
+   
 }
 
 @property (nonatomic,strong) UIView        *inputView;
@@ -43,6 +44,8 @@
 @property (nonatomic,strong) UITextField   *textField;
 @property (nonatomic,strong) UITextField      *inputViewText;
 @property (nonatomic,strong) NSIndexPath   *subIndexPath;
+
+
 
 
 @property (nonatomic,strong) UIView * navView;// 假导航
@@ -98,6 +101,8 @@
 
     self.view.bounds = CGRectMake(0, -y, SCREEN_WIDTH, SCREEN_HEIGHT);
     
+    NSLog(@"------------------%f---------------",y);
+    
     UIButton*customBtn = [UIButton buttonWithType:UIButtonTypeCustom];
   
         
@@ -105,11 +110,38 @@
     [customBtn setImage:[UIImage imageNamed:@"barItem-back"] forState:UIControlStateNormal];
     [customBtn addTarget:self action:@selector(customBtnClick:) forControlEvents:UIControlEventTouchUpInside];
    
+    _statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 20)];
     
-    self.navView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, 54)];
+    _statusBarView.backgroundColor=COLOR(203, 33, 47, 1);
+    
+    if (y<=339.5) {
+        
+        if (self.navView == nil) {
+            self.navView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, 54)];
+        }
+        else
+        {
+            self.navView.frame = CGRectMake(0,0, SCREEN_WIDTH, 54);
+
+        }
+        _statusBarView.frame = CGRectMake(0, -20, SCREEN_WIDTH, 20);
+         self.myTableView.frame = CGRectMake(0,-10, SCREEN_WIDTH, SCREEN_HEIGHT-y-34);
+    }
+    else
+    {
+        if (self.navView == nil) {
+            self.navView = [[UIView alloc]initWithFrame:CGRectMake(0,-50, SCREEN_WIDTH, 54)];
+        }
+        else
+        {
+             self.navView.frame =CGRectMake(0,-50, SCREEN_WIDTH, 54);
+        }
+        _statusBarView.frame = CGRectMake(0, -70, SCREEN_WIDTH, 20);
+         self.myTableView.frame = CGRectMake(0,-60, SCREEN_WIDTH, SCREEN_HEIGHT-y+15);
+        
+    }
     self.navView.backgroundColor = COLOR(203, 33, 47, 1);
     [self.navView addSubview:customBtn];
-    
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 9, SCREEN_WIDTH, 40)];
     label.textColor = [UIColor whiteColor];
@@ -125,12 +157,6 @@
     
     self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44-y, SCREEN_WIDTH, 44);
 
-    self.myTableView.frame = CGRectMake(0,-10, SCREEN_WIDTH, SCREEN_HEIGHT-y-34);
-    
-    _statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 20)];
-    
-    _statusBarView.backgroundColor=COLOR(203, 33, 47, 1);
-    
     [self.view addSubview:_statusBarView];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
@@ -298,6 +324,8 @@
 
 #pragma mark --- textFieldDelegate
 
+
+
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     _startEdit = YES;
@@ -315,6 +343,7 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     _startEdit = NO;
+    self.subIndexPath = nil;
 }
 
 #pragma mark ---- UIActionSheetDelegate
@@ -400,6 +429,8 @@
     [self.photoView addSubview:imageView];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 
 #pragma mark --- private mothods
 
@@ -614,6 +645,7 @@
     }
     return _inputViewText;
 }
+
 
 
 #pragma mark ---  network

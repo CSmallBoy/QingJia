@@ -14,7 +14,7 @@ typedef void(^HCScanBlock) (HCRequestStatus requestStatus,NSString *message,id  
 @interface HCScanApi : HCRequest
 
 @property (nonatomic,strong) NSString *labelGuid;
-
+@property (nonatomic,strong) NSString *createLocation;
 -(void)startRequest:(HCScanBlock)requestBlock;
 
 @end

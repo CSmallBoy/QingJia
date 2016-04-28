@@ -20,22 +20,25 @@
 #import "NHCMessageSearchUserApi.h"
 //跳转添加好友界面
 #import "HCMessagePersonInfoVC.h"
+#import <MAMapKit/MAMapKit.h>
 
 #define DeviceMaxHeight ([UIScreen mainScreen].bounds.size.height)
 #define DeviceMaxWidth ([UIScreen mainScreen].bounds.size.width)
 #define widthRate DeviceMaxWidth/320
 #define IOS8 ([[UIDevice currentDevice].systemVersion intValue] >= 8 ? YES : NO)
 
-@interface lhScanQCodeViewController ()<QRCodeReaderViewDelegate,AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
+@interface lhScanQCodeViewController ()<QRCodeReaderViewDelegate,AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,MAMapViewDelegate,CLLocationManagerDelegate>
 {
     QRCodeReaderView * readview;//二维码扫描对象 
     
     BOOL isFirst;//第一次进入该页面
     BOOL isPush;//跳转到下一级页面
     int a ;
+     CLLocation *_current_location;
 }
-
+@property (nonatomic, strong)MAMapView     *mapview;
 @property (strong, nonatomic) CIDetector *detector;
+@property (nonatomic,strong) NSString *createLocation;
 
 @end
 
@@ -44,6 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupBackItem];
+    [self initMap];// 初始化地图
     self.title = @"扫一扫";
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -234,6 +238,7 @@
            
                 HCScanApi *api = [[HCScanApi alloc]init];
                 api.labelGuid = str;
+            api.createLocation = self.createLocation;
                 [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
                     
                     if (requestStatus == HCRequestStatusSuccess) {
@@ -302,6 +307,32 @@
     if (isPush) {
         isPush = NO;
     }
+}
+
+// ------------初始化地图--------------------
+-(void)initMap
+{
+    
+    [MAMapServices sharedServices].apiKey =@"20e897d0e7d653770541a040a12065d8";
+    _mapview = [[MAMapView alloc]init];
+    _mapview.userTrackingMode = 1;
+    _mapview.delegate = self;
+    _mapview.showsUserLocation = YES;
+}
+
+
+#pragma mark 当前经纬度的坐标
+-(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+{
+    NSLog(@"user_location ==%@",userLocation.location);
+    _current_location =[userLocation.location copy];
+    if(updatingLocation)
+    {
+        //取出当前位置的坐标
+        NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+        self.createLocation = [NSString  stringWithFormat:@"%f,%f",userLocation.coordinate.latitude,userLocation.coordinate.longitude];
+    }
+    
 }
 
 @end
