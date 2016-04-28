@@ -333,6 +333,7 @@
                       [dic setObject:model.professional forKey:@"professional"];
                       [readUserInfo Dicdelete];
                       [readUserInfo creatDic:dic];
+                      //[[NSNotificationCenter defaultCenter] postNotificationName:@"Photo" object:nil userInfo:dic];
                       [self hideHUDView];
                       if (requestStatus == HCRequestStatusSuccess)
                       {

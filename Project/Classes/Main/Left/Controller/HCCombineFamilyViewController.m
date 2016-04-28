@@ -8,6 +8,7 @@
 
 #import "HCCombineFamilyViewController.h"
 #import "HCCombineFamilyTableViewCell.h"
+
 @interface HCCombineFamilyViewController ()<UITableViewDataSource,UITableViewDelegate>{
     HCCombineFamilyTableViewCell *
     cell;
@@ -21,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupBackItem];
+
     self.title = @"合并家庭的管理";
     UIBarButtonItem *rightBar = [[UIBarButtonItem alloc]initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(bar_buttonClick)];
     self.navigationItem.rightBarButtonItem = rightBar;

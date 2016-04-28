@@ -52,8 +52,20 @@
             [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
         }
     }else{
-        //4.11日修改
-        [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
+        //已经编辑过的
+       
+        if (IsEmpty(_dict[@"PhotoStr"])) {
+            //没有二次以上的编辑
+            if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
+                
+            }else{
+                
+                 [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
+            }
+        }else{
+            
+             [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
+        }
     }
     //获取健康 信息
     NHCGetUserHeathApi *API= [[NHCGetUserHeathApi alloc]init];
@@ -68,12 +80,19 @@
         }
     }];
     [self.tableView reloadData];
-  
+ // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photo:) name:@"Photo" object:nil];
 }
+//-(void)photo:(NSNotification*)userinfo{
+//    NSDictionary *dicting1 = userinfo.userInfo;
+//    [_headButton sd_setImageWithURL:[readUserInfo url:dicting1[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
+//}
 //头像
 -(void)headbuttonImage{
+    
     NSString *str_url = [readUserInfo getReadDic][@"PhotoStr"];
+    
     [_headButton sd_setImageWithURL:[readUserInfo url:str_url :kkUser] forState:UIControlStateNormal];
+    
 }
 - (void)viewDidLoad
 {
@@ -99,14 +118,24 @@
             //此种情况下 是没有 完善信息  不操作
             if (indexPath.section==0) {
                 switch (indexPath.row) {
-                    case 0:
+                    case 0:{
                         cell.textField.text = _dict[@"UserInf"][@"trueName"];
+                        _ture_name = cell.textField.text;
+                        
+                        
+                    }
                         break;
-                    case 2:
+                    case 2:{
                         cell.textField.text = _dict[@"UserInf"][@"sex"];
+                        _sex = cell.textField.text;
+                    }
+                        
                         break;
-                    case 4:
+                    case 4:{
                         cell.textField.text = _dict[@"UserInf"][@"chineseZodiac"];
+                        _shuxiang = cell.textField.text;
+                    }
+                        
                         break;
                     case 3:{
                         cell.textField.text = _dict[@"UserInf"][@"birthDay"];
@@ -124,10 +153,14 @@
                 case 0:
                 {
                     cell.textField.text = _dict[@"UserInf"][@"trueName"];
+                    _ture_name = cell.textField.text;
+                    _headimage = _dict[@"UserInf"][@"imageName"];
                 }
                     break;
                 case 2:
-                {cell.textField.text = _dict[@"UserInf"][@"sex"];
+                {
+                    cell.textField.text = _dict[@"UserInf"][@"sex"];
+                    _sex = cell.textField.text;
                     
                 }
                     break;
@@ -135,27 +168,32 @@
                 {
                     cell.textField.text = _dict[@"UserInf"][@"birthDay"];
                     label_age.text = [readUserInfo ageWith:cell.textField.text];
+                    _birthday = cell.textField.text;
                 }
                     break;
                 case 4:
                 {
                     cell.textField.text = _dict[@"UserInf"][@"chineseZodiac"];
+                    _shuxiang = cell.textField.text;
                 }
                     break;
                 case 5:
                 {
                     cell.textField.text = _dict[@"UserInf"][@"homeAddress"];
+                    _adress = cell.textField.text;
                 }
                     break;
                 case 6:
                 {
                     cell.textField.text = _dict[@"UserInf"][@"company"];
+                    _copany = cell.textField.text;
                     
                 }
                     break;
                 case 7:
                 {
                     cell.textField.text = _dict[@"UserInf"][@"career"];
+                    _professional = cell.textField.text;
                     
                 }
                     break;
@@ -170,11 +208,14 @@
             case 0:
             {
                 cell.textField.text = _dict[@"UserInf"][@"trueName"];
+                _ture_name = cell.textField.text;
+                _headimage = _dict[@"PhotoStr"];
             }
                 break;
             case 2:
             {
                 cell.textField.text = _dict[@"UserInf"][@"sex"];
+                _sex = cell.textField.text;
                 
             }
                 break;
@@ -182,28 +223,33 @@
             {
                 cell.textField.text = _dict[@"birthday"];
                 label_age.text = [readUserInfo ageWith:cell.textField.text];
+                _birthday = cell.textField.text;
             }
                 break;
             case 4:
             {
                 cell.textField.text = _dict[@"chineseZodiac"];
+                _shuxiang = cell.textField.text;
+                
             }
                 break;
             case 5:
             {
                 cell.textField.text = _dict[@"adress"];
+                _adress = cell.textField.text;
             }
                 break;
             case 6:
             {
                 cell.textField.text = _dict[@"company"];
+                _copany = cell.textField.text;
                 
             }
                 break;
             case 7:
             {
                 cell.textField.text = _dict[@"professional"];
-                
+                _professional = cell.textField.text;
             }
                 break;
             default:
@@ -227,7 +273,9 @@
     if (indexPath.row == 1)
     {
         HCUserCodeViewController *VC = [[HCUserCodeViewController alloc] init];
-        VC.head_image = _dict[@"UserInf"][@"imageName"];
+        //4.28日
+        //VC.head_image = _dict[@"UserInf"][@"imageName"];
+        VC.head_image = _headimage;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.row==8){
       HCUserHeathViewController * Vc= [[HCUserHeathViewController alloc]init];
@@ -270,14 +318,14 @@
 {
     HCEditUserMessageViewController *editVC = [[HCEditUserMessageViewController alloc]init];
     editVC.delegate = self;
-    editVC.ture_name = _dict[@"UserInf"][@"trueName"];
+    editVC.ture_name = _ture_name;
     editVC.sex = _dict[@"UserInf"][@"sex"];
-    editVC.shuxiang = _dict[@"UserInf"][@"chineseZodiac"];
-    editVC.birthday = _dict[@"UserInf"][@"birthDay"];
-    editVC.adress = _dict[@"UserInf"][@"homeAddress"];
-    editVC.copany = _dict[@"UserInf"][@"company"];
-    editVC.professional = _dict[@"UserInf"][@"career"];
-    editVC.headimage = _dict[@"UserInf"][@"imageName"];
+    editVC.shuxiang = _shuxiang;
+    editVC.birthday = _birthday;
+    editVC.adress = _adress;
+    editVC.copany = _copany;
+    editVC.professional = _professional;
+    editVC.headimage = _headimage;
     [self.navigationController pushViewController:editVC animated:YES];
     
 }
