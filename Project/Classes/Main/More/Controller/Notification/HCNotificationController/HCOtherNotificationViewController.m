@@ -172,7 +172,7 @@
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(80, 20, 200, 40)];
         label.textColor = [UIColor blackColor];
-        label.text = info.trueName;
+        label.text = info.lossDesciption;
         [cell.contentView addSubview:label];
         
         

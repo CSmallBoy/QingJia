@@ -13,7 +13,7 @@
 #import "HCTagUserMangerViewController.h"
 
 #import "HCBindTagController.h"
-
+#import "lhScanQCodeViewController.h"
 #import "JT3DScrollView.h"
 
 @interface HCTagMangerMangerController ()<UIScrollViewDelegate>
@@ -54,12 +54,15 @@
 -(void)rightItemClick1:(UIBarButtonItem *)right
 {
 
-//    ActiveTagScanQCodeViewController *activeVC = [[ActiveTagScanQCodeViewController alloc]init];
-//    [self.navigationController pushViewController:activeVC animated:YES];
+    lhScanQCodeViewController   *scanVC = [[lhScanQCodeViewController alloc]init];
+    scanVC.isActive = YES;
+    [self.navigationController pushViewController:scanVC animated:YES];
+
+
     
     // 直接跳转到绑定标签的界面
-    HCBindTagController *bindVC = [[HCBindTagController alloc]init];
-    [self.navigationController pushViewController:bindVC animated:YES];
+//    HCBindTagController *bindVC = [[HCBindTagController alloc]init];
+//    [self.navigationController pushViewController:bindVC animated:YES];
     
     
 }

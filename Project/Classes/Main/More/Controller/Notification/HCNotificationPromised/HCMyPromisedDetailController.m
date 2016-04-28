@@ -12,9 +12,8 @@
 #import "HCNotificationHeadImageController.h"
 #import "HCPromisedCommentController.h"
 #import "HCMedicalViewController.h"
-
 #import "HCNotificationCenterInfo.h"
-
+#import "HCPromisedCommentController.h"
 #import "HCClosePromisedApi.h"
 
 #import "HCButtonItem.h"
@@ -42,6 +41,9 @@
 @property (nonatomic,strong) UIView     *imgeViewBottom;
 @property (nonatomic,strong) UIView     *grayView;
 @property (nonatomic,strong) UIScrollView     *scrollView;
+
+@property (nonatomic,assign)   BOOL  isShowDelete;
+@property (nonatomic,strong) UIImageView   *deletIV;
 
 @property (nonatomic,strong) HCNotificationCenterInfo   *info;
 
@@ -78,8 +80,91 @@
     UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url1]];
     [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
     
+    // 导航栏上的加号“+”
+    [self addItem];
+    
 }
 
+-(void)addItem
+{
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:IMG(@"导航条－inclass_Plus") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick:)];
+    self.navigationItem.rightBarButtonItem = right;
+    
+}
+
+// 点击了右边的Item
+-(void)rightItemClick:(UIBarButtonItem *)right
+{
+    if (_isShowDelete)
+    {
+        [self removeDeletIV];
+        _isShowDelete = NO;
+    }else
+    {
+        
+        UIImageView  *view = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 64, 105, 75)];
+        view.image = IMG(@"delete-report-23");
+        view.userInteractionEnabled = YES;
+        
+        UIButton  *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        deleteBtn.frame = CGRectMake(15, 15, 20, 20);
+        [deleteBtn setBackgroundImage:IMG(@"一呼百应详情－delete") forState:UIControlStateNormal];
+        [deleteBtn addTarget:self action:@selector(toFindLineVC:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:deleteBtn];
+        
+        UIButton *deleteText = [UIButton buttonWithType:UIButtonTypeCustom];
+        deleteText.frame = CGRectMake(50, 13, 40, 20);
+        deleteText.titleLabel.font = [UIFont systemFontOfSize:15];
+        [deleteText setTitle:@"消息" forState:UIControlStateNormal];
+        [deleteText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [deleteText addTarget:self action:@selector(toFindLineVC:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:deleteText];
+        
+        UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        reportBtn.frame = CGRectMake(15, 48, 20, 20);
+        [reportBtn setBackgroundImage:IMG(@"一呼百应详情－account") forState:UIControlStateNormal];
+        [reportBtn addTarget:self action:@selector(toShoreVC:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:reportBtn];
+        
+        UIButton *reportText = [UIButton buttonWithType:UIButtonTypeCustom];
+        reportText.frame = CGRectMake(50, 48, 40, 20);
+        reportText.titleLabel.font = [UIFont systemFontOfSize:15];
+        [reportText setTitle:@"分享" forState:UIControlStateNormal];
+        [reportText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [reportText addTarget:self action:@selector(toShoreVC:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:reportText];
+        
+        self.deletIV = view;
+        [self.view addSubview:self.deletIV];
+        _isShowDelete = YES;
+    }
+}
+
+// 跳转到分享界面
+-(void)toShoreVC:(UIButton *)button
+{
+    
+
+}
+
+// 跳转到发现线索界面
+-(void)toFindLineVC:(UIButton *)button
+{
+    HCPromisedCommentController *myFindLineVC = [[HCPromisedCommentController alloc]init];
+    myFindLineVC.callId = self.info.callId;
+    [self.deletIV removeFromSuperview];
+    [self.navigationController pushViewController:myFindLineVC animated:YES];
+   
+}
+
+
+// 移除蓝色视图
+-(void)removeDeletIV
+{
+    
+    [_deletIV removeFromSuperview];
+    _isShowDelete  = NO;
+}
 #pragma mark ---SKStoreProductViewControllerDelegate
 
 // 点击了appstore的取消按钮
@@ -205,6 +290,14 @@
 // 点击进入图片大图
 -(void)addBigImage:(UITapGestureRecognizer *)tap
 {
+    
+    if (_isShowDelete) {
+        [_deletIV removeFromSuperview];
+        _isShowDelete = NO;
+        return;
+    }
+    
+    
     self.navigationController.navigationBarHidden = YES;
     CGRect  startFrame =  [self.imageView convertRect:self.imageView.bounds toView:self.view];
     UIImageView  *bigImageView = [[UIImageView alloc]initWithFrame:startFrame];
@@ -266,7 +359,6 @@
             label.textColor = [UIColor grayColor];
             label.font = [UIFont systemFontOfSize:12];
             [_imgeViewBottom addSubview:label];
-            
         }
         
     }
@@ -293,7 +385,7 @@
 {
     if(!_MotherTel){
         _MotherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _MotherTel.frame =CGRectMake(CGRectGetMaxY(self.MedicalBtn.frame) + SCREEN_WIDTH*80/250 + 5,
+        _MotherTel.frame =CGRectMake(CGRectGetMaxY(self.MedicalBtn.frame) + SCREEN_WIDTH*60/250 + 5,
                                      CGRectGetMaxY(self.numLabel.frame) +7,
                                      self.imageView.frame.size.height/7 * 25/50,
                                      self.imageView.frame.size.height/7 * 25/50) ;
@@ -507,6 +599,9 @@
         _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT, SCREEN_HEIGHT-49)];
         _scrollView.backgroundColor = kHCBackgroundColor;
         _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(self.imageView.frame) + 20);
+        
+        UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeDeletIV)];
+        [_scrollView addGestureRecognizer:tap];
     }
     return _scrollView;
 }

@@ -94,7 +94,7 @@
     {
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 30)];
         label.textAlignment = NSTextAlignmentCenter;
-        label.text = [NSString stringWithFormat:@"ID:%@",@"12345678"];
+        label.text = [NSString stringWithFormat:@"ID:%@",self.labelGuid];
         [cell addSubview:label];
         
         UIImageView*imageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/2-40), 70, 80, 80)];
@@ -304,7 +304,8 @@
     
     NSString *str = [NSString stringWithFormat:@"%d",arc4random()%10000];
     
-    api.labelGuid = [NSString stringWithFormat:@"8f0a-4aed-%@",str ];
+//    api.labelGuid = [NSString stringWithFormat:@"8f0a-4aed-%@",str ];
+    api.labelGuid = self.labelGuid;
     api.imageName = self.imgStr;
     api.labelTitle = self.textField.text;
     api.objectId = self.seletedInfo.objectId;

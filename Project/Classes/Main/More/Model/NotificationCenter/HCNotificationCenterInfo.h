@@ -10,6 +10,8 @@
 
 @interface HCNotificationCenterInfo : NSObject
 
+@property (nonatomic,strong) NSString *isLoss;
+
 @property (nonatomic,strong) NSString *callId;
 @property (nonatomic,strong) NSString *lossTime;
 @property (nonatomic,strong) NSString *lossAddress;

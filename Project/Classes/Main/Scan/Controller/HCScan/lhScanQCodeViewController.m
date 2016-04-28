@@ -8,6 +8,10 @@
 
 #import "lhScanQCodeViewController.h"
 #import "QRCodeReaderView.h"
+#import "HCBindTagController.h"
+#import "HCScanApi.h"
+#import "HCNotificationCenterInfo.h"
+#import "HCOtherPromisedDetailController.h"
 
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -200,11 +204,33 @@
     }
     else{
     
-    
-    
+        if (_isActive) { // ----------------标签GUID------------
+            
+            
+            HCBindTagController *bindVC = [[HCBindTagController alloc]init];
+            bindVC.labelGuid = str;
+            [self.navigationController pushViewController:bindVC animated:YES];
+        }
+        else
+        {
+            HCScanApi *api = [[HCScanApi alloc]init];
+            api.labelGuid = str;
+            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+               
+                if (requestStatus == HCRequestStatusSuccess) {
+                    
+                    NSDictionary *dic = respone[@"Data"][@"labelInf"];
+                    
+                    HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+                    
+                    HCOtherPromisedDetailController *vc = [[HCOtherPromisedDetailController alloc]init];
+                    vc.data = @{@"info":info};
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                
+            }];
+        }
     }
-    
-    
 }
 
 - (void)reStartScan

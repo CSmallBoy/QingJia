@@ -116,6 +116,11 @@
             [self.myTableView reloadData];
             
         }
+        else
+        {
+            NSString *str = respone[@"message"];
+            [self showHUDText:str];
+        }
     }];
 }
 

@@ -113,9 +113,6 @@
 {
     if (tableView == self.myTableView)
     {
-
-        
-        
         UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
         btn1.backgroundColor =  COLOR(247, 68, 76, 1);
         UIImageView *imageView1= [[UIImageView alloc]initWithFrame:CGRectMake(15, 25, 30, 30)];
@@ -162,7 +159,7 @@
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(80, 20, 200, 40)];
         label.textColor = [UIColor blackColor];
-        label.text = info.trueName;
+        label.text = info.lossDesciption;
         [cell.contentView addSubview:label];
         
         
@@ -193,8 +190,6 @@
         [self.resultView removeFromSuperview];
         [self.seatchBar endEditing:YES];
     }
-
-    
 }
 
 #pragma mark ---UITableViewDataSource

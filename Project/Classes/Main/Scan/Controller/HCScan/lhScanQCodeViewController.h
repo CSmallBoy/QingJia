@@ -13,6 +13,7 @@ typedef void(^ScanQCodeBlock) (NSString *message);
 @interface lhScanQCodeViewController : HCViewController
 
 @property (nonatomic,assign) BOOL isJoinFamily;
+@property (nonatomic,assign) BOOL isActive;// 激活标签
 @property (nonatomic,strong) ScanQCodeBlock  block;
 
 @end

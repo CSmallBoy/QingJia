@@ -10,6 +10,7 @@
 
 @interface HCBindTagController : HCTableViewController
 
+@property (nonatomic,strong) NSString *labelGuid;
 
 
 @end
