@@ -209,7 +209,7 @@
     if (!_headButton)
     {
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_headButton setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        [_headButton setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
         [_headButton addTarget:self action:@selector(handleHeadButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _headButton;

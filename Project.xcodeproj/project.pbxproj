@@ -411,7 +411,6 @@
 		8D0AE5C71CBE2BE100E97D7D /* HCTagUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AE5C61CBE2BE100E97D7D /* HCTagUserDetailController.m */; };
 		8D0AE5CA1CBE308A00E97D7D /* HCTagUserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0AE5C91CBE308A00E97D7D /* HCTagUserDetailCell.m */; };
 		8D0B71371C97A14700B091AA /* HCPromisedReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B71361C97A14700B091AA /* HCPromisedReportController.m */; };
-		8D0F9FBE1C7E9A290096A3B9 /* HCEditUserMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0F9FBD1C7E9A290096A3B9 /* HCEditUserMessageViewController.m */; };
 		8D0F9FC11C7E9F320096A3B9 /* HCEditUserMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0F9FC01C7E9F320096A3B9 /* HCEditUserMessageTableViewCell.m */; };
 		8D0F9FC41C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0F9FC31C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.m */; };
 		8D0F9FC71C7ECC710096A3B9 /* HCChangeBounleTelNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0F9FC61C7ECC710096A3B9 /* HCChangeBounleTelNumberCell.m */; };
@@ -430,6 +429,7 @@
 		8D10B1DE1CC9C96C00A63276 /* HCMessageCenterListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D10B1DD1CC9C96C00A63276 /* HCMessageCenterListApi.m */; };
 		8D10B1E11CCA22B000A63276 /* HCMySaveListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D10B1E01CCA22B000A63276 /* HCMySaveListApi.m */; };
 		8D10B1E41CCA2D1400A63276 /* HCSaveCallApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D10B1E31CCA2D1400A63276 /* HCSaveCallApi.m */; };
+		8D111ABD1CD1DE430093E185 /* HCEditUserMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D111ABC1CD1DE430093E185 /* HCEditUserMessageViewController.m */; };
 		8D11911D1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */; };
 		8D1191201C5F3CDD003505D3 /* HCNotifcationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D11911F1C5F3CDD003505D3 /* HCNotifcationMessageCell.m */; };
 		8D131A861C7D7C7F00F0D5A0 /* UIImage+ZLPhotoLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D131A4F1C7D7C7F00F0D5A0 /* UIImage+ZLPhotoLib.m */; };
@@ -1911,7 +1911,6 @@
 		8D0B71351C97A14700B091AA /* HCPromisedReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedReportController.h; sourceTree = "<group>"; };
 		8D0B71361C97A14700B091AA /* HCPromisedReportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedReportController.m; sourceTree = "<group>"; };
 		8D0F9FBC1C7E9A290096A3B9 /* HCEditUserMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEditUserMessageViewController.h; sourceTree = "<group>"; };
-		8D0F9FBD1C7E9A290096A3B9 /* HCEditUserMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEditUserMessageViewController.m; sourceTree = "<group>"; };
 		8D0F9FBF1C7E9F320096A3B9 /* HCEditUserMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEditUserMessageTableViewCell.h; sourceTree = "<group>"; };
 		8D0F9FC01C7E9F320096A3B9 /* HCEditUserMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEditUserMessageTableViewCell.m; sourceTree = "<group>"; };
 		8D0F9FC21C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCChangeBoundleTelNumberControll.h; sourceTree = "<group>"; };
@@ -1948,6 +1947,7 @@
 		8D10B1E01CCA22B000A63276 /* HCMySaveListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMySaveListApi.m; sourceTree = "<group>"; };
 		8D10B1E21CCA2D1400A63276 /* HCSaveCallApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSaveCallApi.h; sourceTree = "<group>"; };
 		8D10B1E31CCA2D1400A63276 /* HCSaveCallApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSaveCallApi.m; sourceTree = "<group>"; };
+		8D111ABC1CD1DE430093E185 /* HCEditUserMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEditUserMessageViewController.m; sourceTree = "<group>"; };
 		8D11911B1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyNotificationCenterTableViewCell.h; sourceTree = "<group>"; };
 		8D11911C1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMyNotificationCenterTableViewCell.m; sourceTree = "<group>"; };
 		8D11911E1C5F3CDD003505D3 /* HCNotifcationMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNotifcationMessageCell.h; sourceTree = "<group>"; };
@@ -4478,7 +4478,7 @@
 				0A8BE3801C7E8CC0008E8100 /* HCUserMessageViewController.h */,
 				0A8BE3811C7E8CC0008E8100 /* HCUserMessageViewController.m */,
 				8D0F9FBC1C7E9A290096A3B9 /* HCEditUserMessageViewController.h */,
-				8D0F9FBD1C7E9A290096A3B9 /* HCEditUserMessageViewController.m */,
+				8D111ABC1CD1DE430093E185 /* HCEditUserMessageViewController.m */,
 				8D0F9FC21C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.h */,
 				8D0F9FC31C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.m */,
 				C752A8751CB4F6B7006719F1 /* HCUserHeathViewController.h */,
@@ -8058,7 +8058,6 @@
 				C7B00B6B1C5F26050010F93B /* BaseViewController.m in Sources */,
 				8D131A881C7D7C7F00F0D5A0 /* UIViewController+Alert.m in Sources */,
 				0A5491011C2BC32D0085F50D /* ZXAztecDecoder.m in Sources */,
-				8D0F9FBE1C7E9A290096A3B9 /* HCEditUserMessageViewController.m in Sources */,
 				C7B00BAE1C5F26050010F93B /* EaseChineseToPinyin.m in Sources */,
 				0A5491BE1C2BC32D0085F50D /* ZXPDF417Reader.m in Sources */,
 				0A5491621C2BC32D0085F50D /* ZXDataMatrixEncoderContext.m in Sources */,
@@ -8489,6 +8488,7 @@
 				8D131A8E1C7D7C7F00F0D5A0 /* ZLNavigationController.m in Sources */,
 				C78D7AF81C5F28F700622CE2 /* HCOtherPromisedDetailController.m in Sources */,
 				0A2B46F41C7F12AF00AAA157 /* HCHomeDetailTableViewCell.m in Sources */,
+				8D111ABD1CD1DE430093E185 /* HCEditUserMessageViewController.m in Sources */,
 				C7B00BBD1C5F26050010F93B /* EaseMessageCell.m in Sources */,
 				C78D7AA61C5F28F700622CE2 /* HCGradeSuccessViewController.m in Sources */,
 				8D0AE5B71CBDECB600E97D7D /* HCContactPersonController.m in Sources */,

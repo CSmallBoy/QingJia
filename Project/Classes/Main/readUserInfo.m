@@ -53,6 +53,17 @@
     [manager removeItemAtPath:filePath error:nil];
     
 }
+// 删除家庭缓存
++(void)familyDicdelete{
+    //获取本地路径
+    NSString *temp =NSTemporaryDirectory();
+    NSString *filePath = [temp stringByAppendingString:@"acchiver1.plist"];
+    //创建管理者
+    NSFileManager *manager = [NSFileManager defaultManager];
+    [manager removeItemAtPath:filePath error:nil];
+    
+}
+
 //图片zhuan64
 + (NSString*)imageString:(UIImage*)imagestr{
     UIImage *_originImage = [[UIImage alloc]init];

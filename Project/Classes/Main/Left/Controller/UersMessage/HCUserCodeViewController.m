@@ -43,10 +43,10 @@
     if (IsEmpty(_head_image)) {
         if (IsEmpty(dict[@"PhotoStr"])) {
         }else{
-            [Image_head sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"] :kkUser] placeholderImage:IMG(@"1.png")];
+            [Image_head sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"] :kkUser] placeholderImage:IMG(@"Head-Portraits")];
         }
     }else{
-        [Image_head sd_setImageWithURL:[readUserInfo url:_head_image :kkUser] placeholderImage:IMG(@"1.png")];
+        [Image_head sd_setImageWithURL:[readUserInfo url:_head_image :kkUser] placeholderImage:IMG(@"Head-Portraits")];
         
     }
    

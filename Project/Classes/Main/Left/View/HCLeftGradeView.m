@@ -77,7 +77,7 @@
             NSString *imgStrLogin = dict[@"UserInf"][@"imageName"];
             if (IsEmpty(imgStr) && IsEmpty(imgStrLogin)&&IsEmpty(dict[@"PhotoStr"])) {
                 
-                [_gradeHeadButton setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+                [_gradeHeadButton setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
                 
             }else{
                 
@@ -221,7 +221,7 @@
             NSString *imgStrLogin = dict[@"UserInf"][@"imageName"];
             if (IsEmpty(imgStr) && IsEmpty(imgStrLogin)&&IsEmpty(dict[@"PhotoStr"])) {
                 
-                [_headButton setBackgroundImage: IMG(@"1.png") forState:UIControlStateNormal];
+                [_headButton setBackgroundImage: IMG(@"Head-Portraits") forState:UIControlStateNormal];
                 
             }else{
                 
@@ -319,7 +319,7 @@
         _headButton.frame = CGRectMake(WIDTH(self)*0.2, 0, WIDTH(self)*0.3, WIDTH(self)*0.3);//WIDTH(self)*0.2, 0, 100, 100);//30, 60, WIDTH(self)*0.7-60, WIDTH(self)*0.3
         ViewRadius(_headButton, WIDTH(self)*0.15);
         _headButton.center = CGPointMake(_headButton.center.x, self.center.y+30);
-        [_headButton setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        [_headButton setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
     }
     return _headButton;
 }

@@ -183,7 +183,7 @@
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
         if (requestStatus == HCRequestStatusSuccess) {
-            
+            [self hideHUDView];
             NSLog(@"创建家庭成功");
             NSDictionary *dic = respone[@"Data"][@"UserEntity"];
             
@@ -203,7 +203,7 @@
 
 -(void)upLoadImage
 {
-    
+    [self showHUDView:nil];
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
     NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkFamail,uuid,token]];
@@ -215,7 +215,7 @@
         
 
     } failure:^(NSError *error) {
-        
+        [self hideHUDView];
     }];
 
 }

@@ -46,7 +46,7 @@
     //先判断本地有没有 没有 则是没有上传  自己手机上有没有
     if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
         if (IsEmpty(_dict[@"PhotoStr"])) {
-            [_headButton setBackgroundImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
+            [_headButton setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
         }else{
             [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
         }
@@ -297,7 +297,7 @@
     if (IsEmpty(_dict[@"UserInf"][@"imageName"]))
     {
         if (IsEmpty(_dict[@"PhotoStr"])) {
-            headImage.head_image = [readUserInfo imageString:IMG(@"1.png")];
+            headImage.head_image = [readUserInfo imageString:IMG(@"Head-Portraits")];
         }else{
             headImage.head_image = [readUserInfo getReadDic][@"PhotoStr"];
         }

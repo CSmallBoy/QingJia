@@ -15,6 +15,7 @@ typedef void (^NHCReadBack)(NSString *str);
 +(void)creatDic:(NSDictionary*)dic;
 +(NSDictionary *)getReadDic;
 +(void)Dicdelete;
++(void)familyDicdelete;
 //图片转64
 +(NSString*)imageString:(UIImage*)image64;
 //64转图片

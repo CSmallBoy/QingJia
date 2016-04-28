@@ -222,7 +222,7 @@
     NSInteger index = [self.data[@"index"] integerValue];
      imageView.contentMode = UIViewContentModeScaleAspectFill;
     NSString *image_url = info.FTImages[index];
-    [imageView sd_setImageWithURL:[readUserInfo originUrl:image_url :kkTimes] placeholderImage:IMG(@"1.png")];
+    [imageView sd_setImageWithURL:[readUserInfo originUrl:image_url :kkTimes] placeholderImage:IMG(@"Head-Portraits")];
     imageView.clipsToBounds = YES;
     self.imageView = imageView;
     [self.tableView insertSubview:self.imageView atIndex:0];

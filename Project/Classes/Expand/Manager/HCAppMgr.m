@@ -106,7 +106,8 @@ static HCAppMgr *_sharedManager = nil;
 - (void)logout
 {
     [self requestLogout];
-    
+    [readUserInfo Dicdelete];
+    [readUserInfo familyDicdelete];
     [[HCAccountMgr manager] clean];
 }
 

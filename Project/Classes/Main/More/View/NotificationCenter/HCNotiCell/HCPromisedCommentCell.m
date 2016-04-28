@@ -211,7 +211,7 @@
 {
     if(!_button1){
         _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button1 setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        [_button1 setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
         [_button1 addTarget:self action:@selector(imageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _button1;
@@ -221,7 +221,7 @@
 {
     if(!_button2){
         _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button2 setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        [_button2 setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
         [_button2 addTarget:self action:@selector(imageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _button2;
@@ -230,7 +230,7 @@
 {
     if(!_button3){
         _button3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button3 setBackgroundImage:IMG(@"1.png") forState:UIControlStateNormal];
+        [_button3 setBackgroundImage:IMG(@"Head-Portraits") forState:UIControlStateNormal];
         [_button3 addTarget:self action:@selector(imageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _button3;
