@@ -153,13 +153,8 @@
     
     self.nickName.text = info.NickName;
     self.times.text = [info.CreateTime substringToIndex:16];
-    
     self.commentLable.text = info.FTContent;
-    //子评论
-//    [self.label removeFromSuperview];
-//    [self.button2 removeFromSuperview];
-//    [self.button1 removeFromSuperview];
-//    [self.huifu removeFromSuperview];
+
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:[UILabel class]]) {
             [view removeFromSuperview];
@@ -183,26 +178,29 @@
     
     CGSize size = [self.commentLable preferredSizeWithMaxWidth:SCREEN_WIDTH-70];
     self.commentLable.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.times), SCREEN_WIDTH-70, size.height);
+    int  sum = 0;
     for (int i = 0 ; i < _info.subRows.count; i++) {
-        //        UILabel *label  =[[UILabel alloc]initWithFrame:CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20)];
-        //_label.frame =CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20);
-        _label  =[[UILabel alloc]initWithFrame:CGRectMake(0,size.height + 2 + i * (20+3), SCREEN_WIDTH, 20)];
-        //UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        //_label  =[[UILabel alloc]initWithFrame:CGRectMake(0,size.height + 2 + i * (20+3), SCREEN_WIDTH, 20)];
+        _label  =[[UILabel alloc]initWithFrame:CGRectMake(0,size.height + 2 + sum, SCREEN_WIDTH, 20)];
         _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
         [_button1 setTitle:_info.subRows[i][@"from"] forState:UIControlStateNormal];
+        CGSize size_bu1 = [readUserInfo sizeWithString:_info.subRows[i][@"from"] :_button1];
+        [_button1 setFrame:CGRectMake(0, 0, size_bu1.width, 18)];
         [_button1 setTitleColor:[UIColor colorWithRed:100/255.0 green:179/255.0 blue:1 alpha:1] forState:UIControlStateNormal];
         _button1.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_button1 setFrame:CGRectMake(0, 0, 50, 18)];
-        //UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+
         _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [_button2 setTitle:_info.TOUSER  forState:UIControlStateNormal];
         [_button2 setTitleColor:[UIColor colorWithRed:100/255.0 green:179/255.0 blue:1 alpha:1] forState:UIControlStateNormal];
-        [_button2 setFrame:CGRectMake(73, 0, 50, 18)];
+        //[_button2 setFrame:CGRectMake(65, 0, 40, 18)];
+        CGSize size_bu2 = [readUserInfo sizeWithString:_info.TOUSER  :_button2];
+        [_button2 setFrame:CGRectMake(size_bu1.width + 2 +30, 0, size_bu2.width, 18)];
         _button2.titleLabel.font = [UIFont systemFontOfSize:14];
         _button2.titleLabel.textAlignment = NSTextAlignmentCenter;
-        //UILabel *huifu  = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 30, 18)];
-        _huifu  = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 18, 18)];
-        _huifu.frame = CGRectMake(50, 0, 30, 18);
+     
+        _huifu  = [[UILabel alloc]initWithFrame:CGRectMake(45, 0, 18, 18)];
+        _huifu.frame = CGRectMake(size_bu1.width + 1, 0, 30, 18);
         _huifu.font = [UIFont systemFontOfSize:14];
         _huifu.text = @"回复";
         _huifu.textAlignment = NSTextAlignmentCenter;
@@ -213,7 +211,10 @@
         Sonlabel.numberOfLines = 0;
         CGSize size = CGSizeMake(_label.bounds.size.width-120, MAXFLOAT);
         CGSize labelsize = [_info.subRows[i][@"content"] sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
-        Sonlabel.frame = CGRectMake(130, 0, _label.bounds.size.width-120, labelsize.height);
+        Sonlabel.frame = CGRectMake(_button2.frame.size.width + _button1.bounds.size.width + 30 + 4, 0, _label.bounds.size.width - _button2.frame.size.width - _button1.bounds.size.width - 30 - 4 -20, labelsize.height);
+        NSString *str = [NSString stringWithFormat:@"%f",labelsize.height];
+        int b = [str intValue];
+        sum += b;
         [_label addSubview:Sonlabel];
         [_label addSubview:self.huifu];
         [_label addSubview:self.button1];

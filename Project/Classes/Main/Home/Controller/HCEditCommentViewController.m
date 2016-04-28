@@ -221,7 +221,7 @@
         
        // [self dismissViewControllerAnimated:YES completion:nil];
         
-         [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
+         //[self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
     }];
     
 }

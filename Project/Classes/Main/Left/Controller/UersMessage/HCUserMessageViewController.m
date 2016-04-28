@@ -25,6 +25,7 @@
     MyselfInfoModel*_model;
     NSArray *arr;
     NSString *str;
+    UILabel *label_age;
 }
 
 @property (nonatomic, strong) HCPickerView *datePicker;
@@ -107,17 +108,16 @@
                     case 4:
                         cell.textField.text = _dict[@"UserInf"][@"chineseZodiac"];
                         break;
-                    case 3:
+                    case 3:{
                         cell.textField.text = _dict[@"UserInf"][@"birthDay"];
+                        label_age.text = [readUserInfo ageWith:cell.textField.text];
+                    }
                         break;
                     default:
                         break;
                 }
+                
             }
-                    
-            
-           
-            
         }else{
             //此种情况是完善过后  的赋值
             switch (indexPath.row) {
@@ -134,6 +134,7 @@
                 case 3:
                 {
                     cell.textField.text = _dict[@"UserInf"][@"birthDay"];
+                    label_age.text = [readUserInfo ageWith:cell.textField.text];
                 }
                     break;
                 case 4:
@@ -158,19 +159,12 @@
                     
                 }
                     break;
-                case 8:
-                {
-                    
-                }
-                    break;
-                    
                 default:
                     break;
             }
 
         }
-        
-        
+  
     }else{
         switch (indexPath.row) {
             case 0:
@@ -187,6 +181,7 @@
             case 3:
             {
                 cell.textField.text = _dict[@"birthday"];
+                label_age.text = [readUserInfo ageWith:cell.textField.text];
             }
                 break;
             case 4:
@@ -337,12 +332,11 @@
     if (!_headBackground)
     {
         _headBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), WIDTH(self.view)*0.45)];
-      
         _headBackground.image = OrigIMG(@"2Dbarcode_message_Background");
         _headBackground.userInteractionEnabled = YES;
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50 , 150, 40, 20)];
-        label.text = @"24岁";
-        [_headBackground addSubview:label];
+        label_age = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50 , 150, 40, 20)];
+        label_age.text = @"24岁";
+        [_headBackground addSubview:label_age];
         [_headBackground addSubview:self.headButton];
         [_headBackground addSubview:self.nickName];
         [_headBackground addSubview:self.markLabel];

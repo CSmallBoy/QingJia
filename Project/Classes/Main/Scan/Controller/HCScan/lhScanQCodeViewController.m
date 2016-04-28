@@ -206,7 +206,7 @@
             [self.navigationController pushViewController:JoinFamilyVC animated:YES];
         }
     }else if (_isAddFr){
-        NSLog(@"添加好友");
+        //扫码添加好友
         NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
         api.UserChatID = str;
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {

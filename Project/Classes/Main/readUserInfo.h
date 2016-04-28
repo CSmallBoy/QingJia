@@ -58,4 +58,8 @@ typedef void (^NHCReadBack)(NSString *str);
 +(NSDate*)dateDetail: (NSString*)datesting;
 //获取到一个字典 环信个人用户
 +(NSDictionary*)userInfo: (NSString*)datesting;
+//自适应
++ (CGSize)sizeWithString: (NSString*)labelStr:(UIView *)controls;
+//年龄转换
++ (NSString *)ageWith: (NSString*)StrWithDate;
 @end

@@ -189,6 +189,7 @@
         
         
         if (_ScanCode){
+            //发送请求
              [[EaseMob sharedInstance].chatManager addBuddy:_ChatId message:message error:&error];
             if (error)
             {

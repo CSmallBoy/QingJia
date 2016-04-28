@@ -197,29 +197,29 @@
     _commentHeight = commentHeight;
 }
 ////这个方法暂时没有用到
-//- (void)hchomeDetailCommentTableViewCellCommentButton
-//{
-//    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
-//    UIViewController *rootController = self.view.window.rootViewController;
-//    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-//    {
-//        editComment.modalPresentationStyle=
-//        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
-//    }else
-//    {
-//        rootController.modalPresentationStyle=
-//        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
-//    }
-//    //总的评论传的参数
-//    editComment.all_coment_to = @"评论时光的回复";
-//    //editComment.time_id ;
-//    HCHomeInfo *info = self.data[@"data"];
-//    //传一个timeid
-//    editComment.time_id = info.TimeID;
-//    //再传一个
-//
-//    [rootController presentViewController:editComment animated:YES completion:nil];
-//}
+- (void)hchomeDetailCommentTableViewCellCommentButton
+{
+    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
+    UIViewController *rootController = self.view.window.rootViewController;
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        editComment.modalPresentationStyle=
+        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+    }else
+    {
+        rootController.modalPresentationStyle=
+        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+    }
+    //总的评论传的参数
+    editComment.all_coment_to = @"评论时光的回复";
+    //editComment.time_id ;
+    HCHomeInfo *info = self.data[@"data"];
+    //传一个timeid
+    editComment.time_id = info.TimeID;
+    //再传一个
+
+    [rootController presentViewController:editComment animated:YES completion:nil];
+}
 - (void)makefootView{
 //    HCFunctionTagView *view = [[HCFunctionTagView alloc]init];
 //    view.frame = CGRectMake(0, SCREEN_HEIGHT - 49, SCREEN_WIDTH, 49);

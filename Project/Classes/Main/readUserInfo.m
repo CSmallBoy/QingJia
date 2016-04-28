@@ -235,7 +235,23 @@
     }];
     return dicting;
 }
-
-
+//自适应
++ (CGSize)sizeWithString:(NSString *)labelStr:(UIView *)controls{
+    CGSize size = CGSizeMake(controls.bounds.size.width, MAXFLOAT);
+    CGSize labelsize = [labelStr sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+    return labelsize;
+}
+//年龄转化
++ (NSString *)ageWith:(NSString *)StrWithDate{
+    NSDateFormatter *fomatter = [[NSDateFormatter alloc]init];
+    [fomatter setDateFormat:@"yyyy"];
+    NSString *nowDate = [fomatter stringFromDate:[NSDate date]];
+    NSString *tempStr = [StrWithDate substringToIndex:4];
+    int a = [nowDate intValue];
+    int b = [tempStr intValue];
+    NSString *age = [NSString stringWithFormat:@"%d岁",(a - b)];
+    return age;
+    
+}
 
 @end
