@@ -45,10 +45,8 @@
     for (NSInteger i = 0; i < arrayM.count; i++)
     {
         HCHomeDetailUserInfo *info = arrayM[i];
-        
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        
         NSString *title = nil;
         if (i != arrayM.count - 1 && i != 0)
         {
@@ -70,10 +68,8 @@
             [btn setTitleColor:[UIColor colorWithRed:100/255.0 green:179/255.0 blue:1 alpha:1] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(handleTagButton:) forControlEvents:UIControlEventTouchUpInside];
         }
-
         NSDictionary *attriDic = @{NSFontAttributeName: [UIFont systemFontOfSize:13]};
         CGSize size_value = [title sizeWithAttributes:attriDic];
-        
         size_value.width ++;
         size_value.height ++;
         
@@ -94,7 +90,6 @@
         _previousFrame = newRect;
         
         [self setupTotalHeightWithHeight:_totalHeight+size_value.height];
-
         [self addSubview:btn];
     }
 }

@@ -25,6 +25,7 @@
     {
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 70,70)];
         imageView.image =  [UIImage imageNamed:@"chatListCellHead.png"];
+        
         ViewRadius(imageView, 35);
         [self.contentView addSubview:imageView];
         

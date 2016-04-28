@@ -275,6 +275,7 @@
         //联系人的信息界面
         HCMessagePersonInfoVC *MessagePVC = [[HCMessagePersonInfoVC alloc]init];
         MessagePVC.dataSource = mutableArr;
+        //网络请求
         [self.navigationController pushViewController:MessagePVC animated:YES];
     }
 }
@@ -283,6 +284,7 @@
 {
     lhScanQCodeViewController *lhScanVC = [[lhScanQCodeViewController alloc]init];
     lhScanVC.hidesBottomBarWhenPushed = YES;
+    lhScanVC.isAddFr = YES;
     [self.navigationController pushViewController:lhScanVC animated:YES];
 }
 

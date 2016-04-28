@@ -14,6 +14,7 @@ typedef void(^ScanQCodeBlock) (NSString *message);
 
 @property (nonatomic,assign) BOOL isJoinFamily;
 @property (nonatomic,assign) BOOL isActive;// 激活标签
+@property (nonatomic,assign) BOOL isAddFr;// 添加好友
 @property (nonatomic,strong) ScanQCodeBlock  block;
 
 @end

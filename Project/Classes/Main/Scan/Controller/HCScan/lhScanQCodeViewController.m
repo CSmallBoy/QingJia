@@ -16,6 +16,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "HCJoinGradeViewController.h"
+//查询环信的个人找号
+#import "NHCMessageSearchUserApi.h"
+//跳转添加好友界面
+#import "HCMessagePersonInfoVC.h"
 
 #define DeviceMaxHeight ([UIScreen mainScreen].bounds.size.height)
 #define DeviceMaxWidth ([UIScreen mainScreen].bounds.size.width)
@@ -201,8 +205,22 @@
             JoinFamilyVC.familyID = str;
             [self.navigationController pushViewController:JoinFamilyVC animated:YES];
         }
+    }else if (_isAddFr){
+        NSLog(@"添加好友");
+        NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
+        api.UserChatID = str;
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
+            HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
+            NSMutableArray *arr = [NSMutableArray array];
+            [arr addObject:chatUserName];
+            vc.dataSource  = arr;
+            vc.ChatId = chatUserName;
+            vc.ScanCode = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
     }
-    else{
+    else
+    {
     
         if (_isActive) { // ----------------标签GUID------------
             
@@ -213,24 +231,29 @@
         }
         else
         {
-            HCScanApi *api = [[HCScanApi alloc]init];
-            api.labelGuid = str;
-            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-               
-                if (requestStatus == HCRequestStatusSuccess) {
+           
+                HCScanApi *api = [[HCScanApi alloc]init];
+                api.labelGuid = str;
+                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
                     
-                    NSDictionary *dic = respone[@"Data"][@"labelInf"];
+                    if (requestStatus == HCRequestStatusSuccess) {
+                        
+                        NSDictionary *dic = respone[@"Data"][@"labelInf"];
+                        
+                        HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+                        
+                        HCOtherPromisedDetailController *vc = [[HCOtherPromisedDetailController alloc]init];
+                        vc.data = @{@"info":info};
+                        
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
                     
-                    HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
-                    
-                    HCOtherPromisedDetailController *vc = [[HCOtherPromisedDetailController alloc]init];
-                    vc.data = @{@"info":info};
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-                
-            }];
+                }];
+          
         }
     }
+    
+
 }
 
 - (void)reStartScan

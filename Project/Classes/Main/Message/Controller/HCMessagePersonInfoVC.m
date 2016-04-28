@@ -48,6 +48,7 @@
         cell = [[HCAddFriendTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.nameStr = self.dataSource[0];
         cell.indexPath = indexPath;
+    
         
     }
     return cell;
@@ -84,7 +85,13 @@
 //确认添加
 -(void)clickAdd
 {
-    NSString *buddyName = self.dataSource[0];
+    NSString *buddyName;
+    if(_ScanCode){
+        buddyName = _ChatId;
+    }else{
+         buddyName = self.dataSource[0];
+    }
+   
     if ([self didBuddyExist:buddyName])
     {
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"friend.repeat", @"'%@'has been your friend!"), buddyName];
@@ -178,11 +185,11 @@
     {
         [self showHudInView:self.view hint:NSLocalizedString(@"friend.sendApply", @"sending application...")];
         __block EMError *error;
-        NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
-        api.UserChatID = buddyName;
-        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
-            [[EaseMob sharedInstance].chatManager addBuddy:chatUserName message:message error:&error];
-            [self hideHud];
+        //这个地方把手机号转成  chatUserName
+        
+        
+        if (_ScanCode){
+             [[EaseMob sharedInstance].chatManager addBuddy:_ChatId message:message error:&error];
             if (error)
             {
                 [self showHint:NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again")];
@@ -191,7 +198,23 @@
             {
                 [self showHint:NSLocalizedString(@"添加信息已发送", @"send successfully")];
             }
-        }];
+        }else{
+            NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
+            api.UserChatID = buddyName;
+            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
+                [[EaseMob sharedInstance].chatManager addBuddy:chatUserName message:message error:&error];
+                [self hideHud];
+                if (error)
+                {
+                    [self showHint:NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again")];
+                }
+                else
+                {
+                    [self showHint:NSLocalizedString(@"添加信息已发送", @"send successfully")];
+                }
+            }];
+        }
+      
     
     }
 }
