@@ -123,7 +123,7 @@
     self.times.text = time;
     //self.times.text = [Utils transformServerDate:[info.CreateTime integerValue]];
     // 设备型号
-//    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
+    //self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
     
     // 内容设置行间距
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:info.FTContent];;
@@ -210,6 +210,7 @@
         CGFloat width = (SCREEN_WIDTH - 40) / 3;
         _moreImgView = [[HCHomeMoreImgView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
         _moreImgView.delegates = self;
+        
     }
     return _moreImgView;
 }

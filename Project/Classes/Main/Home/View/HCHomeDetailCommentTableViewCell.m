@@ -170,34 +170,7 @@
             [view removeFromSuperview];
         }
     }
-    for (int i = 0 ; i < _info.subRows.count; i++) {
-//        UILabel *label  =[[UILabel alloc]initWithFrame:CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20)];
-        //_label.frame =CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20);
-        _label  =[[UILabel alloc]initWithFrame:CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20)];
-        //UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button1 setTitle:@"santiao" forState:UIControlStateNormal];
-        [_button1 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        _button1.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_button1 setFrame:CGRectMake(0, 0, 50, 18)];
-        //UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button2 setTitle:@"sizi" forState:UIControlStateNormal];
-        [_button2 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [_button2 setFrame:CGRectMake(80, 0, 50, 18)];
-        _button2.titleLabel.font = [UIFont systemFontOfSize:14];
-        //UILabel *huifu  = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 30, 18)];
-        _huifu  = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 30, 18)];
-        _huifu.frame = CGRectMake(50, 0, 30, 18);
-        _huifu.font = [UIFont systemFontOfSize:14];
-        _huifu.text = @"回复";
-        _huifu.textAlignment = NSTextAlignmentCenter;
-        [_label addSubview:self.huifu];
-        [_label addSubview:self.button1];
-        [_label addSubview:self.button2];
-        [_commentLable addSubview:self.label];
-        
-    }
+  
     //默认的注释
     //[_headButton setImage:IMG(@"1.png") forState:UIControlStateNormal];
     [_headButton sd_setImageWithURL:[readUserInfo url:_info.fromImageName :kkUser] forState:UIControlStateNormal];
@@ -210,6 +183,44 @@
     
     CGSize size = [self.commentLable preferredSizeWithMaxWidth:SCREEN_WIDTH-70];
     self.commentLable.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.times), SCREEN_WIDTH-70, size.height);
+    for (int i = 0 ; i < _info.subRows.count; i++) {
+        //        UILabel *label  =[[UILabel alloc]initWithFrame:CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20)];
+        //_label.frame =CGRectMake(0,20 + i * (20+3), SCREEN_WIDTH, 20);
+        _label  =[[UILabel alloc]initWithFrame:CGRectMake(0,size.height + 2 + i * (20+3), SCREEN_WIDTH, 20)];
+        //UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_button1 setTitle:_info.subRows[i][@"from"] forState:UIControlStateNormal];
+        [_button1 setTitleColor:[UIColor colorWithRed:100/255.0 green:179/255.0 blue:1 alpha:1] forState:UIControlStateNormal];
+        _button1.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_button1 setFrame:CGRectMake(0, 0, 50, 18)];
+        //UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_button2 setTitle:_info.TOUSER  forState:UIControlStateNormal];
+        [_button2 setTitleColor:[UIColor colorWithRed:100/255.0 green:179/255.0 blue:1 alpha:1] forState:UIControlStateNormal];
+        [_button2 setFrame:CGRectMake(73, 0, 50, 18)];
+        _button2.titleLabel.font = [UIFont systemFontOfSize:14];
+        _button2.titleLabel.textAlignment = NSTextAlignmentCenter;
+        //UILabel *huifu  = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 30, 18)];
+        _huifu  = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 18, 18)];
+        _huifu.frame = CGRectMake(50, 0, 30, 18);
+        _huifu.font = [UIFont systemFontOfSize:14];
+        _huifu.text = @"回复";
+        _huifu.textAlignment = NSTextAlignmentCenter;
+        //要自适应
+        UILabel *Sonlabel = [[UILabel alloc]init];
+        Sonlabel.text = _info.subRows[i][@"content"];
+        Sonlabel.font = [UIFont systemFontOfSize:14];
+        Sonlabel.numberOfLines = 0;
+        CGSize size = CGSizeMake(_label.bounds.size.width-120, MAXFLOAT);
+        CGSize labelsize = [_info.subRows[i][@"content"] sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+        Sonlabel.frame = CGRectMake(130, 0, _label.bounds.size.width-120, labelsize.height);
+        [_label addSubview:Sonlabel];
+        [_label addSubview:self.huifu];
+        [_label addSubview:self.button1];
+        [_label addSubview:self.button2];
+        [_commentLable addSubview:self.label];
+        
+    }
     if ([self.delegate respondsToSelector:@selector(hchomeDetailCommentTableViewCellCommentHeight:)])
     {
         //这个地方修改高度

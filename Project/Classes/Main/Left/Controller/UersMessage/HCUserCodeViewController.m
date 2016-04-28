@@ -42,11 +42,9 @@
     code_image.image = image;
     if (IsEmpty(_head_image)) {
         if (IsEmpty(dict[@"PhotoStr"])) {
-            
         }else{
             [Image_head sd_setImageWithURL:[readUserInfo url:dict[@"PhotoStr"] :kkUser] placeholderImage:IMG(@"1.png")];
         }
-        
     }else{
         [Image_head sd_setImageWithURL:[readUserInfo url:_head_image :kkUser] placeholderImage:IMG(@"1.png")];
         

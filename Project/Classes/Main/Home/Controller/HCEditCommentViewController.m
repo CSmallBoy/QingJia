@@ -19,8 +19,13 @@
 #import "NHCHomeSingleFigureApi.h"
 //评论所有时光的
 #import "NHCHomeTimeToComentApi.h"
+//
+#import "HCHomeDetailViewController.h"
 
-@interface HCEditCommentViewController ()<HCEditCommentViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface HCEditCommentViewController ()<HCEditCommentViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
+    int all;
+    int signel;
+}
 
 @property (nonatomic, strong) HCEditCommentView *contentView;
 @property (nonatomic, strong) HCEditCommentInfo *info;
@@ -200,14 +205,23 @@
 #pragma mark - network
 //追加总的评论
 - (void)requestAllComent{
-    NSLog(@"出发了");
     NHCHomeTimeToComentApi *api  = [[NHCHomeTimeToComentApi alloc]init];
     api.Timesid = _time_id;
     api.parentCommentId = _commentId;
     api.ToUserId  = _touser;
     api.content = _info.FTContent;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        [self showHUDSuccess:@"回复成功"];
+//        for (UIViewController *temp in self.navigationController.viewControllers) {
+//            if ([temp isKindOfClass:[HCHomeDetailViewController class]])
+//            {
+//                [self.navigationController popToViewController:temp animated:YES];
+//            }
+//        }
         
+       // [self dismissViewControllerAnimated:YES completion:nil];
+        
+         [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
     }];
     
 }
@@ -235,6 +249,7 @@
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
             if (requestStatus == HCRequestStatusSuccess) {
                 [self showHUDSuccess:@"评论成功"];
+                [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
             }
         }];
     }else{
@@ -261,6 +276,7 @@
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
             if (requestStatus == HCRequestStatusSuccess) {
                 [self showHUDSuccess:@"评论成功"];
+                [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
             }
         }];
     }else{//这个有图片  需要先上传图片

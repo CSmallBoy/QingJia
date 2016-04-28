@@ -67,6 +67,7 @@
         {
             [btn setTitle:title forState:UIControlStateNormal];
             //[btn setTitle:arrayM[i] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor colorWithRed:100/255.0 green:179/255.0 blue:1 alpha:1] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(handleTagButton:) forControlEvents:UIControlEventTouchUpInside];
         }
 
