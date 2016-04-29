@@ -98,7 +98,7 @@
         [cell addSubview:label];
         
         UIImageView*imageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/2-40), 70, 80, 80)];
-        imageView.image = IMG(@"2Dbarcode");
+        imageView.image = IMG(@"TagPhoto");
         imageView.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
         [imageView addGestureRecognizer:tap];
@@ -174,9 +174,14 @@
 
     
     if (self.textField.text == nil) {
-        [self showHUDText:@"标签名字"];
+        [self showHUDText:@"请输入标签名字"];
         return;
     }
+    
+    if (self.seletedInfo ==nil) {
+        [self showHUDText:@"创建对象以后才可以绑定标签"];
+    }
+    
     [self upLoadImge];
 }
 
@@ -308,6 +313,8 @@
     api.labelGuid = self.labelGuid;
     api.imageName = self.imgStr;
     api.labelTitle = self.textField.text;
+
+    
     api.objectId = self.seletedInfo.objectId;
     api.contactorId1 = self.seletedInfo.contactorId1;
     api.contactorId2 = self.seletedInfo.contactorId2;

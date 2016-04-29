@@ -252,7 +252,7 @@
                     //选中按钮
                     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                     button.frame = CGRectMake(31, 130, 30, 30);
-                    [button setImage:IMG(@"buttonNormal") forState:UIControlStateNormal];
+                    [button setImage:IMG(@"contactUnSelect") forState:UIControlStateNormal];
                     [button addTarget:self action:@selector(selectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                     button.tag = 100+i  ;
                     [view addSubview:button];
@@ -463,7 +463,7 @@
 {
     UIImage *image = [button imageForState:UIControlStateNormal];
     
-    if ([image isEqual:IMG(@"buttonNormal")]) {
+    if ([image isEqual:IMG(@"contactUnSelect")]) {
         
         
         if (self.selectArr.count == 2)
@@ -480,12 +480,12 @@
             [self addSmallView:info index:index];
             
             self.index = index;
-           [button setImage:IMG(@"buttonSelected") forState:UIControlStateNormal];
+           [button setImage:IMG(@"contactSelect") forState:UIControlStateNormal];
         }
     }
     else
     {
-        [button setImage:IMG(@"buttonNormal") forState:UIControlStateNormal];
+        [button setImage:IMG(@"contactUnSelect") forState:UIControlStateNormal];
         NSInteger index = button.tag-100;
         HCNewTagInfo *info = self.contactArr[index];
         [self.selectArr removeObject:info];

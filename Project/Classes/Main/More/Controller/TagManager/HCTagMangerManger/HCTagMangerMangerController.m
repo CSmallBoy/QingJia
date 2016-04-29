@@ -93,8 +93,8 @@
         CGFloat  btnH = 200/667.0*SCREEN_HEIGHT;
         _contantPersonBtn.frame = CGRectMake(SCREEN_WIDTH/2-btnW/2, 95/667.0*SCREEN_HEIGHT, btnW, btnH);
         [_contantPersonBtn addTarget:self action:@selector(contactBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_contantPersonBtn setBackgroundImage:IMG(@"ContactPersonManger") forState:UIControlStateNormal];
         ViewRadius(_contantPersonBtn, 5);
-        _contantPersonBtn.backgroundColor = [UIColor yellowColor];
     }
     return _contantPersonBtn;
 }
@@ -108,8 +108,9 @@
         CGFloat  btnH = 200/667.0*SCREEN_HEIGHT;
         _taguserBtn.frame = CGRectMake(SCREEN_WIDTH/2-btnW/2,380/667.0*SCREEN_HEIGHT, btnW, btnH);
         [_taguserBtn addTarget:self action:@selector(taguserBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_taguserBtn setBackgroundImage:IMG(@"tagUserManger") forState:UIControlStateNormal];
         ViewRadius(_taguserBtn, 5);
-        _taguserBtn.backgroundColor = [UIColor yellowColor];
+      
     }
     return _taguserBtn;
 }

@@ -38,7 +38,7 @@
     self.closedTagVC.view.hidden = YES;
     
     // 管理按钮
-    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(manageBtnClick:)];
+    UIBarButtonItem *right  = [[UIBarButtonItem alloc]initWithImage:IMG(@"Manger") style:UIBarButtonItemStylePlain target:self action:@selector(manageBtnClick:)];
     self.navigationItem.rightBarButtonItem = right;
     
 }

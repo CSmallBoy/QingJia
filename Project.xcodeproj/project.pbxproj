@@ -500,6 +500,7 @@
 		8D21CA0C1C61D6310071B32A /* HCMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0B1C61D6310071B32A /* HCMedicalCell.m */; };
 		8D21CA0F1C61D6D10071B32A /* HCMedicalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA0E1C61D6D10071B32A /* HCMedicalInfo.m */; };
 		8D21CA121C61DD1F0071B32A /* HCMedicalFrameIfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D21CA111C61DD1F0071B32A /* HCMedicalFrameIfo.m */; };
+		8D8D542D1CD34BE9003D254B /* HCPromisedCommentScanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8D542C1CD34BE9003D254B /* HCPromisedCommentScanCell.m */; };
 		8D9790301CB3A00B00FE3C12 /* HCAddressInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9790101CB3A00B00FE3C12 /* HCAddressInfo.m */; };
 		8D9790311CB3A00B00FE3C12 /* HCContactPersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9790131CB3A00B00FE3C12 /* HCContactPersonInfo.m */; };
 		8D9790321CB3A00B00FE3C12 /* HCTagUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9790151CB3A00B00FE3C12 /* HCTagUserInfo.m */; };
@@ -2090,6 +2091,8 @@
 		8D21CA0E1C61D6D10071B32A /* HCMedicalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalInfo.m; sourceTree = "<group>"; };
 		8D21CA101C61DD1F0071B32A /* HCMedicalFrameIfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMedicalFrameIfo.h; sourceTree = "<group>"; };
 		8D21CA111C61DD1F0071B32A /* HCMedicalFrameIfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMedicalFrameIfo.m; sourceTree = "<group>"; };
+		8D8D542B1CD34BE9003D254B /* HCPromisedCommentScanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedCommentScanCell.h; sourceTree = "<group>"; };
+		8D8D542C1CD34BE9003D254B /* HCPromisedCommentScanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedCommentScanCell.m; sourceTree = "<group>"; };
 		8D97900F1CB3A00B00FE3C12 /* HCAddressInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAddressInfo.h; sourceTree = "<group>"; };
 		8D9790101CB3A00B00FE3C12 /* HCAddressInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddressInfo.m; sourceTree = "<group>"; };
 		8D9790121CB3A00B00FE3C12 /* HCContactPersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCContactPersonInfo.h; sourceTree = "<group>"; };
@@ -5612,6 +5615,8 @@
 				C78D79B91C5F28F700622CE2 /* HCPromisedCommentCell.m */,
 				8D134CDA1CCDE6AB001B77EE /* HCPromisedSubCommentCell.h */,
 				8D134CDB1CCDE6AB001B77EE /* HCPromisedSubCommentCell.m */,
+				8D8D542B1CD34BE9003D254B /* HCPromisedCommentScanCell.h */,
+				8D8D542C1CD34BE9003D254B /* HCPromisedCommentScanCell.m */,
 				C78D79BC1C5F28F700622CE2 /* HCNotifiMessageCenterCell.h */,
 				C78D79BD1C5F28F700622CE2 /* HCNotifiMessageCenterCell.m */,
 				8D0FAEB11C604ECA0038B0BD /* HCNotiMySaveCell.h */,
@@ -7357,7 +7362,7 @@
 				TargetAttributes = {
 					0A6B7D971BF1EB6A008D54B3 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = TUQVNVJWWD;
+						DevelopmentTeam = DWB73FX47H;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -7981,6 +7986,7 @@
 				C7B00B451C5F26050010F93B /* ChatGroupDetailViewController.m in Sources */,
 				0A54918B1C2BC32D0085F50D /* ZXRSSFinderPattern.m in Sources */,
 				0A5491211C2BC32D0085F50D /* ZXSMSMMSResultParser.m in Sources */,
+				8D8D542D1CD34BE9003D254B /* HCPromisedCommentScanCell.m in Sources */,
 				0A5491141C2BC32D0085F50D /* ZXEmailAddressParsedResult.m in Sources */,
 				C78D7B371C5F28F700622CE2 /* HCLightGrayLineView.m in Sources */,
 				C78D7B4C1C5F28F700622CE2 /* HCApplyReturnOrderCell.m in Sources */,
@@ -8698,8 +8704,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8725,7 +8731,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ba246af-3601-4529-95c7-18b076de074e";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8736,8 +8742,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8763,7 +8769,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ba246af-3601-4529-95c7-18b076de074e";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -500,6 +500,8 @@
         [clearView addSubview:self.MedicalBtn];
         
         [_imageView addSubview:clearView];
+        _imageView.contentMode  = UIViewContentModeScaleAspectFit;
+        _imageView.backgroundColor = [UIColor blackColor];
         
     }
     return _imageView;

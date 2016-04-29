@@ -75,7 +75,6 @@
 -(void)imageBtnClick:(UIButton *)button;
 
 {
-    UIImageView *IV = (UIImageView *)[button viewWithTag:100];
     
     self.block (button);
 }
@@ -119,7 +118,7 @@
     self.nickLabel.text = commnetFrameInfo.commentInfo.nickName;
     
     self.timeLabel.frame = commnetFrameInfo.backLabelFrame;
-    self.timeLabel.text = [commnetFrameInfo.commentInfo.createTime substringToIndex:9];
+    self.timeLabel.text = [commnetFrameInfo.commentInfo.createTime substringToIndex:10];
     
     self.commentLabel.frame = commnetFrameInfo.commentLabelFrame;
     self.commentLabel.text = commnetFrameInfo.commentInfo.content;

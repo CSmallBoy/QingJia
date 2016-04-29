@@ -142,6 +142,10 @@
 
 -(void)buttonClick
 {
+    if (IsEmpty(self.message)) {
+        [self showHUDText:@"验证消息不能为空"];
+    }
+    
     applyToFamily *api = [[applyToFamily alloc]init];
     api.familyId = self.info.familyId;
     api.joinMessage = self.message;
