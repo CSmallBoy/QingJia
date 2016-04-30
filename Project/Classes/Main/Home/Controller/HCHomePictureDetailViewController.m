@@ -26,7 +26,7 @@
 {
     BOOL  _isAdd;
     UIImage   *_image;
-  
+    
 }
 @property (nonatomic, strong) HCEditCommentView *contentView;
 @property (nonatomic, strong) HCHomeInfo *info;
@@ -40,7 +40,11 @@
 @implementation HCHomePictureDetailViewController
 
 #pragma mark - life cycle
-
+- (void)viewWillAppear:(BOOL)animated{
+    //刷新数据单图
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestPictureDetail) name:@"刷新数据1" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestPictureDetail) name:@"刷新数据单图" object:nil];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -71,7 +75,7 @@
     cell.info = _detailInfo.commentsArr[indexPath.row];
     cell.indexpath = indexPath;
     cell.image_num = _imageNum;
-     //直接在这里传timeid  和头像名字
+    //直接在这里传timeid  和头像名字
     cell.pic_time_id = _info.TimeID;
     int a = [self.data[@"index"] intValue];
     cell.image_name = _info.FTImages[a];
@@ -125,10 +129,10 @@
     }
     else
     {
-     _imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH , self.tableView.contentOffset.y);
+        _imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH , self.tableView.contentOffset.y);
     }
     
-   
+    
 }
 
 
@@ -207,7 +211,7 @@
     }
     if (_info.FTImages.count > 1)
     {
-
+        
     }else
     {
         //[self requestEditComment];
@@ -220,7 +224,7 @@
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
     HCHomeInfo *info = self.data[@"data"];
     NSInteger index = [self.data[@"index"] integerValue];
-     imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
     NSString *image_url = info.FTImages[index];
     [imageView sd_setImageWithURL:[readUserInfo originUrl:image_url :kkTimes] placeholderImage:IMG(@"Head-Portraits")];
     imageView.clipsToBounds = YES;
@@ -276,10 +280,10 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     if (error) {
         [self showHUDError:@"保存失败"];
-       
+        
     } else  {
         [self showHUDSuccess:@"保存成功"];
-   
+        
     }
 }
 

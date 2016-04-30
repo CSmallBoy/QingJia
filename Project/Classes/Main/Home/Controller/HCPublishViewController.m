@@ -50,7 +50,7 @@
     [super viewDidLoad];
     self.title = @"发布消息";
     [self setupBackItem];
-
+    
     self.navigationItem.rightBarButtonItem =self.publishBtnItem;
     _info = [[HCPublishInfo alloc] init];
     _info.OpenAddress = @"1";
@@ -59,10 +59,10 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCPublishTableViewCell class] forCellReuseIdentifier:HCPublishCell];
     //验证登陆两次
-//    NHCLoginTwoApi *api = [[NHCLoginTwoApi alloc]init];
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-//        
-//    }];
+    //    NHCLoginTwoApi *api = [[NHCLoginTwoApi alloc]init];
+    //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+    //
+    //    }];
 }
 
 #pragma mark - UITableView
@@ -152,7 +152,7 @@
     [self.view endEditing:YES];
     if (_info.FTImages.count == index)
     {
-       UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
+        UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
         [action showInView:self.view];
     }
 }
@@ -244,7 +244,7 @@
         
     }else{
         a = 1;
-       [self  requestPublistData];
+        [self  requestPublistData];
     }
     
 }
@@ -324,8 +324,8 @@
 }
 
 
-    
-    
+
+
 
 ////多图上传
 - (void)uploadManyImage:(NSString*)Tid{

@@ -22,4 +22,5 @@
 @property (nonatomic,copy) NSString *professional;
 @property (nonatomic,copy) NSString *copany;
 @property (nonatomic,copy) NSString *headimage;
+@property (nonatomic,copy) NSString *nickName;
 @end

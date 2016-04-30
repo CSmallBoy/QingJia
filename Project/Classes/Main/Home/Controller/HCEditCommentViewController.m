@@ -173,10 +173,10 @@
             [self resquestCommentTo];
         }else if (IsEmpty(_all_coment_to)){
             //所有的
-             [self requestEditComment];
+            [self requestEditComment];
         }else if([_all_coment_to isEqualToString:@"评论时光的回复"]) {
             [self requestAllComent];
-           
+            
         }
     }
     
@@ -212,16 +212,16 @@
     api.content = _info.FTContent;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
         [self showHUDSuccess:@"回复成功"];
-//        for (UIViewController *temp in self.navigationController.viewControllers) {
-//            if ([temp isKindOfClass:[HCHomeDetailViewController class]])
-//            {
-//                [self.navigationController popToViewController:temp animated:YES];
-//            }
-//        }
+        //        for (UIViewController *temp in self.navigationController.viewControllers) {
+        //            if ([temp isKindOfClass:[HCHomeDetailViewController class]])
+        //            {
+        //                [self.navigationController popToViewController:temp animated:YES];
+        //            }
+        //        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"刷新数据" object:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
-       // [self dismissViewControllerAnimated:YES completion:nil];
-        
-         //[self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
+        //[self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
     }];
     
 }
@@ -238,29 +238,25 @@
     api.ToimageName = _image_name;
     api.toUser = _touser;
     ///还没有写完
-    
-    
-    
-    
-    
     //这个地方要  timeId   ImageName  to_UserID Contact
     
-    if (_info.FTImages.count==1) {
+    if (_info.FTImages.count==0) {
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
             if (requestStatus == HCRequestStatusSuccess) {
                 [self showHUDSuccess:@"评论成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"刷新数据1" object:nil];
                 [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
             }
         }];
     }else{
         //这个地方是判断是否有图片的
- 
+        
     }
 }
 //回复的api
 //单图的api
 -(void)resquestCommentS{
- //只有文字的时候上传
+    //只有文字的时候上传
     
     
     NHCHomeSingleFigureApi *api  = [[NHCHomeSingleFigureApi alloc]init];
@@ -272,10 +268,11 @@
     NSString *str = self.data[@"index"];
     int a = [str intValue];
     api.ToimageName = homeinfo.FTImages[a];
-    if (_info.FTImages.count==1) {
+    if (_info.FTImages.count==0) {
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
             if (requestStatus == HCRequestStatusSuccess) {
                 [self showHUDSuccess:@"评论成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"刷新数据单图" object:nil];
                 [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
             }
         }];
@@ -310,7 +307,7 @@
                 
             }];
         }
-
+        
     }
 }
 //所有的
@@ -323,7 +320,7 @@
     api.ToUserId =homeInfo.creator;
     api.content = _info.FTContent;
     //先判断是否有图片上传
-    if (_info.FTImages.count==1) {
+    if (_info.FTImages.count==0) {
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
             if (requestStatus == HCRequestStatusSuccess)
             {
@@ -340,7 +337,8 @@
         //第一步 上传图片
         //第二部整合 图片名字
         NSMutableArray *arr_image_path = [NSMutableArray array];
-        for (int i = 0; i < _info.FTImages.count-1; i ++) {
+        for (int i = 0; i < _info.FTImages.count-1; i ++)
+        {
             [KLHttpTool uploadImageWithUrl:[readUserInfo url:kkComment] image:_info.FTImages[i] success:^(id responseObject) {
                 NSString *str1 = responseObject[@"Data"][@"files"][0];
                 [arr_image_path addObject:str1];
@@ -364,28 +362,23 @@
                 
             }];
         }
-        
-        
     }
-    
-   
-    
-//    HCEditCommentApi *api = [[HCEditCommentApi alloc] init];
-//    HCHomeInfo *homeInfo = self.data[@"data"];
-//    _info.FTID = homeInfo.KeyId;
-//    api.commentInfo = _info;
-//    api.FTImages = _FTImages;
-//    
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self showHUDSuccess:@"评论成功"];
-//            [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
-//        }else
-//        {
-//            [self showHUDError:message];
-//        }
-//    }];
+    //    HCEditCommentApi *api = [[HCEditCommentApi alloc] init];
+    //    HCHomeInfo *homeInfo = self.data[@"data"];
+    //    _info.FTID = homeInfo.KeyId;
+    //    api.commentInfo = _info;
+    //    api.FTImages = _FTImages;
+    //
+    //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+    //        if (requestStatus == HCRequestStatusSuccess)
+    //        {
+    //            [self showHUDSuccess:@"评论成功"];
+    //            [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
+    //        }else
+    //        {
+    //            [self showHUDError:message];
+    //        }
+    //    }];
 }
 
 - (void)requestImageUpload
@@ -393,7 +386,7 @@
     [self showHUDView:nil];
     
     HCImageUploadApi *api = [[HCImageUploadApi alloc] init];
-     api.fileType = @"MTimes";
+    api.fileType = @"MTimes";
     
     NSMutableArray *imageArr = [NSMutableArray arrayWithCapacity:_info.FTImages.count-1];
     for (NSInteger i = 0; i < _info.FTImages.count-1; i++)

@@ -18,7 +18,9 @@
 
 #define HCHomeUserTimeCell @"HCHomeUserTimeCell2"
 
-@interface HCHomeUserTimeViewController ()<HCHomeTableViewCellDelegate>
+@interface HCHomeUserTimeViewController ()<HCHomeTableViewCellDelegate>{
+    int a;
+}
 
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 
@@ -27,7 +29,9 @@
 @implementation HCHomeUserTimeViewController
 
 #pragma mark - life cycle
-
+- (void)viewWillAppear:(BOOL)animated{
+    a = 0;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,7 +46,7 @@
     [self.tableView registerClass:[HCHomeTableViewCell class] forCellReuseIdentifier:HCHomeUserTimeCell];
     //家庭
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
-    //家族
+    //加载更多
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
 }
 
@@ -70,21 +74,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    CGFloat height = 60 + WIDTH(self.view)*0.15;
-//    
-//    HCHomeInfo *info = self.dataSource[indexPath.section];
-//    height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
-//    if (!IsEmpty(info.FTImages))
-//    {
-//        height = height + (WIDTH(self.view)-30)/3;
-//    }
-//    
-//    if (!IsEmpty(info.CreateAddrSmall))
-//    {
-//        height = height + 30;
-//    }
-//    return height;
-//    
+    //    CGFloat height = 60 + WIDTH(self.view)*0.15;
+    //
+    //    HCHomeInfo *info = self.dataSource[indexPath.section];
+    //    height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
+    //    if (!IsEmpty(info.FTImages))
+    //    {
+    //        height = height + (WIDTH(self.view)-30)/3;
+    //    }
+    //
+    //    if (!IsEmpty(info.CreateAddrSmall))
+    //    {
+    //        height = height + 30;
+    //    }
+    //    return height;
+    //
     CGFloat height = 60 + WIDTH(self.view)*0.15;
     HCHomeInfo *info = self.dataSource[indexPath.section];
     height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
@@ -191,11 +195,11 @@
 #pragma mark - network
 //获取家庭的时光
 - (void)requestHomeDataF{
-//    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
-//    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id data) {
-//        
-//    }];
-
+    //    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
+    //    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id data) {
+    //
+    //    }];
+    
     NHCMySelfTimeListApi *Api = [[NHCMySelfTimeListApi alloc]init];
     Api.MyselfuserID = _userID;
     [Api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
@@ -208,45 +212,40 @@
 //加载数据
 - (void)requestHomeData
 {
-//    HCHomeApi *api = [[HCHomeApi alloc] init];
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-//        [self.tableView.mj_header endRefreshing];
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            [self.dataSource removeAllObjects];
-//            [self.dataSource addObjectsFromArray:array];
-//            [self writeLocationData:array];
-//            [self.tableView reloadData];
-//        }else
-//        {
-//            [self showHUDError:message];
-//        }
-//    }];
     NHCMySelfTimeListApi *Api = [[NHCMySelfTimeListApi alloc]init];
     Api.MyselfuserID = _userID;
     Api.start_num = @"0";
-    Api.home_conut = @"100";
+    Api.home_conut = @"10";
     [Api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
-        //[self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         [self.dataSource removeAllObjects];
         [self.dataSource addObjectsFromArray:Data];
-    //缓存暂时不加
+        
+        //缓存暂时不加
         //[self writeLocationData:Data];
         [self.tableView reloadData];
+        
     }];
+    _baseRequest = Api;
 }
 //下啦刷新
 - (void)requestMoreHomeData
 {
     NHCMySelfTimeListApi *Api = [[NHCMySelfTimeListApi alloc]init];
     Api.MyselfuserID = _userID;
-    Api.start_num = @"0";
-    Api.home_conut = @"100";
+    Api.start_num = [NSString stringWithFormat:@"%d",10 * (a+1)];
+    Api.home_conut = [ NSString stringWithFormat:@"%d",10 * (a+2)];
     [Api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
-        //[self.tableView.mj_header endRefreshing];
-        [self.dataSource removeAllObjects];
-        [self.dataSource addObjectsFromArray:Data];
-        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+        if (resquestStatus == HCRequestStatusSuccess)
+        {
+            [self.dataSource addObjectsFromArray:Data];
+            [self.tableView reloadData];
+            a ++;
+        }else
+        {
+            [self showHUDError:message];
+        }
     }];
     
 }

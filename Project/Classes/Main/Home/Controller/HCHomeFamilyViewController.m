@@ -1,4 +1,4 @@
- //
+//
 //  HCHomeViewController.m
 //  Project
 //
@@ -31,7 +31,7 @@
     NSMutableArray *arr_image_all;
     //下拉加载 用到的m
     int m;
-
+    
     
 }
 
@@ -58,7 +58,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -107,7 +107,7 @@
     HCHomeInfo *info = self.dataSource[indexPath.section];
     
     height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
-
+    
     if (!IsEmpty(info.FTImages))
     {
         if (info.FTImages.count < 5)
@@ -203,7 +203,7 @@
 {
     NSString *path = [self getSaveLocationDataPath];
     NSArray *arrayData = [NSArray arrayWithContentsOfFile:path];
-
+    
     [self.dataSource addObjectsFromArray:[HCHomeInfo mj_objectArrayWithKeyValuesArray:arrayData]];
     [self.tableView reloadData];
     [self requestHomeData];
@@ -241,15 +241,15 @@
         UIViewController *rootController = window.rootViewController;
         if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
         {
-          _welcomJoinGrade.modalPresentationStyle=
-          UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+            _welcomJoinGrade.modalPresentationStyle=
+            UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
         }else
         {
-          rootController.modalPresentationStyle=
-          UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+            rootController.modalPresentationStyle=
+            UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
         }
-      [_welcomJoinGrade setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-      [rootController presentViewController:_welcomJoinGrade animated:YES completion:nil];
+        [_welcomJoinGrade setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        [rootController presentViewController:_welcomJoinGrade animated:YES completion:nil];
     }
 }
 
@@ -303,23 +303,23 @@
             [self showHUDText:@"您已经点过赞了,请刷新"];
             
         }
-       
+        
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-       
+        
     }];
-  
-//    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
-//    api.TimesId = info.KeyId;
-//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-//        if (requestStatus == HCRequestStatusSuccess)
-//        {
-//            info.FTLikeCount = [NSString stringWithFormat:@"%@", @([info.FTLikeCount integerValue]+1)];
-//            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//        }else
-//        {
-//            [self showHUDError:message];
-//        }
-//    }];
+    
+    //    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
+    //    api.TimesId = info.KeyId;
+    //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+    //        if (requestStatus == HCRequestStatusSuccess)
+    //        {
+    //            info.FTLikeCount = [NSString stringWithFormat:@"%@", @([info.FTLikeCount integerValue]+1)];
+    //            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    //        }else
+    //        {
+    //            [self showHUDError:message];
+    //        }
+    //    }];
     
 }
 

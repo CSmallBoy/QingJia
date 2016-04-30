@@ -53,18 +53,18 @@
         }
     }else{
         //已经编辑过的
-       
+        
         if (IsEmpty(_dict[@"PhotoStr"])) {
             //没有二次以上的编辑
             if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
                 
             }else{
                 
-                 [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
+                [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
             }
         }else{
             
-             [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
+            [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
         }
     }
     //获取健康 信息
@@ -80,7 +80,7 @@
         }
     }];
     [self.tableView reloadData];
- // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photo:) name:@"Photo" object:nil];
+    // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photo:) name:@"Photo" object:nil];
 }
 //-(void)photo:(NSNotification*)userinfo{
 //    NSDictionary *dicting1 = userinfo.userInfo;
@@ -140,6 +140,7 @@
                     case 3:{
                         cell.textField.text = _dict[@"UserInf"][@"birthDay"];
                         label_age.text = [readUserInfo ageWith:cell.textField.text];
+                        _birthday = cell.textField.text;
                     }
                         break;
                     default:
@@ -200,9 +201,9 @@
                 default:
                     break;
             }
-
+            
         }
-  
+        
     }else{
         switch (indexPath.row) {
             case 0:
@@ -255,9 +256,9 @@
             default:
                 break;
         }
-
+        
     }
-        return cell;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -278,7 +279,7 @@
         VC.head_image = _headimage;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.row==8){
-      HCUserHeathViewController * Vc= [[HCUserHeathViewController alloc]init];
+        HCUserHeathViewController * Vc= [[HCUserHeathViewController alloc]init];
         
         if (IsEmpty(arr[0])) {
             Vc.arr_heath = @[@"请输入身高",@"请输入体重",@"请输入血型",@"有无过敏史",@"医疗状况",@"医疗笔记"];
@@ -287,7 +288,7 @@
         }
         
         [self.navigationController pushViewController:Vc animated:YES];
-    
+        
     }
     
 }
@@ -306,10 +307,10 @@
 
 - (void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result
 {
-//    NSDate *date = result[@"date"];
-//    HCUserMessageTableViewCell *cell = (HCUserMessageTableViewCell *)
-//    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
-//    cell.textField.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
+    //    NSDate *date = result[@"date"];
+    //    HCUserMessageTableViewCell *cell = (HCUserMessageTableViewCell *)
+    //    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+    //    cell.textField.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
 }
 
 #pragma mark - private methods
@@ -330,7 +331,7 @@
     
 }
 -(void)userInfoName:(MyselfInfoModel *)model{
-   _model  = model;
+    _model  = model;
 }
 //头像处理
 - (void)handleHeadButton
@@ -347,12 +348,12 @@
     }else{
         headImage.head_image = [readUserInfo getReadDic][@"UserInf"][@"imageName"];
     }
-   // headImage.head_image = [readUserInfo getReadDic][@"UserInf"][@"imageName"];
-   
+    // headImage.head_image = [readUserInfo getReadDic][@"UserInf"][@"imageName"];
+    
     [self.navigationController pushViewController:headImage animated:YES];
 }
 
-#pragma mark - setter 
+#pragma mark - setter
 
 - (UIBarButtonItem *)rightItem
 {
@@ -399,7 +400,7 @@
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _headButton.frame = CGRectMake(0, 30, WIDTH(self.view)*0.2, WIDTH(self.view)*0.2);
         _headButton.center = CGPointMake(self.view.center.x, _headButton.center.y);
-      
+        
         
         [_headButton addTarget:self action:@selector(handleHeadButton) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(_headButton, WIDTH(_headButton)*0.5);

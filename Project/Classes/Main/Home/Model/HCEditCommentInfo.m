@@ -15,7 +15,7 @@
     if (!_FTImages)
     {
         _FTImages = [NSMutableArray array];
-        [_FTImages addObject:OrigIMG(@"Add-Images")];
+        //[_FTImages addObject:OrigIMG(@"Add-Images")];
     }
     return _FTImages;
 }

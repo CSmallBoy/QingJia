@@ -34,7 +34,7 @@
 @implementation HCHomeDetailViewController
 - (void)viewWillAppear:(BOOL)animated{
     //[self requestHomeDetail];
- 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeDetail) name:@"刷新数据" object:nil];
 }
 - (void)viewDidLoad
 {
@@ -64,15 +64,15 @@
     {
         //移除所有的
         [cell.contentView removeFromSuperview];
-
+        
         //            HCHomeDetailCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:HCHomeDetailComment];
         HCHomeDetailCommentTableViewCell *commentCell = [[HCHomeDetailCommentTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HCHomeDetailComment];
-            commentCell.delegate = self;
-            commentCell.info = _detailInfo.commentsArr[indexPath.row];
-            commentCell.timeID = _timeID;
-            HCHomeInfo *infooo = commentCell.info;
-            commentCell.toUSer = infooo.TOUSER;
-            cell = commentCell;
+        commentCell.delegate = self;
+        commentCell.info = _detailInfo.commentsArr[indexPath.row];
+        commentCell.timeID = _timeID;
+        HCHomeInfo *infooo = commentCell.info;
+        commentCell.toUSer = infooo.TOUSER;
+        cell = commentCell;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -217,14 +217,14 @@
     //传一个timeid
     editComment.time_id = info.TimeID;
     //再传一个
-
+    
     [rootController presentViewController:editComment animated:YES completion:nil];
 }
 - (void)makefootView{
-//    HCFunctionTagView *view = [[HCFunctionTagView alloc]init];
-//    view.frame = CGRectMake(0, SCREEN_HEIGHT - 49, SCREEN_WIDTH, 49);
-//    view.backgroundColor = [UIColor redColor];
-//    [self.view addSubview:view];
+    //    HCFunctionTagView *view = [[HCFunctionTagView alloc]init];
+    //    view.frame = CGRectMake(0, SCREEN_HEIGHT - 49, SCREEN_WIDTH, 49);
+    //    view.backgroundColor = [UIColor redColor];
+    //    [self.view addSubview:view];
 }
 #pragma mark - network
 //获取评论
@@ -246,7 +246,7 @@
             [self showHUDError:message];
         }
     }];
-   
+    
 }
 
 

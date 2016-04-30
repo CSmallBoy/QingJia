@@ -25,14 +25,14 @@
 
 @implementation HCUserHeathViewController
 - (void)viewWillAppear:(BOOL)animated{
-//    //先从服务器获取数据  如果没有在执行另一套方案
-//    NHCGetUserHeathApi *API= [[NHCGetUserHeathApi alloc]init];
-//    [API startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-//        if (requestStatus == HCRequestStatusSuccess) {
-//            arr = responseObject;
-//            [self.tableView reloadData];
-//        }
-//    }];
+    //    //先从服务器获取数据  如果没有在执行另一套方案
+    //    NHCGetUserHeathApi *API= [[NHCGetUserHeathApi alloc]init];
+    //    [API startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+    //        if (requestStatus == HCRequestStatusSuccess) {
+    //            arr = responseObject;
+    //            [self.tableView reloadData];
+    //        }
+    //    }];
 }
 - (void)viewDidLoad
 {
@@ -72,14 +72,14 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *arr2 = @[@"身高",@"体重",@"血型",@"过敏史",
-                     @"医疗状况",@"医疗笔记"];
+                      @"医疗状况",@"医疗笔记"];
     //NSArray *arr_detil =@[@"请输入身高",@"请输入体重",@"请输入血型",@"过敏史",@"医疗状况",@"医疗笔记"];
     static NSString *identifier = @"identifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-      UITextField *label2 = [[UITextField alloc]initWithFrame:CGRectMake(100, 5, 150, 40)];
+    UITextField *label2 = [[UITextField alloc]initWithFrame:CGRectMake(100, 5, 150, 40)];
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 80, 40)];
     label2.delegate = self;
-
+    
     if (cell==nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         
@@ -124,7 +124,7 @@
     }
 }
 -(void)getData{
- 
+    
     
     
 }
