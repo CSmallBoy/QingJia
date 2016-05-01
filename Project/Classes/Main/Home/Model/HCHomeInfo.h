@@ -42,7 +42,8 @@
 @property (nonatomic, copy) NSString *commentId;
 //对用户
 @property (nonatomic, copy) NSString *TOUSER;
-
+//点赞人数
+@property (nonatomic, copy)NSString *likeCount;
 
 
 @end

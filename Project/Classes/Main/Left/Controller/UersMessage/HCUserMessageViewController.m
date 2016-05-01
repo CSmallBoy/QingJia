@@ -37,6 +37,7 @@
 @property (nonatomic, strong) UILabel *nickName;
 @property (nonatomic, strong) UILabel *markLabel;
 @property (nonatomic, strong) NSDictionary *dict;
+@property (nonatomic, copy) NSString *image_str;
 
 @end
 
@@ -48,23 +49,24 @@
     if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
         if (IsEmpty(_dict[@"PhotoStr"])) {
             [_headButton setBackgroundImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
+            
         }else{
             [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
+            _image_str = _dict[@"PhotoStr"];
         }
     }else{
         //已经编辑过的
-        
         if (IsEmpty(_dict[@"PhotoStr"])) {
             //没有二次以上的编辑
             if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
                 
             }else{
-                
                 [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
+                _image_str = _dict[@"UserInf"][@"imageName"];
             }
         }else{
-            
             [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
+            _image_str = _dict[@"PhotoStr"];
         }
     }
     //获取健康 信息
@@ -92,6 +94,7 @@
     NSString *str_url = [readUserInfo getReadDic][@"PhotoStr"];
     
     [_headButton sd_setImageWithURL:[readUserInfo url:str_url :kkUser] forState:UIControlStateNormal];
+    _image_str = str_url;
     
 }
 - (void)viewDidLoad
@@ -342,11 +345,17 @@
     {
         if (IsEmpty(_dict[@"PhotoStr"])) {
             headImage.head_image = [readUserInfo imageString:IMG(@"Head-Portraits")];
+            
         }else{
             headImage.head_image = [readUserInfo getReadDic][@"PhotoStr"];
+            headImage.head_image = _image_str;
+            
         }
     }else{
+        
         headImage.head_image = [readUserInfo getReadDic][@"UserInf"][@"imageName"];
+        headImage.head_image = _image_str;
+        
     }
     // headImage.head_image = [readUserInfo getReadDic][@"UserInf"][@"imageName"];
     

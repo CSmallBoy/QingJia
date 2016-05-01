@@ -139,18 +139,18 @@
         //头像的url
         
         [self.headButton sd_setImageWithURL:[readUserInfo url:info.HeadImg :kkUser] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
-    
+        
     }else
     {
         [self.headButton setImage:OrigIMG(@"Head-Portraits") forState:UIControlStateNormal];
     }
     //时光头像设置
-     //[self.headButton setImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
+    //[self.headButton setImage:OrigIMG(@"1.png") forState:UIControlStateNormal];
     self.nickName.text = info.NickName;
     NSDate *date = [Utils getDateWithString:info.CreateTime format:@"yyyy-MM-dd HH:mm:ss"];
     self.times.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd HH:mm"];
     // 手机来源
-//    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
+    //    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
     self.deveceModel.text = [NSString stringWithFormat:@"来至:%@",info.fromFamily];
     
     // 内容设置行间距
@@ -169,12 +169,11 @@
         //图片在这里赋值
         self.moreImgView.hidden = NO;
         self.moreImgView.imageUrlArr = info.FTImages;
-//        [self.moreImgView hchomeMoreImgViewWithUrlStringArray:info.FTImages];
+        //        [self.moreImgView hchomeMoreImgViewWithUrlStringArray:info.FTImages];
     }else
     {
         self.moreImgView.hidden = YES;
     }
-    
     // 地址
     if (!IsEmpty(info.CreateAddrSmall))
     {
@@ -187,14 +186,15 @@
         self.addressImgView.hidden = YES;
     }
     NSString *zanNum = ([info.isLike integerValue]) ? info.isLike : @"点赞";
+    //有评论显示 数字
     NSString *commentNum = ([info.FTReplyCount integerValue]) ? info.FTReplyCount : @"评论";
     NSArray *functionArr;
-    if ([info.isLike isEqualToString:@"0"]){   
+    if ([info.isLike isEqualToString:@"0"]){
         functionArr = @[@[@"Like_nor", zanNum],
                         @[@"Share_nor", @"分享"],
                         @[@"Bubble_nor", commentNum]];
     }else{
-        functionArr = @[@[@"Like_sel", @"已点赞"],
+        functionArr = @[@[@"Like_sel", zanNum],
                         @[@"Share_nor", @"分享"],
                         @[@"Bubble_nor", commentNum]];
     }
@@ -202,7 +202,7 @@
     [self.functionTagView functionTagWithArrary:functionArr];
 }
 
-#pragma mark - setter or getter 
+#pragma mark - setter or getter
 
 - (UIButton *)headButton
 {
@@ -288,7 +288,7 @@
     if (!_functionTagView)
     {
         _functionTagView = [[HCFunctionTagView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
-       
+        
         _functionTagView.delegate = self;
     }
     return _functionTagView;

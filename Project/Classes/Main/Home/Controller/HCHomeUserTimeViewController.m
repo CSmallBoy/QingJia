@@ -15,6 +15,12 @@
 #import "HCHomeApi.h"
 #import "NHCListOfTimeAPi.h"
 #import "NHCMySelfTimeListApi.h"
+//分享
+#import "HCShareViewController.h"
+//评论
+#import "HCEditCommentViewController.h"
+//点赞
+#import "NHCHomeLikeApi.h"
 
 #define HCHomeUserTimeCell @"HCHomeUserTimeCell2"
 
@@ -23,6 +29,7 @@
 }
 
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
+@property (nonatomic, assign) NSIndexPath *inter;
 
 @end
 
@@ -31,6 +38,8 @@
 #pragma mark - life cycle
 - (void)viewWillAppear:(BOOL)animated{
     a = 0;
+    _inter = nil;
+    
 }
 - (void)viewDidLoad
 {
@@ -48,6 +57,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
     //加载更多
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"刷新数据所有" object:nil];
 }
 
 #pragma mark - UITableView
@@ -59,6 +69,13 @@
     cell.delegate = self;
     cell.indexPath = indexPath;
     HCHomeInfo *info = self.dataSource[indexPath.section];
+    if (IsEmpty(_inter)) {
+        
+    }else{
+        if (indexPath.section == _inter.section) {
+            info.isLike = @"1";
+        }
+    }
     cell.info = info;
     return cell;
 }
@@ -191,8 +208,73 @@
     }
     return _rightItem;
 }
-
+#pragma mark - 头像
+//点击头像
+- (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn{
+    
+}
+#pragma mark - 三个功能事件
+- (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath functionIndex:(NSInteger)index{
+    HCHomeInfo *info = self.dataSource[indexPath.section];
+    if (index == 2)
+    {
+        //评论界面
+        HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
+        editComment.data = @{@"data": info};
+        UIViewController *rootController = self.view.window.rootViewController;
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+        {
+            editComment.modalPresentationStyle=
+            UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+        }else
+        {
+            rootController.modalPresentationStyle=
+            UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
+        }
+        [rootController presentViewController:editComment animated:YES completion:nil];
+    }else if (index == 1){
+        HCShareViewController  *shareVC = [[HCShareViewController alloc] init];
+        [self presentViewController:shareVC animated:YES completion:nil];
+    }else if (index == 0)
+    {//     点赞触发的方法
+        [self requestLikeCount:info indexPath:indexPath];
+    }
+    
+}
 #pragma mark - network
+//点赞
+- (void)requestLikeCount:(HCHomeInfo *)info indexPath:(NSIndexPath *)indexPath
+{
+    _inter = indexPath;
+    
+    NHCHomeLikeApi *api = [[NHCHomeLikeApi alloc]init];
+    api.TimeID = info.TimeID;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        
+        if (requestStatus == 401) {
+            [self showHUDText:@"您已经点过赞了,请刷新"];
+            
+        }
+        [self requestHomeData];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+        
+    }];
+    
+    //    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
+    //    api.TimesId = info.KeyId;
+    //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+    //        if (requestStatus == HCRequestStatusSuccess)
+    //        {
+    //            info.FTLikeCount = [NSString stringWithFormat:@"%@", @([info.FTLikeCount integerValue]+1)];
+    //            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    //        }else
+    //        {
+    //            [self showHUDError:message];
+    //        }
+    //    }];
+    
+}
+
 //获取家庭的时光
 - (void)requestHomeDataF{
     //    NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];

@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      //
+//
 //  HCLeftGradeView.m
 //  Project
 //
@@ -52,7 +52,7 @@
         [self addSubview:self.nickName];
         [self addSubview:self.sofewareSetBtn];
         [self addSubview:self.familyButton];
-
+        
         //家庭
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestFamilyMessage) name:@"showFamilyMessage" object:nil];
         
@@ -68,10 +68,10 @@
             self.familyButton.hidden = YES;
             self.headButton.hidden = YES;
             [self addSubview:self.smallView];
-    
+            
             self.gradeHeadButton.frame = CGRectMake(WIDTH(self)*0.2, 60, WIDTH(self)*0.3, WIDTH(self)*0.3);
-             ViewRadius(self.gradeHeadButton,WIDTH(self)*0.3/2);
-
+            ViewRadius(self.gradeHeadButton,WIDTH(self)*0.3/2);
+            
             NSDictionary *dict = [readUserInfo getReadDic];
             NSString *imgStr = dict[@"imageName"];
             NSString *imgStrLogin = dict[@"UserInf"][@"imageName"];
@@ -97,15 +97,15 @@
                     NSURL *url = [readUserInfo originUrl:imgStrLogin :kkUser];
                     UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
                     [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
-                   
+                    
                 }
             }
         }
         else
         {
-          if (str.length == 10||strFamilyId.length == 10)
+            if (str.length == 10||strFamilyId.length == 10)
             {
-              // 显示创建过家庭的侧边
+                // 显示创建过家庭的侧边
                 [self requestFamilyMessage];
                 [self addSubview:self.joinFamilyBtn];
             }
@@ -132,7 +132,7 @@
                     NSURL *url =[readUserInfo url:dict[@"PhotoStr"] :kkUser];
                     UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
                     
-                     [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
+                    [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
                 }
             }
         }
@@ -149,24 +149,24 @@
     NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
     
     NSDictionary *dic = noti.userInfo;
-    UIImage*image = dic[@"photo"];
+    UIImage*image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dic[@"photo"] :kkUser]]];
     
     if ((IsEmpty(str) || [str isKindOfClass:[NSURL class]])&& IsEmpty(strFamilyId))
     {
-     
+        
         [self.gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
-    
+        
     }else
     {
-         if (str.length == 10 )
-         {
-         [self.headButton setBackgroundImage: image forState:UIControlStateNormal];
-         }
-         else
-         {
-         [self.gradeHeadButton setBackgroundImage: image forState:UIControlStateNormal];
-         }
-    
+        if (str.length == 10 )
+        {
+            [self.headButton setBackgroundImage: image forState:UIControlStateNormal];
+        }
+        else
+        {
+            [self.gradeHeadButton setBackgroundImage: image forState:UIControlStateNormal];
+        }
+        
     }
     
 }
@@ -175,7 +175,7 @@
 {
     findFamilyMessage *api = [[findFamilyMessage alloc]init];
     FamilyDownLoadImage *downLoadApi = [[FamilyDownLoadImage alloc]init];
-     NSString *str =[readUserInfo getFaimilyDic][@"familyId"];
+    NSString *str =[readUserInfo getFaimilyDic][@"familyId"];
     
     
     if (IsEmpty(str)) {
@@ -190,7 +190,7 @@
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
         if (requestStatus == HCRequestStatusSuccess) {
-              NSDictionary *dic = respone[@"Data"][@"FamilyInf"];
+            NSDictionary *dic = respone[@"Data"][@"FamilyInf"];
             
             _info = [HCCreateGradeInfo mj_objectWithKeyValues:dic];
             [HCAccountMgr manager].familyInfo = _info;
@@ -202,7 +202,7 @@
             self.headButton.hidden = NO;
             
             self.smallView.hidden = YES;
-
+            
             
             ViewRadius(_gradeHeadButton, 5);
             if ([HCAccountMgr manager].familyInfo.imageName==nil) {
@@ -213,7 +213,7 @@
                 NSURL *url = [readUserInfo url:[HCAccountMgr manager].familyInfo.imageName :kkFamail];
                 UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
                 [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
-            
+                
             }
             
             NSDictionary *dict = [readUserInfo getReadDic];
@@ -300,7 +300,7 @@
 - (UIButton *)familyButton{
     if (!_familyButton) {
         _familyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-       [_familyButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
+        [_familyButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
         [_familyButton setTitle:@"我的家族" forState:UIControlStateNormal];
         _familyButton.frame = CGRectMake(self.nickName.frame.origin.x+10, HEIGHT(self)-130+30, WIDTH(self)*0.7, 40);
         [_familyButton addSubview:self.setImgView2];
@@ -332,7 +332,7 @@
         _nickName.textColor = [UIColor whiteColor];
         _nickName.frame = CGRectMake(0, MaxY(self.headButton)+10, WIDTH(self)*0.7, 20);
         _nickName.textAlignment = NSTextAlignmentCenter;
-         dicting =[readUserInfo getReadDic];
+        dicting =[readUserInfo getReadDic];
         if (IsEmpty(dicting[@"UserInf"][@"nickName"])) {
             _nickName.text = @"用户昵称";
         }else{

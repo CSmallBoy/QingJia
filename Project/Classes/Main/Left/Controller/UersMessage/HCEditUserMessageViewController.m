@@ -319,6 +319,7 @@
     NSString * string = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"user",[HCAccountMgr manager].loginInfo.UUID,[readUserInfo getReadDic][@"Token"]]];
     //chosse 是选择好的图片
     
+    
     [KLHttpTool uploadImageWithUrl:string image:choose success:^(id responseObject)
      {
          //在这个地方执行上传文字的操作
@@ -328,7 +329,6 @@
          }else{
              model.userPhoto = _headimage;
          }
-         
          api.myModel = model;
          [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac)
           {
@@ -360,8 +360,10 @@
                               [self.navigationController popToViewController:temp animated:YES];
                           }
                       }
-                      NSDictionary *dict = @{@"photo":choose};
+                      //通知左边修改头像
+                      NSDictionary *dict = @{@"photo":model.userPhoto};
                       [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserPhoto" object:nil userInfo:dict];
+                      
                       [self showHUDSuccess:@"保存成功"];
                   }
                   else

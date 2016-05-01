@@ -46,7 +46,7 @@
     [self.tableView addSubview:self.textField];
     _uuid = [readUserInfo GetUUID];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getCodeNumber:) name:@"getCodeNumber" object:nil];
-   
+    
 }
 
 #pragma mark --- UITableViewDelegate
@@ -101,7 +101,7 @@
         [nextBtn setTitle:@"确定修改绑定" forState:UIControlStateNormal];
     }else
     {
-       [nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        [nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
     }
     
     ViewRadius(nextBtn, 5);
@@ -130,7 +130,7 @@
 
 -(void)getCodeNumber:(NSNotification *)nofi
 {
-     _phoneNum = nofi.userInfo[@"phoneNum"];
+    _phoneNum = nofi.userInfo[@"phoneNum"];
     if (![Utils checkPhoneNum:_phoneNum]) {
         [self showHUDText:@"请输入正确的手机号"];
         return;
@@ -148,22 +148,22 @@
     }
     else
     {
-//        HCChangeBoundleTelNumberControll *sureVC = [[HCChangeBoundleTelNumberControll alloc]init];
-//        sureVC.isSure = YES;
-//        [self.navigationController pushViewController:sureVC animated:YES];
-//        if (![Utils checkPhoneNum:self.phoneNum]) {
-//            [self showHUDText:@"输入正确的手机号"];
-//            return;
-//        }
-//        
-//        
-//        if (self.textField.text.length < 6) {
-//            [self showHUDText:@"输入正确的验证码"];
-//            return;
-//        }
+        //        HCChangeBoundleTelNumberControll *sureVC = [[HCChangeBoundleTelNumberControll alloc]init];
+        //        sureVC.isSure = YES;
+        //        [self.navigationController pushViewController:sureVC animated:YES];
+        //        if (![Utils checkPhoneNum:self.phoneNum]) {
+        //            [self showHUDText:@"输入正确的手机号"];
+        //            return;
+        //        }
+        //
+        //
+        //        if (self.textField.text.length < 6) {
+        //            [self showHUDText:@"输入正确的验证码"];
+        //            return;
+        //        }
         [self requestcheckCode];
-
-       
+        
+        
     }
 }
 

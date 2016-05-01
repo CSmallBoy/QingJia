@@ -325,6 +325,7 @@
             if (requestStatus == HCRequestStatusSuccess)
             {
                 [self showHUDSuccess:@"评论成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"刷新数据所有" object:nil];
                 [self performSelector:@selector(handleBackButton) withObject:nil afterDelay:0.6];
             }else
             {
