@@ -407,12 +407,10 @@
         _joinFamilyBtn.frame = CGRectMake(self.nickName.frame.origin.x, self.nickName.frame.origin.y + 20, WIDTH(self)*0.7,20);
         [_joinFamilyBtn setTitle:@"加入家庭" forState:UIControlStateNormal];
         [_joinFamilyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
         [_joinFamilyBtn addTarget:self action:@selector(toJoinFamily) forControlEvents:UIControlEventTouchUpInside];
     }
     return _joinFamilyBtn;
 }
-
 
 
 @end

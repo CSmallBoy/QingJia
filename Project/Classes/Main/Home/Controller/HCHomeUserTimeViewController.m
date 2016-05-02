@@ -21,6 +21,8 @@
 #import "HCEditCommentViewController.h"
 //点赞
 #import "NHCHomeLikeApi.h"
+//头像大图控制器
+#import "HCHomeUserPhotoViewController.h"
 
 #define HCHomeUserTimeCell @"HCHomeUserTimeCell2"
 
@@ -211,7 +213,10 @@
 #pragma mark - 头像
 //点击头像
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn{
-    
+    HCHomeUserPhotoViewController *Vc = [[HCHomeUserPhotoViewController alloc]init];
+    HCHomeInfo *model = self.dataSource[indexPath.section];
+    Vc.head_image = model.HeadImg;
+    [self.navigationController pushViewController:Vc animated:YES];
 }
 #pragma mark - 三个功能事件
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath functionIndex:(NSInteger)index{

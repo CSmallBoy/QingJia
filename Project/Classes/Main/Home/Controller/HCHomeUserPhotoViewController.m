@@ -1,23 +1,23 @@
 //
-//  HCUserHeadImageViewController.m
+//  HCHomeUserPhotoViewController.m
 //  Project
 //
-//  Created by 陈福杰 on 16/2/24.
+//  Created by 朱宗汉 on 16/5/2.
 //  Copyright © 2016年 com.xxx. All rights reserved.
 //
 
-#import "HCUserHeadImageViewController.h"
+#import "HCHomeUserPhotoViewController.h"
 
-@interface HCUserHeadImageViewController ()
-
+@interface HCHomeUserPhotoViewController ()
 @property (nonatomic, strong) UIView *grayView;
 @property (nonatomic, strong) UIView *contentView;
 
 @property (nonatomic, strong) UIImageView *headImgView;
 
+
 @end
 
-@implementation HCUserHeadImageViewController
+@implementation HCHomeUserPhotoViewController
 
 - (void)viewDidLoad
 {
@@ -78,7 +78,7 @@
         
         //头像
         [_headImgView sd_setImageWithURL:[readUserInfo url:_head_image :kkUser] placeholderImage:IMG(@"drg160.png")];
-    
+        
         
     }
     return _headImgView;

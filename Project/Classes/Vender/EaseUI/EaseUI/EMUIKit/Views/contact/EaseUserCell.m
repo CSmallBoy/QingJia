@@ -11,7 +11,6 @@
 #import "EaseImageView.h"
 #import "EMBuddy.h"
 #import "UIImageView+EMWebCache.h"
-#import "NHCChatUserInfoApi.h"
 CGFloat const EaseUserCellPadding = 10;
 
 @interface EaseUserCell()

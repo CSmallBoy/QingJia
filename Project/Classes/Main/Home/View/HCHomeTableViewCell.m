@@ -72,7 +72,7 @@
         CGFloat height = 0;
         if (_info.FTImages.count < 5)
         {
-            NSInteger row = ((int)_info.FTImages.count/3) + 1;
+            NSInteger row = ((int)_info.FTImages.count/3) +1;
             height = WIDTH(self) * 0.33 * row;
         }else
         {

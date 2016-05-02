@@ -17,6 +17,8 @@
 #import "RealtimeSearchUtil.h"
 //个人头像和昵称
 #import "NHCChatUserInfoApi.h"
+//群组头像和家庭昵称
+#import "NHCChatGroupInfoApi.h"
 @implementation EMConversation (search)
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
@@ -51,7 +53,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
-    // Do any additional setup after loading the view.
     self.showRefreshHeader = YES;
     self.delegate = self;
     self.dataSource = self;
@@ -159,12 +160,15 @@
             id<IConversationModel> model = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
             EMConversation *conversation = model.conversation;
             ChatViewController *chatController;
+            //现实的创建者  conversation.chatter
             if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter]) {
                 chatController = [[RobotChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
                 chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
+               
             }else {
                 chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
                 chatController.title = [conversation showName];
+                chatController.title = model.title;
             }
             chatController.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:chatController animated:YES];
@@ -185,6 +189,7 @@
             if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter]) {
                 RobotChatViewController *chatController = [[RobotChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
                 chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
+               
                 chatController.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:chatController animated:YES];
             } else {
@@ -212,6 +217,7 @@
         if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter])
         {
             model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
+    
         }
         else
         {
@@ -273,7 +279,9 @@
                     NSString *conversationSubject = [conversation.ext objectForKey:@"groupSubject"];
                     if (groupSubject && conversationSubject && ![groupSubject isEqualToString:conversationSubject]) {
                         conversation.ext = ext;
+                        conversation.ext = @{@"groupSubject":@"123"};
                     }
+                    
                     break;
                 }
             }

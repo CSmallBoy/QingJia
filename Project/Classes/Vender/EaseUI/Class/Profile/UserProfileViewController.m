@@ -40,6 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //点击 环信 用户出来的详细资料
     self.title = NSLocalizedString(@"title.profile", @"Profile");
     
     self.view.backgroundColor = [UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0];
@@ -60,6 +61,7 @@
         _headImageView.contentMode = UIViewContentModeScaleToFill;
     }
     [_headImageView imageWithUsername:_username placeholderImage:nil];
+    _headImageView.image = _userimage;
     return _headImageView;
 }
 

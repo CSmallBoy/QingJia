@@ -21,6 +21,9 @@
 #import "UserProfileManager.h"
 //获取用户信息的网络请求
 #import "NHCChatUserInfoApi.h"
+//用户信息模型
+
+#import "HCEaseUserInfo.h"
 @implementation EMBuddy (search)
 
 //根据用户昵称进行搜索
@@ -38,7 +41,8 @@
 
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
 @property (strong, nonatomic) NSMutableArray *contactsSource;
-
+@property (strong, nonatomic) NSMutableArray *UserDataSource;
+@property (strong, nonatomic) HCEaseUserInfo *model_info;
 @property (nonatomic) NSInteger unapplyCount;
 @property (strong, nonatomic) EMSearchBar *searchBar;
 
@@ -54,7 +58,7 @@
     
     _contactsSource = [NSMutableArray array];
     _sectionTitles = [NSMutableArray array];
-    
+    _UserDataSource = [NSMutableArray array];
     [self searchController];
 
     [self reloadDataSource];
@@ -191,7 +195,7 @@
     {
         return 2;
     }
-    return [[self.dataArray objectAtIndex:(section - 1)] count];
+    return [[self.dataArray objectAtIndex:(section - 1)] count]-1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -221,13 +225,15 @@
     else{//下面分组的
         
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
-        EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
-        UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy.username];
-        if (profileEntity)
-        {
-            model.avatarURLPath = profileEntity.imageUrl;
-            model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
-        }
+         EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
+//        NSArray *userSection = [self.UserDataSource objectAtIndex:(indexPath.section - 1)];
+//        _model_info = [userSection objectAtIndex:indexPath.row];
+//        UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy.username];
+//        if (profileEntity)
+//        {
+//            model.avatarURLPath = profileEntity.imageUrl;
+//            model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
+//        }
         //联系人的用户头像
         NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
         api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
@@ -238,6 +244,8 @@
             model.avatarImage = image.image;
             cell.model = model;
         }];
+//        cell.model.nickname = _model_info.nickName;
+//        cell.model.avatarImage = _model_info.userImage;
         cell.indexPath = indexPath;
         cell.delegate = self;
 
@@ -353,7 +361,6 @@
         if ([model.buddy.username isEqualToString:loginUsername]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"friend.notDeleteSelf", @"can't delete self") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
             [alertView show];
-            
             return;
         }
         
@@ -606,7 +613,19 @@
     NSArray *blockList = [[EaseMob sharedInstance].chatManager blockedList];
     for (EMBuddy *buddy in buddyList) {
         if (![blockList containsObject:buddy.username]) {
+//            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+//            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+//               
+//                _model_info.nickName = dict[@"nickName"];
+//                UIImageView *image = [[UIImageView alloc]init];
+//                [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+//                _model_info.userImage = image.image;
+//                [self.UserDataSource addObject:_model_info];
+//            }];
+            
             [self.contactsSource addObject:buddy];
+            
         }
     }
     NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
@@ -615,6 +634,7 @@
         EMBuddy *loginBuddy = [EMBuddy buddyWithUsername:loginUsername];
         [self.contactsSource addObject:loginBuddy];
     }
+    
     [self _sortDataArray:self.contactsSource];
     [self.tableView reloadData];
     

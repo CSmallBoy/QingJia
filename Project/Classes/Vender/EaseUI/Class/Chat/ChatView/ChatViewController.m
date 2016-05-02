@@ -16,6 +16,8 @@
 #import "ContactListSelectViewController.h"
 //个人用户
 #import "NHCChatUserInfoApi.h"
+//群组
+#import "NHCChatGroupInfoApi.h"
 //聊天框中显示消息里地头像和昵称
 @interface ChatViewController ()<UIAlertViewDelegate, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
 {
@@ -153,6 +155,7 @@
 //        model.avatarURLPath = model.message.ext[@"img"];
 //        model.nickname = model.message.ext[@"accountName"];
         sendCell.model = model;
+        NSLog(@"%@",model.nickname);
         return sendCell;
     }
     return nil;
@@ -178,9 +181,11 @@
   didSelectAvatarMessageModel:(id<IMessageModel>)messageModel
 {
     UserProfileViewController *userprofile = [[UserProfileViewController alloc] initWithUsername:messageModel.nickname];
+    userprofile.userimage = messageModel.avatarImage;
     [self.navigationController pushViewController:userprofile animated:YES];
+   
+    
 }
-
 
 - (void)messageViewController:(EaseMessageViewController *)viewController
             didSelectMoreView:(EaseChatBarMoreView *)moreView
@@ -253,18 +258,47 @@
         
         [image sd_setImageWithURL:[readUserInfo url:[readUserInfo getReadDic][@"UserInf"][@"imageName"] :kkUser]];
         model.avatarImage = image.image;
-        //model.nickname = @"曹思远";
+        model.nickname = @"曹思远";
     }else{
+        //消息发送状态
+        
+        NSLog(@"%ld",(long)model.messageStatus);
         NSLog(@"%@",model.message.from);
-        //model.message.from
-        NHCChatUserInfoApi *Api = [[NHCChatUserInfoApi alloc]init];
-        Api.chatName = [model.message.from stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-        [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-            model.nickname = dict[@"nickName"];
-            UIImageView *image = [[UIImageView alloc]init];
-            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-            model.avatarImage = image.image;
-        }];
+        NSLog(@"%@",model.nickname);
+        NSLog(@"%ld",(long)model.bodyType);
+        NSLog(@"%ld",(long)model.message.messageType);
+        //等于1 是群组聊天
+        if (model.message.messageType==1) {
+//            NHCChatGroupInfoApi *Api = [[NHCChatGroupInfoApi alloc]init];
+//            Api.chatNames = model.nickname;
+//            [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *arr) {
+//                
+//                model.nickname = arr[0][@"familyNickName"];
+//                UIImageView *image = [[UIImageView alloc]init];
+//                [image sd_setImageWithURL:[readUserInfo url:arr[0][@"imageName"] :kkFamail]];
+//                model.avatarImage = image.image;
+//                
+//            }];
+            
+            NHCChatUserInfoApi *Api = [[NHCChatUserInfoApi alloc]init];
+            Api.chatName = [model.nickname stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+            [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                model.nickname = dict[@"nickName"];
+                UIImageView *image = [[UIImageView alloc]init];
+                [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+                model.avatarImage = image.image;
+            }];
+        }else{
+            NHCChatUserInfoApi *Api = [[NHCChatUserInfoApi alloc]init];
+            Api.chatName = [model.message.from stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+            [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                model.nickname = dict[@"nickName"];
+                UIImageView *image = [[UIImageView alloc]init];
+                [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+                model.avatarImage = image.image;
+            }];
+        }
+       
        
     }
     UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.nickname];

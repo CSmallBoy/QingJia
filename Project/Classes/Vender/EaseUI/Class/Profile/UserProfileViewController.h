@@ -15,7 +15,7 @@
 @interface UserProfileViewController : UITableViewController
 
 @property (strong, nonatomic, readonly) NSString *username;
-
+@property (strong, nonatomic) UIImage *userimage;
 - (instancetype)initWithUsername:(NSString *)username;
 
 @end

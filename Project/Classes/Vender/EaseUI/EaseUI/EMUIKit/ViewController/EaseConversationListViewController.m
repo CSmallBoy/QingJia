@@ -15,6 +15,8 @@
 #import "EaseConvertToCommonEmoticonsHelper.h"
 #import "NSDate+Category.h"
 #import "NHCChatUserInfoApi.h"
+//群组信息
+#import "NHCChatGroupInfoApi.h"
 //会话列表
 @interface EaseConversationListViewController () <IChatManagerDelegate>
 
@@ -70,16 +72,30 @@
         cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     id<IConversationModel> model = [self.dataArray objectAtIndex:indexPath.row];
+    //先判断 是否是群组  列表显示
+    if (model.conversation.conversationType==1) {
+        NHCChatGroupInfoApi *Api = [[NHCChatGroupInfoApi alloc]init];
+        Api.chatNames = model.conversation.chatter;
+        [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *arr) {
+            model.title = arr[0][@"familyNickName"];
+            UIImageView *image = [[UIImageView alloc]init];
+            [image sd_setImageWithURL:[readUserInfo url:arr[0][@"imageName"] :kkFamail]];
+            model.avatarImage = image.image;
+            cell.model = model;
+        }];
+    }else{
+        NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+        api.chatName = [model.conversation.chatter stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+            model.title = dict[@"nickName"];
+            UIImageView *image = [[UIImageView alloc]init];
+            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+            model.avatarImage = image.image;
+            cell.model = model;
+        }];
+    }
     
-    NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
-    api.chatName = [model.conversation.chatter stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-        model.title = dict[@"nickName"];
-        UIImageView *image = [[UIImageView alloc]init];
-        [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-        model.avatarImage = image.image;
-        cell.model = model;
-    }];
+   
     //环信之前的
     //cell.model = model;
     
