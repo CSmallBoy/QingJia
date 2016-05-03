@@ -13,8 +13,6 @@
 //定义一个API  http://damaotech.com/rest/User/getAuthCode.do借口服务器 www.m-talk.mobi:8090
 #define kAPIURL          @"http://58.210.13.58:8090/rest/"            //外网58.210.13.58
 //图片上传
-
-
 #define kUPImageUrl  @"http://58.210.13.58:8090/rest/Photo/upload.do?"
 //图片下载
 #define kDWloadImageUrl  @"http://58.210.13.58:8090/uploads/thumbnail/"
