@@ -13,7 +13,7 @@
 #import "AppDelegate+EaseMob.h"
 #import "AppDelegate+EaseMobDebug.h"
 #import "AppDelegate+Parse.h"
-
+#import "JPUSHService.h"
 /**
  *  本类中做了EaseMob初始化和推送等操作
  */
@@ -27,10 +27,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                otherConfig:(NSDictionary *)otherConfig
 {
     [[EaseSDKHelper shareHelper] easemobApplication:application
-                    didFinishLaunchingWithOptions:launchOptions
-                                           appkey:appkey
-                                     apnsCertName:apnsCertName
-                                      otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+                      didFinishLaunchingWithOptions:launchOptions
+                                             appkey:appkey
+                                       apnsCertName:apnsCertName
+                                        otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
     
     //注册登录状态监听
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -41,6 +41,25 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     [self registerEaseMobNotification];
     
     [self loginStateChange:nil];
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    } else {
+        //categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                          UIRemoteNotificationTypeSound |
+                                                          UIRemoteNotificationTypeAlert)
+                                              categories:nil];
+    }
+    
+    //如不需要使用IDFA，advertisingIdentifier 可为nil
+    [JPUSHService setupWithOption:launchOptions appKey:appKey
+                          channel:channel
+                 apsForProduction:isProduction];
 }
 
 #pragma mark - App Delegate
@@ -49,6 +68,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    
+    [JPUSHService registerDeviceToken:deviceToken];
 }
 
 // 注册deviceToken失败，此处失败，与环信SDK无关，一般是您的环境配置或者证书配置有误
@@ -99,12 +120,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     if (isAutoLogin || loginSuccess) {//登陆成功加载主窗口控制器
         //加载申请通知的数据
         [[ApplyViewController shareController] loadDataSourceFromLocalDB];
-//        if (self.mainController == nil) {
-//            self.mainController = [[MainViewController alloc] init];
-//            navigationController = [[UINavigationController alloc] initWithRootViewController:self.mainController];
-//        }else{
-//            navigationController  = self.mainController.navigationController;
-//        }
+        //        if (self.mainController == nil) {
+        //            self.mainController = [[MainViewController alloc] init];
+        //            navigationController = [[UINavigationController alloc] initWithRootViewController:self.mainController];
+        //        }else{
+        //            navigationController  = self.mainController.navigationController;
+        //        }
         
         // 环信UIdemo中有用到Parse，您的项目中不需要添加，可忽略此处
         [self setupRootViewController];
@@ -114,8 +135,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     else{//登陆失败加载登陆页面控制器
         self.mainController = nil;
         
-//        LoginViewController *loginController = [[LoginViewController alloc] init];
-//        navigationController = [[UINavigationController alloc] initWithRootViewController:loginController];
+        //        LoginViewController *loginController = [[LoginViewController alloc] init];
+        //        navigationController = [[UINavigationController alloc] initWithRootViewController:loginController];
         [HCAccountMgr manager].isLogined = NO;
         [self setupRootViewController];
         [self clearParse];

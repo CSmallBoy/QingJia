@@ -11,6 +11,10 @@
 #import "HCRootTabBarController.h"
 #import "ApplyViewController.h"
 
+//极光推送key
+static NSString *appKey = @"808316033bcbfb0f82a2e264";
+static NSString *channel = @"Publish channel";
+static BOOL isProduction = FALSE;
 @interface AppDelegate : UIResponder <UIApplicationDelegate, IChatManagerDelegate>
 {
     EMConnectionState _connectionState;

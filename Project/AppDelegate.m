@@ -1,4 +1,4 @@
- //
+//
 //  AppDelegate.m
 //  Project
 //
@@ -14,7 +14,7 @@
 #import "HCLoginViewController.h"
 #import "HCLeftViewController.h"
 #import "JPUSHService.h"
-
+#import <AdSupport/AdSupport.h>
 #import "AppDelegate+EaseMob.h"
 #import "AppDelegate+Parse.h"
 
@@ -65,6 +65,28 @@
     
     [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina]];
     
+    
+    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    } else {
+        //categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                          UIRemoteNotificationTypeSound |
+                                                          UIRemoteNotificationTypeAlert)
+                                              categories:nil];
+    }
+    
+    //如不需要使用IDFA，advertisingIdentifier 可为nil
+    [JPUSHService setupWithOption:launchOptions appKey:appKey
+                          channel:channel
+                 apsForProduction:isProduction];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
@@ -76,7 +98,7 @@
  */
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-
+    
     BOOL result = [UMSocialSnsService handleOpenURL:url];
     if (result == FALSE) {
         return YES;
@@ -111,7 +133,7 @@
         _leftSlideController = [[LeftSlideViewController alloc] initWithLeftView:left andMainView:_mainController];
         
         self.window.rootViewController = _leftSlideController;
-    
+        
         HCHomeViewController *home = (HCHomeViewController *)_homeNavController.visibleViewController;
         if (!IsEmpty(_showWelcomeJoinGradeID))
         {
@@ -155,6 +177,7 @@ didFinishLaunchingWithOptions:launchOptions
     {
         [self.mainController didReceiveLocalNotification:notification];
     }
+    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
 }
 
 - (void)setupCustomProperty
@@ -162,7 +185,7 @@ didFinishLaunchingWithOptions:launchOptions
     //设置网络端口
     YTKNetworkConfig *config = [YTKNetworkConfig sharedInstance];
     config.baseUrl = kAPIURL;
-   // config.cdnUrl =  kIMGURL;
+    //config.cdnUrl =  kIMGURL;
 }
 
 - (void)setupMAMap
@@ -178,7 +201,7 @@ didFinishLaunchingWithOptions:launchOptions
 
 - (void)setupTimeLocation
 {
-     [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(startUpdatingLocation) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(startUpdatingLocation) userInfo:nil repeats:YES];
 }
 
 - (void)startUpdatingLocation
