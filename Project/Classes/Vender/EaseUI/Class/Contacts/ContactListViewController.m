@@ -29,6 +29,8 @@
 //根据用户昵称进行搜索
 - (NSString*)showName
 {
+    NSLog(@"%@",[[UserProfileManager sharedInstance] getNickNameWithUsername:self.username]);
+    NSLog(@"%@",self.username);
     return [[UserProfileManager sharedInstance] getNickNameWithUsername:self.username];
 }
 
@@ -382,7 +384,7 @@
     }
 }
 
-#pragma mark - UISearchBarDelegate
+#pragma mark - UISearchBarDelegate   搜索的代理方法
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
@@ -456,7 +458,7 @@
 }
 
 #pragma mark - private data
-
+//私有数据
 - (void)_sortDataArray:(NSArray *)buddyList
 {
     [self.dataArray removeAllObjects];
@@ -489,12 +491,26 @@
         if (model) {
             model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
             model.nickname = [[UserProfileManager sharedInstance] getNickNameWithUsername:buddy.username];
-            
-            NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:[[UserProfileManager sharedInstance] getNickNameWithUsername:buddy.username]];
-            NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
-            
-            NSMutableArray *array = [sortedArray objectAtIndex:section];
-            [array addObject:model];
+            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+            api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                model.nickname = dict[@"nickName"];
+                UIImageView *image = [[UIImageView alloc]init];
+                [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+                model.avatarImage = image.image;
+                
+                NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:[[UserProfileManager sharedInstance] getNickNameWithUsername:buddy.username]];
+                NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
+                //明天再写
+                NSMutableArray *array = [sortedArray objectAtIndex:section];
+                [array addObject:model];
+                
+            }];
+//            NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:[[UserProfileManager sharedInstance] getNickNameWithUsername:buddy.username]];
+//            NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
+//            
+//            NSMutableArray *array = [sortedArray objectAtIndex:section];
+//            [array addObject:model];
         }
     }
     

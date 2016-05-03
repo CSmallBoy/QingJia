@@ -10,8 +10,8 @@
 
 /* ********************系统配置********************* */
 
-//定义一个API  http://damaotech.com/rest/User/getAuthCode.do借口服务器
-#define kAPIURL          @"http://damaotech.com/rest/"            //外网
+//定义一个API  http://damaotech.com/rest/User/getAuthCode.do借口服务器 www.m-talk.mobi:8090
+#define kAPIURL          @"http://www.m-talk.mobi:8090/rest/"            //外网
 //#define kAPIURL             @"https://baidu.com"
 
 #define kIMGURL        @"http://192.168.10.199:8008/"
