@@ -64,26 +64,20 @@
     {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"joingrade"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         cell.textLabel.text = @"家庭ID";
         cell.textLabel.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:self.textField];
-        
         return cell;
     }
     else
     {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"joingrade"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         cell.textLabel.text = @"验证信息";
         cell.textLabel.font = [UIFont systemFontOfSize:16];
         [cell.contentView addSubview:self.textField1];
-        
         return cell;
     }
-    
-    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -185,7 +179,6 @@
     else{
         UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该图片没有包含一个二维码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
-        
         [picker dismissViewControllerAnimated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         }];
@@ -216,7 +209,6 @@
     
     _lhScanVC= [[lhScanQCodeViewController alloc]init];
     _lhScanVC.block = ^(NSString *str){
-        
         self.textField.text = str;
     };
     _lhScanVC.isJoinFamily = YES;
@@ -270,10 +262,11 @@
 {
     if (!_textField)
     {
-        _textField = [[UITextField alloc] initWithFrame:CGRectMake(80, 0, WIDTH(self.view)-80, 47)];
+        _textField = [[UITextField alloc] initWithFrame:CGRectMake(80, 2, WIDTH(self.view)-80, 47)];
         _textField.font = [UIFont systemFontOfSize:15];
         _textField.text = self.familyID;
         _textField.placeholder = @"请点击输入家庭ID号";
+        [_textField setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
     }
     return _textField;
 }
@@ -282,9 +275,11 @@
 {
     if (!_textField1)
     {
-        _textField1 = [[UITextField alloc] initWithFrame:CGRectMake(80, 0, WIDTH(self.view)-80, 47)];
+        _textField1 = [[UITextField alloc] initWithFrame:CGRectMake(100, 2, WIDTH(self.view)-100, 47)];
         _textField1.font = [UIFont systemFontOfSize:15];
         _textField1.placeholder = @"请点击输入验证信息";
+        //[text_tf setValue:[UIColor redColor] forKeyPath:@"_placeholderLabel.textColor"];
+        [_textField1 setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
     }
     return _textField1;
 }
@@ -314,8 +309,6 @@
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        
         if (requestStatus == HCRequestStatusSuccess) {
-            
-            
             NSDictionary *dic = respone[@"Data"][@"FamilyInf"];
             HCCreateGradeInfo *info = [[HCCreateGradeInfo alloc]init];
             info.familyId = dic[@"familyId"];
@@ -324,13 +317,11 @@
             info.familyPhoto = dic[@"familyPhoto"];
             info.contactAddr = dic[@"contactAddr"];
             info.imageName = dic[@"imageName"];
-            
             HCFamilyMessageViewController *familyMessageVC = [[HCFamilyMessageViewController alloc]init];
             familyMessageVC.data = @{@"info":info,@"message":self.textField1.text};
             [self.navigationController pushViewController:familyMessageVC animated:YES];
             
         }
-        
     }];
 
 //    _gradeId = gradeId;

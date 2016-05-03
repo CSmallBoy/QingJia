@@ -1726,17 +1726,17 @@
 		0A6AFD7A1BFC05D00073982C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		0A6AFD7C1BFC05DC0073982C /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		0A6AFD7E1BFC05E80073982C /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
-		0A6B7D981BF1EB6A008D54B3 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A6B7D981BF1EB6A008D54B3 /* 钦家.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "钦家.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6B7D9C1BF1EB6A008D54B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0A6B7D9E1BF1EB6A008D54B3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A6B7DA51BF1EB6A008D54B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A6B7DA71BF1EB6A008D54B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A6B7DAA1BF1EB6A008D54B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A6B7DAC1BF1EB6A008D54B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A6B7DB11BF1EB6A008D54B3 /* ProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A6B7DB11BF1EB6A008D54B3 /* 钦家.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "钦家.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6B7DB51BF1EB6A008D54B3 /* ProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectTests.m; sourceTree = "<group>"; };
 		0A6B7DB71BF1EB6A008D54B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A6B7DBC1BF1EB6A008D54B3 /* ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A6B7DBC1BF1EB6A008D54B3 /* 钦家.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "钦家.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6B7DC01BF1EB6A008D54B3 /* ProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectUITests.m; sourceTree = "<group>"; };
 		0A6B7DC21BF1EB6A008D54B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A6B7DD21BF1EB74008D54B3 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -4237,9 +4237,9 @@
 		0A6B7D991BF1EB6A008D54B3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A6B7D981BF1EB6A008D54B3 /* Project.app */,
-				0A6B7DB11BF1EB6A008D54B3 /* ProjectTests.xctest */,
-				0A6B7DBC1BF1EB6A008D54B3 /* ProjectUITests.xctest */,
+				0A6B7D981BF1EB6A008D54B3 /* 钦家.app */,
+				0A6B7DB11BF1EB6A008D54B3 /* 钦家.xctest */,
+				0A6B7DBC1BF1EB6A008D54B3 /* 钦家.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -7310,9 +7310,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0A6B7D971BF1EB6A008D54B3 /* Project */ = {
+		0A6B7D971BF1EB6A008D54B3 /* 钦家 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A6B7DC51BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "Project" */;
+			buildConfigurationList = 0A6B7DC51BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "钦家" */;
 			buildPhases = (
 				368047169D7AE2A4E2CD4F1F /* Check Pods Manifest.lock */,
 				0A6B7D941BF1EB6A008D54B3 /* Sources */,
@@ -7325,14 +7325,14 @@
 			);
 			dependencies = (
 			);
-			name = Project;
+			name = "钦家";
 			productName = Project;
-			productReference = 0A6B7D981BF1EB6A008D54B3 /* Project.app */;
+			productReference = 0A6B7D981BF1EB6A008D54B3 /* 钦家.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0A6B7DB01BF1EB6A008D54B3 /* ProjectTests */ = {
+		0A6B7DB01BF1EB6A008D54B3 /* 钦家Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A6B7DC81BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "ProjectTests" */;
+			buildConfigurationList = 0A6B7DC81BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "钦家Tests" */;
 			buildPhases = (
 				0A6B7DAD1BF1EB6A008D54B3 /* Sources */,
 				0A6B7DAE1BF1EB6A008D54B3 /* Frameworks */,
@@ -7343,14 +7343,14 @@
 			dependencies = (
 				0A6B7DB31BF1EB6A008D54B3 /* PBXTargetDependency */,
 			);
-			name = ProjectTests;
+			name = "钦家Tests";
 			productName = ProjectTests;
-			productReference = 0A6B7DB11BF1EB6A008D54B3 /* ProjectTests.xctest */;
+			productReference = 0A6B7DB11BF1EB6A008D54B3 /* 钦家.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0A6B7DBB1BF1EB6A008D54B3 /* ProjectUITests */ = {
+		0A6B7DBB1BF1EB6A008D54B3 /* 钦家UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A6B7DCB1BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "ProjectUITests" */;
+			buildConfigurationList = 0A6B7DCB1BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "钦家UITests" */;
 			buildPhases = (
 				0A6B7DB81BF1EB6A008D54B3 /* Sources */,
 				0A6B7DB91BF1EB6A008D54B3 /* Frameworks */,
@@ -7361,9 +7361,9 @@
 			dependencies = (
 				0A6B7DBE1BF1EB6A008D54B3 /* PBXTargetDependency */,
 			);
-			name = ProjectUITests;
+			name = "钦家UITests";
 			productName = ProjectUITests;
-			productReference = 0A6B7DBC1BF1EB6A008D54B3 /* ProjectUITests.xctest */;
+			productReference = 0A6B7DBC1BF1EB6A008D54B3 /* 钦家.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -7394,7 +7394,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0A6B7D931BF1EB6A008D54B3 /* Build configuration list for PBXProject "Project" */;
+			buildConfigurationList = 0A6B7D931BF1EB6A008D54B3 /* Build configuration list for PBXProject "钦家" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -7408,9 +7408,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0A6B7D971BF1EB6A008D54B3 /* Project */,
-				0A6B7DB01BF1EB6A008D54B3 /* ProjectTests */,
-				0A6B7DBB1BF1EB6A008D54B3 /* ProjectUITests */,
+				0A6B7D971BF1EB6A008D54B3 /* 钦家 */,
+				0A6B7DB01BF1EB6A008D54B3 /* 钦家Tests */,
+				0A6B7DBB1BF1EB6A008D54B3 /* 钦家UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -8578,12 +8578,12 @@
 /* Begin PBXTargetDependency section */
 		0A6B7DB31BF1EB6A008D54B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0A6B7D971BF1EB6A008D54B3 /* Project */;
+			target = 0A6B7D971BF1EB6A008D54B3 /* 钦家 */;
 			targetProxy = 0A6B7DB21BF1EB6A008D54B3 /* PBXContainerItemProxy */;
 		};
 		0A6B7DBE1BF1EB6A008D54B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0A6B7D971BF1EB6A008D54B3 /* Project */;
+			target = 0A6B7D971BF1EB6A008D54B3 /* 钦家 */;
 			targetProxy = 0A6B7DBD1BF1EB6A008D54B3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -8748,7 +8748,7 @@
 					"\"$(SRCROOT)/Project/Classes/Vender/lib/JPUSHService.h\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "钦家";
 				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -8786,7 +8786,7 @@
 					"\"$(SRCROOT)/Project/Classes/Vender/lib/JPUSHService.h\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "钦家";
 				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -8799,8 +8799,8 @@
 				INFOPLIST_FILE = ProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxx.ProjectTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project.app/Project";
+				PRODUCT_NAME = "钦家";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/钦家.app/钦家";
 			};
 			name = Debug;
 		};
@@ -8811,8 +8811,8 @@
 				INFOPLIST_FILE = ProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxx.ProjectTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project.app/Project";
+				PRODUCT_NAME = "钦家";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/钦家.app/钦家";
 			};
 			name = Release;
 		};
@@ -8822,7 +8822,7 @@
 				INFOPLIST_FILE = ProjectUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxx.ProjectUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "钦家";
 				TEST_TARGET_NAME = Project;
 				USES_XCTRUNNER = YES;
 			};
@@ -8834,7 +8834,7 @@
 				INFOPLIST_FILE = ProjectUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxx.ProjectUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "钦家";
 				TEST_TARGET_NAME = Project;
 				USES_XCTRUNNER = YES;
 			};
@@ -8843,7 +8843,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0A6B7D931BF1EB6A008D54B3 /* Build configuration list for PBXProject "Project" */ = {
+		0A6B7D931BF1EB6A008D54B3 /* Build configuration list for PBXProject "钦家" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A6B7DC31BF1EB6A008D54B3 /* Debug */,
@@ -8852,7 +8852,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A6B7DC51BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "Project" */ = {
+		0A6B7DC51BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "钦家" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A6B7DC61BF1EB6A008D54B3 /* Debug */,
@@ -8861,7 +8861,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A6B7DC81BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "ProjectTests" */ = {
+		0A6B7DC81BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "钦家Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A6B7DC91BF1EB6A008D54B3 /* Debug */,
@@ -8870,7 +8870,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A6B7DCB1BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "ProjectUITests" */ = {
+		0A6B7DCB1BF1EB6A008D54B3 /* Build configuration list for PBXNativeTarget "钦家UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A6B7DCC1BF1EB6A008D54B3 /* Debug */,

@@ -323,7 +323,6 @@
     [KLHttpTool uploadImageWithUrl:string image:choose success:^(id responseObject)
      {
          //在这个地方执行上传文字的操作
-         //
          if (FromPhoto) {
              model.userPhoto = responseObject[@"Data"][@"files"][0];
          }else{
@@ -373,7 +372,7 @@
               }
           }];
      } failure:^(NSError *error) {
-         
+         [self showHUDSuccess:@"服务器异常"];
      }];
     
     

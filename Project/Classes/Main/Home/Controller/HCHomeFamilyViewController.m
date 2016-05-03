@@ -55,8 +55,20 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.tableView registerClass:[HCHomeTableViewCell class] forCellReuseIdentifier:HCHomeCell];
     
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
+    //self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
+    // 设置普通状态的动画图片
     
+    NSArray *images1 = @[IMG(@"battery_0"),IMG(@"battery_1"),IMG(@"battery_2")];
+    NSArray *images2 = @[IMG(@"battery_0"),IMG(@"battery_1"),IMG(@"battery_2")];
+    
+    [header setImages:images1 forState:MJRefreshStateIdle];
+    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+    [header setImages:images2 forState:MJRefreshStatePulling];
+    // 设置正在刷新状态的动画图片
+    [header setImages:images1 forState:MJRefreshStateRefreshing];
+    // 设置header2
+    self.tableView.mj_header = header;
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"刷新数据所有" object:nil];
 }

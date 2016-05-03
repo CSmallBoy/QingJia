@@ -56,27 +56,22 @@
         UIImageView *imageView1= [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 30, 30)];
         imageView1.image = IMG(@"一呼百应详情－delete");
         [btn1 addSubview:imageView1];
-    
-    
         NSArray *buttonArr = @[btn1];
-        
         static NSString *cellIdentifier = @"joinFamilycellID";
         NHCCheckTableViewCell *cell = (NHCCheckTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil)
         {
-          cell = [[NHCCheckTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+            cell = [[NHCCheckTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                 reuseIdentifier:@"joinFamilycellID"
                                                        withBtns:buttonArr
                                                       tableView:self.tableView];
-        cell.delegate = self;
+            cell.delegate = self;
         }
-       cell.info = self.dataSource[indexPath.row];
-       return cell;
-
-
-        }
-       else
-        {
+        cell.info = self.dataSource[indexPath.row];
+        return cell;
+    }
+    else
+    {
         static NSString *ID = @"chooseID"  ;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
         if (!cell)

@@ -140,20 +140,16 @@
             if (cell == nil) {
                 cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
-            
             id<IConversationModel> model = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
             cell.model = model;
-            
             cell.detailLabel.text = [weakSelf conversationListViewController:weakSelf latestMessageTitleForConversationModel:model];
             cell.detailLabel.attributedText = [EaseEmotionEscape attStringFromTextForChatting:cell.detailLabel.text];
             cell.timeLabel.text = [weakSelf conversationListViewController:weakSelf latestMessageTimeForConversationModel:model];
             return cell;
         }];
-        
         [_searchController setHeightForRowAtIndexPathCompletion:^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
             return [EaseConversationCell cellHeightWithModel:nil];
         }];
-        
         [_searchController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath) {
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             [weakSelf.searchController.searchBar endEditing:YES];
@@ -164,7 +160,6 @@
             if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter]) {
                 chatController = [[RobotChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
                 chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
-               
             }else {
                 chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
                 chatController.title = [conversation showName];
@@ -174,7 +169,6 @@
             [weakSelf.navigationController pushViewController:chatController animated:YES];
         }];
     }
-    
     return _searchController;
 }
 
@@ -217,7 +211,6 @@
         if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter])
         {
             model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
-    
         }
         else
         {

@@ -11,16 +11,16 @@
 /* ********************系统配置********************* */
 
 //定义一个API  http://damaotech.com/rest/User/getAuthCode.do借口服务器 www.m-talk.mobi:8090
-#define kAPIURL          @"http://www.m-talk.mobi:8090/rest/"            //外网
+#define kAPIURL          @"http://58.210.13.58:8090/rest/"            //外网58.210.13.58
 //#define kAPIURL             @"https://baidu.com"
 
 #define kIMGURL        @"http://192.168.10.199:8008/"
 //图片上传
-#define kUPImageUrl  @"http://www.m-talk.mobi:8090/rest/Photo/upload.do?"
+#define kUPImageUrl  @"http://58.210.13.58:8090/rest/Photo/upload.do?"
 //图片下载
-#define kDWloadImageUrl  @"http://www.m-talk.mobi:8090/uploads/thumbnail/"
+#define kDWloadImageUrl  @"http://58.210.13.58:8090/uploads/thumbnail/"
 
-#define kOriginImageUrl @"http://www.m-talk.mobi:8090/uploads/origin/"
+#define kOriginImageUrl @"http://58.210.13.58:8090/uploads/origin/"
 
 //上传图片  下载图片  所需路径
 //用户

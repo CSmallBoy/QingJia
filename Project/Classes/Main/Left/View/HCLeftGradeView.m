@@ -150,7 +150,6 @@
     
     NSDictionary *dic = noti.userInfo;
     UIImage*image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dic[@"photo"] :kkUser]]];
-    
     if ((IsEmpty(str) || [str isKindOfClass:[NSURL class]])&& IsEmpty(strFamilyId))
     {
         
