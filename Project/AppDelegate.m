@@ -162,7 +162,7 @@ didFinishLaunchingWithOptions:launchOptions
     //设置网络端口
     YTKNetworkConfig *config = [YTKNetworkConfig sharedInstance];
     config.baseUrl = kAPIURL;
-    config.cdnUrl =  kIMGURL;
+   // config.cdnUrl =  kIMGURL;
 }
 
 - (void)setupMAMap

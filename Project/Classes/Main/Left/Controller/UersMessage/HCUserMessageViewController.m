@@ -52,6 +52,7 @@
             
         }else{
             [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
+           
             _image_str = _dict[@"PhotoStr"];
         }
     }else{
@@ -63,10 +64,11 @@
             }else{
                 [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
                 _image_str = _dict[@"UserInf"][@"imageName"];
-            }
+                            }
         }else{
             [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
             _image_str = _dict[@"PhotoStr"];
+            
         }
     }
     //获取健康 信息
