@@ -84,6 +84,7 @@
     self.trueNameLabel.text = info.trueName;
     self.phoneNoLabel.text = info.phoneNo;
     NSURL *url = [readUserInfo originUrl:info.imageName :@"contactor"];
+    
     [self.headIV sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
     
 }

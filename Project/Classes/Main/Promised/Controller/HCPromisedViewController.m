@@ -84,7 +84,6 @@
         isShouldWhow = NO;
     }
     
-    
 }
 
 -(void)closeRadar
@@ -110,7 +109,6 @@
         [self.view addSubview:_radarView];
         [self.view sendSubviewToBack:_radarView];
         [self.view sendSubviewToBack:_bgImage];
-
     }
      else
      {
