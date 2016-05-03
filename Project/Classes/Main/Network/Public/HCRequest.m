@@ -66,7 +66,6 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-        
         [self handleSuccess:requestBlock
              responseObject:dic
             responseHeaders:request.responseHeaders];
