@@ -262,6 +262,7 @@
                 NSLog(@"-----------------------关闭一呼百应--------------------------");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"aboutMeData" object:nil];
                 [self.navigationController popToRootViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"closeRadar" object:nil];
                 [self.blackView removeFromSuperview];
                 [self.myAlertView removeFromSuperview];
                 
