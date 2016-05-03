@@ -499,12 +499,12 @@
                 [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
                 model.avatarImage = image.image;
                 
-                NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:[[UserProfileManager sharedInstance] getNickNameWithUsername:buddy.username]];
-                NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
-                //明天再写
-                NSMutableArray *array = [sortedArray objectAtIndex:section];
-                [array addObject:model];
-                
+//                NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:[[UserProfileManager sharedInstance] getNickNameWithUsername:buddy.username]];
+//                NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
+//                //明天再写
+//                NSMutableArray *array = [sortedArray objectAtIndex:section];
+//                [array addObject:model];
+//                
             }];
 //            NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:[[UserProfileManager sharedInstance] getNickNameWithUsername:buddy.username]];
 //            NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
