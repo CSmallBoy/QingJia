@@ -16,11 +16,11 @@
 
 #define kIMGURL        @"http://192.168.10.199:8008/"
 //图片上传
-#define kUPImageUrl  @"http://damaotech.com/rest/Photo/upload.do?"
+#define kUPImageUrl  @"http://www.m-talk.mobi:8090/rest/Photo/upload.do?"
 //图片下载
-#define kDWloadImageUrl  @"http://damaotech.com/uploads/thumbnail/"
+#define kDWloadImageUrl  @"http://www.m-talk.mobi:8090/uploads/thumbnail/"
 
-#define kOriginImageUrl @"http://damaotech.com/uploads/origin/"
+#define kOriginImageUrl @"http://www.m-talk.mobi:8090/uploads/origin/"
 
 //上传图片  下载图片  所需路径
 //用户
