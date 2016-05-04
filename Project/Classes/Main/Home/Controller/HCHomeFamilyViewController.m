@@ -59,8 +59,8 @@
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestHomeData)];
     // 设置普通状态的动画图片
     
-    NSArray *images1 = @[IMG(@"battery_0"),IMG(@"battery_1"),IMG(@"battery_2")];
-    NSArray *images2 = @[IMG(@"battery_0"),IMG(@"battery_1"),IMG(@"battery_2")];
+    NSArray *images1 = @[IMG(@"refresh_00"),IMG(@"refresh_11"),IMG(@"refresh_22")];
+    NSArray *images2 = @[IMG(@"refresh_00"),IMG(@"refresh_11"),IMG(@"refresh_22")];
     
     [header setImages:images1 forState:MJRefreshStateIdle];
     // 设置即将刷新状态的动画图片（一松开就会刷新的状态）

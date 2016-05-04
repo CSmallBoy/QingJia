@@ -197,7 +197,7 @@
     {
         return 2;
     }
-    return [[self.dataArray objectAtIndex:(section - 1)] count];
+    return [[self.dataArray objectAtIndex:(section - 1)] count]-1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

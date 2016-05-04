@@ -16,7 +16,7 @@
 #define kUPImageUrl  @"http://58.210.13.58:8090/rest/Photo/upload.do?"
 //图片下载
 #define kDWloadImageUrl  @"http://58.210.13.58:8090/uploads/thumbnail/"
-
+//图片原图下载
 #define kOriginImageUrl @"http://58.210.13.58:8090/uploads/origin/"
 
 //上传图片  下载图片  所需路径
@@ -127,11 +127,10 @@
 #define LoadNoData IMG(@"no")
 
 #define DefaultFontSize [UIFont systemFontOfSize:17]
-
 /* ********************颜色类********************* */
 
-/* ********************图片********************* */
 
+/* ********************图片********************* */
 //读取本地图片
 #define LOADIMAGE(file,ext) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:ext]]
 

@@ -46,11 +46,9 @@
 #pragma mark - 公共方法
 - (void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state 
 { 
-    if (images == nil) return; 
-    
+    if (images == nil) return;
     self.stateImages[@(state)] = images; 
-    self.stateDurations[@(state)] = @(duration); 
-    
+    self.stateDurations[@(state)] = @(duration);
     /* 根据图片设置控件的高度 */ 
     UIImage *image = [images firstObject]; 
     if (image.size.height > self.mj_h) { 

@@ -366,12 +366,10 @@
 {
     return YES;
 }
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
 }
-
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     searchBar.text = @"";
@@ -379,15 +377,12 @@
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
 }
-
 #pragma mark - public
-
 -(void)refreshDataSource
 {
     [self tableViewDidTriggerHeaderRefresh];
     [self hideHud];
 }
-
 - (void)isConnect:(BOOL)isConnect{
     if (!isConnect) {
         self.tableView.tableHeaderView = _networkStateView;
@@ -395,9 +390,7 @@
     else{
         self.tableView.tableHeaderView = nil;
     }
-    
 }
-
 - (void)networkChanged:(EMConnectionState)connectionState
 {
     if (connectionState == eEMConnectionDisconnected) {
@@ -407,16 +400,13 @@
         self.tableView.tableHeaderView = nil;
     }
 }
-
 - (void)willReceiveOfflineMessages{
     NSLog(NSLocalizedString(@"message.beginReceiveOffine", @"Begin to receive offline messages"));
 }
-
 - (void)didReceiveOfflineMessages:(NSArray *)offlineMessages
 {
     [self refreshDataSource];
 }
-
 - (void)didFinishedReceiveOfflineMessages{
     NSLog(NSLocalizedString(@"message.endReceiveOffine", @"End to receive offline messages"));
 }
