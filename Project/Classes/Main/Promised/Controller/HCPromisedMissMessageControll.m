@@ -111,9 +111,8 @@
         _textView = [[UITextView alloc]initWithFrame:CGRectMake(70, 7, SCREEN_WIDTH-100, 60)];
         _textView.delegate = self;
     
+        _textView.font = [UIFont systemFontOfSize:15];
         _textView.text = self.DscStr    ;
-
-        
         _label = [[UILabel alloc]initWithFrame:CGRectMake(0,5, 300, 30)];
         _label.text = @"请描述走失时候的相关情况";
         _label.textColor = COLOR(201, 201, 206, 1);

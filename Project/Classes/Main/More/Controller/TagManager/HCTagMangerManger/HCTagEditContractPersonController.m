@@ -108,6 +108,8 @@
     
     [cell addSubview:lineView1];
 
+    [_textField1 setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+    [_textField2 setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
     
    _headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _headBtn.frame = CGRectMake(10, 10, 80, 80);
@@ -130,6 +132,8 @@
     }
     [_headBtn addTarget:self action:@selector(showAlbum) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:_headBtn];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
     

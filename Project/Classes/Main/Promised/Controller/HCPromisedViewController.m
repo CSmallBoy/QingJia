@@ -72,6 +72,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showRadarView) name:@"showRadarView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"refreshObjectData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closePromised) name:@"closePromised" object:nil];
     
     NSString *str  =  [[NSUserDefaults standardUserDefaults] objectForKey:@"showRadar"];
     
@@ -83,6 +84,12 @@
         isShouldWhow = NO;
     }
     
+}
+
+-(void)closePromised
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"showRadar"];
+    isShouldWhow = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated

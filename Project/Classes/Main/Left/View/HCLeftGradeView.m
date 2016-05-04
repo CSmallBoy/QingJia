@@ -57,6 +57,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestFamilyMessage) name:@"showFamilyMessage" object:nil];
         
         NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
+        NSDictionary *dic = [readUserInfo getFaimilyDic];
         NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
         
         if ((IsEmpty(str) || [str isKindOfClass:[NSNull class]])&& IsEmpty(strFamilyId))

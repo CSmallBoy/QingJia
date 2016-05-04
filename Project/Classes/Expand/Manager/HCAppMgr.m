@@ -108,6 +108,7 @@ static HCAppMgr *_sharedManager = nil;
     [self requestLogout];
     [readUserInfo Dicdelete];
     [readUserInfo familyDicdelete];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"showRadar"];// 删除已经发过@“呼”的缓存，
     [[HCAccountMgr manager] clean];
 }
 

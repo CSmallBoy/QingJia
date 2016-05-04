@@ -241,7 +241,7 @@
             default:
                 break;
         }
-        
+        [_textField setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
         self.textField.tag = 100+indexPath.row;
     }
     else
@@ -309,6 +309,7 @@
                 break;
         }
         
+        [_textField setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
         self.textField.tag = 200 + indexPath.row;
         self.textView.textView.tag = 300 +indexPath.row;
         
@@ -334,9 +335,11 @@
 - (UITextField *)textField
 {
     if(!_textField){
-        _textField = [[UITextField alloc]initWithFrame:CGRectMake(80, 7, SCREEN_WIDTH-100, 30)];
+        _textField = [[UITextField alloc]initWithFrame:CGRectMake(80, 9, SCREEN_WIDTH-100, 30)];
         _textField.textColor = [UIColor blackColor];
         _textField.delegate = self;
+
+        
     }
     return _textField;
 }
@@ -346,11 +349,10 @@
 {
     if (!_textView)
     {
-        _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(85, 0, SCREEN_WIDTH-100, 88)];
+        _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(85, 5, SCREEN_WIDTH-100, 88)];
         _textView.maxTextLength = SCREEN_WIDTH-100;
         _textView.textView.delegate = self;
         self.textView.delegate = self;
-        
     }
     return _textView;
 }

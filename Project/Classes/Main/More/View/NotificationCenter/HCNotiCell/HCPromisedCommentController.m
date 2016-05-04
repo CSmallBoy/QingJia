@@ -202,10 +202,11 @@
                     
                     [UIView animateWithDuration:0.3 animations:^{
                         
-                        self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                    }completion:^(BOOL finished) {
-                        [self.photoView removeFromSuperview];
-                    }];
+//                        self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                        self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
+                        self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44-64, SCREEN_WIDTH, 44);
+                        self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
+                }];
                 }else
                 {
                     UIImageView *imageview = button.subviews[1];
@@ -282,9 +283,9 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         
-        self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    }completion:^(BOOL finished) {
-       [self.photoView removeFromSuperview];
+        self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
+        self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44-64, SCREEN_WIDTH, 44);
+        self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+ SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
     }];
     
 }
@@ -351,7 +352,8 @@
                 }
                 [UIView animateWithDuration:0.05 animations:^{
                     
-                    self.view.bounds = CGRectMake(0,SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_HEIGHT);
+                    self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-40-SCREEN_WIDTH/3-20-64);
+                    self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-64-SCREEN_WIDTH/3-10-44, SCREEN_WIDTH, 44);
                     
                 }completion:^(BOOL finished) {
                     
@@ -378,17 +380,21 @@
     {
         UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+i * SCREEN_WIDTH/3, 10, SCREEN_WIDTH/3-20, SCREEN_WIDTH/3-20)];
         imageView.image = self.images[i];
+        UILongPressGestureRecognizer  *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(deletePhoto:)];
+        [imageView addGestureRecognizer:longPress];
+        imageView.userInteractionEnabled = YES;
+        imageView.tag = 100+i;
         [self.photoView addSubview:imageView];
     }
     
     [UIView animateWithDuration:0.05 animations:^{
         
-        self.view.bounds = CGRectMake(0,SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_HEIGHT);
+        self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-40-SCREEN_WIDTH/3-20-64);
+        self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-64-SCREEN_WIDTH/3-10-44, SCREEN_WIDTH, 44);
         
     }completion:^(BOOL finished) {
         
         [self.view addSubview:self.photoView];
-        
     }];
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+SCREEN_WIDTH/3 * (_photoCount-1), 10,  SCREEN_WIDTH/3-20, SCREEN_WIDTH/3-30)];
@@ -436,8 +442,16 @@
     
     if (self.images.count == 0)
     {
-        [self.photoView removeFromSuperview];
-        self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            //                        self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
+            self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44-64, SCREEN_WIDTH, 44);
+            self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
+        }];
+
+
     }
     
 }
@@ -478,13 +492,12 @@
 {
     
     
-    if (self.textField == nil && self.images.count==0) {
+    if (self.textField.text.length == 0 ) {
         
-        [self showHUDView:@"请输入文字或者上传图片"];
+        [self showHUDText:@"请输入文字或者上传图片"];
         return;
         
     }
-    
     if (self.images.count>0) {
         // 先上传图片
         [self upLoadImages:1];
@@ -572,7 +585,7 @@
 - (UIView *)photoView
 {
     if(!_photoView){
-        _photoView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT,SCREEN_WIDTH, SCREEN_WIDTH/3)];
+        _photoView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT-SCREEN_WIDTH/3,SCREEN_WIDTH, SCREEN_WIDTH/3)];
         _photoView.backgroundColor = [UIColor whiteColor];
         UIButton *button  = [UIButton buttonWithType:UIButtonTypeCustom];
         [button addTarget:self action:@selector(addPhoto:) forControlEvents:UIControlEventTouchUpInside ];
@@ -709,6 +722,11 @@
             
             self.subIndexPath = nil;
             [self requestData];
+        }
+        else
+        {
+            NSString *str = responseObject[@"message"];
+            [self showHUDText:str];
         }
         
     }];
