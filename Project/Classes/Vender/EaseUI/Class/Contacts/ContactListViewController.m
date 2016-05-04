@@ -197,7 +197,7 @@
     {
         return 2;
     }
-    return [[self.dataArray objectAtIndex:(section - 1)] count]-1;
+    return [[self.dataArray objectAtIndex:(section - 1)] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -556,7 +556,6 @@
     {
         return;
     }
-    
     _currentLongPressIndex = indexPath;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") destructiveButtonTitle:NSLocalizedString(@"friend.block", @"join the blacklist") otherButtonTitles:nil, nil];
     [actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];

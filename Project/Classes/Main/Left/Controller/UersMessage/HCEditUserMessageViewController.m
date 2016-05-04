@@ -318,8 +318,6 @@
     //先上传图片 在完善用户信息
     NSString * string = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"user",[HCAccountMgr manager].loginInfo.UUID,[readUserInfo getReadDic][@"Token"]]];
     //chosse 是选择好的图片
-    
-    
     [KLHttpTool uploadImageWithUrl:string image:choose success:^(id responseObject)
      {
          //在这个地方执行上传文字的操作

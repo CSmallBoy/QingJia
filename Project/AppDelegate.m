@@ -90,9 +90,45 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    
+    // 极光设置tag
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiBack:) name:kJPFNetworkDidSetupNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiBack2:) name:kJPFNetworkDidCloseNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiBack3:) name:kJPFNetworkDidRegisterNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiBack4:) name:kJPFNetworkDidLoginNotification object:nil];
+    
     return YES;
 }
 
+
+-(void)notiBack:(NSNotification *)noti
+{
+    NSLog(@" 建立连接  @@@@@@@@@@@@@@@@@ %@",noti.userInfo);
+}
+
+-(void)notiBack2:(NSNotification *)noti
+{
+    NSLog(@" 关闭连接 @@@@@@@@@@@@@@@@@ %@",noti.userInfo);
+}
+-(void)notiBack3:(NSNotification *)noti
+{
+    NSLog(@" 注册成功  @@@@@@@@@@@@@@@@@ %@",noti.userInfo);
+}
+-(void)notiBack4:(NSNotification *)noti
+{
+    NSLog(@" 登陆成功  @@@@@@@@@@@@@@@@@ %@",noti.userInfo);
+    //设置tags
+    NSSet *tags = [NSSet setWithObject:@"1111"];
+    NSSet *set = [JPUSHService filterValidTags:tags];
+    [JPUSHService setTags:set alias:@"1111" callbackSelector:@selector(tagsAliasCallback: tags:alias:) object:nil];
+}
+
+-(void)tagsAliasCallback:(int)iResCode
+                    tags:(NSSet*)tags
+                   alias:(NSString*)alias
+{
+    NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , alias);
+}
 /**
  这里处理新浪微博SSO授权之后跳转回来，和微信分享完成之后跳转回来
  */
