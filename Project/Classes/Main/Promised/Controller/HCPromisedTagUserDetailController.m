@@ -619,7 +619,7 @@
         }
     }
 
-        if (self.selectArr.count== 2) {
+        if (self.selectArr.count== 2 || self.info.contactorId1) {
            
             
             if (self.tagArr.count>0) {
@@ -702,7 +702,7 @@
 - (NSArray *)relativeArr
 {
     if(!_relativeArr){
-        _relativeArr = @[@"曾祖父",@"曾祖母",@"祖父",@"祖母",@"付清",@"母亲",@"兄弟",@"姐妹",@"儿子",@"女儿",@"孙女",@"孙子"];
+        _relativeArr = @[@"曾祖父",@"曾祖母",@"祖父",@"祖母",@"父亲",@"母亲",@"兄弟",@"姐妹",@"儿子",@"女儿",@"孙女",@"孙子"];
     }
     return _relativeArr;
 }

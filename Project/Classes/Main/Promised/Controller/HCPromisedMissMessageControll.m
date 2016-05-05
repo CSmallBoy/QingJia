@@ -340,6 +340,11 @@
                 
                 NSLog(@"发呼应成功");
             }
+           else
+           {
+               NSString *str = respone[@"message"];
+               [self showHUDText:@"发呼失败"];
+           }
             
         }];
         
