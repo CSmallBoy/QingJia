@@ -162,26 +162,23 @@
          [self hideHUDView];
          if (loginInfo && !error)
          {
+             [self showHUDSuccess:@"登陆成功"];
              [HCAccountMgr manager].loginInfo = info;
              [HCAccountMgr manager].isLogined = YES;
              //登录信息存数据库
-            [[HCAccountMgr manager] saveLoginInfoToDB];
-             
+             [[HCAccountMgr manager] saveLoginInfoToDB];
              // 环信数据
              //设置是否自动登录
              [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
-             
              //获取数据库中数据
              [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
-             
              //获取群组列表
              [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
              //发送自动登陆状态通知
              [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
              //保存最近一次登录用户名
              [self saveLastLoginUsername];
-             //保存登陆过后信息
-             
+             //保存登陆过后信息 
          }
          else
          {

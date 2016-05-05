@@ -25,8 +25,8 @@
 //多图片选择
 #import "ZLPhotoAssets.h"
 #import "ZLPhotoPickerViewController.h"
-//
-#import "NHCLoginTwoApi.h"
+//测试省市县
+#import "NHCRegionApi.h"
 #define HCPublishCell @"HCPublishCell"
 
 @interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate>{
@@ -59,10 +59,11 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCPublishTableViewCell class] forCellReuseIdentifier:HCPublishCell];
     //验证登陆两次
-    //    NHCLoginTwoApi *api = [[NHCLoginTwoApi alloc]init];
-    //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-    //
-    //    }];
+    NHCRegionApi * api  = [[NHCRegionApi alloc]init];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        
+    }];
+   
 }
 
 #pragma mark - UITableView

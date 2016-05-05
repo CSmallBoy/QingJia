@@ -128,10 +128,13 @@
     api.thetype = @"1000";
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id data) {
-        if (requestStatus+100 == HCRequestStatusSuccess)
+        if (requestStatus == HCRequestStatusSuccess)
         {
             [self showHUDSuccess:@"获取成功"];
-        }else
+        }else if (requestStatus==10010){
+            [self showHUDSuccess:@"该手机号已注册过"];
+        }
+        else
         {
             [self showHUDError:message];
         }

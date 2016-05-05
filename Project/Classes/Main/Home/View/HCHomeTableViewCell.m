@@ -189,14 +189,28 @@
     //有评论显示 数字
     NSString *commentNum = ([info.FTReplyCount integerValue]) ? info.FTReplyCount : @"评论";
     NSArray *functionArr;
+    
     if ([info.isLike isEqualToString:@"0"]){
-        functionArr = @[@[@"Like_nor", zanNum],
-                        @[@"Share_nor", @"分享"],
-                        @[@"Bubble_nor", commentNum]];
+        if ([commentNum isEqualToString:@"评论"]) {
+            functionArr = @[@[@"like_1", zanNum],
+                            @[@"share_1", @"分享"],
+                            @[@"comment_1", commentNum]];
+        }else{
+            functionArr = @[@[@"like_1", zanNum],
+                            @[@"share_1", @"分享"],
+                            @[@"comment_2", commentNum]];
+        }
     }else{
-        functionArr = @[@[@"Like_sel", zanNum],
-                        @[@"Share_nor", @"分享"],
-                        @[@"Bubble_nor", commentNum]];
+        if ([commentNum isEqualToString:@"评论"]) {
+            functionArr = @[@[@"like_2", zanNum],
+                            @[@"share_2", @"分享"],
+                            @[@"comment_1", commentNum]];
+        }else{
+            functionArr = @[@[@"like_2", zanNum],
+                            @[@"share_2", @"分享"],
+                            @[@"comment_2", commentNum]];
+        }
+        
     }
     
     [self.functionTagView functionTagWithArrary:functionArr];

@@ -69,7 +69,12 @@
     [header setImages:images1 forState:MJRefreshStateRefreshing];
     // 设置header2
     self.tableView.mj_header = header;
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
+    //上拉刷新
+    MJRefreshAutoGifFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
+    // 设置刷新图片
+    [footer setImages:images1 forState:MJRefreshStateRefreshing];
+    self.tableView.mj_footer = footer;
+//    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"刷新数据所有" object:nil];
 }
 

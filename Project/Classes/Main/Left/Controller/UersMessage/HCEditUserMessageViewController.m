@@ -55,14 +55,14 @@
     model = [[MyselfInfoModel alloc]init];
     api = [[NHCUSerInfoApi alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toChangeNumber) name:@"toChangeNumber" object:nil];
-    Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"生日",@"属相",@"住址",@"公司",@"职业"],
+    Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"生日",@"属相",@"住址",@"祖籍",@"签名"],
             @[@"绑定手机号"]];
     NSDictionary *dic = [readUserInfo getReadDic];
     //第一步  先判断是否本地编辑过
     if(IsEmpty(dic[@"company"])){
         if (IsEmpty(dic[@"UserInf"][@"imageName"]))
         {
-            NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,@"请输入住址",@"请输入公司",@"请输入职位"];
+            NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,@"请输入住址",@"请输点击选择祖籍",@"请输入签名"];
             arr2= @[arr,
                     @[@"181109722222"]];
         }else{

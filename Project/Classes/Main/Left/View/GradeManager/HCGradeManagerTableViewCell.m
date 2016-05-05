@@ -69,7 +69,7 @@
         if (indexPath.row == 0)
         {
             self.titleLabel.text = [NSString stringWithFormat:@"家庭成员（%d）",_array.count];
-            self.titleLabel.frame = CGRectMake(15, 10, 100, 24);
+            self.titleLabel.frame = CGRectMake(15, 10, 120, 24);
             [self.contentView addSubview:self.titleLabel];
             [self.contentView addSubview:self.statusLabel];
         }else

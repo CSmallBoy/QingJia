@@ -544,7 +544,6 @@
 		C752A8771CB4F6B7006719F1 /* HCUserHeathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A8761CB4F6B7006719F1 /* HCUserHeathViewController.m */; };
 		C752A87C1CB4FF22006719F1 /* NHCUserHeathApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A87B1CB4FF22006719F1 /* NHCUserHeathApi.m */; };
 		C752A87F1CB515A6006719F1 /* NHCGetUserHeathApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C752A87E1CB515A6006719F1 /* NHCGetUserHeathApi.m */; };
-		C758BA9B1CD234B9006AA09D /* NHCLoginTwoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C758BA9A1CD234B9006AA09D /* NHCLoginTwoApi.m */; };
 		C758EE3E1C743E7A0081FFE1 /* FamilyManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */; };
 		C758EE401C743E7A0081FFE1 /* HCaddRelativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDED1C743E7A0081FFE1 /* HCaddRelativeViewController.m */; };
 		C758EE411C743E7A0081FFE1 /* HCCombineFamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C758EDEF1C743E7A0081FFE1 /* HCCombineFamilyViewController.m */; };
@@ -1097,6 +1096,7 @@
 		C7BE0E411C71A041007D97A5 /* HCMailListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3D1C71A041007D97A5 /* HCMailListModel.m */; };
 		C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3F1C71A041007D97A5 /* pinyin.c */; };
 		C7CC8DBF1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CC8DBE1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m */; };
+		C7DB55C31CDAF58A0041B0C9 /* NHCRegionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB55C21CDAF58A0041B0C9 /* NHCRegionApi.m */; };
 		C7F370471CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */; };
 		C7F421081CD055A2006BDA77 /* NHCHomeTimeToComentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */; };
 /* End PBXBuildFile section */
@@ -2182,8 +2182,6 @@
 		C752A87B1CB4FF22006719F1 /* NHCUserHeathApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCUserHeathApi.m; sourceTree = "<group>"; };
 		C752A87D1CB515A6006719F1 /* NHCGetUserHeathApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCGetUserHeathApi.h; sourceTree = "<group>"; };
 		C752A87E1CB515A6006719F1 /* NHCGetUserHeathApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCGetUserHeathApi.m; sourceTree = "<group>"; };
-		C758BA991CD234B9006AA09D /* NHCLoginTwoApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCLoginTwoApi.h; sourceTree = "<group>"; };
-		C758BA9A1CD234B9006AA09D /* NHCLoginTwoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCLoginTwoApi.m; sourceTree = "<group>"; };
 		C758EDE71C743E7A0081FFE1 /* FamilyManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyManageViewController.h; sourceTree = "<group>"; };
 		C758EDE81C743E7A0081FFE1 /* FamilyManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyManageViewController.m; sourceTree = "<group>"; };
 		C758EDEC1C743E7A0081FFE1 /* HCaddRelativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCaddRelativeViewController.h; sourceTree = "<group>"; };
@@ -3097,6 +3095,8 @@
 		C7BE0E401C71A041007D97A5 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		C7CC8DBD1CCDBA64005CAF4A /* NHCMySelfTimeListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCMySelfTimeListApi.h; sourceTree = "<group>"; };
 		C7CC8DBE1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCMySelfTimeListApi.m; sourceTree = "<group>"; };
+		C7DB55C11CDAF58A0041B0C9 /* NHCRegionApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCRegionApi.h; sourceTree = "<group>"; };
+		C7DB55C21CDAF58A0041B0C9 /* NHCRegionApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCRegionApi.m; sourceTree = "<group>"; };
 		C7F370451CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeComentTwoListApi.h; sourceTree = "<group>"; };
 		C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeComentTwoListApi.m; sourceTree = "<group>"; };
 		C7F421061CD055A2006BDA77 /* NHCHomeTimeToComentApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeTimeToComentApi.h; sourceTree = "<group>"; };
@@ -5069,8 +5069,6 @@
 				C73C0B881CA290F20034E42E /* NHCCancellationApi.m */,
 				C73C0B8A1CA293FF0034E42E /* NHCSetNewPassWordApi.h */,
 				C73C0B8B1CA293FF0034E42E /* NHCSetNewPassWordApi.m */,
-				C758BA991CD234B9006AA09D /* NHCLoginTwoApi.h */,
-				C758BA9A1CD234B9006AA09D /* NHCLoginTwoApi.m */,
 			);
 			name = login;
 			sourceTree = "<group>";
@@ -5134,6 +5132,8 @@
 				C74D2B061CB683D300A260A4 /* NHCUploadImageMangApi.m */,
 				C74D2B081CB683EE00A260A4 /* NHCDownLoadManyApi.h */,
 				C74D2B091CB683EE00A260A4 /* NHCDownLoadManyApi.m */,
+				C7DB55C11CDAF58A0041B0C9 /* NHCRegionApi.h */,
+				C7DB55C21CDAF58A0041B0C9 /* NHCRegionApi.m */,
 			);
 			name = public;
 			sourceTree = "<group>";
@@ -7990,6 +7990,7 @@
 				C78D7D561C5F342700622CE2 /* HCPromisedMissCell.m in Sources */,
 				8D10B1DE1CC9C96C00A63276 /* HCMessageCenterListApi.m in Sources */,
 				C7B00B521C5F26050010F93B /* ContactListSelectViewController.m in Sources */,
+				C7DB55C31CDAF58A0041B0C9 /* NHCRegionApi.m in Sources */,
 				0A2B475D1C7F12C800AAA157 /* HCEditCommentApi.m in Sources */,
 				8D05FF7C1CB39EB1005AC51C /* HCProductDetailController.m in Sources */,
 				C78D7D4C1C5F342700622CE2 /* UUDatePicker_DateModel.m in Sources */,
@@ -8237,7 +8238,6 @@
 				C7B00B691C5F26050010F93B /* EMTextView.m in Sources */,
 				0A5491081C2BC32D0085F50D /* ZXAztecState.m in Sources */,
 				0A54914B1C2BC32D0085F50D /* ZXBinaryBitmap.m in Sources */,
-				C758BA9B1CD234B9006AA09D /* NHCLoginTwoApi.m in Sources */,
 				C7B00B4E1C5F26050010F93B /* PublicGroupListViewController.m in Sources */,
 				0A5491101C2BC32D0085F50D /* ZXAddressBookParsedResult.m in Sources */,
 				8D05FF751CB39EB1005AC51C /* HCMtalkWaitPayController.m in Sources */,

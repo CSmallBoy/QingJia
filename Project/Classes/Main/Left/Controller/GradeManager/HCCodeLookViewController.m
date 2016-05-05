@@ -23,6 +23,8 @@
 @property (nonatomic, strong) UIImageView *classImgView;
 @property (nonatomic, strong) UILabel *classTitle;
 @property (nonatomic, strong) UILabel *classSingle;
+//家庭好
+@property (nonatomic, strong) UILabel *classNum;
 
 @property (nonatomic, strong) UIImageView *codeImgView;
 @property (nonatomic,strong) HCCreateGradeInfo *info;
@@ -69,7 +71,6 @@
     
     //使用iOS 7后的CIFilter对象操作，生成二维码图片imgQRCode（会拉伸图片，比较模糊，效果不佳）
     CIImage *imgQRCode = [KMQRCode createQRCodeImage:source];
-    
     //使用核心绘图框架CG（Core Graphics）对象操作，进一步针对大小生成二维码图片imgAdaptiveQRCode（图片大小适合，清晰，效果好）
     UIImage *imgAdaptiveQRCode = [KMQRCode resizeQRCodeImage:imgQRCode
                                                     withSize:self.view.frame.size.width];
@@ -126,11 +127,10 @@
 {
     if (!_contentView)
     {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(15,150/667.0*SCREEN_HEIGHT, WIDTH(self.view)-30, WIDTH(self.view))];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(15,150/667.0*SCREEN_HEIGHT, WIDTH(self.view)-30, WIDTH(self.view)+10)];
     
         _contentView.backgroundColor = [UIColor whiteColor];
         ViewRadius(_contentView, 5);
-        
         [self.contentView addSubview:self.classImgView];
         [self.contentView addSubview:self.classTitle];
         [self.contentView addSubview:self.classSingle];
@@ -138,7 +138,11 @@
     }
     return _contentView;
 }
-
+//- (UILabel *)classNum{
+//    if (!_classNum) {
+//        _classNum = [UILabel alloc]initWithFrame:CGRectMake(25, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+//    }
+//}
 - (UIImageView *)classImgView
 {
     if (!_classImgView)

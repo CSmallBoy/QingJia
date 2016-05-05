@@ -504,13 +504,17 @@
 //                //明天再写
 //                NSMutableArray *array = [sortedArray objectAtIndex:section];
 //                [array addObject:model];
-//                
+//
             }];
-//            NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:[[UserProfileManager sharedInstance] getNickNameWithUsername:buddy.username]];
-//            NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
-//            
-//            NSMutableArray *array = [sortedArray objectAtIndex:section];
-//            [array addObject:model];
+            
+            
+            
+            //显示好友信息
+            NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:[[UserProfileManager sharedInstance] getNickNameWithUsername:buddy.username]];
+            NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
+            
+            NSMutableArray *array = [sortedArray objectAtIndex:section];
+            [array addObject:model];
         }
     }
     
@@ -627,7 +631,8 @@
     //屏蔽名单
     NSArray *blockList = [[EaseMob sharedInstance].chatManager blockedList];
     for (EMBuddy *buddy in buddyList) {
-        if (![blockList containsObject:buddy.username]) {
+        if (![blockList containsObject:buddy.username])
+        {
 //            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
 //            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
 //            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
@@ -638,9 +643,7 @@
 //                _model_info.userImage = image.image;
 //                [self.UserDataSource addObject:_model_info];
 //            }];
-            
             [self.contactsSource addObject:buddy];
-            
         }
     }
     NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
@@ -649,7 +652,6 @@
         EMBuddy *loginBuddy = [EMBuddy buddyWithUsername:loginUsername];
         [self.contactsSource addObject:loginBuddy];
     }
-    
     [self _sortDataArray:self.contactsSource];
     [self.tableView reloadData];
     
