@@ -92,8 +92,8 @@
 //        vc = (HCViewController *)[[HCGradeManagerViewController alloc] initWithCollectionViewLayout:layout];
         
         NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
-        
-        if (IsEmpty(str) || [str isKindOfClass:[NSURL class]])
+         NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
+        if ((IsEmpty(str) || [str isKindOfClass:[NSNull class]])&& IsEmpty(strFamilyId))
         {
            
             vc = [[HCUserMessageViewController alloc]init];
