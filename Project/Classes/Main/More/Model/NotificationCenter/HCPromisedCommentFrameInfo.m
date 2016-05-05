@@ -45,7 +45,7 @@
     {
         _headBtnFrame = CGRectMake(10,5, 50, 50);
         _nickLabelFrame = CGRectMake(70, 15, 200, 25);
-        _timeLabelFrame = CGRectMake(70,35, 100, 20);
+        _timeLabelFrame = CGRectMake(70,35, 200, 20);
         _backLabelFrame = CGRectMake(SCREEN_WIDTH-70, 15, 60, 25); // 此时显示的是回复两个字
         
         NSString *str = [NSString stringWithFormat:@"%@回复%@:%@",commentInfo.nickName,commentInfo.toNickName,commentInfo.content];

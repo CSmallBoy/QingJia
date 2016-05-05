@@ -219,7 +219,7 @@
         [self.blackView removeFromSuperview];
         [self.myAlertView removeFromSuperview];
         
-        [self showHUDText:@"正在跳转AppStore"];
+        [self showHUDView:@"正在跳转AppStore"];
         
         // -----------------------------跳转到appStore---------------------------------------------
         //初始化控制器

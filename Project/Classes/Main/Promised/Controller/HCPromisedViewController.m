@@ -94,6 +94,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.nextVCInfo = nil;
     jump = NO;
     if (isShouldWhow)
     {
