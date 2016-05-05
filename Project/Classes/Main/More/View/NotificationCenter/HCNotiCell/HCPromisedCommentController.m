@@ -111,7 +111,12 @@
     
     CGRect rect = [[notif.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat y = rect.origin.y;
-    self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-40-y-64);
+    
+    CGRect rect1 = [self.inputView convertRect:self.inputView.bounds toView:self.view];
+    CGFloat height = rect1.origin.y;
+    NSLog(@"------------------%f---------------",height);
+    self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-(SCREEN_HEIGHT- height)-64);
+
    
     
     NSLog(@"------------------%f---------------",y);
@@ -120,6 +125,7 @@
 // 键盘收起来
 - (void)keyboardWillHide:(NSNotification *)notif {
  self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-40-64);
+    
 }
 
 
@@ -304,13 +310,14 @@
     }
     
     
-    [self.photoView removeFromSuperview];
-    self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    [self.photoView removeFromSuperview];
+//    self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     _startEdit = NO;
+
    
 }
 
@@ -402,8 +409,6 @@
     [self.photoView addSubview:imageView];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-
-
 
 #pragma mark --- private mothods
 
@@ -728,6 +733,13 @@
             NSString *str = responseObject[@"message"];
             [self showHUDText:str];
         }
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
+            self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44-64, SCREEN_WIDTH, 44);
+            self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+ SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
+        }];
         
     }];
 }

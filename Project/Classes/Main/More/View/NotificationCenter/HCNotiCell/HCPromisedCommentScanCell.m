@@ -128,11 +128,12 @@
 - (UILabel *)phoneLabel
 {
     if(!_phoneLabel){
-        _phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 50, 150, 30)];
+        _phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 40, 150, 30)];
         _phoneLabel.textAlignment = NSTextAlignmentCenter;
-        UIImageView *IV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 20)];
+        UIImageView *IV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 15, 20)];
         IV.image = IMG(@"phone");
         [_phoneLabel addSubview:IV];
+        _phoneLabel.font = [UIFont systemFontOfSize:14];
         _phoneLabel.textColor = [UIColor blackColor];
         
     }
@@ -143,7 +144,7 @@
 - (UILabel *)timeLabel
 {
     if(!_timeLabel){
-        _timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-200, 50, 190, 20)];
+        _timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-200, 20, 190, 20)];
         _timeLabel.textColor = [UIColor lightGrayColor];
         _timeLabel.textAlignment = NSTextAlignmentRight;
         _timeLabel.font = [UIFont systemFontOfSize:14];
