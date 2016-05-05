@@ -135,14 +135,19 @@
         [self.contentView addSubview:self.classTitle];
         [self.contentView addSubview:self.classSingle];
         [self.contentView addSubview:self.codeImgView];
+        [self.contentView addSubview:self.classNum];
     }
     return _contentView;
 }
-//- (UILabel *)classNum{
-//    if (!_classNum) {
-//        _classNum = [UILabel alloc]initWithFrame:CGRectMake(25, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-//    }
-//}
+- (UILabel *)classNum{
+    if (!_classNum) {
+        _classNum = [[UILabel alloc]initWithFrame:CGRectMake(MaxX(self.classImgView)+10, HEIGHT(self.classTitle)+20, SCREEN_WIDTH*0.3, 20)];
+        _classNum.text = [HCAccountMgr manager].loginInfo.createFamilyId;;
+        _classNum.font = [UIFont systemFontOfSize:15];
+        
+    }
+    return _classNum;
+}
 - (UIImageView *)classImgView
 {
     if (!_classImgView)
@@ -170,7 +175,7 @@
 {
     if (!_classSingle)
     {
-        _classSingle = [[UILabel alloc] initWithFrame:CGRectMake(MinX(self.classTitle), MaxY(self.classTitle)+5, WIDTH(self.classTitle), 20)];
+        _classSingle = [[UILabel alloc] initWithFrame:CGRectMake(MinX(self.classTitle), MaxY(self.classTitle)+15, WIDTH(self.classTitle), 20)];
         _classSingle.textColor = DarkGrayColor;
         _classSingle.text = self.info.familyDescription;
         _classSingle.font = [UIFont systemFontOfSize:12];

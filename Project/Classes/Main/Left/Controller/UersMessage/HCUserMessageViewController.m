@@ -394,8 +394,8 @@
         _headBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), WIDTH(self.view)*0.45)];
         _headBackground.image = OrigIMG(@"2Dbarcode_message_Background");
         _headBackground.userInteractionEnabled = YES;
-        label_age = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50 , 150, 40, 20)];
-        label_age.text = @"24岁";
+        label_age = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50 , _headBackground.frame.size.height*0.8, 40, 20)];
+        //label_age.text = @"24岁";
         [_headBackground addSubview:label_age];
         [_headBackground addSubview:self.headButton];
         [_headBackground addSubview:self.nickName];

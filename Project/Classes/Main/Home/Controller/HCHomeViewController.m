@@ -10,6 +10,10 @@
 #import "HCHomeFamilyViewController.h"
 #import "HCHomeFamilyGroupViewController.h"
 #import "HCPublishViewController.h"
+//查询 家庭信息
+
+#import "findFamilyMessage.h"
+
 #import "AppDelegate.h"
 
 @interface HCHomeViewController ()<UIScrollViewDelegate>
@@ -33,7 +37,8 @@
     
     self.navigationItem.leftBarButtonItem = self.leftItem;
     self.navigationItem.rightBarButtonItem = self.rightItem;
-    
+    //self.mainScrollView.scrollEnabled = YES;
+
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView addSubview:self.family.view];
     [self.mainScrollView addSubview:self.familyGroup.view];
@@ -44,6 +49,14 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     _currentIndex = scrollView.contentOffset.x / SCREEN_WIDTH;
+    //
+    findFamilyMessage *api = [[findFamilyMessage alloc]init];
+    NSDictionary *dic = [readUserInfo getReadDic];
+    
+    api.familyId = dic[@"UserInf"][@"createFamilyId"];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        
+    }];
     if (_currentIndex == 0)
     {
         self.title = @"时光";
@@ -138,7 +151,8 @@
     if (!_mainScrollView)
     {
         _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), HEIGHT(self.view)-44)];
-        _mainScrollView.contentSize = CGSizeMake(WIDTH(self.view)*2, 0);
+        //_mainScrollView.contentSize = CGSizeMake(WIDTH(self.view)*2, 0);
+        _mainScrollView.contentSize = CGSizeMake(WIDTH(self.view), 0);
         _mainScrollView.backgroundColor = [UIColor greenColor];
         _mainScrollView.delegate = self;
         _mainScrollView.pagingEnabled = YES;

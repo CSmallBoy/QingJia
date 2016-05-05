@@ -25,7 +25,7 @@
 }
 
 - (void)makeUI{
-    UIView *view_back = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.07, SCREEN_HEIGHT*0.2, SCREEN_WIDTH *0.86, SCREEN_HEIGHT *0.5)];
+    UIView *view_back = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.07, SCREEN_HEIGHT*0.2, SCREEN_WIDTH *0.86, SCREEN_WIDTH *0.90+5)];
     view_back.backgroundColor = [UIColor whiteColor];
     UIImageView *Image_head = [[UIImageView alloc]initWithFrame:CGRectMake(10, 12, SCREEN_WIDTH *0.15, SCREEN_WIDTH *0.15)];
     UILabel *nick_label = [[UILabel alloc]initWithFrame:CGRectMake(20 + SCREEN_WIDTH*0.2, 12, SCREEN_WIDTH*0.6, 20)];
@@ -49,7 +49,6 @@
         [Image_head sd_setImageWithURL:[readUserInfo url:_head_image :kkUser] placeholderImage:IMG(@"Head-Portraits")];
         
     }
-   
     [view_back addSubview:Image_head];
     [view_back addSubview:nick_label];
     [view_back addSubview:userId_label];
