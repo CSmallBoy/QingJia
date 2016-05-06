@@ -80,8 +80,8 @@
     _info = info;
 
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ %@ %@岁",info.trueName,info.sex,info.age]];
-    [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13], NSForegroundColorAttributeName: [UIColor lightGrayColor]} range:NSMakeRange(attStr.length-4, 4)];
-    [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} range:NSMakeRange(0, attStr.length-4)];
+    [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13], NSForegroundColorAttributeName: [UIColor lightGrayColor]} range:NSMakeRange(info.trueName.length,attStr.length -info.trueName.length)];
+    [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} range:NSMakeRange(0, attStr.length-info.trueName.length)];
     self.NameSexAgeLB.attributedText = attStr;
     
     self.sendLabel.text = [NSString stringWithFormat:@"发布时间：%@",info.createTime];
