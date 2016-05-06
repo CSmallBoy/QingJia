@@ -292,7 +292,7 @@
     [Api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
         [self.tableView.mj_header endRefreshing];
         [self.dataSource removeAllObjects];
-        [self.dataSource addObjectsFromArray:Data];
+        //[self.dataSource addObjectsFromArray:Data];
         [self.tableView reloadData];
     }];
 }
@@ -327,6 +327,7 @@
         if (resquestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource addObjectsFromArray:Data];
+            [self writeLocationData:Data];
             [self.tableView reloadData];
             a ++;
         }else

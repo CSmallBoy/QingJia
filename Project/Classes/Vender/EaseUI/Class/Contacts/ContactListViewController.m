@@ -68,7 +68,9 @@
     [[UserProfileManager sharedInstance] loadUserProfileInBackgroundWithBuddy:self.contactsSource saveToLoacal:YES completion:NULL];
     self.showRefreshFooter = NO;
     self.showRefreshHeader = NO;
-    //self.tableView.tableHeaderView = self.searchBar;
+    
+    //好友search
+    self.tableView.tableHeaderView = self.searchBar;
     [self tableViewDidTriggerHeaderRefresh];
     
 }

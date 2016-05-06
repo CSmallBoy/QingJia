@@ -274,7 +274,7 @@
 
 #pragma mark - network  网络请求
 
-//上啦刷新
+//上啦刷新  明天搞定缓存问题
 - (void)requestHomeData
 {
     NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
@@ -282,7 +282,8 @@
     api.home_conut = @"10";
     [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
         [self.tableView.mj_header endRefreshing];
-        [self.dataSource removeAllObjects];
+        //[self.dataSource removeAllObjects];
+        [self writeLocationData:Data];
         [self.dataSource addObjectsFromArray:Data];
         [self.tableView reloadData];
     }];

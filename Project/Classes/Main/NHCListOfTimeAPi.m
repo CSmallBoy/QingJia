@@ -45,6 +45,7 @@
         info.HeadImg = arr[i][@"imageName"];
         NSString *str  = arr[i][@"likeNickNames"];
         info.isLikeArr =  [str componentsSeparatedByString:@","];
+        info.likeCount = arr[i][@"likeCount"];
         [arring addObject:info];
     }
     return arring;

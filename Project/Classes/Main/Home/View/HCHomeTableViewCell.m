@@ -185,11 +185,10 @@
         self.address.hidden = YES;
         self.addressImgView.hidden = YES;
     }
-    NSString *zanNum = ([info.isLike integerValue]) ? info.isLike : @"点赞";
+    NSString *zanNum = ([info.likeCount integerValue]) ? info.likeCount : @"点赞";
     //有评论显示 数字
     NSString *commentNum = ([info.FTReplyCount integerValue]) ? info.FTReplyCount : @"评论";
     NSArray *functionArr;
-    
     if ([info.isLike isEqualToString:@"0"]){
         if ([commentNum isEqualToString:@"评论"]) {
             functionArr = @[@[@"like_1", zanNum],
@@ -201,6 +200,7 @@
                             @[@"comment_2", commentNum]];
         }
     }else{
+        
         if ([commentNum isEqualToString:@"评论"]) {
             functionArr = @[@[@"like_2", zanNum],
                             @[@"share_2", @"分享"],
@@ -212,7 +212,6 @@
         }
         
     }
-    
     [self.functionTagView functionTagWithArrary:functionArr];
 }
 

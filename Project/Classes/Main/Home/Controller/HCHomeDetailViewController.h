@@ -10,5 +10,5 @@
 
 @interface HCHomeDetailViewController : HCTableViewController
 @property (nonatomic,copy)NSString *timeID;
-
+@property (nonatomic,copy)NSString *likeStr;
 @end
