@@ -75,9 +75,13 @@
     if (!_headImgView)
     {
         _headImgView = [[UIImageView alloc]initWithFrame:CGRectMake(15, (HEIGHT(self.view)*0.6-SCREEN_WIDTH)/2, SCREEN_WIDTH-30-30, SCREEN_WIDTH)];
+        if ([_from isEqualToString:@"家庭"]) {
+            [_headImgView sd_setImageWithURL:[readUserInfo url:_head_image :kkFamail] placeholderImage:IMG(@"drg160.png")];
+        }else{
+            //头像
+            [_headImgView sd_setImageWithURL:[readUserInfo url:_head_image :kkUser] placeholderImage:IMG(@"drg160.png")];
+        }
         
-        //头像
-        [_headImgView sd_setImageWithURL:[readUserInfo url:_head_image :kkUser] placeholderImage:IMG(@"drg160.png")];
         
         
     }

@@ -524,6 +524,7 @@
 		8D9790521CB3A05D00FE3C12 /* HCMTalkWaitPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D97904E1CB3A05D00FE3C12 /* HCMTalkWaitPayCell.m */; };
 		8D9790551CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9790541CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m */; };
 		8DC747881C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC747871C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m */; };
+		C71B6BCD1CDC2EF000470C86 /* NHCEditingFamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */; };
 		C72F1F951C7719EE00A6E794 /* HCAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */; };
 		C72F1F981C771F8100A6E794 /* SCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F971C771F8100A6E794 /* SCSwipeTableViewCell.m */; };
 		C739F7971CD740F50070BB2D /* HCHomeUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C739F7961CD740F50070BB2D /* HCHomeUserPhotoViewController.m */; };
@@ -2142,6 +2143,8 @@
 		8D9790541CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddNewAddressTableViewCell.m; sourceTree = "<group>"; };
 		8DC747861C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedCloseAnyCallAPI.h; sourceTree = "<group>"; };
 		8DC747871C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedCloseAnyCallAPI.m; sourceTree = "<group>"; };
+		C71B6BCB1CDC2EF000470C86 /* NHCEditingFamilyApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCEditingFamilyApi.h; sourceTree = "<group>"; };
+		C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCEditingFamilyApi.m; sourceTree = "<group>"; };
 		C72F1F931C7719EE00A6E794 /* HCAuditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAuditViewController.h; sourceTree = "<group>"; };
 		C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAuditViewController.m; sourceTree = "<group>"; };
 		C72F1F961C771F8100A6E794 /* SCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSwipeTableViewCell.h; sourceTree = "<group>"; };
@@ -3273,6 +3276,8 @@
 				8D1590621CB67D3400B08BDC /* HCFamilyapplyList.m */,
 				8D1590641CB683C400B08BDC /* HCFamilyValidationJoinApply.h */,
 				8D1590651CB683C400B08BDC /* HCFamilyValidationJoinApply.m */,
+				C71B6BCB1CDC2EF000470C86 /* NHCEditingFamilyApi.h */,
+				C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */,
 			);
 			path = Grade;
 			sourceTree = "<group>";
@@ -8194,6 +8199,7 @@
 				C7B00B3B1C5F26050010F93B /* UIViewController+HUD.m in Sources */,
 				0A54919C1C2BC32D0085F50D /* ZXMultiFormatOneDReader.m in Sources */,
 				C78D7C941C5F2C1200622CE2 /* HCCourseViewController.m in Sources */,
+				C71B6BCD1CDC2EF000470C86 /* NHCEditingFamilyApi.m in Sources */,
 				C73C0B8F1CA296930034E42E /* NHCUSerInfoApi.m in Sources */,
 				0A5491721C2BC32D0085F50D /* ZXAI013103decoder.m in Sources */,
 				0A5491A11C2BC32D0085F50D /* ZXUPCAWriter.m in Sources */,

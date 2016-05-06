@@ -63,6 +63,7 @@
 {
     [self shareTentceWithTypes:@[UMShareToWechatTimeline] content:@"M-talk" imageName:@"landingpage_Background" location:nil urlResource:nil];
 }
+
 //腾讯微博
 - (IBAction)tengxunweiboBtn:(UIButton *)sender
 {
@@ -83,7 +84,6 @@
     //进入授权页面
     [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina].loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response)
     {
-
             //进入你的分享内容编辑页面
             [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"分享内嵌文字" image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *shareResponse)
             {
@@ -99,12 +99,15 @@
 //qq好友
 - (IBAction)qqBtn:(UIButton *)sender
 {
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"M-talk" image:[UIImage imageNamed:@"landingpage_Background"] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
-        if (response.responseCode == UMSResponseCodeSuccess)
-        {
-            DLog(@"分享成功！");
-        }
-    }];
+
+    NSString *urlStr =[NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/times.do?code=%@",_timeId];
+    [UMSocialQQHandler setQQWithAppId:@"100424468" appKey:@"c7394704798a158208a74ab60104f0ba" url:urlStr];
+        [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"M-talk" image:[UIImage imageNamed:@"landingpage_Background"] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+            if (response.responseCode == UMSResponseCodeSuccess)
+            {
+                DLog(@"分享成功！");
+            }
+        }];
 }
 
 //qq空间
@@ -127,9 +130,10 @@
 
 }
 
+//分享内容
 - (void)shareTentceWithTypes:(NSArray *)array content:(NSString *)content imageName:(NSString *)imageName location:(CLLocation *)location urlResource:(UMSocialUrlResource *)urlResource
 {
-    NSString *urlStr = @"http://58.210.13.58:8090/share/Share/times.do?code=T146241072671656";
+    NSString *urlStr =[NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/times.do?code=%@",_timeId];
     [UMSocialWechatHandler setWXAppId:@"wxa3e0f4e53bf74a06" appSecret:@"ed6ce4155f890517f746a2c1445dcb7e" url:urlStr];
     [[UMSocialDataService defaultDataService]  postSNSWithTypes:array content:content image:[UIImage imageNamed:imageName] location:location urlResource:urlResource presentedController:self completion:^(UMSocialResponseEntity *response){
         if (response.responseCode == UMSResponseCodeSuccess) {

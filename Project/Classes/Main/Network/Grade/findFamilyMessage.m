@@ -28,6 +28,11 @@
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     
+    if (IsEmpty(_familyId)) {
+         _familyId = @"1234";
+    }else{
+        
+    }
     NSDictionary *Para = @{@"familyId":_familyId};
     
     return @{@"Head":head,

@@ -105,10 +105,10 @@
             [self showHUDText:@"输入正确的手机号"];
             return;
         }
-//        if (_checkNumTextField.text.length < 4) {
-//            [self showHUDText:@"输入正确的验证码"];
-//            return;
-//        }
+        if (_checkNumTextField.text.length < 4) {
+            [self showHUDText:@"输入正确的验证码"];
+            return;
+        }
     [self requestCheckCode];
 }
 

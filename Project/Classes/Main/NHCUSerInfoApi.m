@@ -24,6 +24,21 @@
     NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],
                            @"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token};
+    if (IsEmpty(_myModel.adress)) {
+        _myModel.adress = @"请输入地址";
+    }
+    if (IsEmpty(_myModel.professional)){
+        _myModel.professional = @"请输入祖籍";
+    }
+    if (IsEmpty(_myModel.company)){
+        _myModel.company = @"请输入签名";
+    }
+    if (IsEmpty(_myModel.userPhoto)){
+        
+    }
+    if (IsEmpty(_myModel.nickName)){
+        _myModel.nickName = @"您还没有输入昵称";
+    }
     NSDictionary *para = @{@"nickName":_myModel.nickName,
                            @"homeAddress":_myModel.adress,
                            @"career":_myModel.professional,
@@ -32,6 +47,7 @@
                            @"birthDay":_myModel.birday,
                            @"imageName":_myModel.userPhoto
                            };
+    
     NSDictionary *body = @{@"Para":para,@"Head":head};
     return body;
 }

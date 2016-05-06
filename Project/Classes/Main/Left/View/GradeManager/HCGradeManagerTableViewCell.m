@@ -15,8 +15,6 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *codeImgView;
-@property (nonatomic, strong) UITextField *textField;
-
 @property (nonatomic, strong) UILabel *statusLabel;
 
 @end
@@ -46,29 +44,34 @@
     {
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.textField];
-        self.textField.enabled = NO;
+        if (_IsAble) {
+            self.textField.enabled = YES;
+        }else{
+            self.textField.enabled = NO;
+        }
+        
         if (indexPath.row == 0)
         {
             self.titleLabel.text = @"名片";
-            
             self.textField.placeholder = @"家庭二维码";
             [self.contentView addSubview:self.codeImgView];
         }else if (indexPath.row == 1)
         {
-            self.titleLabel.text = @"祖籍";
-            self.textField.text = _info.ancestralHome;
-            self.textField.placeholder = @"请输入祖籍";
+            self.titleLabel.text = @"家庭昵称";
+            self.textField.text = _info.familyNickName;
+            self.textField.placeholder = @"请输入家庭昵称";
         }else if (indexPath.row == 2)
         {
-            self.titleLabel.text = @"地址";
+            self.titleLabel.text = @"个性签名";
             self.textField.text = _info.contactAddr;
-            self.textField.placeholder = @"请输入家庭地址";
+            //self.textField.placeholder = @"请输入家庭地址";
+            self.textField.placeholder = @"请输入个性签名";
         }
     }else
     {
         if (indexPath.row == 0)
         {
-            self.titleLabel.text = [NSString stringWithFormat:@"家庭成员（%d）",_array.count];
+            self.titleLabel.text = [NSString stringWithFormat:@"家庭成员（%lu）",(unsigned long)_array.count];
             self.titleLabel.frame = CGRectMake(15, 10, 120, 24);
             [self.contentView addSubview:self.titleLabel];
             [self.contentView addSubview:self.statusLabel];
@@ -106,7 +109,7 @@
 {
     if (!_titleLabel)
     {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 40, 24)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 70, 24)];
         _titleLabel.textColor = DarkGrayColor;
         _titleLabel.font = [UIFont systemFontOfSize:15];
     }

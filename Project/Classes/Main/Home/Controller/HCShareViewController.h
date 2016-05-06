@@ -9,5 +9,5 @@
 #import "HCViewController.h"
 
 @interface HCShareViewController : HCViewController
-
+@property (nonatomic,copy) NSString * timeId;
 @end

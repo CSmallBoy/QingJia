@@ -25,6 +25,7 @@
 #import "NHCHomeLikeApi.h"
 #import "HCCreateGradeViewController.h"
 
+
 #define HCHomeCell @"HCHomeTableViewCell"
 
 @interface HCHomeFamilyViewController ()<HCHomeTableViewCellDelegate>{
@@ -189,6 +190,7 @@
         [rootController presentViewController:editComment animated:YES completion:nil];
     }else if (index == 1){
         HCShareViewController  *shareVC = [[HCShareViewController alloc] init];
+        shareVC.timeId = info.TimeID;
         [self presentViewController:shareVC animated:YES completion:nil];
     }else if (index == 0)
     {//     点赞触发的方法
@@ -292,6 +294,7 @@
     NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc] init];
     api.start_num = [NSString stringWithFormat:@"%d",10 * (m+1)];
     api.home_conut = [ NSString stringWithFormat:@"%d",10 * (m+2)];
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         [self.tableView.mj_footer endRefreshing];
         if (requestStatus == HCRequestStatusSuccess)
@@ -318,7 +321,6 @@
         
         if (requestStatus == 401) {
             [self showHUDText:@"您已经点过赞了,请刷新"];
-            
         }
         [self requestHomeData];
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];

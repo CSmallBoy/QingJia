@@ -58,7 +58,7 @@
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCPublishTableViewCell class] forCellReuseIdentifier:HCPublishCell];
-    //验证登陆两次
+    //验证地区
     NHCRegionApi * api  = [[NHCRegionApi alloc]init];
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
         

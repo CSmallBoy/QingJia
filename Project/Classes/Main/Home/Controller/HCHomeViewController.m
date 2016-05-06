@@ -49,21 +49,26 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     _currentIndex = scrollView.contentOffset.x / SCREEN_WIDTH;
-    //
+    //家庭信息
     findFamilyMessage *api = [[findFamilyMessage alloc]init];
     NSDictionary *dic = [readUserInfo getReadDic];
-    
     api.familyId = dic[@"UserInf"][@"createFamilyId"];
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-        
+        NSString *str = respone[@"Data"][@"FamilyInf"][@"familyNickName"];
+        if (_currentIndex == 0)
+        {
+            
+            if (IsEmpty(str)) {
+                self.title = @"时光";
+            }else{
+                self.title = [str stringByAppendingString:@"的时光"];
+            }
+        }else if(_currentIndex == 1)
+        {
+            self.title = @"XXXX的家族";
+        }
     }];
-    if (_currentIndex == 0)
-    {
-        self.title = @"时光";
-    }else if(_currentIndex == 1)
-    {
-        self.title = @"XXXX的家族";
-    }
+   
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset

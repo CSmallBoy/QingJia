@@ -206,7 +206,7 @@
 {
     if (!_rightItem)
     {
-        _rightItem = [[UIBarButtonItem alloc] initWithImage:OrigIMG(@"time_but_right Sideba_Clock") style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem)];
+        _rightItem = [[UIBarButtonItem alloc]initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem)];
     }
     return _rightItem;
 }

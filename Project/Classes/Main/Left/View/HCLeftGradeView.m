@@ -40,7 +40,7 @@
 {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserPhoto:) name:@"changeUserPhoto" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserPhoto2:) name:@"修改家庭图片" object:nil];
     self = [super initWithFrame:frame];
     
     if (self)
@@ -66,7 +66,7 @@
             
             self.gradeName.text =[HCAccountMgr manager].loginInfo.TrueName;
             self.nickName.hidden = YES;
-            self.familyButton.hidden = YES;
+            self.familyButton.hidden = NO;
             self.headButton.hidden = YES;
             [self addSubview:self.smallView];
             
@@ -108,7 +108,7 @@
             {
                 // 显示创建过家庭的侧边
                 [self requestFamilyMessage];
-                [self addSubview:self.joinFamilyBtn];
+                //[self addSubview:self.joinFamilyBtn];
             }
             else
             {
@@ -142,7 +142,11 @@
 }
 
 #pragma mark - private methods
-
+- (void)changeUserPhoto2:(NSNotification *)noti{
+    NSDictionary *dic = noti.userInfo;
+    UIImage*image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dic[@"photo"] :kkFamail]]];
+    [self.gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
+}
 // 改变用户头像
 -(void)changeUserPhoto:(NSNotification *)noti
 {
@@ -300,8 +304,11 @@
 - (UIButton *)familyButton{
     if (!_familyButton) {
         _familyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_familyButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
-        [_familyButton setTitle:@"我的家族" forState:UIControlStateNormal];
+        //家族时间[_familyButton addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
+        [_familyButton addTarget:self action:@selector(toJoinFamily) forControlEvents:UIControlEventTouchUpInside];
+        //[_familyButton setTitle:@"我的家族" forState:UIControlStateNormal];
+        //加入家庭
+        [_familyButton setTitle:@"加入家庭" forState:UIControlStateNormal];
         _familyButton.frame = CGRectMake(self.nickName.frame.origin.x+10, HEIGHT(self)-130+30, WIDTH(self)*0.7, 40);
         [_familyButton addSubview:self.setImgView2];
         _familyButton.tag = HCLeftGradeViewFamily;
@@ -387,14 +394,14 @@
         [button1 addTarget:self action:@selector(createFamily) forControlEvents:UIControlEventTouchUpInside];
         [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        button2.frame = CGRectMake(0, 60, 100, 20);
-        [button2 setTitle:@"加入家庭" forState:UIControlStateNormal];
-        [button2 addTarget:self action:@selector(toJoinFamily) forControlEvents:UIControlEventTouchUpInside];
-        [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
+//        UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button2.frame = CGRectMake(0, 60, 100, 20);
+//        [button2 setTitle:@"加入家庭" forState:UIControlStateNormal];
+//        [button2 addTarget:self action:@selector(toJoinFamily) forControlEvents:UIControlEventTouchUpInside];
+//        [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        
         [_smallView  addSubview:button1];
-        [_smallView addSubview:button2];
+        //[_smallView addSubview:button2];
     }
     return _smallView;
 }

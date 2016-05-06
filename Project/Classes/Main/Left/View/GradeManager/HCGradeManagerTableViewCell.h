@@ -22,7 +22,11 @@
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) NSArray *array;
 @property (nonatomic,strong) UIImage *image;
+@property (nonatomic, strong) UITextField *textField;
 @property (nonatomic,strong) HCCreateGradeInfo *info;
 @property (nonatomic, weak) id<HCGradeManagerTableViewCellDelegate>delegate;
+
+@property (nonatomic,assign) BOOL IsAble;
+@property (nonatomic,assign) BOOL IsEditingPhoto;
 
 @end
