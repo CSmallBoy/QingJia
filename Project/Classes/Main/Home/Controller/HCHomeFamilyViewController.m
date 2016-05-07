@@ -304,6 +304,7 @@
         [self.tableView.mj_footer endRefreshing];
         if (requestStatus == HCRequestStatusSuccess)
         {
+            
             [self.dataSource addObjectsFromArray:array];
             [self writeLocationData:array];
             [self.tableView reloadData];
