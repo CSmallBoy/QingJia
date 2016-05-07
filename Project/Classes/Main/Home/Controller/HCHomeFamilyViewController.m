@@ -281,11 +281,16 @@
     api.start_num = @"0";
     api.home_conut = @"10";
     [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
-        [self.tableView.mj_header endRefreshing];
-        //[self.dataSource removeAllObjects];
-        [self writeLocationData:Data];
-        [self.dataSource addObjectsFromArray:Data];
-        [self.tableView reloadData];
+        if (resquestStatus == HCRequestStatusSuccess) {
+            [self.tableView.mj_header endRefreshing];
+            [self.dataSource removeAllObjects];
+            [self writeLocationData:Data];
+            [self.dataSource addObjectsFromArray:Data];
+            [self.tableView reloadData];
+        }else{
+            [self showHUDError:message];
+        }
+      ;
     }];
     _baseRequest = api;
 }
@@ -295,7 +300,6 @@
     NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc] init];
     api.start_num = [NSString stringWithFormat:@"%d",10 * (m+1)];
     api.home_conut = [ NSString stringWithFormat:@"%d",10 * (m+2)];
-    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
         [self.tableView.mj_footer endRefreshing];
         if (requestStatus == HCRequestStatusSuccess)
@@ -315,19 +319,15 @@
 - (void)requestLikeCount:(HCHomeInfo *)info indexPath:(NSIndexPath *)indexPath
 {
     _inter = indexPath;
-    
     NHCHomeLikeApi *api = [[NHCHomeLikeApi alloc]init];
     api.TimeID = info.TimeID;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-        
         if (requestStatus == 401) {
             [self showHUDText:@"您已经点过赞了,请刷新"];
         }
         [self requestHomeData];
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-        
     }];
-    
     //    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
     //    api.TimesId = info.KeyId;
     //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {

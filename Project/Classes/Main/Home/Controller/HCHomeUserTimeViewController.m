@@ -259,6 +259,8 @@
         if (requestStatus == 401) {
             [self showHUDText:@"您已经点过赞了,请刷新"];
             
+        }if(requestStatus == HCRequestStatusSuccess){
+            [self showHUDText:@"点赞成功"];
         }
         [self requestHomeData];
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
@@ -327,7 +329,7 @@
         if (resquestStatus == HCRequestStatusSuccess)
         {
             [self.dataSource addObjectsFromArray:Data];
-            [self writeLocationData:Data];
+            //[self writeLocationData:Data];
             [self.tableView reloadData];
             a ++;
         }else
