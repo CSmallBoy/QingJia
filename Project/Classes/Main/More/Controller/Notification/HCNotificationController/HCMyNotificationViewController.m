@@ -45,14 +45,12 @@
 
 - (void)viewDidLoad
 {
-    //  呼·应-    --------与我相关--------
+    //  呼·应---------与我相关--------
     [super viewDidLoad];
     self.myTableView.tableHeaderView = HCTabelHeadView(30);
     [self.myTableView.tableHeaderView addSubview:self.seatchBar];
     [self requestData];
-    //
-    NSLog(@"123");
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
     
     [self.view addSubview:self.myTableView];
@@ -391,9 +389,9 @@
         
     }];
     
-    HCNotificationCenterInfo *info = [[HCNotificationCenterInfo alloc]init];
-    
-    [self.dataSource addObject:info];
+//    HCNotificationCenterInfo *info = [[HCNotificationCenterInfo alloc]init];
+//    
+//    [self.dataSource addObject:info];
 }
 
 -(void)requestMoreData

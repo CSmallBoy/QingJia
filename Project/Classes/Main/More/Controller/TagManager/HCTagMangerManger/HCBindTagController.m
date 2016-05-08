@@ -240,7 +240,7 @@
         _nomalLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 260, SCREEN_WIDTH, 20)];
         _nomalLabel.textColor = [UIColor blackColor];
         _nomalLabel.textAlignment = NSTextAlignmentCenter;
-        _nomalLabel.text = @"选择绑定为标签试用者";
+        _nomalLabel.text = @"选择绑定为标签使用者";
     }
     return _nomalLabel;
 }

@@ -24,6 +24,8 @@
 
 #import "MJRefresh.h"
 
+#import "HCPromisedReportController.h"
+
 @interface HCOtherNotificationViewController ()<UISearchBarDelegate,SCSwipeTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *btnArr;
@@ -72,8 +74,18 @@
 
 //点击 侧滑出来的button
 - (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath{
-
-    
+    //删除
+    if (tag == 0)
+    {
+        
+    }
+    //举报
+    if (tag == 1)
+    {
+        HCPromisedReportController *reportVC = [[HCPromisedReportController alloc]init];
+        [self.navigationController pushViewController:reportVC animated:YES];
+    }
+    //收藏
     if (tag == 2) {
         
         HCNotificationCenterInfo *info = self.dataSource[indexpath.row];

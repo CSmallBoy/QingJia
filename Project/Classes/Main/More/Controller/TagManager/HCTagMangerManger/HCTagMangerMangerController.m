@@ -136,7 +136,7 @@
         CGFloat labelW =210/375.0*SCREEN_WIDTH;
         CGFloat labelH = 30/667.0 *SCREEN_HEIGHT;
         _tagUserLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-labelW/2, 595/667.0 *SCREEN_HEIGHT, labelW, labelH)];
-        _tagUserLabel.text = @"标签试用者管理";
+        _tagUserLabel.text = @"标签使用者管理";
         _tagUserLabel.textColor = [UIColor blackColor];
         _tagUserLabel.textAlignment = NSTextAlignmentCenter;
     }

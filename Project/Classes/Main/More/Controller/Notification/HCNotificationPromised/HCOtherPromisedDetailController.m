@@ -246,7 +246,20 @@
         
     }];
     
+    
+    //长按将图片存储到相册
+//    UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(saveImageToPhotoAlbum:)];
+//    [bigImageView addGestureRecognizer:longTap];
+    
 }
+
+//- (void)saveImageToPhotoAlbum:(UILongPressGestureRecognizer *)tap
+//{
+//    UIImageView *imageView = (UIImageView *)tap.view;
+//    UIImageWriteToSavedPhotosAlbum(imageView.image, nil, nil, nil);
+//    
+//}
+
 // 点击移除图片大图
 -(void)removeBigImage:(UITapGestureRecognizer *)tap
 {
@@ -506,7 +519,7 @@
 {
     if (!_messageBtn)
     {
-        _messageBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"Eye" WithImageWidth:30 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"留言", nil) WithFontSize:14 WithFontColor:OrangeColor WithGap:10];
+        _messageBtn=[[HCButtonItem alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3, 2, SCREEN_WIDTH/3-2, 44) WithImageName:@"Eye" WithImageWidth:30 WithImageHeightPercentInItem:.7 WithTitle:NSLocalizedString(@"发现线索", nil) WithFontSize:14 WithFontColor:OrangeColor WithGap:10];
         [_messageBtn addTarget:self action:@selector(SendMessage) forControlEvents:UIControlEventTouchUpInside];
     }
     return _messageBtn;

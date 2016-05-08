@@ -61,7 +61,7 @@
     
     self.btnArr = @[self.button1,self.button2,self.button3];
     
-    [self addSubview:self.redTextField];
+//    [self addSubview:self.redTextField];
 
 }
 //点击了头像
@@ -102,7 +102,7 @@
     [self addSubview:self.commentLabel];
     
     self.btnArr = @[self.button1,self.button2,self.button3];
-    [self addSubview:self.redTextField];
+//    [self addSubview:self.redTextField];
     
     _commnetFrameInfo = commnetFrameInfo;
 
@@ -118,7 +118,7 @@
     self.nickLabel.text = commnetFrameInfo.commentInfo.nickName;
     
     self.timeLabel.frame = commnetFrameInfo.backLabelFrame;
-    self.timeLabel.text = [commnetFrameInfo.commentInfo.createTime substringToIndex:10];
+    self.timeLabel.text = [commnetFrameInfo.commentInfo.createTime substringToIndex:16];
     
     self.commentLabel.frame = commnetFrameInfo.commentLabelFrame;
     self.commentLabel.text = commnetFrameInfo.commentInfo.content;
@@ -148,13 +148,13 @@
         NSURL *url = [readUserInfo originUrl:arr[i] :kkUser];
         UIImageView *imageView= [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, button.frame.size.width, button.frame.size.height)];
         [imageView sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
-        imageView.tag ==100;
+        imageView.tag = 100;
         [button addSubview:imageView];
         
         [self addSubview:button];
 
     }
-    self.redTextField.frame = commnetFrameInfo.readTextFildFrame;
+//    self.redTextField.frame = commnetFrameInfo.readTextFildFrame;
 
 
 }

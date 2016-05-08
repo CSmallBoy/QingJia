@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"标签试用者管理";
+    self.title = @"标签使用者管理";
     [self  setupBackItem];
 
     
@@ -120,6 +120,7 @@
         {
             [self.dataArr removeObject:self.deleteInfo];
             [self.myTableView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshObjectData" object:nil];
         }
         else
         {

@@ -17,7 +17,10 @@
 #import "HCClosePromisedApi.h"
 
 #import "HCButtonItem.h"
-@interface HCMyPromisedDetailController ()<SKStoreProductViewControllerDelegate>
+
+#import "UMSocial.h"
+
+@interface HCMyPromisedDetailController ()<SKStoreProductViewControllerDelegate, UMSocialUIDelegate>
 
 @property (nonatomic,strong) UIImageView    *sexIV;
 @property (nonatomic,strong) UIImageView   *imageView;
@@ -143,8 +146,23 @@
 // 跳转到分享界面
 -(void)toShoreVC:(UIButton *)button
 {
-    
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"56971c14e0f55af6e5001da1"
+                                      shareText:nil
+                                     shareImage:nil
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToQzone,UMShareToQQ,nil]
+                                       delegate:self];
 
+}
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
 }
 
 // 跳转到发现线索界面

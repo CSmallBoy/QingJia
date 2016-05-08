@@ -27,13 +27,15 @@
 #import "HCCommentListApi.h"
 #import "HCReplyLineApi.h"
 
+#import "IQKeyboardManager.h"
+
 @interface HCPromisedCommentController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     NSInteger   _photoCount;
     UIButton  * _addPhotoBtn;
     CGRect      _startFrame;
     BOOL        _startEdit;
-    CGFloat     _JianpanH;
+//    CGFloat     _JianpanH;
     BOOL        _isSelfID;
    
 }
@@ -44,15 +46,8 @@
 @property (nonatomic,strong) UIButton      *sendBtn;
 @property (nonatomic,strong) UITableView   *myTableView;
 @property (nonatomic,strong) UITextField   *textField;
-@property (nonatomic,strong) UITextField      *inputViewText;
+
 @property (nonatomic,strong) NSIndexPath   *subIndexPath;
-
-@property (nonatomic,assign) CGFloat       oldJianpanH;
-@property (nonatomic,assign) BOOL          isFirst;
-
-@property (nonatomic,strong) UIView * navView;// 假导航
-@property (nonatomic,strong) UIView *statusBarView;// 状态栏
-
 
 @property (nonatomic,strong) NSMutableArray    *images;
 
@@ -62,10 +57,6 @@
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) NSMutableArray *imgStrArr;
 
-@property  (nonatomic,strong)  UIScrollView * Clearview;
-
-@property  (nonatomic,strong)  UITableView *smallTableView;
-
 @end
 
 @implementation HCPromisedCommentController
@@ -73,61 +64,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //处理导航栏消失问题
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.view = scrollView;
+    //解决键盘与textField间距问题
+    [[IQKeyboardManager sharedManager]setKeyboardDistanceFromTextField:7];
+    
     self.view.backgroundColor = kHCBackgroundColor;
     self.title = @"发现线索";
-    _photoCount = 0;
     [self requestData];
     self.automaticallyAdjustsScrollViewInsets = NO;
-   
-    
-    _Clearview  = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
-    _Clearview.scrollEnabled = NO;
-    [_Clearview addSubview:self.inputView];
-    [self.view addSubview:_Clearview];
+
     [self.view addSubview:self.myTableView];
-    
-    
+    [self.view addSubview:self.inputView];
     [self setupBackItem];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-    self.isFirst = YES;
-    
-    
 }
+#pragma mark - 
 
--(void)customBtnClick:(UIButton *)button
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.view endEditing:YES];
 }
-
-- (void)keyboardWillShow:(NSNotification *)notif {
-    
-    CGRect rect = [[notif.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat y = rect.origin.y;
-    
-    CGRect rect1 = [self.inputView convertRect:self.inputView.bounds toView:self.view];
-    CGFloat height = rect1.origin.y;
-    NSLog(@"------------------%f---------------",height);
-    self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-(SCREEN_HEIGHT- height)-64);
-
-   
-    
-    NSLog(@"------------------%f---------------",y);
-}
-
-// 键盘收起来
-- (void)keyboardWillHide:(NSNotification *)notif {
- self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-40-64);
-    
-}
-
 
 #pragma mark --- tableViewDelegate
 
@@ -144,122 +102,55 @@
     }
     else
     {
-        if ([info.toId isEqualToString:self.mySelfId]) {
-            HCPromisedCommentCell *cell = [HCPromisedCommentCell cellWithTableView:tableView];
-            cell.indexPath = indexPath;
-            cell.block = ^(UIButton *button){
-                
-                if (_startEdit)
+        HCPromisedCommentCell *cell = [HCPromisedCommentCell cellWithTableView:tableView];
+        cell.indexPath = indexPath;
+        cell.block = ^(UIButton *button)
+        {
+            if (_startEdit)
+            {
+                [self.view endEditing:YES];
+                [UIView animateWithDuration:0.3 animations:^{
+                        
+                    self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                }completion:^(BOOL finished)
                 {
-                    [self.view endEditing:YES];
+                    [self.photoView removeFromSuperview];
+                }];
+            }
+            else
+            {
+                UIImageView *imageview = button.subviews[1];
+                _startFrame = [imageview convertRect:imageview.bounds toView:self.view];
+                UIImageView *selfIV = [[UIImageView alloc]initWithFrame:_startFrame];
+                selfIV.image = imageview.image;
+                selfIV.backgroundColor = [UIColor blackColor];
+                selfIV.userInteractionEnabled = YES;
                     
-                    [UIView animateWithDuration:0.3 animations:^{
+                UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImageView:)];
+                [selfIV addGestureRecognizer:tap];
+                selfIV.contentMode = UIViewContentModeScaleAspectFit;
+                [self.view addSubview:selfIV];
+                self.navigationController.navigationBarHidden = YES;
+                [UIView animateWithDuration:0.4 animations:^{
                         
-                        self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                    }completion:^(BOOL finished) {
-                        [self.photoView removeFromSuperview];
-                    }];
-                }else
-                {
-                    UIImageView *imageview = button.subviews[1];
-                    _startFrame = [imageview convertRect:imageview.bounds toView:self.view];
-                    UIImageView *selfIV = [[UIImageView alloc]initWithFrame:_startFrame];
-                    selfIV.image = imageview.image;
-                    selfIV.backgroundColor = [UIColor blackColor];
-                    selfIV.userInteractionEnabled = YES;
-                    
-                    UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImageView:)];
-                    [selfIV addGestureRecognizer:tap];
-                    selfIV.contentMode = UIViewContentModeScaleAspectFit;
-                    [self.view addSubview:selfIV];
-                    self.navigationController.navigationBarHidden = YES;
-                    [UIView animateWithDuration:0.4 animations:^{
+                    selfIV.frame = self.view.frame;
                         
-                        selfIV.frame = self.view.frame;
-                        
-                    }];
-                }
-            };
-            cell.subBlock = ^(NSIndexPath *indexPath1){
-                
-                [self.textField becomeFirstResponder];
-                self.subIndexPath = indexPath1;
-            };
-            
+                }];
+            }
+        };
+//            cell.subBlock = ^(NSIndexPath *indexPath1)
+//        {
+//                [self.textField becomeFirstResponder];
+//                self.subIndexPath = indexPath1;
+//            };
+        
             cell.commnetFrameInfo = self.dataSource[indexPath.row];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
-        }
-        else
-        {
-            HCPromisedSubCommentCell *cell = [HCPromisedSubCommentCell cellWithTableView:tableView];
-            cell.commnetFrameInfo = frameInfo;
-            cell.indexPath = indexPath;
-            cell.subBlock = ^(NSIndexPath *indexPath1){
-                
-                [self.textField becomeFirstResponder];
-                self.subIndexPath = indexPath1;
-            };
-            cell.block = ^(UIButton *button){
-                
-                if (_startEdit)
-                {
-                    [self.view endEditing:YES];
-                    
-                    [UIView animateWithDuration:0.3 animations:^{
-                        
-//                        self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                        self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
-                        self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44-64, SCREEN_WIDTH, 44);
-                        self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
-                }];
-                }else
-                {
-                    UIImageView *imageview = button.subviews[1];
-                    _startFrame = [imageview convertRect:imageview.bounds toView:self.view];
-                    UIImageView *selfIV = [[UIImageView alloc]initWithFrame:_startFrame];
-                    selfIV.image = imageview.image;
-                    selfIV.backgroundColor = [UIColor blackColor];
-                    selfIV.userInteractionEnabled = YES;
-                    
-                    UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImageView:)];
-                    [selfIV addGestureRecognizer:tap];
-                    selfIV.contentMode = UIViewContentModeScaleAspectFit;
-                    [self.view addSubview:selfIV];
-                    self.navigationController.navigationBarHidden = YES;
-                    [UIView animateWithDuration:0.4 animations:^{
-                        
-                        selfIV.frame = self.view.frame;
-                        
-                    }];
-                }
-            };
-            
-            cell.subBlock = ^(NSIndexPath *indexPath1){
-                
-                [self.textField becomeFirstResponder];
-                self.subIndexPath = indexPath1;
-            };
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-            
-        }
-
     }
         
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-
-    return 1;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;
-}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -283,22 +174,7 @@
     return 1;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.view endEditing:YES];
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
-        self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44-64, SCREEN_WIDTH, 44);
-        self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+ SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
-    }];
-    
-}
-
 #pragma mark --- textFieldDelegate
-
-
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -308,17 +184,11 @@
         [self.images removeAllObjects];
         [view removeFromSuperview];
     }
-    
-    
-//    [self.photoView removeFromSuperview];
-//    self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     _startEdit = NO;
-
-   
 }
 
 #pragma mark ---- UIActionSheetDelegate
@@ -340,8 +210,10 @@
         case 1:
         {
             ZLPhotoPickerViewController *zlpVC = [[ZLPhotoPickerViewController alloc]init];
+            zlpVC.maxCount = 3;
             zlpVC.callBack = ^(NSArray *arr){
-                
+                [self.images removeAllObjects];
+                [self.photoView removeAllSubviews];
                 for (ZLPhotoAssets *zl in arr)
                 {
                     UIImage  *image = zl.originImage;
@@ -359,11 +231,10 @@
                 }
                 [UIView animateWithDuration:0.05 animations:^{
                     
-                    self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-40-SCREEN_WIDTH/3-20-64);
-                    self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-64-SCREEN_WIDTH/3-10-44, SCREEN_WIDTH, 44);
+                    self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-44-SCREEN_WIDTH/3-64);
+                    self.inputView.frame = CGRectMake(0, CGRectGetMaxY(self.myTableView.frame), SCREEN_WIDTH, 44);
                     
                 }completion:^(BOOL finished) {
-                    
                     [self.view addSubview:self.photoView];
                 }];
             };
@@ -380,6 +251,8 @@
 
 -(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [self.images removeAllObjects];
+    [self.photoView removeAllSubviews];
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     [self.images addObject: image];
     
@@ -396,17 +269,17 @@
     
     [UIView animateWithDuration:0.05 animations:^{
         
-        self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-40-SCREEN_WIDTH/3-20-64);
-        self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-64-SCREEN_WIDTH/3-10-44, SCREEN_WIDTH, 44);
+        self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-44-SCREEN_WIDTH/3-64);
+        self.inputView.frame = CGRectMake(0, CGRectGetMaxY(self.myTableView.frame), SCREEN_WIDTH, 44);
         
     }completion:^(BOOL finished) {
         
         [self.view addSubview:self.photoView];
     }];
     
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+SCREEN_WIDTH/3 * (_photoCount-1), 10,  SCREEN_WIDTH/3-20, SCREEN_WIDTH/3-30)];
-    imageView.image = image;
-    [self.photoView addSubview:imageView];
+//    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+SCREEN_WIDTH/3 * (_photoCount-1), 10,  SCREEN_WIDTH/3-20, SCREEN_WIDTH/3-30)];
+//    imageView.image = image;
+//    [self.photoView addSubview:imageView];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -429,10 +302,11 @@
     NSInteger index = view.tag-100;
     [self.images removeObjectAtIndex:index];
     
-    for (UIView *view in self.photoView.subviews)
-    {
-        [view removeFromSuperview];
-    }
+//    for (UIView *view in self.photoView.subviews)
+//    {
+//        [view removeFromSuperview];
+//    }
+    [self.photoView removeAllSubviews];
     
     for (int i = 0; i< self.images.count; i++)
     {
@@ -450,10 +324,11 @@
         
         [UIView animateWithDuration:0.3 animations:^{
             
-            //                        self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
-            self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44-64, SCREEN_WIDTH, 44);
-            self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
+            // self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-44-64);
+            self.inputView.frame = CGRectMake(0, CGRectGetMaxY(self.myTableView.frame), SCREEN_WIDTH, 44);
+//            self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
+            [self.photoView removeFromSuperview];
         }];
 
 
@@ -495,25 +370,33 @@
 // 点击了发送按钮
 -(void)sendBtnClick:(UIButton *)button
 {
-    
-    
-    if (self.textField.text.length == 0 ) {
-        
-        [self showHUDText:@"请输入文字或者上传图片"];
-        return;
-        
-    }
-    if (self.images.count>0) {
-        // 先上传图片
-        [self upLoadImages:1];
+    if (self.textField.text.length == 0 )
+    {
+        if (self.images.count>0) {
+            // 先上传图片
+            self.textField.text = @"暂无描述";
+            [self upLoadImages:1];
+            
+        }
+        else
+        {
+            [self showHUDText:@"请输入文字或者上传图片"];
+            return;
+        }
         
     }
     else
     {
-        [self upLoadData];
+        if (self.images.count>0) {
+            // 先上传图片
+            [self upLoadImages:1];
+            
+        }
+        else
+        {
+            [self upLoadData];
+        }
     }
-    
-    
 
 }
 
@@ -522,7 +405,7 @@
 - (UIView *)inputView
 {
     if(!_inputView){
-        _inputView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-44-64, SCREEN_WIDTH, 44)];
+        _inputView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.myTableView.frame), SCREEN_WIDTH, 44)];
         _inputView.backgroundColor = kHCNavBarColor;
         [_inputView addSubview:self.sendBtn];
         [_inputView addSubview:self.textField];
@@ -535,22 +418,11 @@
 - (UITableView *)myTableView
 {
     if(!_myTableView){
-        _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44) style:UITableViewStyleGrouped];
+        _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-44 -64) style:UITableViewStylePlain];
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
     }
     return _myTableView;
-}
-
-
-- (UITableView *)smallTableView
-{
-    if(!_smallTableView){
-        _smallTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,64 , SCREEN_WIDTH, SCREEN_HEIGHT-64-44-_JianpanH) style:UITableViewStyleGrouped];
-        _smallTableView.delegate = self;
-        _smallTableView.dataSource = self;
-    }
-    return _smallTableView;
 }
 
 
@@ -593,7 +465,7 @@
         _photoView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT-SCREEN_WIDTH/3,SCREEN_WIDTH, SCREEN_WIDTH/3)];
         _photoView.backgroundColor = [UIColor whiteColor];
         UIButton *button  = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button addTarget:self action:@selector(addPhoto:) forControlEvents:UIControlEventTouchUpInside ];
+        [button addTarget:self action:@selector(addPhoto:) forControlEvents:UIControlEventTouchUpInside];
         button.frame = CGRectMake(0, 0, SCREEN_WIDTH/3, SCREEN_WIDTH/3);
         [button setImage:IMG(@"Classinfo_but_plus") forState:UIControlStateNormal];
         _addPhotoBtn = button;
@@ -630,17 +502,17 @@
 
 
 
-- (UITextField *)inputViewText
-{
-    if(!_inputViewText){
-        _inputViewText = [[UITextField alloc]initWithFrame:CGRectMake(10,7,SCREEN_WIDTH-120, 30)];
-        _inputViewText.backgroundColor = [UIColor whiteColor];
-        ViewRadius(_textField, 4);
-        _inputViewText.delegate = self;
-        _inputViewText.backgroundColor = [UIColor yellowColor];
-    }
-    return _inputViewText;
-}
+//- (UITextField *)inputViewText
+//{
+//    if(!_inputViewText){
+//        _inputViewText = [[UITextField alloc]initWithFrame:CGRectMake(10,7,SCREEN_WIDTH-120, 30)];
+//        _inputViewText.backgroundColor = [UIColor whiteColor];
+//        ViewRadius(_textField, 4);
+//        _inputViewText.delegate = self;
+//        _inputViewText.backgroundColor = [UIColor yellowColor];
+//    }
+//    return _inputViewText;
+//}
 
 
 
@@ -648,13 +520,11 @@
 
 -(void)requestData
 {
-    
-    
     HCCommentListApi *api = [[HCCommentListApi alloc]init];
     api.callId = self.callId;
     
-    api._start = @"0";
-    api._count = @"20";
+    api._start = @"21";
+    api._count = @"2";
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        
@@ -664,22 +534,22 @@
             
             NSArray *array = respone[@"Data"][@"rows"];
             
-            NSDictionary *dic = [array lastObject];
-            HCPromisedCommentInfo *info = [HCPromisedCommentInfo mj_objectWithKeyValues:dic];
-            self.mySelfId = info.toId;
+//            NSDictionary *dic = [array lastObject];
+//            HCPromisedCommentInfo *info = [HCPromisedCommentInfo mj_objectWithKeyValues:dic];
+//            self.mySelfId = info.toId;
             
             for (NSDictionary *dic in array) {
                 
                 
                  HCPromisedCommentFrameInfo *frameInfo = [[HCPromisedCommentFrameInfo alloc]init];
                 HCPromisedCommentInfo *info = [HCPromisedCommentInfo mj_objectWithKeyValues:dic];
-                info.oldId = self.mySelfId;
+//                info.oldId = self.mySelfId;
                 frameInfo.commentInfo = info;
                 
                 [self.dataSource addObject:frameInfo];
                 
             }
-            
+             
             
             
             
@@ -737,8 +607,8 @@
         [UIView animateWithDuration:0.3 animations:^{
             
             self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
-            self.inputView.frame = CGRectMake(0, SCREEN_HEIGHT-44-64, SCREEN_WIDTH, 44);
-            self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+ SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
+            self.inputView.frame = CGRectMake(0, CGRectGetMaxY(self.myTableView.frame), SCREEN_WIDTH, 44);
+            [self.photoView removeFromSuperview];
         }];
         
     }];
