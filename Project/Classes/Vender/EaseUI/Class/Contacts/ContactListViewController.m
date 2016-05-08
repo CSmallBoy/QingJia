@@ -43,6 +43,7 @@
 
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
 @property (strong, nonatomic) NSMutableArray *contactsSource;
+//用户信息数据
 @property (strong, nonatomic) NSMutableArray *UserDataSource;
 @property (strong, nonatomic) HCEaseUserInfo *model_info;
 @property (nonatomic) NSInteger unapplyCount;
@@ -60,7 +61,7 @@
     
     _contactsSource = [NSMutableArray array];
     _sectionTitles = [NSMutableArray array];
-    _UserDataSource = [NSMutableArray array];
+    self.UserDataSource = [NSMutableArray array];
     [self searchController];
 
     [self reloadDataSource];
@@ -210,6 +211,9 @@
     {
         cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    
+    
+    
     if (indexPath.section == 0)
     {
         if (indexPath.row == 0)
@@ -230,6 +234,8 @@
         
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
          EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
+        
+        
 //        NSArray *userSection = [self.UserDataSource objectAtIndex:(indexPath.section - 1)];
 //        _model_info = [userSection objectAtIndex:indexPath.row];
 //        UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy.username];
@@ -239,17 +245,25 @@
 //            model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
 //        }
         //联系人的用户头像
-        NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
-        api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-            model.nickname = dict[@"nickName"];
-            UIImageView *image = [[UIImageView alloc]init];
-            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-            model.avatarImage = image.image;
-            cell.model = model;
-        }];
-//        cell.model.nickname = _model_info.nickName;
-//        cell.model.avatarImage = _model_info.userImage;
+       //   5.7号注释
+//        
+//        NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+//        api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+//        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+//            model.nickname = dict[@"nickName"];
+//            UIImageView *image = [[UIImageView alloc]init];
+//            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+//            model.avatarImage = image.image;
+//            cell.model = model;
+//        }];
+        
+        HCEaseUserInfo *model2 = self.UserDataSource[indexPath.row];
+        model.avatarImage = model2.userImage;
+        model.nickname = model2.nickName;
+//        cell.model.nickname = model2.nickName;
+//        cell.model.avatarImage = model2.userImage;
+       
+        cell.model = model;
         cell.indexPath = indexPath;
         cell.delegate = self;
 
@@ -635,16 +649,14 @@
     for (EMBuddy *buddy in buddyList) {
         if (![blockList containsObject:buddy.username])
         {
-//            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
-//            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-//               
-//                _model_info.nickName = dict[@"nickName"];
-//                UIImageView *image = [[UIImageView alloc]init];
-//                [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-//                _model_info.userImage = image.image;
-//                [self.UserDataSource addObject:_model_info];
-//            }];
+            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                HCEaseUserInfo * model= [[HCEaseUserInfo alloc]init];
+                model.nickName = dict[@"nickName"];
+                model.userImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
+                [self.UserDataSource addObject:model];
+            }];
             [self.contactsSource addObject:buddy];
         }
     }

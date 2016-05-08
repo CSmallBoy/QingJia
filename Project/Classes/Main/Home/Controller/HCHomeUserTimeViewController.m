@@ -323,7 +323,7 @@
     NHCMySelfTimeListApi *Api = [[NHCMySelfTimeListApi alloc]init];
     Api.MyselfuserID = _userID;
     Api.start_num = [NSString stringWithFormat:@"%d",10 * (a+1)];
-    Api.home_conut = [ NSString stringWithFormat:@"%d",10 * (a+2)];
+    Api.home_conut = [ NSString stringWithFormat:@"%d",10];
     [Api startRequest:^(HCRequestStatus resquestStatus, NSString *message, id Data) {
         [self.tableView.mj_footer endRefreshing];
         if (resquestStatus == HCRequestStatusSuccess)
