@@ -50,7 +50,8 @@
     self.myTableView.tableHeaderView = HCTabelHeadView(30);
     [self.myTableView.tableHeaderView addSubview:self.seatchBar];
     [self requestData];
-    
+    //
+    NSLog(@"123");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
     
