@@ -74,6 +74,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"refreshObjectData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closePromised) name:@"closePromised" object:nil];
     
+
+#warning 备注:此处需要完善,雷达是否显示应该是后台给数据来判断是否关闭了呼,而不是在本地储存呼的状态进行判断
     NSString *str  =  [[NSUserDefaults standardUserDefaults] objectForKey:@"showRadar"];
     
     if ([str isEqualToString:@"1"]) {
@@ -101,7 +103,7 @@
         [_radarView removeFromSuperview];
         CGFloat  headerViewW =  _headBtn.frame.size.width;
         WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*3 , headerViewW*3)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
-        CGFloat  headerViewY = _bgImage.frame.origin.y-20;
+        CGFloat  headerViewY = _bgImage.frame.origin.y-15;
         radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
         _radarView = radarView;
         _radarView.userInteractionEnabled = NO;
@@ -134,7 +136,7 @@
         [_radarView removeFromSuperview];
         CGFloat  headerViewW =  _headBtn.frame.size.width;
         WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*3 , headerViewW*3)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
-        CGFloat  headerViewY = _bgImage.frame.origin.y-20;
+        CGFloat  headerViewY = _bgImage.frame.origin.y-15;
         radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
         _radarView = radarView;
         _radarView.userInteractionEnabled = NO;
@@ -169,7 +171,7 @@
     [_radarView removeFromSuperview];
     CGFloat  headerViewW =  _headBtn.frame.size.width;
     WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*3 , headerViewW*3)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
-    CGFloat  headerViewY = _bgImage.frame.origin.y-20;
+    CGFloat  headerViewY = _bgImage.frame.origin.y-15;
     radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
     _radarView = radarView;
     _radarView.userInteractionEnabled = NO;
@@ -218,7 +220,7 @@
     HCNewTagInfo *info =self.dataArr[indexPath.row];
     cell.info = info;
     cell.buttonW = self.smallTableView.frame.size.width;
-    cell.buttonH = self.smallTableView.frame.size.height/5;
+    cell.buttonH = (36/668.0)*SCREEN_HEIGHT;
     cell.block = ^(NSString  *buttonTitle,HCNewTagInfo *info)
     {
         if ([buttonTitle isEqualToString:@"+ 新增录入"]) {
@@ -245,7 +247,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.smallTableView.frame.size.height/4;
+    return (52/668.0)*SCREEN_HEIGHT;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -258,9 +260,9 @@
 -(void)createUI
 {
    //背景图片
-    _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320/384.0*(382/668.0)*SCREEN_HEIGHT,(382/668.0)*SCREEN_HEIGHT)];
+    _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 0.8*SCREEN_WIDTH,(382/668.0)*SCREEN_HEIGHT)];
     _bgImage.userInteractionEnabled = YES;
-    _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+45);
+    _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+30);
     _bgImage.image = [UIImage imageNamed:@"yihubaiying_Background.png"];
     _bgImage.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:_bgImage];
@@ -268,7 +270,7 @@
     //顶部图片
     CGFloat  headerViewW =  115/383.0*_bgImage.frame.size.height;
     UIButton *headerView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, headerViewW , headerViewW)];
-    CGFloat  headerViewY = _bgImage.frame.origin.y-20;
+    CGFloat  headerViewY = _bgImage.frame.origin.y-15;
     headerView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
     [headerView addTarget:self action:@selector(headButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [headerView setBackgroundImage:IMG(@"yihubaiying_icon_m-talk logo_dis.png") forState:UIControlStateNormal];
@@ -278,13 +280,13 @@
     // 两个图片
     UIImageView  *leftIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, -15, 30, 30)];
     leftIV.image = [UIImage imageNamed:@"yihubaiying_nail.png"];
-    [_bgImage addSubview:leftIV];
+//    [_bgImage addSubview:leftIV];
     _bgImage.userInteractionEnabled = YES;
     
     CGFloat  rightIVX = _bgImage.frame.size.width - 10-30;
     UIImageView   *rightIV = [[UIImageView alloc]initWithFrame:CGRectMake(rightIVX, -15, 30, 30)];
     rightIV.image = [UIImage imageNamed:@"yihubaiying_nail.png"];
-    [_bgImage addSubview:rightIV];
+//    [_bgImage addSubview:rightIV];
 }
 
 
@@ -331,7 +333,7 @@
     if (self.nextVCInfo) {
         CGFloat  headerViewW = 115/383.0*_bgImage.frame.size.height;
         WKFRadarView  *radarView = [[WKFRadarView alloc] initWithFrame: CGRectMake(0, 0, headerViewW*3 , headerViewW*3)andThumbnail:@"yihubaiying_icon_m-talk logo_dis.png"];
-        CGFloat  headerViewY = _bgImage.frame.origin.y-20;
+        CGFloat  headerViewY = _bgImage.frame.origin.y-15;
         radarView.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
         _radarView = radarView;
         
@@ -383,14 +385,15 @@
 {
     if (!_smallTableView)
     {
-        CGFloat  StabX = self.bgImage.frame.size.width-40;
-        CGFloat  StabH = self.bgImage.frame.size.height -  80;
-        _smallTableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 55, StabX, StabH) style:UITableViewStylePlain];
+        CGFloat  StabX = self.bgImage.frame.size.width-(40/375.0)*SCREEN_WIDTH;
+        CGFloat  StabH = self.bgImage.frame.size.height - (125/668.0)*SCREEN_HEIGHT;
+        _smallTableView = [[UITableView alloc]initWithFrame:CGRectMake((20/375.0)*SCREEN_WIDTH, (70/668.0)*SCREEN_HEIGHT, StabX, StabH) style:UITableViewStylePlain];
         _smallTableView.delegate = self;
         _smallTableView.dataSource = self;
     
     }
     _smallTableView.showsVerticalScrollIndicator = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     return _smallTableView;
 }
 
@@ -450,6 +453,16 @@
             
             [self.smallTableView reloadData];
  
+        }
+        if(self.dataArr.count == 0)
+        {
+            HCNewTagInfo *info = [[HCNewTagInfo alloc]init];
+            info.trueName = @"+ 新增录入";
+            [self.dataArr addObject:info];
+            
+            [self hideHUDView];
+            
+            [self.smallTableView reloadData];
         }
         
     }];
