@@ -45,7 +45,7 @@
 
 - (void)viewDidLoad
 {
-    //  呼·应---------与我相关--------
+    //  呼·应-    --------与我相关--------
     [super viewDidLoad];
     self.myTableView.tableHeaderView = HCTabelHeadView(30);
     [self.myTableView.tableHeaderView addSubview:self.seatchBar];
