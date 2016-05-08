@@ -401,6 +401,7 @@
     }
 }
 - (void)willReceiveOfflineMessages{
+    
     NSLog(NSLocalizedString(@"message.beginReceiveOffine", @"Begin to receive offline messages"));
 }
 - (void)didReceiveOfflineMessages:(NSArray *)offlineMessages
@@ -408,6 +409,7 @@
     [self refreshDataSource];
 }
 - (void)didFinishedReceiveOfflineMessages{
+    
     NSLog(NSLocalizedString(@"message.endReceiveOffine", @"End to receive offline messages"));
 }
 

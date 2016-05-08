@@ -120,6 +120,7 @@ CGFloat const EaseUserCellPadding = 10;
     else
     {
        self.titleLabel.text = _model.buddy.username;
+        self.titleLabel.text = @"您还没有编辑昵称";
     }
     
    
@@ -131,6 +132,8 @@ CGFloat const EaseUserCellPadding = 10;
         if (_model.avatarImage)
         {
             self.avatarView.image = _model.avatarImage;
+        }else{
+            self.avatarView.image = IMG(@"1");
         }
     }
 }

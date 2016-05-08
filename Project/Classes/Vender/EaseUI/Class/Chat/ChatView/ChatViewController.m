@@ -24,6 +24,8 @@
     UIMenuItem *_copyMenuItem;
     UIMenuItem *_deleteMenuItem;
     UIMenuItem *_transpondMenuItem;
+    
+    
 }
 
 @property (nonatomic) BOOL isPlayingAudio;
@@ -255,7 +257,6 @@
     
     if (model.isSender) {
         UIImageView *image = [[UIImageView alloc]init];
-        
         [image sd_setImageWithURL:[readUserInfo url:[readUserInfo getReadDic][@"UserInf"][@"imageName"] :kkUser]];
         model.avatarImage = image.image;
         model.nickname = @"曹思远";
@@ -268,18 +269,7 @@
         NSLog(@"%ld",(long)model.bodyType);
         NSLog(@"%ld",(long)model.message.messageType);
         //等于1 是群组聊天
-        if (model.message.messageType==1) {
-//            NHCChatGroupInfoApi *Api = [[NHCChatGroupInfoApi alloc]init];
-//            Api.chatNames = model.nickname;
-//            [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *arr) {
-//                
-//                model.nickname = arr[0][@"familyNickName"];
-//                UIImageView *image = [[UIImageView alloc]init];
-//                [image sd_setImageWithURL:[readUserInfo url:arr[0][@"imageName"] :kkFamail]];
-//                model.avatarImage = image.image;
-//                
-//            }];
-            
+        if (model.message.messageType==1) {//群组是model。nickName
             NHCChatUserInfoApi *Api = [[NHCChatUserInfoApi alloc]init];
             Api.chatName = [model.nickname stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
             [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
@@ -289,6 +279,10 @@
                 model.avatarImage = image.image;
             }];
         }else{
+            //单聊 的接收者
+//            if () {
+//                
+//            }
             NHCChatUserInfoApi *Api = [[NHCChatUserInfoApi alloc]init];
             Api.chatName = [model.message.from stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
             [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
@@ -297,6 +291,7 @@
                 [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
                 model.avatarImage = image.image;
             }];
+            
         }
        
        
