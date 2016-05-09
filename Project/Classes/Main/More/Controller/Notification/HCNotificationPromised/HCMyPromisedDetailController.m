@@ -148,11 +148,16 @@
 {
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"56971c14e0f55af6e5001da1"
-                                      shareText:nil
+                                      shareText:@"M-Talk"
                                      shareImage:nil
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToQzone,UMShareToQQ,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQzone,UMShareToQQ,UMShareToWechatTimeline,UMShareToWechatSession,nil]
                                        delegate:self];
 
+}
+
+-(BOOL)isDirectShareInIconActionSheet
+{
+    return YES;
 }
 
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response

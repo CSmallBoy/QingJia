@@ -10,7 +10,7 @@
 
 @class HCTagContactInfo;
 
-@interface HCTagEditContractPersonController : HCTableViewController
+@interface HCTagEditContractPersonController : HCViewController
 
 @property (nonatomic,strong)HCTagContactInfo *info;
 

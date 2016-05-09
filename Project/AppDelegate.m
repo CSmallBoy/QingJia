@@ -63,7 +63,7 @@
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1685716127"
                                          RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     
-    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina]];
+//    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina]];
     
     
     NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];

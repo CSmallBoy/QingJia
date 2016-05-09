@@ -35,8 +35,8 @@
     self.view.backgroundColor = kHCBackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     // 扫描二维码的图标
-    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:IMG(@"ThinkChange_sel") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick1:)];
-    self.navigationItem.rightBarButtonItem = right;
+//    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:IMG(@"ThinkChange_sel") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick1:)];
+//    self.navigationItem.rightBarButtonItem = right;
 
     [self.view addSubview:self.contantPersonBtn];
     [self.view addSubview:self.contantPersonLabel];
