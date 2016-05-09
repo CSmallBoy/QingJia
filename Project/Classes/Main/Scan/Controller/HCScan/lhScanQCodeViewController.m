@@ -20,6 +20,8 @@
 #import "NHCMessageSearchUserApi.h"
 //跳转添加好友界面
 #import "HCMessagePersonInfoVC.h"
+//获取好友状态
+#import "NHCScanUSerCodeApi.h"
 #import <MAMapKit/MAMapKit.h>
 
 #define DeviceMaxHeight ([UIScreen mainScreen].bounds.size.height)
@@ -72,7 +74,27 @@
     readview.delegate = self;
     readview.alpha = 0;
     
+    //添加 开灯  和读取相册
     
+    
+    //2.相册
+    
+    UIButton * albumBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    albumBtn.frame = CGRectMake(SCREEN_WIDTH/3, SCREEN_HEIGHT*0.7, 50, 50);
+    //albumBtn.center=CGPointMake(0, 100+49/2.0);
+    [albumBtn setBackgroundImage:[UIImage imageNamed:@"qrcode_scan_btn_photo_down"] forState:UIControlStateNormal];
+    albumBtn.contentMode=UIViewContentModeScaleAspectFit;
+    [albumBtn addTarget:self action:@selector(myAlbum) forControlEvents:UIControlEventTouchUpInside];
+    [readview addSubview:albumBtn];
+    
+    //3.闪光灯
+    
+    UIButton * flashBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    flashBtn.frame = CGRectMake(SCREEN_WIDTH*2/3, SCREEN_HEIGHT*0.7, 50, 50);
+    [flashBtn setBackgroundImage:[UIImage imageNamed:@"qrcode_scan_btn_flash_down"] forState:UIControlStateNormal];
+    flashBtn.contentMode=UIViewContentModeScaleAspectFit;
+    [flashBtn addTarget:self action:@selector(openFlash:) forControlEvents:UIControlEventTouchUpInside];
+    [readview addSubview:flashBtn];
     [self.view addSubview:readview];
     
     [UIView animateWithDuration:0.5 animations:^{
@@ -80,6 +102,68 @@
     }completion:^(BOOL finished) {
 
     }];
+    
+}
+#pragma mark-> 闪光灯
+-(void)openFlash:(UIButton*)button{
+    
+    NSLog(@"闪光灯");
+    button.selected = !button.selected;
+    if (button.selected) {
+        [self turnTorchOn:YES];
+    }
+    else{
+        [self turnTorchOn:NO];
+    }
+    
+}
+#pragma mark-> 开关闪光灯
+- (void)turnTorchOn:(BOOL)on
+{
+    
+    Class captureDeviceClass = NSClassFromString(@"AVCaptureDevice");
+    if (captureDeviceClass != nil) {
+        AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+        
+        if ([device hasTorch] && [device hasFlash]){
+            
+            [device lockForConfiguration:nil];
+            if (on) {
+                [device setTorchMode:AVCaptureTorchModeOn];
+                [device setFlashMode:AVCaptureFlashModeOn];
+                
+            } else {
+                [device setTorchMode:AVCaptureTorchModeOff];
+                [device setFlashMode:AVCaptureFlashModeOff];
+            }
+            [device unlockForConfiguration];
+        }
+    }
+}
+-(void)myAlbum{
+    
+    NSLog(@"我的相册");
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+        //1.初始化相册拾取器
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        //2.设置代理
+        controller.delegate = self;
+        //3.设置资源：
+        /**
+         UIImagePickerControllerSourceTypePhotoLibrary,相册
+         UIImagePickerControllerSourceTypeCamera,相机
+         UIImagePickerControllerSourceTypeSavedPhotosAlbum,照片库
+         */
+        controller.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        //4.随便给他一个转场动画
+        controller.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:controller animated:YES completion:NULL];
+        
+    }else{
+        
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"设备不支持访问相册，请在设置->隐私->照片中进行设置！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     
 }
 
@@ -128,41 +212,71 @@
     
     readview.is_Anmotion = YES;
     
-    NSArray *features = [self.detector featuresInImage:[CIImage imageWithCGImage:image.CGImage]];
-    if (features.count >=1) {
-        
+    //2.初始化一个监测器
+    CIDetector*detector = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:@{ CIDetectorAccuracy : CIDetectorAccuracyHigh }];
+//    if (features.count >=1) {
+    
         [picker dismissViewControllerAnimated:YES completion:^{
+            //检测结果数组
+            
+             NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image.CGImage]];
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-
-            CIQRCodeFeature *feature = [features objectAtIndex:0];
-            NSString *scannedResult = feature.messageString;
-            //播放扫描二维码的声音
-            SystemSoundID soundID;
-            NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
-            AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
-            AudioServicesPlaySystemSound(soundID);
-            if (a ==0) {
-                  [self accordingQcode:scannedResult];
-            }else{
+            if(features.count>=1){
+                CIQRCodeFeature *feature = [features objectAtIndex:0];
+                NSString *scannedResult = feature.messageString;
+                //播放扫描二维码的声音
+                SystemSoundID soundID;
+                NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
+                AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
+                AudioServicesPlaySystemSound(soundID);
+                NSLog(@"%@",scannedResult);
+                if (a ==0) {
+                    [self accordingQcode:scannedResult];
+                }else{
+                    
+                }
                 
+            }else{
+                UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该图片没有包含一个二维码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                
+                [picker dismissViewControllerAnimated:YES completion:^{
+                    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+                    
+                    readview.is_Anmotion = NO;
+                    [readview start];
+                }];
             }
+
+//            CIQRCodeFeature *feature = [features objectAtIndex:0];
+//            NSString *scannedResult = feature.messageString;
+//            //播放扫描二维码的声音
+//            SystemSoundID soundID;
+//            NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
+//            AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
+//            AudioServicesPlaySystemSound(soundID);
+//            if (a ==0) {
+//                  [self accordingQcode:scannedResult];
+//            }else{
+//                
+//            }
             
           
         }];
         
     }
-    else{
-        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该图片没有包含一个二维码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
-        
-        [picker dismissViewControllerAnimated:YES completion:^{
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-            
-            readview.is_Anmotion = NO;
-            [readview start];
-        }];
-    }
-}
+//    else{
+//        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该图片没有包含一个二维码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [alertView show];
+//        
+//        [picker dismissViewControllerAnimated:YES completion:^{
+//            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+//            
+//            readview.is_Anmotion = NO;
+//            [readview start];
+//        }];
+//    }
+
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -192,11 +306,45 @@
 #pragma mark - 扫描结果处理
 - (void)accordingQcode:(NSString *)str
 {
-//    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//    [alertView show];
-    a = 1;
-    if (str.length==10) { //------------------家庭号码-----------------
-        
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+    NSString * frist_str = [str substringToIndex:1];
+    if ([frist_str isEqualToString:@"U"]) {
+        //扫码添加好友
+        NHCScanUSerCodeApi *api_1 = [[NHCScanUSerCodeApi alloc]init];
+        api_1.userID = str;
+        [api_1 startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+            // 0: 未添加，1：已添加，2：等待对方验证，3：等待自己验证
+            if ([responseObject isEqualToString:@"0"]) {
+                NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
+                api.UserChatID = str;
+                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
+                    HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
+                    NSMutableArray *arr = [NSMutableArray array];
+                    [arr addObject:chatUserName];
+                    vc.dataSource  = arr;
+                    vc.ChatId = chatUserName;
+                    vc.ScanCode = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }];
+            }else if ([responseObject isEqualToString:@"1"]){
+                [self showHUDSuccess:@"您已经添加过该好友"];
+                //显示好友的详细信息
+                
+            }else if([responseObject isEqualToString:@"2"]){
+                [self showHUDSuccess:@"您已经发送过好友请求"];
+                //显示缩略信息
+            }else{
+                
+            }
+  
+        }];
+
+    }else if ([frist_str isEqualToString:@"L"]){
+        HCBindTagController *bindVC = [[HCBindTagController alloc]init];
+        bindVC.labelGuid = str;
+        [self.navigationController pushViewController:bindVC animated:YES];
+    }else if (str.length==10){
         
         if (_isJoinFamily)
         {
@@ -209,55 +357,79 @@
             JoinFamilyVC.familyID = str;
             [self.navigationController pushViewController:JoinFamilyVC animated:YES];
         }
-    }else if (_isAddFr){
-        //扫码添加好友
-        NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
-        api.UserChatID = str;
-        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
-            HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
-            NSMutableArray *arr = [NSMutableArray array];
-            [arr addObject:chatUserName];
-            vc.dataSource  = arr;
-            vc.ChatId = chatUserName;
-            vc.ScanCode = YES;
-            [self.navigationController pushViewController:vc animated:YES];
+
+    }
+    else{
+        
+        HCScanApi *api = [[HCScanApi alloc]init];
+        api.labelGuid = str;
+        api.createLocation = self.createLocation;
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+            if (requestStatus == HCRequestStatusSuccess) {
+                NSDictionary *dic = respone[@"Data"][@"labelInf"];
+                HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+                HCOtherPromisedDetailController *vc = [[HCOtherPromisedDetailController alloc]init];
+                vc.data = @{@"info":info};
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            
         }];
     }
-    else
-    {
-    
-        if (_isActive) { // ----------------标签GUID------------
-            
-            
-            HCBindTagController *bindVC = [[HCBindTagController alloc]init];
-            bindVC.labelGuid = str;
-            [self.navigationController pushViewController:bindVC animated:YES];
-        }
-        else
-        {
-           
-                HCScanApi *api = [[HCScanApi alloc]init];
-                api.labelGuid = str;
-            api.createLocation = self.createLocation;
-                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-                    
-                    if (requestStatus == HCRequestStatusSuccess) {
-                        
-                        NSDictionary *dic = respone[@"Data"][@"labelInf"];
-                        
-                        HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
-                        
-                        HCOtherPromisedDetailController *vc = [[HCOtherPromisedDetailController alloc]init];
-                        vc.data = @{@"info":info};
-                        
-                        [self.navigationController pushViewController:vc animated:YES];
-                    }
-                    
-                }];
-          
-        }
-    }
-    
+    a = 1;
+//    if (str.length==10) { //------------------家庭号码-----------------
+//        
+//        
+//        if (_isJoinFamily)
+//        {
+//            self.block(str);
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }
+//        else
+//        {
+//            HCJoinGradeViewController *JoinFamilyVC = [[HCJoinGradeViewController alloc]init];
+//            JoinFamilyVC.familyID = str;
+//            [self.navigationController pushViewController:JoinFamilyVC animated:YES];
+//        }
+//    }else if (_isAddFr){
+//        //扫码添加好友
+//        NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
+//        api.UserChatID = str;
+//        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
+//            HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
+//            NSMutableArray *arr = [NSMutableArray array];
+//            [arr addObject:chatUserName];
+//            vc.dataSource  = arr;
+//            vc.ChatId = chatUserName;
+//            vc.ScanCode = YES;
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }];
+//    }
+//    else
+//    {
+//        if (_isActive) { // ----------------标签GUID------------
+//            HCBindTagController *bindVC = [[HCBindTagController alloc]init];
+//            bindVC.labelGuid = str;
+//            [self.navigationController pushViewController:bindVC animated:YES];
+//        }
+//        else
+//        {
+//            HCScanApi *api = [[HCScanApi alloc]init];
+//            api.labelGuid = str;
+//            api.createLocation = self.createLocation;
+//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+//                if (requestStatus == HCRequestStatusSuccess) {
+//                    NSDictionary *dic = respone[@"Data"][@"labelInf"];
+//                    HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+//                    HCOtherPromisedDetailController *vc = [[HCOtherPromisedDetailController alloc]init];
+//                    vc.data = @{@"info":info};
+//                    [self.navigationController pushViewController:vc animated:YES];
+//                }
+//                
+//            }];
+//          
+//        }
+//    }
+//    
 
 }
 

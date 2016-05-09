@@ -35,16 +35,15 @@
 -(id)formatResponseObject:(id)responseObject
 {
     NSArray *arr = responseObject[@"Data"][@"rows"];
-    NSMutableArray *userArr = [NSMutableArray array];
-    for (int i = 0; i < arr.count; i ++) {
-        //点赞显示的
-        HCHomeDetailUserInfo *userInfo = [[HCHomeDetailUserInfo alloc] init];
-        userInfo.uid = [NSString stringWithFormat:@"%d", i];
-        userInfo.nickName = arr[i][@"from"];
-        [userArr addObject:userInfo];
-        
-
-    }
+//    NSMutableArray *userArr = [NSMutableArray array];
+//    for (int i = 0; i < _arring.count; i ++) {
+//        //点赞显示的
+//        HCHomeDetailUserInfo *userInfo = [[HCHomeDetailUserInfo alloc] init];
+//        userInfo.nickName = arr[i];
+//        [userArr addObject:arr[i]];
+//        
+//
+//    }
     //去重方法
 //    NSSet *sab = [NSSet setWithArray:userArr];
 //    userArr= [sab allObjects];
@@ -55,7 +54,6 @@
         // info.HeadImg = @"http://xiaodaohang.cn/2.jpg";
         info.NickName = arr[i][@"from"];
         info.CreateTime = [NSString stringWithFormat:@"%@",arr[i][@"createTime"]];
-        //info.FTContent = @"#李嬷嬷#回复:TableViewgithu@撒旦 哈哈哈哈#九歌#九邮m旦旦/:dsad旦/::)sss/::~啊是大三的拉了/::B/::|/:8-)/::</::$/链接:http://baidu.com dudl@qq.com";
         info.FTContent = arr[i][@"content"];
         info.subRows = arr[i][@"subRows"];
         info.fromImageName = arr[i][@"fromImageName"];
@@ -66,7 +64,7 @@
     }
     HCHomeDetailInfo *info = [[HCHomeDetailInfo alloc] init];
     //点赞用户
-    info.praiseArr = userArr;
+    info.praiseArr = _arring;
     info.commentsArr = commentsArr;
     
     return info;

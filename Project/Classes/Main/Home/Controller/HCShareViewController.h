@@ -10,4 +10,6 @@
 
 @interface HCShareViewController : HCViewController
 @property (nonatomic,copy) NSString * timeId;
+@property (nonatomic,copy) NSString * familyId;
+@property (nonatomic,assign) BOOL * familyBool;
 @end

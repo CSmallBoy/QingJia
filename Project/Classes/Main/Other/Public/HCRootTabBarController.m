@@ -89,6 +89,7 @@ static NSString *kGroupName = @"GroupName";
                         rootViewControllerTitle:(NSString *)title
 {
     UIViewController *rootVC = nil;
+    //更多里面的显示
     if ([rootViewControllerClass isSubclassOfClass:[HCMoreViewController class]])
     {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -102,11 +103,14 @@ static NSString *kGroupName = @"GroupName";
     {
         rootVC = [[rootViewControllerClass alloc] init];
     }
-    
     rootVC.title = title;
-    
     UINavigationController *navVc = [[class  alloc] initWithRootViewController:rootVC];
     navVc.tabBarItem.image = OrigIMG(name);
+    //这个是所有的
+    if ([rootViewControllerClass isSubclassOfClass:[HCHomeViewController class]])
+    {
+        navVc.tabBarItem.badgeValue = @"10";
+    }
     NSString *selectedImage = [NSString stringWithFormat:@"%@_sel",name];
     navVc.tabBarItem.selectedImage = OrigIMG(selectedImage);
     // 设置字体颜色
@@ -118,7 +122,6 @@ static NSString *kGroupName = @"GroupName";
         _messageListVC = rootVC.childViewControllers[0];
         _contactsVC = rootVC.childViewControllers[1];
     }
-    
     [self addChildViewController:navVc];
 }
 

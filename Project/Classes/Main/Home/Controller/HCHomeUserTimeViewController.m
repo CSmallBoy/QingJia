@@ -87,6 +87,7 @@
     HCHomeInfo *info = self.dataSource[indexPath.section];
     HCHomeDetailViewController *detail = [[HCHomeDetailViewController alloc] init];
     detail.data = @{@"data": info};
+    detail.islikeArr = info.isLikeArr;
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
 }

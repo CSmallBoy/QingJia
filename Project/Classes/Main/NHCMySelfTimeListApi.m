@@ -45,6 +45,8 @@
         info.FTReplyCount = arr[i][@"replyCount"];
         info.HeadImg = arr[i][@"imageName"];
         info.likeCount = arr[i][@"likeCount"];
+        NSString *str = arr[i][@"likeNickNames"];
+        info.isLikeArr =  [str componentsSeparatedByString:@","];
         [arring addObject:info];
     }
     return arring;

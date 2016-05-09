@@ -183,7 +183,7 @@
     NSString *buddyName = [self.dataSource objectAtIndex:indexPath.row];
     if (buddyName && buddyName.length > 0)
     {
-        [self showHudInView:self.view hint:NSLocalizedString(@"friend.sendApply", @"sending application...")];
+        //[self showHudInView:self.view hint:NSLocalizedString(@"friend.sendApply", @"sending application...")];
         __block EMError *error;
         //这个地方把手机号转成  chatUserName
         

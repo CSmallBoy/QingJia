@@ -26,10 +26,10 @@
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
     
     NSDictionary *para = @{@"familyId":_familyId,
-                           @"ancestralHome":@"21e",
+                           @"ancestralHome":_ancestralHome,
                            @"familyNickName":_familyNickName,
                            @"imageName":_imageName,
-                           @"contactAddr":_ancestralHome};
+                           @"contactAddr":_contactAddr};
     
     return @{@"Head":head,
              @"Para":para};

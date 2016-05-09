@@ -13,4 +13,6 @@
 @property (nonatomic,copy) NSString * familyNickName;
 @property (nonatomic,copy) NSString * imageName;
 @property (nonatomic,copy) NSString * ancestralHome;//相当于个性签名  以后再改
+@property (nonatomic,copy) NSString * contactAddr;
+
 @end

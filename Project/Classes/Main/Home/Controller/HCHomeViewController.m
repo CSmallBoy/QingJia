@@ -38,7 +38,6 @@
     self.navigationItem.leftBarButtonItem = self.leftItem;
     self.navigationItem.rightBarButtonItem = self.rightItem;
     //self.mainScrollView.scrollEnabled = YES;
-
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView addSubview:self.family.view];
     [self.mainScrollView addSubview:self.familyGroup.view];

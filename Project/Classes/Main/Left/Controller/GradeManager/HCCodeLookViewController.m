@@ -40,7 +40,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupBackItem];
     self.title = @"家庭二维码";
-    
     self.info = self.data[@"info"];
     [self.view addSubview:self.grayView];
     UIBarButtonItem *bar = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Share_QrCode"] style:UIBarButtonItemStylePlain target:self action:@selector(barClick)];
@@ -51,6 +50,8 @@
 }
 - (void)barClick{
     HCShareViewController *vc = [[HCShareViewController alloc]init];
+    vc.familyId = [HCAccountMgr manager].loginInfo.createFamilyId;
+    vc.familyBool = YES;
     [self presentViewController:vc animated:YES completion:nil];
     
 }
@@ -142,7 +143,7 @@
 - (UILabel *)classNum{
     if (!_classNum) {
         _classNum = [[UILabel alloc]initWithFrame:CGRectMake(MaxX(self.classImgView)+10, HEIGHT(self.classTitle)+20, SCREEN_WIDTH*0.3, 20)];
-        _classNum.text = [HCAccountMgr manager].loginInfo.createFamilyId;;
+        _classNum.text = [HCAccountMgr manager].loginInfo.createFamilyId;
         _classNum.font = [UIFont systemFontOfSize:15];
         
     }

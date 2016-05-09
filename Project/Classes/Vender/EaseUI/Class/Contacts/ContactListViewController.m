@@ -24,6 +24,8 @@
 //用户信息模型
 
 #import "HCEaseUserInfo.h"
+
+#import "EditNicknameViewController.h"
 @implementation EMBuddy (search)
 
 //根据用户昵称进行搜索
@@ -65,10 +67,13 @@
     [self searchController];
 
     [self reloadDataSource];
-    // 环信UIdemo中有用到Parse, 加载用户好友个人信息
+    
+    // 获取当前用户在Parse服务器上的好友数据（头像、昵称），储存到内存中或者本地沙盒中
     [[UserProfileManager sharedInstance] loadUserProfileInBackgroundWithBuddy:self.contactsSource saveToLoacal:YES completion:NULL];
     self.showRefreshFooter = NO;
     self.showRefreshHeader = NO;
+    
+    
     
     //好友search
     self.tableView.tableHeaderView = self.searchBar;

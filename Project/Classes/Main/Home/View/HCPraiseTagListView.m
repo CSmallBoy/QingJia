@@ -37,30 +37,29 @@
 - (void)setPraiseTagListWithTagArray:(NSArray *)array
 {
     NSMutableArray *arrayM = [NSMutableArray arrayWithArray:array];
-    HCHomeDetailUserInfo *info = [[HCHomeDetailUserInfo alloc] init];
-    info.uid = @"242424";
-    info.nickName = @"时光";
-    [arrayM insertObject:info atIndex:0];
-    
+//    HCHomeDetailUserInfo *info = [[HCHomeDetailUserInfo alloc] init];
+//    info.uid = @"242424";
+//    info.nickName = @"时光";
+//    [arrayM insertObject:info atIndex:0];
+    [arrayM insertObject:@"     " atIndex:0];
     for (NSInteger i = 0; i < arrayM.count; i++)
     {
-        HCHomeDetailUserInfo *info = arrayM[i];
+//        HCHomeDetailUserInfo *info = arrayM[i];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         NSString *title = nil;
         if (i != arrayM.count - 1 && i != 0)
         {
-            title = [NSString stringWithFormat:@"%@、", info.nickName];
+            title = [NSString stringWithFormat:@"%@、", arrayM[i]];
         }else
         {
-            title = info.nickName;
+            title = arrayM[i];
         }
-        
-        btn.tag = [info.uid integerValue];
+        //btn.tag = [info.uid integerValue];
         btn.titleLabel.font = [UIFont systemFontOfSize:13];
         if (i == 0)
         {
-            [btn setImage:OrigIMG(@"Like_nor") forState:UIControlStateNormal];
+            [btn setImage:OrigIMG(@"like_2") forState:UIControlStateNormal];
         }else
         {
             [btn setTitle:title forState:UIControlStateNormal];

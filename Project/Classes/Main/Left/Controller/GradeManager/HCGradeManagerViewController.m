@@ -35,7 +35,6 @@ static NSString * const reuseIdentifier = @"FriendCell";
 @property (nonatomic, strong) UIImageView *headImageView;
 @property (nonatomic, strong) UILabel *signatureLabel;
 @property (nonatomic,strong) HCCreateGradeInfo *info;
-@property (nonatomic, strong) UIBarButtonItem *bar;
 
 @end
 
@@ -47,8 +46,6 @@ static NSString * const reuseIdentifier = @"FriendCell";
     self.title = @"家庭名字";
     [self setupBackItem];
     self.tableView.tableHeaderView = self.headImageView;
-    self.bar = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(ChangeBool)];
-    self.navigationItem.rightBarButtonItem = self.bar;
     //点击手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
     //长按手势
@@ -56,14 +53,6 @@ static NSString * const reuseIdentifier = @"FriendCell";
     self.headImageView.userInteractionEnabled = YES;
     [self.headImageView addGestureRecognizer:long_press];
     [self.headImageView addGestureRecognizer:tap];
-}
-- (void)ChangeBool{
-    isTure = !isTure;
-    if (isTure) {
-        self.bar.title = @"保存";
-    }else{
-        self.bar.title = @"编辑";
-    }
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -78,11 +67,10 @@ static NSString * const reuseIdentifier = @"FriendCell";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     cell.array = self.dataSource;
-    
-    if (isTure) {
-        cell.IsAble = YES;
-    }else{
+    if (indexPath.row==0) {
         cell.IsAble = NO;
+    }else{
+        cell.IsAble = YES;
     }
     if (isEditing) {
         cell.image = choose;
@@ -154,6 +142,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
     }
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
+    isTure = YES;
      NSIndexPath *index = [self.tableView indexPathForCell:(UITableViewCell*)textField.superview.superview];
     if (index.section==0) {
         switch (index.row) {
@@ -217,32 +206,25 @@ static NSString * const reuseIdentifier = @"FriendCell";
 
 - (void)requestGradeManager
 {
-    
     sigleFamilyMessage *api = [[sigleFamilyMessage alloc]init];
     api.familyId = [HCAccountMgr manager].loginInfo.createFamilyId;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-        
         if (requestStatus == HCRequestStatusSuccess)
         {
             NSDictionary *dic = respone[@"Data"][@"FamilyInf"];
             self.info = [HCCreateGradeInfo  mj_objectWithKeyValues:dic];
             //相当于个性签名   这个有问题  一会在解决
             if (isTure) {
-                self.info.contactAddr= _miaoshu;
-                self.info.familyNickName = _nickName;
-                self.info.familyPhoto= _PhotoName;
+                
             }else{
-                _miaoshu = self.info.contactAddr;
-                _PhotoName = self.info.familyPhoto;
-                _nickName = self.info.familyNickName;
+                _miaoshu=  self.info.familyDescription;
+                _nickName= self.info.familyNickName;
+                _PhotoName= self.info.familyPhoto;
             }
             _creatFamilyID = [HCAccountMgr manager].loginInfo.createFamilyId;
         }
-        
         NSArray *array = respone[@"Data"][@"row"];
-        
         [self.dataSource removeAllObjects];
-        
         for (NSDictionary *dic in array)
         {
             HCFriendMessageInfo *friendInfo = [[HCFriendMessageInfo alloc]init];
@@ -252,7 +234,6 @@ static NSString * const reuseIdentifier = @"FriendCell";
             [self.dataSource addObject:friendInfo];
             
         }
-        
         self.signatureLabel.text = self.info.familyDescription;
         [self.tableView reloadData];
         NSURL *url = [readUserInfo originUrl:self.info.imageName :kkFamail];
@@ -263,7 +244,6 @@ static NSString * const reuseIdentifier = @"FriendCell";
         }
         self.headImageView.clipsToBounds = YES;
         self.headImageView.contentMode = UIViewContentModeScaleAspectFill;
-      
     }];
 }
 - (void)tapGesture:(UIGestureRecognizer*)recognizer{
@@ -319,15 +299,17 @@ static NSString * const reuseIdentifier = @"FriendCell";
         NSDictionary *dict = @{@"photo":_PhotoName};
         //
         [[NSNotificationCenter defaultCenter] postNotificationName:@"修改家庭图片" object:nil userInfo:dict];
-            [self showHUDSuccess:@"您已经成功修改了家庭图片"];
-            NHCEditingFamilyApi *API = [[NHCEditingFamilyApi alloc]init];
-            API.familyNickName = _nickName;
-            API.familyId = _creatFamilyID;
-            API.ancestralHome = _miaoshu;
-            API.imageName = _PhotoName;
-            [API startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-                
-            }];
+        [self showHUDSuccess:@"您已经成功修改了家庭图片"];
+        NHCEditingFamilyApi *API = [[NHCEditingFamilyApi alloc]init];
+        //上传修修改的编辑信息
+        API.familyNickName = _nickName;
+        API.familyId = _creatFamilyID;
+        API.ancestralHome = _miaoshu;
+        API.imageName = _PhotoName;
+        API.contactAddr = self.info.contactAddr;
+        [API startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+            
+        }];
     } failure:^(NSError *error) {
         [self showHUDError:@"图片上传失败"];
     }];

@@ -12,7 +12,7 @@
 static const CGFloat kBorderW = 100;
 static const CGFloat kMargin = 30;
 @interface Scan_VC ()<UIAlertViewDelegate,AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
-    
+    UIImagePickerController *controller;
     
 }
 @property (nonatomic, strong) AVCaptureSession *session;
@@ -228,7 +228,7 @@ static const CGFloat kMargin = 30;
     NSLog(@"我的相册");
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
         //1.初始化相册拾取器
-        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        controller = [[UIImagePickerController alloc] init];
         //2.设置代理
         controller.delegate = self;
         //3.设置资源：
@@ -251,27 +251,35 @@ static const CGFloat kMargin = 30;
 #pragma mark-> imagePickerController delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    //1.获取选择的图片
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
-    //2.初始化一个监测器
-    CIDetector*detector = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:@{ CIDetectorAccuracy : CIDetectorAccuracyHigh }];
-    
-    [picker dismissViewControllerAnimated:YES completion:^{
-        //监测到的结果数组
-        NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image.CGImage]];
-        if (features.count >=1) {
-            /**结果对象 */
-            CIQRCodeFeature *feature = [features objectAtIndex:0];
-            NSString *scannedResult = feature.messageString;
-            UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:scannedResult delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-        }
-        else{
-            UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该图片没有包含一个二维码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
+    if (picker==controller) {
+        //1.获取选择的图片
+        UIImage *image = info[UIImagePickerControllerOriginalImage];
+        //2.初始化一个监测器
+        CIDetector*detector = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:@{ CIDetectorAccuracy : CIDetectorAccuracyHigh }];
+        
+        [picker dismissViewControllerAnimated:YES completion:^{
+            //监测到的结果数组
+            NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image.CGImage]];
+            if (features.count >=1) {
+                /**结果对象 */
+                CIQRCodeFeature *feature = [features objectAtIndex:0];
+                NSString *scannedResult = feature.messageString;
+                UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:scannedResult delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                
+            }
+            else{
+                UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该图片没有包含一个二维码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                
+            }
             
-        }
-    }];
+            
+        }];
+    }
+  
+    
+    
 }
 #pragma mark-> 闪光灯
 -(void)openFlash:(UIButton*)button{

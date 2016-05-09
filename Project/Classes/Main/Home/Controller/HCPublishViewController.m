@@ -59,10 +59,10 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[HCPublishTableViewCell class] forCellReuseIdentifier:HCPublishCell];
     //验证地区
-    NHCRegionApi * api  = [[NHCRegionApi alloc]init];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-        
-    }];
+//    NHCRegionApi * api  = [[NHCRegionApi alloc]init];
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+//        
+//    }];
    
 }
 

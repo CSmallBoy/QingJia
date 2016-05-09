@@ -63,7 +63,7 @@
         }else if (indexPath.row == 2)
         {
             self.titleLabel.text = @"个性签名";
-            self.textField.text = _info.contactAddr;
+            self.textField.text = _info.ancestralHome;
             //self.textField.placeholder = @"请输入家庭地址";
             self.textField.placeholder = @"请输入个性签名";
         }
@@ -94,7 +94,6 @@
                 [button addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
                 ViewRadius(button, width/2);
                 [self.contentView addSubview:button];
-                
                 UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(button.frame.origin.x, MaxY(button), button.frame.size.width, 20)];
                 title.text = info.nickName;
                 title.textAlignment = NSTextAlignmentCenter;

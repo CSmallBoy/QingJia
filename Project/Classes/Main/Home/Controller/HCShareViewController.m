@@ -100,7 +100,13 @@
 - (IBAction)qqBtn:(UIButton *)sender
 {
 
-    NSString *urlStr =[NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/times.do?code=%@",_timeId];
+    NSString *urlStr;
+    if (_familyBool) {
+        urlStr  =[NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/family.do?code=%@",_familyId];
+    }else{
+         urlStr  =[NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/times.do?code=%@",_timeId];
+    }
+    
     [UMSocialQQHandler setQQWithAppId:@"100424468" appKey:@"c7394704798a158208a74ab60104f0ba" url:urlStr];
         [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"M-talk" image:[UIImage imageNamed:@"landingpage_Background"] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
             if (response.responseCode == UMSResponseCodeSuccess)
@@ -133,7 +139,12 @@
 //分享内容
 - (void)shareTentceWithTypes:(NSArray *)array content:(NSString *)content imageName:(NSString *)imageName location:(CLLocation *)location urlResource:(UMSocialUrlResource *)urlResource
 {
-    NSString *urlStr =[NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/times.do?code=%@",_timeId];
+    NSString *urlStr;
+    if (_familyBool) {
+        urlStr  =[NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/family.do?code=%@",_familyId];
+    }else{
+        urlStr  =[NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/times.do?code=%@",_timeId];
+    }
     [UMSocialWechatHandler setWXAppId:@"wxa3e0f4e53bf74a06" appSecret:@"ed6ce4155f890517f746a2c1445dcb7e" url:urlStr];
     [[UMSocialDataService defaultDataService]  postSNSWithTypes:array content:content image:[UIImage imageNamed:imageName] location:location urlResource:urlResource presentedController:self completion:^(UMSocialResponseEntity *response){
         if (response.responseCode == UMSResponseCodeSuccess) {

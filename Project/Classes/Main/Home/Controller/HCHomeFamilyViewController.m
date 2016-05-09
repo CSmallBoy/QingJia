@@ -24,6 +24,8 @@
 //点赞
 #import "NHCHomeLikeApi.h"
 #import "HCCreateGradeViewController.h"
+//通知button  视图
+#import "HCHomeNotiButton.h"
 
 
 #define HCHomeCell @"HCHomeTableViewCell"
@@ -32,6 +34,7 @@
     NSMutableArray *arr_image_all;
     //下拉加载 用到的m
     int m;
+    BOOL AccordingTo;
     
     
 }
@@ -52,7 +55,6 @@
     [super viewDidLoad];
     arr_image_all = [NSMutableArray array];
     [self readLocationData];
-    
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.tableView registerClass:[HCHomeTableViewCell class] forCellReuseIdentifier:HCHomeCell];
     
@@ -77,6 +79,9 @@
     self.tableView.mj_footer = footer;
 //    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"刷新数据所有" object:nil];
+    
+    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -112,6 +117,7 @@
 {
     HCHomeInfo *info = self.dataSource[indexPath.section];
     HCHomeDetailViewController *detail = [[HCHomeDetailViewController alloc] init];
+    detail.islikeArr = info.isLikeArr;
     detail.data = @{@"data": info};
     detail.timeID = info.TimeID;
     detail.hidesBottomBarWhenPushed = YES;
@@ -146,10 +152,46 @@
     
     return height;
 }
-
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view_notification = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.25, 0, SCREEN_WIDTH*0.36, 50)];
+    if (section==0) {
+        //根据推送  显示   隐藏
+        view_notification.backgroundColor = [UIColor whiteColor];
+        HCHomeNotiButton *button = [[HCHomeNotiButton alloc]init];
+        button.message_num.text = @"10条新消息";
+        button.headimage.image = IMG(@"1");
+        button.backgroundColor = [UIColor darkGrayColor];
+        ViewRadius(button, 5);
+        [button setFrame:CGRectMake(SCREEN_WIDTH/3, 10, SCREEN_WIDTH/3, 33)];
+        [view_notification addSubview:button];
+        [button addTarget:self action:@selector(changeViewCon) forControlEvents:UIControlEventTouchUpInside];
+        //self.tableView.tableHeaderView = view_notification;
+        //    if (AccordingTo) {
+        //        self.tableView.tableHeaderView.hidden = YES;
+        //    }else{
+        //        self.tableView.tableHeaderView.hidden = NO;
+        //    }
+        //    return self.tableView.tableHeaderView;
+        if (AccordingTo) {
+            view_notification.hidden = YES;
+        }else{
+            view_notification.hidden = NO;
+        }
+    }
+ 
+    return view_notification;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 1;
+    if (section==0) {
+        if (AccordingTo) {
+            return 1;
+        }else{
+            return 50;
+        }
+    }else{
+        return 1;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -216,6 +258,13 @@
     [self.navigationController pushViewController:userTime animated:YES];
 }
 
+#pragma mark - 时光评论列表
+- (void)changeViewCon{
+    NSLog(@"跳转了");
+    AccordingTo  = YES;
+    //[self.tableView.tableHeaderView removeFromSuperview];
+    [self.tableView reloadData];
+}
 #pragma mark - private methods 加载数据 保存数据 写入数据
 
 - (void)readLocationData

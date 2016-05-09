@@ -137,21 +137,20 @@
 {
     CGRect previousFrame = CGRectMake(10, 0, WIDTH(self.view)-20, 0);
     CGFloat totalHeight = 0;
-    
-    NSArray *array = _detailInfo.praiseArr;
-    
-    for (NSInteger i = 0; i < array.count; i++)
+    NSMutableArray *array = [NSMutableArray array];
+    array = [NSMutableArray arrayWithArray:_detailInfo.praiseArr];
+    for (int  i = 0; i < array.count; i++)
     {
-        HCHomeDetailUserInfo *info = _detailInfo.praiseArr[i];
-        
-        NSString *title = nil;
-        if (i != _detailInfo.praiseArr.count - 1)
-        {
-            title = [NSString stringWithFormat:@"%@、", info.nickName];
-        }else
-        {
-            title = info.nickName;
-        }
+//        HCHomeDetailUserInfo *info = _detailInfo.praiseArr[i];
+//        NSString *title = nil;
+//        if (i != _detailInfo.praiseArr.count - 1)
+//        {
+//            title = [NSString stringWithFormat:@"%@、", info.nickName];
+//        }else
+//        {
+//            title = info.nickName;
+//        }
+        NSString *title = array[i];
         NSDictionary *attriDic = @{NSFontAttributeName: [UIFont systemFontOfSize:13]};
         CGSize size_value = [title sizeWithAttributes:attriDic];
         size_value.width ++;
@@ -234,6 +233,7 @@
     HCHomeInfo *info = self.data[@"data"];
     NHCHomeCommentListApi *api = [[NHCHomeCommentListApi alloc]init];
     api.TimeID = info.TimeID;
+    api.arring = _islikeArr;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCHomeDetailInfo *info) {
         if (requestStatus == HCRequestStatusSuccess)
         {

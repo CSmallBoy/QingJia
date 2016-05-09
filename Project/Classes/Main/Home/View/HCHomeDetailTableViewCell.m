@@ -143,6 +143,7 @@
     }    
     if (!IsEmpty(_praiseArr) && !self.praiseTag.subviews.count)
     {
+        //暂时不写
         [self.praiseTag setPraiseTagListWithTagArray:_praiseArr];
     }
 }
