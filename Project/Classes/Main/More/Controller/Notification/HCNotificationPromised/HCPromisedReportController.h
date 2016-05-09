@@ -10,4 +10,6 @@
 
 @interface HCPromisedReportController : HCViewController
 
+@property (nonatomic, copy)NSString *callId;
+
 @end

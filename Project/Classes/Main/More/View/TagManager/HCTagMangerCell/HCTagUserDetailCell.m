@@ -103,19 +103,6 @@
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-//    if (textView.tag == 303)
-//    {
-//        self.info.allergic = textView.text;
-//    }
-//    else if (textView.tag == 304)
-//    {
-//        self.info.cureNote = textView.text;
-//    }else
-//    {
-//        self.info.cureCondition = textView.text;
-//    }
-//   
-//    
     if (textView.text.length == 0) {
         self.textView.placeholder = self.medicalPlaceHolderArr[textView.tag-300];
         self.textView.textView.textColor = COLOR(200, 200, 200, 1);
@@ -145,9 +132,6 @@
     {
         self.textView.placeholder = nil;
     }
-   
-    
-  
    
     self.textView.textView.textColor = [UIColor blackColor];
 }

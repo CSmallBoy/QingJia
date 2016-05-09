@@ -1102,6 +1102,7 @@
 		C7DB55C31CDAF58A0041B0C9 /* NHCRegionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB55C21CDAF58A0041B0C9 /* NHCRegionApi.m */; };
 		C7F370471CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */; };
 		C7F421081CD055A2006BDA77 /* NHCHomeTimeToComentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */; };
+		EAE04D441CDF62CF003EDF0F /* HCReportApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE04D431CDF62CF003EDF0F /* HCReportApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3112,6 +3113,8 @@
 		C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeToComentApi.m; sourceTree = "<group>"; };
 		C95F998133825127EECF22B1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E9376B27D02CD20170277F57 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAE04D421CDF62CF003EDF0F /* HCReportApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReportApi.h; sourceTree = "<group>"; };
+		EAE04D431CDF62CF003EDF0F /* HCReportApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReportApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3380,6 +3383,8 @@
 				8D134CDE1CCE0698001B77EE /* HCReplyLineApi.m */,
 				8D134CE01CCE3F00001B77EE /* HCClosePromisedApi.h */,
 				8D134CE11CCE3F00001B77EE /* HCClosePromisedApi.m */,
+				EAE04D421CDF62CF003EDF0F /* HCReportApi.h */,
+				EAE04D431CDF62CF003EDF0F /* HCReportApi.m */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -7836,6 +7841,7 @@
 				0A67B22B1C0D63B300FB87C8 /* MRImgShowView.m in Sources */,
 				0A54918D1C2BC32D0085F50D /* ZXRSSUtils.m in Sources */,
 				C7B00B961C5F26050010F93B /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
+				EAE04D441CDF62CF003EDF0F /* HCReportApi.m in Sources */,
 				0A5491CE1C2BC32D0085F50D /* ZXQRCodeFinderPattern.m in Sources */,
 				C7B00BAF1C5F26050010F93B /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				0A5491AA1C2BC32D0085F50D /* ZXPDF417ECErrorCorrection.m in Sources */,

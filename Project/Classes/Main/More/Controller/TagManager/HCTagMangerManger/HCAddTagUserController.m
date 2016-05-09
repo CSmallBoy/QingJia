@@ -107,25 +107,27 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    if (tableView == self.tableView) {
-        if (section == 0) {
-            
+    if (tableView == self.tableView)
+    {
+        if (section == 0)
+        {
             return 6;
         }
         else if (section == 1)
         {
-            if (_isHide) {
+            if (_isHide)
+            {
                 return 0;
             }
             
             HCNewTagInfo *info = self.data[@"info"];
-            if ([info.openHealthCard isEqualToString:@"0"]) {
+            if ([info.openHealthCard isEqualToString:@"0"])
+            {
                 
                 return 0;
             }
             
             return 6;
-            
             
         }
         else
@@ -148,8 +150,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
-        if (section == 0) {
+    if (tableView == self.tableView)
+    {
+        if (section == 0)
+        {
             return 0.1;
         }
         
@@ -165,10 +169,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.tableView) {
+    if (tableView == self.tableView)
+    {
         if ((indexPath.section == 1 && indexPath.row == 3)||
             (indexPath.section == 1 && indexPath.row == 4)||
-            (indexPath.section == 1 && indexPath.row == 5)) {
+            (indexPath.section == 1 && indexPath.row == 5))
+        {
             
             return 88;
             
@@ -193,16 +199,15 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (tableView == self.tableView) {
-        if (indexPath.section == 2) {
-            
+    if (tableView == self.tableView)
+    {
+        if (indexPath.section == 2)
+        {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            
-            for (int i = 0; i<self.contactArr.count; i++) {
-                
+            for (int i = 0; i<self.contactArr.count; i++)
+            {
                 if (i == 0)
                 {
-                    
                     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0 , 93, 180)];
                     // 添加联系人按钮
                     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -232,12 +237,6 @@
                     
                     NSURL *url = [readUserInfo originUrl:info.imageName :@"contactor"];
                     [imageIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
-                    
-//                    UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
-//                    if (imgFromUrl == nil) {
-//                        imgFromUrl = IMG(@"Head-Portraits");
-//                    }
-//                    [self.imgArr addObject:imageIV.image];
     
                     ViewRadius(imageIV, 73/2);
                     [view addSubview:imageIV];
@@ -264,8 +263,6 @@
             }
             [cell addSubview:self.scrollView];
             return cell;
-            
-            
         }
         else
         {
@@ -292,11 +289,11 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
+    if (tableView == self.tableView)
+    {
         if (section == 1)
         {
             return self.medicalView;
-            
         }
         else if (section ==2)
         {
@@ -322,12 +319,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.tableView) {
-        if (indexPath.section == 0 && indexPath.row == 3) {
-            
+    if (tableView == self.tableView)
+    {
+        if (indexPath.section == 0 && indexPath.row == 3)
+        {
             [self.view endEditing:NO];
             [self.datePicker show];
-            
         }
         else  if (indexPath.section == 0  && indexPath.row == 0)
         {
@@ -342,7 +339,6 @@
     {
          NSString *str = self.relativeArr[indexPath.row];
         [self.relBtn setTitle:str forState:UIControlStateNormal];
-        
         [tableView removeFromSuperview];
     }
  
@@ -355,7 +351,6 @@
 {
     NSDate *date = result[@"date"];
     self.info.birthDay = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
-    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 

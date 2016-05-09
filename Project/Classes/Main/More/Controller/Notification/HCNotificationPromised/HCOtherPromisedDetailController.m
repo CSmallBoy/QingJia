@@ -19,6 +19,8 @@
 
 #import "HCButtonItem.h"
 
+#import "HCSaveCallApi.h"
+
 @interface HCOtherPromisedDetailController ()
 {
     BOOL  _isShowDelete;
@@ -63,7 +65,7 @@
     [self setupBackItem];
     self.view.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     self.title = @"一呼百应详情";
-    
+    _isShowDelete = NO;
     [self requestDetailData];
     
     [self.scrollView addSubview:self.headBtn];
@@ -77,6 +79,7 @@
     [self.view addSubview:self.scrollView];
     
     [self.view addSubview:self.footerView];
+    [self.view addSubview:self.deletIV];
     
     // 导航栏上的加号“+”
     [self addItem];
@@ -107,44 +110,19 @@
 {
     if (_isShowDelete)
     {
-        [self removeDeletIV];
-        _isShowDelete = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+        } completion:^(BOOL finished) {
+            _isShowDelete = NO;
+        }];
+        
     }else
     {
-        
-        UIImageView  *view = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 64, 105, 75)];
-        view.image = IMG(@"delete-report-23");
-        view.userInteractionEnabled = YES;
-        
-        UIButton  *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        deleteBtn.frame = CGRectMake(15, 15, 20, 20);
-        [deleteBtn setBackgroundImage:IMG(@"一呼百应详情－delete") forState:UIControlStateNormal];
-        [view addSubview:deleteBtn];
-        
-        UIButton *deleteText = [UIButton buttonWithType:UIButtonTypeCustom];
-        deleteText.frame = CGRectMake(50, 13, 40, 20);
-        deleteText.titleLabel.font = [UIFont systemFontOfSize:15];
-        [deleteText setTitle:@"删除" forState:UIControlStateNormal];
-        [deleteText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [view addSubview:deleteText];
-        
-        UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        reportBtn.frame = CGRectMake(15, 48, 20, 20);
-        [reportBtn setBackgroundImage:IMG(@"一呼百应详情－account") forState:UIControlStateNormal];
-        [reportBtn addTarget:self action:@selector(toReportVC:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:reportBtn];
-        
-        UIButton *reportText = [UIButton buttonWithType:UIButtonTypeCustom];
-        reportText.frame = CGRectMake(50, 48, 40, 20);
-        reportText.titleLabel.font = [UIFont systemFontOfSize:15];
-        [reportText setTitle:@"举报" forState:UIControlStateNormal];
-        [reportText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [reportText addTarget:self action:@selector(toReportVC:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:reportText];
-        
-        self.deletIV = view;
-        [self.view addSubview:self.deletIV];
-        _isShowDelete = YES;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, 64, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+        } completion:^(BOOL finished) {
+            _isShowDelete = YES;
+        }];
     }
     
 }
@@ -153,9 +131,14 @@
 //点击举报
 -(void)toReportVC:(UIButton *)button
 {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+    } completion:^(BOOL finished) {
+        _isShowDelete = NO;
+    }];
     HCPromisedReportController *reportVC = [[HCPromisedReportController alloc]init];
+    reportVC.callId = self.info.callId;
     [self.navigationController pushViewController:reportVC animated:YES];
-    [self.deletIV removeFromSuperview];
 }
 
 // 点击头像
@@ -220,11 +203,13 @@
 -(void)addBigImage:(UITapGestureRecognizer *)tap
 {
     if (_isShowDelete) {
-        [_deletIV removeFromSuperview];
-        _isShowDelete = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+        } completion:^(BOOL finished) {
+            _isShowDelete = NO;
+        }];
         return;
     }
-    
     
     self.navigationController.navigationBarHidden = YES;
     CGRect  startFrame = [self.imageView convertRect:self.imageView.bounds toView:self.view];
@@ -275,7 +260,79 @@
     
 }
 
+//点击删除
+- (void)manageBtnClick
+{
+    
+}
+
+//点击收藏
+- (void)collectButtonClick
+{
+    HCSaveCallApi *api =[[HCSaveCallApi alloc]init];
+    api.callId = self.info.callId;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        if (requestStatus == HCRequestStatusSuccess) {
+            [self showHUDText:@"收藏成功"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"showSave" object:nil];
+        }
+        
+    }];
+}
+
+
 #pragma mark --- setter Or getter
+
+
+- (UIImageView *)deletIV
+{
+    if (_deletIV == nil)
+    {
+        UIButton *manageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        manageButton.frame = CGRectMake(20/375.0*SCREEN_WIDTH, 17/668.0*SCREEN_HEIGHT, 17/375.0*SCREEN_WIDTH, 17/668.0*SCREEN_HEIGHT);
+        [manageButton setBackgroundImage:IMG(@"otherPromisedDetail_delete") forState:UIControlStateNormal];
+        [manageButton addTarget:self action:@selector(manageBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *manageTitleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        manageTitleButton.frame = CGRectMake(CGRectGetMaxX(manageButton.frame), 12/668.0*SCREEN_HEIGHT, 83/375.0*SCREEN_WIDTH, 27/668.0*SCREEN_HEIGHT);
+        [manageTitleButton setTitle:@"删除" forState:UIControlStateNormal];
+        [manageTitleButton addTarget:self action:@selector(manageBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *scanButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        scanButton.frame = CGRectMake(CGRectGetMinX(manageButton.frame), CGRectGetMaxY(manageButton.frame)+20/668.0*SCREEN_HEIGHT, CGRectGetWidth(manageButton.frame), CGRectGetHeight(manageButton.frame));
+        [scanButton setBackgroundImage:IMG(@"otherPromisedDetail_report") forState:UIControlStateNormal];
+        [scanButton addTarget:self action:@selector(toReportVC:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *scanTitleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        scanTitleButton.frame = CGRectMake(CGRectGetMaxX(manageButton.frame), CGRectGetMaxY(manageTitleButton.frame)+10/668.0*SCREEN_HEIGHT, CGRectGetWidth(manageTitleButton.frame), CGRectGetHeight(manageTitleButton.frame));
+        [scanTitleButton setTitle:@"举报" forState:UIControlStateNormal];
+        [scanTitleButton addTarget:self action:@selector(toReportVC:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *collectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        collectButton.frame = CGRectMake(CGRectGetMinX(manageButton.frame), CGRectGetMaxY(scanButton.frame)+20/668.0*SCREEN_HEIGHT, CGRectGetWidth(manageButton.frame), CGRectGetHeight(manageButton.frame));
+        [collectButton setBackgroundImage:IMG(@"otherPromisedDetail_collect") forState:UIControlStateNormal];
+        [collectButton addTarget:self action:@selector(collectButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *collectTitleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        collectTitleButton.frame = CGRectMake(CGRectGetMaxX(manageButton.frame), CGRectGetMaxY(scanTitleButton.frame)+10/668.0*SCREEN_HEIGHT, CGRectGetWidth(manageTitleButton.frame), CGRectGetHeight(manageTitleButton.frame));
+        [collectTitleButton setTitle:@"收藏" forState:UIControlStateNormal];
+        [collectTitleButton addTarget:self action:@selector(collectButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.deletIV = [[UIImageView alloc] initWithFrame:CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT)];
+        self.deletIV.image = IMG(@"pullDown_menu");
+        self.deletIV.userInteractionEnabled = YES;
+        
+        
+        [self.deletIV addSubview:manageButton];
+        [self.deletIV addSubview:manageTitleButton];
+        [self.deletIV addSubview:scanButton];
+        [self.deletIV addSubview:scanTitleButton];
+        [self.deletIV addSubview:collectButton];
+        [self.deletIV addSubview:collectTitleButton];
+    }
+    return _deletIV;
+}
+
 
 - (UIButton *)headBtn
 {
@@ -550,9 +607,14 @@
 
 -(void)removeDeletIV
 {
-    
-    [_deletIV removeFromSuperview];
-    _isShowDelete  = NO;
+    if (_isShowDelete)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+        } completion:^(BOOL finished) {
+            _isShowDelete = NO;
+        }];
+    }
 }
 
 #pragma mark ---- network

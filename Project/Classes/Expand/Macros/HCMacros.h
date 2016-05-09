@@ -35,6 +35,8 @@
 #define kkLoss   @"loss"
 //时光评论
 #define kkComment   @"comment"
+//举报
+#define kkReport @"report"
 //appstore更新地址
 #define APP_STORE_URL   @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=890849784"
 
