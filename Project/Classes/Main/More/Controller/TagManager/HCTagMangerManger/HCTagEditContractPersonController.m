@@ -14,7 +14,9 @@
 
 #import "Utils.h"
 
-@interface HCTagEditContractPersonController ()
+#import <AddressBookUI/AddressBookUI.h>
+
+@interface HCTagEditContractPersonController ()<ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic,strong)UITextField *textField1;
 @property (nonatomic,strong)UITextField *textField2;
@@ -23,6 +25,10 @@
 @property (nonatomic,strong)UIButton *headBtn;
 
 @property (nonatomic, strong)UIImageView *backgroundImage;//背景图片
+
+//系统通讯录
+@property (nonatomic, strong)ABPeoplePickerNavigationController *pickerVC;
+
 @end
 
 @implementation HCTagEditContractPersonController
@@ -132,12 +138,59 @@
     
 }
 
+#pragma mark - ABPeoplePickerNavigationControllerDelegate
+
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person
+{
+    //   ABRecordRef : 记录,一个联系人就是一条记录
+    
+    // 1.获取该联系人的姓名
+    CFStringRef firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    CFStringRef lastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
+    
+    /*
+     桥接方式:
+     (__bridge NSString *) : 仅仅是将对象的所有权交给Foundation的引用使用
+     (__bridge_transfer NSString *) : 对象所有权交给Foundation的引用,并且内存也交给它来管理
+     */
+    NSString *firstname = (__bridge_transfer NSString *)firstName;
+    NSString *lastname = (__bridge_transfer NSString *)lastName;
+    NSLog(@"firstname:%@ lastname:%@", firstname, lastname);
+    
+    // 2.获取该联系人的电话号码
+    // 2.1.获取该联系人的所有的电话
+    ABMultiValueRef phones = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    
+    // 2.2.遍历所有的电话
+    NSMutableArray *phoneNumArr = [NSMutableArray array];
+    
+    CFIndex count = ABMultiValueGetCount(phones);
+    for (int i = 0; i < count; i++) {
+        // 2.2.1.获取电话号码
+        NSString *phoneValue = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(phones, i);
+        
+        // 2.2.2.获取电话的标签
+        NSString *phoneLabel = (__bridge_transfer NSString *)ABMultiValueCopyLabelAtIndex(phones, i);
+        
+        [phoneNumArr addObject:phoneValue];
+        NSLog(@"%@ %@", phoneLabel, phoneValue);
+    }
+    
+    self.textField1.text = [NSString stringWithFormat:@"%@ %@",firstname, lastname];
+    self.textField2.text = [phoneNumArr objectAtIndex:0];
+    // 3.释放不再使用的对象
+    CFRelease(phones);
+}
+
 
 #pragma mark --- provate mothods
 
+//跳转到通讯录页面
 - (void)pushToContacetPreson
 {
-    
+    self.pickerVC = [[ABPeoplePickerNavigationController alloc] init];
+    self.pickerVC.peoplePickerDelegate = self;
+    [self presentViewController:self.pickerVC animated:YES completion:nil];
 }
 
 -(void)itemClick:(UIBarButtonItem *)item

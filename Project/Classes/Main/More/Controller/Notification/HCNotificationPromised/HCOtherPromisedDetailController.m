@@ -274,7 +274,24 @@
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         if (requestStatus == HCRequestStatusSuccess) {
             [self showHUDText:@"收藏成功"];
+           
+            [UIView animateWithDuration:0.3 animations:^{
+                self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+            } completion:^(BOOL finished) {
+                _isShowDelete = NO;
+            }];
+
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"showSave" object:nil];
+        }
+        else
+        {
+            [self showHUDText:respone[@"message"]];
+            [UIView animateWithDuration:0.3 animations:^{
+                self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+            } completion:^(BOOL finished) {
+                _isShowDelete = NO;
+            }];
         }
         
     }];

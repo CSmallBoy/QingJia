@@ -110,8 +110,8 @@
         view.userInteractionEnabled = YES;
         
         UIButton  *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        deleteBtn.frame = CGRectMake(15, 15, 20, 20);
-        [deleteBtn setBackgroundImage:IMG(@"一呼百应详情－delete") forState:UIControlStateNormal];
+        deleteBtn.frame = CGRectMake(15, 15, 20, 16);
+        [deleteBtn setBackgroundImage:IMG(@"myPromisedDetail_info") forState:UIControlStateNormal];
         [deleteBtn addTarget:self action:@selector(toFindLineVC:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:deleteBtn];
         
@@ -125,7 +125,7 @@
         
         UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         reportBtn.frame = CGRectMake(15, 48, 20, 20);
-        [reportBtn setBackgroundImage:IMG(@"一呼百应详情－account") forState:UIControlStateNormal];
+        [reportBtn setBackgroundImage:IMG(@"myPromisedDetail_share") forState:UIControlStateNormal];
         [reportBtn addTarget:self action:@selector(toShoreVC:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:reportBtn];
         
@@ -148,7 +148,7 @@
 {
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"56971c14e0f55af6e5001da1"
-                                      shareText:@"M-Talk"
+                                      shareText:@"M-Talk,https://www.baidu.com"
                                      shareImage:nil
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQzone,UMShareToQQ,UMShareToWechatTimeline,UMShareToWechatSession,nil]
                                        delegate:self];
