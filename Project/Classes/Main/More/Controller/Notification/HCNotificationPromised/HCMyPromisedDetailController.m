@@ -148,7 +148,7 @@
 {
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"56971c14e0f55af6e5001da1"
-                                      shareText:nil
+                                      shareText:@"M-talk"
                                      shareImage:IMG(@"landingpage_Background")
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQzone,UMShareToQQ,UMShareToWechatTimeline,UMShareToWechatSession,nil]
                                        delegate:self];
