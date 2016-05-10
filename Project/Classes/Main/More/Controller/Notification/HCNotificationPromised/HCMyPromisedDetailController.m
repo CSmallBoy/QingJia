@@ -146,10 +146,9 @@
 // 跳转到分享界面
 -(void)toShoreVC:(UIButton *)button
 {
-    NSString *url = [NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/times.do?code=%@", self.info.callId];
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"56971c14e0f55af6e5001da1"
-                                      shareText:url
+                                      shareText:nil
                                      shareImage:IMG(@"landingpage_Background")
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQzone,UMShareToQQ,UMShareToWechatTimeline,UMShareToWechatSession,nil]
                                        delegate:self];
@@ -159,6 +158,16 @@
 -(BOOL)isDirectShareInIconActionSheet
 {
     return YES;
+}
+
+-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+{
+    if (platformName == UMShareToQzone || platformName == UMShareToQQ || platformName == UMShareToWechatTimeline || platformName == UMShareToWechatSession) {
+        socialData.urlResource.url = [NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/times.do?code=%@", self.info.callId];
+    }
+    else{
+        socialData.shareText = @"分享到其他平台的文字内容";
+    }
 }
 
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
