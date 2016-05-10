@@ -72,29 +72,31 @@
     readview.is_AnmotionFinished = YES;
     readview.backgroundColor = [UIColor clearColor];
     readview.delegate = self;
-    readview.alpha = 0;
+    readview.alpha = 0.5;
     
     //添加 开灯  和读取相册
     
     
     //2.相册
-    
+    UIView *bacnView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT*0.88, SCREEN_WIDTH, SCREEN_HEIGHT *0.15)];
     UIButton * albumBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    albumBtn.frame = CGRectMake(SCREEN_WIDTH/3, SCREEN_HEIGHT*0.7, 50, 50);
+    albumBtn.frame = CGRectMake(SCREEN_WIDTH*0.2, 10, 50, 50);
     //albumBtn.center=CGPointMake(0, 100+49/2.0);
-    [albumBtn setBackgroundImage:[UIImage imageNamed:@"qrcode_scan_btn_photo_down"] forState:UIControlStateNormal];
+    [albumBtn setBackgroundImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
     albumBtn.contentMode=UIViewContentModeScaleAspectFit;
     [albumBtn addTarget:self action:@selector(myAlbum) forControlEvents:UIControlEventTouchUpInside];
-    [readview addSubview:albumBtn];
+    [bacnView addSubview:albumBtn];
     
     //3.闪光灯
     
     UIButton * flashBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    flashBtn.frame = CGRectMake(SCREEN_WIDTH*2/3, SCREEN_HEIGHT*0.7, 50, 50);
-    [flashBtn setBackgroundImage:[UIImage imageNamed:@"qrcode_scan_btn_flash_down"] forState:UIControlStateNormal];
+    flashBtn.frame = CGRectMake(SCREEN_WIDTH*0.8-50, 10, 50, 50);
+    [flashBtn setBackgroundImage:[UIImage imageNamed:@"turn_on"] forState:UIControlStateNormal];
     flashBtn.contentMode=UIViewContentModeScaleAspectFit;
     [flashBtn addTarget:self action:@selector(openFlash:) forControlEvents:UIControlEventTouchUpInside];
-    [readview addSubview:flashBtn];
+    [bacnView addSubview:flashBtn];
+    bacnView.backgroundColor = [UIColor darkGrayColor];
+    [readview addSubview:bacnView];
     [self.view addSubview:readview];
     
     [UIView animateWithDuration:0.5 animations:^{
@@ -306,8 +308,8 @@
 #pragma mark - 扫描结果处理
 - (void)accordingQcode:(NSString *)str
 {
-    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alertView show];
+//    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//    [alertView show];
     NSString * frist_str = [str substringToIndex:1];
     if ([frist_str isEqualToString:@"U"]) {
         //扫码添加好友
@@ -319,13 +321,17 @@
                 NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
                 api.UserChatID = str;
                 [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
-                    HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
-                    NSMutableArray *arr = [NSMutableArray array];
-                    [arr addObject:chatUserName];
-                    vc.dataSource  = arr;
-                    vc.ChatId = chatUserName;
-                    vc.ScanCode = YES;
-                    [self.navigationController pushViewController:vc animated:YES];
+                    if (requestStatus==10018) {
+                        [self showHUDSuccess:@"您添加的好友不存在"];
+                    }else{
+                        HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
+                        NSMutableArray *arr = [NSMutableArray array];
+                        [arr addObject:chatUserName];
+                        vc.dataSource  = arr;
+                        vc.ChatId = chatUserName;
+                        vc.ScanCode = YES;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
                 }];
             }else if ([responseObject isEqualToString:@"1"]){
                 [self showHUDSuccess:@"您已经添加过该好友"];
