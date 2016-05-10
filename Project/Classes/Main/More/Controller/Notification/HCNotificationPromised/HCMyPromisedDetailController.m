@@ -146,10 +146,11 @@
 // 跳转到分享界面
 -(void)toShoreVC:(UIButton *)button
 {
+    NSString *url = [NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/times.do?code=%@", self.info.callId];
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"56971c14e0f55af6e5001da1"
-                                      shareText:@"M-Talk,https://www.baidu.com"
-                                     shareImage:nil
+                                      shareText:url
+                                     shareImage:IMG(@"landingpage_Background")
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQzone,UMShareToQQ,UMShareToWechatTimeline,UMShareToWechatSession,nil]
                                        delegate:self];
 
