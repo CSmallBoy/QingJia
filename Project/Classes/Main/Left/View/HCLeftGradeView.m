@@ -57,8 +57,10 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestFamilyMessage) name:@"showFamilyMessage" object:nil];
         
         NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
+        NSString *frist_str = [str substringToIndex:1];
         NSDictionary *dic = [readUserInfo getFaimilyDic];
         NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
+        NSString *frist_FamilyId = [str substringToIndex:1];
         
         if ((IsEmpty(str) || [str isKindOfClass:[NSNull class]])&& IsEmpty(strFamilyId))
         {
@@ -104,7 +106,7 @@
         }
         else
         {
-            if (str.length == 10||strFamilyId.length == 10)
+            if ([frist_str isEqualToString:@"F"]||[frist_FamilyId isEqualToString:@"F"])
             {
                 // 显示创建过家庭的侧边
                 [self requestFamilyMessage];
@@ -152,7 +154,7 @@
 {
     NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
     NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
-    
+    NSString *frist_str = [str substringToIndex:1];
     NSDictionary *dic = noti.userInfo;
     UIImage*image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dic[@"photo"] :kkUser]]];
     if ((IsEmpty(str) || [str isKindOfClass:[NSURL class]])&& IsEmpty(strFamilyId))
@@ -162,7 +164,7 @@
         
     }else
     {
-        if (str.length == 10 )
+        if ([frist_str isEqualToString:@"F"])
         {
             [self.headButton setBackgroundImage: image forState:UIControlStateNormal];
         }

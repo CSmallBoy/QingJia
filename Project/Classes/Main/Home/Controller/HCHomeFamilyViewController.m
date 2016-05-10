@@ -26,6 +26,8 @@
 #import "HCCreateGradeViewController.h"
 //通知button  视图
 #import "HCHomeNotiButton.h"
+//与我相关的评论列表
+#import "HCHomePushListViewController.h"
 
 
 #define HCHomeCell @"HCHomeTableViewCell"
@@ -77,7 +79,6 @@
     // 设置刷新图片
     [footer setImages:images1 forState:MJRefreshStateRefreshing];
     self.tableView.mj_footer = footer;
-//    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreHomeData)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"刷新数据所有" object:nil];
     
     
@@ -165,13 +166,6 @@
         [button setFrame:CGRectMake(SCREEN_WIDTH/3, 10, SCREEN_WIDTH/3, 33)];
         [view_notification addSubview:button];
         [button addTarget:self action:@selector(changeViewCon) forControlEvents:UIControlEventTouchUpInside];
-        //self.tableView.tableHeaderView = view_notification;
-        //    if (AccordingTo) {
-        //        self.tableView.tableHeaderView.hidden = YES;
-        //    }else{
-        //        self.tableView.tableHeaderView.hidden = NO;
-        //    }
-        //    return self.tableView.tableHeaderView;
         if (AccordingTo) {
             view_notification.hidden = YES;
         }else{
@@ -262,8 +256,10 @@
 - (void)changeViewCon{
     NSLog(@"跳转了");
     AccordingTo  = YES;
-    //[self.tableView.tableHeaderView removeFromSuperview];
     [self.tableView reloadData];
+    HCHomePushListViewController *vc = [[HCHomePushListViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 #pragma mark - private methods 加载数据 保存数据 写入数据
 

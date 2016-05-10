@@ -20,8 +20,7 @@
 }
 - (id)requestArgument
 {
-    NSDictionary *dict = [readUserInfo getReadDic];
-    NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],
+    NSDictionary *head = @{@"UUID":[readUserInfo GetUUID],
                            @"platForm":[readUserInfo GetPlatForm],
                            @"userName":_PhoneNum};
     NSDictionary *para = @{@"userPWD":_NewPassWord};

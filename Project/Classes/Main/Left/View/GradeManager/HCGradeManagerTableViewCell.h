@@ -23,6 +23,8 @@
 @property (nonatomic, strong) NSArray *array;
 @property (nonatomic,strong) UIImage *image;
 @property (nonatomic, strong) UITextField *textField;
+//推送显示的消息树
+@property (nonatomic, strong) UILabel *number;
 @property (nonatomic,strong) HCCreateGradeInfo *info;
 @property (nonatomic, weak) id<HCGradeManagerTableViewCellDelegate>delegate;
 

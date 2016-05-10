@@ -78,6 +78,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
     }else{
         
     }
+    
     cell.info = _info;
     cell.indexPath = indexPath;
     cell.textField.delegate = self;
@@ -91,17 +92,16 @@ static NSString * const reuseIdentifier = @"FriendCell";
     {
         vc = [[HCCodeLookViewController alloc] init];
         NSURL *url = [readUserInfo originUrl:self.info.imageName :kkFamail];
-        
         UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
         if (image == nil) {
             
             image = IMG(@"head.jpg");
         }
-        
         vc.data = @{@"info":self.info,@"image":image};
     }else if (indexPath.section == 1 && indexPath.row == 0)
     {
         vc = [[HCCheckViewController alloc] init];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"audit_num" object:nil];
     }
     [self.navigationController pushViewController:vc animated:YES];
 }

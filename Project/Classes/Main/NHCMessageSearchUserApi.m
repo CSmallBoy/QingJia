@@ -27,7 +27,13 @@
 }
 
 -(id)formatResponseObject:(id)responseObject{
-    NSString *str = responseObject[@"Data"][@"UserInf"][@"chatName"];
-    return str;
+    
+    HCLoginInfo *info = [[HCLoginInfo alloc]init];
+    info.chatName = responseObject[@"Data"][@"UserInf"][@"chatName"];
+    info.userHeadPhoto = responseObject[@"Data"][@"UserInf"][@"imageName"];
+    info.NickName = responseObject[@"Data"][@"UserInf"][@"nickName"];
+    info.HomeAddress = responseObject[@"Data"][@"UserInf"][@"homeAddress"];
+    info.UserDescription = responseObject[@"Data"][@"UserInf"][@"userDescription"];
+    return info;
 }
 @end

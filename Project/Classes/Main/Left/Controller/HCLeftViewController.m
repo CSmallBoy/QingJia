@@ -93,6 +93,7 @@
         
         NSString *str = [HCAccountMgr manager].loginInfo.createFamilyId;
          NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
+        NSString *frist = [str substringToIndex:1];
         if ((IsEmpty(str) || [str isKindOfClass:[NSNull class]])&& IsEmpty(strFamilyId))
         {
            
@@ -100,7 +101,7 @@
             
         }else
         {
-            if (str.length == 10)
+            if ([frist isEqualToString:@"F"])
             {
             
                 vc = [[HCGradeManagerViewController alloc] init];

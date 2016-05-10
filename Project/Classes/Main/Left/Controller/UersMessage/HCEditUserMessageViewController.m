@@ -468,19 +468,7 @@
     [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:(UITableViewRowAnimationAutomatic)];
     
 }
-//-(void)getDate:(UIPickerView*)sender{
-//    NSDateFormatter *formatrer = [[NSDateFormatter alloc]init];
-//    //格式化输出
-//    [formatrer setDateFormat:@"yyyy-MM-dd"];
-//    str = [formatrer stringFromDate:datePicker.date];
-//    //[ setTitle:str forState:UIControlStateNormal];
-//    [view_back removeFromSuperview];
-//    NSIndexPath  *indexPath_1=[NSIndexPath indexPathForRow:4 inSection:0];
-//    model.birday = str;
-//    NSArray*indexArray=[NSArray  arrayWithObject:indexPath_1];
-//    [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:(UITableViewRowAnimationAutomatic)];
-//
-//}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

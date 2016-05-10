@@ -710,6 +710,8 @@
 		C78D7D5B1C5F342700622CE2 /* HCPromisedTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7D421C5F342700622CE2 /* HCPromisedTextViewCell.m */; };
 		C78D7D5C1C5F342700622CE2 /* HCPromisedTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D7D451C5F342700622CE2 /* HCPromisedTagCell.m */; };
 		C79254571CE0CB8700F57FF2 /* NHCScanUSerCodeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C79254561CE0CB8700F57FF2 /* NHCScanUSerCodeApi.m */; };
+		C79A98C81CE191A9002407F1 /* HCUserFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A98C71CE191A9002407F1 /* HCUserFriendViewController.m */; };
+		C79A98CE1CE1BC2D002407F1 /* HCHomePushListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A98CD1CE1BC2D002407F1 /* HCHomePushListViewController.m */; };
 		C79E0EC51CA69AD300717D9B /* NHCloginInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C79E0EC41CA69AD300717D9B /* NHCloginInfoModel.m */; };
 		C79E0EC81CA69D0C00717D9B /* readUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C79E0EC71CA69D0C00717D9B /* readUserInfo.m */; };
 		C79F9A841CB73F3600EEF224 /* HCLeftGradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79F9A831CB73F3600EEF224 /* HCLeftGradeView.m */; };
@@ -2496,6 +2498,10 @@
 		C78D7D451C5F342700622CE2 /* HCPromisedTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedTagCell.m; sourceTree = "<group>"; };
 		C79254551CE0CB8700F57FF2 /* NHCScanUSerCodeApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCScanUSerCodeApi.h; sourceTree = "<group>"; };
 		C79254561CE0CB8700F57FF2 /* NHCScanUSerCodeApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCScanUSerCodeApi.m; sourceTree = "<group>"; };
+		C79A98C61CE191A9002407F1 /* HCUserFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCUserFriendViewController.h; sourceTree = "<group>"; };
+		C79A98C71CE191A9002407F1 /* HCUserFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCUserFriendViewController.m; sourceTree = "<group>"; };
+		C79A98CC1CE1BC2D002407F1 /* HCHomePushListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomePushListViewController.h; sourceTree = "<group>"; };
+		C79A98CD1CE1BC2D002407F1 /* HCHomePushListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomePushListViewController.m; sourceTree = "<group>"; };
 		C79E0EC31CA69AD300717D9B /* NHCloginInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCloginInfoModel.h; sourceTree = "<group>"; };
 		C79E0EC41CA69AD300717D9B /* NHCloginInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCloginInfoModel.m; sourceTree = "<group>"; };
 		C79E0EC61CA69D0C00717D9B /* readUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = readUserInfo.h; sourceTree = "<group>"; };
@@ -3207,6 +3213,8 @@
 				0A2B46C11C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.xib */,
 				C739F7951CD740F50070BB2D /* HCHomeUserPhotoViewController.h */,
 				C739F7961CD740F50070BB2D /* HCHomeUserPhotoViewController.m */,
+				C79A98CC1CE1BC2D002407F1 /* HCHomePushListViewController.h */,
+				C79A98CD1CE1BC2D002407F1 /* HCHomePushListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4520,6 +4528,8 @@
 				8D0F9FC31C7ECA920096A3B9 /* HCChangeBoundleTelNumberControll.m */,
 				C752A8751CB4F6B7006719F1 /* HCUserHeathViewController.h */,
 				C752A8761CB4F6B7006719F1 /* HCUserHeathViewController.m */,
+				C79A98C61CE191A9002407F1 /* HCUserFriendViewController.h */,
+				C79A98C71CE191A9002407F1 /* HCUserFriendViewController.m */,
 			);
 			path = UersMessage;
 			sourceTree = "<group>";
@@ -7989,6 +7999,7 @@
 				0A2B47801C7F12C800AAA157 /* HCDictionaryApi.m in Sources */,
 				C78D7B9F1C5F28F700622CE2 /* HCScanViewController.m in Sources */,
 				C7B00B9B1C5F26050010F93B /* PSTCollectionViewFlowLayout.m in Sources */,
+				C79A98C81CE191A9002407F1 /* HCUserFriendViewController.m in Sources */,
 				8D05FF761CB39EB1005AC51C /* HCMtalkWaitReceivedController.m in Sources */,
 				8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */,
 				0A2B46E51C7F12AF00AAA157 /* HCHomeUserTimeViewController.m in Sources */,
@@ -8427,6 +8438,7 @@
 				0A54919D1C2BC32D0085F50D /* ZXMultiFormatUPCEANReader.m in Sources */,
 				C78D7B421C5F28F700622CE2 /* UILabel+HCLabelContentSize.m in Sources */,
 				0A54912A1C2BC32D0085F50D /* ZXURLTOResultParser.m in Sources */,
+				C79A98CE1CE1BC2D002407F1 /* HCHomePushListViewController.m in Sources */,
 				C7B00B601C5F26050010F93B /* RobotManager.m in Sources */,
 				C7B00B4C1C5F26050010F93B /* GroupSubjectChangingViewController.m in Sources */,
 				0A54912B1C2BC32D0085F50D /* ZXVCardResultParser.m in Sources */,

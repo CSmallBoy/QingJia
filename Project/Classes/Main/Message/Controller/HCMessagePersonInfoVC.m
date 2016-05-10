@@ -46,7 +46,13 @@
     if (!cell)
     {
         cell = [[HCAddFriendTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.nameStr = self.dataSource[0];
+//        cell.nameStr = self.dataSource[0];
+//        cell.indexPath = indexPath;
+        cell.nameStr = _userInfo.NickName;
+        cell.ImageName = _userInfo.userHeadPhoto;
+        cell.adress = _userInfo.HomeAddress;
+        cell.sign = _userInfo.UserDescription;
+        
         cell.indexPath = indexPath;
     
         
@@ -87,7 +93,7 @@
 {
     NSString *buddyName;
     if(_ScanCode){
-        buddyName = _ChatId;
+        buddyName = _userInfo.chatName;
     }else{
          buddyName = self.dataSource[0];
     }
@@ -190,7 +196,7 @@
         
         if (_ScanCode){
             //发送请求
-             [[EaseMob sharedInstance].chatManager addBuddy:_ChatId message:message error:&error];
+             [[EaseMob sharedInstance].chatManager addBuddy:_userInfo.chatName message:message error:&error];
             if (error)
             {
                 [self showHint:NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again")];
@@ -202,9 +208,9 @@
         }else{
             NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
             api.UserChatID = buddyName;
-            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
-                [[EaseMob sharedInstance].chatManager addBuddy:chatUserName message:message error:&error];
-                [self hideHud];
+            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *model) {
+                [[EaseMob sharedInstance].chatManager addBuddy:model.chatName message:message error:&error];
+                //[self hideHud];
                 if (error)
                 {
                     [self showHint:NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again")];
@@ -214,6 +220,18 @@
                     [self showHint:NSLocalizedString(@"添加信息已发送", @"send successfully")];
                 }
             }];
+//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
+//                [[EaseMob sharedInstance].chatManager addBuddy:chatUserName message:message error:&error];
+//                [self hideHud];
+//                if (error)
+//                {
+//                    [self showHint:NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again")];
+//                }
+//                else
+//                {
+//                    [self showHint:NSLocalizedString(@"添加信息已发送", @"send successfully")];
+//                }
+//            }];
         }
       
     
