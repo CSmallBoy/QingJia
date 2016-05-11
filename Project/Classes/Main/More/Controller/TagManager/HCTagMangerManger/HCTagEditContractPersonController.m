@@ -175,9 +175,23 @@
         [phoneNumArr addObject:phoneValue];
         NSLog(@"%@ %@", phoneLabel, phoneValue);
     }
+    if (IsEmpty(firstname))
+    {
+        self.textField1.text = lastname;
+    }
+    else if (IsEmpty(lastname))
+    {
+        self.textField1.text = firstname;
+    }
+    else
+    {
+        self.textField1.text = [NSString stringWithFormat:@"%@%@",firstname, lastname];
+    }
     
-    self.textField1.text = [NSString stringWithFormat:@"%@ %@",firstname, lastname];
-    self.textField2.text = [phoneNumArr objectAtIndex:0];
+    if (phoneNumArr.count > 0)
+    {
+        self.textField2.text = [phoneNumArr objectAtIndex:0];
+    }
     // 3.释放不再使用的对象
     CFRelease(phones);
 }

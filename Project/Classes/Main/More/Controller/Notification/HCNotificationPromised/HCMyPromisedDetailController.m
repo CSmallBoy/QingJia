@@ -19,6 +19,12 @@
 #import "HCButtonItem.h"
 
 #import "UMSocial.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialWechatHandler.h"
+#import "WXApi.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialSnsPlatformManager.h"
+#import "UMSocialSinaSSOHandler.h"
 
 @interface HCMyPromisedDetailController ()<SKStoreProductViewControllerDelegate, UMSocialUIDelegate>
 
@@ -155,18 +161,31 @@
 
 }
 
--(BOOL)isDirectShareInIconActionSheet
-{
-    return YES;
-}
-
 -(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
 {
-    if (platformName == UMShareToQzone || platformName == UMShareToQQ || platformName == UMShareToWechatTimeline || platformName == UMShareToWechatSession) {
-        socialData.urlResource.url = [NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/times.do?code=%@", self.info.callId];
+    NSString *url = [NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/call.do?code=%@", self.info.callId];
+    if (platformName == UMShareToQQ || platformName == UMShareToQzone)
+    {
+        [UMSocialQQHandler setQQWithAppId:@"100424468" appKey:@"c7394704798a158208a74ab60104f0ba" url:url];
     }
-    else{
-        socialData.shareText = @"分享到其他平台的文字内容";
+    else if (platformName == UMShareToWechatTimeline || platformName == UMShareToWechatSession)
+    {
+        [UMSocialWechatHandler setWXAppId:@"wxa3e0f4e53bf74a06" appSecret:@"ed6ce4155f890517f746a2c1445dcb7e" url:url];
+    }
+    else
+    {
+        //进入授权页面
+        [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina].loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response)
+        {
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:url image:IMG(@"landingpage_Background") location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *shareResponse)
+            {
+                if (response.responseCode == UMSResponseCodeSuccess)
+                {
+                    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:nil message:@"分享成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alter show];
+                }
+            }];
+        });
     }
 }
 

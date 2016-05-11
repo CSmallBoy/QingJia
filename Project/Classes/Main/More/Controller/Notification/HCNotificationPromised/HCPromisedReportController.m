@@ -328,6 +328,7 @@
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self showHUDText:@"您已经举报成功"];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         else
         {

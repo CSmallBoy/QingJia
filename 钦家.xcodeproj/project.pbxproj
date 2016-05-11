@@ -1102,6 +1102,7 @@
 		C7DB55C31CDAF58A0041B0C9 /* NHCRegionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB55C21CDAF58A0041B0C9 /* NHCRegionApi.m */; };
 		C7F370471CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */; };
 		C7F421081CD055A2006BDA77 /* NHCHomeTimeToComentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */; };
+		EA090FA41CE2BFED00B6E009 /* HCDeletePromisedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */; };
 		EAE04D441CDF62CF003EDF0F /* HCReportApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE04D431CDF62CF003EDF0F /* HCReportApi.m */; };
 /* End PBXBuildFile section */
 
@@ -3113,6 +3114,8 @@
 		C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeToComentApi.m; sourceTree = "<group>"; };
 		C95F998133825127EECF22B1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E9376B27D02CD20170277F57 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA090FA21CE2BFED00B6E009 /* HCDeletePromisedApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDeletePromisedApi.h; sourceTree = "<group>"; };
+		EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDeletePromisedApi.m; sourceTree = "<group>"; };
 		EAE04D421CDF62CF003EDF0F /* HCReportApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReportApi.h; sourceTree = "<group>"; };
 		EAE04D431CDF62CF003EDF0F /* HCReportApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReportApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3385,6 +3388,8 @@
 				8D134CE11CCE3F00001B77EE /* HCClosePromisedApi.m */,
 				EAE04D421CDF62CF003EDF0F /* HCReportApi.h */,
 				EAE04D431CDF62CF003EDF0F /* HCReportApi.m */,
+				EA090FA21CE2BFED00B6E009 /* HCDeletePromisedApi.h */,
+				EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -7869,6 +7874,7 @@
 				0A6B7F9D1BF1EB74008D54B3 /* UIImage+TOWebViewControllerIcons.m in Sources */,
 				0A5491A21C2BC32D0085F50D /* ZXUPCEANExtension2Support.m in Sources */,
 				0A54913B1C2BC32D0085F50D /* ZXBitArray.m in Sources */,
+				EA090FA41CE2BFED00B6E009 /* HCDeletePromisedApi.m in Sources */,
 				8D05FF7E1CB39EB1005AC51C /* HCReceiveAddressController.m in Sources */,
 				8D16D1381CC46BAB008DC6D7 /* JT3DScrollView.m in Sources */,
 				C7B00B3C1C5F26050010F93B /* AppDelegate+EaseMob.m in Sources */,
@@ -8675,7 +8681,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hans@major.hk (7D4PMSGWK4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hans@major.hk (7D4PMSGWK4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8719,7 +8726,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hans@major.hk (7D4PMSGWK4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hans@major.hk (7D4PMSGWK4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -8773,7 +8781,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8811,7 +8819,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
