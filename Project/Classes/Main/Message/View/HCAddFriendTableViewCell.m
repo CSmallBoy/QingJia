@@ -24,8 +24,9 @@
     if (indexPath.section == 0)
     {
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 70,70)];
-        imageView.image =  [UIImage imageNamed:@"chatListCellHead.png"];
-        
+        //imageView.image =  [UIImage imageNamed:@"chatListCellHead.png"];
+        NSLog(@"%@",[readUserInfo url:_ImageName :kkUser] );
+        [imageView sd_setImageWithURL:[readUserInfo url:_ImageName :kkUser] placeholderImage:IMG(@"1")];
         ViewRadius(imageView, 35);
         [self.contentView addSubview:imageView];
         
@@ -78,7 +79,14 @@
 {
     if (!_textArr)
     {
-        _textArr = @[@"上海市闵行区集心路168号",@"To make each day happy!"];
+        if (IsEmpty(_adress)) {
+            _adress = @"该用户没有完善地址信息";
+        }
+        if (IsEmpty(_sign)) {
+            _sign = @"该用户没有完善签名信息";
+        }
+        _textArr = @[_adress,_sign];
+//        _textArr = @[@"_adress",@"_adress"];
     }
     return _textArr;
 }

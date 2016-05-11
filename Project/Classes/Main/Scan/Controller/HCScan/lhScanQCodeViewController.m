@@ -308,8 +308,7 @@
 #pragma mark - 扫描结果处理
 - (void)accordingQcode:(NSString *)str
 {
-//    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//    [alertView show];
+
     NSString * frist_str = [str substringToIndex:1];
     if ([frist_str isEqualToString:@"U"]) {
         //扫码添加好友
@@ -320,19 +319,33 @@
             if ([responseObject isEqualToString:@"0"]) {
                 NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
                 api.UserChatID = str;
-                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
+                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *model) {
                     if (requestStatus==10018) {
                         [self showHUDSuccess:@"您添加的好友不存在"];
-                    }else{
+                    }else if (requestStatus==100){
                         HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
                         NSMutableArray *arr = [NSMutableArray array];
-                        [arr addObject:chatUserName];
+                        [arr addObject:model];
                         vc.dataSource  = arr;
-                        vc.ChatId = chatUserName;
+                        vc.ChatId = model.NickName;
                         vc.ScanCode = YES;
+                        vc.userInfo = model;
                         [self.navigationController pushViewController:vc animated:YES];
                     }
                 }];
+//                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
+//                    if (requestStatus==10018) {
+//                        [self showHUDSuccess:@"您添加的好友不存在"];
+//                    }else if (requestStatus==100){
+//                        HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
+//                        NSMutableArray *arr = [NSMutableArray array];
+//                        [arr addObject:chatUserName];
+//                        vc.dataSource  = arr;
+//                        vc.ChatId = chatUserName;
+//                        vc.ScanCode = YES;
+//                        [self.navigationController pushViewController:vc animated:YES];
+//                    }
+//                }];
             }else if ([responseObject isEqualToString:@"1"]){
                 [self showHUDSuccess:@"您已经添加过该好友"];
                 //显示好友的详细信息
@@ -346,11 +359,16 @@
   
         }];
 
-    }else if ([frist_str isEqualToString:@"L"]){
+    }else if ([frist_str isEqualToString:@"M"]){
+        //判断标签是否激活
+        
+        
+        
+        //没有激活是下面的操作
         HCBindTagController *bindVC = [[HCBindTagController alloc]init];
         bindVC.labelGuid = str;
         [self.navigationController pushViewController:bindVC animated:YES];
-    }else if (str.length==10){
+    }else if ([frist_str isEqualToString:@"F"]){
         
         if (_isJoinFamily)
         {
@@ -366,6 +384,8 @@
 
     }
     else{
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
         
         HCScanApi *api = [[HCScanApi alloc]init];
         api.labelGuid = str;

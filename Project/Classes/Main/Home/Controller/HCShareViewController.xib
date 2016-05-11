@@ -83,11 +83,21 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用你无限的爱，填满岁月的痕迹" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8C-Ks-XXN">
                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Ese-H2-wm2"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                     <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="8" y="175" width="392" height="30"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Ese-H2-wm2"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="Ese-H2-wm2"/>
+                        </mask>
                     </variation>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUd-f9-a1l">
@@ -179,6 +189,7 @@
                 <constraint firstItem="NLU-RR-h5E" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="OHG-C4-A8O">
                     <variation key="heightClass=regular-widthClass=compact" constant="171.5"/>
                 </constraint>
+                <constraint firstItem="YXp-Ym-fpN" firstAttribute="top" secondItem="n8C-Ks-XXN" secondAttribute="bottom" constant="40" id="S2F-oW-vgj"/>
                 <constraint firstAttribute="trailing" secondItem="2Di-dC-m5a" secondAttribute="trailing" id="Tha-Wc-C5a"/>
                 <constraint firstItem="NLU-RR-h5E" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W7N-en-8rF">
                     <variation key="heightClass=regular-widthClass=compact" constant="-101.5"/>
@@ -194,6 +205,7 @@
                 <constraint firstItem="l2q-te-dwJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hZq-To-ewo">
                     <variation key="heightClass=regular-widthClass=compact" constant="-101.5"/>
                 </constraint>
+                <constraint firstItem="n8C-Ks-XXN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hgg-wz-ppZ"/>
                 <constraint firstItem="YXp-Ym-fpN" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="iCx-84-sFe">
                     <variation key="heightClass=regular-widthClass=compact" constant="-120"/>
                 </constraint>
@@ -222,7 +234,9 @@
                     <exclude reference="7UE-zM-GHY"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="hgg-wz-ppZ"/>
                     <exclude reference="ALA-NB-kGR"/>
+                    <exclude reference="S2F-oW-vgj"/>
                     <exclude reference="iCx-84-sFe"/>
                     <exclude reference="FZe-e3-f8L"/>
                     <exclude reference="hZq-To-ewo"/>
@@ -268,7 +282,9 @@
                     <include reference="7UE-zM-GHY"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="hgg-wz-ppZ"/>
                     <include reference="ALA-NB-kGR"/>
+                    <include reference="S2F-oW-vgj"/>
                     <include reference="iCx-84-sFe"/>
                     <include reference="FZe-e3-f8L"/>
                     <include reference="hZq-To-ewo"/>

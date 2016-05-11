@@ -97,28 +97,6 @@
 
 - (void)handleRightItem
 {
-    // 测试
-    //    HCCreateGradeViewController *createGrade = [[HCCreateGradeViewController alloc] init];
-    //    createGrade.hidesBottomBarWhenPushed = YES;
-    //    [self.navigationController pushViewController:createGrade animated:YES];
-    //    return;
-    //    HCHomeDetailViewController *detail = [[HCHomeDetailViewController alloc] init];
-    //    [self.navigationController pushViewController:detail animated:YES];
-    //    return;
-    //    HCEditCommentViewController *editComment = [[HCEditCommentViewController alloc] init];
-    //    UIViewController *rootController = self.view.window.rootViewController;
-    //    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-    //    {
-    //        editComment.modalPresentationStyle=
-    //        UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
-    //    }else
-    //    {
-    //        rootController.modalPresentationStyle=
-    //        UIModalPresentationCurrentContext|UIModalPresentationFullScreen;
-    //    }
-    //    [rootController presentViewController:editComment animated:YES completion:nil];
-    //    return;
-    
     HCPublishViewController *publish = [[HCPublishViewController alloc] init];
 //    publish.data = @{@"data": self.dataSource};
     publish.hidesBottomBarWhenPushed = YES;

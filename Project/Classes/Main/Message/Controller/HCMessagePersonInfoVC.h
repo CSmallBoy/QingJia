@@ -7,10 +7,11 @@
 //
 
 #import "HCTableViewController.h"
-
+#import "HCLoginInfo.h"
 @interface HCMessagePersonInfoVC : HCTableViewController
 @property (nonatomic,assign) BOOL ScanCode;
 @property (nonatomic,copy)NSString *ChatId;
 @property (nonatomic,copy) NSString *ImageName;
+@property (nonatomic,strong) HCLoginInfo *userInfo;
 
 @end

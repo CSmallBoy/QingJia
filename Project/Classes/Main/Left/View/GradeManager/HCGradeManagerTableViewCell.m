@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIImageView *codeImgView;
 @property (nonatomic, strong) UILabel *statusLabel;
 
+
 @end
 
 @implementation HCGradeManagerTableViewCell
@@ -73,6 +74,13 @@
         {
             self.titleLabel.text = [NSString stringWithFormat:@"家庭成员（%lu）",(unsigned long)_array.count];
             self.titleLabel.frame = CGRectMake(15, 10, 120, 24);
+            _number = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-25, 4, 16, 16)];
+            _number.text = @"88";
+            _number.textAlignment = NSTextAlignmentCenter;
+            _number.font = [UIFont systemFontOfSize:10];
+            ViewBorderRadius(_number, 7, 1, [UIColor redColor]);
+            [self.contentView addSubview:_number];
+            
             [self.contentView addSubview:self.titleLabel];
             [self.contentView addSubview:self.statusLabel];
         }else
@@ -102,8 +110,12 @@
             }
         }
     }
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remove_message_num) name:@"audit_num" object:nil];
 }
-
+//移除
+//- (void)remove_message_num{
+//    [_number removeFromSuperview];
+//}
 - (UILabel *)titleLabel
 {
     if (!_titleLabel)
@@ -142,6 +154,9 @@
         _statusLabel.textColor = kHCNavBarColor;
         _statusLabel.font = [UIFont systemFontOfSize:15];
         _statusLabel.text = @"审核";
+        
+        
+        
     }
     return _statusLabel;
 }

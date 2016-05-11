@@ -20,7 +20,8 @@
 #import "HCAddFriendlistTableViewCell.h"
 
 #import "HCMailListViewController.h"
-
+//
+#import "NHCMessageSearchUserApi.h"
 @interface AddFriendViewController ()<UITextFieldDelegate, UIAlertViewDelegate,UIGestureRecognizerDelegate,HCAddFriendlistTableViewCellDelegate>
 {
     NSMutableArray *btnArr;
@@ -274,7 +275,21 @@
         [mutableArr addObject:_textField.text];
         //联系人的信息界面
         HCMessagePersonInfoVC *MessagePVC = [[HCMessagePersonInfoVC alloc]init];
-        MessagePVC.dataSource = mutableArr;
+        NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
+        api.UserChatID = _textField.text;
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *model) {
+          if (requestStatus==100){
+                HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
+                NSMutableArray *arr = [NSMutableArray array];
+                [arr addObject:model];
+                vc.dataSource  = arr;
+                vc.ChatId = model.NickName;
+                vc.ScanCode = YES;
+                vc.userInfo = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }];
+       // MessagePVC.dataSource = mutableArr;
         //网络请求
         [self.navigationController pushViewController:MessagePVC animated:YES];
     }

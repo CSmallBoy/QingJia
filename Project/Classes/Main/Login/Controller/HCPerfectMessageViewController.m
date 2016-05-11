@@ -64,6 +64,10 @@
         [self showHUDText:@"输入的密码不一致"];
         return;
     }
+    if(_password.text.length<6 || _repassword.text.length<6){
+        [self showHUDText:@"密码大于6位"];
+        return;
+    }
     [self requestPerfectMessage];
 }
 
