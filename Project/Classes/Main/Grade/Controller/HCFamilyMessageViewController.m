@@ -143,7 +143,8 @@
 -(void)buttonClick
 {
     if (IsEmpty(self.message)) {
-        [self showHUDText:@"验证消息不能为空"];
+        self.message = @" ";
+        //[self showHUDText:@"验证消息不能为空"];
     }
     
     applyToFamily *api = [[applyToFamily alloc]init];

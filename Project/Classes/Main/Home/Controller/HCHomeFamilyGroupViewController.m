@@ -16,7 +16,7 @@
 #import "HCWelcomeJoinGradeViewController.h"
 #import "HCHomeTableViewCell.h"
 #import "HCHomeInfo.h"
-#import "HCHomeApi.h"
+//#import "HCHomeApi.h"
 #import "HCHomeLikeCountApi.h"
 
 #import "HCCreateGradeViewController.h"
@@ -154,7 +154,7 @@
         [self presentViewController:shareVC animated:YES completion:nil];
     }else if (index == 0)
     {
-        [self requestLikeCount:info indexPath:indexPath];
+        //[self requestLikeCount:info indexPath:indexPath];
     }
 }
 
@@ -184,7 +184,7 @@
     
     [self.dataSource addObjectsFromArray:[HCHomeInfo mj_objectArrayWithKeyValuesArray:arrayData]];
     [self.tableView reloadData];
-    [self requestHomeData];
+    //[self requestHomeData];
 }
 
 - (NSString *)getSaveLocationDataPath
@@ -233,69 +233,69 @@
 
 #pragma mark - network
 
-- (void)requestHomeData
-{
-    HCHomeApi *api = [[HCHomeApi alloc] init];
-    api.Start = @"0";
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-        [self.tableView.mj_header endRefreshing];
-        //        if (requestStatus == HCRequestStatusSuccess)
-        //        {
-        [self.dataSource removeAllObjects];
-        [self.dataSource addObjectsFromArray:array];
-        
-        HCHomeInfo *lastInfo = [array lastObject];
-        api.Start = lastInfo.KeyId;
-        
-        [self writeLocationData:array];
-        [self.tableView reloadData];
-        //        }else
-        //        {
-        //            [self showHUDError:message];
-        //        }
-    }];
-    _baseRequest = api;
-}
-
-- (void)requestMoreHomeData
-{
-    HCHomeApi *api = [[HCHomeApi alloc] init];
-    api.Start = _start;
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-        [self.tableView.mj_footer endRefreshing];
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            [self.dataSource addObjectsFromArray:array];
-            
-            HCHomeInfo *lastInfo = [array lastObject];
-            api.Start = lastInfo.KeyId;
-            
-            [self writeLocationData:array];
-            [self.tableView reloadData];
-        }else
-        {
-            [self showHUDError:message];
-        }
-    }];
-}
+//- (void)requestHomeData
+//{
+//    HCHomeApi *api = [[HCHomeApi alloc] init];
+//    api.Start = @"0";
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        [self.tableView.mj_header endRefreshing];
+//        //        if (requestStatus == HCRequestStatusSuccess)
+//        //        {
+//        [self.dataSource removeAllObjects];
+//        [self.dataSource addObjectsFromArray:array];
+//        
+//        HCHomeInfo *lastInfo = [array lastObject];
+//        api.Start = lastInfo.KeyId;
+//        
+//        [self writeLocationData:array];
+//        [self.tableView reloadData];
+//        //        }else
+//        //        {
+//        //            [self showHUDError:message];
+//        //        }
+//    }];
+//    _baseRequest = api;
+//}
+//
+//- (void)requestMoreHomeData
+//{
+//    HCHomeApi *api = [[HCHomeApi alloc] init];
+//    api.Start = _start;
+//    
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+//        [self.tableView.mj_footer endRefreshing];
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            [self.dataSource addObjectsFromArray:array];
+//            
+//            HCHomeInfo *lastInfo = [array lastObject];
+//            api.Start = lastInfo.KeyId;
+//            
+//            [self writeLocationData:array];
+//            [self.tableView reloadData];
+//        }else
+//        {
+//            [self showHUDError:message];
+//        }
+//    }];
+//}
 
 // 请求点赞
-- (void)requestLikeCount:(HCHomeInfo *)info indexPath:(NSIndexPath *)indexPath
-{
-    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
-    api.TimesId = info.KeyId;
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            info.FTLikeCount = [NSString stringWithFormat:@"%@", @([info.FTLikeCount integerValue]+1)];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        }else
-        {
-            [self showHUDError:message];
-        }
-    }];
-}
+//- (void)requestLikeCount:(HCHomeInfo *)info indexPath:(NSIndexPath *)indexPath
+//{
+//    HCHomeLikeCountApi *api = [[HCHomeLikeCountApi alloc] init];
+//    api.TimesId = info.KeyId;
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            info.FTLikeCount = [NSString stringWithFormat:@"%@", @([info.FTLikeCount integerValue]+1)];
+//            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//        }else
+//        {
+//            [self showHUDError:message];
+//        }
+//    }];
+//}
 
 
 

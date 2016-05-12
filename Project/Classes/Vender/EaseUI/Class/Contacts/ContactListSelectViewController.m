@@ -10,7 +10,7 @@
 
 #import "ChatViewController.h"
 #import "UserProfileManager.h"
-#import "NHCChatUserInfoApi.h"
+
 
 @interface ContactListSelectViewController () <EMUserListViewControllerDelegate,EMUserListViewControllerDataSource>
 

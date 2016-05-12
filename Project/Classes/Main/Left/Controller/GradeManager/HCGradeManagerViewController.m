@@ -75,10 +75,11 @@ static NSString * const reuseIdentifier = @"FriendCell";
     if (isEditing) {
         cell.image = choose;
         cell.IsEditingPhoto = YES;
-    }else{
+    }
+    else
+    {
         
     }
-    
     cell.info = _info;
     cell.indexPath = indexPath;
     cell.textField.delegate = self;
@@ -217,7 +218,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
             if (isTure) {
                 
             }else{
-                _miaoshu=  self.info.familyDescription;
+                _miaoshu=  self.info.ancestralHome;
                 _nickName= self.info.familyNickName;
                 _PhotoName= self.info.familyPhoto;
             }
@@ -304,6 +305,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
         //上传修修改的编辑信息
         API.familyNickName = _nickName;
         API.familyId = _creatFamilyID;
+        //祖籍改成签名
         API.ancestralHome = _miaoshu;
         API.imageName = _PhotoName;
         API.contactAddr = self.info.contactAddr;

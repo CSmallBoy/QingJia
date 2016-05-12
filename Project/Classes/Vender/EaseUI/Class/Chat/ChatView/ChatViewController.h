@@ -11,4 +11,5 @@
 @interface ChatViewController : EaseMessageViewController
 @property (nonatomic,copy) NSString *nickName;
 @property (nonatomic,strong) UIImage *imageUserPh;
+@property (nonatomic,strong) NSMutableDictionary *image_dict;
 @end

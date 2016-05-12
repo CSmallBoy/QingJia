@@ -65,12 +65,8 @@
 
 - (void)handleRightItem1
 {
-
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app setupRootViewController];
-    
-  
-    
 }
 
 #pragma mark - setter or getter

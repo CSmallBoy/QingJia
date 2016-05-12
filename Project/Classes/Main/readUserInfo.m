@@ -11,7 +11,40 @@
 #import "UIImage+RoundedRectImage.h"
 #import "NHCChatUserInfoApi.h"
 @implementation readUserInfo
-//创建
+
++(void)creatDicMessage:(NSDictionary*)dic{
+    NSMutableData *data =[NSMutableData data];
+    //初始化归档对象
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
+    //设置归档
+    [archiver encodeObject:dic forKey:@"message"];
+    //归档结束
+    [archiver finishEncoding];
+    //写文件  需要先找到写的路径
+    //先获取基本路径
+    NSString * temp =NSTemporaryDirectory();
+    //在获取文件路径
+    NSString *filePath = [temp stringByAppendingString:@"message.plist"];
+    [data writeToFile:filePath atomically:YES];
+    
+    
+}
++(NSDictionary*)getReadDicMessage{
+    //获取本地路径
+    NSString *temp =NSTemporaryDirectory();
+    NSString *filePath = [temp stringByAppendingString:@"message.plist"];
+    //读文件
+    NSLog(@"%@",filePath);
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    //初始化解档对象
+    NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
+    //获取person对象
+    NSDictionary *dict = [unarchiver decodeObjectForKey:@"message"];
+    return dict;
+    
+}
+
+
 +(void)creatDic:(NSDictionary*)dic{
     NSMutableData *data =[NSMutableData data];
     //初始化归档对象
@@ -27,8 +60,10 @@
     NSString *filePath = [temp stringByAppendingString:@"acchiver.plist"];
     [data writeToFile:filePath atomically:YES];
     
-
+    
 }
+
+
 +(NSDictionary*)getReadDic{
     //获取本地路径
     NSString *temp =NSTemporaryDirectory();
@@ -253,5 +288,6 @@
     return age;
     
 }
+
 
 @end

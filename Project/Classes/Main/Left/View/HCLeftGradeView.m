@@ -120,10 +120,7 @@
                 self.familyButton.hidden = YES;
                 self.headButton.hidden = YES;
                 [self addSubview:self.smallView];
-                
-                
                 NSDictionary *dict = [readUserInfo getReadDic];
-                
                 self.gradeHeadButton.frame = CGRectMake(WIDTH(self)*0.2, 60, WIDTH(self)*0.3, WIDTH(self)*0.3);
                 ViewRadius(self.gradeHeadButton, WIDTH(self)*0.3/2);
                 

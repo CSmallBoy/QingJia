@@ -46,16 +46,11 @@
     if (!cell)
     {
         cell = [[HCAddFriendTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        cell.nameStr = self.dataSource[0];
-//        cell.indexPath = indexPath;
         cell.nameStr = _userInfo.NickName;
         cell.ImageName = _userInfo.userHeadPhoto;
         cell.adress = _userInfo.HomeAddress;
         cell.sign = _userInfo.UserDescription;
-        
         cell.indexPath = indexPath;
-    
-        
     }
     return cell;
 }
@@ -186,7 +181,8 @@
 - (void)sendFriendApplyAtIndexPath:(NSIndexPath *)indexPath
                            message:(NSString *)message
 {
-    NSString *buddyName = [self.dataSource objectAtIndex:indexPath.row];
+    //NSString *buddyName = [self.dataSource objectAtIndex:indexPath.row];
+    NSString *buddyName = _userInfo.chatName;
     if (buddyName && buddyName.length > 0)
     {
         //[self showHudInView:self.view hint:NSLocalizedString(@"friend.sendApply", @"sending application...")];

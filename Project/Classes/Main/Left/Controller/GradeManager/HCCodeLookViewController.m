@@ -142,9 +142,9 @@
 }
 - (UILabel *)classNum{
     if (!_classNum) {
-        _classNum = [[UILabel alloc]initWithFrame:CGRectMake(MaxX(self.classImgView)+10, HEIGHT(self.classTitle)+20, SCREEN_WIDTH*0.3, 20)];
+        _classNum = [[UILabel alloc]initWithFrame:CGRectMake(MaxX(self.classImgView)+10, HEIGHT(self.classTitle)+20, 160, 20)];
         _classNum.text = [HCAccountMgr manager].loginInfo.createFamilyId;
-        _classNum.font = [UIFont systemFontOfSize:15];
+        _classNum.font = [UIFont systemFontOfSize:14];
         
     }
     return _classNum;

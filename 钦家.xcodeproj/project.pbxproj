@@ -1100,6 +1100,8 @@
 		C7BE0E3B1C71A02A007D97A5 /* HCMailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3A1C71A02A007D97A5 /* HCMailListViewController.m */; };
 		C7BE0E411C71A041007D97A5 /* HCMailListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3D1C71A041007D97A5 /* HCMailListModel.m */; };
 		C7BE0E421C71A041007D97A5 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = C7BE0E3F1C71A041007D97A5 /* pinyin.c */; };
+		C7C3262F1CE2D7FB00B4BC10 /* NHCLabelStateApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C3262E1CE2D7FB00B4BC10 /* NHCLabelStateApi.m */; };
+		C7C326321CE307B900B4BC10 /* NHCDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C326311CE307B900B4BC10 /* NHCDataBase.m */; };
 		C7CC8DBF1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CC8DBE1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m */; };
 		C7DB55C31CDAF58A0041B0C9 /* NHCRegionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB55C21CDAF58A0041B0C9 /* NHCRegionApi.m */; };
 		C7F370471CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */; };
@@ -3109,6 +3111,10 @@
 		C7BE0E3D1C71A041007D97A5 /* HCMailListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMailListModel.m; sourceTree = "<group>"; };
 		C7BE0E3F1C71A041007D97A5 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		C7BE0E401C71A041007D97A5 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
+		C7C3262D1CE2D7FB00B4BC10 /* NHCLabelStateApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCLabelStateApi.h; sourceTree = "<group>"; };
+		C7C3262E1CE2D7FB00B4BC10 /* NHCLabelStateApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCLabelStateApi.m; sourceTree = "<group>"; };
+		C7C326301CE307B900B4BC10 /* NHCDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCDataBase.h; sourceTree = "<group>"; };
+		C7C326311CE307B900B4BC10 /* NHCDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCDataBase.m; sourceTree = "<group>"; };
 		C7CC8DBD1CCDBA64005CAF4A /* NHCMySelfTimeListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCMySelfTimeListApi.h; sourceTree = "<group>"; };
 		C7CC8DBE1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCMySelfTimeListApi.m; sourceTree = "<group>"; };
 		C7DB55C11CDAF58A0041B0C9 /* NHCRegionApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCRegionApi.h; sourceTree = "<group>"; };
@@ -5072,6 +5078,7 @@
 		C73C0B761CA27A020034E42E /* newjiekou */ = {
 			isa = PBXGroup;
 			children = (
+				C7C3262C1CE2D74B00B4BC10 /* labelTagApi */,
 				C777FF271CC777F3007ED160 /* messageApi */,
 				C74D2AFE1CB6625000A260A4 /* HomeApi */,
 				C752A8791CB4FE53006719F1 /* public */,
@@ -5162,6 +5169,8 @@
 				C74D2B091CB683EE00A260A4 /* NHCDownLoadManyApi.m */,
 				C7DB55C11CDAF58A0041B0C9 /* NHCRegionApi.h */,
 				C7DB55C21CDAF58A0041B0C9 /* NHCRegionApi.m */,
+				C7C326301CE307B900B4BC10 /* NHCDataBase.h */,
+				C7C326311CE307B900B4BC10 /* NHCDataBase.m */,
 			);
 			name = public;
 			sourceTree = "<group>";
@@ -7337,6 +7346,15 @@
 			path = pinyin;
 			sourceTree = "<group>";
 		};
+		C7C3262C1CE2D74B00B4BC10 /* labelTagApi */ = {
+			isa = PBXGroup;
+			children = (
+				C7C3262D1CE2D7FB00B4BC10 /* NHCLabelStateApi.h */,
+				C7C3262E1CE2D7FB00B4BC10 /* NHCLabelStateApi.m */,
+			);
+			name = labelTagApi;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -8196,6 +8214,7 @@
 				C7B00B8B1C5F26050010F93B /* EMSDWebImageManager.m in Sources */,
 				8D9790511CB3A05D00FE3C12 /* HCMtalkShopingCell.m in Sources */,
 				C72F1F951C7719EE00A6E794 /* HCAuditViewController.m in Sources */,
+				C7C3262F1CE2D7FB00B4BC10 /* NHCLabelStateApi.m in Sources */,
 				0A5491241C2BC32D0085F50D /* ZXSMTPResultParser.m in Sources */,
 				C78D7B8E1C5F28F700622CE2 /* HCBarButtonItem.m in Sources */,
 				8D97903A1CB3A00B00FE3C12 /* HCMyOrderDetailInfo.m in Sources */,
@@ -8335,6 +8354,7 @@
 				0A2B47621C7F12C800AAA157 /* HCHomePublishApi.m in Sources */,
 				0A5491A51C2BC32D0085F50D /* ZXUPCEANReader.m in Sources */,
 				0A54917A1C2BC32D0085F50D /* ZXAI01weightDecoder.m in Sources */,
+				C7C326321CE307B900B4BC10 /* NHCDataBase.m in Sources */,
 				0A8BE3BD1C7E8D7C008E8100 /* HCLikeFamilyTableViewCell.m in Sources */,
 				0A5491541C2BC32D0085F50D /* ZXResult.m in Sources */,
 				0A2B46E01C7F12AF00AAA157 /* HCEditCommentViewController.m in Sources */,

@@ -211,6 +211,7 @@
         Sonlabel.numberOfLines = 0;
         CGSize size = CGSizeMake(_label.bounds.size.width-120, MAXFLOAT);
         CGSize labelsize = [_info.subRows[i][@"content"] sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+        
         Sonlabel.frame = CGRectMake(_button2.frame.size.width + _button1.bounds.size.width + 30 + 4, 0, _label.bounds.size.width - _button2.frame.size.width - _button1.bounds.size.width - 30 - 4 -20, labelsize.height);
         NSString *str = [NSString stringWithFormat:@"%f",labelsize.height];
         int b = [str intValue];
@@ -225,44 +226,11 @@
     if ([self.delegate respondsToSelector:@selector(hchomeDetailCommentTableViewCellCommentHeight:)])
     {
         //这个地方修改高度
-        [self.delegate hchomeDetailCommentTableViewCellCommentHeight:size.height + 23 *_info.subRows.count];
+//        [self.delegate hchomeDetailCommentTableViewCellCommentHeight:size.height + 23 *_info.subRows.count];
+        [self.delegate hchomeDetailCommentTableViewCellCommentHeight:size.height + sum];
     }
 }
-//- (UIButton *)button2
-//{
-//    if (!_button2)
-//    {
-//        _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-//    }
-//    return _button2;
-//}
-//- (UIButton *)button1
-//{
-//    if (!_button1)
-//    {
-//        _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-//    }
-//    return _button1;
-//}
-//- (UILabel *)label
-//{
-//    if (!_label)
-//    {
-//        _label = [[UILabel alloc] init];
-//        _label.font = [UIFont systemFontOfSize:16];
-//        
-//    }
-//    return _label;
-//}
-//- (UILabel *)huifu
-//{
-//    if (!_huifu)
-//    {
-//        _huifu = [[UILabel alloc] init];
-//        _huifu.font = [UIFont systemFontOfSize:16];
-//    }
-//    return _huifu;
-//}
+
 
 - (UIButton *)headButton
 {

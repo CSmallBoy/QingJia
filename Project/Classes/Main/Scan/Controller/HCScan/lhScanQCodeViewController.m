@@ -22,6 +22,9 @@
 #import "HCMessagePersonInfoVC.h"
 //获取好友状态
 #import "NHCScanUSerCodeApi.h"
+//标签状态
+#import "NHCLabelStateApi.h"
+
 #import <MAMapKit/MAMapKit.h>
 
 #define DeviceMaxHeight ([UIScreen mainScreen].bounds.size.height)
@@ -333,19 +336,6 @@
                         [self.navigationController pushViewController:vc animated:YES];
                     }
                 }];
-//                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
-//                    if (requestStatus==10018) {
-//                        [self showHUDSuccess:@"您添加的好友不存在"];
-//                    }else if (requestStatus==100){
-//                        HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
-//                        NSMutableArray *arr = [NSMutableArray array];
-//                        [arr addObject:chatUserName];
-//                        vc.dataSource  = arr;
-//                        vc.ChatId = chatUserName;
-//                        vc.ScanCode = YES;
-//                        [self.navigationController pushViewController:vc animated:YES];
-//                    }
-//                }];
             }else if ([responseObject isEqualToString:@"1"]){
                 [self showHUDSuccess:@"您已经添加过该好友"];
                 //显示好友的详细信息
@@ -362,14 +352,30 @@
     }else if ([frist_str isEqualToString:@"M"]){
         //判断标签是否激活
         
+        NHCLabelStateApi *api = [[NHCLabelStateApi alloc]init];
+        api.resultStr = str;
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+            	// 0:未激活，1：激活，2：激活（标签拥有者）3：呼，4：呼（标签拥有者），5：停用，6：停用（标签拥有者），7：无效
+            NSString *status = responseObject[@"Data"][@"labelInf"][@"status"];
+            if ([status isEqualToString:@"0"]) {
+                //没有激活是下面的操作
+                HCBindTagController *bindVC = [[HCBindTagController alloc]init];
+                bindVC.labelGuid = str;
+                [self.navigationController pushViewController:bindVC animated:YES];
+            }
+            else if ([status isEqualToString:@"1"]){
+                [self showHUDText:@"该标签已经激活"];
+                
+            } else if ([status isEqualToString:@"5"]){
+                [self showHUDText:@"该标签已经停用"];
+                
+            } else {
+                [self showHUDText:@"其他信息"];
+            }
+        }];
         
         
-        //没有激活是下面的操作
-        HCBindTagController *bindVC = [[HCBindTagController alloc]init];
-        bindVC.labelGuid = str;
-        [self.navigationController pushViewController:bindVC animated:YES];
     }else if ([frist_str isEqualToString:@"F"]){
-        
         if (_isJoinFamily)
         {
             self.block(str);
@@ -386,7 +392,6 @@
     else{
         UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
-        
         HCScanApi *api = [[HCScanApi alloc]init];
         api.labelGuid = str;
         api.createLocation = self.createLocation;
@@ -530,6 +535,7 @@
         NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         self.createLocation = [NSString  stringWithFormat:@"%f,%f",userLocation.coordinate.latitude,userLocation.coordinate.longitude];
     }
+    _mapview.showsUserLocation = NO;
     
 }
 

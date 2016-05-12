@@ -76,6 +76,8 @@
             self.titleLabel.frame = CGRectMake(15, 10, 120, 24);
             _number = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-25, 4, 16, 16)];
             _number.text = @"88";
+            _number.textColor = [UIColor whiteColor];
+            _number.backgroundColor = [UIColor redColor];
             _number.textAlignment = NSTextAlignmentCenter;
             _number.font = [UIFont systemFontOfSize:10];
             ViewBorderRadius(_number, 7, 1, [UIColor redColor]);

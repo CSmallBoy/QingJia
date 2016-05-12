@@ -274,7 +274,7 @@
         NSMutableArray *mutableArr = [NSMutableArray array];
         [mutableArr addObject:_textField.text];
         //联系人的信息界面
-        HCMessagePersonInfoVC *MessagePVC = [[HCMessagePersonInfoVC alloc]init];
+        //HCMessagePersonInfoVC *MessagePVC = [[HCMessagePersonInfoVC alloc]init];
         NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
         api.UserChatID = _textField.text;
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *model) {
@@ -287,11 +287,13 @@
                 vc.ScanCode = YES;
                 vc.userInfo = model;
                 [self.navigationController pushViewController:vc animated:YES];
-            }
+          }else if (requestStatus ==10018){
+              [self showHint:@"您搜索的用户不存在"];
+          }
         }];
        // MessagePVC.dataSource = mutableArr;
         //网络请求
-        [self.navigationController pushViewController:MessagePVC animated:YES];
+       // [self.navigationController pushViewController:MessagePVC animated:YES];
     }
 }
 //扫描

@@ -45,6 +45,7 @@
 @property (nonatomic, strong) EMSearchBar           *searchBar;
 
 @property (strong, nonatomic) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) NSMutableDictionary *dict_mutab;
 
 @end
 
@@ -52,6 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _dict_mutab = [NSMutableDictionary dictionary];
     [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
     self.showRefreshHeader = YES;
     self.delegate = self;
@@ -188,8 +190,46 @@
                 [self.navigationController pushViewController:chatController animated:YES];
             } else {
                 ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
+                NSLog(@"%ld",(long)conversationModel.conversation.conversationType)
+                //1 是群聊
+                if (conversationModel.conversation.conversationType == 1 ) {
+                    //获取群成员列表
+                    NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+                    NSLog(@"%@",groupArray);
+                    //群组 成员所有图片
+                    for (EMGroup *group in groupArray) {
+                        if ([group.groupId isEqualToString:conversation.chatter])
+                        {
+                            NSLog(@"%@",group.occupants)
+                            for (int i  = 0 ; i < group.occupants.count; i++) {
+                                NHCChatUserInfoApi *API = [[NHCChatUserInfoApi alloc]init];
+                                API.chatName = [group.occupants[i] stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+                                [API startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                                    UIImageView *image = [[UIImageView alloc]init];
+                                    [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
+                                    NSLog(@"%@",[readUserInfo url:dict[@"imageName"] :kkUser])
+                                    [_dict_mutab setObject:image.image forKey:group.occupants[i]];
+                                    
+                                }];
+                            }
+                        }
+                    }
+                }else if (conversationModel.conversation.conversationType==0){
+                    //传过去一个单聊的用户头像
+                    //5.11  一会要注释  不用这一部分
+                    NHCChatUserInfoApi *API = [[NHCChatUserInfoApi alloc]init];
+                    API.chatName = [conversationModel.conversation.chatter stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+                    [API startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                        UIImageView *image = [[UIImageView alloc]init];
+                        [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
+                        chatController.imageUserPh = image.image;
+                        
+                    }];
+                }
                 chatController.title = conversationModel.title;
                 chatController.hidesBottomBarWhenPushed = YES;
+                
+                chatController.image_dict = _dict_mutab;
                 [self.navigationController pushViewController:chatController animated:YES];
             }
         }
@@ -223,17 +263,6 @@
             }
        
         }
-
-        
-        //测试
-//        NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
-//        api.chatName = [model.conversation.chatter stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-//        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-//            model.title = dict[@"nickName"];
-//            model.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
-//             [self.tableView reloadData];
-//        }];
-       
         
     }//这个地方是判断是否是群聊天  不是就直接返回model
     else if (model.conversation.conversationType == eConversationTypeGroupChat)

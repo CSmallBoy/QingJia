@@ -185,6 +185,7 @@
              //搜索结果的展示
             chatVC.title = [[UserProfileManager sharedInstance] getNickNameWithUsername:dict_all[@"nickName"]];
              chatVC.title = [[UserProfileManager sharedInstance] getNickNameWithUsername:arr[indexPath.row][@"nickName"]];
+             
             chatVC.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:chatVC animated:YES];
         }];
@@ -252,23 +253,24 @@
         //联系人的用户头像
        //   5.7号注释
 //        
-//        NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
-//        api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-//        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-//            model.nickname = dict[@"nickName"];
-//            UIImageView *image = [[UIImageView alloc]init];
-//            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-//            model.avatarImage = image.image;
-//            cell.model = model;
-//        }];
+        NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+        api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+            model.nickname = dict[@"nickName"];
+            UIImageView *image = [[UIImageView alloc]init];
+            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+            model.avatarImage = image.image;
+            cell.model = model;
+        }];
         
-        HCEaseUserInfo *model2 = self.UserDataSource[indexPath.row];
-        model.avatarImage = model2.userImage;
-        model.nickname = model2.nickName;
+//        HCEaseUserInfo *model2 = self.UserDataSource[indexPath.row];
+//        model.avatarImage = model2.userImage;
+//        model.nickname = model2.nickName;
 //        cell.model.nickname = model2.nickName;
 //        cell.model.avatarImage = model2.userImage;
-       
-        cell.model = model;
+//
+        
+//        cell.model = model;
         cell.indexPath = indexPath;
         cell.delegate = self;
 
@@ -363,6 +365,16 @@
         ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:model.buddy.username conversationType:eConversationTypeChat];
         chatController.title = model.nickname.length > 0 ? model.nickname : model.buddy.username;
         chatController.hidesBottomBarWhenPushed = YES;
+        
+        
+        
+        NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
+        api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+            UIImageView *image = [[UIImageView alloc]init];
+            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
+            chatController.imageUserPh = image.image;
+        }];
         [self.navigationController pushViewController:chatController animated:YES];
     }
 }
@@ -633,7 +645,7 @@
                 [weakSelf _sortDataArray:self.contactsSource];
             }
             else{
-                [weakSelf showHint:NSLocalizedString(@"loadDataFailed", @"Load data failed.")];
+                //[weakSelf showHint:NSLocalizedString(@"loadDataFailed", @"Load data failed.")];
             }
             
             [weakSelf tableViewDidFinishTriggerHeader:YES reload:YES];
@@ -651,6 +663,7 @@
     NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
     //屏蔽名单
     NSArray *blockList = [[EaseMob sharedInstance].chatManager blockedList];
+    [self.UserDataSource removeAllObjects];
     for (EMBuddy *buddy in buddyList) {
         if (![blockList containsObject:buddy.username])
         {
@@ -660,6 +673,7 @@
                 HCEaseUserInfo * model= [[HCEaseUserInfo alloc]init];
                 model.nickName = dict[@"nickName"];
                 model.userImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
+                
                 [self.UserDataSource addObject:model];
             }];
             [self.contactsSource addObject:buddy];

@@ -24,11 +24,16 @@
     UIMenuItem *_copyMenuItem;
     UIMenuItem *_deleteMenuItem;
     UIMenuItem *_transpondMenuItem;
+    int num;
     
     
 }
 
+@property (nonatomic,strong) UIImageView *image;
 @property (nonatomic) BOOL isPlayingAudio;
+@property (nonatomic,strong) NSMutableDictionary *dict_muat;
+@property (nonatomic,strong) NSMutableArray *arr_muat;
+@property (nonatomic,strong) NSArray *arr_fina;
 
 @end
 
@@ -40,7 +45,8 @@
     self.showRefreshHeader = YES;
     self.delegate = self;
     self.dataSource = self;
-    
+    _dict_muat = [NSMutableDictionary dictionary];
+    _arr_muat = [NSMutableArray array];
     [[EaseBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"chat_sender_bg"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];
     [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"chat_receiver_bg"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];
     
@@ -66,6 +72,9 @@
     
     EaseEmotionManager *manager= [[EaseEmotionManager alloc] initWithType:EMEmotionDefault emotionRow:3 emotionCol:7 emotions:[EaseEmoji allEmoji]];
     [self.faceView setEmotionManagers:@[manager]];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,6 +91,7 @@
             self.title = [self.conversation.ext objectForKey:@"groupSubject"];
         }
     }
+    [self.tableView reloadData];
 }
 
 #pragma mark - setup subviews
@@ -147,17 +157,30 @@
         NSString *CellIdentifier = [CustomMessageCell cellIdentifierWithModel:model];
         //发送cell
         CustomMessageCell *sendCell = (CustomMessageCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        // Configure the cell...
         if (sendCell == nil) {
             sendCell = [[CustomMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model];
             sendCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        //设置头像和昵称
-//        model.avatarURLPath = model.message.ext[@"img"];
-//        model.nickname = model.message.ext[@"accountName"];
+
+        //等于1 是群组聊天
+        if (model.message.messageType == 1) {
+            if (model.isSender) {
+                UIImageView *image = [[UIImageView alloc]init];
+                [image sd_setImageWithURL:[readUserInfo url:[readUserInfo getReadDic][@"UserInf"][@"imageName"] :kkUser]];
+                model.avatarImage = image.image;
+            }else{
+                NSLog(@"%@",model.avatarImage)
+            }
+        }else if (model.message.messageType == 0){
+            if (model.isSender) {
+                UIImageView *image = [[UIImageView alloc]init];
+                [image sd_setImageWithURL:[readUserInfo url:[readUserInfo getReadDic][@"UserInf"][@"imageName"] :kkUser]];
+                model.avatarImage = image.image;
+            }else{
+                model.avatarImage = _imageUserPh;
+            }
+        }
         sendCell.model = model;
-        NSLog(@"%@",model.nickname);
         return sendCell;
     }
     return nil;
@@ -259,7 +282,7 @@
         UIImageView *image = [[UIImageView alloc]init];
         [image sd_setImageWithURL:[readUserInfo url:[readUserInfo getReadDic][@"UserInf"][@"imageName"] :kkUser]];
         model.avatarImage = image.image;
-        model.nickname = @"曹思远";
+        model.nickname = [readUserInfo getReadDic][@"UserInf"][@"nickName"];
     }else{
         //消息发送状态
         
@@ -270,31 +293,42 @@
         NSLog(@"%ld",(long)model.message.messageType);
         //等于1 是群组聊天
         if (model.message.messageType==1) {//群组是model。nickName
-            NHCChatUserInfoApi *Api = [[NHCChatUserInfoApi alloc]init];
-            Api.chatName = [model.nickname stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-            [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-                model.nickname = dict[@"nickName"];
-                UIImageView *image = [[UIImageView alloc]init];
-                [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-                model.avatarImage = image.image;
-            }];
-        }else{
-            //单聊 的接收者
-//            if () {
+//            NHCChatUserInfoApi *API= [[NHCChatUserInfoApi alloc]init];
+//            API.chatName = [model.nickname stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+//            [_arr_muat addObject:API.chatName];
+//            NSSet *sab = [NSSet setWithArray:_arr_muat];
+//            _arr_fina = [sab allObjects];
+//            NSLog(@"%@",model.nickname);
+//            NSLog(@"%@",_arr_fina);
+//            for (NSString *string in _arr_fina)
+//            {
+//                if ([string isEqualToString:API.chatName]) {
+//                    model.avatarImage = _dict_muat[string];
+//                    NSLog(@"%@",model.avatarImage);
+//                }else{
+//                    [API startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+//                        if (requestStatus== HCRequestStatusSuccess) {
+//                            UIImageView *image = [[UIImageView alloc]init];
+//                            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
+//                            NSLog(@"%@",[readUserInfo url:dict[@"imageName"] :kkUser]);
+//                            model.avatarImage = image.image;
+//                            [_dict_muat setValue:image.image forKey:API.chatName];
+//                            //[_dict_muat addObserver:image.image forKeyPath:API.chatName options:nil context:nil];
+//                            
+//                            
+//                        }
+//                        
+//                    }];
+//                }
 //                
 //            }
-            NHCChatUserInfoApi *Api = [[NHCChatUserInfoApi alloc]init];
-            Api.chatName = [model.message.from stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-            [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-                model.nickname = dict[@"nickName"];
-                UIImageView *image = [[UIImageView alloc]init];
-                [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-                model.avatarImage = image.image;
-            }];
-            
+            NSLog(@"%@",model.nickname)
+            model.avatarImage = _image_dict[model.nickname];
+            NSLog(@"%@",model.avatarImage)
+        }else{
+            //单聊 的接收者
+            model.avatarImage = _imageUserPh;
         }
-       
-       
     }
     UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.nickname];
     if (profileEntity) {
