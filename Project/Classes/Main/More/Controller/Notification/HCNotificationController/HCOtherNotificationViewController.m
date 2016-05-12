@@ -26,6 +26,8 @@
 
 #import "HCPromisedReportController.h"
 
+#import "HCDeletePromisedApi.h"
+
 @interface HCOtherNotificationViewController ()<UISearchBarDelegate,SCSwipeTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *btnArr;
@@ -57,6 +59,7 @@
     [self requestData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"aboutMeData" object:nil];
 
      self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
     self.myTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreData)];
@@ -77,7 +80,20 @@
     //删除
     if (tag == 0)
     {
-        
+        HCNotificationCenterInfo *info = self.dataSource[indexpath.row];
+        HCDeletePromisedApi *api =[[HCDeletePromisedApi alloc]init];
+        api.callId = info.callId;
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+            if (requestStatus == HCRequestStatusSuccess) {
+                [self showHUDText:@"删除成功"];
+                [self requestData];
+            }
+            else
+            {
+                [self showHUDText:respone[@"message"]];
+            }
+            
+        }];
     }
     //举报
     if (tag == 1)
@@ -90,7 +106,6 @@
         
         HCNotificationCenterInfo *info = self.dataSource[indexpath.row];
         
-        
         HCSaveCallApi *api =[[HCSaveCallApi alloc]init];
         api.callId = info.callId;
         
@@ -100,6 +115,10 @@
                 
                 [self showHUDText:@"收藏成功"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"showSave" object:nil];
+            }
+            else
+            {
+                [self showHUDText:respone[@"message"]];
             }
             
         }];

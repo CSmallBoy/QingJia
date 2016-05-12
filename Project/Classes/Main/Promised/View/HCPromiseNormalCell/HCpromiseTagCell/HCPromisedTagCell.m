@@ -93,7 +93,7 @@
 {
     if(!_selectIV){
         
-        CGFloat   cellW = (SCREEN_WIDTH-10)/3;
+        CGFloat  cellW = (SCREEN_WIDTH-10)/3;
         _selectIV = [[UIImageView alloc]initWithFrame:CGRectMake(cellW/2-10, CellH-25, 20, 20)];
     }
     return _selectIV;

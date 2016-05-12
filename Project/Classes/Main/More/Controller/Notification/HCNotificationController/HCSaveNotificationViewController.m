@@ -21,6 +21,7 @@
 
 #import "HCNewTagInfo.h"
 #import "HCCancelSaveApi.h"
+#import "HCPromisedReportController.h"
 
 
 @interface HCSaveNotificationViewController ()<UISearchBarDelegate,SCSwipeTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -67,8 +68,6 @@
 
     if (tag == 0) {
 //----------------------取消收藏返回404--------------------------------------
-        
-        
         HCNotificationCenterInfo *info = self.dataSource[indexpath.row];
         HCCancelSaveApi *api = [[HCCancelSaveApi alloc]init];
         api.callId = info.callId;
@@ -79,11 +78,13 @@
                 [self showHUDText:@"取消收藏成功"];
                 [self.dataSource removeObjectAtIndex:indexpath.row];
                 [self.myTableView reloadData];
-                
             }
-            
         }];
-        
+    }
+    if (tag == 1)
+    {
+        HCPromisedReportController *reportVC = [[HCPromisedReportController alloc]init];
+        [self.navigationController pushViewController:reportVC animated:YES];
     }
     
 
