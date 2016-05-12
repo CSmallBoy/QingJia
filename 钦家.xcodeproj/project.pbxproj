@@ -1108,6 +1108,7 @@
 		EA090FA41CE2BFED00B6E009 /* HCDeletePromisedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */; };
 		EAE04D441CDF62CF003EDF0F /* HCReportApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE04D431CDF62CF003EDF0F /* HCReportApi.m */; };
 		EAE7B7311CE45ECC00E47B1B /* HCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */; };
+		EAE7B7341CE470B700E47B1B /* HCGetCityInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B7331CE470B700E47B1B /* HCGetCityInfoApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3130,6 +3131,8 @@
 		EAE04D421CDF62CF003EDF0F /* HCReportApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReportApi.h; sourceTree = "<group>"; };
 		EAE04D431CDF62CF003EDF0F /* HCReportApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReportApi.m; sourceTree = "<group>"; };
 		EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCLoginViewController.xib; sourceTree = "<group>"; };
+		EAE7B7321CE470B700E47B1B /* HCGetCityInfoApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGetCityInfoApi.h; sourceTree = "<group>"; };
+		EAE7B7331CE470B700E47B1B /* HCGetCityInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGetCityInfoApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3404,6 +3407,8 @@
 				EAE04D431CDF62CF003EDF0F /* HCReportApi.m */,
 				EA090FA21CE2BFED00B6E009 /* HCDeletePromisedApi.h */,
 				EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */,
+				EAE7B7321CE470B700E47B1B /* HCGetCityInfoApi.h */,
+				EAE7B7331CE470B700E47B1B /* HCGetCityInfoApi.m */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -7992,6 +7997,7 @@
 				0A8BE3751C7E8CA9008E8100 /* HCAboutMTalkViewController.m in Sources */,
 				C78D7C8E1C5F2C1200622CE2 /* HCeditingViewController.m in Sources */,
 				0A2B47771C7F12C800AAA157 /* HCReturnAddressApi.m in Sources */,
+				EAE7B7341CE470B700E47B1B /* HCGetCityInfoApi.m in Sources */,
 				8D1590661CB683C400B08BDC /* HCFamilyValidationJoinApply.m in Sources */,
 				C78D7AAB1C5F28F700622CE2 /* HCCreateGradeInfo.m in Sources */,
 				C78D7AAE1C5F28F700622CE2 /* HCJoinGradeFunctionView.m in Sources */,
@@ -8786,8 +8792,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8813,7 +8819,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8824,8 +8830,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8851,7 +8857,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

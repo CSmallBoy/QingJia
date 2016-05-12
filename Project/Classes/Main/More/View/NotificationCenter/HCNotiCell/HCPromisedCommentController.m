@@ -75,6 +75,7 @@
     [self requestData];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
+    
     [self.view addSubview:self.myTableView];
     [self.view addSubview:self.inputView];
     [self setupBackItem];
@@ -138,14 +139,9 @@
                 }];
             }
         };
-//            cell.subBlock = ^(NSIndexPath *indexPath1)
-//        {
-//                [self.textField becomeFirstResponder];
-//                self.subIndexPath = indexPath1;
-//            };
         
             cell.commnetFrameInfo = self.dataSource[indexPath.row];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
     }
         
@@ -421,6 +417,7 @@
         _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-44 -64) style:UITableViewStylePlain];
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
+        self.myTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
     return _myTableView;
 }
