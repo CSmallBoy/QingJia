@@ -14,6 +14,7 @@ typedef void (^NHCReadBack)(NSString *str);
 @interface readUserInfo : NSObject
 +(void)creatDicMessage:(NSDictionary*)dic;
 +(NSDictionary*)getReadDicMessage;
++(void)DicdeleteMessage;
 
 +(void)creatDic:(NSDictionary*)dic;
 +(NSDictionary *)getReadDic;

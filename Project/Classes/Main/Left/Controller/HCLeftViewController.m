@@ -24,7 +24,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) HCLeftView *leftView;
 @property (nonatomic, strong) HCLeftGradeView *leftGradeView;
-
+@property (nonatomic, strong) NSMutableDictionary *dict_mutab;
 @end
 
 @implementation HCLeftViewController

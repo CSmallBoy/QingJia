@@ -44,7 +44,16 @@
     
 }
 
-
+//删除
++(void)DicdeleteMessage{
+    //获取本地路径
+    NSString *temp =NSTemporaryDirectory();
+    NSString *filePath = [temp stringByAppendingString:@"message.plist"];
+    //创建管理者
+    NSFileManager *manager = [NSFileManager defaultManager];
+    [manager removeItemAtPath:filePath error:nil];
+    
+}
 +(void)creatDic:(NSDictionary*)dic{
     NSMutableData *data =[NSMutableData data];
     //初始化归档对象
