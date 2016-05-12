@@ -182,11 +182,10 @@
 #pragma mark - Action
 
 -(void)remove{
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"removeDatePicker" object:nil];
     [self removeFromSuperview];
 }
 -(void)show{
-    
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     
 }

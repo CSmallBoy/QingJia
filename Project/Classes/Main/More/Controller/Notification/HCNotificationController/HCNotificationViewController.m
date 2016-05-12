@@ -99,7 +99,7 @@
     {
         _myVC = [[HCMyNotificationViewController alloc]init];
         _myVC.view.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-50);
-        _myVC.view.backgroundColor = [UIColor yellowColor];
+        _myVC.view.backgroundColor = [UIColor whiteColor];
         [self addChildViewController:_myVC];
     }
     return _myVC;
