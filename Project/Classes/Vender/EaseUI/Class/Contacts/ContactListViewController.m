@@ -70,6 +70,7 @@
     
     // 获取当前用户在Parse服务器上的好友数据（头像、昵称），储存到内存中或者本地沙盒中
     [[UserProfileManager sharedInstance] loadUserProfileInBackgroundWithBuddy:self.contactsSource saveToLoacal:YES completion:NULL];
+    
     self.showRefreshFooter = NO;
     self.showRefreshHeader = NO;
     
@@ -143,16 +144,16 @@
                 cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
             
-            EMBuddy *buddy = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-            NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
-            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-                cell.textLabel.text = dict[@"nickName"];
-                cell.username = dict[@"nickName"];
-                [cell.imageView sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-                dict_all = dict;
-                [arr addObject:dict_all];
-            }];
+//            EMBuddy *buddy = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
+//            NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
+//            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+//                cell.textLabel.text = dict[@"nickName"];
+//                cell.username = dict[@"nickName"];
+//                [cell.imageView sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+//                dict_all = dict;
+//                [arr addObject:dict_all];
+//            }];
             ViewRadius(cell.imageView, 17);
             
             return cell;

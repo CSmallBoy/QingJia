@@ -134,6 +134,10 @@
                     
                     [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
                 }
+                
+                
+                
+                [self requestFamilyMessage];
             }
         }
     }
@@ -393,12 +397,12 @@
         [button1 addTarget:self action:@selector(createFamily) forControlEvents:UIControlEventTouchUpInside];
         [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-//        UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-//        button2.frame = CGRectMake(0, 60, 100, 20);
-//        [button2 setTitle:@"加入家庭" forState:UIControlStateNormal];
-//        [button2 addTarget:self action:@selector(toJoinFamily) forControlEvents:UIControlEventTouchUpInside];
-//        [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        
+        //        UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        //        button2.frame = CGRectMake(0, 60, 100, 20);
+        //        [button2 setTitle:@"加入家庭" forState:UIControlStateNormal];
+        //        [button2 addTarget:self action:@selector(toJoinFamily) forControlEvents:UIControlEventTouchUpInside];
+        //        [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        //
         [_smallView  addSubview:button1];
         //[_smallView addSubview:button2];
     }

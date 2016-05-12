@@ -169,6 +169,10 @@
                 [image sd_setImageWithURL:[readUserInfo url:[readUserInfo getReadDic][@"UserInf"][@"imageName"] :kkUser]];
                 model.avatarImage = image.image;
             }else{
+                
+                NSDictionary *dict = [readUserInfo getReadDicMessage];
+                NSLog(@"%@",model.nickname)
+                model.avatarImage = dict[model.nickname];
                 NSLog(@"%@",model.avatarImage)
             }
         }else if (model.message.messageType == 0){
@@ -322,8 +326,9 @@
 //                }
 //                
 //            }
+            NSDictionary *dict = [readUserInfo getReadDicMessage];
             NSLog(@"%@",model.nickname)
-            model.avatarImage = _image_dict[model.nickname];
+            model.avatarImage = dict[model.nickname];
             NSLog(@"%@",model.avatarImage)
         }else{
             //单聊 的接收者

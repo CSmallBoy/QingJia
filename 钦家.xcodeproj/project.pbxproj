@@ -8819,7 +8819,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8857,7 +8857,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
