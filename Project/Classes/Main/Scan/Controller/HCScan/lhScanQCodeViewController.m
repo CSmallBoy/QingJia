@@ -369,7 +369,10 @@
             } else if ([status isEqualToString:@"5"]){
                 [self showHUDText:@"该标签已经停用"];
                 
-            } else {
+            }else if ([status isEqualToString:@"2"])
+            {
+                [self showHUDText:@"该标签已经激活 标签拥有者"];
+            }else {
                 [self showHUDText:@"其他信息"];
             }
         }];

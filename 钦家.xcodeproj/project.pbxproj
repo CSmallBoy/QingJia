@@ -315,7 +315,6 @@
 		0A6AFD7F1BFC05E80073982C /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6AFD7E1BFC05E80073982C /* libz.1.1.3.tbd */; };
 		0A6B7D9D1BF1EB6A008D54B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7D9C1BF1EB6A008D54B3 /* main.m */; };
 		0A6B7DA61BF1EB6A008D54B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6B7DA41BF1EB6A008D54B3 /* Main.storyboard */; };
-		0A6B7DA81BF1EB6A008D54B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6B7DA71BF1EB6A008D54B3 /* Assets.xcassets */; };
 		0A6B7DAB1BF1EB6A008D54B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6B7DA91BF1EB6A008D54B3 /* LaunchScreen.storyboard */; };
 		0A6B7DB61BF1EB6A008D54B3 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7DB51BF1EB6A008D54B3 /* ProjectTests.m */; };
 		0A6B7DC11BF1EB6A008D54B3 /* ProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B7DC01BF1EB6A008D54B3 /* ProjectUITests.m */; };
@@ -1092,6 +1091,7 @@
 		C7B00C8F1C5F26050010F93B /* nav_createGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2A1C5F26050010F93B /* nav_createGroup@2x.png */; };
 		C7B00C901C5F26050010F93B /* newFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2B1C5F26050010F93B /* newFriends@2x.png */; };
 		C7B1E1951CC4863A0087D330 /* NHCHomeSingleFigureApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B1E1941CC4863A0087D330 /* NHCHomeSingleFigureApi.m */; };
+		C7B553D51CE4A7B70013140E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7B553D41CE4A7B70013140E /* Assets.xcassets */; };
 		C7B90BDD1CA4E4D80022C60C /* NHCCreatefamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */; };
 		C7B90BE01CA4EB1B0022C60C /* NHCApplyToFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B90BDF1CA4EB1B0022C60C /* NHCApplyToFamily.m */; };
 		C7BBF01E1CBDF74400E9691C /* NHCHomeLikeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBF01D1CBDF74400E9691C /* NHCHomeLikeApi.m */; };
@@ -1739,7 +1739,6 @@
 		0A6B7D9C1BF1EB6A008D54B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0A6B7D9E1BF1EB6A008D54B3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A6B7DA51BF1EB6A008D54B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0A6B7DA71BF1EB6A008D54B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A6B7DAA1BF1EB6A008D54B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A6B7DAC1BF1EB6A008D54B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A6B7DB11BF1EB6A008D54B3 /* 钦家.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "钦家.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3097,6 +3096,7 @@
 		C7B00B2C1C5F26050010F93B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C7B1E1931CC4863A0087D330 /* NHCHomeSingleFigureApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeSingleFigureApi.h; sourceTree = "<group>"; };
 		C7B1E1941CC4863A0087D330 /* NHCHomeSingleFigureApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeSingleFigureApi.m; sourceTree = "<group>"; };
+		C7B553D41CE4A7B70013140E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7B90BDB1CA4E4D80022C60C /* NHCCreatefamilyApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCCreatefamilyApi.h; sourceTree = "<group>"; };
 		C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCCreatefamilyApi.m; sourceTree = "<group>"; };
 		C7B90BDE1CA4EB1B0022C60C /* NHCApplyToFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCApplyToFamily.h; sourceTree = "<group>"; };
@@ -4293,10 +4293,10 @@
 		0A6B7D9B1BF1EB6A008D54B3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C7B553D41CE4A7B70013140E /* Assets.xcassets */,
 				0A6B7D9E1BF1EB6A008D54B3 /* AppDelegate.h */,
 				0AAB69A21C06009800A0A2E8 /* AppDelegate.m */,
 				0A6B7DA41BF1EB6A008D54B3 /* Main.storyboard */,
-				0A6B7DA71BF1EB6A008D54B3 /* Assets.xcassets */,
 				0A6B7DA91BF1EB6A008D54B3 /* LaunchScreen.storyboard */,
 				0A6B7DAC1BF1EB6A008D54B3 /* Info.plist */,
 				0A418C1E1C148E9C0024DAC3 /* PushConfig.plist */,
@@ -7649,7 +7649,6 @@
 				EAE7B7311CE45ECC00E47B1B /* HCLoginViewController.xib in Resources */,
 				C7B00C331C5F26050010F93B /* call_out@2x.png in Resources */,
 				C7B00C5B1C5F26050010F93B /* chatBar_more@2x.png in Resources */,
-				0A6B7DA81BF1EB6A008D54B3 /* Assets.xcassets in Resources */,
 				C7B00C881C5F26050010F93B /* group_header@2x.png in Resources */,
 				C7B00C0F1C5F26050010F93B /* VoiceSearchFeedback003@2x.png in Resources */,
 				C7B00C051C5F26050010F93B /* VoiceSearchFeedback019@2x.png in Resources */,
@@ -7688,6 +7687,7 @@
 				C7B00C341C5F26050010F93B /* call_out_h.png in Resources */,
 				C7B00C7D1C5F26050010F93B /* chat_sender_audio_playing_003@2x.png in Resources */,
 				C7B00C8B1C5F26050010F93B /* group_participant_add@2x.png in Resources */,
+				C7B553D51CE4A7B70013140E /* Assets.xcassets in Resources */,
 				C7B00C641C5F26050010F93B /* chatBar_recordSelectedBg.png in Resources */,
 				C7B00BE81C5F26050010F93B /* chatBar_moreSelected@2x.png in Resources */,
 				C7B00C901C5F26050010F93B /* newFriends@2x.png in Resources */,

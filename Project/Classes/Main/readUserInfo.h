@@ -12,10 +12,15 @@
 typedef void (^NHCReadBack)(NSString *str);
 
 @interface readUserInfo : NSObject
+//环信头像
 +(void)creatDicMessage:(NSDictionary*)dic;
 +(NSDictionary*)getReadDicMessage;
 +(void)DicdeleteMessage;
-
+//昵称
++(void)creatDicMessageNickname:(NSDictionary*)dic;
++(NSDictionary*)getReadDicMessageNickname;
++(void)DicdeleteMessageNickname;
+//用户信息
 +(void)creatDic:(NSDictionary*)dic;
 +(NSDictionary *)getReadDic;
 +(void)Dicdelete;

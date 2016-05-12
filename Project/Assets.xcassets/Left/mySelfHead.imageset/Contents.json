@@ -2,15 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "drg160.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "mySelfHead@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "mySelfHead@3x.png",
       "scale" : "3x"
     }
   ],

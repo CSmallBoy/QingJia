@@ -194,24 +194,11 @@
                 //1 是群聊
                 if (conversationModel.conversation.conversationType == 1 ) {
                     //获取群成员列表
-                    NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-                    //获取好友列表
-                    NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
-                    for (EMBuddy *buddy in buddyList) {
-                        
-                        NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
-                        api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-                        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-                            UIImageView *image = [[UIImageView alloc]init];
-                            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
-                            NSLog(@"%@",[readUserInfo url:dict[@"imageName"] :kkUser])
-                            [_dict_mutab setObject:image.image forKey:buddy.username];
-                            [readUserInfo DicdeleteMessage];
-                            [readUserInfo creatDicMessage:_dict_mutab];
-                        }];
-                    }
+//                    NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+//               
+//                    }
 
-                    NSLog(@"%@",groupArray);
+//                    NSLog(@"%@",groupArray);
                     //群组 成员所有图片
 //                    for (EMGroup *group in groupArray) {
 ////                        if ([group.groupId isEqualToString:conversation.chatter])

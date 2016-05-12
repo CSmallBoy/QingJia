@@ -112,7 +112,7 @@
     NSLog(@"%lf",self.tableView.contentOffset.y);
     
     
-    if (self.tableView.contentOffset.y<=- SCREEN_HEIGHT/3*2) {
+    if (self.tableView.contentOffset.y<=- SCREEN_HEIGHT/2) {
         
         self.navigationController.navigationBarHidden = YES;
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3*2)];
@@ -129,7 +129,7 @@
     }
     else
     {
-        _imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH , self.tableView.contentOffset.y);
+        _imageView.frame = CGRectMake(0, 64, SCREEN_WIDTH , self.tableView.contentOffset.y);
     }
     
     
@@ -156,7 +156,7 @@
 -(UIImageView *)imageView
 {
     if (!_imageView) {
-        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/3*2)];
+        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_WIDTH/3*2)];
     }
     return _imageView;
 }
@@ -224,7 +224,7 @@
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
     HCHomeInfo *info = self.data[@"data"];
     NSInteger index = [self.data[@"index"] integerValue];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.contentMode = UIViewContentModeScaleToFill;
     NSString *image_url = info.FTImages[index];
     [imageView sd_setImageWithURL:[readUserInfo originUrl:image_url :kkTimes] placeholderImage:IMG(@"Head-Portraits")];
     imageView.clipsToBounds = YES;

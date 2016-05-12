@@ -17,6 +17,7 @@
 #import "HCLeftView.h"
 #import "HCLeftGradeView.h"
 
+
 #import "HCUserMessageViewController.h"
 
 @interface HCLeftViewController ()<HCLeftViewDelegate, HCLeftGradeViewDelegate>
@@ -97,7 +98,7 @@
         if ((IsEmpty(str) || [str isKindOfClass:[NSNull class]])&& IsEmpty(strFamilyId))
         {
            
-            vc = [[HCUserMessageViewController alloc]init];
+            vc = [[HCCreateGradeViewController alloc]init];
             
         }else
         {
