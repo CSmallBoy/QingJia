@@ -595,7 +595,6 @@
 		C78D7ADB1C5F28F700622CE2 /* HCFindPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78D21C5F28F600622CE2 /* HCFindPwdViewController.m */; };
 		C78D7ADC1C5F28F700622CE2 /* HCFindPwdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C78D78D31C5F28F600622CE2 /* HCFindPwdViewController.xib */; };
 		C78D7ADD1C5F28F700622CE2 /* HCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78D51C5F28F600622CE2 /* HCLoginViewController.m */; };
-		C78D7ADE1C5F28F700622CE2 /* HCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C78D78D61C5F28F600622CE2 /* HCLoginViewController.xib */; };
 		C78D7ADF1C5F28F700622CE2 /* HCPerfectMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78D81C5F28F600622CE2 /* HCPerfectMessageViewController.m */; };
 		C78D7AE01C5F28F700622CE2 /* HCPerfectMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C78D78D91C5F28F600622CE2 /* HCPerfectMessageViewController.xib */; };
 		C78D7AE11C5F28F700622CE2 /* HCRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78DB1C5F28F600622CE2 /* HCRegistViewController.m */; };
@@ -1108,6 +1107,7 @@
 		C7F421081CD055A2006BDA77 /* NHCHomeTimeToComentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */; };
 		EA090FA41CE2BFED00B6E009 /* HCDeletePromisedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */; };
 		EAE04D441CDF62CF003EDF0F /* HCReportApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE04D431CDF62CF003EDF0F /* HCReportApi.m */; };
+		EAE7B7311CE45ECC00E47B1B /* HCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2279,7 +2279,6 @@
 		C78D78D31C5F28F600622CE2 /* HCFindPwdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCFindPwdViewController.xib; sourceTree = "<group>"; };
 		C78D78D41C5F28F600622CE2 /* HCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLoginViewController.h; sourceTree = "<group>"; };
 		C78D78D51C5F28F600622CE2 /* HCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLoginViewController.m; sourceTree = "<group>"; };
-		C78D78D61C5F28F600622CE2 /* HCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCLoginViewController.xib; sourceTree = "<group>"; };
 		C78D78D71C5F28F600622CE2 /* HCPerfectMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPerfectMessageViewController.h; sourceTree = "<group>"; };
 		C78D78D81C5F28F600622CE2 /* HCPerfectMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPerfectMessageViewController.m; sourceTree = "<group>"; };
 		C78D78D91C5F28F600622CE2 /* HCPerfectMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCPerfectMessageViewController.xib; sourceTree = "<group>"; };
@@ -3130,6 +3129,7 @@
 		EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDeletePromisedApi.m; sourceTree = "<group>"; };
 		EAE04D421CDF62CF003EDF0F /* HCReportApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReportApi.h; sourceTree = "<group>"; };
 		EAE04D431CDF62CF003EDF0F /* HCReportApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReportApi.m; sourceTree = "<group>"; };
+		EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCLoginViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5381,7 +5381,7 @@
 				C78D78D31C5F28F600622CE2 /* HCFindPwdViewController.xib */,
 				C78D78D41C5F28F600622CE2 /* HCLoginViewController.h */,
 				C78D78D51C5F28F600622CE2 /* HCLoginViewController.m */,
-				C78D78D61C5F28F600622CE2 /* HCLoginViewController.xib */,
+				EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */,
 				C78D78D71C5F28F600622CE2 /* HCPerfectMessageViewController.h */,
 				C78D78D81C5F28F600622CE2 /* HCPerfectMessageViewController.m */,
 				C78D78D91C5F28F600622CE2 /* HCPerfectMessageViewController.xib */,
@@ -7635,7 +7635,6 @@
 				C7B00C191C5F26050010F93B /* VoiceSearchFeedback008@2x.png in Resources */,
 				8D0ACCED1C75C00C008A8A55 /* higlightedBarBackground@2x.png in Resources */,
 				0A418C1F1C148E9C0024DAC3 /* PushConfig.plist in Resources */,
-				C78D7ADE1C5F28F700622CE2 /* HCLoginViewController.xib in Resources */,
 				0A67B2261C0D63B300FB87C8 /* 7.jpg in Resources */,
 				C7B00C7C1C5F26050010F93B /* chat_sender_audio_playing_002@2x.png in Resources */,
 				C7B00BFA1C5F26050010F93B /* VoiceSearchFeedback008@2x.png in Resources */,
@@ -7647,6 +7646,7 @@
 				C7B00C361C5F26050010F93B /* call_silence.png in Resources */,
 				C7B00BDB1C5F26050010F93B /* chatBar_colorMore_location@2x.png in Resources */,
 				C7B00C5E1C5F26050010F93B /* chatBar_record.png in Resources */,
+				EAE7B7311CE45ECC00E47B1B /* HCLoginViewController.xib in Resources */,
 				C7B00C331C5F26050010F93B /* call_out@2x.png in Resources */,
 				C7B00C5B1C5F26050010F93B /* chatBar_more@2x.png in Resources */,
 				0A6B7DA81BF1EB6A008D54B3 /* Assets.xcassets in Resources */,

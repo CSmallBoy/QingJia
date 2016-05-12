@@ -219,7 +219,7 @@
     }
     else
     {
-        if (self.info) {
+        if (_info) {
             
             if (self.image) {
                 [self upLoadImage];

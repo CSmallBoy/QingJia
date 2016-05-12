@@ -47,7 +47,7 @@
 @property (nonatomic,strong) UITableView   *myTableView;
 @property (nonatomic,strong) UITextField   *textField;
 
-@property (nonatomic,strong) NSIndexPath   *subIndexPath;
+//@property (nonatomic,strong) NSIndexPath   *subIndexPath;
 
 @property (nonatomic,strong) NSMutableArray    *images;
 
@@ -572,15 +572,15 @@
     info.imageNames = str;
     info.content = self.textField.text;
     
-    if (self.subIndexPath) {
-        HCPromisedCommentFrameInfo *frameInfo = self.dataSource[self.subIndexPath.row];
-        HCPromisedCommentInfo *info1 = frameInfo.commentInfo;
-        info.toId = info1.fromId;
-    }
-    else
-    {
+//    if (self.subIndexPath) {
+//        HCPromisedCommentFrameInfo *frameInfo = self.dataSource[self.subIndexPath.row];
+//        HCPromisedCommentInfo *info1 = frameInfo.commentInfo;
+//        info.toId = info1.fromId;
+//    }
+//    else
+//    {
        info.toId = @"";
-    }
+//    }
 
     
     api.info = info;
@@ -595,7 +595,7 @@
             self.textField.text = nil;
             self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             
-            self.subIndexPath = nil;
+//            self.subIndexPath = nil;
             [self requestData];
         }
         else

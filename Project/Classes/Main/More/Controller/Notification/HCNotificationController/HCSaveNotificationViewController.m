@@ -48,7 +48,7 @@
     // 呼·应 --------- 我的收藏--------------
     [super viewDidLoad];
      self.myTableView.tableHeaderView = HCTabelHeadView(30);
-    self.myTableView.tableHeaderView.backgroundColor = [UIColor yellowColor];
+    self.myTableView.tableHeaderView.backgroundColor = [UIColor whiteColor];
     [self.myTableView.tableHeaderView addSubview:self.seatchBar];
     [self requestData];
 
