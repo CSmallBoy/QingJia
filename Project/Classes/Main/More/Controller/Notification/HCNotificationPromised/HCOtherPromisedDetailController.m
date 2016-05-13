@@ -22,7 +22,15 @@
 #import "HCSaveCallApi.h"
 #import "HCDeletePromisedApi.h"
 
-@interface HCOtherPromisedDetailController ()
+#import "UMSocial.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialWechatHandler.h"
+#import "WXApi.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialSnsPlatformManager.h"
+#import "UMSocialSinaSSOHandler.h"
+
+@interface HCOtherPromisedDetailController ()<UMSocialUIDelegate>
 {
     BOOL  _isShowDelete;
 }
@@ -117,7 +125,7 @@
     if (_isShowDelete)
     {
         [UIView animateWithDuration:0.3 animations:^{
-            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -160/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
         } completion:^(BOOL finished) {
             _isShowDelete = NO;
         }];
@@ -125,7 +133,7 @@
     }else
     {
         [UIView animateWithDuration:0.3 animations:^{
-            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, 64, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, 64, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
         } completion:^(BOOL finished) {
             _isShowDelete = YES;
         }];
@@ -138,7 +146,7 @@
 -(void)toReportVC:(UIButton *)button
 {
     [UIView animateWithDuration:0.3 animations:^{
-        self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+        self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -160/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
     } completion:^(BOOL finished) {
         _isShowDelete = NO;
     }];
@@ -210,7 +218,7 @@
 {
     if (_isShowDelete) {
         [UIView animateWithDuration:0.3 animations:^{
-            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -160/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
         } completion:^(BOOL finished) {
             _isShowDelete = NO;
         }];
@@ -275,7 +283,7 @@
         if (requestStatus == HCRequestStatusSuccess) {
             [self showHUDText:@"删除成功"];
             [UIView animateWithDuration:0.3 animations:^{
-                self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+                self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -160/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
             } completion:^(BOOL finished) {
                 _isShowDelete = NO;
             }];
@@ -285,7 +293,7 @@
         {
             [self showHUDText:respone[@"message"]];
             [UIView animateWithDuration:0.3 animations:^{
-                self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+                self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -160/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
             } completion:^(BOOL finished) {
                 _isShowDelete = NO;
             }];
@@ -304,7 +312,7 @@
             [self showHUDText:@"收藏成功"];
            
             [UIView animateWithDuration:0.3 animations:^{
-                self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+                self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -160/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
             } completion:^(BOOL finished) {
                 _isShowDelete = NO;
             }];
@@ -316,13 +324,55 @@
         {
             [self showHUDText:respone[@"message"]];
             [UIView animateWithDuration:0.3 animations:^{
-                self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+                self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -160/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
             } completion:^(BOOL finished) {
                 _isShowDelete = NO;
             }];
         }
         
     }];
+}
+
+//点击分享
+- (void)toShoreVC
+{
+    NSString *shareContent = @"M-talk";
+    NSString *commonContent = self.info.lossDesciption;
+    NSString *commonURL = [NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/call.do?code=%@", self.info.callId];
+    
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"56971c14e0f55af6e5001da1"
+                                      shareText:shareContent
+                                     shareImage:IMG(@"landingpage_Background")
+                                shareToSnsNames:@[UMShareToQQ,
+                                                  UMShareToQzone,
+                                                  UMShareToWechatSession,
+                                                  UMShareToWechatTimeline,
+                                                  UMShareToSina]
+                                       delegate:self];
+//标题
+    [UMSocialData defaultData].extConfig.qqData.title = commonContent;            // QQ 标题
+    [UMSocialData defaultData].extConfig.qzoneData.title = commonContent;         // QQ 空间
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = commonContent;  //微信好友
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = commonContent; // 微信朋友圈
+//url
+    [UMSocialData defaultData].extConfig.qqData.url = commonURL;                 // qq url
+    [UMSocialData defaultData].extConfig.qzoneData.url = commonURL;           // QQ空间 url
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = commonURL;    // 微信好友 url
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = commonURL;    // 微信朋友圈 url
+//新浪图文链接
+    [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@,%@",commonContent,commonURL];
+}
+
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
 }
 
 
@@ -339,12 +389,12 @@
         [manageButton addTarget:self action:@selector(manageBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton *manageTitleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        manageTitleButton.frame = CGRectMake(CGRectGetMaxX(manageButton.frame), 12/668.0*SCREEN_HEIGHT, 83/375.0*SCREEN_WIDTH, 27/668.0*SCREEN_HEIGHT);
+        manageTitleButton.frame = CGRectMake(CGRectGetMaxX(manageButton.frame), 12/668.0*SCREEN_HEIGHT, 83/375.0*SCREEN_WIDTH, 28/668.0*SCREEN_HEIGHT);
         [manageTitleButton setTitle:@"删除" forState:UIControlStateNormal];
         [manageTitleButton addTarget:self action:@selector(manageBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton *scanButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        scanButton.frame = CGRectMake(CGRectGetMinX(manageButton.frame), CGRectGetMaxY(manageButton.frame)+20/668.0*SCREEN_HEIGHT, CGRectGetWidth(manageButton.frame), CGRectGetHeight(manageButton.frame));
+        scanButton.frame = CGRectMake(CGRectGetMinX(manageButton.frame), CGRectGetMaxY(manageButton.frame)+21/668.0*SCREEN_HEIGHT, CGRectGetWidth(manageButton.frame), CGRectGetHeight(manageButton.frame));
         [scanButton setBackgroundImage:IMG(@"otherPromisedDetail_report") forState:UIControlStateNormal];
         [scanButton addTarget:self action:@selector(toReportVC:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -354,7 +404,7 @@
         [scanTitleButton addTarget:self action:@selector(toReportVC:) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton *collectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        collectButton.frame = CGRectMake(CGRectGetMinX(manageButton.frame), CGRectGetMaxY(scanButton.frame)+20/668.0*SCREEN_HEIGHT, CGRectGetWidth(manageButton.frame), CGRectGetHeight(manageButton.frame));
+        collectButton.frame = CGRectMake(CGRectGetMinX(manageButton.frame), CGRectGetMaxY(scanButton.frame)+21/668.0*SCREEN_HEIGHT, CGRectGetWidth(manageButton.frame), CGRectGetHeight(manageButton.frame));
         [collectButton setBackgroundImage:IMG(@"otherPromisedDetail_collect") forState:UIControlStateNormal];
         [collectButton addTarget:self action:@selector(collectButtonClick) forControlEvents:UIControlEventTouchUpInside];
         
@@ -363,8 +413,18 @@
         [collectTitleButton setTitle:@"收藏" forState:UIControlStateNormal];
         [collectTitleButton addTarget:self action:@selector(collectButtonClick) forControlEvents:UIControlEventTouchUpInside];
         
-        self.deletIV = [[UIImageView alloc] initWithFrame:CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT)];
-        self.deletIV.image = IMG(@"pullDown_menu");
+        UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        reportBtn.frame = CGRectMake(CGRectGetMinX(manageButton.frame), CGRectGetMaxY(collectButton.frame)+21/668.0*SCREEN_HEIGHT, CGRectGetWidth(manageButton.frame), CGRectGetHeight(manageButton.frame));
+        [reportBtn setBackgroundImage:IMG(@"myPromisedDetail_share") forState:UIControlStateNormal];
+        [reportBtn addTarget:self action:@selector(toShoreVC) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *reportText = [UIButton buttonWithType:UIButtonTypeCustom];
+        reportText.frame = CGRectMake(CGRectGetMaxX(manageButton.frame), CGRectGetMaxY(collectTitleButton.frame)+10/668.0*SCREEN_HEIGHT, CGRectGetWidth(manageTitleButton.frame), CGRectGetHeight(manageTitleButton.frame));
+        [reportText setTitle:@"分享" forState:UIControlStateNormal];
+        [reportText addTarget:self action:@selector(toShoreVC) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.deletIV = [[UIImageView alloc] initWithFrame:CGRectMake(255/375.0*SCREEN_WIDTH, -160/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT)];
+        self.deletIV.image = IMG(@"pullDown_longMenu");
         self.deletIV.userInteractionEnabled = YES;
         
         
@@ -374,6 +434,8 @@
         [self.deletIV addSubview:scanTitleButton];
         [self.deletIV addSubview:collectButton];
         [self.deletIV addSubview:collectTitleButton];
+        [self.deletIV addSubview:reportBtn];
+        [self.deletIV addSubview:reportText];
     }
     return _deletIV;
 }
@@ -624,8 +686,7 @@
         
         UITapGestureRecognizer *leftTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(FatherTelClick)];
         [_leftAnimationView addGestureRecognizer:leftTap];
-        //停止播放动画  - (void)stopAnimating;
-        //判断是否正在执行动画  - (BOOL)isAnimating;
+        //停止播放动画stopAnimating;
     }
     return _leftAnimationView;
 }
@@ -726,7 +787,7 @@
     if (_isShowDelete)
     {
         [UIView animateWithDuration:0.3 animations:^{
-            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -120/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 120/668.0*SCREEN_HEIGHT);
+            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -160/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
         } completion:^(BOOL finished) {
             _isShowDelete = NO;
         }];

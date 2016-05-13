@@ -61,7 +61,7 @@
     
     // 打开新浪微博的SSO开关,回调地址需与开放平台的回调地址一致
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1685716127"
-                                         RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+                                         RedirectURL:@"http://sns.whalecloud.com/sina/callback"];
     
 //    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina]];
     
@@ -120,15 +120,19 @@
     //设置tags
     NSSet *tags = [NSSet setWithObject:@"1111"];
     NSSet *set = [JPUSHService filterValidTags:tags];
-    [JPUSHService setTags:set alias:@"1111" callbackSelector:@selector(tagsAliasCallback: tags:alias:) object:nil];
+//    [JPUSHService setTags:set alias:@"1111" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:nil];
+    [JPUSHService setTags:set alias:@"1111" fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+        NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags , iAlias);
+    }];
 }
 
--(void)tagsAliasCallback:(int)iResCode
-                    tags:(NSSet*)tags
-                   alias:(NSString*)alias
-{
-    NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , alias);
-}
+//-(void)tagsAliasCallback:(int)iResCode
+//                    tags:(NSSet*)tags
+//                   alias:(NSString*)alias
+//{
+//    NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , alias);
+//}
+
 /**
  这里处理新浪微博SSO授权之后跳转回来，和微信分享完成之后跳转回来
  */
