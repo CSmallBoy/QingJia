@@ -523,6 +523,8 @@
 		8D9790521CB3A05D00FE3C12 /* HCMTalkWaitPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D97904E1CB3A05D00FE3C12 /* HCMTalkWaitPayCell.m */; };
 		8D9790551CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9790541CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m */; };
 		8DC747881C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC747871C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m */; };
+		C706D62D1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C706D62C1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m */; };
+		C706D6301CE613BC0096EF9E /* NHCEditingFamilyImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C706D62F1CE613BC0096EF9E /* NHCEditingFamilyImageApi.m */; };
 		C71B6BCD1CDC2EF000470C86 /* NHCEditingFamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */; };
 		C729C46B1CE08F690010D3C0 /* HCHomeNotiButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C729C46A1CE08F690010D3C0 /* HCHomeNotiButton.m */; };
 		C72F1F951C7719EE00A6E794 /* HCAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */; };
@@ -2150,6 +2152,10 @@
 		8D9790541CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddNewAddressTableViewCell.m; sourceTree = "<group>"; };
 		8DC747861C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedCloseAnyCallAPI.h; sourceTree = "<group>"; };
 		8DC747871C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedCloseAnyCallAPI.m; sourceTree = "<group>"; };
+		C706D62B1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCGetFamilyImageApi.h; sourceTree = "<group>"; };
+		C706D62C1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCGetFamilyImageApi.m; sourceTree = "<group>"; };
+		C706D62E1CE613BC0096EF9E /* NHCEditingFamilyImageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCEditingFamilyImageApi.h; sourceTree = "<group>"; };
+		C706D62F1CE613BC0096EF9E /* NHCEditingFamilyImageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCEditingFamilyImageApi.m; sourceTree = "<group>"; };
 		C71B6BCB1CDC2EF000470C86 /* NHCEditingFamilyApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCEditingFamilyApi.h; sourceTree = "<group>"; };
 		C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCEditingFamilyApi.m; sourceTree = "<group>"; };
 		C729C4691CE08F690010D3C0 /* HCHomeNotiButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeNotiButton.h; sourceTree = "<group>"; };
@@ -7340,6 +7346,10 @@
 				C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */,
 				C7B90BDE1CA4EB1B0022C60C /* NHCApplyToFamily.h */,
 				C7B90BDF1CA4EB1B0022C60C /* NHCApplyToFamily.m */,
+				C706D62B1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.h */,
+				C706D62C1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m */,
+				C706D62E1CE613BC0096EF9E /* NHCEditingFamilyImageApi.h */,
+				C706D62F1CE613BC0096EF9E /* NHCEditingFamilyImageApi.m */,
 			);
 			name = family;
 			sourceTree = "<group>";
@@ -8027,6 +8037,7 @@
 				C7B00B9B1C5F26050010F93B /* PSTCollectionViewFlowLayout.m in Sources */,
 				C79A98C81CE191A9002407F1 /* HCUserFriendViewController.m in Sources */,
 				8D05FF761CB39EB1005AC51C /* HCMtalkWaitReceivedController.m in Sources */,
+				C706D62D1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m in Sources */,
 				8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */,
 				0A2B46E51C7F12AF00AAA157 /* HCHomeUserTimeViewController.m in Sources */,
 				0A2B46E71C7F12AF00AAA157 /* HCPublishViewController.m in Sources */,
@@ -8528,6 +8539,7 @@
 				0A2B47651C7F12C800AAA157 /* HCCheckCodeApi.m in Sources */,
 				8D15E55E1CBB6F0800FA3B11 /* HCContractPersonListApi.m in Sources */,
 				0A5491AE1C2BC32D0085F50D /* ZXPDF417Codeword.m in Sources */,
+				C706D6301CE613BC0096EF9E /* NHCEditingFamilyImageApi.m in Sources */,
 				C7B00B8D1C5F26050010F93B /* MKAnnotationView+EMWebCache.m in Sources */,
 				8D131A871C7D7C7F00F0D5A0 /* UIView+ZLExtension.m in Sources */,
 				C7B00BCC1C5F26050010F93B /* EaseChatBarMoreView.m in Sources */,

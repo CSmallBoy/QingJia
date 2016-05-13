@@ -20,6 +20,10 @@
 #import "HCHomeUserPhotoViewController.h"
 //修改家庭的api
 #import "NHCEditingFamilyApi.h"
+//家庭的图片
+#import "NHCGetFamilyImageApi.h"
+//家庭的编辑图片修改
+#import "NHCEditingFamilyImageApi.h"
 
 
 static NSString * const reuseIdentifier = @"FriendCell";
@@ -50,6 +54,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
     //长按手势
     UILongPressGestureRecognizer *long_press = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
+    
     self.headImageView.userInteractionEnabled = YES;
     [self.headImageView addGestureRecognizer:long_press];
     [self.headImageView addGestureRecognizer:tap];
@@ -57,6 +62,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
 -(void)viewWillAppear:(BOOL)animated
 {
     [self requestGradeManager];
+    
 }
 
 #pragma mark - UITableView
@@ -99,9 +105,11 @@ static NSString * const reuseIdentifier = @"FriendCell";
             image = IMG(@"head.jpg");
         }
         vc.data = @{@"info":self.info,@"image":image};
+        vc.Fam_image = self.headImageView.image;
     }else if (indexPath.section == 1 && indexPath.row == 0)
     {
         vc = [[HCCheckViewController alloc] init];
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"audit_num" object:nil];
     }
     [self.navigationController pushViewController:vc animated:YES];
@@ -207,6 +215,8 @@ static NSString * const reuseIdentifier = @"FriendCell";
 
 - (void)requestGradeManager
 {
+ 
+    
     sigleFamilyMessage *api = [[sigleFamilyMessage alloc]init];
     api.familyId = [HCAccountMgr manager].loginInfo.createFamilyId;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
@@ -233,7 +243,6 @@ static NSString * const reuseIdentifier = @"FriendCell";
             friendInfo.nickName = dic[@"nickName"];
             friendInfo.imageName = dic[@"imageName"];
             [self.dataSource addObject:friendInfo];
-            
         }
         self.signatureLabel.text = self.info.familyDescription;
         [self.tableView reloadData];
@@ -242,7 +251,17 @@ static NSString * const reuseIdentifier = @"FriendCell";
             self.headImageView.image = choose;
         }else{
             [self.headImageView sd_setImageWithURL:url placeholderImage:IMG(@"head.jpg")];
+            NHCGetFamilyImageApi *Api = [[NHCGetFamilyImageApi alloc]init];
+            [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+                NSString *str = responseObject[@"Data"][@"imageName"];
+                NSURL *url = [readUserInfo url:str :kkFamail];
+                [self.headImageView sd_setImageWithURL:url placeholderImage:IMG(@"1")];
+                
+            }];
         }
+        
+        
+       
         self.headImageView.clipsToBounds = YES;
         self.headImageView.contentMode = UIViewContentModeScaleAspectFill;
     }];
@@ -275,7 +294,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
         [self presentViewController:myalert animated:YES completion:nil];
     }else{
         HCHomeUserPhotoViewController *VC = [[HCHomeUserPhotoViewController alloc]init];
-        VC.head_image = self.info.imageName;
+        VC.head_image = self.headImageView.image;
         VC.from = @"家庭";
         [self.navigationController pushViewController:VC animated:YES];
     }
@@ -298,15 +317,26 @@ static NSString * const reuseIdentifier = @"FriendCell";
     [KLHttpTool uploadImageWithUrl:[readUserInfo url:kkFamail] image:choose success:^(id responseObject) {
         _PhotoName = responseObject[@"Data"][@"files"][0];
         NSDictionary *dict = @{@"photo":_PhotoName};
+        NHCEditingFamilyImageApi *api = [[NHCEditingFamilyImageApi alloc]init];
+        api.Fmaily_photo = dict[@"photo"];
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+            if (requestStatus == HCRequestStatusSuccess) {
+                [self showHUDSuccess:@"您已经成功修改了家庭图片"];
+            }
+        }];
         //
         [[NSNotificationCenter defaultCenter] postNotificationName:@"修改家庭图片" object:nil userInfo:dict];
-        [self showHUDSuccess:@"您已经成功修改了家庭图片"];
+    
+        
+        
+        
         NHCEditingFamilyApi *API = [[NHCEditingFamilyApi alloc]init];
         //上传修修改的编辑信息
         API.familyNickName = _nickName;
         API.familyId = _creatFamilyID;
         //祖籍改成签名
         API.ancestralHome = _miaoshu;
+        //没有imagename了
         API.imageName = _PhotoName;
         API.contactAddr = self.info.contactAddr;
         [API startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {

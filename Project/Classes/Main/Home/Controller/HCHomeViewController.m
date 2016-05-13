@@ -13,6 +13,8 @@
 //查询 家庭信息
 
 #import "findFamilyMessage.h"
+//城市三级联动
+#import "HCGetCityInfoApi.h"
 
 #import "AppDelegate.h"
 
@@ -42,6 +44,11 @@
     [self.mainScrollView addSubview:self.family.view];
     [self.mainScrollView addSubview:self.familyGroup.view];
     self.tabBarItem.badgeValue = @"3";
+    //测试城市
+    HCGetCityInfoApi *api = [[HCGetCityInfoApi alloc]init];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        
+    }];
     
 }
 
@@ -58,15 +65,11 @@
         NSString *str = respone[@"Data"][@"FamilyInf"][@"familyNickName"];
         if (_currentIndex == 0)
         {
-            
             if (IsEmpty(str)) {
                 self.title = @"时光";
             }else{
-                
                 self.navigationItem.title =[str stringByAppendingString:@"的时光"];
-
             }
-            
         }else if(_currentIndex == 1)
         {
             self.title = @"XXXX的家族";

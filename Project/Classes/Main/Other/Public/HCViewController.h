@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, strong) UIImage *Fam_image;
 
 //设置返回按钮
 - (void)setupBackItem;
