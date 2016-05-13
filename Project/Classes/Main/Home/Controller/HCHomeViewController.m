@@ -41,6 +41,8 @@
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView addSubview:self.family.view];
     [self.mainScrollView addSubview:self.familyGroup.view];
+    self.tabBarItem.badgeValue = @"3";
+    
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -60,8 +62,11 @@
             if (IsEmpty(str)) {
                 self.title = @"时光";
             }else{
-                self.title = [str stringByAppendingString:@"的时光"];
+                
+                self.navigationItem.title =[str stringByAppendingString:@"的时光"];
+
             }
+            
         }else if(_currentIndex == 1)
         {
             self.title = @"XXXX的家族";
@@ -151,6 +156,7 @@
     {
         _family = [[HCHomeFamilyViewController alloc] init];
         _family.view.frame = CGRectMake(0, 0, WIDTH(self.view), HEIGHT(self.view)-108);
+        _family.tabBarItem.title = @"1234444";
         [self addChildViewController:_family];
     }
     return _family;

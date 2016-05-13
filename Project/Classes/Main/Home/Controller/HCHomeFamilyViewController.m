@@ -55,6 +55,7 @@
 {
     
     [super viewDidLoad];
+    
     arr_image_all = [NSMutableArray array];
     [self readLocationData];
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
@@ -319,7 +320,7 @@
 
 #pragma mark - network  网络请求
 
-//上啦刷新  明天搞定缓存问题
+//上啦刷新  
 - (void)requestHomeData
 {
     NHCListOfTimeAPi *api = [[NHCListOfTimeAPi alloc]init];
