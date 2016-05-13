@@ -158,42 +158,35 @@
 // 跳转到分享界面
 -(void)toShoreVC:(UIButton *)button
 {
+    NSString *shareContent = @"M-talk";
+    NSString *commonContent = self.info.lossDesciption;
+    NSString *commonURL = [NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/call.do?code=%@", self.info.callId];
+    
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"56971c14e0f55af6e5001da1"
-                                      shareText:@"M-talk"
+                                      shareText:shareContent
                                      shareImage:IMG(@"landingpage_Background")
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQzone,UMShareToQQ,UMShareToWechatTimeline,UMShareToWechatSession,nil]
+                                shareToSnsNames:@[UMShareToQQ,
+                                                  UMShareToQzone,
+                                                  UMShareToWechatSession,
+                                                  UMShareToWechatTimeline,
+                                                  UMShareToSina]
                                        delegate:self];
+    //标题
+    [UMSocialData defaultData].extConfig.qqData.title = commonContent;            // QQ 标题
+    [UMSocialData defaultData].extConfig.qzoneData.title = commonContent;         // QQ 空间
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = commonContent;  //微信好友
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = commonContent; // 微信朋友圈
+    //url
+    [UMSocialData defaultData].extConfig.qqData.url = commonURL;                 // qq url
+    [UMSocialData defaultData].extConfig.qzoneData.url = commonURL;           // QQ空间 url
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = commonURL;    // 微信好友 url
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = commonURL;    // 微信朋友圈 url
+    //新浪图文链接
+    [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@,%@",commonContent,commonURL];
 
 }
 
--(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
-{
-    NSString *url = [NSString stringWithFormat:@"http://58.210.13.58:8090/share/Share/call.do?code=%@", self.info.callId];
-    if (platformName == UMShareToQQ || platformName == UMShareToQzone)
-    {
-        [UMSocialQQHandler setQQWithAppId:@"100424468" appKey:@"c7394704798a158208a74ab60104f0ba" url:url];
-    }
-    else if (platformName == UMShareToWechatTimeline || platformName == UMShareToWechatSession)
-    {
-        [UMSocialWechatHandler setWXAppId:@"wxa3e0f4e53bf74a06" appSecret:@"ed6ce4155f890517f746a2c1445dcb7e" url:url];
-    }
-    else
-    {
-        //进入授权页面
-        [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina].loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response)
-        {
-            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:url image:IMG(@"landingpage_Background") location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *shareResponse)
-            {
-                if (response.responseCode == UMSResponseCodeSuccess)
-                {
-                    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:nil message:@"分享成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                    [alter show];
-                }
-            }];
-        });
-    }
-}
 
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {

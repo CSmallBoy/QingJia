@@ -48,6 +48,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"走失信息填写";
+    self.cityString = @"";
+    self.streetString = @"";
     _isShowCity = NO;
     _isShowDate = NO;
     [self setupBackItem];
@@ -321,6 +323,8 @@
         _datePicker = [[HCPickerView alloc] initDatePickWithDate:[NSDate date]
                                                   datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:YES];
         _datePicker.datePicker.maximumDate = [NSDate date];
+        _datePicker.backgroundColor = RGB(237, 237, 237);
+        [_datePicker setPickViewColer:RGB(237, 237, 237)];
         _datePicker.delegate = self;
     }
     return _datePicker;

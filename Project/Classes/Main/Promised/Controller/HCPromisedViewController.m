@@ -377,6 +377,9 @@
     if (!_dataArr)
     {
         _dataArr = [NSMutableArray array];
+        HCNewTagInfo *info = [[HCNewTagInfo alloc]init];
+        info.trueName = @"+ 新增录入";
+        [_dataArr addObject:info];
     }
     return _dataArr;
 }
