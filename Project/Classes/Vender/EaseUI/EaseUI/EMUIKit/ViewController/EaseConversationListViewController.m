@@ -79,7 +79,9 @@
         [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *arr) {
             model.title = arr[0][@"familyNickName"];
             UIImageView *image = [[UIImageView alloc]init];
-            [image sd_setImageWithURL:[readUserInfo url:arr[0][@"imageName"] :kkFamail]];
+            NSString *string = @"http://58.210.13.58:8090/uploads/images/defaultFamily.png";
+            [image sd_setImageWithURL:[NSURL URLWithString:string]];
+            
             model.avatarImage = image.image;
             cell.model = model;
         }];
@@ -163,9 +165,6 @@
                                return(NSComparisonResult)NSOrderedDescending;
                            }
                        }];
-    
-    
-    
     [self.dataArray removeAllObjects];
     for (EMConversation *converstion in sorted) {
         EaseConversationModel *model = nil;

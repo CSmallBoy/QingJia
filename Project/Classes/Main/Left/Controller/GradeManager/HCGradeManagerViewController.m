@@ -254,14 +254,11 @@ static NSString * const reuseIdentifier = @"FriendCell";
             NHCGetFamilyImageApi *Api = [[NHCGetFamilyImageApi alloc]init];
             [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
                 NSString *str = responseObject[@"Data"][@"imageName"];
-                NSURL *url = [readUserInfo url:str :kkFamail];
+                NSURL *url = [readUserInfo originUrl:str:kkFamail];
                 [self.headImageView sd_setImageWithURL:url placeholderImage:IMG(@"1")];
                 
             }];
-        }
-        
-        
-       
+        }       
         self.headImageView.clipsToBounds = YES;
         self.headImageView.contentMode = UIViewContentModeScaleAspectFill;
     }];
@@ -326,10 +323,6 @@ static NSString * const reuseIdentifier = @"FriendCell";
         }];
         //
         [[NSNotificationCenter defaultCenter] postNotificationName:@"修改家庭图片" object:nil userInfo:dict];
-    
-        
-        
-        
         NHCEditingFamilyApi *API = [[NHCEditingFamilyApi alloc]init];
         //上传修修改的编辑信息
         API.familyNickName = _nickName;

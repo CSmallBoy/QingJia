@@ -16,7 +16,6 @@
 		0A2B46E61C7F12AF00AAA157 /* HCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B46B91C7F12AF00AAA157 /* HCHomeViewController.m */; };
 		0A2B46E71C7F12AF00AAA157 /* HCPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B46BB1C7F12AF00AAA157 /* HCPublishViewController.m */; };
 		0A2B46E81C7F12AF00AAA157 /* HCShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B46BD1C7F12AF00AAA157 /* HCShareViewController.m */; };
-		0A2B46E91C7F12AF00AAA157 /* HCShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2B46BE1C7F12AF00AAA157 /* HCShareViewController.xib */; };
 		0A2B46EA1C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B46C01C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.m */; };
 		0A2B46EB1C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2B46C11C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.xib */; };
 		0A2B46EC1C7F12AF00AAA157 /* HCEditCommentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B46C41C7F12AF00AAA157 /* HCEditCommentInfo.m */; };
@@ -1091,6 +1090,7 @@
 		C7B00C8E1C5F26050010F93B /* groupPublicHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B291C5F26050010F93B /* groupPublicHeader@2x.png */; };
 		C7B00C8F1C5F26050010F93B /* nav_createGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2A1C5F26050010F93B /* nav_createGroup@2x.png */; };
 		C7B00C901C5F26050010F93B /* newFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2B1C5F26050010F93B /* newFriends@2x.png */; };
+		C7B1D37F1CE74BD6002D08FE /* HCShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7B1D37E1CE74BD6002D08FE /* HCShareViewController.xib */; };
 		C7B1E1951CC4863A0087D330 /* NHCHomeSingleFigureApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B1E1941CC4863A0087D330 /* NHCHomeSingleFigureApi.m */; };
 		C7B553D51CE4A7B70013140E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7B553D41CE4A7B70013140E /* Assets.xcassets */; };
 		C7B90BDD1CA4E4D80022C60C /* NHCCreatefamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */; };
@@ -1149,7 +1149,6 @@
 		0A2B46BB1C7F12AF00AAA157 /* HCPublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPublishViewController.m; sourceTree = "<group>"; };
 		0A2B46BC1C7F12AF00AAA157 /* HCShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCShareViewController.h; sourceTree = "<group>"; };
 		0A2B46BD1C7F12AF00AAA157 /* HCShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCShareViewController.m; sourceTree = "<group>"; };
-		0A2B46BE1C7F12AF00AAA157 /* HCShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCShareViewController.xib; sourceTree = "<group>"; };
 		0A2B46BF1C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCWelcomeJoinGradeViewController.h; sourceTree = "<group>"; };
 		0A2B46C01C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCWelcomeJoinGradeViewController.m; sourceTree = "<group>"; };
 		0A2B46C11C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCWelcomeJoinGradeViewController.xib; sourceTree = "<group>"; };
@@ -3100,6 +3099,7 @@
 		C7B00B2A1C5F26050010F93B /* nav_createGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_createGroup@2x.png"; sourceTree = "<group>"; };
 		C7B00B2B1C5F26050010F93B /* newFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newFriends@2x.png"; sourceTree = "<group>"; };
 		C7B00B2C1C5F26050010F93B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C7B1D37E1CE74BD6002D08FE /* HCShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCShareViewController.xib; sourceTree = "<group>"; };
 		C7B1E1931CC4863A0087D330 /* NHCHomeSingleFigureApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeSingleFigureApi.h; sourceTree = "<group>"; };
 		C7B1E1941CC4863A0087D330 /* NHCHomeSingleFigureApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeSingleFigureApi.m; sourceTree = "<group>"; };
 		C7B553D41CE4A7B70013140E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -3226,7 +3226,7 @@
 				0A2B46BB1C7F12AF00AAA157 /* HCPublishViewController.m */,
 				0A2B46BC1C7F12AF00AAA157 /* HCShareViewController.h */,
 				0A2B46BD1C7F12AF00AAA157 /* HCShareViewController.m */,
-				0A2B46BE1C7F12AF00AAA157 /* HCShareViewController.xib */,
+				C7B1D37E1CE74BD6002D08FE /* HCShareViewController.xib */,
 				0A2B46BF1C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.h */,
 				0A2B46C01C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.m */,
 				0A2B46C11C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.xib */,
@@ -7735,7 +7735,7 @@
 				C7B00BDD1C5F26050010F93B /* chatBar_colorMore_photo@2x.png in Resources */,
 				C7B00C131C5F26050010F93B /* VoiceSearchFeedback005@2x.png in Resources */,
 				C7B00C1B1C5F26050010F93B /* VoiceSearchFeedback009@2x.png in Resources */,
-				0A2B46E91C7F12AF00AAA157 /* HCShareViewController.xib in Resources */,
+				C7B1D37F1CE74BD6002D08FE /* HCShareViewController.xib in Resources */,
 				C7B00C3E1C5F26050010F93B /* chatBar_more_cardSelected.png in Resources */,
 				C7B00C611C5F26050010F93B /* chatBar_recordBg@2x.png in Resources */,
 				C7B00BDE1C5F26050010F93B /* chatBar_colorMore_photoSelected@2x.png in Resources */,
@@ -8806,8 +8806,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8833,7 +8833,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8844,8 +8844,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8871,7 +8871,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

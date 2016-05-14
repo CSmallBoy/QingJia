@@ -129,7 +129,8 @@
 {
     if (!_contentText)
     {
-        _contentText = [[HCFeedbackTextView alloc] initWithFrame:CGRectMake(5, 0, WIDTH(self.lineView)-10, 60)];
+        _contentText = [[HCFeedbackTextView alloc] initWithFrame:CGRectMake(5, 0, WIDTH(self.lineView)-10, 150)];
+        //区域调大  不要是60  是
         _contentText.delegate = self;
         _contentText.placeholder = @"请输入评论...";
         _contentText.backgroundColor = [UIColor lightGrayColor];

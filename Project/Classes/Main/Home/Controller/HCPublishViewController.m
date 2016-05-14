@@ -190,9 +190,7 @@
                     UIImage *image = pho.originImage;
                     [_info.FTImages insertObject:image atIndex:_info.FTImages.count - 1];
                 }
-                
                 [self.tableView reloadData];
-                
             }
         };
         [self presentViewController:vc animated:YES completion:^{
@@ -202,6 +200,13 @@
     }
 }
 
+//- (UIImage *) reSizeImage:(UIImage *)image toSize:(CGSize)reSize {
+//    UIGraphicsBeginImageContext(CGSizeMake(reSize.width, reSize.height));
+//    [image drawInRect:CGRectMake(0, 0, reSize.width, reSize.height)];
+//    UIImage *reSizeImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return reSizeImage;
+//}
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info

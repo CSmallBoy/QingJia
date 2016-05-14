@@ -10,4 +10,7 @@
 typedef void(^NHCUserInfo)(HCRequestStatus requestStatus, NSString *message, NSArray *array);
 @interface NHCBindPhoneNumAPi : HCRequest
 - (void)startRequest:(NHCUserInfo)requestBlock;
+@property (nonatomic ,copy) NSString * PhoneNum;
+@property (nonatomic ,copy) NSString * theCode;
+
 @end

@@ -112,8 +112,7 @@
     NSLog(@"%lf",self.tableView.contentOffset.y);
     
     
-    if (self.tableView.contentOffset.y<=- SCREEN_HEIGHT/2) {
-        
+    if (self.tableView.contentOffset.y<=- SCREEN_HEIGHT/3*2) {
         self.navigationController.navigationBarHidden = YES;
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3*2)];
         imageView.userInteractionEnabled = YES;
@@ -156,7 +155,7 @@
 -(UIImageView *)imageView
 {
     if (!_imageView) {
-        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_WIDTH/3*2)];
+        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/3*2)];
     }
     return _imageView;
 }
@@ -221,15 +220,20 @@
 
 -(void)createHeaderView
 {
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+    UIImageView *imageView = [[UIImageView alloc]init];
     HCHomeInfo *info = self.data[@"data"];
     NSInteger index = [self.data[@"index"] integerValue];
-    imageView.contentMode = UIViewContentModeScaleToFill;
+    //自适应图片比例
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     NSString *image_url = info.FTImages[index];
     [imageView sd_setImageWithURL:[readUserInfo originUrl:image_url :kkTimes] placeholderImage:IMG(@"Head-Portraits")];
     imageView.clipsToBounds = YES;
+    imageView.backgroundColor = [UIColor darkGrayColor];
     self.imageView = imageView;
     [self.tableView insertSubview:self.imageView atIndex:0];
+    
+    
+    
 }
 
 

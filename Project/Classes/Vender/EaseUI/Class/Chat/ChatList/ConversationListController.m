@@ -217,6 +217,7 @@
 //                            }
 //                        }
 //                    }
+                    
                 }else if (conversationModel.conversation.conversationType==0){
                     //传过去一个单聊的用户头像
                     //5.11  一会要注释  不用这一部分
@@ -262,7 +263,6 @@
             {
                 model.title = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
                 model.avatarURLPath = profileEntity.imageUrl;
-              
             }
        
         }
@@ -282,6 +282,7 @@
                     imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
                     model.avatarImage = [UIImage imageNamed:imageName];
                     NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
+                    
                     [ext setObject:group.groupSubject forKey:@"groupSubject"];
                     [ext setObject:[NSNumber numberWithBool:group.isPublic] forKey:@"isPublic"];
                     conversation.ext = ext;

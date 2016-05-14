@@ -215,7 +215,6 @@
         
         if (requestStatus == HCRequestStatusSuccess) {
             NSDictionary *dic = respone[@"Data"][@"FamilyInf"];
-            
             _info = [HCCreateGradeInfo mj_objectWithKeyValues:dic];
             [HCAccountMgr manager].familyInfo = _info;
             self.gradeName.text = _info.familyNickName;
@@ -224,8 +223,6 @@
             self.familyButton.hidden = NO;
             self.headButton.hidden = NO;
             self.smallView.hidden = YES;
-            
-            
             ViewRadius(_gradeHeadButton, 5);
             //不在返回imageName字段
             if ([HCAccountMgr manager].familyInfo.familyNickName==nil) {
