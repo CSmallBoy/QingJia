@@ -28,6 +28,11 @@
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialWechatHandler.h"
 #import "NHCCancellationApi.h"
+
+#import "HCSetPushTagApi.h"
+
+
+
 @interface AppDelegate ()<AMapLocationManagerDelegate>
 
 
@@ -112,17 +117,18 @@
 }
 -(void)notiBack3:(NSNotification *)noti
 {
-    NSLog(@" 注册成功  @@@@@@@@@@@@@@@@@ %@",noti.userInfo);
+    NSLog(@" 注册成功  @@@@@@@@@@@@@@@@@ %@",noti.userInfo[@"RegistrationID"]);
 }
 -(void)notiBack4:(NSNotification *)noti
 {
-    NSLog(@" 登陆成功  @@@@@@@@@@@@@@@@@ %@",noti.userInfo);
+    NSLog(@" 登陆成功  @@@@@@@@@@@@@@@@@ %@",noti.userInfo); 
     //设置tags
     NSSet *tags = [NSSet setWithObject:@"1111"];
     NSSet *set = [JPUSHService filterValidTags:tags];
-//    [JPUSHService setTags:set alias:@"1111" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:nil];
-    [JPUSHService setTags:set alias:@"1111" fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+    
+    [JPUSHService setTags:set alias:nil fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
         NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags , iAlias);
+
     }];
 }
 
@@ -205,6 +211,7 @@ didFinishLaunchingWithOptions:launchOptions
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    NSLog(@"%@", userInfo);
     if (_mainController)
     {
         [self.mainController jumpToChatList];

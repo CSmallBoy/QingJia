@@ -438,15 +438,19 @@
         {
             [self changeObject];
         }
-       
-       
+        
+        
     }else
     {
         if (self.image)
         {
             [self uploadImage];
         }
-    
+        else
+        {
+            [self showHUDText:@"请上传头像"];
+        }
+        
     }
 }
 

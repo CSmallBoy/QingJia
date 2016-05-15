@@ -109,7 +109,6 @@
             [HCAccountMgr manager].loginInfo = loginInfo;  
             [[HCAccountMgr manager] saveLoginInfoToDB];
             [HCAccountMgr manager].isLogined = YES;
-            
             HCGradeViewController *grade = [[HCGradeViewController alloc] init];
             [self.navigationController pushViewController:grade animated:YES];
         }else

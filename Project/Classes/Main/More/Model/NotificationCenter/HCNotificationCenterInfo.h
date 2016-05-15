@@ -28,4 +28,6 @@
 @property (nonatomic,strong) NSString *relation2;
 @property (nonatomic,strong) NSString *contactorPhoneNo2;
 
+@property (nonatomic,copy)NSString *status;//0为打开,1为关闭
+
 @end

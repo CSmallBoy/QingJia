@@ -101,7 +101,7 @@
     [manager removeItemAtPath:filePath error:nil];
     
 }
-
+//
 +(void)creatDic:(NSDictionary*)dic{
     NSMutableData *data =[NSMutableData data];
     //初始化归档对象
