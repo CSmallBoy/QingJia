@@ -108,8 +108,9 @@
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
     if (indexPath.section ==0) {
+       NSString *string = @"http://58.210.13.58:8090/uploads/images/defaultFamily.png";
+        NSURL *url = [NSURL URLWithString:string];
         
-        NSURL *url = [readUserInfo originUrl:self.info.imageName :kkFamail];
         [self.headImg sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
         
         [cell.contentView addSubview:self.headImg]; 
@@ -158,7 +159,7 @@
         }
         else
         {
-            [self showHUDError:message];
+            [self showHUDText:message];
         }
         
   

@@ -9,6 +9,6 @@
 #import "HCViewController.h"
 
 @interface HCHomeUserPhotoViewController : HCViewController
-@property (nonatomic,copy)NSString *head_image;
+@property (nonatomic,strong)UIImage *head_image;
 @property (nonatomic,copy)NSString *from;
 @end

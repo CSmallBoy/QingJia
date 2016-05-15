@@ -212,7 +212,7 @@
         CGSize size = CGSizeMake(_label.bounds.size.width-120, MAXFLOAT);
         CGSize labelsize = [_info.subRows[i][@"content"] sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
         
-        Sonlabel.frame = CGRectMake(_button2.frame.size.width + _button1.bounds.size.width + 30 + 4, 0, _label.bounds.size.width - _button2.frame.size.width - _button1.bounds.size.width - 30 - 4 -20, labelsize.height);
+        Sonlabel.frame = CGRectMake(_button2.frame.size.width + _button1.bounds.size.width + 30 + 4, 0, _label.bounds.size.width - _button2.frame.size.width - _button1.bounds.size.width - 30 - 4 -20-45, labelsize.height);
         NSString *str = [NSString stringWithFormat:@"%f",labelsize.height];
         int b = [str intValue];
         sum += b;

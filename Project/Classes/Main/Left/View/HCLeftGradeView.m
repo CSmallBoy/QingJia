@@ -20,6 +20,9 @@
 
 //下载头像
 #import "NHCDownloadImageApi.h"
+//获取家庭头像
+#import "NHCGetFamilyImageApi.h"
+
 @interface HCLeftGradeView(){
     NSDictionary *dicting;
 }
@@ -40,6 +43,7 @@
 {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserPhoto:) name:@"changeUserPhoto" object:nil];
+    //通知改变家庭的图片
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserPhoto2:) name:@"修改家庭图片" object:nil];
     self = [super initWithFrame:frame];
     
@@ -61,6 +65,7 @@
         NSDictionary *dic = [readUserInfo getFaimilyDic];
         NSString *strFamilyId = [readUserInfo getFaimilyDic][@"familyId"];
         NSString *frist_FamilyId = [str substringToIndex:1];
+        
         
 //        if ((IsEmpty(str) || [str isKindOfClass:[NSNull class]])&& IsEmpty(strFamilyId))
 //        {
@@ -147,6 +152,7 @@
 }
 
 #pragma mark - private methods
+//通知改变家庭的图片
 - (void)changeUserPhoto2:(NSNotification *)noti{
     NSDictionary *dic = noti.userInfo;
     UIImage*image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dic[@"photo"] :kkFamail]]];
@@ -175,7 +181,6 @@
         {
             [self.gradeHeadButton setBackgroundImage: image forState:UIControlStateNormal];
         }
-        
     }
     
 }
@@ -196,33 +201,39 @@
         api.familyId = str;
         downLoadApi.familyId = str;
     }
+    
+    NHCGetFamilyImageApi *API = [[NHCGetFamilyImageApi alloc]init];
+    
+    [API startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        NSString *str = responseObject[@"Data"][@"imageName"];
+        NSURL *url = [readUserInfo url:str :kkFamail];
+        UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+        [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
+    }];
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
         if (requestStatus == HCRequestStatusSuccess) {
             NSDictionary *dic = respone[@"Data"][@"FamilyInf"];
-            
             _info = [HCCreateGradeInfo mj_objectWithKeyValues:dic];
             [HCAccountMgr manager].familyInfo = _info;
             self.gradeName.text = _info.familyNickName;
             self.nickName.text = [HCAccountMgr manager].loginInfo.TrueName;
-            
             self.nickName.hidden = NO;
             self.familyButton.hidden = NO;
             self.headButton.hidden = NO;
-            
             self.smallView.hidden = YES;
-            
-            
             ViewRadius(_gradeHeadButton, 5);
-            if ([HCAccountMgr manager].familyInfo.imageName==nil) {
+            //不在返回imageName字段
+            if ([HCAccountMgr manager].familyInfo.familyNickName==nil) {
                 //没有图片的时候显示的默认头像
                 [_gradeHeadButton  setBackgroundImage: IMG(@"familyHead")forState:UIControlStateNormal];
             }else{
                 
-                NSURL *url = [readUserInfo url:[HCAccountMgr manager].familyInfo.imageName :kkFamail];
-                UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
-                [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
-                
+//                NSURL *url = [readUserInfo url:[HCAccountMgr manager].familyInfo.imageName :kkFamail];
+//                UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+//                [_gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
+            
             }
             
             NSDictionary *dict = [readUserInfo getReadDic];

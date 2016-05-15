@@ -15,22 +15,16 @@
 }
 
 - (NSString *)requestUrl
-{   //验证验证码
-    return @"User/addUserInfo.do";
+{   //修改绑定的手机号
+    return @"User/changePhoneNo.do";
 }
 - (id)requestArgument
-{   //验证验证码
-    NSDictionary *dict = [readUserInfo getReadDic];
-    NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],  
+{
+    NSDictionary *head = @{@"UUID":[HCAccountMgr manager].loginInfo.UUID,
                            @"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token};
-    NSDictionary *para = @{@"height":@"18300701111",
-                           @"weight":@"验证码",
-                           @"bloodType":@"验证码",
-                           @"allergic":@"验证码",
-                           @"cureCondition":@"验证码",
-                           @"cureNote":@"验证码"
-                           };
+    NSDictionary *para = @{@"newPhoneNo":_PhoneNum,
+                           @"theCode":_theCode};
     NSDictionary *body = @{@"Para":para,
                            @"Head":head};
     return body;

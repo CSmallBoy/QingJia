@@ -192,15 +192,14 @@
     if ([info.isLike isEqualToString:@"0"]){
         if ([commentNum isEqualToString:@"评论"]) {
             functionArr = @[@[@"like_1", zanNum],
-                            @[@"share_1", @"分享"],
+                            @[@"share_2", @"分享"],
                             @[@"comment_1", commentNum]];
         }else{
             functionArr = @[@[@"like_1", zanNum],
-                            @[@"share_1", @"分享"],
+                            @[@"share_2", @"分享"],
                             @[@"comment_2", commentNum]];
         }
     }else{
-        
         if ([commentNum isEqualToString:@"评论"]) {
             functionArr = @[@[@"like_2", zanNum],
                             @[@"share_2", @"分享"],
@@ -210,7 +209,6 @@
                             @[@"share_2", @"分享"],
                             @[@"comment_2", commentNum]];
         }
-        
     }
     [self.functionTagView functionTagWithArrary:functionArr];
 }

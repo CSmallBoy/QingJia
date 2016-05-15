@@ -14,7 +14,6 @@
     [super startRequest:requestBlock];
 }
 -(NSString *)requestUrl{
-    //
     return @"Chat/searchFamilyInfoByGroupIds.do";
 }
 -(id)requestArgument{

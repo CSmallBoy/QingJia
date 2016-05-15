@@ -51,6 +51,7 @@
     if (self.indexPath == 0)
     {
         self.phoneNum = textField.text;
+        
     }
     else
     {
@@ -86,11 +87,11 @@
     }
 }
 
--(void)getCodeNumber:(UIButton *)button
+- (void)getCodeNumber:(UIButton *)button
 {
     UIView *view = button.superview;
+    //这个是手机号
     UITextField *textField = (UITextField *)[view viewWithTag:100];
-    
     NSDictionary *dic = @{@"phoneNum" : textField.text};
     [[NSNotificationCenter defaultCenter] postNotificationName:@"getCodeNumber" object:nil userInfo:dic];
 }

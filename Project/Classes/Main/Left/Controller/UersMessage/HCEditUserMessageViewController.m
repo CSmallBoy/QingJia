@@ -55,9 +55,10 @@
     model = [[MyselfInfoModel alloc]init];
     api = [[NHCUSerInfoApi alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toChangeNumber) name:@"toChangeNumber" object:nil];
+     NSDictionary *dic = [readUserInfo getReadDic];
     Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"生日",@"属相",@"住址",@"祖籍",@"签名"],
             @[@"绑定手机号"]];
-    NSDictionary *dic = [readUserInfo getReadDic];
+   
     //第一步  先判断是否本地编辑过
     if(IsEmpty(dic[@"company"])){
         if (IsEmpty(dic[@"UserInf"][@"imageName"]))

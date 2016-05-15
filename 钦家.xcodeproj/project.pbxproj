@@ -16,7 +16,6 @@
 		0A2B46E61C7F12AF00AAA157 /* HCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B46B91C7F12AF00AAA157 /* HCHomeViewController.m */; };
 		0A2B46E71C7F12AF00AAA157 /* HCPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B46BB1C7F12AF00AAA157 /* HCPublishViewController.m */; };
 		0A2B46E81C7F12AF00AAA157 /* HCShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B46BD1C7F12AF00AAA157 /* HCShareViewController.m */; };
-		0A2B46E91C7F12AF00AAA157 /* HCShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2B46BE1C7F12AF00AAA157 /* HCShareViewController.xib */; };
 		0A2B46EA1C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B46C01C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.m */; };
 		0A2B46EB1C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2B46C11C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.xib */; };
 		0A2B46EC1C7F12AF00AAA157 /* HCEditCommentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B46C41C7F12AF00AAA157 /* HCEditCommentInfo.m */; };
@@ -523,6 +522,8 @@
 		8D9790521CB3A05D00FE3C12 /* HCMTalkWaitPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D97904E1CB3A05D00FE3C12 /* HCMTalkWaitPayCell.m */; };
 		8D9790551CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9790541CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m */; };
 		8DC747881C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC747871C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m */; };
+		C706D62D1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C706D62C1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m */; };
+		C706D6301CE613BC0096EF9E /* NHCEditingFamilyImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C706D62F1CE613BC0096EF9E /* NHCEditingFamilyImageApi.m */; };
 		C71B6BCD1CDC2EF000470C86 /* NHCEditingFamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */; };
 		C729C46B1CE08F690010D3C0 /* HCHomeNotiButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C729C46A1CE08F690010D3C0 /* HCHomeNotiButton.m */; };
 		C72F1F951C7719EE00A6E794 /* HCAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */; };
@@ -1089,6 +1090,7 @@
 		C7B00C8E1C5F26050010F93B /* groupPublicHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B291C5F26050010F93B /* groupPublicHeader@2x.png */; };
 		C7B00C8F1C5F26050010F93B /* nav_createGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2A1C5F26050010F93B /* nav_createGroup@2x.png */; };
 		C7B00C901C5F26050010F93B /* newFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B00B2B1C5F26050010F93B /* newFriends@2x.png */; };
+		C7B1D37F1CE74BD6002D08FE /* HCShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7B1D37E1CE74BD6002D08FE /* HCShareViewController.xib */; };
 		C7B1E1951CC4863A0087D330 /* NHCHomeSingleFigureApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B1E1941CC4863A0087D330 /* NHCHomeSingleFigureApi.m */; };
 		C7B553D51CE4A7B70013140E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7B553D41CE4A7B70013140E /* Assets.xcassets */; };
 		C7B90BDD1CA4E4D80022C60C /* NHCCreatefamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */; };
@@ -1147,7 +1149,6 @@
 		0A2B46BB1C7F12AF00AAA157 /* HCPublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPublishViewController.m; sourceTree = "<group>"; };
 		0A2B46BC1C7F12AF00AAA157 /* HCShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCShareViewController.h; sourceTree = "<group>"; };
 		0A2B46BD1C7F12AF00AAA157 /* HCShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCShareViewController.m; sourceTree = "<group>"; };
-		0A2B46BE1C7F12AF00AAA157 /* HCShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCShareViewController.xib; sourceTree = "<group>"; };
 		0A2B46BF1C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCWelcomeJoinGradeViewController.h; sourceTree = "<group>"; };
 		0A2B46C01C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCWelcomeJoinGradeViewController.m; sourceTree = "<group>"; };
 		0A2B46C11C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCWelcomeJoinGradeViewController.xib; sourceTree = "<group>"; };
@@ -2151,6 +2152,10 @@
 		8D9790541CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddNewAddressTableViewCell.m; sourceTree = "<group>"; };
 		8DC747861C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedCloseAnyCallAPI.h; sourceTree = "<group>"; };
 		8DC747871C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedCloseAnyCallAPI.m; sourceTree = "<group>"; };
+		C706D62B1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCGetFamilyImageApi.h; sourceTree = "<group>"; };
+		C706D62C1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCGetFamilyImageApi.m; sourceTree = "<group>"; };
+		C706D62E1CE613BC0096EF9E /* NHCEditingFamilyImageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCEditingFamilyImageApi.h; sourceTree = "<group>"; };
+		C706D62F1CE613BC0096EF9E /* NHCEditingFamilyImageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCEditingFamilyImageApi.m; sourceTree = "<group>"; };
 		C71B6BCB1CDC2EF000470C86 /* NHCEditingFamilyApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCEditingFamilyApi.h; sourceTree = "<group>"; };
 		C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCEditingFamilyApi.m; sourceTree = "<group>"; };
 		C729C4691CE08F690010D3C0 /* HCHomeNotiButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeNotiButton.h; sourceTree = "<group>"; };
@@ -3094,6 +3099,7 @@
 		C7B00B2A1C5F26050010F93B /* nav_createGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_createGroup@2x.png"; sourceTree = "<group>"; };
 		C7B00B2B1C5F26050010F93B /* newFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newFriends@2x.png"; sourceTree = "<group>"; };
 		C7B00B2C1C5F26050010F93B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C7B1D37E1CE74BD6002D08FE /* HCShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCShareViewController.xib; sourceTree = "<group>"; };
 		C7B1E1931CC4863A0087D330 /* NHCHomeSingleFigureApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeSingleFigureApi.h; sourceTree = "<group>"; };
 		C7B1E1941CC4863A0087D330 /* NHCHomeSingleFigureApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeSingleFigureApi.m; sourceTree = "<group>"; };
 		C7B553D41CE4A7B70013140E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -3220,7 +3226,7 @@
 				0A2B46BB1C7F12AF00AAA157 /* HCPublishViewController.m */,
 				0A2B46BC1C7F12AF00AAA157 /* HCShareViewController.h */,
 				0A2B46BD1C7F12AF00AAA157 /* HCShareViewController.m */,
-				0A2B46BE1C7F12AF00AAA157 /* HCShareViewController.xib */,
+				C7B1D37E1CE74BD6002D08FE /* HCShareViewController.xib */,
 				0A2B46BF1C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.h */,
 				0A2B46C01C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.m */,
 				0A2B46C11C7F12AF00AAA157 /* HCWelcomeJoinGradeViewController.xib */,
@@ -7345,6 +7351,10 @@
 				C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */,
 				C7B90BDE1CA4EB1B0022C60C /* NHCApplyToFamily.h */,
 				C7B90BDF1CA4EB1B0022C60C /* NHCApplyToFamily.m */,
+				C706D62B1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.h */,
+				C706D62C1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m */,
+				C706D62E1CE613BC0096EF9E /* NHCEditingFamilyImageApi.h */,
+				C706D62F1CE613BC0096EF9E /* NHCEditingFamilyImageApi.m */,
 			);
 			name = family;
 			sourceTree = "<group>";
@@ -7725,7 +7735,7 @@
 				C7B00BDD1C5F26050010F93B /* chatBar_colorMore_photo@2x.png in Resources */,
 				C7B00C131C5F26050010F93B /* VoiceSearchFeedback005@2x.png in Resources */,
 				C7B00C1B1C5F26050010F93B /* VoiceSearchFeedback009@2x.png in Resources */,
-				0A2B46E91C7F12AF00AAA157 /* HCShareViewController.xib in Resources */,
+				C7B1D37F1CE74BD6002D08FE /* HCShareViewController.xib in Resources */,
 				C7B00C3E1C5F26050010F93B /* chatBar_more_cardSelected.png in Resources */,
 				C7B00C611C5F26050010F93B /* chatBar_recordBg@2x.png in Resources */,
 				C7B00BDE1C5F26050010F93B /* chatBar_colorMore_photoSelected@2x.png in Resources */,
@@ -8033,6 +8043,7 @@
 				C7B00B9B1C5F26050010F93B /* PSTCollectionViewFlowLayout.m in Sources */,
 				C79A98C81CE191A9002407F1 /* HCUserFriendViewController.m in Sources */,
 				8D05FF761CB39EB1005AC51C /* HCMtalkWaitReceivedController.m in Sources */,
+				C706D62D1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m in Sources */,
 				8D0FAEB31C604ECA0038B0BD /* HCNotiMySaveCell.m in Sources */,
 				0A2B46E51C7F12AF00AAA157 /* HCHomeUserTimeViewController.m in Sources */,
 				0A2B46E71C7F12AF00AAA157 /* HCPublishViewController.m in Sources */,
@@ -8534,6 +8545,7 @@
 				0A2B47651C7F12C800AAA157 /* HCCheckCodeApi.m in Sources */,
 				8D15E55E1CBB6F0800FA3B11 /* HCContractPersonListApi.m in Sources */,
 				0A5491AE1C2BC32D0085F50D /* ZXPDF417Codeword.m in Sources */,
+				C706D6301CE613BC0096EF9E /* NHCEditingFamilyImageApi.m in Sources */,
 				C7B00B8D1C5F26050010F93B /* MKAnnotationView+EMWebCache.m in Sources */,
 				8D131A871C7D7C7F00F0D5A0 /* UIView+ZLExtension.m in Sources */,
 				C7B00BCC1C5F26050010F93B /* EaseChatBarMoreView.m in Sources */,
@@ -8794,8 +8806,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8821,7 +8833,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8832,8 +8844,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8859,7 +8871,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ad75fb70-9351-4c04-9b33-55200ce361b9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

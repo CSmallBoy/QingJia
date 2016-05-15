@@ -47,6 +47,7 @@
 @property (strong, nonatomic) NSMutableArray *contactsSource;
 //用户信息数据
 @property (strong, nonatomic) NSMutableArray *UserDataSource;
+
 @property (strong, nonatomic) NSMutableDictionary *dict_mutab;
 @property (strong, nonatomic) NSMutableDictionary *dict_mutab_nick;
 @property (strong, nonatomic) HCEaseUserInfo *model_info;
@@ -661,6 +662,7 @@
     for (EMBuddy *buddy in buddyList) {
         if (![blockList containsObject:buddy.username])
         {
+            
             
             NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
             api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];

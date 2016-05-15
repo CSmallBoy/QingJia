@@ -15,6 +15,8 @@
 #import "HCCheckCodeApi.h"
 #import "HCGetVerificationCodeApi.h"
 #import "NHCResgistVerifyApi.h"
+//修改绑定的手机号
+#import "NHCBindPhoneNumAPi.h"
 #import "Utils.h"
 
 @interface HCChangeBoundleTelNumberControll ()
@@ -46,6 +48,7 @@
     [self.tableView addSubview:self.textField];
     _uuid = [readUserInfo GetUUID];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getCodeNumber:) name:@"getCodeNumber" object:nil];
+    
     
 }
 
@@ -85,6 +88,10 @@
     if (indexPath.row == 1) {
         UITextField *textFIeld = (UITextField *)[cell viewWithTag:101];
         self.codeNum = textFIeld.text;
+        
+    }else{
+        UITextField *textFIeld2 = (UITextField *)[cell viewWithTag:100];
+        self.phoneNum = textFIeld2.text;
     }
     return cell;
 }
@@ -144,6 +151,13 @@
     
     if (_isSure)
     {
+        //执行修改的bindPhone
+        NHCBindPhoneNumAPi *api = [[NHCBindPhoneNumAPi alloc]init];
+        api.PhoneNum = self.phoneNum;
+        api.theCode = _textField.text;
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
+            
+        }];
         [self.navigationController popToViewController:self.navigationController.viewControllers[2] animated:YES];
     }
     else

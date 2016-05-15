@@ -24,7 +24,7 @@
 {
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-    NSDictionary *para  = @{};
+    NSDictionary *para  = [NSDictionary dictionary];
     return @{@"Head":head,@"Para":para};
     
 }
