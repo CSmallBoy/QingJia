@@ -526,6 +526,7 @@
 		C706D6301CE613BC0096EF9E /* NHCEditingFamilyImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C706D62F1CE613BC0096EF9E /* NHCEditingFamilyImageApi.m */; };
 		C71B6BCD1CDC2EF000470C86 /* NHCEditingFamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */; };
 		C729C46B1CE08F690010D3C0 /* HCHomeNotiButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C729C46A1CE08F690010D3C0 /* HCHomeNotiButton.m */; };
+		C72BB1BE1CE8B05100662F6E /* HCBindTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BB1BD1CE8B05100662F6E /* HCBindTwoViewController.m */; };
 		C72F1F951C7719EE00A6E794 /* HCAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */; };
 		C72F1F981C771F8100A6E794 /* SCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F971C771F8100A6E794 /* SCSwipeTableViewCell.m */; };
 		C739F7971CD740F50070BB2D /* HCHomeUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C739F7961CD740F50070BB2D /* HCHomeUserPhotoViewController.m */; };
@@ -579,6 +580,7 @@
 		C777FF231CC74D6D007ED160 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C777FF221CC74D6D007ED160 /* Foundation.framework */; };
 		C777FF251CC74E47007ED160 /* jpush-ios-2.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C777FF241CC74E47007ED160 /* jpush-ios-2.1.0.a */; };
 		C777FF2A1CC7783E007ED160 /* NHCMessageSearchUserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C777FF291CC7783E007ED160 /* NHCMessageSearchUserApi.m */; };
+		C77A28641CE96EFC008BB9BE /* NHCHomepushListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C77A28631CE96EFC008BB9BE /* NHCHomepushListApi.m */; };
 		C77C2F601CBB7B5B0011233C /* KLHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */; };
 		C78D7AA51C5F28F700622CE2 /* HCCreateGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78571C5F28F600622CE2 /* HCCreateGradeViewController.m */; };
 		C78D7AA61C5F28F700622CE2 /* HCGradeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78D78591C5F28F600622CE2 /* HCGradeSuccessViewController.m */; };
@@ -2160,6 +2162,8 @@
 		C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCEditingFamilyApi.m; sourceTree = "<group>"; };
 		C729C4691CE08F690010D3C0 /* HCHomeNotiButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeNotiButton.h; sourceTree = "<group>"; };
 		C729C46A1CE08F690010D3C0 /* HCHomeNotiButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeNotiButton.m; sourceTree = "<group>"; };
+		C72BB1BD1CE8B05100662F6E /* HCBindTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBindTwoViewController.m; sourceTree = "<group>"; };
+		C72BB1BF1CE8B05800662F6E /* HCBindTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBindTwoViewController.h; sourceTree = "<group>"; };
 		C72F1F931C7719EE00A6E794 /* HCAuditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAuditViewController.h; sourceTree = "<group>"; };
 		C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAuditViewController.m; sourceTree = "<group>"; };
 		C72F1F961C771F8100A6E794 /* SCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSwipeTableViewCell.h; sourceTree = "<group>"; };
@@ -2256,6 +2260,8 @@
 		C777FF261CC74E65007ED160 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		C777FF281CC7783E007ED160 /* NHCMessageSearchUserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCMessageSearchUserApi.h; sourceTree = "<group>"; };
 		C777FF291CC7783E007ED160 /* NHCMessageSearchUserApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCMessageSearchUserApi.m; sourceTree = "<group>"; };
+		C77A28621CE96EFC008BB9BE /* NHCHomepushListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomepushListApi.h; sourceTree = "<group>"; };
+		C77A28631CE96EFC008BB9BE /* NHCHomepushListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomepushListApi.m; sourceTree = "<group>"; };
 		C77C2F5E1CBB7B5B0011233C /* KLHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLHttpTool.h; sourceTree = "<group>"; };
 		C77C2F5F1CBB7B5B0011233C /* KLHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLHttpTool.m; sourceTree = "<group>"; };
 		C78D78561C5F28F600622CE2 /* HCCreateGradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateGradeViewController.h; sourceTree = "<group>"; };
@@ -4555,6 +4561,8 @@
 				C752A8761CB4F6B7006719F1 /* HCUserHeathViewController.m */,
 				C79A98C61CE191A9002407F1 /* HCUserFriendViewController.h */,
 				C79A98C71CE191A9002407F1 /* HCUserFriendViewController.m */,
+				C72BB1BF1CE8B05800662F6E /* HCBindTwoViewController.h */,
+				C72BB1BD1CE8B05100662F6E /* HCBindTwoViewController.m */,
 			);
 			path = UersMessage;
 			sourceTree = "<group>";
@@ -5152,6 +5160,8 @@
 				C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */,
 				C7F421061CD055A2006BDA77 /* NHCHomeTimeToComentApi.h */,
 				C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */,
+				C77A28621CE96EFC008BB9BE /* NHCHomepushListApi.h */,
+				C77A28631CE96EFC008BB9BE /* NHCHomepushListApi.m */,
 			);
 			name = HomeApi;
 			sourceTree = "<group>";
@@ -8210,6 +8220,7 @@
 				0A8BE3B61C7E8D7C008E8100 /* HCCheckTableViewCell.m in Sources */,
 				8D15E54C1CBB4AAC00FA3B11 /* HCObjectListApi.m in Sources */,
 				8D1191201C5F3CDD003505D3 /* HCNotifcationMessageCell.m in Sources */,
+				C72BB1BE1CE8B05100662F6E /* HCBindTwoViewController.m in Sources */,
 				8D134CDC1CCDE6AB001B77EE /* HCPromisedSubCommentCell.m in Sources */,
 				C752A87C1CB4FF22006719F1 /* NHCUserHeathApi.m in Sources */,
 				0A2B47781C7F12C800AAA157 /* HCPromisedAddCallMessageAPI.m in Sources */,
@@ -8391,6 +8402,7 @@
 				C78D7B461C5F28F700622CE2 /* HCLogisticsInfoTableViewCellSecond.m in Sources */,
 				C78D7B981C5F28F700622CE2 /* HCTagListView.m in Sources */,
 				0A5491C51C2BC32D0085F50D /* ZXQRCodeDecoder.m in Sources */,
+				C77A28641CE96EFC008BB9BE /* NHCHomepushListApi.m in Sources */,
 				C7B00B651C5F26050010F93B /* SettingsViewController.m in Sources */,
 				0A5491781C2BC32D0085F50D /* ZXAI01AndOtherAIs.m in Sources */,
 				C75F8A851CC8CB9F00AB7975 /* NHCChatUserIfoListApi.m in Sources */,
@@ -8807,7 +8819,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8833,7 +8849,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
+
 				PROVISIONING_PROFILE = "";
+
+				PROVISIONING_PROFILE = "c5a15539-87dc-4e02-8695-a1de8aa607c1";
+
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8845,7 +8865,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8871,7 +8895,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
+
 				PROVISIONING_PROFILE = "";
+
+				PROVISIONING_PROFILE = "c5a15539-87dc-4e02-8695-a1de8aa607c1";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

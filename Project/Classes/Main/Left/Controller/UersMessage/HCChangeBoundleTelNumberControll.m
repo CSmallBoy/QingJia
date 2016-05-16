@@ -17,9 +17,10 @@
 #import "NHCResgistVerifyApi.h"
 //修改绑定的手机号
 #import "NHCBindPhoneNumAPi.h"
+#import "HCBindTwoViewController.h"
 #import "Utils.h"
 
-@interface HCChangeBoundleTelNumberControll ()
+@interface HCChangeBoundleTelNumberControll ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) UILabel * timeNumLabel;
 @property (nonatomic,strong) UIButton *timeBtn;
@@ -43,8 +44,9 @@
     [self.view addSubview:self.tableView];
     _textField = [[UITextField alloc]initWithFrame:CGRectMake(70, 80,300, 20)];
     _textField.font = [UIFont systemFontOfSize:14];
-    _textField.placeholder = @"请输入验证码";
+   // _textField.placeholder = @"请输入验证码";
     _textField.textColor = [UIColor blackColor];
+    _textField.delegate = self;
     [self.tableView addSubview:self.textField];
     _uuid = [readUserInfo GetUUID];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getCodeNumber:) name:@"getCodeNumber" object:nil];
@@ -131,7 +133,9 @@
     
     return view;
 }
-
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    NSLog(@"%@",_textField.text);
+}
 
 #pragma mark --- private mothods
 
@@ -162,19 +166,21 @@
     }
     else
     {
-        //        HCChangeBoundleTelNumberControll *sureVC = [[HCChangeBoundleTelNumberControll alloc]init];
-        //        sureVC.isSure = YES;
-        //        [self.navigationController pushViewController:sureVC animated:YES];
-        //        if (![Utils checkPhoneNum:self.phoneNum]) {
-        //            [self showHUDText:@"输入正确的手机号"];
-        //            return;
-        //        }
-        //
-        //
-        //        if (self.textField.text.length < 6) {
-        //            [self showHUDText:@"输入正确的验证码"];
-        //            return;
-        //        }
+//                HCChangeBoundleTelNumberControll *sureVC = [[HCChangeBoundleTelNumberControll alloc]init];
+//                sureVC.isSure = YES;
+//                [self.navigationController pushViewController:sureVC animated:YES];
+        
+        HCBindTwoViewController *twoVc = [[HCBindTwoViewController alloc]init];
+        twoVc.code = _textField.text;
+        [self.navigationController pushViewController:twoVc animated:YES];
+                if (![Utils checkPhoneNum:self.phoneNum]) {
+                    [self showHUDText:@"输入正确的手机号"];
+                    return;
+                }
+                if (self.textField.text.length < 6) {
+                    [self showHUDText:@"输入正确的验证码"];
+                    return;
+                }
         [self requestcheckCode];
         
         
@@ -275,9 +281,11 @@
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self hideHUDView];
-            HCChangeBoundleTelNumberControll *sureVC = [[HCChangeBoundleTelNumberControll alloc]init];
-            sureVC.isSure = YES;
-            [self.navigationController pushViewController:sureVC animated:YES];
+            HCBindTwoViewController *twoVc = [[HCBindTwoViewController alloc]init];
+            twoVc.code = _textField.text;
+//            HCChangeBoundleTelNumberControll *sureVC = [[HCChangeBoundleTelNumberControll alloc]init];
+//            sureVC.isSure = YES;
+            [self.navigationController pushViewController:twoVc animated:YES];
         }else
         {
             [self showHUDError:message];

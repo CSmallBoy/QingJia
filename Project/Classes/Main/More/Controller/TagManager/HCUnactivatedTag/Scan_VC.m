@@ -9,6 +9,28 @@
 #import <AVFoundation/AVFoundation.h>
 #import "UIView+SDExtension.h"
 #import "HCeditingViewController.h"
+
+
+#import "lhScanQCodeViewController.h"
+#import "QRCodeReaderView.h"
+#import "HCBindTagController.h"
+#import "HCScanApi.h"
+#import "HCNotificationCenterInfo.h"
+#import "HCOtherPromisedDetailController.h"
+
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import "HCJoinGradeViewController.h"
+//查询环信的个人找号
+#import "NHCMessageSearchUserApi.h"
+//跳转添加好友界面
+#import "HCMessagePersonInfoVC.h"
+//获取好友状态
+#import "NHCScanUSerCodeApi.h"
+//标签状态
+#import "NHCLabelStateApi.h"
+
+#import <MAMapKit/MAMapKit.h>
 static const CGFloat kBorderW = 100;
 static const CGFloat kMargin = 30;
 @interface Scan_VC ()<UIAlertViewDelegate,AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
@@ -51,11 +73,6 @@ static const CGFloat kMargin = 30;
     [self beginScanning];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeAnimation) name:@"EnterForeground" object:nil];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(button_next) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"过渡" forState:UIControlStateNormal];
-    button.frame = CGRectMake(20, SCREEN_HEIGHT*0.7, 50, 50);
-    [self.view addSubview:button];
 }
 -(void)button_next{
     HCeditingViewController *VC= [[HCeditingViewController alloc]init];
@@ -64,11 +81,9 @@ static const CGFloat kMargin = 30;
 -(void)setupTipTitleView{
     
     //1.补充遮罩
-    
     UIView*mask=[[UIView alloc]initWithFrame:CGRectMake(0, _maskView.sd_y+_maskView.sd_height, self.view.sd_width, kBorderW)];
     mask.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     [self.view addSubview:mask];
-    
     //2.操作提示
     UILabel * tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.sd_height*0.9-kBorderW*2, self.view.bounds.size.width, kBorderW)];
     tipLabel.text = @"将取景框对准二维码，即可自动扫描";
@@ -84,7 +99,6 @@ static const CGFloat kMargin = 30;
 -(void)setupNavView{
     
     //1.返回
-    
     UIButton *backBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(20, 30, 25, 25);
     [backBtn setTitle:@"返回" forState:UIControlStateNormal];
@@ -95,26 +109,23 @@ static const CGFloat kMargin = 30;
     [self.view addSubview:backBtn];
     
     //2.相册
-    
+    UIView *bacnView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT*0.88, SCREEN_WIDTH, SCREEN_HEIGHT *0.15)];
     UIButton * albumBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    albumBtn.frame = CGRectMake(0, 0, 35, 49);
-    albumBtn.center=CGPointMake(self.view.sd_width/2, 20+49/2.0);
-     [albumBtn setTitle:@"打开相册" forState:UIControlStateNormal];
-    [albumBtn setBackgroundImage:[UIImage imageNamed:@"qrcode_scan_btn_photo_down"] forState:UIControlStateNormal];
+    albumBtn.frame = CGRectMake(SCREEN_WIDTH*0.2, 10, 50, 50);
+    [albumBtn setBackgroundImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
     albumBtn.contentMode=UIViewContentModeScaleAspectFit;
     [albumBtn addTarget:self action:@selector(myAlbum) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:albumBtn];
+    [bacnView addSubview:albumBtn];
     
     //3.闪光灯
     
     UIButton * flashBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    flashBtn.frame = CGRectMake(self.view.sd_width-55,20, 35, 49);
-     [flashBtn setTitle:@"打开闪光灯" forState:UIControlStateNormal];
-    [flashBtn setBackgroundImage:[UIImage imageNamed:@"qrcode_scan_btn_flash_down"] forState:UIControlStateNormal];
+    flashBtn.frame = CGRectMake(SCREEN_WIDTH*0.8-50, 10, 50, 50);
+    [flashBtn setBackgroundImage:[UIImage imageNamed:@"turn_on"] forState:UIControlStateNormal];
     flashBtn.contentMode=UIViewContentModeScaleAspectFit;
     [flashBtn addTarget:self action:@selector(openFlash:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:flashBtn];
-    
+    [bacnView addSubview:flashBtn];
+    [self.view addSubview:bacnView];
 
 }
 - (void)setupMaskView
@@ -217,9 +228,8 @@ static const CGFloat kMargin = 30;
     if (metadataObjects.count>0) {
         [_session stopRunning];
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex : 0 ];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"扫描结果" message:metadataObject.stringValue delegate:self cancelButtonTitle:@"退出" otherButtonTitles:@"再次扫描", nil];
-        [alert show];
+        NSString *Str = metadataObject.stringValue;
+        [self accordingQcode:Str];
     }
 }
 #pragma mark-> 我的相册
@@ -264,8 +274,7 @@ static const CGFloat kMargin = 30;
                 /**结果对象 */
                 CIQRCodeFeature *feature = [features objectAtIndex:0];
                 NSString *scannedResult = feature.messageString;
-                UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:scannedResult delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
+                [self accordingQcode:scannedResult];
                 
             }
             else{
@@ -279,6 +288,105 @@ static const CGFloat kMargin = 30;
     }
   
     
+    
+}
+#pragma mark - 扫描结果处理
+
+- (void)accordingQcode:(NSString *)str
+{
+    
+    NSString * frist_str = [str substringToIndex:1];
+    if ([frist_str isEqualToString:@"U"]) {
+        //扫码添加好友
+        __block HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
+        NHCScanUSerCodeApi *api_1 = [[NHCScanUSerCodeApi alloc]init];
+        api_1.userID = str;
+        [api_1 startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+            // 0: 未添加，1：已添加，2：等待对方验证，3：等待自己验证
+            if ([responseObject isEqualToString:@"0"]) {
+                NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
+                api.UserChatID = str;
+                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *model) {
+                    if (requestStatus==10018) {
+//                        [self showHUDSuccess:@"您添加的好友不存在"];
+                    }else if (requestStatus==100){
+                        //vc = [[HCMessagePersonInfoVC alloc]init];
+                        NSMutableArray *arr = [NSMutableArray array];
+                        [arr addObject:model];
+                        vc.dataSource  = arr;
+                        vc.ChatId = model.NickName;
+                        vc.ScanCode = YES;
+                        vc.userInfo = model;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                }];
+            }else if ([responseObject isEqualToString:@"1"]){
+//                [self showHUDSuccess:@"您已经添加过该好友"];
+                //显示好友的详细信息
+                
+            }else if([responseObject isEqualToString:@"2"]){
+//                [self showHUDSuccess:@"您已经发送过好友请求"];
+                [self showHint:@"您已经发送过好友请求"];
+                //显示缩略信息
+            }else{
+                
+            }
+            
+        }];
+        
+    }else if ([frist_str isEqualToString:@"M"]){
+        //判断标签是否激活
+        
+        NHCLabelStateApi *api = [[NHCLabelStateApi alloc]init];
+        api.resultStr = str;
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+            // 0:未激活，1：激活，2：激活（标签拥有者）3：呼，4：呼（标签拥有者），5：停用，6：停用（标签拥有者），7：无效
+            NSString *status = responseObject[@"Data"][@"labelInf"][@"status"];
+            if ([status isEqualToString:@"0"]) {
+                //没有激活是下面的操作
+                HCBindTagController *bindVC = [[HCBindTagController alloc]init];
+                bindVC.labelGuid = str;
+                [self.navigationController pushViewController:bindVC animated:YES];
+            }
+            else if ([status isEqualToString:@"1"]){
+//                [self showHUDText:@"该标签已经激活"];
+                
+            } else if ([status isEqualToString:@"5"]){
+//                [self showHUDText:@"该标签已经停用"];
+                
+            }else if ([status isEqualToString:@"2"])
+            {
+//                [self showHUDText:@"该标签已经激活 标签拥有者"];
+            }else {
+//                [self showHUDText:@"其他信息"];
+            }
+        }];
+        
+        
+    }else if ([frist_str isEqualToString:@"F"]){
+
+            HCJoinGradeViewController *JoinFamilyVC = [[HCJoinGradeViewController alloc]init];
+            JoinFamilyVC.familyID = str;
+            [self.navigationController pushViewController:JoinFamilyVC animated:YES];
+        
+    }
+    else{
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+//        HCScanApi *api = [[HCScanApi alloc]init];
+//        api.labelGuid = str;
+//        api.createLocation = self.createLocation;
+//        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+//            if (requestStatus == HCRequestStatusSuccess) {
+//                NSDictionary *dic = respone[@"Data"][@"labelInf"];
+//                HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+//                HCOtherPromisedDetailController *vc = [[HCOtherPromisedDetailController alloc]init];
+//                vc.data = @{@"info":info};
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }
+//            
+//        }];
+    }
     
 }
 #pragma mark-> 闪光灯
@@ -400,17 +508,6 @@ static const CGFloat kMargin = 30;
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com

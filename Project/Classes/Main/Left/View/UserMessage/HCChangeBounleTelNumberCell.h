@@ -13,6 +13,7 @@
 @property (nonatomic,strong) NSIndexPath   *indexPath;
 @property (nonatomic,assign) BOOL    isSure;
 @property (nonatomic,strong) UITextField   *textField;
+@property (nonatomic,copy) NSString * twoPhone;
 
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 

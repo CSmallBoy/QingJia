@@ -20,6 +20,7 @@
 
 //开启关闭扫描
 - (void)start;
+
 - (void)stop;
 
 - (void)loopDrawLine;//初始化扫描线

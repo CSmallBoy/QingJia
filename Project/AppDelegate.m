@@ -123,7 +123,7 @@
 {
     NSLog(@" 登陆成功  @@@@@@@@@@@@@@@@@ %@",noti.userInfo); 
     //设置tags
-    NSSet *tags = [NSSet setWithObject:@"1111"];
+    NSSet *tags = [NSSet setWithObject:@"22222"];
     NSSet *set = [JPUSHService filterValidTags:tags];
     
     [JPUSHService setTags:set alias:nil fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
@@ -208,7 +208,7 @@ didFinishLaunchingWithOptions:launchOptions
                  otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
 }
 
-
+//极光服务器的推送消息类型
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSLog(@"%@", userInfo);
@@ -216,8 +216,30 @@ didFinishLaunchingWithOptions:launchOptions
     {
         [self.mainController jumpToChatList];
     }
+    [JPUSHService handleRemoteNotification:userInfo];
+    NSLog(@"收到通知:%@", [self logDic:userInfo]);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"time" object:nil userInfo:userInfo];
 }
-
+// log NSSet with UTF8
+- (NSString *)logDic:(NSDictionary *)dic {
+    if (![dic count]) {
+        return nil;
+    }
+    NSString *tempStr1 =
+    [[dic description] stringByReplacingOccurrencesOfString:@"\\u"
+                                                 withString:@"\\U"];
+    NSString *tempStr2 =
+    [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    NSString *tempStr3 =
+    [[@"\"" stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
+    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *str =
+    [NSPropertyListSerialization propertyListFromData:tempData
+                                     mutabilityOption:NSPropertyListImmutable
+                                               format:NULL
+                                     errorDescription:NULL];
+    return str;
+}
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     if (_mainController)

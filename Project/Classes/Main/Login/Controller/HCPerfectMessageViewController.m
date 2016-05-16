@@ -99,8 +99,6 @@
         key = @"1";
     }
     apiUser.sex = [HCDictionaryMgr getSexStringWithKey:key];
-    //环信的注册
-    //[[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:_userNumNmae password:_password.text];
     [apiUser startRequest:^(HCRequestStatus requestStatus, NSString *message, HCLoginInfo *loginInfo) {
         if (requestStatus == HCRequestStatusSuccess)
         {

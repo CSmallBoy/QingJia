@@ -81,11 +81,14 @@
     [footer setImages:images1 forState:MJRefreshStateRefreshing];
     self.tableView.mj_footer = footer;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"刷新数据所有" object:nil];
-    
-    
+    AccordingTo = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shuxin) name:@"time" object:nil];
 
 }
-
+-(void)shuxin{
+    AccordingTo = NO;
+    [self readLocationData];
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     m = 0;

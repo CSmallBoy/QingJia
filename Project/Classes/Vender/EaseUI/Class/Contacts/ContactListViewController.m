@@ -373,7 +373,7 @@
         api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
             UIImageView *image = [[UIImageView alloc]init];
-            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
+            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
             chatController.imageUserPh = image.image;
         }];
         [self.navigationController pushViewController:chatController animated:YES];
@@ -663,25 +663,60 @@
         if (![blockList containsObject:buddy.username])
         {
             
+            if (IsEmpty([readUserInfo getReadDicMessage])) {
+             
+                NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+                api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                    HCEaseUserInfo * model= [[HCEaseUserInfo alloc]init];
+                    model.nickName = dict[@"nickName"];
+                    model.userImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
+                    if (IsEmpty(model.userImage)) {
+                        model.userImage = IMG(@"1");
+                    }
+                    [_dict_mutab setObject:model.userImage forKey:buddy.username];
+                    [readUserInfo DicdeleteMessage];
+                    [readUserInfo creatDicMessage:_dict_mutab];
+                    //昵称
+                    [_dict_mutab_nick setObject:model.nickName forKey:buddy.username];
+                    [readUserInfo DicdeleteMessageNickname];
+                    [readUserInfo creatDicMessageNickname:_dict_mutab_nick];
+                    [self.UserDataSource addObject:model];
+                }];
+            }else{
+                NSMutableDictionary * dict= [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDicMessageNickname]];
+                NSMutableDictionary * dict_image= [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDicMessage]];
+                NSLog(@"%@",dict.allKeys);
+                NSArray *arr = dict.allKeys;
+                if ([arr containsObject:buddy.username]) {
+                    NSLog(@"被包含了");
+                }else{
+                    NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+                    api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+                    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                        HCEaseUserInfo * model= [[HCEaseUserInfo alloc]init];
+                        model.nickName = dict[@"nickName"];
+                        model.userImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
+                        if (IsEmpty(model.userImage)) {
+                            model.userImage = IMG(@"1");
+                        }
+                        _dict_mutab = [NSMutableDictionary dictionaryWithDictionary:dict_image];
+                        [_dict_mutab setObject:model.userImage forKey:buddy.username];
+                        
+                        [readUserInfo creatDicMessage:_dict_mutab];
+                        //昵称
+                        _dict_mutab_nick = [NSMutableDictionary dictionaryWithDictionary:dict];
+                        [_dict_mutab_nick setObject:model.nickName forKey:buddy.username];
+                        [readUserInfo creatDicMessageNickname:_dict_mutab_nick];
+                        [self.UserDataSource addObject:model];
+                    }];
+                }
+                
+              
+                
             
-            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
-            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-                HCEaseUserInfo * model= [[HCEaseUserInfo alloc]init];
-                model.nickName = dict[@"nickName"];
-                model.userImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
-                //只存储头像
-                UIImageView *image = [[UIImageView alloc]init];
-                [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
-                [_dict_mutab setObject:image.image forKey:buddy.username];
-                [readUserInfo DicdeleteMessage];
-                [readUserInfo creatDicMessage:_dict_mutab];
-                //昵称
-                [_dict_mutab_nick setObject:model.nickName forKey:buddy.username];
-                [readUserInfo DicdeleteMessageNickname];
-                [readUserInfo creatDicMessageNickname:_dict_mutab_nick];
-                [self.UserDataSource addObject:model];
-            }];
+            }
+            
             [self.contactsSource addObject:buddy];
         }
     }

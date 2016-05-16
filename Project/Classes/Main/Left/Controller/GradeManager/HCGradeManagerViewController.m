@@ -53,10 +53,10 @@ static NSString * const reuseIdentifier = @"FriendCell";
     //点击手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
     //长按手势
-    UILongPressGestureRecognizer *long_press = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
+//    UILongPressGestureRecognizer *long_press = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
     
     self.headImageView.userInteractionEnabled = YES;
-    [self.headImageView addGestureRecognizer:long_press];
+    //[self.headImageView addGestureRecognizer:long_press];
     [self.headImageView addGestureRecognizer:tap];
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -290,10 +290,34 @@ static NSString * const reuseIdentifier = @"FriendCell";
         [myalert addAction:cancel];
         [self presentViewController:myalert animated:YES completion:nil];
     }else{
-        HCHomeUserPhotoViewController *VC = [[HCHomeUserPhotoViewController alloc]init];
-        VC.head_image = self.headImageView.image;
-        VC.from = @"家庭";
-        [self.navigationController pushViewController:VC animated:YES];
+//        HCHomeUserPhotoViewController *VC = [[HCHomeUserPhotoViewController alloc]init];
+//        VC.head_image = self.headImageView.image;
+//        VC.from = @"家庭";
+//        [self.navigationController pushViewController:VC animated:YES];
+        
+        UIAlertController *myalert =[UIAlertController alertControllerWithTitle:@"选择图片来源" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *xiangce = [UIAlertAction actionWithTitle:@"从相册里选择" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            _myPK = [[UIImagePickerController alloc]init];
+            _myPK.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            //是否允许编辑图片
+            _myPK.allowsEditing = YES;
+            _myPK.delegate = self;
+            [self presentViewController:_myPK animated:YES completion:nil];
+        }];
+        UIAlertAction *paizhao = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            //打开相机
+            _picker = [[UIImagePickerController alloc]init];
+            _picker.delegate = self;
+            _picker.allowsEditing = YES;
+            _picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:_picker animated:YES completion:nil];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        [myalert addAction:xiangce];
+        [myalert addAction:paizhao];
+        [myalert addAction:cancel];
+        [self presentViewController:myalert animated:YES completion:nil];
     }
     //个人 家庭 头像
    

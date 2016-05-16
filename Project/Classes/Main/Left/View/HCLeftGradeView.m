@@ -169,7 +169,7 @@
     if ((IsEmpty(str) || [str isKindOfClass:[NSURL class]])&& IsEmpty(strFamilyId))
     {
         
-        [self.gradeHeadButton setBackgroundImage:image forState:UIControlStateNormal];
+        [self.headButton setBackgroundImage:image forState:UIControlStateNormal];
         
     }else
     {
@@ -179,7 +179,7 @@
         }
         else
         {
-            [self.gradeHeadButton setBackgroundImage: image forState:UIControlStateNormal];
+            [self.headButton setBackgroundImage: image forState:UIControlStateNormal];
         }
     }
     

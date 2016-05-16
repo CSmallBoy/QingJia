@@ -437,6 +437,7 @@
     return _nickName;
 }
 
+
 - (UILabel *)markLabel
 {
     if (!_markLabel)
@@ -444,7 +445,7 @@
         _markLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, MaxY(self.nickName)+5, WIDTH(self.view), 20)];
         _markLabel.textColor = [UIColor whiteColor];
         _markLabel.textAlignment = NSTextAlignmentCenter;
-        _markLabel.text = @"To mark each day count.";
+        //_markLabel.text = @"To mark each day count.";
         _markLabel.font = [UIFont systemFontOfSize:15];
     }
     return _markLabel;

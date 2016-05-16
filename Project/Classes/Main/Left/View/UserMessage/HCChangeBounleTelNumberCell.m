@@ -84,6 +84,9 @@
         [button addTarget:self action:@selector(getCodeNumber:) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(button, 5);
         [self.contentView addSubview:button];
+    }else if (indexPath.row == 0 && _isSure == YES){
+        _twoPhone = self.textField.text;
+        NSLog(@"%@",_twoPhone);
     }
 }
 

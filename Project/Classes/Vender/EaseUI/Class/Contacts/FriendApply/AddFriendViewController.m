@@ -22,6 +22,8 @@
 #import "HCMailListViewController.h"
 //
 #import "NHCMessageSearchUserApi.h"
+//扫描
+#import "Scan_VC.h"
 @interface AddFriendViewController ()<UITextFieldDelegate, UIAlertViewDelegate,UIGestureRecognizerDelegate,HCAddFriendlistTableViewCellDelegate>
 {
     NSMutableArray *btnArr;
@@ -299,9 +301,9 @@
 //扫描
 -(void)clickScan
 {
-    lhScanQCodeViewController *lhScanVC = [[lhScanQCodeViewController alloc]init];
-    lhScanVC.hidesBottomBarWhenPushed = YES;
-    lhScanVC.isAddFr = YES;
+    Scan_VC *lhScanVC = [[Scan_VC alloc]init];
+//    lhScanVC.hidesBottomBarWhenPushed = YES;
+//    lhScanVC.isAddFr = YES;
     [self.navigationController pushViewController:lhScanVC animated:YES];
 }
 
