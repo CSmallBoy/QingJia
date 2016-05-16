@@ -193,30 +193,7 @@
                 NSLog(@"%ld",(long)conversationModel.conversation.conversationType)
                 //1 是群聊
                 if (conversationModel.conversation.conversationType == 1 ) {
-                    //获取群成员列表
-//                    NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-//               
-//                    }
 
-//                    NSLog(@"%@",groupArray);
-                    //群组 成员所有图片
-//                    for (EMGroup *group in groupArray) {
-////                        if ([group.groupId isEqualToString:conversation.chatter])
-//                        {
-//                            NSLog(@"%@",group.occupants)
-//                            for (int i  = 0 ; i < group.occupants.count; i++) {
-//                                NHCChatUserInfoApi *API = [[NHCChatUserInfoApi alloc]init];
-//                                API.chatName = [group.occupants[i] stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-//                                [API startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-//                                    UIImageView *image = [[UIImageView alloc]init];
-//                                    [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
-//                                    NSLog(@"%@",[readUserInfo url:dict[@"imageName"] :kkUser])
-//                                    [_dict_mutab setObject:image.image forKey:group.occupants[i]];
-//                                    
-//                                }];
-//                            }
-//                        }
-//                    }
                     
                 }else if (conversationModel.conversation.conversationType==0){
                     //传过去一个单聊的用户头像
@@ -225,7 +202,7 @@
                     API.chatName = [conversationModel.conversation.chatter stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
                     [API startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
                         UIImageView *image = [[UIImageView alloc]init];
-                        [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
+                        [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
                         chatController.imageUserPh = image.image;
                         
                     }];

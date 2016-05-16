@@ -12,6 +12,8 @@
 #import "HCAddFriendTableViewCell.h"
 //获取个人信息
 #import "NHCMessageSearchUserApi.h"
+//返回
+#import "HCMessageViewController.h"
 @interface HCMessagePersonInfoVC ()
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @end
@@ -200,6 +202,12 @@
             else
             {
                 [self showHint:NSLocalizedString(@"添加信息已发送", @"send successfully")];
+                for (UIViewController *temp in self.navigationController.viewControllers) {
+                    if ([temp isKindOfClass:[HCMessageViewController class]])
+                    {
+                        [self.navigationController popToViewController:temp animated:YES];
+                    }
+                }
             }
         }else{
             NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
@@ -232,6 +240,7 @@
       
     
     }
+    
 }
 
 @end

@@ -61,16 +61,15 @@
     
     [self InitScan];
 }
-
 #pragma mark 初始化扫描
 
 - (void)InitScan
 {
-    if (readview) {
-        [readview removeFromSuperview];
-        readview = nil;
-    }
-    
+//    if (readview) {
+//        [readview removeFromSuperview];
+//        readview = nil;
+//    }
+//    
     readview = [[QRCodeReaderView alloc]initWithFrame:CGRectMake(0, 0, DeviceMaxWidth, DeviceMaxHeight)];
     readview.is_AnmotionFinished = YES;
     readview.backgroundColor = [UIColor clearColor];
@@ -235,11 +234,9 @@
                 AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
                 AudioServicesPlaySystemSound(soundID);
                 NSLog(@"%@",scannedResult);
-                if (a ==0) {
-                    [self accordingQcode:scannedResult];
-                }else{
+                [self accordingQcode:scannedResult];
                     
-                }
+                
                 
             }else{
                 UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该图片没有包含一个二维码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -253,34 +250,11 @@
                 }];
             }
 
-//            CIQRCodeFeature *feature = [features objectAtIndex:0];
-//            NSString *scannedResult = feature.messageString;
-//            //播放扫描二维码的声音
-//            SystemSoundID soundID;
-//            NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
-//            AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
-//            AudioServicesPlaySystemSound(soundID);
-//            if (a ==0) {
-//                  [self accordingQcode:scannedResult];
-//            }else{
-//                
-//            }
-            
           
         }];
         
     }
-//    else{
-//        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该图片没有包含一个二维码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//        [alertView show];
-//        
-//        [picker dismissViewControllerAnimated:YES completion:^{
-//            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-//            
-//            readview.is_Anmotion = NO;
-//            [readview start];
-//        }];
-//    }
+
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -302,19 +276,25 @@
     NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
     AudioServicesPlaySystemSound(soundID);
+    if(a==0){
+        
+        [self accordingQcode:result];
+    }
     
-    [self accordingQcode:result];
+    
     
     [self performSelector:@selector(reStartScan) withObject:nil afterDelay:1.5];
 }
 
 #pragma mark - 扫描结果处理
+
 - (void)accordingQcode:(NSString *)str
 {
-
+    
     NSString * frist_str = [str substringToIndex:1];
     if ([frist_str isEqualToString:@"U"]) {
         //扫码添加好友
+        __block HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
         NHCScanUSerCodeApi *api_1 = [[NHCScanUSerCodeApi alloc]init];
         api_1.userID = str;
         [api_1 startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
@@ -326,7 +306,7 @@
                     if (requestStatus==10018) {
                         [self showHUDSuccess:@"您添加的好友不存在"];
                     }else if (requestStatus==100){
-                        HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
+                        //vc = [[HCMessagePersonInfoVC alloc]init];
                         NSMutableArray *arr = [NSMutableArray array];
                         [arr addObject:model];
                         vc.dataSource  = arr;
@@ -410,60 +390,7 @@
         }];
     }
     a = 1;
-//    if (str.length==10) { //------------------家庭号码-----------------
-//        
-//        
-//        if (_isJoinFamily)
-//        {
-//            self.block(str);
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//        else
-//        {
-//            HCJoinGradeViewController *JoinFamilyVC = [[HCJoinGradeViewController alloc]init];
-//            JoinFamilyVC.familyID = str;
-//            [self.navigationController pushViewController:JoinFamilyVC animated:YES];
-//        }
-//    }else if (_isAddFr){
-//        //扫码添加好友
-//        NHCMessageSearchUserApi *api = [[NHCMessageSearchUserApi alloc]init];
-//        api.UserChatID = str;
-//        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chatUserName) {
-//            HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
-//            NSMutableArray *arr = [NSMutableArray array];
-//            [arr addObject:chatUserName];
-//            vc.dataSource  = arr;
-//            vc.ChatId = chatUserName;
-//            vc.ScanCode = YES;
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }];
-//    }
-//    else
-//    {
-//        if (_isActive) { // ----------------标签GUID------------
-//            HCBindTagController *bindVC = [[HCBindTagController alloc]init];
-//            bindVC.labelGuid = str;
-//            [self.navigationController pushViewController:bindVC animated:YES];
-//        }
-//        else
-//        {
-//            HCScanApi *api = [[HCScanApi alloc]init];
-//            api.labelGuid = str;
-//            api.createLocation = self.createLocation;
-//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-//                if (requestStatus == HCRequestStatusSuccess) {
-//                    NSDictionary *dic = respone[@"Data"][@"labelInf"];
-//                    HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
-//                    HCOtherPromisedDetailController *vc = [[HCOtherPromisedDetailController alloc]init];
-//                    vc.data = @{@"info":info};
-//                    [self.navigationController pushViewController:vc animated:YES];
-//                }
-//                
-//            }];
-//          
-//        }
-//    }
-//    
+
 
 }
 

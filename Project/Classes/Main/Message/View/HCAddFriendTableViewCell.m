@@ -26,7 +26,7 @@
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 70,70)];
         //imageView.image =  [UIImage imageNamed:@"chatListCellHead.png"];
         NSLog(@"%@",[readUserInfo url:_ImageName :kkUser] );
-        [imageView sd_setImageWithURL:[readUserInfo url:_ImageName :kkUser] placeholderImage:IMG(@"1")];
+        [imageView sd_setImageWithURL:[readUserInfo url:_ImageName :kkUser]];
         ViewRadius(imageView, 35);
         [self.contentView addSubview:imageView];
         

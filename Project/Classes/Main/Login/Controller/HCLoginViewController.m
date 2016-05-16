@@ -23,6 +23,9 @@
 #import "NHCCancellationApi.h"
 #import "NHCSetNewPassWordApi.h"
 #import "NHCUSerInfoApi.h"
+//
+#import "NHCChatUserInfoApi.h"
+#import "HCEaseUserInfo.h"
 
 @interface HCLoginViewController ()
 {
@@ -31,22 +34,22 @@
     __weak IBOutlet UIButton    *_loginBtn;
     __weak IBOutlet UIView      *_contentView;
 }
-
+@property (nonatomic,strong) NSMutableDictionary *dict_muta;
+@property (nonatomic,strong) NSMutableDictionary *dict_muta_nickName;
 @end
 
 @implementation HCLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _dict_muta = [NSMutableDictionary dictionary];
+    _dict_muta_nickName = [NSMutableDictionary dictionary];
     self.title = @"登录";
     self.view.backgroundColor = [UIColor whiteColor];
     ViewRadius(_loginBtn, 4);
     ViewRadius(_contentView, 4);
     
     _accountTextField.text = [self lastLoginUsername];
-    //环信注册
-    //[[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:@"18300673331" password:@"csy1234"];
 
     
 }
@@ -174,6 +177,10 @@
              [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
              //获取群组列表
              [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+             
+             
+             
+             
              //发送自动登陆状态通知
              [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
              //保存最近一次登录用户名

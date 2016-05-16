@@ -7,7 +7,7 @@
 //
 
 #import "HCHomePushListViewController.h"
-
+#import "NHCHomepushListApi.h"
 @interface HCHomePushListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -17,7 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"与我相关";
-    // Do any additional setup after loading the view.
+    //测试列表
+    NHCHomepushListApi *Api = [[NHCHomepushListApi alloc]init];
+    [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        NSLog(@"%@",responseObject);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
