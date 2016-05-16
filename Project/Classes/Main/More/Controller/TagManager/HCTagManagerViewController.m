@@ -132,9 +132,6 @@
 {
     if (segment.selectedSegmentIndex == 0)
     {
-//        UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(manageBtnClick:)];
-//        self.navigationItem.rightBarButtonItem = right;
-
         self.closedTagVC.view.hidden = YES;
         self.activatedTagVC.view.hidden = NO;
     }
