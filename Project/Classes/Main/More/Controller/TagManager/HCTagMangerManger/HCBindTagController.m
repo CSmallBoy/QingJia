@@ -14,9 +14,7 @@
 
 @interface HCBindTagController ()<UIScrollViewDelegate>
 
-@property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) NSMutableArray * objectArr;
-@property (nonatomic,assign) NSInteger  index;
 @property (nonatomic,strong) HCNewTagInfo *seletedInfo;
 @property (nonatomic,strong) UITextField *textField;
 
@@ -26,6 +24,13 @@
 @property (nonatomic,strong) UIImage *image;
 @property (nonatomic,strong) NSString *imgStr;
 
+
+@property (nonatomic, strong)UIButton *colthingButton;//衣服图片
+@property (nonatomic, strong)UILabel *label;
+@property (nonatomic, strong)UIView *selectedColthingView;//选择衣服类型
+@property (nonatomic, strong)UIView *remarksView;//备注
+@property (nonatomic, strong)UITextField *descriptionTextField;//描述
+@property (nonatomic, strong)UIImageView *frontPhoto;//正面照片
 
 @end
 
@@ -37,130 +42,200 @@
     [self setupBackItem];
     self.view.backgroundColor = kHCBackgroundColor;
     
-    self.index = 0;
+    [self.view addSubview:self.colthingButton];
+    [self.view addSubview:self.label];
+    [self.view addSubview:self.selectedColthingView];
+    [self.view addSubview:self.remarksView];
+    [self.view addSubview:self.frontPhoto];
     
-    [self requestObjectData]; // 获得所有的对象
-    
-    self.tableView.tableHeaderView =HCTabelHeadView(0.1);
+//    [self requestObjectData]; // 获得所有的对象
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(sureButtonClick:)];
     self.navigationItem.rightBarButtonItem = item;
 }
 
-#pragma mark --- UITableViewDelegate
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+#pragma mark - lazyLoading;
+- (UIButton *)colthingButton
 {
-    return 1;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 2;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.1;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.1;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0)
+    if (_colthingButton == nil)
     {
-        return 240;
+        _colthingButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _colthingButton.frame = CGRectMake(110/375.0*SCREEN_WIDTH, 94/668.0*SCREEN_HEIGHT, 150/375.0*SCREEN_WIDTH, 150/668.0*SCREEN_HEIGHT);
+        ViewRadius(_colthingButton, 5);
+        _colthingButton.layer.borderWidth = 1;
+        _colthingButton.layer.borderColor = [UIColor grayColor].CGColor;
+        [_colthingButton setBackgroundImage:IMG(@"clothingPhoto") forState:UIControlStateNormal];
+        [_colthingButton addTarget:self action:@selector(changeColthingButtonImage:) forControlEvents:UIControlEventTouchUpInside];
     }
-    else
+    return _colthingButton;
+}
+
+- (UILabel *)label
+{
+    if (_label == nil)
     {
-        return 290;
+        _label = [[UILabel alloc] initWithFrame:CGRectMake(MinX(_colthingButton), CGRectGetMaxY(self.colthingButton.frame)+12/668.0*SCREEN_HEIGHT, SCREEN_WIDTH-MinX(_colthingButton)*2, 20/668.0*SCREEN_HEIGHT)];
+        _label.text = @"上传烫印衣物的照片";
+        _label.font = [UIFont systemFontOfSize:[readUserInfo GetFontSizeByScreenWithPrt:14]];
+        _label.textAlignment = 1;
     }
+    return _label;
+}
+
+- (UIView *)selectedColthingView
+{
+    if (_selectedColthingView == nil)
+    {
+        _selectedColthingView = [[UIView alloc] initWithFrame:CGRectMake(70/375.0*SCREEN_WIDTH, CGRectGetMaxY(self.label.frame)+20/668.0*SCREEN_HEIGHT, SCREEN_WIDTH-140/375.0*SCREEN_WIDTH, 20/668.0*SCREEN_HEIGHT)];
+        
+        UIButton *selectedButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        selectedButton1.frame = CGRectMake(0, 0, 20/375.0*SCREEN_WIDTH, 20/668.0*SCREEN_HEIGHT);
+        selectedButton1.selected = YES;
+        [selectedButton1 setBackgroundImage:IMG(@"buttonNormal") forState:UIControlStateNormal];
+        [selectedButton1 setBackgroundImage:IMG(@"buttonSelected") forState:UIControlStateSelected];
+        [selectedButton1 addTarget:self action:@selector(selectedButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(selectedButton1)+5/375.0*SCREEN_WIDTH, 0, (WIDTH(_selectedColthingView)-70/375.0*SCREEN_WIDTH)/3 - 25/375.0*SCREEN_WIDTH, 20/668.0*SCREEN_HEIGHT)];
+        label1.font = [UIFont systemFontOfSize:[readUserInfo GetFontSizeByScreenWithPrt:16]];
+        label1.text = @"上装";
+        
+        UIButton *selectedButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        selectedButton2.frame = CGRectMake(MaxX(label1)+35/375.0*SCREEN_WIDTH, 0, 20/375.0*SCREEN_WIDTH, 20/668.0*SCREEN_HEIGHT);
+        [selectedButton2 setBackgroundImage:IMG(@"buttonNormal") forState:UIControlStateNormal];
+        [selectedButton2 setBackgroundImage:IMG(@"buttonSelected") forState:UIControlStateSelected];
+        [selectedButton2 addTarget:self action:@selector(selectedButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(selectedButton2)+5/375.0*SCREEN_WIDTH, 0, (WIDTH(_selectedColthingView)-70/375.0*SCREEN_WIDTH)/3 - 25/375.0*SCREEN_WIDTH, 20/668.0*SCREEN_HEIGHT)];
+        label2.text = @"下装";
+        label2.font = [UIFont systemFontOfSize:[readUserInfo GetFontSizeByScreenWithPrt:16]];
+        
+        UIButton *selectedButton3 = [UIButton buttonWithType:UIButtonTypeCustom];
+        selectedButton3.frame = CGRectMake(MaxX(label2)+35/375.0*SCREEN_WIDTH, 0, 20/375.0*SCREEN_WIDTH, 20/668.0*SCREEN_HEIGHT);
+        [selectedButton3 setBackgroundImage:IMG(@"buttonNormal") forState:UIControlStateNormal];
+        [selectedButton3 setBackgroundImage:IMG(@"buttonSelected") forState:UIControlStateSelected];
+        [selectedButton3 addTarget:self action:@selector(selectedButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(selectedButton3)+5/375.0*SCREEN_WIDTH, 0, (WIDTH(_selectedColthingView)-70/375.0*SCREEN_WIDTH)/3 - 25/375.0*SCREEN_WIDTH, 20/668.0*SCREEN_HEIGHT)];
+        label3.text = @"其他";
+        label3.font = [UIFont systemFontOfSize:[readUserInfo GetFontSizeByScreenWithPrt:16]];
+        
+        [_selectedColthingView addSubview:selectedButton1];
+        [_selectedColthingView addSubview:label1];
+        [_selectedColthingView addSubview:selectedButton2];
+        [_selectedColthingView addSubview:label2];
+        [_selectedColthingView addSubview:selectedButton3];
+        [_selectedColthingView addSubview:label3];
+    }
+    return _selectedColthingView;
+}
+
+- (UIView *)remarksView
+{
+    if (_remarksView == nil)
+    {
+        _remarksView = [[UIView alloc] initWithFrame:CGRectMake(45/375.0*SCREEN_WIDTH, MaxY(self.selectedColthingView)+25/668.0*SCREEN_HEIGHT, SCREEN_WIDTH-90/375.0*SCREEN_WIDTH, 21/668.0*SCREEN_HEIGHT)];
+        
+        UILabel *remarkLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40/375.0*SCREEN_WIDTH, 20/668.0*SCREEN_HEIGHT)];
+        remarkLabel.text = @"备注:";
+        
+        UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 21/668.0*SCREEN_HEIGHT, WIDTH(_remarksView), 1)];
+        lineLabel.backgroundColor = [UIColor blackColor];
+        
+        self.descriptionTextField = [[UITextField alloc] initWithFrame:CGRectMake(MaxX(remarkLabel)+15/375.0*SCREEN_WIDTH, 0, WIDTH(_remarksView)-55/375.0*SCREEN_WIDTH, 20/668.0*SCREEN_HEIGHT)];
+        self.descriptionTextField.placeholder = @"请写下烫印衣物的颜色、款式、描述";
+        self.descriptionTextField.font = [UIFont systemFontOfSize:[readUserInfo GetFontSizeByScreenWithPrt:15]];
+        
+        [_remarksView addSubview:lineLabel];
+        [_remarksView addSubview:remarkLabel];
+        [_remarksView addSubview:self.descriptionTextField];
+    }
+    return _remarksView;
+}
+
+-(UIImageView *)frontPhoto
+{
+    if (_frontPhoto == nil)
+    {
+        _frontPhoto = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH-200/375.0*SCREEN_WIDTH)/2, MaxY(self.remarksView)+35/668.0*SCREEN_HEIGHT, 200/375.0*SCREEN_WIDTH, 230/668.0*SCREEN_HEIGHT)];
+        ViewRadius(_frontPhoto, 5);
+        _frontPhoto.layer.borderWidth = 1;
+        _frontPhoto.layer.borderColor = [UIColor grayColor].CGColor;
+        _frontPhoto.userInteractionEnabled = YES;
+        
+        UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        addButton.frame = CGRectMake(75/375.0*SCREEN_WIDTH, 90/668.0*SCREEN_HEIGHT, 50/375.0*SCREEN_WIDTH, 50/375.0*SCREEN_WIDTH);
+        [addButton setBackgroundImage:IMG(@"Add-Images") forState:UIControlStateNormal];
+        [addButton addTarget:self action:@selector(addButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *explainLabel = [[UILabel alloc] initWithFrame:CGRectMake(45/375.0*SCREEN_WIDTH, MaxY(addButton)+5/668.0*SCREEN_HEIGHT, WIDTH(_frontPhoto)-90/375.0*SCREEN_WIDTH, 10/668.0*SCREEN_HEIGHT)];
+        explainLabel.text = @"添加绑定者的正面照片";
+        explainLabel.textColor = RGB(130, 130, 130);
+        explainLabel.font = [UIFont systemFontOfSize:[readUserInfo GetFontSizeByScreenWithPrt:12]];
+        explainLabel.textAlignment = 1;
+        
+        [_frontPhoto addSubview:addButton];
+        [_frontPhoto addSubview:explainLabel];
+    }
+    return _frontPhoto;
 }
 
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - buttonClickAction
+//上传衣服图片
+- (void)changeColthingButtonImage:(UIButton *)sender
 {
-    static NSString *ID = @"bindTagID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    [HCAvatarMgr manager].noUploadImage = YES;
+    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
+        if (result)
+        {
+            [sender setBackgroundImage:image forState:UIControlStateNormal];
         }
-    
-    if (indexPath.row == 0)
-    {
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 30)];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.text = [NSString stringWithFormat:@"ID:%@",self.labelGuid];
-        [cell addSubview:label];
-        
-        UIImageView*imageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/2-40), 70, 80, 80)];
-        imageView.image = IMG(@"TagPhoto");
-        imageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-        [imageView addGestureRecognizer:tap];
-        [cell addSubview:imageView];
-        
-        UILabel *upImgLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 155, SCREEN_WIDTH, 20)];
-        upImgLabel.textColor = [UIColor blackColor];
-        upImgLabel.text = @"上传标签图片";
-        upImgLabel.textAlignment = NSTextAlignmentCenter;
-        [cell addSubview:upImgLabel];
-        
-        [cell addSubview:self.textField];
-        
-    }
-    else if (indexPath.row ==1)
-    {
-        
-        for (int i  = 0;i<self.objectArr.count;i++) {
-            
-            HCNewTagInfo *info = self.objectArr[i];
-            
-            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH, 0, SCREEN_WIDTH, 230)];
-            view.backgroundColor = kHCNavBarColor;
-            
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH-20, 210)];
-            NSURL *url = [readUserInfo originUrl:info.imageName :kkObject];
-            [imageView sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
-            
-            [view addSubview:imageView];
-            
-            [self.scrollView addSubview:view];
-            
-        }
-        
-        [cell addSubview:self.scrollView];
-        self.nameLabel.text = self.seletedInfo.trueName;
-        [cell addSubview:self.nameLabel];
-        [cell addSubview:self.nomalLabel];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-
- 
+    }];
 }
 
-#pragma mark --- UIScrollViewDelegate
-
-
-
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//上传绑定者正面照
+- (void)addButtonAction:(UIButton *)sender
 {
-    if (scrollView != self.tableView) {
-        CGFloat offset = scrollView.contentOffset.x;
-        NSLog(@"%f",offset);
-        self.index = offset/SCREEN_WIDTH;
-        
-        NSLog(@"%ld",self.index);
-        
-        self.seletedInfo = self.objectArr[self.index];
-        self.nameLabel.text = self.seletedInfo.trueName;
-    }
+    [HCAvatarMgr manager].noUploadImage = YES;
+    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
+        if (result)
+        {
+            self.frontPhoto.image = image;
+            for (UIView *view in sender.superview.subviews)
+            {
+                view.hidden = YES;
+            }
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+            [sender.superview addGestureRecognizer:tap];
+        }
+    }];
 }
+
+//选择按钮
+- (void)selectedButtonAction:(UIButton *)sender
+{
+    for (UIView *view in sender.superview.subviews)
+    {
+        if ([view isKindOfClass:[UIButton class]])
+        {
+            UIButton *button = (UIButton*)view;
+            button.selected = NO;
+        }
+    }
+    sender.selected = YES;
+}
+
+//轻点图片
+- (void)tapAction:(UITapGestureRecognizer *)sender
+{
+    [HCAvatarMgr manager].noUploadImage = YES;
+    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
+        if (result)
+        {
+            self.frontPhoto.image = image;
+        }
+    }];
+}
+
 
 #pragma mark --- provite mothods
 // 点击了确定按钮
@@ -171,8 +246,6 @@
         [self showHUDText:@"请上传标签图片"];
         return;
     }
-
-    
     if (self.textField.text == nil) {
         [self showHUDText:@"请输入标签名字"];
         return;
@@ -201,18 +274,6 @@
 }
 
 #pragma mark ---- setter Or getter
-
-- (UIScrollView *)scrollView
-{
-    if(!_scrollView){
-        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 240)];
-        _scrollView.delegate = self;
-        _scrollView.pagingEnabled = YES;
-    
-    }
-    return _scrollView;
-}
-
 
 - (NSMutableArray *)objectArr
 {
@@ -259,32 +320,8 @@
 
 
 #pragma mark --- network
-// 获得所有的对象
--(void)requestObjectData
-{
-    HCObjectListApi *api = [[HCObjectListApi alloc]init];
 
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-       
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            NSArray *array =respone[@"Data"][@"rows"];
-            for (NSDictionary *dic in array) {
-                HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues: dic];
-                [self.objectArr addObject:info];
-            }
-            if (self.objectArr.count >0) {
-                self.seletedInfo = self.objectArr[0];
-                self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * (self.objectArr.count), 230);
-                NSIndexPath *indexPath =[NSIndexPath indexPathForRow:1 inSection:0];
-                
-                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            }
-        }
-        
-    }];
-}
-
+//上传图片
 -(void)upLoadImge
 {
     
@@ -303,6 +340,7 @@
 
 }
 
+//上传数据
 -(void)upLoadData
 {
     HCTagActivateApi *api = [[HCTagActivateApi alloc]init];
@@ -312,7 +350,7 @@
 //    api.labelGuid = [NSString stringWithFormat:@"8f0a-4aed-%@",str ];
     api.labelGuid = self.labelGuid;
     api.imageName = self.imgStr;
-    api.labelTitle = self.textField.text;
+    api.labelTitle = self.descriptionTextField.text;
 
     
     api.objectId = self.seletedInfo.objectId;

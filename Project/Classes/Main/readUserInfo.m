@@ -346,5 +346,22 @@
     
 }
 
+//字体适配
++(CGFloat)GetFontSizeByScreenWithPrt:(CGFloat)FontSize
+{
+    CGFloat tmpFontSize=FontSize;
+    CGFloat DisSize=1;//每一阶梯次增加多少
+    if(SCREEN_WIDTH>=320){//4、5系列
+        tmpFontSize=tmpFontSize-DisSize;
+    }
+    if(SCREEN_WIDTH>=375){//6系列
+        tmpFontSize=tmpFontSize;
+    }
+    
+    if(SCREEN_WIDTH>=414){//6Plus系列
+        tmpFontSize=tmpFontSize+DisSize;
+    }
+    return tmpFontSize;
+}
 
 @end

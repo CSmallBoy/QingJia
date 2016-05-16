@@ -8,7 +8,7 @@
 
 #import "HCTableViewController.h"
 
-@interface HCBindTagController : HCTableViewController
+@interface HCBindTagController : HCViewController
 
 @property (nonatomic,strong) NSString *labelGuid;
 

@@ -71,4 +71,6 @@ typedef void (^NHCReadBack)(NSString *str);
 + (CGSize)sizeWithString: (NSString*)labelStr:(UIView *)controls;
 //年龄转换
 + (NSString *)ageWith: (NSString*)StrWithDate;
+//字体转换
++(CGFloat)GetFontSizeByScreenWithPrt:(CGFloat)FontSize;
 @end

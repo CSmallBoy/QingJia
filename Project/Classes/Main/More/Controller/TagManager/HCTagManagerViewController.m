@@ -53,19 +53,6 @@
 
 #pragma mark -----private methods
 
-
-//- (void)tapAction:(UITapGestureRecognizer *)sender
-//{
-//    CGPoint point = [sender locationInView:self.navigationController.view];
-//    NSLog(@"--------------%f,+++++++++++++%f", point.x, point.y);
-//    [self.navigationController.view removeGestureRecognizer:sender];
-//    [UIView animateWithDuration:0.3 animations:^{
-//        self.pullDownImage.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -82/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 82/668.0*SCREEN_HEIGHT);
-//    } completion:^(BOOL finished) {
-//        _isPull = NO;
-//    }];
-//}
-
 //点击+
 - (void)pullDownMenu
 {
@@ -111,7 +98,6 @@
 
 -(void)handleRightItem
 {
-    
     HCCourseViewController *courcesVC = [[HCCourseViewController alloc] init];
     UIViewController *rootController = self.view.window.rootViewController;
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
@@ -125,7 +111,6 @@
     }
     courcesVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [rootController presentViewController:courcesVC animated:YES completion:nil];
-    
 }
 
 - (void)handleSegmentedControl:(UISegmentedControl *)segment
@@ -146,16 +131,6 @@
 }
 
 #pragma mark----Setter Or Getter
-
-//- (UITapGestureRecognizer *)tag
-//{
-//    if (_tag == nil)
-//    {
-//        self.tag = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-//        self.tag.cancelsTouchesInView = NO;
-//    }
-//    return _tag;
-//}
 
 - (UIImageView *)pullDownImage
 {
