@@ -81,11 +81,9 @@ static const CGFloat kMargin = 30;
 -(void)setupTipTitleView{
     
     //1.补充遮罩
-    
     UIView*mask=[[UIView alloc]initWithFrame:CGRectMake(0, _maskView.sd_y+_maskView.sd_height, self.view.sd_width, kBorderW)];
     mask.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     [self.view addSubview:mask];
-    
     //2.操作提示
     UILabel * tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.sd_height*0.9-kBorderW*2, self.view.bounds.size.width, kBorderW)];
     tipLabel.text = @"将取景框对准二维码，即可自动扫描";
@@ -101,7 +99,6 @@ static const CGFloat kMargin = 30;
 -(void)setupNavView{
     
     //1.返回
-    
     UIButton *backBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(20, 30, 25, 25);
     [backBtn setTitle:@"返回" forState:UIControlStateNormal];
