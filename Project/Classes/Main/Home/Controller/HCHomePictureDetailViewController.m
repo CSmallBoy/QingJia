@@ -112,7 +112,7 @@
     NSLog(@"%lf",self.tableView.contentOffset.y);
     
     
-    if (self.tableView.contentOffset.y<=- SCREEN_HEIGHT/3*2) {
+    if (self.tableView.contentOffset.y<=- SCREEN_HEIGHT/3*2){
         self.navigationController.navigationBarHidden = YES;
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3*2)];
         imageView.userInteractionEnabled = YES;

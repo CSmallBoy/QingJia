@@ -337,9 +337,7 @@
                   }else{
                       [dic setObject:str forKey:@"birthday"];
                   }
-                  
                   [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
-                  
                   [dic setObject:model.userPhoto forKey:@"PhotoStr"];
                   [dic setObject:model.nickName forKey:@"nickName"];
                   [dic setObject:model.adress forKey:@"adress"];

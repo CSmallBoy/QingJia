@@ -526,6 +526,7 @@
 		C706D6301CE613BC0096EF9E /* NHCEditingFamilyImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C706D62F1CE613BC0096EF9E /* NHCEditingFamilyImageApi.m */; };
 		C71B6BCD1CDC2EF000470C86 /* NHCEditingFamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */; };
 		C729C46B1CE08F690010D3C0 /* HCHomeNotiButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C729C46A1CE08F690010D3C0 /* HCHomeNotiButton.m */; };
+		C72BB1BE1CE8B05100662F6E /* HCBindTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BB1BD1CE8B05100662F6E /* HCBindTwoViewController.m */; };
 		C72F1F951C7719EE00A6E794 /* HCAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */; };
 		C72F1F981C771F8100A6E794 /* SCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C72F1F971C771F8100A6E794 /* SCSwipeTableViewCell.m */; };
 		C739F7971CD740F50070BB2D /* HCHomeUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C739F7961CD740F50070BB2D /* HCHomeUserPhotoViewController.m */; };
@@ -2160,6 +2161,8 @@
 		C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCEditingFamilyApi.m; sourceTree = "<group>"; };
 		C729C4691CE08F690010D3C0 /* HCHomeNotiButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHomeNotiButton.h; sourceTree = "<group>"; };
 		C729C46A1CE08F690010D3C0 /* HCHomeNotiButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHomeNotiButton.m; sourceTree = "<group>"; };
+		C72BB1BD1CE8B05100662F6E /* HCBindTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBindTwoViewController.m; sourceTree = "<group>"; };
+		C72BB1BF1CE8B05800662F6E /* HCBindTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBindTwoViewController.h; sourceTree = "<group>"; };
 		C72F1F931C7719EE00A6E794 /* HCAuditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAuditViewController.h; sourceTree = "<group>"; };
 		C72F1F941C7719EE00A6E794 /* HCAuditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAuditViewController.m; sourceTree = "<group>"; };
 		C72F1F961C771F8100A6E794 /* SCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSwipeTableViewCell.h; sourceTree = "<group>"; };
@@ -4555,6 +4558,8 @@
 				C752A8761CB4F6B7006719F1 /* HCUserHeathViewController.m */,
 				C79A98C61CE191A9002407F1 /* HCUserFriendViewController.h */,
 				C79A98C71CE191A9002407F1 /* HCUserFriendViewController.m */,
+				C72BB1BF1CE8B05800662F6E /* HCBindTwoViewController.h */,
+				C72BB1BD1CE8B05100662F6E /* HCBindTwoViewController.m */,
 			);
 			path = UersMessage;
 			sourceTree = "<group>";
@@ -8210,6 +8215,7 @@
 				0A8BE3B61C7E8D7C008E8100 /* HCCheckTableViewCell.m in Sources */,
 				8D15E54C1CBB4AAC00FA3B11 /* HCObjectListApi.m in Sources */,
 				8D1191201C5F3CDD003505D3 /* HCNotifcationMessageCell.m in Sources */,
+				C72BB1BE1CE8B05100662F6E /* HCBindTwoViewController.m in Sources */,
 				8D134CDC1CCDE6AB001B77EE /* HCPromisedSubCommentCell.m in Sources */,
 				C752A87C1CB4FF22006719F1 /* NHCUserHeathApi.m in Sources */,
 				0A2B47781C7F12C800AAA157 /* HCPromisedAddCallMessageAPI.m in Sources */,

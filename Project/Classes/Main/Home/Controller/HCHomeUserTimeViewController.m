@@ -216,7 +216,8 @@
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn{
     HCHomeUserPhotoViewController *Vc = [[HCHomeUserPhotoViewController alloc]init];
     HCHomeInfo *model = self.dataSource[indexPath.section];
-    Vc.head_image = model.HeadImg;
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo originUrl:model.HeadImg :kkUser]]];
+    Vc.head_image = image;
     [self.navigationController pushViewController:Vc animated:YES];
 }
 #pragma mark - 三个功能事件

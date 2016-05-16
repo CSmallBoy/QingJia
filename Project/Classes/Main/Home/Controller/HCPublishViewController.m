@@ -278,6 +278,13 @@
             [KLHttpTool uploadImageWithUrl:str image:_info.FTImages[i] success:^(id responseObject) {
                 [self showHUDView:@"发表中..."];
                 NSString *str1 = responseObject[@"Data"][@"files"][0];
+                
+                if (IsEmpty(str1)) {
+                    [self showHUDView:@"上传ttupian"];
+                }else{
+                    
+                }
+                
                 [arr_image_path addObject:str1];
                 NSString *str2;
                 NSString *str_all = [NSMutableString string];
