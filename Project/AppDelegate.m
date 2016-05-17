@@ -31,7 +31,8 @@
 
 #import "HCSetPushTagApi.h"
 
-
+#import "HCGetCityInfoApi.h"
+#import "HCGetCityInfoVersionApi.h"
 
 @interface AppDelegate ()<AMapLocationManagerDelegate>
 
@@ -101,6 +102,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiBack2:) name:kJPFNetworkDidCloseNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiBack3:) name:kJPFNetworkDidRegisterNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiBack4:) name:kJPFNetworkDidLoginNotification object:nil];
+    
+    
+    //检测省市县三级联动数据版本
+    [self getCityVersionFromService];
     
     return YES;
 }
@@ -307,5 +312,59 @@ didFinishLaunchingWithOptions:launchOptions
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"showRadarView" object:nil];
 }
+
+#pragma mark - GetAllArea
+//获取全国省市县三级数据
+- (void)getAllCityInfoFromService
+{
+    HCGetCityInfoApi *api = [[HCGetCityInfoApi alloc] init];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            NSDictionary *dic = respone[@"Data"];
+            [self writeCityInfoToPlist:dic];
+        }
+    }];
+}
+
+//将数据保存到plist文件中
+- (void)writeCityInfoToPlist:(NSDictionary *)dic
+{
+    //沙盒路径
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *path =[paths objectAtIndex:0];
+    NSString *cityList =[path stringByAppendingPathComponent:@"city.plist"];
+    [dic writeToFile:cityList atomically:YES];
+    NSLog(@"**** %@", cityList);
+}
+
+//获取省市县三级联动数据版本号
+- (void)getCityVersionFromService
+{
+    HCGetCityInfoVersionApi *api = [[HCGetCityInfoVersionApi alloc] init];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
+    {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            NSString *versionStr = [respone[@"Data"] objectForKey:@"version"];
+            //第一次启动
+            if(![[NSUserDefaults standardUserDefaults] boolForKey:@"First_Start"])
+            {
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"First_Start"];
+                [[NSUserDefaults standardUserDefaults] setInteger:[versionStr integerValue] forKey:@"City_Version"];
+                [self getAllCityInfoFromService];
+            }
+            else
+            {
+                NSInteger oldVersion = [[NSUserDefaults standardUserDefaults] integerForKey:@"City_Version"];
+                if ([versionStr integerValue] > oldVersion)
+                {
+                    [self getAllCityInfoFromService];
+                }
+            }
+        }
+    }];
+}
+
 
 @end
