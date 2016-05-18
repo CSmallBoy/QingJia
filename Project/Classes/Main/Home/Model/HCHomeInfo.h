@@ -44,6 +44,8 @@
 @property (nonatomic, copy) NSString *TOUSER;
 //点赞人数
 @property (nonatomic, copy)NSString *likeCount;
+//定位显示
+@property (nonatomic, copy)NSString *openAddress;
 
 
 @end

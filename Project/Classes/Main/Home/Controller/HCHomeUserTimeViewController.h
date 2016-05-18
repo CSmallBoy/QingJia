@@ -11,4 +11,5 @@
 @interface HCHomeUserTimeViewController : HCTableViewController
 @property (nonatomic,copy) NSString *userID;
 @property (nonatomic,strong) NSArray *islikearr;
+@property (nonatomic,copy) NSString *mySElf;
 @end

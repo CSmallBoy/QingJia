@@ -151,6 +151,7 @@
     self.times.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd HH:mm"];
     // 手机来源
     //    self.deveceModel.text = [NSString stringWithFormat:@"来至:%@", info.deviceModel];
+    //来自那个家庭
     self.deveceModel.text = [NSString stringWithFormat:@"来至:%@",info.fromFamily];
     
     // 内容设置行间距
@@ -174,17 +175,26 @@
     {
         self.moreImgView.hidden = YES;
     }
-    // 地址
-    if (!IsEmpty(info.CreateAddrSmall))
-    {
+    // 地址显示与否  根据
+    if ([info.openAddress isEqualToString:@"0"]) {
+        self.address.hidden = YES;
+        self.addressImgView.hidden = YES;
+    }else{
         self.address.hidden = NO;
         self.addressImgView.hidden = NO;
         self.address.text = info.CreateAddrSmall;
-    }else
-    {
-        self.address.hidden = YES;
-        self.addressImgView.hidden = YES;
     }
+//    NSLog(@"%@",info.openAddress);
+//    if (!IsEmpty(info.CreateAddrSmall))
+//    {
+//        self.address.hidden = NO;
+//        self.addressImgView.hidden = NO;
+//        self.address.text = info.CreateAddrSmall;
+//    }else
+//    {
+//        self.address.hidden = YES;
+//        self.addressImgView.hidden = YES;
+//    }
     NSString *zanNum = ([info.likeCount integerValue]) ? info.likeCount : @"点赞";
     //有评论显示 数字
     NSString *commentNum = ([info.FTReplyCount integerValue]) ? info.FTReplyCount : @"评论";

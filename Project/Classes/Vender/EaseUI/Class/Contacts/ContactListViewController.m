@@ -82,7 +82,7 @@
     
     
     //好友search
-    self.tableView.tableHeaderView = self.searchBar;
+//    self.tableView.tableHeaderView = self.searchBar;
     [self tableViewDidTriggerHeaderRefresh];
     
 }
@@ -149,16 +149,6 @@
                 cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
             
-//            EMBuddy *buddy = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-//            NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
-//            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-//                cell.textLabel.text = dict[@"nickName"];
-//                cell.username = dict[@"nickName"];
-//                [cell.imageView sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-//                dict_all = dict;
-//                [arr addObject:dict_all];
-//            }];
             ViewRadius(cell.imageView, 17);
             
             return cell;
@@ -223,9 +213,6 @@
     {
         cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    
-    
     if (indexPath.section == 0)
     {
         if (indexPath.row == 0)
@@ -246,29 +233,6 @@
         
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
          EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
-        
-        
-//        NSArray *userSection = [self.UserDataSource objectAtIndex:(indexPath.section - 1)];
-//        _model_info = [userSection objectAtIndex:indexPath.row];
-//        UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy.username];
-//        if (profileEntity)
-//        {
-//            model.avatarURLPath = profileEntity.imageUrl;
-//            model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
-//        }
-        //联系人的用户头像
-       //   5.7号注释
-//        
-//        NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
-//        api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-//        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-//            model.nickname = dict[@"nickName"];
-//            UIImageView *image = [[UIImageView alloc]init];
-//            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-//            model.avatarImage = image.image;
-//            cell.model = model;
-//        }];
-//
         model.avatarImage = [readUserInfo getReadDicMessage][model.buddy.username];
         model.nickname = [readUserInfo getReadDicMessageNickname][model.buddy.username];
         cell.model = model;
@@ -308,7 +272,7 @@
     [contentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 22)];
     label.backgroundColor = [UIColor clearColor];
-    [label setText:[self.sectionTitles objectAtIndex:(section - 1)]];
+    //[label setText:[self.sectionTitles objectAtIndex:(section - 1)]];
     [contentView addSubview:label];
     return contentView;
 }
@@ -504,6 +468,13 @@
     for (EMBuddy *buddy in buddyList) {
         if (![blockList containsObject:buddy.username])
         {
+//            //////////////////////////////////////////////////////////////这个地方是好友信息
+//            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+//            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+//                
+//            }];
+            
             [contactsSource addObject:buddy];
         }
     }
@@ -674,6 +645,7 @@
                     if (IsEmpty(model.userImage)) {
                         model.userImage = IMG(@"1");
                     }
+                    //头像
                     [_dict_mutab setObject:model.userImage forKey:buddy.username];
                     [readUserInfo DicdeleteMessage];
                     [readUserInfo creatDicMessage:_dict_mutab];
@@ -684,10 +656,12 @@
                     [self.UserDataSource addObject:model];
                 }];
             }else{
-                NSMutableDictionary * dict= [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDicMessageNickname]];
-                NSMutableDictionary * dict_image= [NSMutableDictionary dictionaryWithDictionary:[readUserInfo getReadDicMessage]];
-                NSLog(@"%@",dict.allKeys);
-                NSArray *arr = dict.allKeys;
+                NSDictionary * dict_nickname= [readUserInfo getReadDicMessageNickname];
+                NSDictionary * dict_image= [readUserInfo getReadDicMessage];
+                NSLog(@"%@",dict_nickname.allKeys);
+                NSLog(@"%@",dict_nickname.allValues);
+                
+                NSArray *arr = dict_nickname.allKeys;
                 if ([arr containsObject:buddy.username]) {
                     NSLog(@"被包含了");
                 }else{
@@ -700,12 +674,14 @@
                         if (IsEmpty(model.userImage)) {
                             model.userImage = IMG(@"1");
                         }
+                        //头像
                         _dict_mutab = [NSMutableDictionary dictionaryWithDictionary:dict_image];
                         [_dict_mutab setObject:model.userImage forKey:buddy.username];
-                        
+                        [readUserInfo DicdeleteMessageNickname];
+                        [readUserInfo DicdeleteMessage];
                         [readUserInfo creatDicMessage:_dict_mutab];
                         //昵称
-                        _dict_mutab_nick = [NSMutableDictionary dictionaryWithDictionary:dict];
+                        _dict_mutab_nick = [NSMutableDictionary dictionaryWithDictionary:dict_nickname];
                         [_dict_mutab_nick setObject:model.nickName forKey:buddy.username];
                         [readUserInfo creatDicMessageNickname:_dict_mutab_nick];
                         [self.UserDataSource addObject:model];

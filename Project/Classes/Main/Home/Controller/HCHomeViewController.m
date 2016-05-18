@@ -45,10 +45,10 @@
     [self.mainScrollView addSubview:self.familyGroup.view];
     self.tabBarItem.badgeValue = @"3";
     //测试城市
-    HCGetCityInfoApi *api = [[HCGetCityInfoApi alloc]init];
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-        
-    }];
+//    HCGetCityInfoApi *api = [[HCGetCityInfoApi alloc]init];
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+//        
+//    }];
     
 }
 

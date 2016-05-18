@@ -33,6 +33,7 @@
 - (void)handleSwitch:(UISwitch *)switchs
 {
     _info.OpenAddress = [NSString stringWithFormat:@"%@", @(switchs.on)];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"createMap" object:nil];
 }
 
 - (void)handleDeleteButton:(UIButton *)button

@@ -23,20 +23,21 @@
                            @"UUID":dict[@"UserInf"][@"uuid"]};
     NSDictionary *para;
     if (IsEmpty(_imageNames)) {
+        //这个是没有图片的 openAddress 为 1 代表公开地理位置 permitType 为0 对外公开 2对自己
         para = @{@"content":_content,
-                 @"openAddress":@"1",
-                 @"permitType":@"0",
-                 @"createLocation":@"30,118",
-                 @"createAddrSmall":@"上海市，闵行区",
-                 @"createAddr":@"上海市,闵行区,集心路168号"};
+                 @"openAddress":_openAddress,
+                 @"permitType":_permitType,
+                 @"createLocation":_createLocation,
+                 @"createAddrSmall":_createAddrSmall,
+                 @"createAddr":_createAddr};
     }else{
         para = @{@"content":_content,
                  @"imageNames":_imageNames,
-                 @"openAddress":@"1",
-                 @"permitType":@"0",
-                 @"createLocation":@"30,118",
-                 @"createAddrSmall":@"上海市，闵行区",
-                 @"createAddr":@"上海市,闵行区,集心路168号"};
+                 @"openAddress":_openAddress,
+                 @"permitType":_permitType,
+                 @"createLocation":_createLocation,
+                 @"createAddrSmall":_createAddrSmall,
+                 @"createAddr":_createAddr};
     }
     
     return @{@"Head":head,@"Para":para};

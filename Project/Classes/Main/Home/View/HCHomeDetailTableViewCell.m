@@ -14,7 +14,8 @@
 #import "HCHomeDetailInfo.h"
 #import "HCHomeMoreImgView.h"
 #import "HCPraiseTagListView.h"
-
+//删除时光
+#import "NHCHomeTimeDeleteApi.h"
 @interface HCHomeDetailTableViewCell()<HCHomeMoreImgViewDelegate, HCPraiseTagListViewDelegate>
 
 @property (nonatomic, strong) UIButton *headButton;
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UILabel *deveceModel;
 @property (nonatomic, strong) UILabel *times;
 @property (nonatomic, strong) UILabel *contents;
+@property (nonatomic, strong) UIButton *deleteBtn;
 //多图片
 @property (nonatomic, strong) HCHomeMoreImgView *moreImgView;
 @property (nonatomic, strong) HCPraiseTagListView *praiseTag;
@@ -40,7 +42,7 @@
         [self.contentView addSubview:self.deveceModel];
         [self.contentView addSubview:self.times];
         [self.contentView addSubview:self.contents];
-        
+        [self.contentView addSubview:self.deleteBtn];
         [self.contentView addSubview:self.moreImgView];
         [self.contentView addSubview:self.praiseTag];
     }
@@ -58,7 +60,13 @@
     self.deveceModel.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 200, 20);
     
     self.times.frame = CGRectMake(WIDTH(self)-130, MinY(self.nickName), 120, 20);
-    
+    if (_isDelete)
+    {
+        self.deleteBtn.frame =CGRectMake(WIDTH(self)-50, MinY(self.nickName)+25, 40, 20);
+        [self.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+        [self.deleteBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [self.deleteBtn addTarget:self action:@selector(deleteTime) forControlEvents:UIControlEventTouchUpInside];
+    }
     CGFloat contentsHeight = [Utils detailTextHeight:_info.FTContent lineSpage:4 width:WIDTH(self)-20 font:14];
     self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
     
@@ -83,7 +91,17 @@
         }
     }
 }
-
+//下次用代理  代理出去 操作
+- (void)deleteTime{
+    NHCHomeTimeDeleteApi *api = [[NHCHomeTimeDeleteApi alloc]init];
+    api.timeID = _info.TimeID;
+    [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, NSArray *array) {
+        if (resquestStatus == HCRequestStatusSuccess) {
+            //删除成功后的操作
+        }
+    }];
+    
+}
 #pragma mark - HCHomeMoreImgViewDelegate
 
 - (void)hchomeMoreImgView:(NSInteger)index
@@ -190,7 +208,18 @@
     }
     return _times;
 }
-
+- (UIButton *)deleteBtn
+{
+    if (!_deleteBtn)
+    {
+        _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _deleteBtn.titleLabel.textAlignment = NSTextAlignmentRight;
+        _deleteBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        _deleteBtn.tintColor = [UIColor blueColor];
+        
+    }
+    return _deleteBtn;
+}
 - (UILabel *)contents
 {
     if (!_contents)

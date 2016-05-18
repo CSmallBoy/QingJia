@@ -58,6 +58,9 @@
         detailCell.delegates = self;
         detailCell.praiseArr = _detailInfo.praiseArr;  //这个是要传点赞人的信息的
         HCHomeInfo *info = self.data[@"data"];
+        if ([_MySelf isEqualToString:@"我自己的时光"]) {
+            detailCell.isDelete = YES;
+        }
         detailCell.info = info;
         cell = detailCell;
     }else
