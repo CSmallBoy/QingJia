@@ -18,4 +18,5 @@ typedef void(^NHCReleaseTime)(HCRequestStatus requestStatus,NSString *message,NS
 @property(nonatomic,copy)NSString *createAddrSmall ;
 @property(nonatomic,copy)NSString *createAddr;
 @property(nonatomic,copy)NSString *imageNames;
+
 @end

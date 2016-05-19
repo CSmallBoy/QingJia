@@ -10,4 +10,5 @@
 typedef void (^NHCDeleteTime)(HCRequestStatus resquestStatus,NSString *message,NSArray* array);
 @interface NHCHomeTimeDeleteApi : HCRequest
 - (void)startRequest:(NHCDeleteTime)requestBlock;
+@property (nonatomic,copy) NSString *timeID;
 @end

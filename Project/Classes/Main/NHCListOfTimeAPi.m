@@ -46,6 +46,8 @@
         NSString *str  = arr[i][@"likeNickNames"];
         info.isLikeArr =  [str componentsSeparatedByString:@","];
         info.likeCount = arr[i][@"likeCount"];
+        info.openAddress = arr[i][@"openAddress"];
+        info.CreateAddr = arr[i][@"CreateAddr"];
         [arring addObject:info];
     }
     return arring;

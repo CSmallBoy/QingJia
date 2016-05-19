@@ -218,7 +218,7 @@
             _info = [HCCreateGradeInfo mj_objectWithKeyValues:dic];
             [HCAccountMgr manager].familyInfo = _info;
             self.gradeName.text = _info.familyNickName;
-            self.nickName.text = [HCAccountMgr manager].loginInfo.TrueName;
+            self.nickName.text = [HCAccountMgr manager].loginInfo.NickName;
             self.nickName.hidden = NO;
             self.familyButton.hidden = NO;
             self.headButton.hidden = NO;

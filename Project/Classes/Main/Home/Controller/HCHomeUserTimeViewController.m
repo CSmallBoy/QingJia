@@ -50,8 +50,8 @@
     self.navigationItem.title = [NSString stringWithFormat:@"%@的时光", info.NickName];
     [self setupBackItem];
     [self readLocationData];
-    
-    self.navigationItem.rightBarButtonItem = self.rightItem;
+    //暂时不要
+//    self.navigationItem.rightBarButtonItem = self.rightItem;
     
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     [self.tableView registerClass:[HCHomeTableViewCell class] forCellReuseIdentifier:HCHomeUserTimeCell];
@@ -88,27 +88,18 @@
     HCHomeDetailViewController *detail = [[HCHomeDetailViewController alloc] init];
     detail.data = @{@"data": info};
     detail.islikeArr = info.isLikeArr;
+    NSDictionary *dict = [readUserInfo getReadDic];
+    NSString *user = dict[@"UserInf"][@"userId"];
+    if ([info.creator isEqualToString:user]) {
+        detail.MySelf = @"我自己的时光";
+    }
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    CGFloat height = 60 + WIDTH(self.view)*0.15;
-    //
-    //    HCHomeInfo *info = self.dataSource[indexPath.section];
-    //    height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
-    //    if (!IsEmpty(info.FTImages))
-    //    {
-    //        height = height + (WIDTH(self.view)-30)/3;
-    //    }
-    //
-    //    if (!IsEmpty(info.CreateAddrSmall))
-    //    {
-    //        height = height + 30;
-    //    }
-    //    return height;
-    //
+    
     CGFloat height = 60 + WIDTH(self.view)*0.15;
     HCHomeInfo *info = self.dataSource[indexPath.section];
     height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
@@ -124,10 +115,15 @@
             height += WIDTH(self.view) * 0.33 * row;
         }
     }
-    if (!IsEmpty(info.CreateAddrSmall))
-    {
+    //每一次和你分开，我深深地被你打败 采用info.openAddress
+//        if (!IsEmpty(info.CreateAddrSmall))
+//        {
+//            height = height + 30;
+//        }
+    if ([info.openAddress isEqualToString:@"1"]) {
         height = height + 30;
     }
+    
     return height;
 }
 

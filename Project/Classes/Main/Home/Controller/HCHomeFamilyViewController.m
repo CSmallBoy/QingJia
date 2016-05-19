@@ -125,6 +125,12 @@
     detail.islikeArr = info.isLikeArr;
     detail.data = @{@"data": info};
     detail.timeID = info.TimeID;
+    
+    NSDictionary *dict = [readUserInfo getReadDic];
+    NSString *user = dict[@"UserInf"][@"userId"];
+    if ([info.creator isEqualToString:user]) {
+        detail.MySelf = @"我自己的时光";
+    }
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
 }
@@ -132,11 +138,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat height = 60 + WIDTH(self.view)*0.15;
-    
     HCHomeInfo *info = self.dataSource[indexPath.section];
-    
     height = height + [Utils detailTextHeight:info.FTContent lineSpage:4 width:WIDTH(self.view)-20 font:14];
-    
     if (!IsEmpty(info.FTImages))
     {
         if (info.FTImages.count < 5)
@@ -149,9 +152,12 @@
             height += WIDTH(self.view) * 0.33 * row;
         }
     }
-    
-    if (!IsEmpty(info.CreateAddrSmall))
-    {
+    //每一次和你分开，我深深地被你打败 采用info.openAddress
+//    if (!IsEmpty(info.CreateAddrSmall))
+//    {
+//        height = height + 30;
+//    }
+    if ([info.openAddress isEqualToString:@"1"]) {
         height = height + 30;
     }
     
@@ -176,7 +182,6 @@
             view_notification.hidden = NO;
         }
     }
- 
     return view_notification;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -245,7 +250,7 @@
     pictureDetail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pictureDetail animated:YES];
 }
-#pragma mark 时光详情
+#pragma mark 个人时光详情
 - (void)hcHomeTableViewCell:(HCHomeTableViewCell *)cell indexPath:(NSIndexPath *)indexPath seleteHead:(UIButton *)headBtn
 {
     HCHomeInfo *info = self.dataSource[indexPath.section];
@@ -253,6 +258,8 @@
     userTime.data = @{@"data": info};
     userTime.userID = info.creator;
     userTime.hidesBottomBarWhenPushed = YES;
+  
+    
     [self.navigationController pushViewController:userTime animated:YES];
 }
 
@@ -357,6 +364,10 @@
             [self writeLocationData:array];
             [self.tableView reloadData];
             m ++;
+            if (IsEmpty(array)) {
+                [self showHUDText:@"没有更多数据了"];
+            }
+            
         }else
         {
             [self showHUDError:message];

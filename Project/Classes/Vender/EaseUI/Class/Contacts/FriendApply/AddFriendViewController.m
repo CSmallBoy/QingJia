@@ -98,111 +98,111 @@
 }
 
 #pragma mark--UITableViewDataSource
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1 ;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.models.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 55)];
-    btn1.backgroundColor = [UIColor redColor];
-    [btn1 setTitle:@"删除" forState:UIControlStateNormal];
-    UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 55)];
-    btn2.backgroundColor = [UIColor orangeColor];
-    [btn2 setTitle:@"收藏" forState:UIControlStateNormal];
-    
-    UIButton *btn3 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 55)];
-    btn3.backgroundColor = [UIColor greenColor];
-    [btn3 setTitle:@"举报" forState:UIControlStateNormal];
-    btnArr = [[NSMutableArray alloc]initWithObjects:btn1,btn2,btn3, nil];
-    
-    static NSString *cellIdentifier = @"Cell";
-    HCAddFriendlistTableViewCell *cell = (HCAddFriendlistTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil)
-    {
-        cell = [[HCAddFriendlistTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                           reuseIdentifier:@"Cell"
-                                                  withBtns:btnArr
-                                                 tableView:self.tableView];
-        cell.delegate = self;
-    }
-        cell.indexPath = indexPath;
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSIndexPath *selected = [tableView indexPathForSelectedRow];
-    if(selected)
-    {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
-}
-
-#pragma mark SCSwipeTableViewCellDelegate
-
-- (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath{
-
-    NSString *btnName ;
-    switch ((long)tag)
-    {
-        case 0:
-            btnName = @"删除";
-            break;
-            
-        case 1:
-            btnName = @"收藏";
-            break;
-        
-        case 2:
-            btnName = @"举报";
-            break;
-            
-        default:
-            break;
-    }
-    NSString *message = [NSString stringWithFormat:@"你选择了 在 %ld 分区 %ld行 %@ 按钮",(long)indexpath.section,(long)indexpath.row ,btnName];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"tips"
-                                                   message:message
-                                                  delegate:self
-                                         cancelButtonTitle:@"ok"
-                                         otherButtonTitles:nil, nil];
-    [alert show];
-}
-
-- (void)cellOptionBtnWillShow{
-    NSLog(@"cellOptionBtnWillShow");
-}
-
-- (void)cellOptionBtnWillHide{
-    NSLog(@"cellOptionBtnWillHide");
-}
-
-- (void)cellOptionBtnDidShow{
-    NSLog(@"cellOptionBtnDidShow");
-}
-
-- (void)cellOptionBtnDidHide{
-    NSLog(@"cellOptionBtnDidHide");
-}
-
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 60;
-}
-
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
+//
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 1 ;
+//}
+//
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return self.models.count;
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 55)];
+//    btn1.backgroundColor = [UIColor redColor];
+//    [btn1 setTitle:@"删除" forState:UIControlStateNormal];
+//    UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 55)];
+//    btn2.backgroundColor = [UIColor orangeColor];
+//    [btn2 setTitle:@"收藏" forState:UIControlStateNormal];
+//    
+//    UIButton *btn3 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 55)];
+//    btn3.backgroundColor = [UIColor greenColor];
+//    [btn3 setTitle:@"举报" forState:UIControlStateNormal];
+//    btnArr = [[NSMutableArray alloc]initWithObjects:btn1,btn2,btn3, nil];
+//    
+//    static NSString *cellIdentifier = @"Cell";
+//    HCAddFriendlistTableViewCell *cell = (HCAddFriendlistTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    if (cell == nil)
+//    {
+//        cell = [[HCAddFriendlistTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+//                                           reuseIdentifier:@"Cell"
+//                                                  withBtns:btnArr
+//                                                 tableView:self.tableView];
+//        cell.delegate = self;
+//    }
+//        cell.indexPath = indexPath;
+//    return cell;
+//}
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSIndexPath *selected = [tableView indexPathForSelectedRow];
+//    if(selected)
+//    {
+//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    }
+//}
+//
+//#pragma mark SCSwipeTableViewCellDelegate
+//
+//- (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath{
+//
+//    NSString *btnName ;
+//    switch ((long)tag)
+//    {
+//        case 0:
+//            btnName = @"删除";
+//            break;
+//            
+//        case 1:
+//            btnName = @"收藏";
+//            break;
+//        
+//        case 2:
+//            btnName = @"举报";
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    NSString *message = [NSString stringWithFormat:@"你选择了 在 %ld 分区 %ld行 %@ 按钮",(long)indexpath.section,(long)indexpath.row ,btnName];
+//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"tips"
+//                                                   message:message
+//                                                  delegate:self
+//                                         cancelButtonTitle:@"ok"
+//                                         otherButtonTitles:nil, nil];
+//    [alert show];
+//}
+//
+//- (void)cellOptionBtnWillShow{
+//    NSLog(@"cellOptionBtnWillShow");
+//}
+//
+//- (void)cellOptionBtnWillHide{
+//    NSLog(@"cellOptionBtnWillHide");
+//}
+//
+//- (void)cellOptionBtnDidShow{
+//    NSLog(@"cellOptionBtnDidShow");
+//}
+//
+//- (void)cellOptionBtnDidHide{
+//    NSLog(@"cellOptionBtnDidHide");
+//}
+//
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 60;
+//}
+//
+//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
 
 #pragma mark--HCAddFriendlistTableViewCellDelegate
 
@@ -338,40 +338,40 @@
     return _textField;
 }
 
--(UIView *)blueView
-{
-    if (!_blueView)
-    {
-        _blueView = [[UIView alloc]initWithFrame:CGRectMake(10, 60, WIDTH(self.view)-20, 80)];
-        _blueView.backgroundColor = [UIColor blueColor];
-        
-        NSArray *textArr = @[@"添加通讯录好友",@"清空好友申请"];
-        NSArray *imgArr = @[@"time",@"more"];
-        for (int i = 0; i < 2; i ++)
-        {
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            btn.tag = i;
-            btn.frame = CGRectMake((WIDTH(self.view)/2-10)*i, 0,WIDTH(self.view)/2-10 , HEIGHT(self.view));
-            [btn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
-            [_blueView addSubview:btn];
-            
-            NSString *imgStr = imgArr[i];
-            NSString *textStr = textArr[i];
-            UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(WIDTH(btn)/2-20, 10, 40, 40)];
-            img.image = IMG(imgStr);
-            
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, WIDTH(btn), 30)];
-            label.text = textStr;
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = [UIColor whiteColor];
-            label.font = [UIFont systemFontOfSize:12];
-            
-            [btn addSubview:img];
-            [btn addSubview:label];
-        }
-    }
-    return _blueView;
-}
+//-(UIView *)blueView
+//{
+//    if (!_blueView)
+//    {
+//        _blueView = [[UIView alloc]initWithFrame:CGRectMake(10, 60, WIDTH(self.view)-20, 80)];
+//        _blueView.backgroundColor = [UIColor blueColor];
+//        
+//        NSArray *textArr = @[@"添加通讯录好友",@"清空好友申请"];
+//        NSArray *imgArr = @[@"time",@"more"];
+//        for (int i = 0; i < 2; i ++)
+//        {
+//            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//            btn.tag = i;
+//            btn.frame = CGRectMake((WIDTH(self.view)/2-10)*i, 0,WIDTH(self.view)/2-10 , HEIGHT(self.view));
+//            [btn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+//            [_blueView addSubview:btn];
+//            
+//            NSString *imgStr = imgArr[i];
+//            NSString *textStr = textArr[i];
+//            UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(WIDTH(btn)/2-20, 10, 40, 40)];
+//            img.image = IMG(imgStr);
+//            
+//            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, WIDTH(btn), 30)];
+//            label.text = textStr;
+//            label.textAlignment = NSTextAlignmentCenter;
+//            label.textColor = [UIColor whiteColor];
+//            label.font = [UIFont systemFontOfSize:12];
+//            
+//            [btn addSubview:img];
+//            [btn addSubview:label];
+//        }
+//    }
+//    return _blueView;
+//}
 
 - (UIView *)headerView
 {

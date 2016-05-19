@@ -94,7 +94,7 @@
 {
     if (!_titleArr)
     {
-        _titleArr = @[@"仅好友可见", @"所有人可见", @"仅自己可见", @"指定好友不可见"];
+        _titleArr = @[@"所有人可见", @"仅自己可见"];
     }
     return _titleArr;
 }

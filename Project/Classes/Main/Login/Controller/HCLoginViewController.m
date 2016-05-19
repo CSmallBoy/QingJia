@@ -23,8 +23,6 @@
 #import "NHCCancellationApi.h"
 #import "NHCSetNewPassWordApi.h"
 #import "NHCUSerInfoApi.h"
-//
-#import "NHCChatUserInfoApi.h"
 #import "HCEaseUserInfo.h"
 
 @interface HCLoginViewController ()

@@ -27,20 +27,27 @@
 #import "ZLPhotoPickerViewController.h"
 //测试省市县
 #import "NHCRegionApi.h"
-//
+//地图
+#import <MAMapKit/MAMapKit.h>
 
 #define HCPublishCell @"HCPublishCell"
 
-@interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate>{
+@interface HCPublishViewController ()<ACEExpandableTableViewDelegate, HCPublishTableViewCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HCJurisdictionVCDelegate,MAMapViewDelegate>{
     int a ;
+
 }
 
 @property (nonatomic, strong) HCPublishInfo *info;
 @property (nonatomic, strong) UIBarButtonItem *publishBtnItem;
 @property (nonatomic, assign) CGFloat editHeight;
-@property (nonatomic, strong)UIImageView *backgrand;
-
+@property (nonatomic, strong) UIImageView *backgrand;
 @property (nonatomic, strong) NSMutableArray *uploadImageNameArr;
+@property (nonatomic, strong) MAMapView *mapview;
+@property (nonatomic, strong) CLLocation *current_location;
+
+@property(nonatomic,copy)NSString *createLocation;
+@property(nonatomic,copy)NSString *createAddrSmall;
+@property(nonatomic,copy)NSString *createAddr;
 
 @end
 
@@ -65,9 +72,12 @@
 //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
 //        
 //    }];
-   
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapIsTure) name:@"createMap"  object:nil];
+    [self CreatMap];
 }
-
+//- (void)mapIsTure{
+//    NSLog(@"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//}
 #pragma mark - UITableView
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,6 +95,7 @@
         publishCell.delegate = self;
         publishCell.info = _info;
         publishCell.indexPath = indexPath;
+        publishCell.detailTextLabel.tag = 1000;
         cell = publishCell;
     }
     return cell;
@@ -146,6 +157,14 @@
 {
     _info.PermitType = PermitType;
     _info.PermitUserArr = permitUserArr;
+    UILabel *label = [self.view viewWithTag:1000];
+    label.text = _info.PermitType;
+    if([_info.PermitType isEqualToString:@"100"]){
+        label.text = @"所有人可见";
+    }else{
+        label.text = @"仅自己可见";
+    }
+    
 }
 
 #pragma mark - HCPublishTableViewCellDelegate
@@ -300,11 +319,24 @@
                             str_all = [str2 stringByAppendingString:str_all];
                         }
                     }
-                    //发表文字时光
+                    //发表文字 图片时光
                     NHCReleaseTimeApi *api = [[NHCReleaseTimeApi alloc]init];
                     api.content = _info.FTContent;
                     api.openAddress = _info.OpenAddress;
                     api.imageNames = str_all;
+                    api.createAddr = _createAddr;
+                    api.createLocation = _createLocation;
+                    api.createAddrSmall = _createAddrSmall;
+                    //判断权限类型
+                    if (IsEmpty(_info.PermitType)) {
+                        api.permitType = @"0";
+                    }else{
+                        if ([_info.PermitType isEqualToString:@"100"]) {
+                            api.permitType = @"0";
+                        }else if([_info.PermitType isEqualToString:@"101"]){
+                            api.permitType = @"2";
+                        }
+                    }
                     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *Tid) {
                         [self hideHUDView];
                         for (UIViewController *temp in self.navigationController.viewControllers) {
@@ -324,6 +356,18 @@
         NHCReleaseTimeApi *api = [[NHCReleaseTimeApi alloc]init];
         api.content = _info.FTContent;
         api.openAddress = _info.OpenAddress;
+        api.createAddr = _createAddr;
+        api.createLocation = _createLocation;
+        api.createAddrSmall = _createAddrSmall;
+        if (IsEmpty(_info.PermitType)) {
+            api.permitType = @"0";
+        }else{
+            if ([_info.PermitType isEqualToString:@"100"]) {
+                api.permitType = @"0";
+            }else if([_info.PermitType isEqualToString:@"101"]){
+                api.permitType = @"2";
+            }
+        }
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *Tid) {
             
             [self hideHUDView];
@@ -370,4 +414,67 @@
         
     }];
 }
+#pragma mark  创建地图
+//打开创建
+- (void)CreatMap{ 
+        [MAMapServices sharedServices].apiKey =@"20e897d0e7d653770541a040a12065d8";
+        _mapview = [[MAMapView alloc]init];
+        _mapview.userTrackingMode = 0;
+        _mapview.delegate = self;
+        _mapview.showsUserLocation = YES;
+}
+//定位返回信息的回调代理
+#pragma mark 当前经纬度的坐标
+
+
+//定位
+-(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+{
+    [self encoded:userLocation];
+}
+
+//反地理编码
+- (void)encoded:(MAUserLocation *)sender
+{
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:sender.location.coordinate.latitude longitude:sender.location.coordinate.longitude];
+    //经纬度
+    _createLocation = [NSString stringWithFormat:@"%f,%f",sender.location.coordinate.latitude,sender.location.coordinate.longitude];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (placemarks.count > 0){
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            
+            NSDictionary *dict = placemark.addressDictionary;
+            //jiedao
+            NSString *streetStr = [dict objectForKey:@"Street"];
+            //区
+            NSString *countyStr = [dict objectForKey:@"SubLocality"];
+            //街道暂时
+            NSString *street = [countyStr stringByAppendingString:streetStr];
+            NSLog(@"street address: %@",[dict objectForKey:@"Street"]);
+            //城市
+            NSString *city = placemark.locality;
+           
+            if (!city) {
+                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
+                city = placemark.administrativeArea;
+            }
+            NSLog(@"city = %@",city);
+            _createAddrSmall = [NSString stringWithFormat:@"%@,%@",city,countyStr];
+            _createAddr = [NSString stringWithFormat:@"%@,%@",city,street];
+            
+        }
+        else if (error == nil && [placemarks count] == 0)
+        {
+            NSLog(@"No results were returned.");
+        }
+        else if (error != nil)
+        {
+            NSLog(@"An error occurred = %@", error);
+        }
+        _mapview.showsUserLocation = NO;
+        
+    }];
+}
+
 @end

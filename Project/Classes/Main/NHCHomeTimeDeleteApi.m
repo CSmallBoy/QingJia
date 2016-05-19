@@ -14,13 +14,13 @@
 }
 -(NSString *)requestUrl{
     // 时光列表
-    return @"Times/listTimes.do";
+    return @"Times/delete.do";
 }
 -(id)requestArgument{
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
                            @"token":[HCAccountMgr manager].loginInfo.Token,
                            @"UUID":[HCAccountMgr manager].loginInfo.UUID};
-    NSDictionary *para = @{@"timesId":@""};
+    NSDictionary *para = @{@"timesId":_timeID};
     
     
     return @{@"Head":head,@"Para":para};
