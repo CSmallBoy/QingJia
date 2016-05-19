@@ -185,7 +185,9 @@
              [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
              //保存最近一次登录用户名
              [self saveLastLoginUsername];
-             //保存登陆过后信息 
+             //保存登陆过后信息
+             
+
          }
          else
          {
@@ -213,6 +215,4 @@
          }
      } onQueue:nil];
 }
-
-
 @end

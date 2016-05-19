@@ -20,6 +20,7 @@
 
 @property (nonatomic,strong)UITextField *textField1;
 @property (nonatomic,strong)UITextField *textField2;
+@property (nonatomic,strong)UITextField *textField3;
 @property (nonatomic,strong) NSString *imgStr;
 @property (nonatomic,strong) UIImage *image;
 @property (nonatomic,strong)UIButton *headBtn;
@@ -96,13 +97,11 @@
     [self.view addSubview:self.backgroundImage];
     [self.backgroundImage addSubview:self.headBtn];
     
-    
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(75/375.0*SCREEN_WIDTH, 340/668.0*SCREEN_HEIGHT, 40/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(75/375.0*SCREEN_WIDTH, 330/668.0*SCREEN_HEIGHT, 40/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
     titleLabel.text = @"姓名";
     titleLabel.textColor = [UIColor blackColor];
 
     _textField1 = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame), CGRectGetMinY(titleLabel.frame), SCREEN_WIDTH-220/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
-//    _textField1.placeholder = @"点击输入姓名";
     _textField1.text = _info.trueName;
     _textField1.textColor = [UIColor blackColor];
     
@@ -115,17 +114,28 @@
     lineView.backgroundColor = [UIColor grayColor];
 
     
-    UILabel *titleLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame), CGRectGetMaxY(lineView.frame) + 40/668.0*SCREEN_HEIGHT,  60/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
+    UILabel *titleLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame), CGRectGetMaxY(lineView.frame) + 20/668.0*SCREEN_HEIGHT, 60/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
     titleLabel1.text = @"手机号";
     titleLabel1.textColor = [UIColor blackColor];
 
     _textField2 = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel1.frame), CGRectGetMinY(titleLabel1.frame), SCREEN_WIDTH-210/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
-//    _textField2.placeholder = @"点击输入手机号";
     _textField2.text = _info.phoneNo;
     _textField2.textColor = [UIColor blackColor];
     
     UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel1.frame), CGRectGetMaxY(titleLabel1.frame), SCREEN_WIDTH-150/375.0*SCREEN_WIDTH, 1)];
     lineView1.backgroundColor = [UIColor grayColor];
+    
+    
+    UILabel *titleLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame), CGRectGetMaxY(lineView1.frame) + 20/668.0*SCREEN_HEIGHT,  40/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
+    titleLabel2.text = @"关系";
+    titleLabel2.textColor = [UIColor blackColor];
+    
+    _textField3 = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel2.frame), CGRectGetMinY(titleLabel2.frame), SCREEN_WIDTH-190/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
+    _textField3.text = @"BB";
+    _textField3.textColor = [UIColor blackColor];
+    
+    UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel2.frame), CGRectGetMaxY(titleLabel2.frame), SCREEN_WIDTH-150/375.0*SCREEN_WIDTH, 1)];
+    lineView2.backgroundColor = [UIColor grayColor];
 
 
     [self.backgroundImage addSubview:titleLabel];
@@ -135,6 +145,9 @@
     [self.backgroundImage addSubview:titleLabel1];
     [self.backgroundImage addSubview:_textField2];
     [self.backgroundImage addSubview:lineView1];
+    [self.backgroundImage addSubview:titleLabel2];
+    [self.backgroundImage addSubview:_textField3];
+    [self.backgroundImage addSubview:lineView2];
     
 }
 
@@ -190,7 +203,11 @@
     
     if (phoneNumArr.count > 0)
     {
-        self.textField2.text = [phoneNumArr objectAtIndex:0];
+        //过滤手机号中的特殊字符
+        NSString *phoneNum = [phoneNumArr objectAtIndex:0];
+        NSCharacterSet *specialCharacters = [NSCharacterSet characterSetWithCharactersInString:@"@[]{}（#%-*+=_）\\|~(＜＞$%^&*)_+ "];
+        phoneNum = [[phoneNum componentsSeparatedByCharactersInSet:specialCharacters] componentsJoinedByString:@""];
+        self.textField2.text = phoneNum;
     }
     // 3.释放不再使用的对象
     CFRelease(phones);

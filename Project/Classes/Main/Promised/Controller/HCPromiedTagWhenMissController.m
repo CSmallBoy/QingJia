@@ -15,12 +15,14 @@
 #import "HCTagAmostDetailListApi.h"
 #import "HCNewTagInfo.h"
 
-@interface HCPromiedTagWhenMissController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+#import "HCMissTagTableViewCell.h"
 
-@property(nonatomic,strong) UICollectionView  *collectionView;
+@interface HCPromiedTagWhenMissController ()<UITableViewDelegate,UITableViewDataSource>
 
+@property(nonatomic,strong)UITableView *tagTableView;//标签列表
 
 @property (nonatomic,strong) UIView *footerView;
+
 @end
 
 @implementation HCPromiedTagWhenMissController
@@ -29,64 +31,86 @@
     [super viewDidLoad];
    
     self.title = @"走失时候佩戴的标签";
-//    [self requestData];
+    [self requestData];
     [self  setupBackItem];
-    [self.view addSubview:self.collectionView];
-    
+    [self.view addSubview:self.tagTableView];
     [self.view addSubview:self.footerView];
-    
-    
 }
 
-#pragma mark ---UICollectionViewDataSource,UICollectionViewDelegate
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    HCPromisedTagCell *cell = [HCPromisedTagCell cellWithCollectionView:collectionView andIndexPath:indexPath];
-    cell.info = self.dataArr[indexPath.row];
-    
-    return cell;
-}
-//
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+#pragma mark - tableView Delegate/Datesource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.dataArr.count;
 }
 
-
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 5;
+    HCMissTagTableViewCell *cell = [HCMissTagTableViewCell customCellWithTable:tableView];
+    HCNewTagInfo *info = self.dataArr[indexPath.row];
+    [cell.selectedButton addTarget:self action:@selector(selectedButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    NSURL *url = [readUserInfo originUrl:info.imageName :kkLabel];
+    [cell.clothingImage sd_setImageWithURL:url];
+    cell.titleLabel.text = info.labelTitle;
+    cell.idLabel.text = [NSString stringWithFormat:@"ID:%@", info.objectId];
+    cell.remarkLabel.text = [NSString stringWithFormat:@"备注:%@", info.labelTitle];
+    return cell;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     HCNewTagInfo *info = self.dataArr[indexPath.row];
-    
-    if (info.isBlack) {
+    HCMissTagTableViewCell *cell = [self.tagTableView cellForRowAtIndexPath:indexPath];
+    if (info.isBlack)
+    {
+        cell.selected = NO;
         info.isBlack = NO;
     }
     else
     {
+        cell.selected = YES;
         info.isBlack = YES;
     }
-    [self.collectionView reloadData];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80/668.0*SCREEN_HEIGHT;
 }
 
 #pragma  mark --- private mothods
+
+//点击选中按钮
+- (void)selectedButtonAction:(UIButton *)sender
+{
+    //备注:isBlack按钮状态(YES为选中,NO为未选中)
+    HCMissTagTableViewCell *cell = (HCMissTagTableViewCell*)sender.superview;
+    NSIndexPath *index = [self.tagTableView indexPathForCell:cell];
+    HCNewTagInfo *info = self.dataArr[index.row];
+    sender.selected = !sender.selected;
+    if (sender.selected)
+    {
+        info.isBlack = YES;
+    }
+    else
+    {
+        info.isBlack = NO;
+    }
+}
+
+
 // 点击了下一步按钮
 -(void)toNextVC
 {
     HCPromisedMissMessageControll*vc = [[HCPromisedMissMessageControll alloc]init];
     NSMutableArray *tagArr = [NSMutableArray array];
     
-    for (HCNewTagInfo *info in self.dataArr) {
-        
-        if (info.isBlack) {
+    for (HCNewTagInfo *info in self.dataArr)
+    {
+        if (info.isBlack)
+        {
             [tagArr addObject:info];
         }
-        
     }
     vc.info = self.info;
     vc.tagArr = tagArr;
@@ -97,20 +121,15 @@
 
 #pragma mark --- getter Or setter
 
-- (UICollectionView *)collectionView
+- (UITableView *)tagTableView
 {
-    if(!_collectionView){
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-        flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH/3-10,SCREEN_WIDTH/3);
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50) collectionViewLayout:flowLayout];
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        _collectionView.delegate = self;
-        _collectionView.dataSource =self;
-        
-        [_collectionView registerClass:[HCPromisedTagCell class] forCellWithReuseIdentifier:@"TagCellID"];
-        
+    if (_tagTableView == nil)
+    {
+        _tagTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-50/668.0*SCREEN_HEIGHT) style:UITableViewStylePlain];
+        _tagTableView.delegate = self;
+        _tagTableView.dataSource = self;
     }
-    return _collectionView;
+    return _tagTableView;
 }
 
 -(NSMutableArray *)dataArr
@@ -125,9 +144,9 @@
 - (UIView *)footerView
 {
     if(!_footerView){
-        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-50, SCREEN_WIDTH, 50)];
+        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-50/668.0*SCREEN_HEIGHT, SCREEN_WIDTH, 50/668.0*SCREEN_HEIGHT)];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(20, 5, SCREEN_WIDTH-40, 40);
+        button.frame = CGRectMake(15/375.0*SCREEN_WIDTH, 0, SCREEN_WIDTH-30/375.0*SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT);
         ViewRadius(button, 5);
         button.backgroundColor = kHCNavBarColor;
         [button setTitle:@"下一步" forState:UIControlStateNormal];
@@ -146,16 +165,18 @@
 {
     HCTagAmostDetailListApi *api = [[HCTagAmostDetailListApi alloc]init];
     api.labelStatus = @"0";// 已经激活的标签
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
+    {
         
-        if (requestStatus == HCRequestStatusSuccess) {
-            
+        if (requestStatus == HCRequestStatusSuccess)
+        {
             NSArray *array = respone[@"Data"][@"rows"];
-            for (NSDictionary *dic in array) {
+            for (NSDictionary *dic in array)
+            {
                 HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
                 [self.dataArr addObject:info];
             }
-            [self.collectionView reloadData];
+            [self.tagTableView reloadData];
         }
     }];
 }

@@ -14,7 +14,7 @@
 #import "HCMyPromisedDetailController.h"
 #import "HCOtherPromisedDetailController.h"
 
-#import "lhScanQCodeViewController.h"
+#import "Scan_VC.h"
 
 #import "MJRefresh.h"
 #import "WKFRadarView.h"
@@ -45,6 +45,9 @@
 @property (nonatomic,strong) UISegmentedControl  *segmented;
 
 @property (nonatomic,strong) HCNotificationViewController *notiVC; // 应界面
+
+@property (nonatomic, strong)UIView *alertBackground;//弹出提示框时的灰色背景
+@property (nonatomic, strong)UIView *customAlertView;//自定义提示框
 
 @end
 
@@ -225,7 +228,7 @@
     {
         if ([buttonTitle isEqualToString:@"+ 新增录入"]) {
             
-            
+
             HCAddTagUserController *addTagUser = [[HCAddTagUserController alloc]init];
             addTagUser.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:addTagUser animated:YES];
@@ -238,6 +241,10 @@
             info.isBlack = YES;
             self.nextVCInfo = info;
             [self.smallTableView reloadData];
+            
+            //点击cell弹出提示框
+            [self.tabBarController.view addSubview:self.alertBackground];
+            
         }
         
         
@@ -322,7 +329,7 @@
 
 -(void)ToQrcodeController:(UIBarButtonItem *)right
 {
-    lhScanQCodeViewController   *scanVC = [[lhScanQCodeViewController alloc]init];
+    Scan_VC *scanVC = [[Scan_VC alloc]init];
     scanVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:scanVC animated:YES];
 }
@@ -367,6 +374,21 @@
 
     [self pushVC];
     
+}
+
+#pragma mark - alert sureClick/cancelClick
+//提示框"是"按钮
+- (void)sureButtonAction:(UIButton *)sender
+{
+    [sender.superview.superview removeFromSuperview];
+    //跳转
+    
+}
+
+//提示框"否"按钮
+- (void)cancelButtonAction:(UIButton *)sender
+{
+    [sender.superview.superview removeFromSuperview];
 }
 
 
@@ -423,6 +445,56 @@
         [self addChildViewController:_notiVC];
     }
     return _notiVC;
+}
+
+
+- (UIView *)alertBackground
+{
+    if (_alertBackground == nil)
+    {
+        _alertBackground = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        _alertBackground.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        [_alertBackground addSubview:self.customAlertView];
+    }
+    return _alertBackground;
+}
+
+
+- (UIView *)customAlertView
+{
+    if (_customAlertView == nil)
+    {
+        _customAlertView = [[UIView alloc] initWithFrame:CGRectMake(30/375.0*SCREEN_WIDTH, 230/668.0*SCREEN_HEIGHT, SCREEN_WIDTH-60/375.0*SCREEN_WIDTH, 190/668.0*SCREEN_HEIGHT)];
+        ViewRadius(_customAlertView, 5);
+        _customAlertView.backgroundColor = [UIColor whiteColor];
+        
+        
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 55/668.0*SCREEN_HEIGHT, WIDTH(_customAlertView), 20/668.0*SCREEN_HEIGHT)];
+        titleLabel.text = @"确认发布一呼百应";
+        titleLabel.textAlignment = 1;
+        [_customAlertView addSubview:titleLabel];
+        
+        UIButton *sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        sureButton.frame = CGRectMake(30/375.0*SCREEN_WIDTH, MaxY(titleLabel)+45/668.0*SCREEN_HEIGHT, 120/375.0*SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT);
+        ViewRadius(sureButton, 5);
+        sureButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        sureButton.layer.borderWidth = 1;
+        [sureButton setTitle:@"是" forState:UIControlStateNormal];
+        [sureButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [sureButton addTarget:self action:@selector(sureButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_customAlertView addSubview:sureButton];
+        
+        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancelButton.frame = CGRectMake(MaxX(sureButton)+15/375.0*SCREEN_WIDTH, MaxY(titleLabel)+45/668.0*SCREEN_HEIGHT, 120/375.0*SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT);
+        ViewRadius(cancelButton, 5);
+        cancelButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        cancelButton.layer.borderWidth = 1;
+        [cancelButton setTitle:@"否" forState:UIControlStateNormal];
+        [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_customAlertView addSubview:cancelButton];
+    }
+    return _customAlertView;
 }
 
 

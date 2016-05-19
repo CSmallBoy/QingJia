@@ -51,21 +51,21 @@
 #pragma mark --- private mothods
 
 // 点击了扫描二维码额图标
--(void)rightItemClick1:(UIBarButtonItem *)right
-{
-
-    lhScanQCodeViewController   *scanVC = [[lhScanQCodeViewController alloc]init];
-    scanVC.isActive = YES;
-    [self.navigationController pushViewController:scanVC animated:YES];
-
-
-    
-    // 直接跳转到绑定标签的界面
-//    HCBindTagController *bindVC = [[HCBindTagController alloc]init];
-//    [self.navigationController pushViewController:bindVC animated:YES];
-    
-    
-}
+//-(void)rightItemClick1:(UIBarButtonItem *)right
+//{
+//
+//    lhScanQCodeViewController   *scanVC = [[lhScanQCodeViewController alloc]init];
+//    scanVC.isActive = YES;
+//    [self.navigationController pushViewController:scanVC animated:YES];
+//
+//
+//    
+//    // 直接跳转到绑定标签的界面
+////    HCBindTagController *bindVC = [[HCBindTagController alloc]init];
+////    [self.navigationController pushViewController:bindVC animated:YES];
+//    
+//    
+//}
 
 // 点击紧急联系人
 -(void)contactBtnClick:(UIButton *)button
@@ -75,7 +75,6 @@
 }
 
 -(void)taguserBtnClick:(UIButton *)button
-
 {
     HCTagUserMangerViewController *vc = [[HCTagUserMangerViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];

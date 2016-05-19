@@ -13,7 +13,7 @@
 #import "HCCourseViewController.h"
 #import "HCTagMangerMangerController.h"
 
-#import "lhScanQCodeViewController.h"
+#import "Scan_VC.h"
 
 @interface HCTagManagerViewController ()
 
@@ -81,8 +81,7 @@
 {
     self.pullDownImage.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -82/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 82/668.0*SCREEN_HEIGHT);
     _isPull = NO;
-    lhScanQCodeViewController *scanVC = [[lhScanQCodeViewController alloc]init];
-    scanVC.isActive = YES;
+    Scan_VC *scanVC = [[Scan_VC alloc]init];
     [self.navigationController pushViewController:scanVC animated:YES];
 }
 
