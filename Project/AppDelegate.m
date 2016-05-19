@@ -270,7 +270,7 @@ didFinishLaunchingWithOptions:launchOptions
     [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置
     
     [self startUpdatingLocation];
-    [self setupTimeLocation];
+//    [self setupTimeLocation];
 }
 
 - (void)setupTimeLocation

@@ -48,7 +48,6 @@
     [self.view addSubview:self.remarksView];
     [self.view addSubview:self.frontPhoto];
     
-//    [self requestObjectData]; // 获得所有的对象
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(sureButtonClick:)];
     self.navigationItem.rightBarButtonItem = item;
 }
@@ -178,9 +177,8 @@
     return _frontPhoto;
 }
 
-
 #pragma mark - buttonClickAction
-//上传衣服图片
+//从相册选择衣服图片
 - (void)changeColthingButtonImage:(UIButton *)sender
 {
     [HCAvatarMgr manager].noUploadImage = YES;
@@ -192,7 +190,7 @@
     }];
 }
 
-//上传绑定者正面照
+//从相册选择绑定者正面照
 - (void)addButtonAction:(UIButton *)sender
 {
     [HCAvatarMgr manager].noUploadImage = YES;
@@ -344,15 +342,9 @@
 -(void)upLoadData
 {
     HCTagActivateApi *api = [[HCTagActivateApi alloc]init];
-    
-    NSString *str = [NSString stringWithFormat:@"%d",arc4random()%10000];
-    
-//    api.labelGuid = [NSString stringWithFormat:@"8f0a-4aed-%@",str ];
     api.labelGuid = self.labelGuid;
     api.imageName = self.imgStr;
     api.labelTitle = self.descriptionTextField.text;
-
-    
     api.objectId = self.seletedInfo.objectId;
     api.contactorId1 = self.seletedInfo.contactorId1;
     api.contactorId2 = self.seletedInfo.contactorId2;

@@ -387,19 +387,14 @@
 {
     [self.datePicker remove];
     [self.view endEditing:YES];
-    
-    
     [HCAvatarMgr manager].noUploadImage = YES;
     [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
         if (result)
         {
             self.image = image;
             self.bigView.image = image;
-            
         }
     }];
-    
-    
 }
 
 - (void)removeDatePicker
