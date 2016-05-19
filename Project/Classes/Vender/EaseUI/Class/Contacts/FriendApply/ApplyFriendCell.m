@@ -24,6 +24,7 @@
         _headerImageView.clipsToBounds = YES;
         _headerImageView.layer.cornerRadius = 5.0;
         [self.contentView addSubview:_headerImageView];
+        ViewRadius(_headerImageView, 20);
         
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.backgroundColor = [UIColor clearColor];
@@ -37,23 +38,27 @@
         _contentLabel.textColor = [UIColor grayColor];
         _contentLabel.font = [UIFont systemFontOfSize:14.0];
         [self.contentView addSubview:_contentLabel];
-        
-        _addButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 60, 0, 50, 30)];
-        [_addButton setBackgroundColor:[UIColor colorWithRed:10 / 255.0 green:82 / 255.0 blue:104 / 255.0 alpha:1.0]];
+        //接受
+        _addButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 120, 0, 50, 30)];
+        [_addButton setBackgroundColor:[UIColor colorWithRed:231 / 255.0 green:59 / 255.0 blue:59 / 255.0 alpha:1.0]];
         [_addButton setTitle:NSLocalizedString(@"accept", @"Accept") forState:UIControlStateNormal];
         _addButton.clipsToBounds = YES;
         [_addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _addButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
         [_addButton addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
+        _addButton.clipsToBounds = YES;
+        ViewRadius(_addButton, 5);
         [self.contentView addSubview:_addButton];
-        
-        _refuseButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 120, 0, 50, 30)];
-        [_refuseButton setBackgroundColor:[UIColor colorWithRed:87 / 255.0 green:186 / 255.0 blue:205 / 255.0 alpha:1.0]];
+        //拒绝
+        _refuseButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 60, 0, 50, 30)];
+        [_refuseButton setBackgroundColor:[UIColor colorWithRed:191 / 255.0 green:191 / 255.0 blue:191 / 255.0 alpha:1.0]];
         [_refuseButton setTitle:NSLocalizedString(@"reject", @"Reject") forState:UIControlStateNormal];
         _refuseButton.clipsToBounds = YES;
         [_refuseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _refuseButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
         [_refuseButton addTarget:self action:@selector(refuseFriend) forControlEvents:UIControlEventTouchUpInside];
+        _refuseButton.clipsToBounds = YES;
+        ViewRadius(_refuseButton, 5);
         [self.contentView addSubview:_refuseButton];
         
         _bottomLineView = [[UIView alloc] init];

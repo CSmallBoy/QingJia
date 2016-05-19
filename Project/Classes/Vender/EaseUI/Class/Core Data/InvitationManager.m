@@ -103,7 +103,6 @@ static InvitationManager *sharedInstance = nil;
         _groupSubject = [aDecoder decodeObjectForKey:@"groupSubject"];
         
     }
-    
     return self;
 }
 

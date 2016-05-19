@@ -135,9 +135,7 @@
     _info = info;
     
     if (!IsEmpty(info.HeadImg))
-    {
-        //头像的url
-        
+    {   //头像的url
         [self.headButton sd_setImageWithURL:[readUserInfo url:info.HeadImg :kkUser] forState:UIControlStateNormal placeholderImage:OrigIMG(@"Head-Portraits")];
         
     }else
@@ -299,7 +297,7 @@
     {
         _address = [[UILabel alloc] init];
         _address.textColor = DarkGrayColor;
-        _address.font = [UIFont systemFontOfSize:15];
+        _address.font = [UIFont systemFontOfSize:12];
     }
     return _address;
 }

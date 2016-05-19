@@ -101,7 +101,7 @@ static ApplyViewController *controller = nil;
     // Return the number of rows in the section.
     return [self.dataSource count];
 }
-
+//tabview 显示问题
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ApplyFriendCell";
