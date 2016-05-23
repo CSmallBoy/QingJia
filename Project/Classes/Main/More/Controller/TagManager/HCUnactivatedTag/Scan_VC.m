@@ -348,17 +348,25 @@ static const CGFloat kMargin = 30;
                 bindVC.labelGuid = str;
                 [self.navigationController pushViewController:bindVC animated:YES];
             }
-            else if ([status isEqualToString:@"1"]){
+            else if ([status isEqualToString:@"1"] || [status isEqualToString:@"2"]){
 //                [self showHUDText:@"该标签已经激活"];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"二维码信息" message:@"已经激活" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+                [alertView show];
                 
-            } else if ([status isEqualToString:@"5"]){
+            } else if ([status isEqualToString:@"5"] || [status isEqualToString:@"6"]){
 //                [self showHUDText:@"该标签已经停用"];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"二维码信息" message:@"已经停用" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+                [alertView show];
                 
-            }else if ([status isEqualToString:@"2"])
+            }else if ([status isEqualToString:@"3"] || [status isEqualToString:@"4"])
             {
 //                [self showHUDText:@"该标签已经激活 标签拥有者"];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"二维码信息" message:@"已经激活" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+                [alertView show];
             }else {
 //                [self showHUDText:@"其他信息"];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"二维码信息" message:@"无效" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+                [alertView show];
             }
         }];
         

@@ -22,6 +22,7 @@
 #import "HCSaveCallApi.h"
 #import "HCDeletePromisedApi.h"
 
+//分享
 #import "UMSocial.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
@@ -29,6 +30,8 @@
 #import "UMSocialSinaHandler.h"
 #import "UMSocialSnsPlatformManager.h"
 #import "UMSocialSinaSSOHandler.h"
+//图片轮播
+#import "SDCycleScrollView.h"
 
 @interface HCOtherPromisedDetailController ()<UMSocialUIDelegate>
 {
@@ -91,21 +94,11 @@
     [self.scrollView addSubview:self.missMessageLabel];
     
     [self.view addSubview:self.scrollView];
-    
     [self.view addSubview:self.footerView];
     [self.view addSubview:self.deletIV];
     
     // 导航栏上的加号“+”
     [self addItem];
-    
-    NSURL *url = [readUserInfo originUrl:self.info.lossImageName :kkLoss];
-    [self.imageView sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
-    
-    NSURL *url1 = [readUserInfo originUrl:self.info.imageName :kkObject];
-    UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url1]];
-    if (image) {
-        [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
-    }
     
     
 }
@@ -452,7 +445,11 @@
         _headBtn.layer.borderColor = [UIColor redColor].CGColor;
         _headBtn.layer.borderWidth = 3;
         [_headBtn setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-        [self.view addSubview:_headBtn];
+        NSURL *url = [readUserInfo originUrl:self.info.imageName :kkObject];
+        UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+        if (image) {
+            [_headBtn setBackgroundImage:image forState:UIControlStateNormal];
+        }
     }
     return _headBtn;
 }
