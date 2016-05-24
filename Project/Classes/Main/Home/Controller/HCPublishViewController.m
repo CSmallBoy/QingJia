@@ -324,9 +324,16 @@
                     api.content = _info.FTContent;
                     api.openAddress = _info.OpenAddress;
                     api.imageNames = str_all;
-                    api.createAddr = _createAddr;
-                    api.createLocation = _createLocation;
-                    api.createAddrSmall = _createAddrSmall;
+                    if (IsEmpty(_createAddr)) {
+                        api.createAddr = @"上海市，闵行区，集心路168号";
+                        api.createLocation = @"31.0123,121.0101";
+                        api.createAddrSmall = @"上海市，闵行区";
+                        
+                    }else{
+                        api.createAddr = _createAddr;
+                        api.createLocation = _createLocation;
+                        api.createAddrSmall = _createAddrSmall;
+                    }
                     //判断权限类型
                     if (IsEmpty(_info.PermitType)) {
                         api.permitType = @"0";

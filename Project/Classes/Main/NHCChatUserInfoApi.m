@@ -17,6 +17,7 @@
 -(NSString *)requestUrl{
     //
     return @"Chat/searchUserInfoByChatName.do";
+    
 }
 -(id)requestArgument{
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],
