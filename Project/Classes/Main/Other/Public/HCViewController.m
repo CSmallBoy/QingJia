@@ -21,8 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.view.backgroundColor = kHCBackgroundColor;
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
+    //    self.view.backgroundColor = kHCBackgroundColor;
+    //    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController.navigationBar  setBackgroundColor:kHCNavBarColor];
 }
 
@@ -35,7 +35,10 @@
 - (void)dealloc
 {
     //销毁当前网络请求
-    [[YTKNetworkAgent sharedInstance] cancelRequest:_baseRequest];
+    //[[YTKNetworkAgent sharedInstance] cancelRequest:_baseRequest];
+    [[YTKNetworkAgent sharedInstance] cancelRequest:_baseRequest completion:^{
+        
+    }];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     DLog(@"%@ dealloc",NSStringFromClass([self class]));
 }
@@ -51,7 +54,10 @@
     //销毁当前网络请求
     [self hideHUDView];
     //[[YTKNetworkAgent sharedInstance] cancelIndependentRequests];
-    [[YTKNetworkAgent sharedInstance] cancelRequest:_baseRequest];
+//    [[YTKNetworkAgent sharedInstance] cancelRequest:_baseRequest];
+    [[YTKNetworkAgent sharedInstance] cancelRequest:_baseRequest completion:^{
+        
+    }];
     [self.navigationController popViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

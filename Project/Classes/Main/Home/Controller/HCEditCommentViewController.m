@@ -239,7 +239,6 @@
     api.toUser = _touser;
     ///还没有写完
     //这个地方要  timeId   ImageName  to_UserID Contact
-    
     if (_info.FTImages.count==0) {
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
             if (requestStatus == HCRequestStatusSuccess) {
