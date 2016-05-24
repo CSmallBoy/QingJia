@@ -1108,6 +1108,7 @@
 		C7F370471CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */; };
 		C7F421081CD055A2006BDA77 /* NHCHomeTimeToComentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */; };
 		CECDAAF2E5B39B0DC4150D1A /* libPods-钦家.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1654B84ADD13561D399A8A /* libPods-钦家.a */; };
+		EA009B6F1CF44D800063EC47 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA009B671CF448A20063EC47 /* MAMapKit.framework */; };
 		EA090FA41CE2BFED00B6E009 /* HCDeletePromisedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */; };
 		EA1B63CB1CE9F305003EBDBA /* HCGetCityInfoVersionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1B63CA1CE9F305003EBDBA /* HCGetCityInfoVersionApi.m */; };
 		EA30EFB41CED50D200028887 /* HCSetTagMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30EFB31CED50D200028887 /* HCSetTagMgr.m */; };
@@ -3139,6 +3140,7 @@
 		C7F421061CD055A2006BDA77 /* NHCHomeTimeToComentApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeTimeToComentApi.h; sourceTree = "<group>"; };
 		C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeToComentApi.m; sourceTree = "<group>"; };
 		D2D0F7C08CB3A13ED613B580 /* Pods-钦家.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-钦家.debug.xcconfig"; path = "Pods/Target Support Files/Pods-钦家/Pods-钦家.debug.xcconfig"; sourceTree = "<group>"; };
+		EA009B671CF448A20063EC47 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = Pods/AMap2DMap/MAMapKit.framework; sourceTree = "<group>"; };
 		EA090FA21CE2BFED00B6E009 /* HCDeletePromisedApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDeletePromisedApi.h; sourceTree = "<group>"; };
 		EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDeletePromisedApi.m; sourceTree = "<group>"; };
 		EA1654B84ADD13561D399A8A /* libPods-钦家.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-钦家.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3165,6 +3167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA009B6F1CF44D800063EC47 /* MAMapKit.framework in Frameworks */,
 				0A6AFD731BFC059A0073982C /* Security.framework in Frameworks */,
 				C777FF231CC74D6D007ED160 /* Foundation.framework in Frameworks */,
 				0A6AFD771BFC05B30073982C /* CoreGraphics.framework in Frameworks */,
@@ -5085,6 +5088,7 @@
 		B3F788F61B430EBC07B60CDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA009B671CF448A20063EC47 /* MAMapKit.framework */,
 				C777FF241CC74E47007ED160 /* jpush-ios-2.1.0.a */,
 				C777FF221CC74D6D007ED160 /* Foundation.framework */,
 				C777FF201CC74D2E007ED160 /* CoreFoundation.framework */,
@@ -8849,6 +8853,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/Project/Classes/Vender/BaiduMap_IOSSDK_v2.9.1",
+					"$(PROJECT_DIR)/Pods/AMap2DMap",
 				);
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Project/Header.pch";
 				INFOPLIST_FILE = Project/Info.plist;
@@ -8887,6 +8892,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Project/Classes/Vender/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/Project/Classes/Vender/BaiduMap_IOSSDK_v2.9.1",
+					"$(PROJECT_DIR)/Pods/AMap2DMap",
 				);
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Project/Header.pch";
 				INFOPLIST_FILE = Project/Info.plist;
