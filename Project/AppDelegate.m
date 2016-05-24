@@ -103,6 +103,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiBack3:) name:kJPFNetworkDidRegisterNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiBack4:) name:kJPFNetworkDidLoginNotification object:nil];
     
+    //获取自定义消息
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(receiveCustomMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
     
     //检测省市县三级联动数据版本
     [self getCityVersionFromService];
@@ -212,6 +215,17 @@ didFinishLaunchingWithOptions:launchOptions
                  otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
 }
 
+//获取极光自定义消息
+- (void)receiveCustomMessage:(NSNotification *)notification
+{
+    NSDictionary * userInfo = [notification userInfo];
+    NSString *content = [userInfo valueForKey:@"content"];//内容
+    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+    NSString *customizeField1 = [extras valueForKey:@"customizeField1"];
+    
+    NSLog(@"customMessage: %@",userInfo);
+}
+
 //极光服务器的推送消息类型
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
@@ -244,6 +258,8 @@ didFinishLaunchingWithOptions:launchOptions
                                      errorDescription:NULL];
     return str;
 }
+
+//接受本地通知
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     if (_mainController)
