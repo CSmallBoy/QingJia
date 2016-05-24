@@ -14,6 +14,8 @@
 
 #import "ApplyFriendCell.h"
 #import "InvitationManager.h"
+//查询好友信息
+#import "NHCChatUserInfoApi.h"
 
 static ApplyViewController *controller = nil;
 
@@ -130,10 +132,19 @@ static ApplyViewController *controller = nil;
                 cell.headerImageView.image = [UIImage imageNamed:@"groupPrivateHeader"];
             }
             else if(applyStyle == ApplyStyleFriend){
+                //好友申请
+                NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
+                api.chatName = [entity.applicantUsername stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+                [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+                    cell.titleLabel.text = dict[@"nickName"];
+                    cell.headerImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
+                    cell.contentLabel.text = [NSString stringWithFormat:@"%@,添加您为好友",cell.titleLabel.text];
+                }];
                 cell.titleLabel.text = entity.applicantUsername;
-                cell.headerImageView.image = [UIImage imageNamed:@"chatListCellHead"];
+                cell.headerImageView.image = entity.image;
             }
-            cell.contentLabel.text = entity.reason;
+            cell.contentLabel.text = entity.detailStr;
+//             cell.contentLabel.text = [NSString stringWithFormat:@"%@,添加您为好友",cell.titleLabel.text];
         }
     }
     

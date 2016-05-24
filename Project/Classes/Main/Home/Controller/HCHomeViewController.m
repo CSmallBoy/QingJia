@@ -15,6 +15,8 @@
 #import "findFamilyMessage.h"
 //城市三级联动
 #import "HCGetCityInfoApi.h"
+//设置tag
+#import "HCSetTagMgr.h"
 
 #import "AppDelegate.h"
 
@@ -49,6 +51,7 @@
 //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
 //        
 //    }];
+    [[HCSetTagMgr manager]setPushTag];
     
 }
 

@@ -8842,8 +8842,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8869,7 +8869,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c5a15539-87dc-4e02-8695-a1de8aa607c1";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8880,8 +8880,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8907,7 +8907,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c5a15539-87dc-4e02-8695-a1de8aa607c1";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

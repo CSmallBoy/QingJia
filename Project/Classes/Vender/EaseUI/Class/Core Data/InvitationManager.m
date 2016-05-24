@@ -11,7 +11,8 @@
  */
 
 #import "InvitationManager.h"
-
+//在这个地方 查申请
+#import "NHCChatUserInfoApi.h"
 
 @interface InvitationManager (){
     NSUserDefaults *_defaults;
@@ -94,6 +95,13 @@ static InvitationManager *sharedInstance = nil;
 -(id)initWithCoder:(NSCoder *)aDecoder{
     if(self = [super init]){
         _applicantUsername = [aDecoder decodeObjectForKey:@"applicantUsername"];
+        NHCChatUserInfoApi *Api = [[NHCChatUserInfoApi alloc]init];
+        Api.chatName = [_applicantUsername stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+        [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+            _applicantUsername = dict[@"nickName"];
+            _image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[readUserInfo url:dict[@"imageName"] :kkUser]]];
+            _detailStr = [NSString stringWithFormat:@"%@,添加您为好友",_applicantUsername];
+        }];
         _applicantNick = [aDecoder decodeObjectForKey:@"applicantNick"];
         _reason = [aDecoder decodeObjectForKey:@"reason"];
         _receiverUsername = [aDecoder decodeObjectForKey:@"receiverUsername"];

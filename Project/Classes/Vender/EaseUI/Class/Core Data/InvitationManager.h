@@ -38,5 +38,7 @@
 @property (nonatomic, strong) NSNumber * style;
 @property (nonatomic, strong) NSString * groupId;
 @property (nonatomic, strong) NSString * groupSubject;
+@property (nonatomic, strong) UIImage * image;
+@property (nonatomic, strong) NSString * detailStr;
 
 @end

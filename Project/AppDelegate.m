@@ -184,7 +184,6 @@
         _leftSlideController = [[LeftSlideViewController alloc] initWithLeftView:left andMainView:_mainController];
         
         self.window.rootViewController = _leftSlideController;
-        
         HCHomeViewController *home = (HCHomeViewController *)_homeNavController.visibleViewController;
         if (!IsEmpty(_showWelcomeJoinGradeID))
         {
@@ -270,7 +269,7 @@ didFinishLaunchingWithOptions:launchOptions
     [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置
     
     [self startUpdatingLocation];
-//    [self setupTimeLocation];
+    //[self setupTimeLocation];
 }
 
 - (void)setupTimeLocation
