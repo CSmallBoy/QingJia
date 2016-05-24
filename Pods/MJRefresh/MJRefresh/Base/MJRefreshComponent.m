@@ -190,7 +190,9 @@
 - (void)setPullingPercent:(CGFloat)pullingPercent
 {
     _pullingPercent = pullingPercent;
+    
     if (self.isRefreshing) return;
+    
     if (self.isAutomaticallyChangeAlpha) {
         self.alpha = pullingPercent;
     }

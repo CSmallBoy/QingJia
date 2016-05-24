@@ -45,7 +45,7 @@
 - (SZTextView *)textView
 {
     if (_textView == nil) {
-        CGRect cellFrame = CGRectMake(10, self.contentView.bounds.origin.y + self.topSpace, self.contentView.bounds.size.width - 30, self.contentView.bounds.size.height);
+        CGRect cellFrame = self.contentView.bounds;
         cellFrame.origin.y += kPadding;
         cellFrame.size.height -= kPadding;
         
@@ -75,19 +75,39 @@
                afterDelay:0.1];
 }
 
-- (void)setTopSpace:(CGFloat)topSpace
-{
-    CGRect oldFrame = _textView.frame;
-    _textView.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y+topSpace, oldFrame.size.width, oldFrame.size.height);
-}
-
 - (CGFloat)cellHeight
 {
-    return [self.textView sizeThatFits:CGSizeMake(self.textView.frame.size.width, FLT_MAX)].height + kPadding * 2+30;
+    return [self.textView sizeThatFits:CGSizeMake(self.textView.frame.size.width, FLT_MAX)].height + kPadding * 2;
 }
 
+- (void)updateTextViewHeight {
+    [self textViewDidChange:self.textView];
+}
 
 #pragma mark - Text View Delegate
+
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    if ([self.expandableTableView.delegate respondsToSelector:@selector(tableView:textViewDidEndEditing:)]) {
+        [(id<ACEExpandableTableViewDelegate>)self.expandableTableView.delegate tableView:self.expandableTableView textViewDidEndEditing:self.textView];
+    }
+}
+
+- (void)textViewDidChangeSelection:(UITextView *)textView {
+    if ([self.expandableTableView.delegate respondsToSelector:@selector(tableView:textViewDidChangeSelection:)]) {
+        [(id<ACEExpandableTableViewDelegate>)self.expandableTableView.delegate tableView:self.expandableTableView textViewDidChangeSelection:self.textView];
+    }
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([self.expandableTableView.delegate respondsToSelector:@selector(tableView:textView:shouldChangeTextInRange:replacementText:)]) {
+        id<ACEExpandableTableViewDelegate> delegate = (id<ACEExpandableTableViewDelegate>)self.expandableTableView.delegate;
+        return [delegate tableView:self.expandableTableView
+                          textView:textView
+           shouldChangeTextInRange:range
+                   replacementText:text];
+    }
+    return YES;
+}
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {

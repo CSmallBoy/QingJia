@@ -80,6 +80,7 @@ typedef NS_ENUM(NSInteger, EMErrorType) {
     //file error
     EMErrorAttachmentNotFound,                  //未找着附件
     EMErrorAttachmentUploadFailure,             //文件上传失败
+    EMErrorAttachmentDownloadFailure,           //文件下载失败
     
     //url error
     EMErrorIllegalURI,                          //URL非法(内部使用)
@@ -87,6 +88,8 @@ typedef NS_ENUM(NSInteger, EMErrorType) {
     //message error
     EMErrorMessageInvalid_NULL,                 //无效的消息(为空)
     EMErrorMessageContainSensitiveWords,        //消息中包含敏感词
+    EMErrorMessageFailedBeLimited,              //发送消息限流(Ex. 消息发送频率超过了服务器的限制)
+    EMErrorMessageFailedInBlacklist,            //发送消息失败(Ex. 加入黑名单,关系为双向,消息发送失败)
     
     //group error
     EMErrorGroupInvalidID_NULL,                 //无效的群组ID(为空)
@@ -128,6 +131,10 @@ typedef NS_ENUM(NSInteger, EMErrorType) {
     EMErrorChatroomInvalidID_NULL,              //无效的聊天室ID(为空)
     EMErrorChatroomJoined,                      //已加入聊天室
     EMErrorChatroomNotJoined,                   //没有加入聊天室
+    
+    //call network error
+    EMErrorCallNoData,                          //实时音视频当前没有数据
+    EMErrorCallUnstable,                        //实时音视频当前网络问题
     
     EMErrorReachLimit = EMErrorServerMaxCountExceeded,
     EMErrorOutOfRateLimited = EMErrorServerMaxCountExceeded,

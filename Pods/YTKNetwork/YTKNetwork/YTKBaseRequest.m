@@ -117,22 +117,27 @@
 - (void)stop {
     [self toggleAccessoriesWillStopCallBack];
     self.delegate = nil;
-    [[YTKNetworkAgent sharedInstance] cancelRequest:self];
-    [self toggleAccessoriesDidStopCallBack];
+    [[YTKNetworkAgent sharedInstance] cancelRequest:self completion:^{
+        [self toggleAccessoriesDidStopCallBack];
+    }];
+}
+
+- (BOOL)isCancelled {
+    return self.requestOperation.isCancelled;
 }
 
 - (BOOL)isExecuting {
     return self.requestOperation.isExecuting;
 }
 
-- (void)startWithCompletionBlockWithSuccess:(void (^)(YTKBaseRequest *request))success
-                                    failure:(void (^)(YTKBaseRequest *request))failure {
+- (void)startWithCompletionBlockWithSuccess:(YTKRequestCompletionBlock)success
+                                    failure:(YTKRequestCompletionBlock)failure {
     [self setCompletionBlockWithSuccess:success failure:failure];
     [self start];
 }
 
-- (void)setCompletionBlockWithSuccess:(void (^)(YTKBaseRequest *request))success
-                              failure:(void (^)(YTKBaseRequest *request))failure {
+- (void)setCompletionBlockWithSuccess:(YTKRequestCompletionBlock)success
+                              failure:(YTKRequestCompletionBlock)failure {
     self.successCompletionBlock = success;
     self.failureCompletionBlock = failure;
 }
@@ -147,6 +152,10 @@
     return self.requestOperation.responseObject;
 }
 
+- (NSData *)responseData {
+    return self.requestOperation.responseData;
+}
+
 - (NSString *)responseString {
     return self.requestOperation.responseString;
 }
@@ -159,7 +168,11 @@
     return self.requestOperation.response.allHeaderFields;
 }
 
-#pragma mark - Request Accessoies
+- (NSError *)requestOperationError {
+    return self.requestOperation.error;
+}
+
+#pragma mark - Request Accessories
 
 - (void)addAccessory:(id<YTKRequestAccessory>)accessory {
     if (!self.requestAccessories) {

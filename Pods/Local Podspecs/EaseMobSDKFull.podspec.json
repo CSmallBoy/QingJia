@@ -1,6 +1,6 @@
 {
   "name": "EaseMobSDKFull",
-  "version": "2.2.1",
+  "version": "2.2.5.1",
   "license": "MIT",
   "summary": "An Objective-C client for IM and Real-time voice service",
   "homepage": "http://www.easemob.com",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/easemob/sdk-ios-cocoapods-integration.git",
-    "tag": "2.2.1"
+    "tag": "2.2.5.1"
   },
   "source_files": "EaseMobSDKFull/**/*.{h}",
   "platforms": {

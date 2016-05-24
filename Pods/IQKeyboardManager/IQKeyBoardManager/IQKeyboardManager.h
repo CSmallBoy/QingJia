@@ -31,10 +31,6 @@
 #import <UIKit/UITextInputTraits.h>
 #import <UIKit/UIView.h>
 
-#if !(__has_feature(objc_instancetype))
-#define instancetype id
-#endif
-
 @class UIFont;
 
 ///---------------------
@@ -87,7 +83,7 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
 ///-------------------------
 
 /**
- Automatic add the IQToolbar functionality. Default is YES.
+ Automatic add IQToolbar functionality. Default is YES.
  */
 @property(nonatomic, assign, getter = isEnableAutoToolbar) BOOL enableAutoToolbar;
 
@@ -96,12 +92,25 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
  */
 @property(nonatomic, assign) IQAutoToolbarManageBehaviour toolbarManageBehaviour;
 
-#ifdef NSFoundationVersionNumber_iOS_6_1
 /**
  If YES, then uses textField's tintColor property for IQToolbar, otherwise tint color is black. Default is NO.
  */
 @property(nonatomic, assign) BOOL shouldToolbarUsesTextFieldTintColor;
-#endif
+
+/**
+ This is used for toolbar.tintColor when textfield.keyboardAppearance is UIKeyboardAppearanceDefault. If shouldToolbarUsesTextFieldTintColor is YES then this property is ignored. Default is nil and uses black color.
+ */
+@property(nullable, nonatomic, strong) UIColor *toolbarTintColor;
+
+/**
+ Toolbar done button icon, If nothing is provided then check toolbarDoneBarButtonItemText to draw done button.
+ */
+@property(nullable, nonatomic, strong) UIImage *toolbarDoneBarButtonItemImage;
+
+/**
+ Toolbar done button text, If nothing is provided then system default 'UIBarButtonSystemItemDone' will be used.
+ */
+@property(nullable, nonatomic, strong) NSString *toolbarDoneBarButtonItemText;
 
 /**
  If YES, then it add the textField's placeholder text on IQToolbar. Default is YES.
@@ -122,12 +131,10 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
  */
 @property(nonatomic, assign) BOOL canAdjustTextView;
 
-#ifdef NSFoundationVersionNumber_iOS_6_1
 /**
  Adjust textView's contentInset to fix a bug. for iOS 7.0.x - http://stackoverflow.com/questions/18966675/uitextview-in-ios7-clips-the-last-line-of-text-string Default is YES.
  */
 @property(nonatomic, assign) BOOL shouldFixTextViewClip;
-#endif
 
 ///---------------------------------------
 /// @name UIKeyboard appearance overriding
@@ -184,7 +191,7 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
 /**
  Restore scrollViewContentOffset when resigning from scrollView. Default is NO.
  */
-@property(nonatomic, assign) BOOL shouldRestoreScrollViewContentOffset;
+@property(nonatomic, assign) BOOL shouldRestoreScrollViewContentOffset __attribute__ ((deprecated("Please use IQUIScrollView+Additions category instead. This property will be removed from here in future release.")));
 
 ///------------------------------------------------
 /// @name UISound handling
@@ -220,21 +227,21 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
  
  @param disabledClass Class in which library should not adjust view to show textField.
  */
--(void)disableInViewControllerClass:(nonnull Class)disabledClass;
+-(void)disableInViewControllerClass:(nonnull Class)disabledClass __attribute__ ((deprecated("This method is replaced with disableDistanceHandlingInViewControllerClass: method to adopt more graceful method name. Some developers confuses with this method name. This method will be removed in upcoming release.")));
+-(void)disableDistanceHandlingInViewControllerClass:(nonnull Class)disabledClass;
 
 /**
  Re-enable adjusting textField in disabledClass
  
  @param disabledClass Class in which library should re-enable adjust view to show textField.
  */
--(void)removeDisableInViewControllerClass:(nonnull Class)disabledClass;
+-(void)removeDisableInViewControllerClass:(nonnull Class)disabledClass __attribute__ ((deprecated("This method is replaced with removeDisableDistanceHandlingInViewControllerClass: method to adopt more graceful method name. Some developers confuses with this method name. This method will be removed in upcoming release.")));
+-(void)removeDisableDistanceHandlingInViewControllerClass:(nonnull Class)disabledClass;
 
 /**
- Returns YES if ViewController class is disabled for library, otherwise returns NO.
- 
- @param disabledClass Class which is to check for it's disability.
+ Returns All disabled classes registered with disableInViewControllerClass.
  */
--(BOOL)isDisableInViewControllerClass:(nonnull Class)disabledClass;
+-( NSSet* _Nonnull )disabledInViewControllerClasses;
 
 /**
  Disable automatic toolbar creation in in toolbarDisabledClass
@@ -251,11 +258,9 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
 -(void)removeDisableToolbarInViewControllerClass:(nonnull Class)toolbarDisabledClass;
 
 /**
- Returns YES if toolbar is disabled in ViewController class, otherwise returns NO.
- 
- @param toolbarDisabledClass Class which is to check for toolbar disability.
+ Returns All toolbar disabled classes registered with disableToolbarInViewControllerClass.
  */
--(BOOL)isDisableToolbarInViewControllerClass:(nonnull Class)toolbarDisabledClass;
+-( NSSet* _Nonnull )disabledToolbarInViewControllerClasses;
 
 /**
  Consider provided customView class as superView of all inner textField for calculating next/previous button logic.
@@ -272,11 +277,9 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
 -(void)removeConsiderToolbarPreviousNextInViewClass:(nonnull Class)toolbarPreviousNextConsideredClass;
 
 /**
- Returns YES if inner hierarchy is considered for previous/next in class, otherwise returns NO.
- 
- @param toolbarPreviousNextConsideredClass Class which is to check for previous next consideration
+ Returns All toolbar considered classes registered with considerToolbarPreviousNextInViewClass.
  */
--(BOOL)isConsiderToolbarPreviousNextInViewClass:(nonnull Class)toolbarPreviousNextConsideredClass;
+-(NSSet* _Nonnull)consideredToolbarPreviousNextViewClasses;
 
 
 ///----------------------------------------

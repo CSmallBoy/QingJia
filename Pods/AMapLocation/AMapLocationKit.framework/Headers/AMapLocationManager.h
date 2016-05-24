@@ -58,6 +58,16 @@ typedef void (^AMapLocatingCompletionBlock)(CLLocation *location, AMapLocationRe
 @property(nonatomic, assign) BOOL allowsBackgroundLocationUpdates;
 
 /**
+ *  指定单次定位超时时间,默认为10s。最小值是2s。注意单次定位请求前设置。
+ */
+@property(nonatomic, assign) NSInteger locationTimeout;
+
+/**
+ *  指定单次定位逆地理超时时间,默认为5s。最小值是2s。注意单次定位请求前设置。
+ */
+@property(nonatomic, assign) NSInteger reGeocodeTimeout;
+
+/**
  *  单次定位
  *
  *  如果当前正在连续定位，调用此方法将会失败，返回NO。

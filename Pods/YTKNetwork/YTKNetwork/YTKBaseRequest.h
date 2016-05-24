@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger , YTKRequestMethod) {
     YTKRequestMethodHead,
     YTKRequestMethodPut,
     YTKRequestMethodDelete,
-    YTKRequestMethodPatch
+    YTKRequestMethodPatch,
 };
 
 typedef NS_ENUM(NSInteger , YTKRequestSerializerType) {
@@ -39,17 +39,25 @@ typedef NS_ENUM(NSInteger , YTKRequestSerializerType) {
     YTKRequestSerializerTypeJSON,
 };
 
+typedef NS_ENUM(NSInteger , YTKRequestPriority) {
+    YTKRequestPriorityLow = -4L,
+    YTKRequestPriorityDefault = 0,
+    YTKRequestPriorityHigh = 4,
+};
+
 typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 typedef void (^AFDownloadProgressBlock)(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile);
 
 @class YTKBaseRequest;
 
+typedef void(^YTKRequestCompletionBlock)(__kindof YTKBaseRequest *request);
+
 @protocol YTKRequestDelegate <NSObject>
+
+@optional
 
 - (void)requestFinished:(YTKBaseRequest *)request;
 - (void)requestFailed:(YTKBaseRequest *)request;
-
-@optional
 - (void)clearRequest;
 
 @end
@@ -77,8 +85,9 @@ typedef void (^AFDownloadProgressBlock)(AFDownloadRequestOperation *operation, N
 /// request delegate object
 @property (nonatomic, weak) id<YTKRequestDelegate> delegate;
 
-
 @property (nonatomic, strong, readonly) NSDictionary *responseHeaders;
+
+@property (nonatomic, strong, readonly) NSData *responseData;
 
 @property (nonatomic, strong, readonly) NSString *responseString;
 
@@ -86,11 +95,19 @@ typedef void (^AFDownloadProgressBlock)(AFDownloadRequestOperation *operation, N
 
 @property (nonatomic, readonly) NSInteger responseStatusCode;
 
-@property (nonatomic, copy) void (^successCompletionBlock)(YTKBaseRequest *);
+@property (nonatomic, strong, readonly) NSError *requestOperationError;
 
-@property (nonatomic, copy) void (^failureCompletionBlock)(YTKBaseRequest *);
+@property (nonatomic, copy) YTKRequestCompletionBlock successCompletionBlock;
+
+@property (nonatomic, copy) YTKRequestCompletionBlock failureCompletionBlock;
 
 @property (nonatomic, strong) NSMutableArray *requestAccessories;
+
+/// 请求的优先级, 优先级高的请求会从请求队列中优先出列
+@property (nonatomic) YTKRequestPriority requestPriority;
+
+/// Return cancelled state of request operation
+@property (nonatomic, readonly, getter=isCancelled) BOOL cancelled;
 
 /// append self to request queue
 - (void)start;
@@ -101,11 +118,11 @@ typedef void (^AFDownloadProgressBlock)(AFDownloadRequestOperation *operation, N
 - (BOOL)isExecuting;
 
 /// block回调
-- (void)startWithCompletionBlockWithSuccess:(void (^)(YTKBaseRequest *request))success
-                                    failure:(void (^)(YTKBaseRequest *request))failure;
+- (void)startWithCompletionBlockWithSuccess:(YTKRequestCompletionBlock)success
+                                    failure:(YTKRequestCompletionBlock)failure;
 
-- (void)setCompletionBlockWithSuccess:(void (^)(YTKBaseRequest *request))success
-                              failure:(void (^)(YTKBaseRequest *request))failure;
+- (void)setCompletionBlockWithSuccess:(YTKRequestCompletionBlock)success
+                              failure:(YTKRequestCompletionBlock)failure;
 
 /// 把block置nil来打破循环引用
 - (void)clearCompletionBlock;

@@ -1,7 +1,7 @@
 platform :ios, '7.0'
 
 inhibit_all_warnings!
-
+target:钦家 do
 pod 'FMDB'
 pod 'MJExtension'
 pod 'MJRefresh'
@@ -22,3 +22,4 @@ pod 'AMap2DMap'
 
 pod 'Parse'
 pod 'EaseMobSDKFull', :git => 'https://github.com/easemob/sdk-ios-cocoapods-integration.git'
+end

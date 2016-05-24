@@ -1,55 +1,54 @@
 PODS:
-  - ACEExpandableTextCell (1.0.3):
+  - ACEExpandableTextCell (1.0.4):
     - SZTextView
   - AFDownloadRequestOperation (2.0.1):
     - AFNetworking (~> 2.0)
-  - AFNetworking (2.6.2):
-    - AFNetworking/NSURLConnection (= 2.6.2)
-    - AFNetworking/NSURLSession (= 2.6.2)
-    - AFNetworking/Reachability (= 2.6.2)
-    - AFNetworking/Security (= 2.6.2)
-    - AFNetworking/Serialization (= 2.6.2)
-    - AFNetworking/UIKit (= 2.6.2)
-  - AFNetworking/NSURLConnection (2.6.2):
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.2):
+  - AFNetworking/NSURLSession (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.2)
-  - AFNetworking/Security (2.6.2)
-  - AFNetworking/Serialization (2.6.2)
-  - AFNetworking/UIKit (2.6.2):
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMap2DMap (3.2.0)
-  - AMapLocation (1.1.0)
-  - Bolts/Tasks (1.5.0)
-  - DZNEmptyDataSet (1.7.2)
-  - EaseMobSDKFull (2.2.1)
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
-  - IQKeyboardManager (3.3.4)
-  - MBProgressHUD (0.9.1)
-  - MJExtension (3.0.3)
-  - MJRefresh (3.0.1)
+  - AMap2DMap (3.3.0)
+  - AMapLocation (1.2.2)
+  - Bolts/Tasks (1.7.0)
+  - DZNEmptyDataSet (1.8.1)
+  - EaseMobSDKFull (2.2.5.1)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - IQKeyboardManager (3.3.7)
+  - MBProgressHUD (0.9.2)
+  - MJExtension (3.0.10)
+  - MJRefresh (3.1.0)
   - MLEmojiLabel (1.0.0):
     - TTTAttributedLabel (~> 1.13.4)
-  - Parse (1.11.0):
-    - Bolts/Tasks (~> 1.5)
-  - SDCycleScrollView (1.3)
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
-  - SZTextView (1.2.1)
+  - Parse (1.13.0):
+    - Bolts/Tasks (~> 1.6)
+  - SDCycleScrollView (1.64):
+    - SDWebImage (~> 3.7)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - SZTextView (1.2.2)
   - TTTAttributedLabel (1.13.4)
-  - UITableView+FDTemplateLayoutCell (1.3)
-  - YTKNetwork (0.5.0):
+  - UITableView+FDTemplateLayoutCell (1.4)
+  - YTKNetwork (1.1.0):
     - AFDownloadRequestOperation (~> 2.0)
     - AFNetworking (~> 2.0)
 
@@ -77,30 +76,32 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   EaseMobSDKFull:
-    :commit: c4a63a69518d396309e8d6c267f2756cac3877ee
+    :commit: 1e450eea3f86e805cb01ecc662a4ab3d270133a2
     :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
 
 SPEC CHECKSUMS:
-  ACEExpandableTextCell: 5fadb1461c7f48b8d97e1d5257eeff5c1ec93a0f
+  ACEExpandableTextCell: 02c1fdb5a57344f543c9536c8c985ffcca1ed8b2
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
-  AFNetworking: 7f317038a9710cabfa43ec56396b307b45df72ab
-  AMap2DMap: 02c73a3e55ac033e3b0b8ec35d3d21ffcac5aae3
-  AMapLocation: f0df6e8cc98461f16aae5638657e8b20a1be1995
-  Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
-  DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
-  EaseMobSDKFull: 4a18d6ad47b4ccca564833963511bddd151e1654
-  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
-  IQKeyboardManager: ac803e61e5b50efae6b3aeedd95a02c7c7d3b2b3
-  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJExtension: de557e1c48ef3212590d3203764c8003fae68815
-  MJRefresh: ca22bb7197c4a17a0491763773cd5cb106b2a810
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AMap2DMap: e53461cdc345375e514579db17dbd721ff9ed9eb
+  AMapLocation: 5412fbf0385716d4d481e39a95929057cddc093f
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  EaseMobSDKFull: 3c2df52237336183f57f6b56366c36abcc77cd3b
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MLEmojiLabel: ceeab17d10d296cc00636bf201c8da597fdede10
-  Parse: 886af46a0a677402f6374bb97ac212e795f70afe
-  SDCycleScrollView: 90e43636fcc8e6a7f74e8b64d87418a8e96549b4
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
-  SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
+  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
+  SDCycleScrollView: 806fedb9342ab03b58b84442f985517b42c7cbb7
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
-  UITableView+FDTemplateLayoutCell: d5be6056b5060313f5955a2590ecd33142ad713d
-  YTKNetwork: 3f163c181ce5f03d52cf88f39d6757f46894280c
+  UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
+  YTKNetwork: a41c1df80d4f3b9d05c19c514a2c604e7a6ac341
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: f50cabd0210bb28810b85e699e83a28c1938dcb3
+
+COCOAPODS: 1.0.0

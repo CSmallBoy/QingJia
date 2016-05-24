@@ -30,6 +30,7 @@
     AFHTTPRequestOperationManager *_manager;
     YTKNetworkConfig *_config;
     NSMutableDictionary *_requestsRecord;
+    dispatch_queue_t _requestProcessingQueue;
 }
 
 + (YTKNetworkAgent *)sharedInstance {
@@ -48,6 +49,8 @@
         _manager = [AFHTTPRequestOperationManager manager];
         _requestsRecord = [NSMutableDictionary dictionary];
         _manager.operationQueue.maxConcurrentOperationCount = 4;
+        _manager.securityPolicy = _config.securityPolicy;
+        _requestProcessingQueue = dispatch_queue_create("com.fenbi.ytknetwork.request.processing", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -81,6 +84,12 @@
 }
 
 - (void)addRequest:(YTKBaseRequest *)request {
+    dispatch_async(_requestProcessingQueue, ^{
+        [self ytk_addRequst:request];
+    });
+}
+
+- (void)ytk_addRequst:(YTKBaseRequest *)request {
     YTKRequestMethod method = [request requestMethod];
     NSString *url = [self buildRequestUrl:request];
     id param = request.requestArgument;
@@ -91,7 +100,7 @@
     } else if (request.requestSerializerType == YTKRequestSerializerTypeJSON) {
         _manager.requestSerializer = [AFJSONRequestSerializer serializer];
     }
-    
+
     _manager.requestSerializer.timeoutInterval = [request requestTimeoutInterval];
 
     // if api need server username and password
@@ -100,7 +109,7 @@
         [_manager.requestSerializer setAuthorizationHeaderFieldWithUsername:(NSString *)authorizationHeaderFieldArray.firstObject
                                                                    password:(NSString *)authorizationHeaderFieldArray.lastObject];
     }
-    
+
     // if api need add custom value to HTTPHeaderField
     NSDictionary *headerFieldValueDictionary = [request requestHeaderFieldValueDictionary];
     if (headerFieldValueDictionary != nil) {
@@ -195,11 +204,35 @@
         }
     }
 
+    // Set request operation priority
+    switch (request.requestPriority) {
+        case YTKRequestPriorityHigh:
+            request.requestOperation.queuePriority = NSOperationQueuePriorityHigh;
+            break;
+        case YTKRequestPriorityLow:
+            request.requestOperation.queuePriority = NSOperationQueuePriorityLow;
+            break;
+        case YTKRequestPriorityDefault:
+        default:
+            request.requestOperation.queuePriority = NSOperationQueuePriorityNormal;
+            break;
+    }
+
+    // retain operation
     YTKLog(@"Add request: %@", NSStringFromClass([request class]));
     [self addOperation:request];
 }
 
-- (void)cancelRequest:(YTKBaseRequest *)request {
+- (void)cancelRequest:(YTKBaseRequest *)request completion:(YTKNetworkAgentCompletionBlock)completion {
+    dispatch_async(_requestProcessingQueue, ^{
+        [self ytk_cancelRequest:request];
+        if (completion != nil) {
+            completion();
+        }
+    });
+}
+
+- (void)ytk_cancelRequest:(YTKBaseRequest *)request {
     [request.requestOperation cancel];
     [self removeOperation:request.requestOperation];
     [request clearCompletionBlock];
