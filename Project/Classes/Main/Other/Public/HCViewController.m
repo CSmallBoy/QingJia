@@ -53,8 +53,8 @@
 {
     //销毁当前网络请求
     [self hideHUDView];
-    //[[YTKNetworkAgent sharedInstance] cancelIndependentRequests];
-//    [[YTKNetworkAgent sharedInstance] cancelRequest:_baseRequest];
+//    [[YTKNetworkAgent sharedInstance] cancelIndependentRequests];
+//   [[YTKNetworkAgent sharedInstance] cancelRequest:_baseRequest];
     [[YTKNetworkAgent sharedInstance] cancelRequest:_baseRequest completion:^{
         
     }];

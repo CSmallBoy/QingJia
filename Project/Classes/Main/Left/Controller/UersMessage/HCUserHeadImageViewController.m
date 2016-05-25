@@ -8,7 +8,7 @@
 
 #import "HCUserHeadImageViewController.h"
 
-@interface HCUserHeadImageViewController ()
+@interface HCUserHeadImageViewController ()<UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIView *grayView;
 @property (nonatomic, strong) UIView *contentView;
@@ -25,10 +25,31 @@
     
     self.title = @"头像";
     [self setupBackItem];
-    
     [self.view addSubview:self.grayView];
+    //缩放
+    UIPinchGestureRecognizer *pin = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(pinchView:)];
+    pin.delegate = self;
+    [self.contentView addGestureRecognizer:pin];
+    //移动
+    UIPanGestureRecognizer *pan  = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
+    //pan.delegate = self;
+    self.headImgView.userInteractionEnabled = YES;
+    [self.headImgView addGestureRecognizer:pan];
 }
-
+-(void)pan:(UIPanGestureRecognizer*)panSender{
+    UIView *panView = self.headImgView;
+    CGPoint translation = [panSender translationInView:panView.superview];
+    panView.center=CGPointMake(panView.center.x+translation.x, panView.center.y+translation.y);
+    [panSender setTranslation:(CGPointMake(0, 0))inView:panView.superview];
+}
+- (void) pinchView:(UIPinchGestureRecognizer *)pinchGestureRecognizer
+{
+    UIView *view = pinchGestureRecognizer.view;
+    if (pinchGestureRecognizer.state == UIGestureRecognizerStateBegan || pinchGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        view.transform = CGAffineTransformScale(view.transform, pinchGestureRecognizer.scale, pinchGestureRecognizer.scale);
+        pinchGestureRecognizer.scale = 1;
+    }
+}
 #pragma mark - private methods
 
 - (void)handleTap:(UITapGestureRecognizer *)tap
@@ -59,9 +80,9 @@
 {
     if (!_contentView)
     {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, WIDTH(self.view)-30, HEIGHT(self.view)*0.6)];
+         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), HEIGHT(self.view))];
         _contentView.center = self.view.center;
-        _contentView.backgroundColor = [UIColor whiteColor];
+        //_contentView.backgroundColor = [UIColor whiteColor];
         ViewRadius(_contentView, 5);
         self.headImgView.clipsToBounds = YES;
         self.headImgView.contentMode = UIViewContentModeScaleAspectFill;
@@ -74,7 +95,7 @@
 {
     if (!_headImgView)
     {
-        _headImgView = [[UIImageView alloc]initWithFrame:CGRectMake(15, (HEIGHT(self.view)*0.6-SCREEN_WIDTH)/2, SCREEN_WIDTH-30-30, SCREEN_WIDTH)];
+         _headImgView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 100, WIDTH(self.view)-30, HEIGHT(self.view)*0.6)];
         
         //头像
         [_headImgView sd_setImageWithURL:[readUserInfo originUrl:_head_image :kkUser] placeholderImage:IMG(@"drg160.png")];
