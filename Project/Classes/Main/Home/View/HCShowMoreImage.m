@@ -38,10 +38,15 @@
             CGFloat buttonY = 0;
             if (imageUrlArr.count < 5)
             {
-                NSInteger col = i%2;
-                NSInteger row = i/2;
+                NSInteger col = i%3;
+                NSInteger row = i/3;
+                if(imageUrlArr.count==3){
+                    buttonY = 0 * buttonW + (row+1)*5;
+                }else{
+                    buttonY = row * buttonW + (row+1)*5;
+                }
                 buttonX = col * buttonW + (col+1)*5;
-                buttonY = row * buttonW + (row+1)*5;
+                
             }else
             {
                 NSInteger col = i%3;

@@ -521,6 +521,8 @@
 		8D9790521CB3A05D00FE3C12 /* HCMTalkWaitPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D97904E1CB3A05D00FE3C12 /* HCMTalkWaitPayCell.m */; };
 		8D9790551CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9790541CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m */; };
 		8DC747881C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC747871C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m */; };
+		C704999A1CF6CFF2003DD1E7 /* HCFamilyUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C70499991CF6CFF2003DD1E7 /* HCFamilyUserInfoViewController.m */; };
+		C704999D1CF6E212003DD1E7 /* HCFamilyDeleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C704999C1CF6E212003DD1E7 /* HCFamilyDeleteViewController.m */; };
 		C706D62D1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C706D62C1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m */; };
 		C706D6301CE613BC0096EF9E /* NHCEditingFamilyImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C706D62F1CE613BC0096EF9E /* NHCEditingFamilyImageApi.m */; };
 		C71B6BCD1CDC2EF000470C86 /* NHCEditingFamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B6BCC1CDC2EF000470C86 /* NHCEditingFamilyApi.m */; };
@@ -2164,6 +2166,10 @@
 		8D9790541CB3A07900FE3C12 /* HCAddNewAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAddNewAddressTableViewCell.m; sourceTree = "<group>"; };
 		8DC747861C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPromisedCloseAnyCallAPI.h; sourceTree = "<group>"; };
 		8DC747871C8FF71700939E83 /* HCPromisedCloseAnyCallAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPromisedCloseAnyCallAPI.m; sourceTree = "<group>"; };
+		C70499981CF6CFF2003DD1E7 /* HCFamilyUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFamilyUserInfoViewController.h; sourceTree = "<group>"; };
+		C70499991CF6CFF2003DD1E7 /* HCFamilyUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFamilyUserInfoViewController.m; sourceTree = "<group>"; };
+		C704999B1CF6E212003DD1E7 /* HCFamilyDeleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFamilyDeleteViewController.h; sourceTree = "<group>"; };
+		C704999C1CF6E212003DD1E7 /* HCFamilyDeleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFamilyDeleteViewController.m; sourceTree = "<group>"; };
 		C706D62B1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCGetFamilyImageApi.h; sourceTree = "<group>"; };
 		C706D62C1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCGetFamilyImageApi.m; sourceTree = "<group>"; };
 		C706D62E1CE613BC0096EF9E /* NHCEditingFamilyImageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCEditingFamilyImageApi.h; sourceTree = "<group>"; };
@@ -4559,6 +4565,8 @@
 				0A8BE3601C7E8C90008E8100 /* KMQRCode.m */,
 				0A8BE3611C7E8C90008E8100 /* UIImage+RoundedRectImage.h */,
 				0A8BE3621C7E8C90008E8100 /* UIImage+RoundedRectImage.m */,
+				C704999B1CF6E212003DD1E7 /* HCFamilyDeleteViewController.h */,
+				C704999C1CF6E212003DD1E7 /* HCFamilyDeleteViewController.m */,
 			);
 			path = GradeManager;
 			sourceTree = "<group>";
@@ -4602,6 +4610,8 @@
 				C79A98C71CE191A9002407F1 /* HCUserFriendViewController.m */,
 				C72BB1BF1CE8B05800662F6E /* HCBindTwoViewController.h */,
 				C72BB1BD1CE8B05100662F6E /* HCBindTwoViewController.m */,
+				C70499981CF6CFF2003DD1E7 /* HCFamilyUserInfoViewController.h */,
+				C70499991CF6CFF2003DD1E7 /* HCFamilyUserInfoViewController.m */,
 			);
 			path = UersMessage;
 			sourceTree = "<group>";
@@ -8025,6 +8035,7 @@
 				C78D7AEC1C5F28F700622CE2 /* HCAddFriendTableViewCell.m in Sources */,
 				C7B00BC21C5F26050010F93B /* EaseBubbleView+Text.m in Sources */,
 				C7CC8DBF1CCDBA64005CAF4A /* NHCMySelfTimeListApi.m in Sources */,
+				C704999D1CF6E212003DD1E7 /* HCFamilyDeleteViewController.m in Sources */,
 				8D0AE5BE1CBDF75A00E97D7D /* HCTagContactPersonCell.m in Sources */,
 				0A2B46F11C7F12AF00AAA157 /* HCEditCommentView.m in Sources */,
 				0A54917E1C2BC32D0085F50D /* ZXRSSExpandedDecodedChar.m in Sources */,
@@ -8610,6 +8621,7 @@
 				8D131AA01C7D7C7F00F0D5A0 /* ZLPhotoRect.m in Sources */,
 				0A5491021C2BC32D0085F50D /* ZXAztecDetector.m in Sources */,
 				8D97903B1CB3A00B00FE3C12 /* HCMyOrderFollowInfo.m in Sources */,
+				C704999A1CF6CFF2003DD1E7 /* HCFamilyUserInfoViewController.m in Sources */,
 				8D131A8F1C7D7C7F00F0D5A0 /* ZLPhotoAssets.m in Sources */,
 				8D1075061CC91170008511ED /* HCPromiedTagWhenMissController.m in Sources */,
 				8D131A891C7D7C7F00F0D5A0 /* ViewController.m in Sources */,

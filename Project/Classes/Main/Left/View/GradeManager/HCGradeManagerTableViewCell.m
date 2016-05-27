@@ -88,26 +88,38 @@
         }else
         {
             [self.contentView removeAllSubviews];
-            for (NSInteger i = 0; i < _array.count; i++)
+            for (NSInteger i = 0; i < _array.count+1; i++)
             {
-                HCFriendMessageInfo *info = _array[i];
+               
                 CGFloat width = SCREEN_WIDTH*0.17;
                 CGFloat buttonX = i%4 *width + ((i%4+1)*20);
                 CGFloat buttonY = i/4 *(width+20) + ((i/4+1)*10);
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                 button.frame = CGRectMake(buttonX, buttonY, width, width);
                 //[button setImage:_image forState:UIControlStateNormal];
+              
+                
+                HCFriendMessageInfo *info;
+                if (i < _array.count) {
+                     info = _array[i];
+                }
+                
                 UIImageView *ima = [[UIImageView alloc]init];
                 [ima sd_setImageWithURL:[readUserInfo url:info.imageName :kkUser]];
                 [button setImage:ima.image forState:UIControlStateNormal];
                 button.tag = i;
                 [button addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
+               
                 ViewRadius(button, width/2);
                 [self.contentView addSubview:button];
                 UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(button.frame.origin.x, MaxY(button), button.frame.size.width, 20)];
                 title.text = info.nickName;
                 title.textAlignment = NSTextAlignmentCenter;
                 title.font = [UIFont systemFontOfSize:13];
+                if(i == _array.count){
+                    [button setImage:IMG(@"1") forState:UIControlStateNormal];
+                     title.text = @"添加";
+                }
                 [self.contentView addSubview:title];
             }
         }

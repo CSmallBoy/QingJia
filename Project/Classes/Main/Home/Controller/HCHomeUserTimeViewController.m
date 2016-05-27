@@ -108,6 +108,9 @@
         if (info.FTImages.count < 5)
         {
             NSInteger row = ((int)info.FTImages.count/3) + 1;
+            if(info.FTImages.count==3){
+                row = 1;
+            }
             height += WIDTH(self.view) * 0.33 * row;
         }else
         {

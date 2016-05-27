@@ -66,13 +66,16 @@
     CGFloat contentsHeight = [Utils detailTextHeight:_info.FTContent lineSpage:4 width:WIDTH(self)-20 font:14];
     self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
     
-    // 图片
+    // 图片  大小尺寸
     if (!IsEmpty(_info.FTImages))
     {
         CGFloat height = 0;
         if (_info.FTImages.count < 5)
-        {
+        {//处在第几列
             NSInteger row = ((int)_info.FTImages.count/3) +1;
+            if (_info.FTImages.count==3) {
+                row=1;
+            }
             height = WIDTH(self) * 0.33 * row;
         }else
         {
