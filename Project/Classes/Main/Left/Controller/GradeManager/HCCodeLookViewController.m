@@ -37,6 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    //解决卡顿现象
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupBackItem];
     self.title = @"家庭二维码";

@@ -22,7 +22,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    self.view.backgroundColor = [UIColor clearColor];
     self.title = @"头像";
     [self setupBackItem];
     [self.view addSubview:self.grayView];
@@ -34,7 +35,7 @@
     UIPanGestureRecognizer *pan  = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
     //pan.delegate = self;
     self.headImgView.userInteractionEnabled = YES;
-    [self.headImgView addGestureRecognizer:pan];
+    [self.contentView addGestureRecognizer:pan];
 }
 -(void)pan:(UIPanGestureRecognizer*)panSender{
     UIView *panView = self.headImgView;
@@ -44,7 +45,7 @@
 }
 - (void) pinchView:(UIPinchGestureRecognizer *)pinchGestureRecognizer
 {
-    UIView *view = pinchGestureRecognizer.view;
+    UIView *view = self.headImgView;
     if (pinchGestureRecognizer.state == UIGestureRecognizerStateBegan || pinchGestureRecognizer.state == UIGestureRecognizerStateChanged) {
         view.transform = CGAffineTransformScale(view.transform, pinchGestureRecognizer.scale, pinchGestureRecognizer.scale);
         pinchGestureRecognizer.scale = 1;
@@ -80,7 +81,7 @@
 {
     if (!_contentView)
     {
-         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), HEIGHT(self.view))];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), HEIGHT(self.view))];
         _contentView.center = self.view.center;
         //_contentView.backgroundColor = [UIColor whiteColor];
         ViewRadius(_contentView, 5);
@@ -95,12 +96,9 @@
 {
     if (!_headImgView)
     {
-         _headImgView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 100, WIDTH(self.view)-30, HEIGHT(self.view)*0.6)];
-        
+        _headImgView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 100, WIDTH(self.view)-30, HEIGHT(self.view)*0.6)];
         //头像
         [_headImgView sd_setImageWithURL:[readUserInfo originUrl:_head_image :kkUser] placeholderImage:IMG(@"drg160.png")];
-    
-        
     }
     return _headImgView;
 }

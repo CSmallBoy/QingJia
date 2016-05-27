@@ -24,6 +24,8 @@
 #import "NHCGetFamilyImageApi.h"
 //家庭的编辑图片修改
 #import "NHCEditingFamilyImageApi.h"
+//家庭成员查看
+#import "HCFamilyUserInfoViewController.h"
 
 
 static NSString * const reuseIdentifier = @"FriendCell";
@@ -62,6 +64,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
 -(void)viewWillAppear:(BOOL)animated
 {
     [self requestGradeManager];
+    self.navigationController.navigationBar.hidden = NO;
     
 }
 
@@ -172,13 +175,16 @@ static NSString * const reuseIdentifier = @"FriendCell";
 
 - (void)HCGradeManagerTableViewCellSelectedTag:(NSInteger)tag
 {
-    if (tag == self.dataSource.count-1)
+    if (tag == self.dataSource.count)
     {
         DLog(@"添加了添加按钮");
     }else
     {
         HCFriendMessageInfo *info = self.dataSource[tag];
         DLog(@"点击了某个人---%@", info.nickName);
+        HCFamilyUserInfoViewController *vc = [[HCFamilyUserInfoViewController alloc]init];
+        vc.hidesBottomBarWhenPushed  = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
