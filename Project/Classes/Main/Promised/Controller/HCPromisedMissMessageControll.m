@@ -11,8 +11,13 @@
 #import "HCAvatarMgr.h"
 #import "HCPickerView.h"
 #import <MAMapKit/MAMapKit.h>
+//选择照片
+#import "ZLPhotoPickerViewController.h"
+#import "ZLPhotoAssets.h"
+//发送中
+#import "HCRadarTwinkleViewController.h"
 
-@interface HCPromisedMissMessageControll ()<UITextViewDelegate,HCPickerViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,MAMapViewDelegate>
+@interface HCPromisedMissMessageControll ()<UITextViewDelegate,HCPickerViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,MAMapViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic,strong) UITextField *textField1;
 @property (nonatomic,strong) UITextField *textField2;
@@ -26,6 +31,7 @@
 @property (nonatomic,strong) NSString *timeStr;
 @property (nonatomic,strong) NSString *AdressStr;
 @property (nonatomic,strong) NSString *DscStr;
+
 
 @property (nonatomic, strong)UIButton *cityButton;
 @property (nonatomic, strong)UITextField *streetTextField;//街道
@@ -41,6 +47,10 @@
 @property (nonatomic, assign)BOOL isShowCity;//弹出城市选择器
 @property (nonatomic, assign)BOOL isShowDate;//弹出时间选择器
 
+@property (nonatomic, strong)UIButton *commitButton;//提交按钮
+
+@property (nonatomic, strong)NSMutableArray *imageArr;//图片数组
+
 @end
 
 @implementation HCPromisedMissMessageControll
@@ -54,267 +64,32 @@
     _isShowDate = NO;
     [self setupBackItem];
     self.view.backgroundColor = kHCBackgroundColor;
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 50);
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
+    //添加提交按钮
+    [self.view addSubview:self.commitButton];
+    //监测时间选择器的弹出和取消
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeDatePicker) name:@"removeDatePicker" object:nil];
 }
 
+#pragma mark --- lazyLoading
 
-#pragma mark --- UITableViewdelegate
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//提交按钮
+- (UIButton *)commitButton
 {
-    return 1;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 4;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 60;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 30;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row ==0 || indexPath.row == 1) {
-        
-        return 44;
-    }
-    else if (indexPath.row == 2)
+    if (_commitButton == nil)
     {
-        return 84;
-    }else
-    {
-        return 330;
+        _commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _commitButton.frame = CGRectMake(10, SCREEN_HEIGHT-50, SCREEN_WIDTH-20, 40) ;
+        [_commitButton setTitle:@"提交" forState:UIControlStateNormal];
+        [_commitButton setBackgroundColor:kHCNavBarColor];
+        [_commitButton addTarget:self action:@selector(sendRequestData) forControlEvents:UIControlEventTouchUpInside];
+        [_commitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        ViewRadius(_commitButton, 5);
     }
+    return _commitButton;
 }
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    
-    if (indexPath.row == 0)
-    {
-        cell.textLabel.text = @"时间";
-        cell.textLabel.textColor = [UIColor blackColor];
-        _textField1 = [[UITextField alloc]initWithFrame:CGRectMake(70, 7,SCREEN_WIDTH-70 , 30)];
-        _textField1.placeholder = @"请输入走失时间";
-        _textField1.enabled = NO;
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(70, 43, SCREEN_WIDTH-70, 1)];
-        line.backgroundColor = kHCBackgroundColor;
-        _textField1.text = self.timeStr;
-        [cell addSubview:_textField1];
-        [cell addSubview:line];
-    }
-    else  if (indexPath.row==1)
-    {
-        cell.textLabel.text = @"地点";
-        cell.textLabel.textColor = [UIColor blackColor];
-        
-        _cityButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _cityButton.frame = CGRectMake(70, 7, 75, 30);
-        _cityButton.backgroundColor = [UIColor whiteColor];
-        [_cityButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_cityButton addTarget:self action:@selector(showCityPickerView) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIButton *label = [UIButton buttonWithType:UIButtonTypeCustom];
-        label.frame = CGRectMake(CGRectGetMaxX(_cityButton.frame), 7, 20, 30);
-        label.backgroundColor = [UIColor whiteColor];
-        label.userInteractionEnabled = NO;
-        [label setTitle:@"市" forState:UIControlStateNormal];
-        [label setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        
-        _textField2 = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 7,SCREEN_WIDTH-CGRectGetMaxX(label.frame)-26, 30)];
-        _textField2.text = self.AdressStr;
-        
-        UIButton *locationButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        locationButton.frame = CGRectMake(CGRectGetMaxX(_textField2.frame), 12, 16, 20);
-        locationButton.backgroundColor = [UIColor whiteColor];
-        [locationButton setBackgroundImage:IMG(@"lossInfo_location") forState:UIControlStateNormal];
-        [locationButton addTarget:self action:@selector(locationCity) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(70, 43, SCREEN_WIDTH-70, 1)];
-        line.backgroundColor = kHCBackgroundColor;
-        
-      
-        
-        [cell addSubview:label];
-        [cell addSubview:_cityButton];
-        [cell addSubview:_textField2];
-        [cell addSubview:locationButton];
-        [cell addSubview:line];
-    }else  if(indexPath.row == 2)
-    {
-        cell.textLabel.text = @"描述";
-        _textView = [[UITextView alloc]initWithFrame:CGRectMake(70, 7, SCREEN_WIDTH-100, 60)];
-        _textView.delegate = self;
-    
-        _textView.font = [UIFont systemFontOfSize:15];
-        _textView.text = self.DscStr    ;
-        _label = [[UILabel alloc]initWithFrame:CGRectMake(0,5, 300, 30)];
-        _label.text = @"请描述走失时候的相关情况";
-        _label.textColor = COLOR(201, 201, 206, 1);
-        [_textView addSubview:_label];
-        
-        
-        if (self.DscStr) {
-            _label.hidden = YES;
-        }
-        
-        
-        [cell addSubview:_textView];
-        
-    }else
-    {
-        UIImageView *bigView = [[UIImageView alloc]initWithFrame:CGRectMake(70,5, SCREEN_WIDTH-100, 320)];
-        ViewRadius(bigView, 5);
-        bigView.layer.borderWidth = 1;
-        bigView.layer.borderColor = [UIColor grayColor].CGColor;
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake((SCREEN_WIDTH-100)/2-30, 320/2-30, 60, 60);
-        [button setBackgroundImage:IMG(@"Add-Images") forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(showAlbum) forControlEvents:UIControlEventTouchUpInside];
-        
-        [bigView addSubview:button];
-        _bigView  = bigView;
-        _bigView.userInteractionEnabled = YES;
-        
-        [cell addSubview:_bigView];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 200, 30)];
-    label.textColor = [UIColor blackColor];
-    
-    label.text = @"走失信息";
-    return label;
-}
-
--(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60)];
-    
-    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(20, 20, SCREEN_WIDTH-40, 40) ;
-    [button setTitle:@"提交" forState:UIControlStateNormal];
-    [button setBackgroundColor:kHCNavBarColor];
-    [button addTarget:self action:@selector(sendRequestData) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    ViewRadius(button, 5);
-
-    [view addSubview:button];
-
-    return view;
-}
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        if (_isShowCity)
-        {
-            [self.cityView removeFromSuperview];
-            _isShowCity = NO;
-        }
-        [self.view endEditing:NO];
-        [self.datePicker show];
-        _isShowDate = YES;
-    }
-}
-
-#pragma mark --- UITextViewDelegate
-
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
-    self.label.hidden = YES;
-    [self.datePicker remove];
-    [self cancelButtonAction];
-    _isShowCity = NO;
-    _isShowDate = NO;
-}
-
--(void)textViewDidEndEditing:(UITextView *)textView
-{
-    if (textView.text) {
-        self.label.hidden = YES;
-    }else
-    {
-        self.label.hidden = NO;
-    }
-    
-    self.DscStr = textView.text;
-}
-
-#pragma mark --- HCPickerViewDelegate
-
--(void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result
-{
-    NSDate *date = result[@"date"];
-    self.textField1.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd HH:mm"];
-    _isShowDate = NO;
-}
-
-#pragma mark --- UITextFieldDelegate
-
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if (textField == self.textField1) {
-        self.timeStr = self.textField1.text;
-    }
-    else
-    {
-        self.AdressStr = self.textField2.text;
-    }
-}
-
-
-#pragma mark - UIPickerViewDelegate
-
-//列数
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-//每列的的行数
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return self.allCitys.count;
-}
-
-//每列的宽度
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
-{
-    return SCREEN_WIDTH;
-}
-
-//每行的高度
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return self.cityPickerView.frame.size.height/4;
-}
-
-//返回每行的标题
-- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return self.allCitys[row];
-}
-
-
-#pragma mark --- setter Or getter 
 
 - (HCPickerView *)datePicker
 {
@@ -378,24 +153,343 @@
     return _allCitys;
 }
 
+- (NSMutableArray *)imageArr
+{
+    if (_imageArr == nil)
+    {
+        _imageArr = [NSMutableArray array];
+    }
+    return _imageArr;
+}
 
 
-#pragma mark --- private mothods
+#pragma mark --- UITableViewdelegate
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        return 3;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        return 40;
+    }
+    else
+    {
+        return 5;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row ==0 || indexPath.row == 1) {
+            
+            return 44;
+        }
+        else
+        {
+            return 110;
+        }
+    }
+    else
+    {
+        return 100;
+    }
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row == 0)
+        {
+            cell.textLabel.text = @"时间";
+            cell.textLabel.textColor = [UIColor blackColor];
+            _textField1 = [[UITextField alloc]initWithFrame:CGRectMake(70, 7, SCREEN_WIDTH-70, 30)];
+            _textField1.placeholder = @"请输入走失时间";
+            _textField1.enabled = NO;
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(70, 43, SCREEN_WIDTH-70, 1)];
+            line.backgroundColor = kHCBackgroundColor;
+            _textField1.text = self.timeStr;
+            [cell addSubview:_textField1];
+            [cell addSubview:line];
+        }
+        else  if (indexPath.row==1)
+        {
+            cell.textLabel.text = @"地点";
+            cell.textLabel.textColor = [UIColor blackColor];
+            
+            _textField2 = [[UITextField alloc]initWithFrame:CGRectMake(70, 7, SCREEN_WIDTH-100, 30)];
+            _textField2.placeholder = @"请输入走失地点";
+            _textField2.enabled = NO;
+            
+            UIButton *locationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            locationButton.frame = CGRectMake(MaxX(_textField2), 12, 16, 20);
+            locationButton.backgroundColor = [UIColor whiteColor];
+            [locationButton setBackgroundImage:IMG(@"lossInfo_location") forState:UIControlStateNormal];
+            [locationButton addTarget:self action:@selector(locationCity) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(70, 43, SCREEN_WIDTH-70, 1)];
+            line.backgroundColor = kHCBackgroundColor;
+            
+            [cell addSubview:_textField2];
+            [cell addSubview:locationButton];
+            [cell addSubview:line];
+        }else  if(indexPath.row == 2)
+        {
+            cell.textLabel.text = @"描述";
+            _textView = [[UITextView alloc]initWithFrame:CGRectMake(70, 7, SCREEN_WIDTH-100, 100)];
+            _textView.delegate = self;
+            
+            _textView.font = [UIFont systemFontOfSize:15];
+            _textView.text = self.DscStr    ;
+            _label = [[UILabel alloc]initWithFrame:CGRectMake(0,5, 300, 30)];
+            _label.text = @"请描述走失时候的相关情况";
+            _label.textColor = COLOR(201, 201, 206, 1);
+            [_textView addSubview:_label];
+            
+            
+            if (self.DscStr) {
+                _label.hidden = YES;
+            }
+            
+            
+            [cell addSubview:_textView];
+            
+        }
+    }
+    else
+    {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(15, 10, 60, 60);
+        [button setBackgroundImage:IMG(@"Add-Images") forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(choseMissPhotos) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, MaxY(button)+5, 70, 10)];
+        titleLabel.text = @"添加正面照片";
+        titleLabel.textAlignment = 1;
+        titleLabel.font = [UIFont systemFontOfSize:11];
+        titleLabel.textColor = [UIColor lightGrayColor];
+        
+        [cell addSubview:titleLabel];
+        [cell addSubview:button];
+        if (self.imageArr.count>0)
+        {
+            for (int i = 0; i < self.imageArr.count; i++)
+            {
+                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(MaxX(titleLabel)+10+90*i, 10, 80, 80)];
+                imageView.image = self.imageArr[i];
+                imageView.tag = 300 + i;
+                UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDelectPhoto:)];
+                [imageView addGestureRecognizer:longPress];
+                imageView.userInteractionEnabled = YES;
+                [cell addSubview:imageView];
+            }
+        }
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+        label.textColor = [UIColor blackColor];
+        label.text = @"  走失信息";
+        return label;
+    }
+    return nil;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        if (_isShowCity)
+        {
+            [self.cityView removeFromSuperview];
+            _isShowCity = NO;
+        }
+        [self.view endEditing:NO];
+        [self.datePicker show];
+        _isShowDate = YES;
+    }
+    else if (indexPath.section == 0 && indexPath.row == 1)
+    {
+        [self showCityPickerView];
+    }
+}
+
+#pragma mark --- UITextViewDelegate
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.label.hidden = YES;
+    [self.datePicker remove];
+    [self cancelButtonAction];
+    _isShowCity = NO;
+    _isShowDate = NO;
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    if (textView.text) {
+        self.label.hidden = YES;
+    }else
+    {
+        self.label.hidden = NO;
+    }
+    
+    self.DscStr = textView.text;
+}
+
+#pragma mark --- UITextFieldDelegate
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == self.textField1) {
+        self.timeStr = self.textField1.text;
+    }
+    else
+    {
+        self.AdressStr = self.textField2.text;
+    }
+}
+
+#pragma mark --- HCPickerViewDelegate
+//日期选择器
+-(void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result
+{
+    NSDate *date = result[@"date"];
+    self.textField1.text = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd HH:mm"];
+    _isShowDate = NO;
+}
+
+
+#pragma mark - UIPickerViewDelegate
+
+//列数
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+//每列的的行数
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.allCitys.count;
+}
+
+//每列的宽度
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    return SCREEN_WIDTH;
+}
+
+//每行的高度
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return self.cityPickerView.frame.size.height/4;
+}
+
+//返回每行的标题
+- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return self.allCitys[row];
+}
+
+#pragma mark ---- UIActionSheetDelegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+        {
+            UIImagePickerController * picker = [[UIImagePickerController alloc]init];
+            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
+            picker.delegate = self;
+            picker.allowsEditing = YES;
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+            break;
+            
+        case 1:
+        {
+            ZLPhotoPickerViewController *zlpVC = [[ZLPhotoPickerViewController alloc]init];
+            zlpVC.maxCount = 3-self.imageArr.count;
+            zlpVC.callBack = ^(NSArray *arr)
+            {
+                for (ZLPhotoAssets *zl in arr)
+                {
+                    UIImage *image = zl.originImage;
+                    [self.imageArr addObject:image];
+                }
+                NSIndexSet *set = [NSIndexSet indexSetWithIndex:1];
+                [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
+            };
+            [self presentViewController:zlpVC animated:YES completion:nil];
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    [self.imageArr addObject:image];
+    NSIndexSet *set = [NSIndexSet indexSetWithIndex:1];
+    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+
+#pragma mark --- buttonClick
 
 // 展示相册
--(void)showAlbum
-{
-    [self.datePicker remove];
-    [self.view endEditing:YES];
-    [HCAvatarMgr manager].noUploadImage = YES;
-    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
-        if (result)
-        {
-            self.image = image;
-            self.bigView.image = image;
-        }
-    }];
-}
+//-(void)showAlbum
+//{
+//    [self.datePicker remove];
+//    [self.view endEditing:YES];
+//    [HCAvatarMgr manager].noUploadImage = YES;
+//    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
+//        if (result)
+//        {
+//            self.image = image;
+//            self.bigView.image = image;
+//        }
+//    }];
+//}
 
 - (void)removeDatePicker
 {
@@ -435,6 +529,44 @@
     self.cityString = [self.allCitys objectAtIndex:[self.cityPickerView selectedRowInComponent:0]];
     [_cityButton setTitle:self.cityString forState:UIControlStateNormal];
     [self.cityView removeFromSuperview];
+}
+
+
+//选择相片
+-(void)choseMissPhotos
+{
+    if (self.imageArr.count < 3)
+    {
+        UIActionSheet  *sheet = [[UIActionSheet alloc]initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
+        [sheet  showInView:self.view];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"只能添加三张照片" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        });
+        [alertView show];
+    }
+    
+}
+
+//长按相片删除
+- (void)longPressDelectPhoto:(UILongPressGestureRecognizer *)sender
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(WIDTH(sender.view)-20,0, 20, 20);
+    button.backgroundColor = [UIColor  redColor];
+    [button addTarget:self action:@selector(delectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [sender.view addSubview:button];
+}
+
+//删除
+- (void)delectBtnClick:(UIButton *)sender
+{
+    [self.imageArr removeObjectAtIndex:sender.superview.tag-300];
+    NSIndexSet *set = [NSIndexSet indexSetWithIndex:1];
+    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
@@ -501,6 +633,14 @@
 
 #pragma mark ---- network
 
+//提交
+- (void)sendRequestData
+{
+    HCRadarTwinkleViewController *radarVC = [[HCRadarTwinkleViewController alloc] init];
+    [self.navigationController pushViewController:radarVC animated:YES];
+}
+
+/*
 -(void)sendRequestData
 {
     
@@ -575,6 +715,7 @@
     }];
     
 }
+ */
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    

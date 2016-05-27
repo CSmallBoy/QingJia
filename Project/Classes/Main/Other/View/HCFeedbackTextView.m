@@ -108,7 +108,7 @@
         _textView.scrollEnabled = NO;
         _textView.delegate = self;
         _textView.textColor = RGB(200, 200, 200);//[UIColor lightGrayColor];
-        _textView.font = [UIFont systemFontOfSize:15];
+        _textView.font = [UIFont systemFontOfSize:17];
     }
     return _textView;
 }

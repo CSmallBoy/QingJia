@@ -29,6 +29,10 @@
 #import "HCPromisedTagUserDetailController.h"
 #import "HCAddTagUserController.h"
 
+
+#import "HCPromiedTagWhenMissController.h"
+#import "HCLostInfoViewController.h"
+
 @interface HCPromisedViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     BOOL   isShouldWhow;
@@ -48,6 +52,7 @@
 
 @property (nonatomic, strong)UIView *alertBackground;//弹出提示框时的灰色背景
 @property (nonatomic, strong)UIView *customAlertView;//自定义提示框
+@property (nonatomic, assign)BOOL isNewObj;//是否是新建对象
 
 @end
 
@@ -76,6 +81,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"refreshObjectData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closePromised) name:@"closePromised" object:nil];
+    
+    //当审核完成之后
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToMyNotificationVC:) name:@"afterReview" object:nil];
     
 
 #warning 备注:此处需要完善,雷达是否显示应该是后台给数据来判断是否关闭了呼,而不是在本地储存呼的状态进行判断
@@ -228,10 +236,10 @@
     {
         if ([buttonTitle isEqualToString:@"+ 新增录入"]) {
             
-
-            HCAddTagUserController *addTagUser = [[HCAddTagUserController alloc]init];
-            addTagUser.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:addTagUser animated:YES];
+            //点击cell弹出提示框
+            self.isNewObj = YES;
+            [self.tabBarController.view addSubview:self.alertBackground];
+            
         }
         else
         {
@@ -242,6 +250,7 @@
             self.nextVCInfo = info;
             [self.smallTableView reloadData];
             
+            self.isNewObj = NO;
             //点击cell弹出提示框
             [self.tabBarController.view addSubview:self.alertBackground];
             
@@ -376,12 +385,39 @@
     
 }
 
+#pragma mark - deal Observer Action
+
+- (void)jumpToMyNotificationVC:(NSNotification *)noti
+{
+    if (self.segmented.selectedSegmentIndex == 0)
+    {
+        self.segmented.selectedSegmentIndex = 1;
+        self.notiVC.view.hidden = NO;
+        self.notiVC.view.bounds = CGRectMake(0, -50, SCREEN_WIDTH, SCREEN_HEIGHT);
+    }
+}
+
 #pragma mark - alert sureClick/cancelClick
 //提示框"是"按钮
 - (void)sureButtonAction:(UIButton *)sender
 {
     [sender.superview.superview removeFromSuperview];
-    //跳转
+    
+    //跳转判断是新建对象还是已有对象
+    //1.新建对象跳转
+    if (self.isNewObj)
+    {
+        HCLostInfoViewController *lostInfo = [[HCLostInfoViewController alloc]init];
+        lostInfo.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:lostInfo animated:YES];
+    }
+    //2.已有对象跳转
+    else
+    {
+        HCPromiedTagWhenMissController *promiedVC = [[HCPromiedTagWhenMissController alloc] init];
+        promiedVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:promiedVC animated:YES];
+    }
     
 }
 

@@ -1109,11 +1109,17 @@
 		C7F421081CD055A2006BDA77 /* NHCHomeTimeToComentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */; };
 		CECDAAF2E5B39B0DC4150D1A /* libPods-钦家.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1654B84ADD13561D399A8A /* libPods-钦家.a */; };
 		EA009B6F1CF44D800063EC47 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA009B671CF448A20063EC47 /* MAMapKit.framework */; };
+		EA041F011CF6CACF001E05DF /* HCPeopleRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA041F001CF6CACF001E05DF /* HCPeopleRelationViewController.m */; };
+		EA041F041CF72816001E05DF /* HCRadarTwinkleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA041F031CF72816001E05DF /* HCRadarTwinkleViewController.m */; };
 		EA090FA41CE2BFED00B6E009 /* HCDeletePromisedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */; };
+		EA11F74C1CF7E8B100BC9945 /* HCCityInfoMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = EA11F74B1CF7E8B100BC9945 /* HCCityInfoMgr.m */; };
 		EA1B63CB1CE9F305003EBDBA /* HCGetCityInfoVersionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1B63CA1CE9F305003EBDBA /* HCGetCityInfoVersionApi.m */; };
 		EA30EFB41CED50D200028887 /* HCSetTagMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30EFB31CED50D200028887 /* HCSetTagMgr.m */; };
 		EACD35F11CE5CD0C00EE3E8D /* HCSetPushTagApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD35F01CE5CD0C00EE3E8D /* HCSetPushTagApi.m */; };
+		EAD7FD0B1CF53A630058EF81 /* HCLostInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7FD0A1CF53A630058EF81 /* HCLostInfoViewController.m */; };
+		EAD7FD0F1CF54EF50058EF81 /* HCLostInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7FD0E1CF54EF50058EF81 /* HCLostInfoCell.m */; };
 		EAE04D441CDF62CF003EDF0F /* HCReportApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE04D431CDF62CF003EDF0F /* HCReportApi.m */; };
+		EAE464971CF6A158005A0558 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE464961CF6A158005A0558 /* PlaceholderTextView.m */; };
 		EAE7B7311CE45ECC00E47B1B /* HCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */; };
 		EAE7B7341CE470B700E47B1B /* HCGetCityInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B7331CE470B700E47B1B /* HCGetCityInfoApi.m */; };
 		EAF55F331CEB52B50058DDB0 /* HCMissTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF55F321CEB52B50058DDB0 /* HCMissTagTableViewCell.m */; };
@@ -3141,8 +3147,14 @@
 		C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeToComentApi.m; sourceTree = "<group>"; };
 		D2D0F7C08CB3A13ED613B580 /* Pods-钦家.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-钦家.debug.xcconfig"; path = "Pods/Target Support Files/Pods-钦家/Pods-钦家.debug.xcconfig"; sourceTree = "<group>"; };
 		EA009B671CF448A20063EC47 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = Pods/AMap2DMap/MAMapKit.framework; sourceTree = "<group>"; };
+		EA041EFF1CF6CACF001E05DF /* HCPeopleRelationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPeopleRelationViewController.h; sourceTree = "<group>"; };
+		EA041F001CF6CACF001E05DF /* HCPeopleRelationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPeopleRelationViewController.m; sourceTree = "<group>"; };
+		EA041F021CF72816001E05DF /* HCRadarTwinkleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCRadarTwinkleViewController.h; sourceTree = "<group>"; };
+		EA041F031CF72816001E05DF /* HCRadarTwinkleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCRadarTwinkleViewController.m; sourceTree = "<group>"; };
 		EA090FA21CE2BFED00B6E009 /* HCDeletePromisedApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDeletePromisedApi.h; sourceTree = "<group>"; };
 		EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDeletePromisedApi.m; sourceTree = "<group>"; };
+		EA11F74A1CF7E8B100BC9945 /* HCCityInfoMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCityInfoMgr.h; sourceTree = "<group>"; };
+		EA11F74B1CF7E8B100BC9945 /* HCCityInfoMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCityInfoMgr.m; sourceTree = "<group>"; };
 		EA1654B84ADD13561D399A8A /* libPods-钦家.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-钦家.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA1B63C91CE9F305003EBDBA /* HCGetCityInfoVersionApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGetCityInfoVersionApi.h; sourceTree = "<group>"; };
 		EA1B63CA1CE9F305003EBDBA /* HCGetCityInfoVersionApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGetCityInfoVersionApi.m; sourceTree = "<group>"; };
@@ -3150,8 +3162,14 @@
 		EA30EFB31CED50D200028887 /* HCSetTagMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSetTagMgr.m; sourceTree = "<group>"; };
 		EACD35EF1CE5CD0C00EE3E8D /* HCSetPushTagApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSetPushTagApi.h; sourceTree = "<group>"; };
 		EACD35F01CE5CD0C00EE3E8D /* HCSetPushTagApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSetPushTagApi.m; sourceTree = "<group>"; };
+		EAD7FD091CF53A630058EF81 /* HCLostInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLostInfoViewController.h; sourceTree = "<group>"; };
+		EAD7FD0A1CF53A630058EF81 /* HCLostInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLostInfoViewController.m; sourceTree = "<group>"; };
+		EAD7FD0D1CF54EF50058EF81 /* HCLostInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLostInfoCell.h; sourceTree = "<group>"; };
+		EAD7FD0E1CF54EF50058EF81 /* HCLostInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLostInfoCell.m; sourceTree = "<group>"; };
 		EAE04D421CDF62CF003EDF0F /* HCReportApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReportApi.h; sourceTree = "<group>"; };
 		EAE04D431CDF62CF003EDF0F /* HCReportApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReportApi.m; sourceTree = "<group>"; };
+		EAE464951CF6A158005A0558 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextView.h; sourceTree = "<group>"; };
+		EAE464961CF6A158005A0558 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
 		EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCLoginViewController.xib; sourceTree = "<group>"; };
 		EAE7B7321CE470B700E47B1B /* HCGetCityInfoApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCGetCityInfoApi.h; path = ../More/NotificationCenter/HCGetCityInfoApi.h; sourceTree = "<group>"; };
 		EAE7B7331CE470B700E47B1B /* HCGetCityInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCGetCityInfoApi.m; path = ../More/NotificationCenter/HCGetCityInfoApi.m; sourceTree = "<group>"; };
@@ -4466,6 +4484,8 @@
 				0A6B7DF81BF1EB74008D54B3 /* HCVersionMgr.m */,
 				EA30EFB21CED50D200028887 /* HCSetTagMgr.h */,
 				EA30EFB31CED50D200028887 /* HCSetTagMgr.m */,
+				EA11F74A1CF7E8B100BC9945 /* HCCityInfoMgr.h */,
+				EA11F74B1CF7E8B100BC9945 /* HCCityInfoMgr.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -5517,6 +5537,7 @@
 		C78D78F71C5F28F600622CE2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EAD7FD081CF538E70058EF81 /* NewCallAnswer */,
 				8D05FF431CB39EB1005AC51C /* ProductionCenterController */,
 				C78D7C701C5F2C1200622CE2 /* TagManager */,
 				C78D78F81C5F28F600622CE2 /* AddItem */,
@@ -5670,6 +5691,7 @@
 		C78D79AB1C5F28F700622CE2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EAD7FD0C1CF54E510058EF81 /* NewCallAnswerCell */,
 				8D07303D1CA125C100332296 /* ShopingCar */,
 				8D07E77E1C9A46E1007F08B5 /* MtalkShoping */,
 				C78D79AC1C5F28F700622CE2 /* HCLightGrayLineView.h */,
@@ -7402,6 +7424,30 @@
 			name = labelTagApi;
 			sourceTree = "<group>";
 		};
+		EAD7FD081CF538E70058EF81 /* NewCallAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				EAD7FD091CF53A630058EF81 /* HCLostInfoViewController.h */,
+				EAD7FD0A1CF53A630058EF81 /* HCLostInfoViewController.m */,
+				EA041EFF1CF6CACF001E05DF /* HCPeopleRelationViewController.h */,
+				EA041F001CF6CACF001E05DF /* HCPeopleRelationViewController.m */,
+				EA041F021CF72816001E05DF /* HCRadarTwinkleViewController.h */,
+				EA041F031CF72816001E05DF /* HCRadarTwinkleViewController.m */,
+			);
+			path = NewCallAnswer;
+			sourceTree = "<group>";
+		};
+		EAD7FD0C1CF54E510058EF81 /* NewCallAnswerCell */ = {
+			isa = PBXGroup;
+			children = (
+				EAD7FD0D1CF54EF50058EF81 /* HCLostInfoCell.h */,
+				EAD7FD0E1CF54EF50058EF81 /* HCLostInfoCell.m */,
+				EAE464951CF6A158005A0558 /* PlaceholderTextView.h */,
+				EAE464961CF6A158005A0558 /* PlaceholderTextView.m */,
+			);
+			path = NewCallAnswerCell;
+			sourceTree = "<group>";
+		};
 		F7927DD51B00DCDF2D1B92AB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -8212,6 +8258,7 @@
 				0A5491C11C2BC32D0085F50D /* ZXQRCodeBitMatrixParser.m in Sources */,
 				C78D7D471C5F342700622CE2 /* HCAddPromiseViewController1.m in Sources */,
 				C7B00B5F1C5F26050010F93B /* RobotListViewController.m in Sources */,
+				EA041F041CF72816001E05DF /* HCRadarTwinkleViewController.m in Sources */,
 				C7B00B901C5F26050010F93B /* UIImage+EMGIF.m in Sources */,
 				C7B00B9E1C5F26050010F93B /* PSTCollectionViewUpdateItem.m in Sources */,
 				0A5491201C2BC32D0085F50D /* ZXResultParser.m in Sources */,
@@ -8257,6 +8304,7 @@
 				0A2B46F91C7F12AF00AAA157 /* HCShowMoreImage.m in Sources */,
 				C78D7AE61C5F28F700622CE2 /* HCMessagePersonInfoVC.m in Sources */,
 				C78D7D4B1C5F342700622CE2 /* UUDatePicker.m in Sources */,
+				EA11F74C1CF7E8B100BC9945 /* HCCityInfoMgr.m in Sources */,
 				0A6B7F311BF1EB74008D54B3 /* Utils.m in Sources */,
 				8D9790321CB3A00B00FE3C12 /* HCTagUserInfo.m in Sources */,
 				0A54910D1C2BC32D0085F50D /* ZXAbstractDoCoMoResultParser.m in Sources */,
@@ -8354,6 +8402,7 @@
 				0A2B46E31C7F12AF00AAA157 /* HCHomeFamilyViewController.m in Sources */,
 				C7B00B691C5F26050010F93B /* EMTextView.m in Sources */,
 				0A5491081C2BC32D0085F50D /* ZXAztecState.m in Sources */,
+				EAD7FD0B1CF53A630058EF81 /* HCLostInfoViewController.m in Sources */,
 				0A54914B1C2BC32D0085F50D /* ZXBinaryBitmap.m in Sources */,
 				C7B00B4E1C5F26050010F93B /* PublicGroupListViewController.m in Sources */,
 				0A5491101C2BC32D0085F50D /* ZXAddressBookParsedResult.m in Sources */,
@@ -8400,6 +8449,7 @@
 				0A5491AB1C2BC32D0085F50D /* ZXPDF417BarcodeMetadata.m in Sources */,
 				C78D7B9B1C5F28F700622CE2 /* QRCodeReaderView.m in Sources */,
 				0A54914F1C2BC32D0085F50D /* ZXEncodeHints.m in Sources */,
+				EAD7FD0F1CF54EF50058EF81 /* HCLostInfoCell.m in Sources */,
 				0A5491CC1C2BC32D0085F50D /* ZXQRCodeAlignmentPatternFinder.m in Sources */,
 				0A2B477E1C7F12C800AAA157 /* HCTagManagerApi.m in Sources */,
 				8D131A9D1C7D7C7F00F0D5A0 /* ZLPhotoPickerGroupViewController.m in Sources */,
@@ -8440,6 +8490,7 @@
 				0A5491431C2BC32D0085F50D /* ZXDetectorResult.m in Sources */,
 				C7B00B331C5F26050010F93B /* THProgressView.m in Sources */,
 				C77C2F601CBB7B5B0011233C /* KLHttpTool.m in Sources */,
+				EAE464971CF6A158005A0558 /* PlaceholderTextView.m in Sources */,
 				0A5491C81C2BC32D0085F50D /* ZXQRCodeFormatInformation.m in Sources */,
 				C78D7C901C5F2C1200622CE2 /* HClabelDetaViewController.m in Sources */,
 				0A8BE3B81C7E8D7C008E8100 /* HCCombineFamilyTableViewCell.m in Sources */,
@@ -8627,6 +8678,7 @@
 				0A5491251C2BC32D0085F50D /* ZXTelParsedResult.m in Sources */,
 				0A8BE3781C7E8CA9008E8100 /* HCFriendMessageViewController.m in Sources */,
 				0A5491D01C2BC32D0085F50D /* ZXQRCodeFinderPatternInfo.m in Sources */,
+				EA041F011CF6CACF001E05DF /* HCPeopleRelationViewController.m in Sources */,
 				0A5491711C2BC32D0085F50D /* ZXAbstractExpandedDecoder.m in Sources */,
 				0A5491471C2BC32D0085F50D /* ZXIntArray.m in Sources */,
 				0A5491A71C2BC32D0085F50D /* ZXUPCEReader.m in Sources */,
@@ -8846,8 +8898,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8874,7 +8927,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "c5a15539-87dc-4e02-8695-a1de8aa607c1";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -8885,8 +8938,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zonghan zhu (9SHC7US6HX)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8913,7 +8967,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PushMtalk.cao;
 				PRODUCT_NAME = "钦家";
-				PROVISIONING_PROFILE = "c5a15539-87dc-4e02-8695-a1de8aa607c1";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

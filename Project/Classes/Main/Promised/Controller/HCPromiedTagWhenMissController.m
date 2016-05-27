@@ -32,7 +32,7 @@
    
     self.title = @"走失时候佩戴的标签";
     [self requestData];
-    [self  setupBackItem];
+    [self setupBackItem];
     [self.view addSubview:self.tagTableView];
     [self.view addSubview:self.footerView];
 }
@@ -41,36 +41,39 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArr.count;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCMissTagTableViewCell *cell = [HCMissTagTableViewCell customCellWithTable:tableView];
-    HCNewTagInfo *info = self.dataArr[indexPath.row];
-    [cell.selectedButton addTarget:self action:@selector(selectedButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    NSURL *url = [readUserInfo originUrl:info.imageName :kkLabel];
-    [cell.clothingImage sd_setImageWithURL:url];
-    cell.titleLabel.text = info.labelTitle;
-    cell.idLabel.text = [NSString stringWithFormat:@"ID:%@", info.objectId];
-    cell.remarkLabel.text = [NSString stringWithFormat:@"备注:%@", info.labelTitle];
+//    HCNewTagInfo *info = self.dataArr[indexPath.row];
+//    [cell.selectedButton addTarget:self action:@selector(selectedButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    NSURL *url = [readUserInfo originUrl:info.imageName :kkLabel];
+//    [cell.clothingImage sd_setImageWithURL:url];
+//    cell.titleLabel.text = info.labelTitle;
+//    cell.idLabel.text = [NSString stringWithFormat:@"ID:%@", info.objectId];
+//    cell.remarkLabel.text = [NSString stringWithFormat:@"备注:%@", info.labelTitle];
+    cell.titleLabel.text = @"标题";
+    cell.idLabel.text = @"ID";
+    cell.remarkLabel.text = @"备注";
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HCNewTagInfo *info = self.dataArr[indexPath.row];
-    HCMissTagTableViewCell *cell = [self.tagTableView cellForRowAtIndexPath:indexPath];
-    if (info.isBlack)
-    {
-        cell.selected = NO;
-        info.isBlack = NO;
-    }
-    else
-    {
-        cell.selected = YES;
-        info.isBlack = YES;
-    }
+//    HCNewTagInfo *info = self.dataArr[indexPath.row];
+//    HCMissTagTableViewCell *cell = [self.tagTableView cellForRowAtIndexPath:indexPath];
+//    if (info.isBlack)
+//    {
+//        cell.selected = NO;
+//        info.isBlack = NO;
+//    }
+//    else
+//    {
+//        cell.selected = YES;
+//        info.isBlack = YES;
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,7 +128,7 @@
 {
     if (_tagTableView == nil)
     {
-        _tagTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-50/668.0*SCREEN_HEIGHT) style:UITableViewStylePlain];
+        _tagTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50/668.0*SCREEN_HEIGHT) style:UITableViewStylePlain];
         _tagTableView.delegate = self;
         _tagTableView.dataSource = self;
     }

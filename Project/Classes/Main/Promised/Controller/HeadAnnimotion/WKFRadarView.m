@@ -75,7 +75,7 @@
     [[UIColor clearColor]setFill];
     UIRectFill(rect);
     NSInteger pulsingCount = 3;
-    double animationDuration = 2;
+    double animationDuration = 2.5;
     
     CALayer * animationLayer = [[CALayer alloc]init];
     self.animationLayer = animationLayer;

@@ -62,6 +62,7 @@
     if (_clothingImage == nil)
     {
         _clothingImage = [[UIImageView alloc] initWithFrame:CGRectMake(MaxX(_selectedButton)+15/375.0*SCREEN_WIDTH, 10/668.0*SCREEN_HEIGHT, 60/375.0*SCREEN_WIDTH, 60/375.0*SCREEN_WIDTH)];
+        _clothingImage.backgroundColor = [UIColor redColor];
     }
     return _clothingImage;
 }
@@ -80,16 +81,16 @@
 {
     if (_idLabel == nil)
     {
-        _idLabel = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(self.clothingImage)+15/375.0*SCREEN_WIDTH, MaxY(_titleLabel)+15/668.0*SCREEN_HEIGHT, SCREEN_WIDTH-MaxX(self.clothingImage)-15/375.0*SCREEN_WIDTH, 15/668.0*SCREEN_HEIGHT)];
+        _idLabel = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(self.clothingImage)+15/375.0*SCREEN_WIDTH, MaxY(_titleLabel)+7.5/668.0*SCREEN_HEIGHT, SCREEN_WIDTH-MaxX(self.clothingImage)-15/375.0*SCREEN_WIDTH, 15/668.0*SCREEN_HEIGHT)];
     }
     return _idLabel;
 }
 
-- (UILabel *)remarkLabels
+- (UILabel *)remarkLabel
 {
     if (_remarkLabel == nil)
     {
-        _remarkLabel = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(self.clothingImage)+15/375.0*SCREEN_WIDTH, MaxY(_idLabel)+15/668.0*SCREEN_HEIGHT, SCREEN_WIDTH-MaxX(self.clothingImage)-15/375.0*SCREEN_WIDTH, 15/668.0*SCREEN_HEIGHT)];
+        _remarkLabel = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(self.clothingImage)+15/375.0*SCREEN_WIDTH, MaxY(_idLabel)+7.5/668.0*SCREEN_HEIGHT, SCREEN_WIDTH-MaxX(self.clothingImage)-15/375.0*SCREEN_WIDTH, 15/668.0*SCREEN_HEIGHT)];
     }
     return _remarkLabel;
 }

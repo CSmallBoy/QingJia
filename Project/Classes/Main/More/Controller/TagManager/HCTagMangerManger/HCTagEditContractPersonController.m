@@ -7,28 +7,32 @@
 //----------------------编辑或新增紧急联系人界面------------------------------------
 
 #import "HCTagEditContractPersonController.h"
-#import "HCAddContactPersonApi.h"
 #import "HCTagContactInfo.h"
+//网络请求接口
 #import "HCChangeContactPersonApi.h"
+#import "HCAddContactPersonApi.h"
+//辅助类
 #import "HCAvatarMgr.h"
-
 #import "Utils.h"
-
+//系统通讯录调用
 #import <AddressBookUI/AddressBookUI.h>
+//关系选择
+#import "HCPeopleRelationViewController.h"
+//走失信息填写
+#import "HCPromisedMissMessageControll.h"
 
-@interface HCTagEditContractPersonController ()<ABPeoplePickerNavigationControllerDelegate>
+@interface HCTagEditContractPersonController ()<ABPeoplePickerNavigationControllerDelegate, HCPeopleRelationViewControllerDelegate>
 
-@property (nonatomic,strong)UITextField *textField1;
-@property (nonatomic,strong)UITextField *textField2;
-@property (nonatomic,strong)UITextField *textField3;
-@property (nonatomic,strong) NSString *imgStr;
-@property (nonatomic,strong) UIImage *image;
-@property (nonatomic,strong)UIButton *headBtn;
-
-@property (nonatomic, strong)UIImageView *backgroundImage;//背景图片
-
-//系统通讯录
-@property (nonatomic, strong)ABPeoplePickerNavigationController *pickerVC;
+@property (nonatomic, strong ) UITextField                        *textField1;
+@property (nonatomic, strong ) UITextField                        *textField2;
+@property (nonatomic, strong ) UITextField                        *textField3;
+@property (nonatomic, strong ) UIButton                           *relationButton;
+@property (nonatomic, strong ) NSString                           *imgStr;
+@property (nonatomic, strong ) UIImage                            *image;
+@property (nonatomic, strong ) UIButton                           *headBtn;//头像
+@property (nonatomic, strong ) UIButton                           *nextStep;//继续添加
+@property (nonatomic, strong ) UIImageView                        *backgroundImage;//背景图片
+@property (nonatomic, strong ) ABPeoplePickerNavigationController *pickerVC;//系统通讯录
 
 @end
 
@@ -45,8 +49,10 @@
     }
     [self setupBackItem];
     [self addAllSubviews];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
-    self.navigationItem.rightBarButtonItem = item;
+//    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
+//    self.navigationItem.rightBarButtonItem = item;
+    UIBarButtonItem *finishButton = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(finishButtonClick)];
+    self.navigationItem.rightBarButtonItem = finishButton;
     
 }
 
@@ -91,6 +97,20 @@
     return _headBtn;
 }
 
+- (UIButton *)nextStep
+{
+    if (_nextStep == nil)
+    {
+        _nextStep = [[UIButton alloc]initWithFrame:CGRectMake(10, HEIGHT(self.backgroundImage)-50, SCREEN_WIDTH-20, 40)];
+        _nextStep.backgroundColor = kHCNavBarColor;
+        [_nextStep setTitle:@"+ 继续添加" forState:UIControlStateNormal];
+        [_nextStep setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        ViewRadius(_nextStep, 5);
+        [_nextStep addTarget:self action:@selector(nextStepAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _nextStep;
+}
+
 #pragma mark - layoutView
 - (void)addAllSubviews
 {
@@ -130,9 +150,13 @@
     titleLabel2.text = @"关系";
     titleLabel2.textColor = [UIColor blackColor];
     
-    _textField3 = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel2.frame), CGRectGetMinY(titleLabel2.frame), SCREEN_WIDTH-190/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
-    _textField3.text = @"BB";
-    _textField3.textColor = [UIColor blackColor];
+//    _textField3 = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel2.frame), CGRectGetMinY(titleLabel2.frame), SCREEN_WIDTH-190/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
+//    _textField3.textColor = [UIColor blackColor];
+    _relationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _relationButton.frame = CGRectMake(CGRectGetMaxX(titleLabel2.frame), CGRectGetMinY(titleLabel2.frame), SCREEN_WIDTH-190/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT);
+    [_relationButton setTitle:@"测试" forState:UIControlStateNormal];
+    [_relationButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_relationButton addTarget:self action:@selector(relationButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel2.frame), CGRectGetMaxY(titleLabel2.frame), SCREEN_WIDTH-150/375.0*SCREEN_WIDTH, 1)];
     lineView2.backgroundColor = [UIColor grayColor];
@@ -146,8 +170,9 @@
     [self.backgroundImage addSubview:_textField2];
     [self.backgroundImage addSubview:lineView1];
     [self.backgroundImage addSubview:titleLabel2];
-    [self.backgroundImage addSubview:_textField3];
+    [self.backgroundImage addSubview:_relationButton];
     [self.backgroundImage addSubview:lineView2];
+    [self.backgroundImage addSubview:self.nextStep];
     
 }
 
@@ -213,6 +238,12 @@
     CFRelease(phones);
 }
 
+#pragma mark - HCPeopleRelationViewControllerDelegate
+
+- (void)selectedRelation:(NSString *)relation
+{
+    [_relationButton setTitle:relation forState:UIControlStateNormal];
+}
 
 #pragma mark --- provate mothods
 
@@ -269,6 +300,26 @@
     
 }
 
+//关系选择
+- (void)relationButtonAction:(UIButton *)sender
+{
+    HCPeopleRelationViewController *relationVC = [[HCPeopleRelationViewController alloc] init];
+    relationVC.delegate = self;
+    [self.navigationController pushViewController:relationVC animated:YES];
+}
+
+//继续添加
+- (void)nextStepAction:(UIButton *)sender
+{
+    
+}
+
+//完成
+- (void)finishButtonClick
+{
+    HCPromisedMissMessageControll *missMessageVC = [[HCPromisedMissMessageControll alloc] init];
+    [self.navigationController pushViewController:missMessageVC animated:YES];
+}
 
 #pragma mark --- netWork
 

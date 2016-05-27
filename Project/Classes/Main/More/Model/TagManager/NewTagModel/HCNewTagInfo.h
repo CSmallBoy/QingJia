@@ -17,7 +17,7 @@
 @property (nonatomic,strong) NSString *homeAddress; // 家庭住址
 @property (nonatomic,strong) NSString *school;   // 学校
 
-@property (nonatomic,strong) NSString *age;
+@property (nonatomic,strong) NSString *age;//年龄
 
 @property (nonatomic,strong) NSString *openHealthCard; // 是否公开医疗卡
 @property (nonatomic,strong) NSString *openHomeAddress;// 是否公开家庭住址
@@ -43,6 +43,7 @@
 
 @property (nonatomic,strong) NSString *labelImageName; // 标签图片
 
+@property (nonatomic, strong)UIImage *headImage;//头像
 
 @property (nonatomic,strong) NSString *objectId;
 
