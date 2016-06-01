@@ -38,6 +38,9 @@ static NSString * const reuseIdentifier = @"moreCollectionCell";
     [super viewDidLoad];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushToActivated) name:@"pushToActivated" object:nil];
+    
     [self.collectionView registerClass:[HCMoreCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
 
@@ -65,6 +68,7 @@ static NSString * const reuseIdentifier = @"moreCollectionCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%ld,%ld", indexPath.section, indexPath.row);
     NSString *vCName = self.vClassNameArr[indexPath.section*3+indexPath.row];
     HCViewController *vc = [[NSClassFromString(vCName) alloc] init];
     if ([vc isKindOfClass:[HCPromisedViewController class]])
@@ -127,6 +131,12 @@ static NSString * const reuseIdentifier = @"moreCollectionCell";
                            @"HCRescueCenterViewController",@"HCTagManagerViewController"];
     }
     return _vClassNameArr;
+}
+
+- (void)pushToActivated
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    [self collectionView:self.collectionView didSelectItemAtIndexPath:indexPath];
 }
 
 

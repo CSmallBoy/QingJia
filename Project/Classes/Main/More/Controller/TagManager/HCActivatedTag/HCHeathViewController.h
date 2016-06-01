@@ -10,4 +10,6 @@
 
 @interface HCHeathViewController : HCTableViewController
 
+@property (nonatomic, copy)NSString *objectId;
+
 @end

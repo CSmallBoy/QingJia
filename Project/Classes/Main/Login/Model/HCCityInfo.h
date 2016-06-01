@@ -12,6 +12,6 @@
 
 @property (nonatomic,copy)NSString *regionId;//城市ID
 @property (nonatomic,copy)NSString *regionName;//城市名
-@property (nonatomic,strong)NSArray *regionsl;//下属地区
+@property (nonatomic,strong)NSArray *regions;//下属地区
 
 @end

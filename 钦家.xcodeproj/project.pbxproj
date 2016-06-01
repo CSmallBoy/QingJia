@@ -1116,10 +1116,12 @@
 		EA090FA41CE2BFED00B6E009 /* HCDeletePromisedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */; };
 		EA11F74C1CF7E8B100BC9945 /* HCCityInfoMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = EA11F74B1CF7E8B100BC9945 /* HCCityInfoMgr.m */; };
 		EA1B63CB1CE9F305003EBDBA /* HCGetCityInfoVersionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1B63CA1CE9F305003EBDBA /* HCGetCityInfoVersionApi.m */; };
+		EA1B9A9D1CFE70AF0077EAA9 /* LTInfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1B9A9C1CFE70AF0077EAA9 /* LTInfiniteScrollView.m */; };
 		EA30EFB41CED50D200028887 /* HCSetTagMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30EFB31CED50D200028887 /* HCSetTagMgr.m */; };
 		EACD35F11CE5CD0C00EE3E8D /* HCSetPushTagApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD35F01CE5CD0C00EE3E8D /* HCSetPushTagApi.m */; };
 		EAD7FD0B1CF53A630058EF81 /* HCLostInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7FD0A1CF53A630058EF81 /* HCLostInfoViewController.m */; };
 		EAD7FD0F1CF54EF50058EF81 /* HCLostInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7FD0E1CF54EF50058EF81 /* HCLostInfoCell.m */; };
+		EADDE7CA1CFEE73F00987A0E /* HCGetCallDetailInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE7C91CFEE73F00987A0E /* HCGetCallDetailInfoApi.m */; };
 		EAE04D441CDF62CF003EDF0F /* HCReportApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE04D431CDF62CF003EDF0F /* HCReportApi.m */; };
 		EAE464971CF6A158005A0558 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE464961CF6A158005A0558 /* PlaceholderTextView.m */; };
 		EAE7B7311CE45ECC00E47B1B /* HCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */; };
@@ -3164,6 +3166,8 @@
 		EA1654B84ADD13561D399A8A /* libPods-钦家.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-钦家.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA1B63C91CE9F305003EBDBA /* HCGetCityInfoVersionApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGetCityInfoVersionApi.h; sourceTree = "<group>"; };
 		EA1B63CA1CE9F305003EBDBA /* HCGetCityInfoVersionApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGetCityInfoVersionApi.m; sourceTree = "<group>"; };
+		EA1B9A9B1CFE70AF0077EAA9 /* LTInfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTInfiniteScrollView.h; sourceTree = "<group>"; };
+		EA1B9A9C1CFE70AF0077EAA9 /* LTInfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTInfiniteScrollView.m; sourceTree = "<group>"; };
 		EA30EFB21CED50D200028887 /* HCSetTagMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSetTagMgr.h; sourceTree = "<group>"; };
 		EA30EFB31CED50D200028887 /* HCSetTagMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSetTagMgr.m; sourceTree = "<group>"; };
 		EACD35EF1CE5CD0C00EE3E8D /* HCSetPushTagApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSetPushTagApi.h; sourceTree = "<group>"; };
@@ -3172,6 +3176,8 @@
 		EAD7FD0A1CF53A630058EF81 /* HCLostInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLostInfoViewController.m; sourceTree = "<group>"; };
 		EAD7FD0D1CF54EF50058EF81 /* HCLostInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLostInfoCell.h; sourceTree = "<group>"; };
 		EAD7FD0E1CF54EF50058EF81 /* HCLostInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLostInfoCell.m; sourceTree = "<group>"; };
+		EADDE7C81CFEE73F00987A0E /* HCGetCallDetailInfoApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGetCallDetailInfoApi.h; sourceTree = "<group>"; };
+		EADDE7C91CFEE73F00987A0E /* HCGetCallDetailInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGetCallDetailInfoApi.m; sourceTree = "<group>"; };
 		EAE04D421CDF62CF003EDF0F /* HCReportApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReportApi.h; sourceTree = "<group>"; };
 		EAE04D431CDF62CF003EDF0F /* HCReportApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReportApi.m; sourceTree = "<group>"; };
 		EAE464951CF6A158005A0558 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextView.h; sourceTree = "<group>"; };
@@ -3489,6 +3495,8 @@
 		0A2B473B1C7F12C800AAA157 /* Promised  */ = {
 			isa = PBXGroup;
 			children = (
+				EADDE7C81CFEE73F00987A0E /* HCGetCallDetailInfoApi.h */,
+				EADDE7C91CFEE73F00987A0E /* HCGetCallDetailInfoApi.m */,
 				0A2B473C1C7F12C800AAA157 /* HCPromisedAddCallMessageAPI.h */,
 				0A2B473D1C7F12C800AAA157 /* HCPromisedAddCallMessageAPI.m */,
 				0A2B473E1C7F12C800AAA157 /* HCPromisedAddSelectAPI.h */,
@@ -7450,6 +7458,8 @@
 		EAD7FD0C1CF54E510058EF81 /* NewCallAnswerCell */ = {
 			isa = PBXGroup;
 			children = (
+				EA1B9A9B1CFE70AF0077EAA9 /* LTInfiniteScrollView.h */,
+				EA1B9A9C1CFE70AF0077EAA9 /* LTInfiniteScrollView.m */,
 				EAD7FD0D1CF54EF50058EF81 /* HCLostInfoCell.h */,
 				EAD7FD0E1CF54EF50058EF81 /* HCLostInfoCell.m */,
 				EAE464951CF6A158005A0558 /* PlaceholderTextView.h */,
@@ -7918,6 +7928,7 @@
 				0A72D8FC1C3E4675006D1C62 /* UIView_extra.m in Sources */,
 				C78D7B481C5F28F700622CE2 /* HCApplyReissueDetailCell.m in Sources */,
 				0A2B47761C7F12C800AAA157 /* HCProductIntrodApi.m in Sources */,
+				EADDE7CA1CFEE73F00987A0E /* HCGetCallDetailInfoApi.m in Sources */,
 				C7B00B871C5F26050010F93B /* EMSDWebImageCompat.m in Sources */,
 				0A5491221C2BC32D0085F50D /* ZXSMSParsedResult.m in Sources */,
 				8D131A921C7D7C7F00F0D5A0 /* ZLPhotoPickerBrowserPhotoImageView.m in Sources */,
@@ -8528,6 +8539,7 @@
 				C78D7B441C5F28F700622CE2 /* HCBuyRecordTableViewCell.m in Sources */,
 				8D1590541CB5F94800B08BDC /* applyToFamily.m in Sources */,
 				0A2B47721C7F12C800AAA157 /* HCBuyRecordApi.m in Sources */,
+				EA1B9A9D1CFE70AF0077EAA9 /* LTInfiniteScrollView.m in Sources */,
 				0A54912C1C2BC32D0085F50D /* ZXVEventResultParser.m in Sources */,
 				0A72D8FB1C3E4675006D1C62 /* LeftSlideViewController.m in Sources */,
 				8D156B8B1CC5E1B90025CB1C /* HCTagUserFindApi.m in Sources */,
@@ -8910,7 +8922,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -8950,7 +8962,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;

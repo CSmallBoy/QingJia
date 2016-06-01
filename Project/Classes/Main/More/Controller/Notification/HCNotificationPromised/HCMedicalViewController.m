@@ -84,9 +84,7 @@
 
 -(void)requestData
 {
-    
     if (self.objectId) {
-
         HCGetMedicalApi *api = [[HCGetMedicalApi alloc]init];
         api.objectId = self.objectId;
         

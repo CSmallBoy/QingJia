@@ -20,7 +20,6 @@
 @interface HCPromiedTagWhenMissController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)UITableView *tagTableView;//标签列表
-
 @property (nonatomic,strong) UIView *footerView;
 
 @end
@@ -31,7 +30,7 @@
     [super viewDidLoad];
    
     self.title = @"走失时候佩戴的标签";
-    [self requestData];
+//    [self requestData];
     [self setupBackItem];
     [self.view addSubview:self.tagTableView];
     [self.view addSubview:self.footerView];
@@ -41,39 +40,36 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HCMissTagTableViewCell *cell = [HCMissTagTableViewCell customCellWithTable:tableView];
-//    HCNewTagInfo *info = self.dataArr[indexPath.row];
-//    [cell.selectedButton addTarget:self action:@selector(selectedButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    NSURL *url = [readUserInfo originUrl:info.imageName :kkLabel];
-//    [cell.clothingImage sd_setImageWithURL:url];
-//    cell.titleLabel.text = info.labelTitle;
-//    cell.idLabel.text = [NSString stringWithFormat:@"ID:%@", info.objectId];
-//    cell.remarkLabel.text = [NSString stringWithFormat:@"备注:%@", info.labelTitle];
-    cell.titleLabel.text = @"标题";
-    cell.idLabel.text = @"ID";
-    cell.remarkLabel.text = @"备注";
+    HCNewTagInfo *info = self.dataArr[indexPath.row];
+    [cell.selectedButton addTarget:self action:@selector(selectedButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    NSURL *url = [readUserInfo originUrl:info.imageName :kkLabel];
+    [cell.clothingImage sd_setImageWithURL:url];
+    cell.titleLabel.text = [info.labelTitle substringToIndex:4];
+    cell.idLabel.text = [NSString stringWithFormat:@"ID:%@", info.labelId];
+    cell.remarkLabel.text = [NSString stringWithFormat:@"备注:%@", [info.labelTitle substringFromIndex:4]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    HCNewTagInfo *info = self.dataArr[indexPath.row];
-//    HCMissTagTableViewCell *cell = [self.tagTableView cellForRowAtIndexPath:indexPath];
-//    if (info.isBlack)
-//    {
-//        cell.selected = NO;
-//        info.isBlack = NO;
-//    }
-//    else
-//    {
-//        cell.selected = YES;
-//        info.isBlack = YES;
-//    }
+    HCNewTagInfo *info = self.dataArr[indexPath.row];
+    HCMissTagTableViewCell *cell = [self.tagTableView cellForRowAtIndexPath:indexPath];
+    if (info.isBlack)
+    {
+        cell.selectedButton.selected = NO;
+        info.isBlack = NO;
+    }
+    else
+    {
+        cell.selectedButton.selected = YES;
+        info.isBlack = YES;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,7 +134,7 @@
 -(NSMutableArray *)dataArr
 {
     if(!_dataArr){
-        _dataArr = [NSMutableArray arrayWithCapacity:4];
+        _dataArr = [NSMutableArray array];
     }
     return _dataArr;
 }
@@ -164,25 +160,25 @@
 
 #pragma mrk --- network
 
--(void)requestData
-{
-    HCTagAmostDetailListApi *api = [[HCTagAmostDetailListApi alloc]init];
-    api.labelStatus = @"0";// 已经激活的标签
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
-    {
-        
-        if (requestStatus == HCRequestStatusSuccess)
-        {
-            NSArray *array = respone[@"Data"][@"rows"];
-            for (NSDictionary *dic in array)
-            {
-                HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
-                [self.dataArr addObject:info];
-            }
-            [self.tagTableView reloadData];
-        }
-    }];
-}
+//-(void)requestData
+//{
+//    HCTagAmostDetailListApi *api = [[HCTagAmostDetailListApi alloc]init];
+//    api.labelStatus = @"0";// 已经激活的标签
+//    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
+//    {
+//        
+//        if (requestStatus == HCRequestStatusSuccess)
+//        {
+//            NSArray *array = respone[@"Data"][@"rows"];
+//            for (NSDictionary *dic in array)
+//            {
+//                HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
+//                [self.dataArr addObject:info];
+//            }
+//            [self.tagTableView reloadData];
+//        }
+//    }];
+//}
 
 
 - (void)didReceiveMemoryWarning {

@@ -9,5 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface HCCityInfoMgr : NSObject
+/**
+ *  省市县三级联动数据解析类
+ *
+ */
++ (HCCityInfoMgr *)manager;
+/**
+ *  取出省市县三级数据
+ */
+- (NSMutableDictionary *)getAllProvinces;
 
 @end

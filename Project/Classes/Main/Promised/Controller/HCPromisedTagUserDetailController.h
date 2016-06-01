@@ -10,6 +10,10 @@
 
 @interface HCPromisedTagUserDetailController : HCTableViewController
 
-@property (nonatomic,assign) BOOL isNewObject;
+@property (nonatomic, assign)BOOL isObj;//是否有编辑按钮编辑
+
+@property (nonatomic, assign)BOOL isNextStep;//是否有下一步按钮
+
+@property (nonatomic, copy)NSString *objId;//对象id
 
 @end

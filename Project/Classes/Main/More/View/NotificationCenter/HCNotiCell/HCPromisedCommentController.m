@@ -170,23 +170,6 @@
     return 1;
 }
 
-#pragma mark --- textFieldDelegate
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    _startEdit = YES;
-    for (UIView *view in self.photoView.subviews)
-    {
-        [self.images removeAllObjects];
-        [view removeFromSuperview];
-    }
-}
-
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    _startEdit = NO;
-}
-
 #pragma mark ---- UIActionSheetDelegate
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -226,10 +209,8 @@
                     [self.photoView addSubview:imageView];
                 }
                 [UIView animateWithDuration:0.05 animations:^{
-                    
                     self.myTableView.frame = CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT-44-SCREEN_WIDTH/3-64);
                     self.inputView.frame = CGRectMake(0, CGRectGetMaxY(self.myTableView.frame), SCREEN_WIDTH, 44);
-                    
                 }completion:^(BOOL finished) {
                     [self.view addSubview:self.photoView];
                 }];
@@ -272,16 +253,10 @@
         
         [self.view addSubview:self.photoView];
     }];
-    
-//    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+SCREEN_WIDTH/3 * (_photoCount-1), 10,  SCREEN_WIDTH/3-20, SCREEN_WIDTH/3-30)];
-//    imageView.image = image;
-//    [self.photoView addSubview:imageView];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark --- private mothods
-
-
 -(void)deletePhoto:(UILongPressGestureRecognizer *)longPress
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -294,16 +269,9 @@
 -(void)smallBtnClick:(UIButton *)btn
 {
     UIView *view = btn.superview;
-    
     NSInteger index = view.tag-100;
     [self.images removeObjectAtIndex:index];
-    
-//    for (UIView *view in self.photoView.subviews)
-//    {
-//        [view removeFromSuperview];
-//    }
     [self.photoView removeAllSubviews];
-    
     for (int i = 0; i< self.images.count; i++)
     {
         UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10+i * SCREEN_WIDTH/3, 10, SCREEN_WIDTH/3-20, SCREEN_WIDTH/3-20)];
@@ -317,7 +285,6 @@
     
     if (self.images.count == 0)
     {
-        
         [UIView animateWithDuration:0.3 animations:^{
             
             // self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -326,12 +293,8 @@
 //            self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
             [self.photoView removeFromSuperview];
         }];
-
-
     }
-    
 }
-
 
 -(void)removeBigImageView:(UITapGestureRecognizer *)tap
 {
@@ -352,8 +315,6 @@
     UIActionSheet  *sheet = [[UIActionSheet alloc]initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
     [sheet  showInView:self.view];
     [self.textField endEditing:YES];
-
-
 }
 
 //添加图片
@@ -479,7 +440,6 @@
     return _images;
 }
 
-
 - (NSMutableArray *)dataSource
 {
     if(!_dataSource){
@@ -487,7 +447,6 @@
     }
     return _dataSource;
 }
-
 
 - (NSMutableArray *)imgStrArr
 {
@@ -497,89 +456,44 @@
     return _imgStrArr;
 }
 
-
-
-//- (UITextField *)inputViewText
-//{
-//    if(!_inputViewText){
-//        _inputViewText = [[UITextField alloc]initWithFrame:CGRectMake(10,7,SCREEN_WIDTH-120, 30)];
-//        _inputViewText.backgroundColor = [UIColor whiteColor];
-//        ViewRadius(_textField, 4);
-//        _inputViewText.delegate = self;
-//        _inputViewText.backgroundColor = [UIColor yellowColor];
-//    }
-//    return _inputViewText;
-//}
-
-
-
 #pragma mark ---  network
 
+//请求评论信息
 -(void)requestData
 {
     HCCommentListApi *api = [[HCCommentListApi alloc]init];
     api.callId = self.callId;
-    
     api._start = @"21";
     api._count = @"2";
-    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        
         if (requestStatus == HCRequestStatusSuccess) {
             
             [self.dataSource removeAllObjects];
-            
             NSArray *array = respone[@"Data"][@"rows"];
-            
-//            NSDictionary *dic = [array lastObject];
-//            HCPromisedCommentInfo *info = [HCPromisedCommentInfo mj_objectWithKeyValues:dic];
-//            self.mySelfId = info.toId;
-            
-            for (NSDictionary *dic in array) {
-                
-                
-                 HCPromisedCommentFrameInfo *frameInfo = [[HCPromisedCommentFrameInfo alloc]init];
+            for (NSDictionary *dic in array)
+            {
+                HCPromisedCommentFrameInfo *frameInfo = [[HCPromisedCommentFrameInfo alloc]init];
                 HCPromisedCommentInfo *info = [HCPromisedCommentInfo mj_objectWithKeyValues:dic];
-//                info.oldId = self.mySelfId;
                 frameInfo.commentInfo = info;
-                
                 [self.dataSource addObject:frameInfo];
-                
             }
-             
-            
-            
-            
-            
             [self.myTableView reloadData];
         }
         
     }];
 }
 
+//发送
 -(void)upLoadData
 {
     [self showHUDView:@"发送中"];
-    
     HCReplyLineApi *api = [[HCReplyLineApi alloc]init];
-    
     HCPromisedCommentInfo *info = [[HCPromisedCommentInfo alloc]init];
     NSString *str = [self.imgStrArr componentsJoinedByString:@","];
-    
     info.imageNames = str;
     info.content = self.textField.text;
-    
-//    if (self.subIndexPath) {
-//        HCPromisedCommentFrameInfo *frameInfo = self.dataSource[self.subIndexPath.row];
-//        HCPromisedCommentInfo *info1 = frameInfo.commentInfo;
-//        info.toId = info1.fromId;
-//    }
-//    else
-//    {
-       info.toId = @"";
-//    }
-
-    
+    info.toId = @"";
     api.info = info;
     api.callId = self.callId;
     
@@ -591,8 +505,6 @@
             NSLog(@"评论成功");
             self.textField.text = nil;
             self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            
-//            self.subIndexPath = nil;
             [self requestData];
         }
         else
@@ -600,7 +512,6 @@
             NSString *str = responseObject[@"message"];
             [self showHUDText:str];
         }
-        
         [UIView animateWithDuration:0.3 animations:^{
             
             self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
@@ -611,6 +522,7 @@
     }];
 }
 
+//上传图片
 -(void)upLoadImages:(int)num
 {
     if (num > self.images.count) {
@@ -622,7 +534,7 @@
     UIImage *image = self.images[num-1];
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
-    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkUser,uuid,token]];
+    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"clue",uuid,token]];
     [KLHttpTool uploadImageWithUrl:str image:image success:^(id responseObject) {
         NSLog(@"%@",responseObject);
         NSString *imgStr = responseObject[@"Data"][@"files"][0];

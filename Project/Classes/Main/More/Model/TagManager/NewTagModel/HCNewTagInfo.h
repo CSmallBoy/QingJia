@@ -11,7 +11,7 @@
 @interface HCNewTagInfo : HCRequest
 
 @property (nonatomic,strong) NSString *trueName; //姓名
-@property (nonatomic,strong) NSString *imageName; // 图片
+@property (nonatomic,strong) NSString *imageName; //图片
 @property (nonatomic,strong) NSString *sex;  // 性别
 @property (nonatomic,strong) NSString *birthDay; // 生日
 @property (nonatomic,strong) NSString *homeAddress; // 家庭住址
@@ -48,8 +48,8 @@
 @property (nonatomic,strong) NSString *objectId;
 
 
-@property (nonatomic,strong) NSString *labelTitle;
-@property (nonatomic,strong) NSString *labelId;
+@property (nonatomic,strong) NSString *labelTitle;//标签描述
+@property (nonatomic,strong) NSString *labelId;//标签ID
 
 @property (nonatomic,assign) BOOL  isBlack;
 

@@ -24,7 +24,6 @@
 
 @interface HCAddTagUserController ()<HCPickerViewDelegate,SDWebImageManagerDelegate>
 @property (nonatomic,strong) HCPickerView *datePicker;
-@property (nonatomic,strong) NSString *myTitle;
 @property (nonatomic,strong) HCNewTagInfo *info;
 @property (nonatomic,strong) UIImage *image;
 @property (nonatomic,strong) UIView *medicalView;
@@ -43,8 +42,6 @@
 @property (nonatomic,strong) NSMutableArray *imgArr;
 @property (nonatomic,strong) NSArray *relativeArr;
 
-@property (nonatomic,strong) NSString* openHealthCard;
-@property (nonatomic,assign) BOOL  isHide;
 @property (nonatomic,strong) UISwitch *sw;
 
 @end
@@ -54,38 +51,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      [self requestContactData];
-    self.myTitle = self.data[@"title"];
-    
-    
-    self.myTitle = self.info.trueName;
-    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
-    
-    [self setupBackItem];
-    self.openHealthCard = @"1";
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
-
-    item.title = @"保存";
     self.title = @"新增标签使用者";
-    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
     self.navigationItem.rightBarButtonItem = item;
-    
-  
-    
-    HCNewTagInfo *info = self.data[@"info"];
-    
-    if (info.trueName) {
-        self.info = self.data[@"info"];
+    if (self.isNewObj)
+    {
+        item.title = @"保存";
+        self.info = [[HCNewTagInfo alloc] init];
     }
     else
     {
-        self.info=[[HCNewTagInfo alloc]init];
+        self.info = [self.data objectForKey:@"info"];
+        self.title = [NSString stringWithFormat:@"%@的信息", self.info.trueName];
+        item.title = @"编辑";
     }
-    
-    self.info.openHealthCard = self.openHealthCard;
-    
+    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
+    [self setupBackItem];
+    self.info.openHealthCard = @"1";
     // 添加了一个紧急联系人
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(addNewContractPerson:) name:@"addNewContractPerson" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(saveNewContact) name:@"saveNewContact" object:nil];
     
 }
 
@@ -101,9 +85,8 @@
     {
         return 1;
     }
-    
-   
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
@@ -115,13 +98,7 @@
         }
         else if (section == 1)
         {
-            if (_isHide)
-            {
-                return 0;
-            }
-            
-            HCNewTagInfo *info = self.data[@"info"];
-            if ([info.openHealthCard isEqualToString:@"0"])
+            if ([self.info.openHealthCard isEqualToString:@"0"])
             {
                 
                 return 0;
@@ -139,8 +116,6 @@
     {
         return 12;
     }
-    
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -229,7 +204,6 @@
                 else
                 {
                     HCTagContactInfo *info = self.contactArr[i];
-                    
                     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(i*93,0 , 93, 180)];
                     
                     // 头像
@@ -237,7 +211,6 @@
                     
                     NSURL *url = [readUserInfo originUrl:info.imageName :@"contactor"];
                     [imageIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
-    
                     ViewRadius(imageIV, 73/2);
                     [view addSubview:imageIV];
                     
@@ -257,8 +230,6 @@
                     [view addSubview:button];
                     
                     [ self.scrollView addSubview:view];
-                    
-                    
                 }
             }
             [cell addSubview:self.scrollView];
@@ -361,24 +332,22 @@
 
 
 #pragma mark --- private  mothods
-
--(void)addNewContractPerson:(NSNotification *)noti
+-(void)saveNewContact
 {
-
     [self requestContactData];
-    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
-
-    
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-
 }
 
 -(void)itemClick:(UIBarButtonItem *)item
 {
+    if ([item.title isEqualToString:@"编辑"])
+    {
+        item.title = @"保存";
+    }
+    else if ([item.title isEqualToString:@"保存"])
+    {
         // 保存按钮点击
-       
-        
         if (IsEmpty(self.info.trueName)) {
             [self showHUDText:@"请输入姓名"];
             return;
@@ -395,62 +364,63 @@
             [self showHUDText:@"请输入学校"];
             return;
         }
-    
-    if ([self.openHealthCard isEqualToString:@"1"]) {
         
-        if (IsEmpty(self.info.height)) {
-            [self showHUDText:@"请输入身高"];
-            return;
+        if ([self.info.openHealthCard isEqualToString:@"1"]) {
+            
+            if (IsEmpty(self.info.height)) {
+                [self showHUDText:@"请输入身高"];
+                return;
+            }
+            if (IsEmpty(self.info.weight)) {
+                [self showHUDText:@"请输入体重"];
+                return;
+            }
+            if (IsEmpty(self.info.bloodType)) {
+                [self showHUDText:@"请输入血型"];
+                return;
+            }
+            if (IsEmpty(self.info.allergic)) {
+                [self showHUDText:@"请输入过敏史"];
+                return;
+            }
+            if (IsEmpty(self.info.cureCondition)) {
+                [self showHUDText:@"请输入医疗状况"];
+                return;
+            }
+            if (IsEmpty(self.info.cureNote)) {
+                [self showHUDText:@"请输入医疗笔记"];
+                return;
+            }
         }
-        if (IsEmpty(self.info.weight)) {
-            [self showHUDText:@"请输入体重"];
-            return;
-        }
-        if (IsEmpty(self.info.bloodType)) {
-            [self showHUDText:@"请输入血型"];
-            return;
-        }
-        if (IsEmpty(self.info.allergic)) {
-            [self showHUDText:@"请输入过敏史"];
-            return;
-        }
-        if (IsEmpty(self.info.cureCondition)) {
-            [self showHUDText:@"请输入医疗状况"];
-            return;
-        }
-        if (IsEmpty(self.info.cureNote)) {
-            [self showHUDText:@"请输入医疗笔记"];
-            return;
-        }
-    }
         if (self.selectArr.count != 2) {
             
             [self showHUDText:@"必须绑定连个紧急联系人"];
             return;
         }
-
-    if (_isEdit)
-    {
-        if (self.image) {
-            [self uploadImage];
-        }
-        else
-        {
-            [self changeObject];
-        }
         
-        
-    }else
-    {
-        if (self.image)
+        if (_isEdit)
         {
-            [self uploadImage];
-        }
-        else
+            if (self.image) {
+                [self uploadImage];
+            }
+            else
+            {
+                [self changeObject];
+            }
+            
+            
+        }else
         {
-            [self showHUDText:@"请上传头像"];
+            if (self.image)
+            {
+                [self uploadImage];
+            }
+            else
+            {
+                [self showHUDText:@"请上传头像"];
+            }
+            
         }
-        
     }
 }
 
@@ -461,16 +431,12 @@
 -(void)selectBtnClick:(UIButton *)button
 {
     UIImage *image = [button imageForState:UIControlStateNormal];
-    
     if ([image isEqual:IMG(@"contactUnSelect")]) {
-        
-        
         if (self.selectArr.count == 2)
         {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"只能绑定两个紧急联系人" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
         }
-        
         else
         {
             NSInteger index = button.tag-100;
@@ -643,10 +609,8 @@
 -(void)swClick:(UISwitch *)sw
 {
     if (sw.on) {
-        self.openHealthCard = @"1";
+        self.info.openHealthCard = @"1";
         sw.on = YES;
-        _isHide = NO;
-        
         HCNewTagInfo *info = self.data[@"info"];
         info.openHealthCard = @"1";
         [self.tableView reloadData];
@@ -654,10 +618,8 @@
     }
     else
     {
-        self.openHealthCard = @"0";
+        self.info.openHealthCard = @"0";
         sw.on = NO;
-        _isHide = YES;
-        
         HCNewTagInfo *info = self.data[@"info"];
         info.openHealthCard = @"0";
         
@@ -721,8 +683,6 @@
     return _imgArr;
 }
 
-
-
 - (NSArray *)relativeArr
 {
     if(!_relativeArr){
@@ -747,15 +707,14 @@
         _sw = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-60, 5, 40, 30)];
         
         HCNewTagInfo *info = self.data[@"info"];
-        if ([info.openHealthCard isEqualToString:@"0"]) {
-            
+        if ([info.openHealthCard isEqualToString:@"0"])
+        {
             _sw.on = NO;;
         }
         else
         {
            _sw.on = YES;
         }
-        
         
         [_sw addTarget:self action:@selector(swClick:) forControlEvents:UIControlEventValueChanged];
         [_medicalView addSubview:_sw];
@@ -766,7 +725,7 @@
 
 
 #pragma mark --- network
-
+//上传头像
 -(void)uploadImage
 {
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
@@ -784,80 +743,59 @@
         {
            [self requestData];
         }
-        
     } failure:^(NSError *error) {
-        
     }];
-    
-
 }
-// 添加对象的Api
 
+// 添加对象的Api
 -(void)requestData
 {
-
     HCTagAddObjectApi *api = [[HCTagAddObjectApi alloc]init];
-    
     HCTagContactInfo *info1 =self.selectArr[0];
     HCTagContactInfo *info2 = self.selectArr[1];
-    
     self.info.relation1 = info1.relative;
     self.info.contactorId1 = info1.contactorId;
-    
     self.info.relation2 = info2.contactorId;
     self.info.contactorId2 = info2.contactorId;
-    
     api.info = self.info;
-    
-    api.openHealthCard = self.openHealthCard;
-    
-    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-       
-        if (requestStatus == HCRequestStatusSuccess) {
+    api.openHealthCard = self.info.openHealthCard;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
+    {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
             [self showHUDText:@"添加标签使用者成功"];
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshObjectData" object:nil];
         [self.navigationController popViewControllerAnimated:YES];
-        
     }];
-    
 }
 
+//改变/编辑对象
 -(void)changeObject
 {
     HCTagChangeObjectApi *api = [[HCTagChangeObjectApi alloc]init];
-    
     api.objectId = self.info.objectId;
-    
     HCTagContactInfo *info1 =self.selectArr[0];
     HCTagContactInfo *info2 = self.selectArr[1];
-    
     self.info.relation1 = info1.relative;
     self.info.contactorId1 = info1.contactorId;
-    
     self.info.relation2 = info2.relative;
     self.info.contactorId2 = info2.contactorId;
-    
-    api.openHealthCard = self.openHealthCard;
-    
+    api.openHealthCard = self.info.openHealthCard;
     api.info =  self.info;
-    
-    [api startRequest:^(HCRequestStatus requestStautus, NSString *message, id respone) {
-       
-        if (requestStautus == HCRequestStatusSuccess) {
-    
-            if (_isEditTag) {
+    [api startRequest:^(HCRequestStatus requestStautus, NSString *message, id respone)
+    {
+        if (requestStautus == HCRequestStatusSuccess)
+        {
+            if (_isEditTag)
+            {
                 [self.navigationController popViewControllerAnimated:YES];
-                
             }
             else
             {
                 UIViewController *vc = self.navigationController.viewControllers[3];
                 [self.navigationController popToViewController:vc animated:YES];
             }
-
-            
-            
         }
     }];
     

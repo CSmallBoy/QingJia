@@ -31,6 +31,13 @@
 #import "NHCLabelStateApi.h"
 
 #import <MAMapKit/MAMapKit.h>
+//已激活->标签详情
+#import "HCTagManagerDetailViewController.h"
+//已发呼->一呼百应详情(别人的,自己的)
+#import "HCMyPromisedDetailController.h"
+#import "HCOtherPromisedDetailController.h"
+//已停用->提示已停用
+//无效->提示无效
 static const CGFloat kBorderW = 100;
 static const CGFloat kMargin = 30;
 @interface Scan_VC ()<UIAlertViewDelegate,AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
@@ -342,28 +349,45 @@ static const CGFloat kMargin = 30;
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
             // 0:未激活，1：激活，2：激活（标签拥有者）3：呼，4：呼（标签拥有者），5：停用，6：停用（标签拥有者），7：无效
             NSString *status = responseObject[@"Data"][@"labelInf"][@"status"];
-            if ([status isEqualToString:@"0"]) {
+            NSString *labelId = responseObject[@"Data"][@"labelInf"][@"labelId"];
+            NSString *callId = responseObject[@"Data"][@"labelInf"][@"callId"];
+            if ([status isEqualToString:@"0"])
+            {
                 //没有激活是下面的操作
                 HCBindTagController *bindVC = [[HCBindTagController alloc]init];
                 bindVC.labelGuid = str;
                 [self.navigationController pushViewController:bindVC animated:YES];
             }
-            else if ([status isEqualToString:@"1"] || [status isEqualToString:@"2"]){
-//                [self showHUDText:@"该标签已经激活"];
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"二维码信息" message:@"已经激活" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
-                [alertView show];
-                
-            } else if ([status isEqualToString:@"5"] || [status isEqualToString:@"6"]){
+            else if ([status isEqualToString:@"1"] || [status isEqualToString:@"2"])
+            {
+                HCTagManagerDetailViewController *tagDetailVC = [[HCTagManagerDetailViewController alloc] init];
+                tagDetailVC.tagID = labelId;
+                [self.navigationController pushViewController:tagDetailVC animated:YES];
+            }
+            else if ([status isEqualToString:@"5"] || [status isEqualToString:@"6"])
+            {
 //                [self showHUDText:@"该标签已经停用"];
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"二维码信息" message:@"已经停用" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
                 [alertView show];
                 
-            }else if ([status isEqualToString:@"3"] || [status isEqualToString:@"4"])
+            }
+            else if ([status isEqualToString:@"3"] || [status isEqualToString:@"4"])
             {
-//                [self showHUDText:@"该标签已经激活 标签拥有者"];
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"二维码信息" message:@"已经激活" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
-                [alertView show];
-            }else {
+                if ([status isEqualToString:@"3"])
+                {
+                    HCOtherPromisedDetailController *detailVC = [[HCOtherPromisedDetailController alloc] init];
+                    detailVC.callId = callId;
+                    [self.navigationController pushViewController:detailVC animated:YES];
+                }
+                else
+                {
+                    HCMyPromisedDetailController *detailVC = [[HCMyPromisedDetailController alloc] init];
+                    detailVC.callId = callId;
+                    [self.navigationController pushViewController:detailVC animated:YES];
+                }
+            }
+            else
+            {
 //                [self showHUDText:@"其他信息"];
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"二维码信息" message:@"无效" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
                 [alertView show];

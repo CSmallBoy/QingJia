@@ -205,20 +205,19 @@
     
     return _headerView;
 }
+
 //编辑标签
 -(void)editingClick{
-    
     [button2 removeFromSuperview];
     [button_view removeFromSuperview];
-    
     HCAddTagUserController *editVC = [[HCAddTagUserController alloc]init];
     editVC.data = @{@"info":self.info};
     editVC.isEdit = YES;
     editVC.isEditTag = YES;
+    editVC.isNewObj = NO;
     [self.navigationController pushViewController:editVC animated:YES];
-
-    
 }
+
 -(void)stopClick{
     NSArray *arr = @[@"停用",@"取消"];
     view_all = [[UIView alloc]initWithFrame:self.view.bounds];

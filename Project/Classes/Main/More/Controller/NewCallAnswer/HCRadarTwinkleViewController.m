@@ -9,7 +9,6 @@
 #import "HCRadarTwinkleViewController.h"
 #import "WKFRadarView.h"
 
-
 @interface HCRadarTwinkleViewController ()
 
 @property (nonatomic, strong)WKFRadarView *radarView;//雷达效果
@@ -88,8 +87,6 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
                 //2.监听改变选中的页面
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"afterReview" object:nil];
-                
-                
             });
         }else{
             int seconds = timeout % 100;

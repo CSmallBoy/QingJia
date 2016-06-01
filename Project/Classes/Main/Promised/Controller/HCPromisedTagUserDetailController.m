@@ -25,30 +25,31 @@
 
 
 @interface HCPromisedTagUserDetailController ()<HCPickerViewDelegate>
-@property (nonatomic,strong) HCPickerView *datePicker;
-@property (nonatomic,strong) NSString *myTitle;
-@property (nonatomic,strong) HCNewTagInfo *info;
+@property (nonatomic, strong)UITableView *tableview;
+@property (nonatomic,strong) HCPickerView *datePicker;//选择生日
+@property (nonatomic,strong) HCNewTagInfo *info;//存储该对象的所有信息
 @property (nonatomic,strong) UIImage *image;
-@property (nonatomic,strong) UIView *medicalView;
+@property (nonatomic,strong) UIView *medicalView;//区头,医疗急救卡
 @property (nonatomic,strong) UIButton *relBtn;// 关系按钮
 @property (nonatomic,strong) UIImageView *smallIV;
-@property (nonatomic,strong) UIScrollView *scrollView;
+@property (nonatomic,strong) UIScrollView *scrollView;//展示绑定联系人
 
 @property (nonatomic,strong)UIView*blackView;;
 @property (nonatomic,strong)UIView *whiteView;
 
 @property (nonatomic,assign) NSInteger index;
-
-
-@property (nonatomic,strong) NSMutableArray *contactArr;// 联系人数组
+//@property (nonatomic,strong) NSMutableArray *contactArr;//该对象绑定的联系人数组
 @property (nonatomic,strong) NSMutableArray *selectArr;
 @property (nonatomic,strong) NSMutableArray *imgArr;
-@property (nonatomic,strong) NSArray *relativeArr;
-@property (nonatomic,strong) NSMutableArray *tagArr;
+@property (nonatomic,strong) NSArray *relativeArr;//关系列表
+@property (nonatomic,strong) NSMutableArray *tagArr;//该对象绑定的标签数组
 
-@property (nonatomic,strong) NSString* openHealthCard;
-@property (nonatomic,assign) BOOL  isHide;
-@property (nonatomic,strong) UISwitch *sw;
+@property (nonatomic, strong)HCTagContactInfo *contactInfo1;//紧急联系人1
+@property (nonatomic, strong)HCTagContactInfo *contactInfo2;//紧急联系人2
+
+@property (nonatomic,strong) UISwitch *sw;//医疗急救卡开关
+@property (nonatomic, strong)UIButton *nextStepBtn;//下一步
+
 
 @end
 
@@ -56,35 +57,78 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // --------------------------发一呼百应---------------------------------
-     [self requestContactData];
-    self.myTitle = self.data[@"title"];
-    self.info = self.data[@"info"];
-    [self.view endEditing:YES];
-    if (self.info) {
-         [self requestData];
-    }
-    else
-    {
-         self.title = @"手动输入";
-        self.info = [[HCNewTagInfo alloc]init];
-    }
-    
-    self.tableView.tableHeaderView = HCTabelHeadView(0.1);
+   
+    //对象信息页面
     [self setupBackItem];
-    self.openHealthCard = @"1";
-
-    self.info.openHealthCard = self.openHealthCard;
+    [self.view addSubview:self.tableview];
+    if (self.isObj)//允许编辑
+    {
+        UIBarButtonItem *editItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editItemClick:)];
+        self.navigationItem.rightBarButtonItem = editItem;
+        if (self.isNextStep)
+        {
+            self.tableview.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-50-64);
+            [self.view addSubview:self.nextStepBtn];
+        }
+        else
+        {
+            self.tableview.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+        }
+    }
+    else//不允许编辑
+    {
+        if (self.isNextStep)
+        {
+            self.tableview.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-50-64);
+            [self.view addSubview:self.nextStepBtn];
+        }
+        else
+        {
+            self.tableview.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+        }
+    }
     
+    //请求到紧急联系人列表
+//    [self requestContactData];
+    //根据该对象ID请求对象信息
+    [self requestData];
+
 }
 
+#pragma mark - lazyLoading
 
+- (UITableView *)tableview
+{
+    if (_tableview == nil)
+    {
+        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-50-64) style:UITableViewStyleGrouped];
+        _tableview.tableHeaderView = HCTabelHeadView(0.1);
+        _tableview.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+        _tableview.delegate = self;
+        _tableview.dataSource = self;
+    }
+    return _tableview;
+}
+
+- (UIButton *)nextStepBtn
+{
+    if (_nextStepBtn == nil)
+    {
+        _nextStepBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 50, SCREEN_WIDTH-20, 40)];
+        _nextStepBtn.backgroundColor = kHCNavBarColor;
+        [_nextStepBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        [_nextStepBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        ViewRadius(_nextStepBtn, 5);
+        [_nextStepBtn addTarget:self action:@selector(nextBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _nextStepBtn;
+}
 
 #pragma mark --- UITableViewDelegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.tableView) {
+    if (tableView == self.tableview) {
          return 3;
     }
     else
@@ -97,26 +141,22 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    if (tableView == self.tableView) {
-        if (section == 0) {
-            
+    if (tableView == self.tableview)
+    {
+        if (section == 0)
+        {
             return 6;
         }
         else if (section == 1)
         {
-            if (_isHide) {
+            if ([self.info.openHealthCard isEqualToString:@"0"])
+            {
                 return 0;
             }
-            
-            HCNewTagInfo *info = self.info;
-            if ([info.openHealthCard isEqualToString:@"0"]) {
-                
-                return 0;
+            else
+            {
+                return 6;
             }
-            
-            return 6;
-            
-            
         }
         else
         {
@@ -138,12 +178,16 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
-        if (section == 0) {
+    if (tableView == self.tableview)
+    {
+        if (section == 0)
+        {
             return 0.1;
         }
-        
-        return 40;
+        else
+        {
+            return 40;
+        }
     }
     else
     {
@@ -155,17 +199,17 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.tableView) {
+    if (tableView == self.tableview)
+    {
         if ((indexPath.section == 1 && indexPath.row == 3)||
             (indexPath.section == 1 && indexPath.row == 4)||
-            (indexPath.section == 1 && indexPath.row == 5)) {
-            
+            (indexPath.section == 1 && indexPath.row == 5))
+        {
             return 88;
-            
         }
         else if (indexPath.section == 2 )
         {
-            return 230;
+            return 150;
         }
         else
         {
@@ -183,82 +227,48 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (tableView == self.tableView) {
-        if (indexPath.section == 2) {
-            
+    if (tableView == self.tableview)
+    {
+        //添加紧急联系人
+        if (indexPath.section == 2)
+        {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            
-            for (int i = 0; i<self.contactArr.count; i++) {
-                
-                if (i == 0)
-                {
-                    
-                    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0 , 93, 180)];
-                    // 添加联系人按钮
-                    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-                    button.frame = CGRectMake(10, 20, 73, 73);
-                    [button setImage:IMG(@"Classinfo_but_plus") forState:UIControlStateNormal];
-                    [button addTarget:self action:@selector(addContactPerson:) forControlEvents:UIControlEventTouchUpInside];
-                    [view addSubview:button];
-                    
-                    // 添加联系人label
-                    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 100, 73, 20)];
-                    label.textColor = [UIColor blackColor];
-                    label.text = @"添加联系人";
-                    label.adjustsFontSizeToFitWidth  = YES;
-                    [view addSubview:label];
-                    
-                    [self.scrollView addSubview:view];
-                    
-                }
-                else
-                {
-                    HCTagContactInfo *info = self.contactArr[i];
-                    
-                    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(i*93,0 , 93, 180)];
-                    
-                    // 头像
-                    UIImageView *imageIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 20, 73, 73)];
-                    
-                    NSURL *url = [readUserInfo originUrl:info.imageName :@"contactor"];
-                    [imageIV sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
-                    
-                    ViewRadius(imageIV, 73/2);
-                    [view addSubview:imageIV];
-                    
-                    // 姓名label
-                    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 93, 20)];
-                    label.textColor = [UIColor blackColor];
-                    label.textAlignment = NSTextAlignmentCenter;
-                    label.text = info.trueName;
-                    [view addSubview:label];
-                    
-                    //选中按钮
-                    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-                    button.frame = CGRectMake(31, 130, 30, 30);
 
-                    [button setImage:IMG(@"buttonNormal") forState:UIControlStateNormal];
-        
-                    [button addTarget:self action:@selector(selectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                    button.tag = 100+i  ;
-                    [view addSubview:button];
+            UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 93, 150)];
+            // 头像
+            UIImageView *imageIV1 = [[UIImageView alloc]initWithFrame:CGRectMake(10, 20, 73, 73)];
+            NSURL *url1 = [readUserInfo originUrl:self.contactInfo1.imageName :@"contactor"];
+            [imageIV1 sd_setImageWithURL:url1 placeholderImage:IMG(@"Head-Portraits")];
+            ViewRadius(imageIV1, 73/2);
+            [view1 addSubview:imageIV1];
                     
-                    [ self.scrollView addSubview:view];
-                    
-                    
-                }
-            }
-            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(20, 180, SCREEN_WIDTH-40, 40)];
-            button.backgroundColor = kHCNavBarColor;
-            [button setTitle:@"下一步" forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            ViewRadius(button, 5);
-            [button addTarget:self action:@selector(nextBtnClick) forControlEvents:UIControlEventTouchUpInside];
-            [cell addSubview:button];
+            // 姓名label
+            UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 93, 20)];
+            label1.textColor = [UIColor blackColor];
+            label1.textAlignment = NSTextAlignmentCenter;
+            label1.text = self.contactInfo1.trueName;
+            [view1 addSubview:label1];
+            
+            [self.scrollView addSubview:view1];
+            
+            UIView *view2 = [[UIView alloc]initWithFrame:CGRectMake(93, 0, 93, 150)];
+            // 头像
+            UIImageView *imageIV2 = [[UIImageView alloc]initWithFrame:CGRectMake(10, 20, 73, 73)];
+            NSURL *url2 = [readUserInfo originUrl:self.contactInfo2.imageName :@"contactor"];
+            [imageIV2 sd_setImageWithURL:url2 placeholderImage:IMG(@"Head-Portraits")];
+            ViewRadius(imageIV2, 73/2);
+            [view2 addSubview:imageIV2];
+            
+            // 姓名label
+            UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 93, 20)];
+            label2.textColor = [UIColor blackColor];
+            label2.textAlignment = NSTextAlignmentCenter;
+            label2.text = self.contactInfo1.trueName;
+            [view2 addSubview:label2];
+            
+            [ self.scrollView addSubview:view2];
             [cell addSubview:self.scrollView];
             return cell;
-            
-            
         }
         else
         {
@@ -267,7 +277,7 @@
             cell.image = self.image;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.indexPath = indexPath;
-
+            cell.userInteractionEnabled = NO;
             return cell;
         }
     }
@@ -286,15 +296,21 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
+    if (tableView == self.tableview) {
         if (section == 1)
         {
+            if ([self.info.openHealthCard isEqualToString:@"0"])
+            {
+                _sw.on = NO;
+            }
+            else
+            {
+                _sw.on = YES;
+            }
             return self.medicalView;
-            
         }
         else if (section ==2)
         {
-            
             UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
             view.backgroundColor = kHCBackgroundColor;
             
@@ -303,10 +319,7 @@
             label.text = @"紧急联系人";
             label.adjustsFontSizeToFitWidth = YES;
             [view addSubview:label];
-            
             return view;
-            
-            
         }
     }
     return nil;
@@ -316,7 +329,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.tableView) {
+    if (tableView == self.tableview) {
         if (indexPath.section == 0 && indexPath.row == 3) {
             
             [self.view endEditing:NO];
@@ -326,7 +339,7 @@
         else  if (indexPath.section == 0  && indexPath.row == 0)
         {
             [self.datePicker removeFromSuperview];
-            [self showAlbum];
+            [self showAlbums];
         }
         else
         {
@@ -351,46 +364,41 @@
     self.info.birthDay = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableview reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 
 }
 
 #pragma mark --- private  mothods
 
+/*
 // 点击了选中联系人按钮
-
 -(void)selectBtnClick:(UIButton *)button
 {
-    UIImage *image = [button imageForState:UIControlStateNormal];
-    
-    if ([image isEqual:IMG(@"buttonNormal")]) {
-        
-        
+    if (!button.selected)
+    {
         if (self.selectArr.count == 2)
         {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"只能绑定两个紧急联系人" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
         }
-        
         else
         {
             NSInteger index = button.tag-100;
-            
              HCTagContactInfo *info = self.contactArr[index];
             [self addSmallView:info index:index];
-            
             self.index = index;
-           [button setImage:IMG(@"buttonSelected") forState:UIControlStateNormal];
+            button.selected = !button.selected;
         }
     }
     else
     {
-        [button setImage:IMG(@"buttonNormal") forState:UIControlStateNormal];
         NSInteger index = button.tag-100;
         HCNewTagInfo *info = self.contactArr[index];
         [self.selectArr removeObject:info];
+        button.selected = !button.selected;
     }
 
+    
 }
 
 
@@ -399,33 +407,24 @@
 {
     // 黑色
     _blackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _blackView.backgroundColor = [UIColor blackColor];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-    [_blackView addGestureRecognizer:tap];
-    [self.view addSubview:_blackView];_blackView.alpha = 0.2;
-    
+    _blackView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     [self.view addSubview:_blackView];
     
     // 白色
     CGFloat viewW = 325/375.0*SCREEN_WIDTH;
     CGFloat viewH = 290/667.0*SCREEN_HEIGHT;
     CGFloat viewY = 200/667.0*SCREEN_HEIGHT;
-     _whiteView= [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-viewW)/2,viewY, viewW,viewH )];
+     _whiteView= [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-viewW)/2,viewY, viewW,viewH)];
     _whiteView.backgroundColor = [UIColor whiteColor];
     ViewRadius(_whiteView, 5);
-    [self.view addSubview:_whiteView];
+    [_blackView addSubview:_whiteView];
     
     // 头像
-    
     CGFloat imgW = 115/375.0*SCREEN_WIDTH;
     CGFloat imgY = 18/667.0*SCREEN_HEIGHT;
-
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake((viewW-imgW)/2, imgY, imgW, imgW)];
-   
     imageView.image = self.imgArr[index];
 
-    
     ViewRadius(imageView, imgW/2);
     [_whiteView addSubview:imageView];
     
@@ -465,17 +464,6 @@
     
 
 }
-// 点击黑色视图移除 添加的小时图
-
--(void)tap:(UITapGestureRecognizer *)tap
-{
-//    
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
-//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//    [self.blackView removeFromSuperview];
-//    [self.whiteView removeFromSuperview];
-    
-}
 
 -(void)relBtnClick:(UIButton *)button
 {
@@ -495,9 +483,8 @@
 
 -(void)shoreBtnClick:(UIButton *)button
 {
-    
-    if ([self.relBtn.titleLabel.text isEqualToString:@"点击选择关系"]) {
-        
+    if ([self.relBtn.titleLabel.text isEqualToString:@"点击选择关系"])
+    {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择关系" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
     }
@@ -505,30 +492,33 @@
     {
         HCTagContactInfo *info = self.contactArr[self.index];
         info.relative = self.relBtn.titleLabel.text;
-        
         [self.selectArr addObject:info];
-        
         [self.whiteView removeFromSuperview];
         [self.blackView removeFromSuperview];
     }
-    
-    
 }
+ 
 
 // 跳转到 新增紧急联系人界面
 -(void)addContactPerson:(UIButton *)buton
 {
     HCTagEditContractPersonController *editVC = [[HCTagEditContractPersonController alloc]init];
-    
     [self.navigationController pushViewController:editVC animated:YES];
 }
+ */
+
+//点击编辑进入新增标签使用者
+- (void)editItemClick:(UIBarButtonItem *)sender
+{
+    
+}
+
 
 // 展示相册
--(void)showAlbum
+-(void)showAlbums
 {
     [self.datePicker remove];
     [self.view endEditing:YES];
-    
 
     [HCAvatarMgr manager].noUploadImage = YES;
     [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
@@ -536,12 +526,9 @@
         {
             self.image = image;
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            
+            [self.tableview reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         }
     }];
-
-
 }
 
 
@@ -550,30 +537,19 @@
 {
     if (sw.on) {
         self.info.openHealthCard = @"1";
-        sw.on = YES;
-        _isHide = NO;
-
-        [self.tableView reloadData];
-        
+        [self.tableview reloadData];
     }
     else
     {
         self.info.openHealthCard = @"0";
-        sw.on = NO;
-        _isHide = YES;
-        
-        
-        [self.tableView reloadData];
-        
+        [self.tableview reloadData];
     }
-    
 }
 
 // 点击了下一步按钮
 
 -(void)nextBtnClick
 {
-    
     if (IsEmpty(self.info.trueName)) {
         [self showHUDText:@"请输入姓名"];
         return;
@@ -618,32 +594,29 @@
             return;
         }
     }
+    
+    self.info.openHomeAddress = @"1";
 
-        if (self.selectArr.count== 2 || self.info.contactorId1) {
-           
-            
-            if (self.tagArr.count>0) {
-                HCPromiedTagWhenMissController *vc = [[HCPromiedTagWhenMissController alloc]init];
-                vc.info = self.info;
-                vc.contactArr = self.selectArr;
-                vc.dataArr = self.tagArr;
-                [self.navigationController pushViewController:vc animated:YES];
-            }else
-            {
-                
-                HCPromisedMissMessageControll*vc = [[HCPromisedMissMessageControll alloc]init];
-                vc.info = self.info;
-                vc.tagArr = self.tagArr;
-                vc.contactArr = self.selectArr;
-                [self.navigationController pushViewController:vc animated:YES];
-            }    
-        }
-        else
-        {
-             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"必须选择两个紧急联系人" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            [alert show];
-        }
+    if (self.tagArr.count>0)
+    {
+        //跳转到走失时佩戴标签页面
+        HCPromiedTagWhenMissController *vc = [[HCPromiedTagWhenMissController alloc]init];
+        vc.info = self.info;
+        vc.contactArr = self.selectArr;
+        vc.dataArr = self.tagArr;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else
+    {
+        //跳转到走失信息填写页面
+        HCPromisedMissMessageControll*vc = [[HCPromisedMissMessageControll alloc]init];
+        vc.info = self.info;
+        vc.tagArr = self.tagArr;
+        vc.contactArr = self.selectArr;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
+
+
 #pragma mark--- setter Or getter
 
 - (HCPickerView *)datePicker
@@ -658,25 +631,14 @@
     return _datePicker;
 }
 
-
 - (UIScrollView *)scrollView
 {
     if(!_scrollView){
-        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
+        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
         _scrollView.backgroundColor = [UIColor whiteColor];
     }
     return _scrollView;
 }
-
-
-- (NSMutableArray *)contactArr
-{
-    if(!_contactArr){
-        _contactArr = [NSMutableArray array];
-    }
-    return _contactArr;
-}
-
 
 - (NSMutableArray *)selectArr
 {
@@ -686,8 +648,6 @@
     return _selectArr;
 }
 
-
-
 - (NSMutableArray *)imgArr
 {
     if(!_imgArr){
@@ -696,8 +656,6 @@
     }
     return _imgArr;
 }
-
-
 
 - (NSArray *)relativeArr
 {
@@ -723,6 +681,7 @@
     if(!_medicalView){
         _medicalView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
         _medicalView.backgroundColor = kHCBackgroundColor;
+        _medicalView.userInteractionEnabled = NO;
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 100, 30)];
         label.textColor = [UIColor blackColor];
@@ -731,30 +690,15 @@
         [_medicalView addSubview:label];
         
         _sw = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-60, 5, 40, 30)];
-        
-
-        if (_sw.on) {
-            
-            _sw.on = NO;
-            self.info.openHealthCard = @"0";
-        }
-        else
-        {
-           _sw.on = YES;
-            self.info.openHealthCard = @"1";
-        }
-        
-        
         [_sw addTarget:self action:@selector(swClick:) forControlEvents:UIControlEventValueChanged];
         [_medicalView addSubview:_sw];
-        
     }
     return _medicalView;
 }
 
 
 #pragma mark --- network
-
+/*
 // 请求联系人数组
 -(void)requestContactData
 {
@@ -783,39 +727,58 @@
             [self.contactArr insertObject:info atIndex:0];
             self.scrollView.contentSize = CGSizeMake(93 * self.contactArr.count, 120);
             NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:2];
-            
             [self hideHUDView];
-            
-            [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableview reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
         }
         
     }];
 
 }
+ */
 
 -(void)requestData
 {
     HCInitSendMessageApi *api = [[HCInitSendMessageApi alloc]init];
-    
-    api.objectId = self.info.objectId;
-    
+    api.objectId = self.objId;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
-        if (requestStatus == HCRequestStatusSuccess) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
             NSDictionary *dic = respone[@"Data"][@"objectInf"];
             self.info = [HCNewTagInfo mj_objectWithKeyValues:dic];
-            self.info.openHealthCard = @"1";
-            self.info.openHomeAddress = @"1";
-            
             self.title = [NSString stringWithFormat:@"%@的标签",self.info.trueName];
             
-            NSArray *array = respone[@"Data"][@"rows"];
-            [self.tableView reloadData];
-            for (NSDictionary *dic in array) {
-                
-                HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
-                [self.tagArr addObject:info];
+            //紧急联系人1
+            self.contactInfo1 = [[HCTagContactInfo alloc] init];
+            self.contactInfo1.trueName = self.info.contactorTrueName1;
+            self.contactInfo1.phoneNo = self.info.contactorPhoneNo1;
+            self.contactInfo1.imageName = self.info.imageName1;
+            self.contactInfo1.relative = self.info.relation1;
+            self.contactInfo1.contactorId = self.info.contactorId1;
+            //紧急联系人2
+            self.contactInfo2 = [[HCTagContactInfo alloc] init];
+            self.contactInfo2.trueName = self.info.contactorTrueName2;
+            self.contactInfo2.phoneNo = self.info.contactorPhoneNo2;
+            self.contactInfo2.imageName = self.info.imageName2;
+            self.contactInfo2.relative = self.info.relation2;
+            self.contactInfo2.contactorId = self.info.contactorId2;
+            
+            [self.selectArr addObject:self.contactInfo1];
+            [self.selectArr addObject:self.contactInfo2];
+            
+            //如果total为0,代表该对象没有绑定标签
+            NSNumber *total = respone[@"Data"][@"total"];
+            if ([total integerValue] != 0)
+            {
+                NSArray *array = respone[@"Data"][@"rows"];
+                for (NSDictionary *dic in array)
+                {
+                    HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
+                    [self.tagArr addObject:info];
+                }
             }
+            [self.tableview reloadData];
+            
         }
         
     }];

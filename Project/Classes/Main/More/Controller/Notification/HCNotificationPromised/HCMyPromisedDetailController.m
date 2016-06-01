@@ -25,6 +25,10 @@
 #import "UMSocialSinaHandler.h"
 #import "UMSocialSnsPlatformManager.h"
 #import "UMSocialSinaSSOHandler.h"
+//根据callId查询一呼百应详情
+#import "HCGetCallDetailInfoApi.h"
+
+
 
 @interface HCMyPromisedDetailController ()<SKStoreProductViewControllerDelegate, UMSocialUIDelegate>
 
@@ -72,6 +76,7 @@
     [super viewDidLoad];
     self.info = self.data[@"info"];
     [self setupBackItem];
+    [self requestDetailData];
     self.view.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     self.title = @"一呼百应详情";
     
@@ -88,15 +93,62 @@
     
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.foundBtn];
-    
-    
-    
-    NSURL *url1 = [readUserInfo originUrl:self.info.imageName :kkObject];
-    UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url1]];
-    [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
-    
+ 
     // 导航栏上的加号“+”
     [self addItem];
+    
+}
+
+#pragma mark - layoutSubviews
+
+- (void)addDataSuorce
+{
+    //头像
+    NSURL *url1 = [readUserInfo originUrl:self.info.imageName :kkObject];
+    UIImage *image = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url1]];
+    if (image) {
+        [_headBtn setBackgroundImage:image forState:UIControlStateNormal];
+    }
+    //性别
+    if ([self.info.sex isEqualToString:@"男"])
+    {
+        _sexIV.image = IMG(@"男");
+    }
+    else
+    {
+        _sexIV.image = IMG(@"女");
+    }
+    //姓名
+    _nameLabel.text = self.info.trueName;
+    //年龄
+    _ageLabel.text = [NSString stringWithFormat:@"%@岁",self.info.age];
+    //走失时间
+    _missTimeLabel.text = [NSString stringWithFormat:@"走失时间：%@",self.info.lossTime];
+    //走失地点
+    _missPlaceLabel.text = [NSString stringWithFormat:@"走失地点：%@",self.info.lossAddress];
+    //走势描述
+    NSString *str = [NSString stringWithFormat:@"走失描述：%@",self.info.lossDesciption];
+    CGFloat missMessageLabelY = self.missPlaceLabel.frame.origin.y+self.missPlaceLabel.frame.size.height+5/668.0*SCREEN_HEIGHT;
+    CGSize  size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-40, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17],NSForegroundColorAttributeName : [UIColor grayColor]} context:nil].size;
+    _missMessageLabel.frame = CGRectMake(20/375.0*SCREEN_WIDTH,missMessageLabelY,size.width,size.height);
+    _missMessageLabel.text = str;
+    //走失照片
+    NSURL *url = [readUserInfo originUrl:self.info.lossImageName :kkLoss];
+    [_imageView sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
+    //
+    for (UILabel *label in self.imgeViewBottom.subviews)
+    {
+        if (label.tag == 500)
+        {
+            label.text = self.info.relation1;
+        }
+        else if (label.tag == 501)
+        {
+            label.text = self.info.relation2;
+        }
+    }
+    //编号
+    _numLabel.text = [NSString stringWithFormat:@"编号:%@",self.info.callId];
     
 }
 
@@ -312,7 +364,7 @@
                 NSLog(@"-----------------------关闭一呼百应--------------------------");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"aboutMeData" object:nil];
                 [self.navigationController popToRootViewControllerAnimated:YES];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"closePromised" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"callPromised" object:nil];
                 [self.blackView removeFromSuperview];
                 [self.myAlertView removeFromSuperview];
                 
@@ -410,14 +462,6 @@
     if(!_sexIV){
         CGFloat sexIVX = self.headBtn.frame.origin.x+self.headBtn.frame.size.width + 10/375.0*SCREEN_WIDTH;
         _sexIV = [[UIImageView alloc]initWithFrame:CGRectMake(sexIVX, 30/668.0*SCREEN_HEIGHT, 15, 15)];
-        if ([self.info.sex isEqualToString:@"男"])
-        {
-            _sexIV.image = IMG(@"男");
-        }
-        else
-        {
-            _sexIV.image = IMG(@"女");
-        }
     }
     return _sexIV;
 }
@@ -429,7 +473,6 @@
         CGFloat nameLabelX = self.sexIV.frame.origin.x + self.sexIV.frame.size.width+10/375.0*SCREEN_WIDTH;
         _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(nameLabelX,30/668.0*SCREEN_HEIGHT,80/375.0*SCREEN_WIDTH,20/668.0*SCREEN_HEIGHT)];
         _nameLabel.adjustsFontSizeToFitWidth = YES;
-        _nameLabel.text = self.info.trueName;
         _nameLabel.textAlignment = NSTextAlignmentLeft;
         _nameLabel.textColor = [UIColor blackColor];
     }
@@ -443,7 +486,6 @@
         CGFloat  ageLabelX = self.nameLabel.frame.origin.x + self.nameLabel.frame.size.width;
         _ageLabel = [[UILabel alloc]initWithFrame:CGRectMake(ageLabelX,30/668.0*SCREEN_HEIGHT,50/375.0*SCREEN_WIDTH,20/668.0*SCREEN_HEIGHT)];
         _ageLabel.font = [UIFont systemFontOfSize:14];
-        _ageLabel.text = [NSString stringWithFormat:@"%@岁",self.info.age];
         _ageLabel.textAlignment = NSTextAlignmentLeft;
         _ageLabel.textColor = [UIColor lightGrayColor];
     }
@@ -459,7 +501,6 @@
         _missTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(missTimeLabelX, missTimeLabelY, SCREEN_WIDTH-missTimeLabelX, 20/668.0*SCREEN_HEIGHT)];
         _missTimeLabel.textColor = [UIColor blackColor];
         _missTimeLabel.font = [UIFont systemFontOfSize:14];
-        _missTimeLabel.text = [NSString stringWithFormat:@"走失时间：%@",self.info.lossTime];
     }
     return _missTimeLabel;
 }
@@ -474,7 +515,6 @@
         _missPlaceLabel = [[UILabel alloc]initWithFrame:CGRectMake(missPlaceLabelX, missPlaceLabelY, SCREEN_WIDTH-missPlaceLabelX, 20/668.0*SCREEN_HEIGHT)];
         _missPlaceLabel.textColor = [UIColor blackColor];
         _missPlaceLabel.font = [UIFont systemFontOfSize:14];
-        _missPlaceLabel.text = [NSString stringWithFormat:@"走失地点：%@",self.info.lossAddress];
     }
     return _missPlaceLabel;
 }
@@ -484,14 +524,10 @@
 {
     if(!_missMessageLabel)
     {
-        NSString *str = [NSString stringWithFormat:@"走失描述：%@",self.info.lossDesciption];
-        CGFloat missMessageLabelY = self.missPlaceLabel.frame.origin.y+self.missPlaceLabel.frame.size.height+5/668.0*SCREEN_HEIGHT;
-        CGSize  size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-40, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17],NSForegroundColorAttributeName : [UIColor grayColor]} context:nil].size;
-        _missMessageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20/375.0*SCREEN_WIDTH,missMessageLabelY,size.width,size.height)];
+        _missMessageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20/375.0*SCREEN_WIDTH,self.missPlaceLabel.frame.origin.y+self.missPlaceLabel.frame.size.height+5/668.0*SCREEN_HEIGHT,SCREEN_WIDTH-40,10)];
         _missMessageLabel.font = [UIFont fontWithName:@"PingFangTC-Thin" size:17];
         //        _missMessageLabel.font = [UIFont boldSystemFontOfSize:5.0];
         _missMessageLabel.adjustsFontSizeToFitWidth = YES;
-        _missMessageLabel.text = str;
         _missMessageLabel.numberOfLines = 0;
         
     }
@@ -519,9 +555,6 @@
 {
     if(!_imageView){
         _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.backView.frame), 300/668.0*SCREEN_HEIGHT)];
-        
-        NSURL *url = [readUserInfo originUrl:self.info.lossImageName :kkLoss];
-        [_imageView sd_setImageWithURL:url placeholderImage:IMG(@"label_Head-Portraits")];
         _imageView.userInteractionEnabled = YES;
         
         UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addBigImage:)];
@@ -548,11 +581,9 @@
         [_imgeViewBottom addSubview:lineLabel];
         
         NSArray *btnArr = @[self.leftAnimationView,self.rightAnimationview];
-        NSArray *arr = @[self.info.relation1,self.info.relation2];
         for (int i = 0; i<2; i++)
         {
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX([btnArr[i] frame])+15/375.0*SCREEN_WIDTH,CGRectGetMinY([btnArr[i] frame]),70/375.0*SCREEN_WIDTH,CGRectGetHeight([btnArr[i] frame]))];
-            label.text = arr[i];
             label.textColor = [UIColor grayColor];
             label.font = [UIFont systemFontOfSize:12];
             [_imgeViewBottom addSubview:label];
@@ -582,7 +613,6 @@
 {
     if(!_numLabel){
         _numLabel = [[UILabel alloc]initWithFrame:CGRectMake(55/375.0*SCREEN_WIDTH,0,CGRectGetWidth(_backView.frame)-CGRectGetMaxX(self.MedicalBtn.frame),15/668.0*SCREEN_HEIGHT)];
-        _numLabel.text = [NSString stringWithFormat:@"编号:%@",self.info.callId];
 //        _numLabel.adjustsFontSizeToFitWidth = YES;
         _numLabel.font = [UIFont systemFontOfSize:13];
         _numLabel.textColor = [UIColor blackColor];
@@ -740,6 +770,21 @@
     return _grayView;
 }
 
+#pragma mark ---- network
+
+-(void)requestDetailData
+{
+    HCGetCallDetailInfoApi *api = [[HCGetCallDetailInfoApi alloc] init];
+    api.callId = self.callId;
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            NSDictionary *dic = respone[@"Data"][@"callInf"];
+            self.info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+            [self addDataSuorce];
+        }
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

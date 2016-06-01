@@ -252,7 +252,7 @@
         
         HCNotificationCenterInfo *info = self.results[indexPath.row];
         
-        NSDictionary *dic = @{@"info" :info};
+        NSDictionary *dic = @{@"info" :info.callId};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextOtherController" object:nil userInfo:dic];
         
         self.seatchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 30);

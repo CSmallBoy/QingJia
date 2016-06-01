@@ -16,20 +16,23 @@
 #import "ZLPhotoAssets.h"
 //发送中
 #import "HCRadarTwinkleViewController.h"
+//省市县
+#import "HCCityInfoMgr.h"
+#import "HCCityInfo.h"
+//定位
+#import <AMapLocationKit/AMapLocationKit.h>
 
-@interface HCPromisedMissMessageControll ()<UITextViewDelegate,HCPickerViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,MAMapViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface HCPromisedMissMessageControll ()<UITextViewDelegate,HCPickerViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,AMapLocationManagerDelegate>
 
 @property (nonatomic,strong) UITextField *textField1;
 @property (nonatomic,strong) UITextField *textField2;
 @property (nonatomic,strong) UITextView  *textView;
 @property (nonatomic,strong) UILabel *label;
-@property (nonatomic,strong)  UIImageView *bigView ;
+@property (nonatomic,strong) UIImageView *bigView ;
 @property (nonatomic,strong) NSString *imgStr;
 @property (nonatomic,strong) UIImage *image;
 @property (nonatomic,strong) HCPickerView *datePicker;
 
-@property (nonatomic,strong) NSString *timeStr;
-@property (nonatomic,strong) NSString *AdressStr;
 @property (nonatomic,strong) NSString *DscStr;
 
 
@@ -38,18 +41,24 @@
 @property (nonatomic, strong)UIPickerView *cityPickerView;//城市选择器
 @property (nonatomic, strong)UIToolbar *toolbar;//选择器的工具栏
 @property (nonatomic, strong)UIView *cityView;
-@property (nonatomic, strong)NSMutableArray *allCitys;//所有的城市
-@property (nonatomic, copy)NSString *cityString;//已选城市名称
-@property (nonatomic, copy)NSString *streetString;//已定位街道的名称
 @property (nonatomic, strong)CLLocation *nowLocation;//当前经纬度
-@property (nonatomic, strong)MAMapView *mapview;//地图
 
 @property (nonatomic, assign)BOOL isShowCity;//弹出城市选择器
 @property (nonatomic, assign)BOOL isShowDate;//弹出时间选择器
 
 @property (nonatomic, strong)UIButton *commitButton;//提交按钮
 
-@property (nonatomic, strong)NSMutableArray *imageArr;//图片数组
+@property (nonatomic, strong)NSMutableDictionary *citysInfo;//省市县三级数据源
+@property (nonatomic, strong)NSDictionary *fristDic;//第一层字典
+@property (nonatomic, strong)NSMutableArray *allProvince;//所有的省
+@property (nonatomic, strong)NSMutableArray *allCitys;//某省所有的城市
+@property (nonatomic, strong)NSMutableArray *allCountys;//某市所有的县
+
+@property (nonatomic, copy)NSString *provinceStr;
+@property (nonatomic, copy)NSString *cityStr;
+@property (nonatomic, copy)NSString *countyStr;
+
+@property (nonatomic,strong) AMapLocationManager *locationManager;//定位
 
 @end
 
@@ -58,8 +67,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"走失信息填写";
-    self.cityString = @"";
-    self.streetString = @"";
     _isShowCity = NO;
     _isShowDate = NO;
     [self setupBackItem];
@@ -109,10 +116,11 @@
 {
     if (_cityPickerView == nil)
     {
-        _cityPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 40/668.0*SCREEN_HEIGHT, SCREEN_WIDTH, 180/668.0*SCREEN_HEIGHT)];
+        _cityPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-180/668.0*SCREEN_HEIGHT, SCREEN_WIDTH, 180/668.0*SCREEN_HEIGHT)];
         _cityPickerView.backgroundColor = RGB(237, 237, 237);
         _cityPickerView.delegate = self;
         _cityPickerView.dataSource = self;
+        [_cityPickerView selectRow:0 inComponent:0 animated:NO];
     }
     return _cityPickerView;
 }
@@ -121,7 +129,7 @@
 {
     if (_toolbar == nil)
     {
-        _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT)];
+        _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-220/668.0*SCREEN_HEIGHT, SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT)];
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"  取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonAction)];
         UIBarButtonItem *sureButton = [[UIBarButtonItem alloc] initWithTitle:@"确定  " style:UIBarButtonItemStylePlain target:self action:@selector(sureButtonAction)];
         UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:NULL];
@@ -135,33 +143,63 @@
 {
     if (_cityView == nil)
     {
-        _cityView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-220/668.0*SCREEN_HEIGHT, SCREEN_WIDTH, 220/668.0*SCREEN_HEIGHT)];
-        _cityView.backgroundColor = [UIColor whiteColor];
+        _cityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _cityView.backgroundColor = [UIColor clearColor];
         [_cityView addSubview:self.toolbar];
         [_cityView addSubview:self.cityPickerView];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeSelf:)];
+        [_cityView addGestureRecognizer:tap];
     }
     return _cityView;
+}
+
+
+- (NSMutableDictionary *)citysInfo
+{
+    if (_citysInfo == nil)
+    {
+        _citysInfo = [[HCCityInfoMgr manager] getAllProvinces];
+    }
+    return _citysInfo;
+}
+
+- (NSMutableArray *)allProvince
+{
+    if (_allProvince == nil)
+    {
+        _allProvince = [NSMutableArray arrayWithArray:[self.citysInfo allKeys]];
+    }
+    return _allProvince;
 }
 
 - (NSMutableArray *)allCitys
 {
     if (_allCitys == nil)
     {
-        self.allCitys = [NSMutableArray arrayWithArray:@[@"上海",@"北京",@"南京",@"南阳南阳",@"重庆",@"深圳",@"天津",@"郑州",@"信阳"]];
-        
+        _allCitys = [NSMutableArray array];
+        self.fristDic = [self.citysInfo objectForKey:[self.allProvince objectAtIndex:0]];
+        //取得某省所有的市
+        for (NSString *string in [self.fristDic allKeys])
+        {
+            [_allCitys addObject:string];
+        }
     }
     return _allCitys;
 }
 
-- (NSMutableArray *)imageArr
+- (NSMutableArray *)allCountys
 {
-    if (_imageArr == nil)
+    if (_allCountys == nil)
     {
-        _imageArr = [NSMutableArray array];
+        _allCountys = [NSMutableArray array];
+        NSMutableArray *array = [self.fristDic objectForKey:self.allCitys[0]];
+        for (HCCityInfo *countyInfo in array)
+        {
+            [_allCountys addObject:countyInfo.regionName];
+        }
     }
-    return _imageArr;
+    return _allCountys;
 }
-
 
 #pragma mark --- UITableViewdelegate
 
@@ -203,18 +241,18 @@
 {
     if (indexPath.section == 0)
     {
-        if (indexPath.row ==0 || indexPath.row == 1) {
+        if (indexPath.row == 0 || indexPath.row == 1) {
             
             return 44;
         }
         else
         {
-            return 110;
+            return 100;
         }
     }
     else
     {
-        return 100;
+        return 310;
     }
 }
 
@@ -233,7 +271,6 @@
             _textField1.enabled = NO;
             UIView *line = [[UIView alloc]initWithFrame:CGRectMake(70, 43, SCREEN_WIDTH-70, 1)];
             line.backgroundColor = kHCBackgroundColor;
-            _textField1.text = self.timeStr;
             [cell addSubview:_textField1];
             [cell addSubview:line];
         }
@@ -250,7 +287,7 @@
             locationButton.frame = CGRectMake(MaxX(_textField2), 12, 16, 20);
             locationButton.backgroundColor = [UIColor whiteColor];
             [locationButton setBackgroundImage:IMG(@"lossInfo_location") forState:UIControlStateNormal];
-            [locationButton addTarget:self action:@selector(locationCity) forControlEvents:UIControlEventTouchUpInside];
+            [locationButton addTarget:self action:@selector(locationButtonAction) forControlEvents:UIControlEventTouchUpInside];
             
             UIView *line = [[UIView alloc]initWithFrame:CGRectMake(70, 43, SCREEN_WIDTH-70, 1)];
             line.backgroundColor = kHCBackgroundColor;
@@ -261,7 +298,7 @@
         }else  if(indexPath.row == 2)
         {
             cell.textLabel.text = @"描述";
-            _textView = [[UITextView alloc]initWithFrame:CGRectMake(70, 7, SCREEN_WIDTH-100, 100)];
+            _textView = [[UITextView alloc]initWithFrame:CGRectMake(70, 7, SCREEN_WIDTH-100, 90)];
             _textView.delegate = self;
             
             _textView.font = [UIFont systemFontOfSize:15];
@@ -275,40 +312,33 @@
             if (self.DscStr) {
                 _label.hidden = YES;
             }
-            
-            
             [cell addSubview:_textView];
             
         }
     }
     else
     {
+        self.bigView = [[UIImageView alloc]initWithFrame:CGRectMake(50, 5, SCREEN_WIDTH-100, 300)];
+        ViewRadius(self.bigView, 5);
+        self.bigView.layer.borderWidth = 1;
+        self.bigView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.bigView.userInteractionEnabled = YES;
+        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(15, 10, 60, 60);
+        button.frame = CGRectMake((WIDTH(self.bigView)-60)/2, (HEIGHT(self.bigView)-60)/2, 60, 60);
         [button setBackgroundImage:IMG(@"Add-Images") forState:UIControlStateNormal];
         [button addTarget:self action:@selector(choseMissPhotos) forControlEvents:UIControlEventTouchUpInside];
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, MaxY(button)+5, 70, 10)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MinX(button)-5, MaxY(button)+5, 70, 10)];
         titleLabel.text = @"添加正面照片";
         titleLabel.textAlignment = 1;
         titleLabel.font = [UIFont systemFontOfSize:11];
         titleLabel.textColor = [UIColor lightGrayColor];
         
-        [cell addSubview:titleLabel];
-        [cell addSubview:button];
-        if (self.imageArr.count>0)
-        {
-            for (int i = 0; i < self.imageArr.count; i++)
-            {
-                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(MaxX(titleLabel)+10+90*i, 10, 80, 80)];
-                imageView.image = self.imageArr[i];
-                imageView.tag = 300 + i;
-                UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDelectPhoto:)];
-                [imageView addGestureRecognizer:longPress];
-                imageView.userInteractionEnabled = YES;
-                [cell addSubview:imageView];
-            }
-        }
+        [self.bigView addSubview:titleLabel];
+        [self.bigView addSubview:button];
+        [cell addSubview:self.bigView];
+        
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -367,19 +397,6 @@
     self.DscStr = textView.text;
 }
 
-#pragma mark --- UITextFieldDelegate
-
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if (textField == self.textField1) {
-        self.timeStr = self.textField1.text;
-    }
-    else
-    {
-        self.AdressStr = self.textField2.text;
-    }
-}
-
 #pragma mark --- HCPickerViewDelegate
 //日期选择器
 -(void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result
@@ -395,19 +412,30 @@
 //列数
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 1;
+    return 3;
 }
 
 //每列的的行数
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return self.allCitys.count;
+    if (component == 0)
+    {
+        return self.allProvince.count;
+    }
+    else if (component == 1)
+    {
+        return self.allCitys.count;
+    }
+    else
+    {
+        return self.allCountys.count;
+    }
 }
 
 //每列的宽度
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    return SCREEN_WIDTH;
+    return SCREEN_WIDTH/3;
 }
 
 //每行的高度
@@ -419,77 +447,82 @@
 //返回每行的标题
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return self.allCitys[row];
-}
-
-#pragma mark ---- UIActionSheetDelegate
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-        {
-            UIImagePickerController * picker = [[UIImagePickerController alloc]init];
-            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
-            picker.delegate = self;
-            picker.allowsEditing = YES;
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self presentViewController:picker animated:YES completion:nil];
-        }
-            break;
-            
-        case 1:
-        {
-            ZLPhotoPickerViewController *zlpVC = [[ZLPhotoPickerViewController alloc]init];
-            zlpVC.maxCount = 3-self.imageArr.count;
-            zlpVC.callBack = ^(NSArray *arr)
-            {
-                for (ZLPhotoAssets *zl in arr)
-                {
-                    UIImage *image = zl.originImage;
-                    [self.imageArr addObject:image];
-                }
-                NSIndexSet *set = [NSIndexSet indexSetWithIndex:1];
-                [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
-            };
-            [self presentViewController:zlpVC animated:YES completion:nil];
-        }
-            break;
-        default:
-            break;
+    if (component == 0)
+    {
+        return self.allProvince[row];
     }
-    
+    else if (component == 1)
+    {
+        return self.allCitys[row];
+    }
+    else
+    {
+        return self.allCountys[row];
+    }
 }
 
-#pragma mark - UIImagePickerControllerDelegate
-
--(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    [self.imageArr addObject:image];
-    NSIndexSet *set = [NSIndexSet indexSetWithIndex:1];
-    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
+    if (component == 0)
+    {
+        [self.allCitys removeAllObjects];
+        [self.allCountys removeAllObjects];
+        self.fristDic = [self.citysInfo objectForKey:[self.allProvince objectAtIndex:row]];
+        //取得某省所有的市
+        for (NSString *string in [self.fristDic allKeys])
+        {
+            [self.allCitys addObject:string];
+        }
+        [self.cityPickerView selectRow:0 inComponent:1 animated:YES];
+        [self.cityPickerView reloadComponent:1];
+        
+        //取得某市下所有的县
+        NSMutableArray *array = [self.fristDic objectForKey:self.allCitys[0]];
+        for (HCCityInfo *countyInfo in array)
+        {
+            [self.allCountys addObject:countyInfo.regionName];
+        }
+        [self.cityPickerView selectRow:0 inComponent:2 animated:YES];
+        [self.cityPickerView reloadComponent:2];
+        
+        self.provinceStr = self.allProvince[row];
+        self.cityStr = self.allCitys[0];
+        self.countyStr = self.allCountys[0];
+    }
+    else if (component == 1)
+    {
+        [self.allCountys removeAllObjects];
+        NSMutableArray *array = [self.fristDic objectForKey:self.allCitys[row]];
+        for (HCCityInfo *countyInfo in array)
+        {
+            [self.allCountys addObject:countyInfo.regionName];
+        }
+        [self.cityPickerView selectRow:0 inComponent:2 animated:YES];
+        [self.cityPickerView reloadComponent:2];
+        
+        self.cityStr = self.allCitys[row];
+        self.countyStr = self.allCountys[0];
+    }
+    else
+    {
+        self.countyStr = self.allCountys[row];
+    }
 }
 
+//用来改变字体等
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
+{
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel){
+        pickerLabel = [[UILabel alloc] init];
+        pickerLabel.textAlignment = 1;
+        pickerLabel.font = [UIFont systemFontOfSize:15];
+    }
+    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
+    return pickerLabel;
+}
 
 #pragma mark --- buttonClick
-
-// 展示相册
-//-(void)showAlbum
-//{
-//    [self.datePicker remove];
-//    [self.view endEditing:YES];
-//    [HCAvatarMgr manager].noUploadImage = YES;
-//    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
-//        if (result)
-//        {
-//            self.image = image;
-//            self.bigView.image = image;
-//        }
-//    }];
-//}
 
 - (void)removeDatePicker
 {
@@ -505,14 +538,8 @@
         _isShowDate = NO;
     }
     [self.view endEditing:YES];
-    [[UIApplication sharedApplication].keyWindow addSubview:self.cityView];
+    [self.navigationController.view addSubview:self.cityView];
     _isShowCity = YES;
-}
-
-//定位
-- (void)locationCity
-{
-    [self initMap];
 }
 
 //toolBar上的取消按钮
@@ -526,121 +553,74 @@
 - (void)sureButtonAction
 {
     _isShowCity = NO;
-    self.cityString = [self.allCitys objectAtIndex:[self.cityPickerView selectedRowInComponent:0]];
-    [_cityButton setTitle:self.cityString forState:UIControlStateNormal];
+    if (IsEmpty(self.provinceStr))
+    {
+        self.provinceStr = self.allProvince[0];
+        self.cityStr = self.allCitys[0];
+        self.countyStr = self.allCountys[0];
+    }
+    self.textField2.text = [NSString stringWithFormat:@"%@%@%@", self.provinceStr, self.cityStr, self.countyStr];
     [self.cityView removeFromSuperview];
+}
+
+//手势移除城市选择器
+- (void)removeSelf:(UITapGestureRecognizer *)sender
+{
+    [sender.view removeFromSuperview];
 }
 
 
 //选择相片
 -(void)choseMissPhotos
 {
-    if (self.imageArr.count < 3)
-    {
-        UIActionSheet  *sheet = [[UIActionSheet alloc]initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册选取", nil];
-        [sheet  showInView:self.view];
-    }
-    else
-    {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"只能添加三张照片" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [alertView dismissWithClickedButtonIndex:0 animated:YES];
-        });
-        [alertView show];
-    }
+    [HCAvatarMgr manager].noUploadImage = YES;
+    [[HCAvatarMgr manager] modifyAvatarWithController:self completion:^(BOOL result, UIImage *image, NSString *msg){
+        if (result)
+        {
+            self.image = image;
+            self.bigView.image = image;
+        }
+    }];
     
 }
-
-//长按相片删除
-- (void)longPressDelectPhoto:(UILongPressGestureRecognizer *)sender
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(WIDTH(sender.view)-20,0, 20, 20);
-    button.backgroundColor = [UIColor  redColor];
-    [button addTarget:self action:@selector(delectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [sender.view addSubview:button];
-}
-
-//删除
-- (void)delectBtnClick:(UIButton *)sender
-{
-    [self.imageArr removeObjectAtIndex:sender.superview.tag-300];
-    NSIndexSet *set = [NSIndexSet indexSetWithIndex:1];
-    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
-}
-
 
 #pragma mark - Location
-
-//初始化地图
--(void)initMap
+- (void)locationButtonAction
 {
-    [MAMapServices sharedServices].apiKey =@"20e897d0e7d653770541a040a12065d8";
-    _mapview = [[MAMapView alloc]init];
-    _mapview.userTrackingMode = 1;
-    _mapview.delegate = self;
-    _mapview.showsUserLocation = YES;
+    [AMapLocationServices sharedServices].apiKey = @"20e897d0e7d653770541a040a12065d8";
+    self.locationManager = [[AMapLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置
+    [self.locationManager startUpdatingLocation];
 }
 
-//定位
--(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+#pragma mark - AMapLocationManager Delegate
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error
 {
-    [self encoded:userLocation];
+    self.textField2.text = @"上海市闵行区集心路37号";
+    self.nowLocation = [[CLLocation alloc] initWithLatitude:31.232 longitude:37.2242];
 }
 
-//反地理编码
-- (void)encoded:(MAUserLocation *)sender
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
 {
-    CLLocation *location = [[CLLocation alloc]initWithLatitude:sender.location.coordinate.latitude longitude:sender.location.coordinate.longitude];
-    
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        if (placemarks.count > 0){
+        if (!IsEmpty(placemarks))
+        {
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
-            
-            NSDictionary *dict = placemark.addressDictionary;
-            
-            NSString *streetStr = [dict objectForKey:@"Street"];
-            NSString *countyStr = [dict objectForKey:@"SubLocality"];
-            self.streetString = [countyStr stringByAppendingString:streetStr];
-            NSLog(@"street address: %@",[dict objectForKey:@"Street"]);
-            
-            //获取城市
-            self.cityString = placemark.locality;
-            if (!self.cityString) {
-                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
-                self.cityString = placemark.administrativeArea;
-            }
-            NSLog(@"city = %@", self.cityString);
+            self.textField2.text = placemark.name;
+            self.nowLocation = location;
         }
-        else if (error == nil && [placemarks count] == 0)
-        {
-            NSLog(@"No results were returned.");
-        }
-        else if (error != nil)
-        {
-            NSLog(@"An error occurred = %@", error);
-        }
-        
-        [self.cityButton setTitle:[self.cityString substringToIndex:[self.cityString length]-1]  forState:UIControlStateNormal];
-        _textField2.text = self.streetString;
-        self.nowLocation = sender.location;
-        _mapview.showsUserLocation = NO;
-        
     }];
+    [self.locationManager stopUpdatingLocation];
 }
+
 
 
 #pragma mark ---- network
 
 //提交
-- (void)sendRequestData
-{
-    HCRadarTwinkleViewController *radarVC = [[HCRadarTwinkleViewController alloc] init];
-    [self.navigationController pushViewController:radarVC animated:YES];
-}
-
-/*
 -(void)sendRequestData
 {
     
@@ -654,7 +634,7 @@
         [self showHUDText:@"请输入走失时间"];
         return;
     }
-    if (IsEmpty([self.cityString stringByAppendingString:self.streetString])) {
+    if (IsEmpty(self.textField2.text)) {
         
         [self showHUDText:@"请输入走失地点"];
         return;
@@ -687,7 +667,7 @@
     api.lossTime = self.textField1.text;
 
     api.callLocation = [NSString stringWithFormat:@"%f,%f",self.nowLocation.coordinate.latitude,self.nowLocation.coordinate.longitude];
-    api.lossAddress = [self.cityString stringByAppendingString:self.streetString];
+    api.lossAddress = self.textField2.text;
     api.lossDesciption = self.textView.text;
     api.tagArr = self.tagArr;
     api.ContractArr = self.contactArr;
@@ -701,11 +681,8 @@
             [self hideHUDView];
             UIViewController *vc= self.navigationController.viewControllers[0];
             [self.navigationController popToViewController:vc animated:YES];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"show" object:nil];
-                
-            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"showRadar"];// 发呼成功显示雷达效果
-                
-                NSLog(@"发呼应成功");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"callPromised" object:nil];// 发呼成功显示雷达效果
+            NSLog(@"发呼应成功");
         }
         else
         {
@@ -715,7 +692,7 @@
     }];
     
 }
- */
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    

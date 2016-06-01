@@ -303,7 +303,7 @@
         [self hideBtn];
     }else
     {
-        NSDictionary *dic = @{@"info" : self.info};
+        NSDictionary *dic = @{@"info" : self.info.callId};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextOtherController" object:nil userInfo:dic];
     }
     

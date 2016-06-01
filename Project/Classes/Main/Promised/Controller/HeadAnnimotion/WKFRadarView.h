@@ -16,4 +16,5 @@
 @property (nonatomic,strong)UIImage *thumbnailImage;
 -(instancetype)initWithFrame:(CGRect)frame andThumbnail:(NSString *)thumbnailUrl;
 -(void)addOrReplaceItem;
+-(void)resume;//重新开始动画
 @end

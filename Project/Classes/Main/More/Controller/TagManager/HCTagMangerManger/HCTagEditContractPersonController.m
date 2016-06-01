@@ -49,9 +49,7 @@
     }
     [self setupBackItem];
     [self addAllSubviews];
-//    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
-//    self.navigationItem.rightBarButtonItem = item;
-    UIBarButtonItem *finishButton = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(finishButtonClick)];
+    UIBarButtonItem *finishButton = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
     self.navigationItem.rightBarButtonItem = finishButton;
     
 }
@@ -97,19 +95,19 @@
     return _headBtn;
 }
 
-- (UIButton *)nextStep
-{
-    if (_nextStep == nil)
-    {
-        _nextStep = [[UIButton alloc]initWithFrame:CGRectMake(10, HEIGHT(self.backgroundImage)-50, SCREEN_WIDTH-20, 40)];
-        _nextStep.backgroundColor = kHCNavBarColor;
-        [_nextStep setTitle:@"+ 继续添加" forState:UIControlStateNormal];
-        [_nextStep setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        ViewRadius(_nextStep, 5);
-        [_nextStep addTarget:self action:@selector(nextStepAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _nextStep;
-}
+//- (UIButton *)nextStep
+//{
+//    if (_nextStep == nil)
+//    {
+//        _nextStep = [[UIButton alloc]initWithFrame:CGRectMake(10, HEIGHT(self.backgroundImage)-50, SCREEN_WIDTH-20, 40)];
+//        _nextStep.backgroundColor = kHCNavBarColor;
+//        [_nextStep setTitle:@"+ 继续添加" forState:UIControlStateNormal];
+//        [_nextStep setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        ViewRadius(_nextStep, 5);
+//        [_nextStep addTarget:self action:@selector(nextStepAction:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _nextStep;
+//}
 
 #pragma mark - layoutView
 - (void)addAllSubviews
@@ -117,11 +115,13 @@
     [self.view addSubview:self.backgroundImage];
     [self.backgroundImage addSubview:self.headBtn];
     
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(75/375.0*SCREEN_WIDTH, 330/668.0*SCREEN_HEIGHT, 40/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(75/375.0*SCREEN_WIDTH, 340/668.0*SCREEN_HEIGHT, 40/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
     titleLabel.text = @"姓名";
     titleLabel.textColor = [UIColor blackColor];
-
+    
     _textField1 = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame), CGRectGetMinY(titleLabel.frame), SCREEN_WIDTH-220/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
+    //    _textField1.placeholder = @"点击输入姓名";
     _textField1.text = _info.trueName;
     _textField1.textColor = [UIColor blackColor];
     
@@ -132,13 +132,14 @@
     
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame), CGRectGetMaxY(titleLabel.frame), SCREEN_WIDTH-150/375.0*SCREEN_WIDTH, 1)];
     lineView.backgroundColor = [UIColor grayColor];
-
     
-    UILabel *titleLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame), CGRectGetMaxY(lineView.frame) + 20/668.0*SCREEN_HEIGHT, 60/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
+    
+    UILabel *titleLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame), CGRectGetMaxY(lineView.frame) + 40/668.0*SCREEN_HEIGHT,  60/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
     titleLabel1.text = @"手机号";
     titleLabel1.textColor = [UIColor blackColor];
-
+    
     _textField2 = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel1.frame), CGRectGetMinY(titleLabel1.frame), SCREEN_WIDTH-210/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
+    //    _textField2.placeholder = @"点击输入手机号";
     _textField2.text = _info.phoneNo;
     _textField2.textColor = [UIColor blackColor];
     
@@ -146,22 +147,6 @@
     lineView1.backgroundColor = [UIColor grayColor];
     
     
-    UILabel *titleLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame), CGRectGetMaxY(lineView1.frame) + 20/668.0*SCREEN_HEIGHT,  40/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
-    titleLabel2.text = @"关系";
-    titleLabel2.textColor = [UIColor blackColor];
-    
-//    _textField3 = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel2.frame), CGRectGetMinY(titleLabel2.frame), SCREEN_WIDTH-190/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT)];
-//    _textField3.textColor = [UIColor blackColor];
-    _relationButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _relationButton.frame = CGRectMake(CGRectGetMaxX(titleLabel2.frame), CGRectGetMinY(titleLabel2.frame), SCREEN_WIDTH-190/375.0*SCREEN_WIDTH, 25/668.0*SCREEN_HEIGHT);
-    [_relationButton setTitle:@"测试" forState:UIControlStateNormal];
-    [_relationButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_relationButton addTarget:self action:@selector(relationButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel2.frame), CGRectGetMaxY(titleLabel2.frame), SCREEN_WIDTH-150/375.0*SCREEN_WIDTH, 1)];
-    lineView2.backgroundColor = [UIColor grayColor];
-
-
     [self.backgroundImage addSubview:titleLabel];
     [self.backgroundImage addSubview:_textField1];
     [self.backgroundImage addSubview:addressBook];
@@ -169,10 +154,6 @@
     [self.backgroundImage addSubview:titleLabel1];
     [self.backgroundImage addSubview:_textField2];
     [self.backgroundImage addSubview:lineView1];
-    [self.backgroundImage addSubview:titleLabel2];
-    [self.backgroundImage addSubview:_relationButton];
-    [self.backgroundImage addSubview:lineView2];
-    [self.backgroundImage addSubview:self.nextStep];
     
 }
 
@@ -240,10 +221,10 @@
 
 #pragma mark - HCPeopleRelationViewControllerDelegate
 
-- (void)selectedRelation:(NSString *)relation
-{
-    [_relationButton setTitle:relation forState:UIControlStateNormal];
-}
+//- (void)selectedRelation:(NSString *)relation
+//{
+//    [_relationButton setTitle:relation forState:UIControlStateNormal];
+//}
 
 #pragma mark --- provate mothods
 
@@ -301,25 +282,25 @@
 }
 
 //关系选择
-- (void)relationButtonAction:(UIButton *)sender
-{
-    HCPeopleRelationViewController *relationVC = [[HCPeopleRelationViewController alloc] init];
-    relationVC.delegate = self;
-    [self.navigationController pushViewController:relationVC animated:YES];
-}
+//- (void)relationButtonAction:(UIButton *)sender
+//{
+//    HCPeopleRelationViewController *relationVC = [[HCPeopleRelationViewController alloc] init];
+//    relationVC.delegate = self;
+//    [self.navigationController pushViewController:relationVC animated:YES];
+//}
 
 //继续添加
-- (void)nextStepAction:(UIButton *)sender
-{
-    
-}
+//- (void)nextStepAction:(UIButton *)sender
+//{
+//    
+//}
 
 //完成
-- (void)finishButtonClick
-{
-    HCPromisedMissMessageControll *missMessageVC = [[HCPromisedMissMessageControll alloc] init];
-    [self.navigationController pushViewController:missMessageVC animated:YES];
-}
+//- (void)finishButtonClick
+//{
+//    HCPromisedMissMessageControll *missMessageVC = [[HCPromisedMissMessageControll alloc] init];
+//    [self.navigationController pushViewController:missMessageVC animated:YES];
+//}
 
 #pragma mark --- netWork
 
@@ -342,7 +323,8 @@
             info.phoneNo = self.textField2.text;
             info.imageName = self.imgStr;
             info.conactPersonImage = self.image;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"addNewContractPerson" object:nil userInfo:@{@"info":info}];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"saveNewContact" object:nil];
         }
         else
         {
@@ -387,7 +369,6 @@
 
 -(void)chanageContactPerson
 {
-
     HCChangeContactPersonApi *api = [[HCChangeContactPersonApi alloc]init];
     api.contactorId = self.info.contactorId;
     api.phoneNo = self.textField2.text;

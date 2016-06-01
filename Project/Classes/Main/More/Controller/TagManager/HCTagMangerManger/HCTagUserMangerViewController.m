@@ -19,6 +19,8 @@
 #import "HCTagUserAmostListApi.h"
 #import "HCTagDeleteObjectApi.h"
 
+#import "HCPromisedTagUserDetailController.h"
+
 @interface HCTagUserMangerViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,SCSwipeTableViewCellDelegate>
 
 @property (nonatomic,strong) UITableView  *myTableView;
@@ -138,14 +140,10 @@
 
 // 点击了新增标签使用者
 -(void)rightItemClick:(UIBarButtonItem *)item
-
 {
-
-    HCNewTagInfo *info = [[HCNewTagInfo alloc]init];
     HCAddTagUserController *detailVC = [[HCAddTagUserController alloc]init];
-    detailVC.data = @{@"info":info};
+    detailVC.isNewObj = YES;//新增标签使用者
     [self.navigationController pushViewController:detailVC animated:YES];
-   
 }
 
 -(void)longPress:(UILongPressGestureRecognizer *)longP
@@ -164,16 +162,20 @@
 
 }
 
+//跳转到标签使用者详情
 -(void)tuTagUserDetailVC:(NSNotification *)noti
 {
     NSDictionary *dic = noti.userInfo;
     HCNewTagInfo *info = dic[@"info"];
-
-    HCTagUserDetailController *vc = [[HCTagUserDetailController alloc]init];
-    vc.data = @{@"info":info};
+//    HCTagUserDetailController *vc = [[HCTagUserDetailController alloc]init];
+//    vc.data = @{@"info":info};
+//    [self.navigationController pushViewController:vc animated:YES];
     
-    [self.navigationController pushViewController:vc animated:YES];
-    
+    HCPromisedTagUserDetailController *detailVC = [[HCPromisedTagUserDetailController alloc]init];
+    detailVC.isObj = NO;//不允许编辑
+    detailVC.isNextStep = NO;
+    detailVC.objId = info.objectId;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark --- getter Or setter

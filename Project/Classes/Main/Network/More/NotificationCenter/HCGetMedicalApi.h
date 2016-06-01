@@ -13,7 +13,7 @@ typedef void(^HCGetMedicalBlock) (HCRequestStatus requestStatus,NSString *messag
 
 @interface HCGetMedicalApi : HCRequest
 
-@property (nonatomic,strong) NSString *objectId;
+@property (nonatomic,copy) NSString *objectId;
 
 -(void)startRequest:(HCGetMedicalBlock)requestBlock;
 @end

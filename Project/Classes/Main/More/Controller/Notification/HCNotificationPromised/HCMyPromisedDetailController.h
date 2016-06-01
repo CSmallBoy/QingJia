@@ -10,4 +10,6 @@
 
 @interface HCMyPromisedDetailController : HCViewController
 
+@property (nonatomic, copy)NSString *callId;
+
 @end

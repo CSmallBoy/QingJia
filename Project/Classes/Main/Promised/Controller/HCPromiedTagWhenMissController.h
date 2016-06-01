@@ -13,6 +13,5 @@
 
 @property (nonatomic,strong) HCNewTagInfo *info;
 @property (nonatomic,strong) NSArray *contactArr;
-
-@property (nonatomic,strong) NSMutableArray   *dataArr;
+@property (nonatomic,strong) NSMutableArray  *dataArr;
 @end

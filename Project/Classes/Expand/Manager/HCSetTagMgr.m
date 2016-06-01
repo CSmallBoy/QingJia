@@ -77,6 +77,7 @@ static HCSetTagMgr *_sharedManager = nil;
     self.cityString = @"上海市";
     self.currentAddress = @"上海市闵行区集心路37号";
     self.currentLocation = @"31.232,37.2242";
+    [self getCityFromPlist];
 }
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location

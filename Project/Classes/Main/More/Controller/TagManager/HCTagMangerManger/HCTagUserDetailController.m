@@ -253,6 +253,7 @@
     HCAddTagUserController *addVC = [[HCAddTagUserController alloc]init];
     addVC.data = @{@"info":self.info};
     addVC.isEdit = YES;
+    addVC.isNewObj = NO;
     [self.navigationController pushViewController:addVC animated:YES];
 }
 

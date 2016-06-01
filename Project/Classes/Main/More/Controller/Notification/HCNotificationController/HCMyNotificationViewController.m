@@ -200,7 +200,8 @@
 {
     if (indexPath.section == 0 && tableView == self.myTableView)
     {
-      NSDictionary *dic = @{@"info" : self.dataSource[indexPath.row]};
+        HCNotificationCenterInfo *info = self.dataSource[indexPath.row];
+      NSDictionary *dic = @{@"info" : info.callId};
       [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextMyController" object:nil userInfo:dic];
     }
 
