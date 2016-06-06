@@ -34,8 +34,10 @@
 #import "SDCycleScrollView.h"
 //详情接口
 #import "HCGetCallDetailInfoApi.h"
+//大图
+#import "HCBigImageViewController.h"
 
-@interface HCOtherPromisedDetailController ()<UMSocialUIDelegate>
+@interface HCOtherPromisedDetailController ()<UMSocialUIDelegate,UIAlertViewDelegate>
 {
     BOOL  _isShowDelete;
 }
@@ -70,6 +72,7 @@
 @property (nonatomic,strong) HCNotificationCenterInfo *info;
 @property (nonatomic,strong) HCPromisedMissInfo *missInfo;
 @property (nonatomic,strong) HCPromisedDetailInfo *detailInfo;
+
 
 @end
 
@@ -220,11 +223,9 @@
 
 -(void)CallTOPromised
 {
-    NSString *tel = [NSString stringWithFormat:@"tel://02134537916"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel]];
-    [self showHUDText:@"拨打客服电话"];
-    //    HCPromisedViewController *promisedVC = [[HCPromisedViewController alloc]init];
-    //    [self.navigationController pushViewController:promisedVC animated:YES];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否确认拨打客服电话" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.tag = 300;
+    [alert show];
 }
 
 -(void)SendMessage
@@ -236,9 +237,9 @@
 
 -(void)CallPolice
 {
-    NSString *tel = [NSString stringWithFormat:@"tel://110"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel]];
-    [self showHUDText:@"拨打110"];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否确认拨打110" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.tag = 200;
+    [alert show];
 }
 
 -(void)FatherTelClick
@@ -267,54 +268,10 @@
         }];
         return;
     }
-    
-    self.navigationController.navigationBarHidden = YES;
-    CGRect  startFrame = [self.backView convertRect:self.imageView.bounds toView:self.view];
-    UIImageView  *bigImageView = [[UIImageView alloc]initWithFrame:startFrame];
     UIImageView  *smallImageView = (UIImageView *)tap.view;
-    bigImageView.image = smallImageView.image;
-    bigImageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImage:)];
-    bigImageView.userInteractionEnabled = YES;
-    bigImageView.backgroundColor = [UIColor blackColor];
-    [bigImageView addGestureRecognizer:tap2];
-    
-    [self.view addSubview:bigImageView];
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        bigImageView.frame = self.view.frame;
-        
-    }];
-    
-    
-    //长按将图片存储到相册
-//    UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(saveImageToPhotoAlbum:)];
-//    [bigImageView addGestureRecognizer:longTap];
-    
-}
-
-//- (void)saveImageToPhotoAlbum:(UILongPressGestureRecognizer *)tap
-//{
-//    UIImageView *imageView = (UIImageView *)tap.view;
-//    UIImageWriteToSavedPhotosAlbum(imageView.image, nil, nil, nil);
-//    
-//}
-
-// 点击移除图片大图
--(void)removeBigImage:(UITapGestureRecognizer *)tap
-{
-    self.navigationController.navigationBarHidden = NO;
-    tap.view.backgroundColor = [UIColor clearColor];
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect  startFrame =  [self.backView convertRect:self.imageView.bounds toView:self.view];
-        tap.view.frame = startFrame;
-    }completion:^(BOOL finished) {
-        [tap.view removeFromSuperview];
-    }];
-    
-    
+    HCBigImageViewController *bigImageVC = [[HCBigImageViewController alloc] init];
+    bigImageVC.image = smallImageView.image;
+    [self.navigationController pushViewController:bigImageVC animated:YES];
 }
 
 //点击删除
@@ -415,6 +372,38 @@
     {
         //得到分享到的微博平台名
         NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
+}
+
+
+#pragma mark - viewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 200)
+    {
+        if (buttonIndex == 0)
+        {
+            [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
+        }else
+        {
+            NSString *tel = [NSString stringWithFormat:@"tel://110"];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel]];
+//            [self showHUDText:@"拨打110"];
+        }
+        
+    }
+    else if (alertView.tag == 300)
+    {
+        if (buttonIndex == 0)
+        {
+            [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
+        }else
+        {
+            NSString *tel = [NSString stringWithFormat:@"tel://02134537916"];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel]];
+//            [self showHUDText:@"拨打客服电话"];
+        }
+        
     }
 }
 
@@ -667,32 +656,6 @@
     return _numLabel;
 }
 
-////联系人1
-//- (UIButton *)FatherTel
-//{
-//    if(!_FatherTel)
-//    {
-//        _FatherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _FatherTel.frame =CGRectMake(55/375.0*SCREEN_WIDTH,CGRectGetMaxY(self.numLabel.frame)+10/668.0*SCREEN_HEIGHT,25/375.0*SCREEN_WIDTH,25/375.0*SCREEN_WIDTH) ;
-//        [_FatherTel addTarget:self action:@selector(FatherTelClick) forControlEvents:UIControlEventTouchUpInside];
-//        [_FatherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
-//    }
-//    return _FatherTel;
-//}
-//
-////联系人2
-//- (UIButton *)MotherTel
-//{
-//    if(!_MotherTel){
-//        _MotherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _MotherTel.frame =CGRectMake(150/375.0*SCREEN_WIDTH,CGRectGetMaxY(self.numLabel.frame)+10/668.0*SCREEN_HEIGHT,25/375.0*SCREEN_WIDTH,25/375.0*SCREEN_WIDTH);
-//        [_MotherTel addTarget:self action:@selector(MotherTelClick) forControlEvents:UIControlEventTouchUpInside];
-//        [_MotherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
-//    }
-//    return _MotherTel;
-//}
-
-
 
 //联系人1
 - (UIImageView *)leftAnimationView
@@ -729,9 +692,6 @@
     }
     return _rightAnimationview;
 }
-
-
-
 
 
 -(UIView *)footerView

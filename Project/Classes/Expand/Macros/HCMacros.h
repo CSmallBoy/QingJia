@@ -37,6 +37,8 @@
 #define kkComment   @"comment"
 //举报
 #define kkReport @"report"
+//发现线索
+#define kkClue @"clue"
 //appstore更新地址
 #define APP_STORE_URL   @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=890849784"
 

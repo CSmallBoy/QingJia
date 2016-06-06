@@ -1121,7 +1121,10 @@
 		EACD35F11CE5CD0C00EE3E8D /* HCSetPushTagApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD35F01CE5CD0C00EE3E8D /* HCSetPushTagApi.m */; };
 		EAD7FD0B1CF53A630058EF81 /* HCLostInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7FD0A1CF53A630058EF81 /* HCLostInfoViewController.m */; };
 		EAD7FD0F1CF54EF50058EF81 /* HCLostInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7FD0E1CF54EF50058EF81 /* HCLostInfoCell.m */; };
+		EADBF07E1D002FDE00130D59 /* HCBigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADBF07D1D002FDE00130D59 /* HCBigImageViewController.m */; };
+		EADBF0841D003DEA00130D59 /* HCSavePhotoToAblumMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = EADBF0831D003DEA00130D59 /* HCSavePhotoToAblumMgr.m */; };
 		EADDE7CA1CFEE73F00987A0E /* HCGetCallDetailInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE7C91CFEE73F00987A0E /* HCGetCallDetailInfoApi.m */; };
+		EADDE7CD1CFF0A1F00987A0E /* HCMyPromisedNotifiMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE7CC1CFF0A1F00987A0E /* HCMyPromisedNotifiMessageCell.m */; };
 		EAE04D441CDF62CF003EDF0F /* HCReportApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE04D431CDF62CF003EDF0F /* HCReportApi.m */; };
 		EAE464971CF6A158005A0558 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE464961CF6A158005A0558 /* PlaceholderTextView.m */; };
 		EAE7B7311CE45ECC00E47B1B /* HCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */; };
@@ -3176,8 +3179,14 @@
 		EAD7FD0A1CF53A630058EF81 /* HCLostInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLostInfoViewController.m; sourceTree = "<group>"; };
 		EAD7FD0D1CF54EF50058EF81 /* HCLostInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLostInfoCell.h; sourceTree = "<group>"; };
 		EAD7FD0E1CF54EF50058EF81 /* HCLostInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLostInfoCell.m; sourceTree = "<group>"; };
+		EADBF07C1D002FDE00130D59 /* HCBigImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBigImageViewController.h; sourceTree = "<group>"; };
+		EADBF07D1D002FDE00130D59 /* HCBigImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBigImageViewController.m; sourceTree = "<group>"; };
+		EADBF0821D003DEA00130D59 /* HCSavePhotoToAblumMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSavePhotoToAblumMgr.h; sourceTree = "<group>"; };
+		EADBF0831D003DEA00130D59 /* HCSavePhotoToAblumMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSavePhotoToAblumMgr.m; sourceTree = "<group>"; };
 		EADDE7C81CFEE73F00987A0E /* HCGetCallDetailInfoApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGetCallDetailInfoApi.h; sourceTree = "<group>"; };
 		EADDE7C91CFEE73F00987A0E /* HCGetCallDetailInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGetCallDetailInfoApi.m; sourceTree = "<group>"; };
+		EADDE7CB1CFF0A1F00987A0E /* HCMyPromisedNotifiMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyPromisedNotifiMessageCell.h; sourceTree = "<group>"; };
+		EADDE7CC1CFF0A1F00987A0E /* HCMyPromisedNotifiMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMyPromisedNotifiMessageCell.m; sourceTree = "<group>"; };
 		EAE04D421CDF62CF003EDF0F /* HCReportApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReportApi.h; sourceTree = "<group>"; };
 		EAE04D431CDF62CF003EDF0F /* HCReportApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReportApi.m; sourceTree = "<group>"; };
 		EAE464951CF6A158005A0558 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextView.h; sourceTree = "<group>"; };
@@ -4500,6 +4509,8 @@
 				EA30EFB31CED50D200028887 /* HCSetTagMgr.m */,
 				EA11F74A1CF7E8B100BC9945 /* HCCityInfoMgr.h */,
 				EA11F74B1CF7E8B100BC9945 /* HCCityInfoMgr.m */,
+				EADBF0821D003DEA00130D59 /* HCSavePhotoToAblumMgr.h */,
+				EADBF0831D003DEA00130D59 /* HCSavePhotoToAblumMgr.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -5628,6 +5639,8 @@
 				8D21CA081C61D2B80071B32A /* HCMedicalViewController.m */,
 				8D0B71351C97A14700B091AA /* HCPromisedReportController.h */,
 				8D0B71361C97A14700B091AA /* HCPromisedReportController.m */,
+				EADBF07C1D002FDE00130D59 /* HCBigImageViewController.h */,
+				EADBF07D1D002FDE00130D59 /* HCBigImageViewController.m */,
 				8D131A4D1C7D7C4E00F0D5A0 /* Photo */,
 			);
 			path = HCNotificationPromised;
@@ -5759,6 +5772,8 @@
 				8D0FAEB21C604ECA0038B0BD /* HCNotiMySaveCell.m */,
 				8D21CA0A1C61D6310071B32A /* HCMedicalCell.h */,
 				8D21CA0B1C61D6310071B32A /* HCMedicalCell.m */,
+				EADDE7CB1CFF0A1F00987A0E /* HCMyPromisedNotifiMessageCell.h */,
+				EADDE7CC1CFF0A1F00987A0E /* HCMyPromisedNotifiMessageCell.m */,
 			);
 			path = HCNotiCell;
 			sourceTree = "<group>";
@@ -7552,6 +7567,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 0;
+							};
 						};
 					};
 					0A6B7DB01BF1EB6A008D54B3 = {
@@ -7925,6 +7943,7 @@
 				8D97903D1CB3A00B00FE3C12 /* HCReturnAddressInfo.m in Sources */,
 				C758EE441C743E7A0081FFE1 /* HCLeftViewController.m in Sources */,
 				8D131A971C7D7C7F00F0D5A0 /* ZLPhotoPickerCollectionViewCell.m in Sources */,
+				EADDE7CD1CFF0A1F00987A0E /* HCMyPromisedNotifiMessageCell.m in Sources */,
 				0A72D8FC1C3E4675006D1C62 /* UIView_extra.m in Sources */,
 				C78D7B481C5F28F700622CE2 /* HCApplyReissueDetailCell.m in Sources */,
 				0A2B47761C7F12C800AAA157 /* HCProductIntrodApi.m in Sources */,
@@ -8678,6 +8697,7 @@
 				8D0AE5C71CBE2BE100E97D7D /* HCTagUserDetailController.m in Sources */,
 				0A5491D61C2BC32D0085F50D /* ZXMultiDetector.m in Sources */,
 				C7B00B461C5F26050010F93B /* ContactSelectionViewController.m in Sources */,
+				EADBF0841D003DEA00130D59 /* HCSavePhotoToAblumMgr.m in Sources */,
 				0A8BE3BE1C7E8D7C008E8100 /* HCMergingFamilyView.m in Sources */,
 				C7B00B481C5F26050010F93B /* CreateGroupViewController.m in Sources */,
 				C7B00BA91C5F26050010F93B /* NSDateFormatter+Category.m in Sources */,
@@ -8713,6 +8733,7 @@
 				C78D7B901C5F28F700622CE2 /* HCPickerView.m in Sources */,
 				C7B00BBE1C5F26050010F93B /* EaseMessageTimeCell.m in Sources */,
 				8D131A8E1C7D7C7F00F0D5A0 /* ZLNavigationController.m in Sources */,
+				EADBF07E1D002FDE00130D59 /* HCBigImageViewController.m in Sources */,
 				C78D7AF81C5F28F700622CE2 /* HCOtherPromisedDetailController.m in Sources */,
 				0A2B46F41C7F12AF00AAA157 /* HCHomeDetailTableViewCell.m in Sources */,
 				C768C5C31CD623890059284E /* NHCChatGroupInfoApi.m in Sources */,
@@ -8849,8 +8870,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: hans@major.hk (7D4PMSGWK4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hans@major.hk (7D4PMSGWK4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8894,8 +8915,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: hans@major.hk (7D4PMSGWK4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hans@major.hk (7D4PMSGWK4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;

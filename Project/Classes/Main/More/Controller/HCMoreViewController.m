@@ -38,9 +38,6 @@ static NSString * const reuseIdentifier = @"moreCollectionCell";
     [super viewDidLoad];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushToActivated) name:@"pushToActivated" object:nil];
-    
     [self.collectionView registerClass:[HCMoreCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
 
@@ -132,12 +129,5 @@ static NSString * const reuseIdentifier = @"moreCollectionCell";
     }
     return _vClassNameArr;
 }
-
-- (void)pushToActivated
-{
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-    [self collectionView:self.collectionView didSelectItemAtIndexPath:indexPath];
-}
-
 
 @end

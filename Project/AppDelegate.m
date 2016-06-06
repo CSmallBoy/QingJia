@@ -20,6 +20,8 @@
 
 #import <AMapLocationKit/AMapLocationKit.h>
 
+#import <AMapFoundationKit/AMapFoundationKit.h>
+
 #import "UMSocial.h"
 #import "UMSocialSnsData.h"
 #import "UMSocialQQHandler.h"
@@ -129,13 +131,12 @@
 {
     NSLog(@" 登陆成功  @@@@@@@@@@@@@@@@@ %@",noti.userInfo); 
     //设置tags
-//    NSSet *tags = [NSSet setWithObject:@"22222"];
-//    NSSet *set = [JPUSHService filterValidTags:tags];
-//    
-//    [JPUSHService setTags:set alias:nil fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
-//        NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags , iAlias);
-//
-//    }];
+    NSSet *tags = [NSSet setWithObject:@"666666"];
+    NSSet *set = [JPUSHService filterValidTags:tags];
+    [JPUSHService setTags:set alias:nil fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+        NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags , iAlias);
+
+    }];
 }
 
 //-(void)tagsAliasCallback:(int)iResCode
@@ -277,7 +278,7 @@ didFinishLaunchingWithOptions:launchOptions
 
 - (void)setupMAMap
 {
-    [AMapLocationServices sharedServices].apiKey = @"20e897d0e7d653770541a040a12065d8";
+    [AMapServices sharedServices].apiKey = @"20e897d0e7d653770541a040a12065d8";
     self.locationManager = [[AMapLocationManager alloc] init];
     self.locationManager.delegate = self;
     [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置

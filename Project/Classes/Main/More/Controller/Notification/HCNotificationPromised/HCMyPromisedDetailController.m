@@ -27,8 +27,8 @@
 #import "UMSocialSinaSSOHandler.h"
 //根据callId查询一呼百应详情
 #import "HCGetCallDetailInfoApi.h"
-
-
+//大图
+#import "HCBigImageViewController.h"
 
 @interface HCMyPromisedDetailController ()<SKStoreProductViewControllerDelegate, UMSocialUIDelegate>
 
@@ -257,9 +257,7 @@
     myFindLineVC.callId = self.info.callId;
     [self.deletIV removeFromSuperview];
     [self.navigationController pushViewController:myFindLineVC animated:YES];
-   
 }
-
 
 // 移除蓝色视图
 -(void)removeDeletIV
@@ -371,9 +369,6 @@
             }
             
         }];
-        
-        
-        
     }
     else
     {
@@ -393,49 +388,15 @@
 // 点击进入图片大图
 -(void)addBigImage:(UITapGestureRecognizer *)tap
 {
-    
     if (_isShowDelete) {
         [_deletIV removeFromSuperview];
         _isShowDelete = NO;
         return;
     }
-    
-    
-    self.navigationController.navigationBarHidden = YES;
-    CGRect  startFrame =  [self.backView convertRect:self.imageView.frame toView:self.view];
-    UIImageView  *bigImageView = [[UIImageView alloc]initWithFrame:startFrame];
     UIImageView  *smallImageView = (UIImageView *)tap.view;
-    bigImageView.image = smallImageView.image;
-    bigImageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImage:)];
-    bigImageView.userInteractionEnabled = YES;
-    bigImageView.backgroundColor = [UIColor blackColor];
-    [bigImageView addGestureRecognizer:tap2];
-    
-    [self.view addSubview:bigImageView];
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        bigImageView.frame = self.view.frame;
-        
-    }];
-    
-}
-
-// 点击移除图片大图
--(void)removeBigImage:(UITapGestureRecognizer *)tap
-{
-    self.navigationController.navigationBarHidden = NO;
-    tap.view.backgroundColor = [UIColor clearColor];
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect  startFrame =  [self.backView convertRect:self.imageView.frame toView:self.view];
-        tap.view.frame = startFrame;
-    }completion:^(BOOL finished) {
-        [tap.view removeFromSuperview];
-    }];
-    
-    
+    HCBigImageViewController *bigImageVC = [[HCBigImageViewController alloc] init];
+    bigImageVC.image = smallImageView.image;
+    [self.navigationController pushViewController:bigImageVC animated:YES];
 }
 
 #pragma mark --- setter Or getter
@@ -585,6 +546,7 @@
         {
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX([btnArr[i] frame])+15/375.0*SCREEN_WIDTH,CGRectGetMinY([btnArr[i] frame]),70/375.0*SCREEN_WIDTH,CGRectGetHeight([btnArr[i] frame]))];
             label.textColor = [UIColor grayColor];
+            label.tag = 500 + i;
             label.font = [UIFont systemFontOfSize:12];
             [_imgeViewBottom addSubview:label];
         }
@@ -621,32 +583,6 @@
     }
     return _numLabel;
 }
-
-//联系人1
-//- (UIButton *)FatherTel
-//{
-//    if(!_FatherTel)
-//    {
-//        _FatherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _FatherTel.frame =CGRectMake(55/375.0*SCREEN_WIDTH,CGRectGetMaxY(self.numLabel.frame)+10/668.0*SCREEN_HEIGHT,25/375.0*SCREEN_WIDTH,25/375.0*SCREEN_WIDTH) ;
-//           [_FatherTel addTarget:self action:@selector(FatherTelClick) forControlEvents:UIControlEventTouchUpInside];
-//        [_FatherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
-//    }
-//    return _FatherTel;
-//}
-
-//联系人2
-//- (UIButton *)MotherTel
-//{
-//    if(!_MotherTel){
-//        _MotherTel = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _MotherTel.frame =CGRectMake(150/375.0*SCREEN_WIDTH,CGRectGetMaxY(self.numLabel.frame)+10/668.0*SCREEN_HEIGHT,25/375.0*SCREEN_WIDTH,25/375.0*SCREEN_WIDTH);
-//         [_MotherTel addTarget:self action:@selector(MotherTelClick) forControlEvents:UIControlEventTouchUpInside];
-//        [_MotherTel setBackgroundImage:IMG(@"PHONE-1") forState:UIControlStateNormal];
-//    }
-//    return _MotherTel;
-//}
-
 
 //联系人1
 - (UIImageView *)leftAnimationView

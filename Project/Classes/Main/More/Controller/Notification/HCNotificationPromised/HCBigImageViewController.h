@@ -10,4 +10,6 @@
 
 @interface HCBigImageViewController : HCViewController
 
+@property (nonatomic, strong)UIImage *image;
+
 @end

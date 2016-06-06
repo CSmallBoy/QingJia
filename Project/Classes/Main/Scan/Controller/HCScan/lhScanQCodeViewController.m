@@ -446,7 +446,7 @@
 -(void)initMap
 {
     
-    [MAMapServices sharedServices].apiKey =@"20e897d0e7d653770541a040a12065d8";
+//    [MAMapServices sharedServices].apiKey =@"20e897d0e7d653770541a040a12065d8";
     _mapview = [[MAMapView alloc]init];
     _mapview.userTrackingMode = 1;
     _mapview.delegate = self;

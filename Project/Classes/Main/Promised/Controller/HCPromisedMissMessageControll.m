@@ -21,6 +21,8 @@
 #import "HCCityInfo.h"
 //定位
 #import <AMapLocationKit/AMapLocationKit.h>
+//设置推送tag
+#import "HCSetTagMgr.h"
 
 @interface HCPromisedMissMessageControll ()<UITextViewDelegate,HCPickerViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,AMapLocationManagerDelegate>
 
@@ -284,7 +286,7 @@
             _textField2.enabled = NO;
             
             UIButton *locationButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            locationButton.frame = CGRectMake(MaxX(_textField2), 12, 16, 20);
+            locationButton.frame = CGRectMake(MaxX(_textField2), 10, 20, 25);
             locationButton.backgroundColor = [UIColor whiteColor];
             [locationButton setBackgroundImage:IMG(@"lossInfo_location") forState:UIControlStateNormal];
             [locationButton addTarget:self action:@selector(locationButtonAction) forControlEvents:UIControlEventTouchUpInside];
@@ -587,11 +589,21 @@
 #pragma mark - Location
 - (void)locationButtonAction
 {
-    [AMapLocationServices sharedServices].apiKey = @"20e897d0e7d653770541a040a12065d8";
-    self.locationManager = [[AMapLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置
-    [self.locationManager startUpdatingLocation];
+    //先判断是否有定位权限
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"定位服务已关闭,请在设置\"隐私\"中开启定位服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertView show];
+    }
+    else
+    {
+//        [AMapLocationServices sharedServices].apiKey = @"20e897d0e7d653770541a040a12065d8";
+        self.locationManager = [[AMapLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置
+        [self.locationManager startUpdatingLocation];
+    }
 }
 
 #pragma mark - AMapLocationManager Delegate
@@ -679,6 +691,9 @@
         if (request == HCRequestStatusSuccess)
         {
             [self hideHUDView];
+            //设置推送tag
+            [[HCSetTagMgr manager]setPushTag];
+            //发送过呼之后的跳转
             UIViewController *vc= self.navigationController.viewControllers[0];
             [self.navigationController popToViewController:vc animated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"callPromised" object:nil];// 发呼成功显示雷达效果

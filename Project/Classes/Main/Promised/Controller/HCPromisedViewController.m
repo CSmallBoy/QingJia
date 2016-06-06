@@ -54,6 +54,8 @@
 
 @property (nonatomic, copy)NSString *hasCall;//是否发过呼
 
+@property (nonatomic, copy)NSString *objId;//传到下个页面的对象ID
+
 @end
 
 @implementation HCPromisedViewController
@@ -82,6 +84,9 @@
     
     //当审核完成之后
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToMyNotificationVC:) name:@"afterReview" object:nil];
+    
+    //删除呼成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"delectCallSuccess" object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -99,8 +104,17 @@
     
     for (NSInteger i = 0; i<self.dataArr.count; i++)
     {
-        HCPromisedListInfo *info = self.dataArr[i];
-        info.isBlack = NO;
+        HCNewTagInfo *info = self.dataArr[i];
+        
+        if ([info.hasCall isEqualToString:@"1"])
+        {
+            info.isBlack = YES;
+        }
+        else
+        {
+            info.isBlack = NO;
+        }
+        
     }
     [self.smallTableView reloadData];
 }
@@ -125,8 +139,8 @@
     if (!_smallTableView)
     {
         CGFloat StabX = self.bgImage.frame.size.width-(40/375.0)*SCREEN_WIDTH;
-        CGFloat StabH = self.bgImage.frame.size.height - (125/668.0)*SCREEN_HEIGHT;
-        _smallTableView = [[UITableView alloc]initWithFrame:CGRectMake((20/375.0)*SCREEN_WIDTH, (70/668.0)*SCREEN_HEIGHT, StabX, StabH) style:UITableViewStylePlain];
+        CGFloat StabH = self.bgImage.frame.size.height-(110/668.0)*SCREEN_HEIGHT;
+        _smallTableView = [[UITableView alloc]initWithFrame:CGRectMake((20/375.0)*SCREEN_WIDTH, (60/668.0)*SCREEN_HEIGHT, StabX, StabH) style:UITableViewStylePlain];
         _smallTableView.delegate = self;
         _smallTableView.dataSource = self;
         _smallTableView.backgroundColor = [UIColor clearColor];
@@ -167,9 +181,9 @@
 {
     if (_bgImage == nil)
     {
-        _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 0.8*SCREEN_WIDTH,(382/668.0)*SCREEN_HEIGHT)];
+        _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 0.8*SCREEN_WIDTH,(350/668.0)*SCREEN_HEIGHT)];
         _bgImage.userInteractionEnabled = YES;
-        _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+30);
+        _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+50/668.0*SCREEN_HEIGHT);
         _bgImage.image = [UIImage imageNamed:@"yihubaiying_Background.png"];
         _bgImage.contentMode = UIViewContentModeScaleAspectFit;
     }
@@ -180,9 +194,9 @@
 {
     if (_headBtn == nil)
     {
-        CGFloat  headerViewW =  115/383.0*self.bgImage.frame.size.height;
-        _headBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, headerViewW , headerViewW)];
-        CGFloat  headerViewY = self.bgImage.frame.origin.y-15;
+        CGFloat  headerViewW =  110/375.0*SCREEN_WIDTH;
+        _headBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, headerViewW, headerViewW)];
+        CGFloat  headerViewY = MinY(self.bgImage)-20;
         _headBtn.center = CGPointMake(SCREEN_WIDTH/2, headerViewY);
         [_headBtn setBackgroundImage:IMG(@"yihubaiying_icon_m-talk logo_dis.png") forState:UIControlStateNormal];
         [_headBtn addSubview:self.radarView];
@@ -201,16 +215,65 @@
     return _radarView;
 }
 
+
+- (UIView *)alertBackground
+{
+    if (_alertBackground == nil)
+    {
+        _alertBackground = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        _alertBackground.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        [_alertBackground addSubview:self.customAlertView];
+    }
+    return _alertBackground;
+}
+
+
+- (UIView *)customAlertView
+{
+    if (_customAlertView == nil)
+    {
+        _customAlertView = [[UIView alloc] initWithFrame:CGRectMake(30/375.0*SCREEN_WIDTH, 230/668.0*SCREEN_HEIGHT, SCREEN_WIDTH-60/375.0*SCREEN_WIDTH, 190/668.0*SCREEN_HEIGHT)];
+        ViewRadius(_customAlertView, 5);
+        _customAlertView.backgroundColor = [UIColor whiteColor];
+        
+        
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 55/668.0*SCREEN_HEIGHT, WIDTH(_customAlertView), 20/668.0*SCREEN_HEIGHT)];
+        titleLabel.text = @"确认发布一呼百应";
+        titleLabel.textAlignment = 1;
+        [_customAlertView addSubview:titleLabel];
+        
+        UIButton *sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        sureButton.frame = CGRectMake(30/375.0*SCREEN_WIDTH, MaxY(titleLabel)+45/668.0*SCREEN_HEIGHT, 120/375.0*SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT);
+        ViewRadius(sureButton, 5);
+        sureButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        sureButton.layer.borderWidth = 1;
+        [sureButton setTitle:@"是" forState:UIControlStateNormal];
+        [sureButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [sureButton addTarget:self action:@selector(sureButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_customAlertView addSubview:sureButton];
+        
+        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancelButton.frame = CGRectMake(MaxX(sureButton)+15/375.0*SCREEN_WIDTH, MaxY(titleLabel)+45/668.0*SCREEN_HEIGHT, 120/375.0*SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT);
+        ViewRadius(cancelButton, 5);
+        cancelButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        cancelButton.layer.borderWidth = 1;
+        [cancelButton setTitle:@"否" forState:UIControlStateNormal];
+        [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_customAlertView addSubview:cancelButton];
+    }
+    return _customAlertView;
+}
+
+
 #pragma mark - layoutSubViews
 
 -(void)createUI
 {
     //背景图片
     [self.view addSubview:self.bgImage];
-    
     //顶部图片
     [self.view addSubview:self.headBtn];
-    
     //对象列表
     [self.bgImage addSubview:self.smallTableView];
 }
@@ -221,6 +284,24 @@
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:IMG(@"ThinkChange_sel") style:UIBarButtonItemStylePlain target:self action:@selector(ToQrcodeController:)];
     self.navigationItem.rightBarButtonItem = right;
 }
+
+#pragma mark - alert sureClick/cancelClick
+//提示框"是"按钮
+- (void)sureButtonAction:(UIButton *)sender
+{
+    [sender.superview.superview removeFromSuperview];
+    isObj = YES;
+    //跳转到对象信息详情页面
+    [self pushObjectInfoByObjectId];
+    
+}
+
+//提示框"否"按钮
+- (void)cancelButtonAction:(UIButton *)sender
+{
+    [sender.superview.superview removeFromSuperview];
+}
+
 
 #pragma mark - notificationCenterAction
 
@@ -267,8 +348,16 @@
     
     for (NSInteger i = 0; i<self.dataArr.count; i++)
     {
-        HCPromisedListInfo *info = self.dataArr[i];
-        info.isBlack = NO;
+        HCNewTagInfo *info = self.dataArr[i];
+        
+        if ([info.hasCall isEqualToString:@"1"])
+        {
+            info.isBlack = YES;
+        }
+        else
+        {
+            info.isBlack = NO;
+        }
     }
     
     [self.smallTableView reloadData];
@@ -293,6 +382,21 @@
     {
         [self.radarView removeFromSuperview];
     }
+    for (NSInteger i = 0; i<self.dataArr.count; i++)
+    {
+        HCNewTagInfo *info = self.dataArr[i];
+        
+        if ([info.hasCall isEqualToString:@"1"])
+        {
+            info.isBlack = YES;
+        }
+        else
+        {
+            info.isBlack = NO;
+        }
+    }
+    
+    [self.smallTableView reloadData];
 }
 
 //发完呼跳转到"与我相关"
@@ -316,7 +420,7 @@
     HCNewTagInfo *info =self.dataArr[indexPath.row];
     cell.info = info;
     cell.buttonW = self.smallTableView.frame.size.width;
-    cell.buttonH = (36/668.0)*SCREEN_HEIGHT;
+    cell.buttonH = (40/668.0)*SCREEN_HEIGHT;
     cell.block = ^(NSString  *buttonTitle,HCNewTagInfo *info)
     {
         if ([buttonTitle isEqualToString:@"+ 新增录入"]) {
@@ -329,15 +433,8 @@
         }
         else
         {
-            //取消其他cell的选中状态
-            for (HCNewTagInfo *info1 in self.dataArr) {
-                info1.isBlack = NO;
-            }
-            info.isBlack = YES;
-            isObj = YES;
-            [self.smallTableView reloadData];
-            //跳转到对象信息详情页面
-            [self pushObjectInfoByObjectId:info.objectId];
+            self.objId = info.objectId;
+            [self.tabBarController.view addSubview:self.alertBackground];
         }
     };
     return cell;
@@ -345,7 +442,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (52/668.0)*SCREEN_HEIGHT;
+    return (60/668.0)*SCREEN_HEIGHT;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -363,13 +460,13 @@
 }
 
 //点击对象cell,跳转到对象信息详情
--(void)pushObjectInfoByObjectId:(NSString *)objId
+-(void)pushObjectInfoByObjectId
 {
     if (isObj) {
         HCPromisedTagUserDetailController *detailVC = [[HCPromisedTagUserDetailController alloc]init];
         detailVC.isObj = NO;//不允许编辑
         detailVC.isNextStep = YES;
-        detailVC.objId = objId;
+        detailVC.objId = self.objId;
         detailVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detailVC animated:YES];
     }
@@ -404,15 +501,27 @@
         if (requestStatus == HCRequestStatusSuccess) {
             [self.dataArr removeAllObjects];
             
-            self.hasCall = respone[@"Data"][@"hasCall"];
-            [self show];
-            
+            int k = 0;
             NSArray *array = respone[@"Data"][@"rows"];
             for (NSDictionary *dic in array) {
                 
                 HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
                 [self.dataArr addObject:info];
+                if ([info.hasCall isEqualToString:@"1"])
+                {
+                    k++;
+                }
             }
+            if (k > 0)
+            {
+                self.hasCall = @"1";
+                
+            }
+            else
+            {
+                self.hasCall = @"0";
+            }
+            [self show];
             
             HCNewTagInfo *info = [[HCNewTagInfo alloc]init];
             info.trueName = @"+ 新增录入";

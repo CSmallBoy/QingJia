@@ -10,6 +10,8 @@
 #import "HCPromisedCommentFrameInfo.h"
 #import "HCPromisedCommentInfo.h"
 
+#import "UIButton+WebCache.h"
+
 // -------------------------------------留言评论cell----------------------------------------
 
 @interface HCPromisedCommentCell ()<UITextFieldDelegate>
@@ -73,9 +75,7 @@
 
 //点击了图片
 -(void)imageBtnClick:(UIButton *)button;
-
 {
-    
     self.block (button);
 }
 
@@ -130,7 +130,7 @@
     for (int i = 0; i<arr.count; i++) {
         
         
-        UIImageView *button =self.btnArr[i];
+        UIButton *button =self.btnArr[i];
         switch (i) {
             case 0:
                 button.frame = commnetFrameInfo.button1Frame;
@@ -145,11 +145,12 @@
                 break;
         }
         
-        NSURL *url = [readUserInfo originUrl:arr[i] :kkUser];
-        UIImageView *imageView= [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, button.frame.size.width, button.frame.size.height)];
-        [imageView sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
-        imageView.tag = 100;
-        [button addSubview:imageView];
+        NSURL *url = [readUserInfo originUrl:arr[i] :kkClue];
+//        UIImageView *imageView= [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, button.frame.size.width, button.frame.size.height)];
+//        [imageView sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
+//        imageView.tag = 100;
+//        [button addSubview:imageView];
+        [button sd_setBackgroundImageWithURL:url forState:UIControlStateNormal placeholderImage:IMG(@"Head-Portraits")];
         
         [self addSubview:button];
 

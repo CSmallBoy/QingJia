@@ -207,7 +207,7 @@
         {
             return 88;
         }
-        else if (indexPath.section == 2 )
+        else if (indexPath.section == 2)
         {
             return 150;
         }
@@ -263,7 +263,7 @@
             UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 93, 20)];
             label2.textColor = [UIColor blackColor];
             label2.textAlignment = NSTextAlignmentCenter;
-            label2.text = self.contactInfo1.trueName;
+            label2.text = self.contactInfo2.trueName;
             [view2 addSubview:label2];
             
             [ self.scrollView addSubview:view2];

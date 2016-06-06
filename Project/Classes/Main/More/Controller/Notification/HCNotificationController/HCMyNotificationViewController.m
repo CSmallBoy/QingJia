@@ -25,7 +25,10 @@
 
 #import "HCAboutMeApi.h"
 
-@interface HCMyNotificationViewController ()<UISearchDisplayDelegate,UISearchBarDelegate,UISearchControllerDelegate,UITableViewDelegate,UITableViewDataSource>
+#import "HCMyPromisedNotifiMessageCell.h"
+#import "HCDeletePromisedApi.h"
+
+@interface HCMyNotificationViewController ()<UISearchDisplayDelegate,UISearchBarDelegate,UISearchControllerDelegate,UITableViewDelegate,UITableViewDataSource,SCSwipeTableViewCellDelegate>
 
 @property (nonatomic,strong)UITableView     *resultTableView;
 @property (nonatomic,strong) UISearchBar     *seatchBar;
@@ -61,6 +64,35 @@
     self.view.backgroundColor = kHCBackgroundColor;
 
     self.start = @"0";
+    
+    //发呼成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"callPromised" object:nil];
+}
+
+#pragma mark ---  SCSwipeTableViewCellDelegate
+
+//点击 侧滑出来的button
+- (void)SCSwipeTableViewCelldidSelectBtnWithTag:(NSInteger)tag andIndexPath:(NSIndexPath *)indexpath{
+    //删除
+    if (tag == 0)
+    {
+        HCNotificationCenterInfo *info = self.dataSource[indexpath.row];
+        HCDeletePromisedApi *api =[[HCDeletePromisedApi alloc]init];
+        api.callId = info.callId;
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+            if (requestStatus == HCRequestStatusSuccess) {
+                //删除成功相当于关闭呼
+                [self showHUDText:@"删除成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"delectCallSuccess" object:nil];
+                [self requestData];
+            }
+            else
+            {
+                [self showHUDText:respone[@"message"]];
+            }
+            
+        }];
+    }
 }
 
 #pragma mark----UITableViewDelegate
@@ -71,10 +103,25 @@
     if (tableView == self.myTableView) {
         
         if (indexPath.section == 0 ) {// 自己发出去的“呼”cell
-            HCMyNotificationCenterTableViewCell *cell = [HCMyNotificationCenterTableViewCell cellWithTableView:tableView];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
+            btn1.backgroundColor = COLOR(247, 68, 76, 1);
+            UIImageView *imageView1= [[UIImageView alloc]initWithFrame:CGRectMake(15, 25, 30, 30)];
+            imageView1.image = IMG(@"一呼百应详情－delete");
+            [btn1 addSubview:imageView1];
+            btn1.tag = 100;
+            
+            NSArray *btnArr = @[btn1];
+            
+            static NSString *cellIdentifier = @"myPromisedCell";
+            HCMyPromisedNotifiMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[HCMyPromisedNotifiMessageCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                        reuseIdentifier:cellIdentifier
+                                                               withBtns:btnArr
+                                                              tableView:self.myTableView];
+                cell.delegate = self;
+            }
             cell.info = self.dataSource[indexPath.row];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         else

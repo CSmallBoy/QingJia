@@ -86,11 +86,14 @@
     [_button setTitleColor:[UIColor colorWithRed:242/256.0 green:63/256.0 blue:68/256.0 alpha:1] forState:UIControlStateNormal];
     if (info.isBlack)
     {
+        [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _button.backgroundColor = [UIColor grayColor];
+        _button.userInteractionEnabled = NO;
     }
     else
     {
         _button.backgroundColor = [UIColor whiteColor];
+        _button.userInteractionEnabled = YES;
     }
     
 //    if (info.isSend)
@@ -118,10 +121,7 @@
 
 -(void)buttonClick:(UIButton *)button
 {
-   
     self.block(button.titleLabel.text,self.info);
-    self.info.isBlack = YES;
-  
 }
 
 - (void)awakeFromNib {

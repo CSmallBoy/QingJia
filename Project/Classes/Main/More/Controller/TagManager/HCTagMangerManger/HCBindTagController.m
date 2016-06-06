@@ -15,6 +15,8 @@
 #import "SDCycleScrollView.h"
 //对象信息
 #import "HCPromisedTagUserDetailController.h"
+//新增标签使用者
+#import "HCAddTagUserController.h"
 
 @interface HCBindTagController ()<UIScrollViewDelegate, SDCycleScrollViewDelegate>
 
@@ -59,6 +61,8 @@
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(sureButtonClick:)];
     self.navigationItem.rightBarButtonItem = item;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestObjectData) name:@"refreshObjectData" object:nil];
 }
 
 #pragma mark - lazyLoading
@@ -279,7 +283,9 @@
 //添加新对象,跳转新增标签使用者界面
 - (void)addButtonAction:(UIButton *)sender
 {
-    
+    HCAddTagUserController *newTagVC = [[HCAddTagUserController alloc] init];
+    newTagVC.isNewObj = YES;
+    [self.navigationController pushViewController:newTagVC animated:YES];
 }
 
 //从相册选择绑定者正面照
@@ -485,8 +491,8 @@
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self showHUDSuccess:@"激活成功"];
+            [self.navigationController popToRootViewControllerAnimated:NO];
             self.tabBarController.selectedIndex = 3;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"pushToActivated" object:nil];
         }
         else
         {

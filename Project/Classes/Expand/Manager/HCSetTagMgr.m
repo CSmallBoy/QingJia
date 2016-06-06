@@ -44,7 +44,7 @@ static HCSetTagMgr *_sharedManager = nil;
 #pragma mark - location
 - (void)setPushTag
 {
-    [AMapLocationServices sharedServices].apiKey = @"20e897d0e7d653770541a040a12065d8";
+//    [AMapLocationServices sharedServices].apiKey = @"20e897d0e7d653770541a040a12065d8";
     self.locationManager = [[AMapLocationManager alloc] init];
     self.locationManager.delegate = self;
     [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置
@@ -60,7 +60,7 @@ static HCSetTagMgr *_sharedManager = nil;
 - (void)startUpdatingLocation
 {
     self.times++;
-    if (self.times < 3)
+    if (self.times < 2)
     {
         [self.locationManager startUpdatingLocation];
     }

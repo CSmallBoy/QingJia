@@ -34,7 +34,7 @@
     [self.tableView registerClass:[HCTagManagerTableViewCell class] forCellReuseIdentifier:activatedcell];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"requestData" object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"requestStopData" object:nil];
 }
 
 

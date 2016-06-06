@@ -34,12 +34,15 @@
 @property (nonatomic, strong ) UIImageView                        *backgroundImage;//背景图片
 @property (nonatomic, strong ) ABPeoplePickerNavigationController *pickerVC;//系统通讯录
 
+@property (nonatomic, assign) NSInteger saveNumber;//保存次数
+
 @end
 
 @implementation HCTagEditContractPersonController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.saveNumber = 0;
     
     if (_info) {
         self.title = @"编辑紧急联系人";
@@ -238,30 +241,35 @@
 
 -(void)itemClick:(UIBarButtonItem *)item
 {
-    if (_textField1.text.length == 0)
+    if (self.saveNumber == 0)
     {
-        [self showHUDText:@"请输入联系人姓名"];
-    }
-    else if (_textField2.text.length == 0 || [Utils checkPhoneNum:_textField2.text] == NO)
-    {
-        [self showHUDText:@"手机号输入不正确"];
-    }
-    else
-    {
-        if (_info) {
-            
-            if (self.image) {
-                [self upLoadImage];
-            }else
-            {
-                [self chanageContactPerson];
-            }
-            
+        self.saveNumber = 1;
+        if (_textField1.text.length == 0)
+        {
+            [self showHUDText:@"请输入联系人姓名"];
+        }
+        else if (_textField2.text.length == 0 || [Utils checkPhoneNum:_textField2.text] == NO)
+        {
+            [self showHUDText:@"手机号输入不正确"];
         }
         else
         {
-            [self upLoadImage];
+            if ([self.title isEqualToString:@"编辑紧急联系人"]) {
+                
+                if (self.image) {
+                    [self upLoadImage];
+                }else
+                {
+                    [self chanageContactPerson];
+                }
+                
+            }
+            else
+            {
+                [self upLoadImage];
+            }
         }
+
     }
 }
 
@@ -307,27 +315,20 @@
 -(void)requestData
 {
     HCAddContactPersonApi *api = [[HCAddContactPersonApi alloc]init];
-    
     api.trueName = self.textField1.text;
     api.phoneNo = self.textField2.text;
     api.imgStr = self.imgStr;
-    
     [api startRequest:^(HCRequestStatus requesStatus, NSString *message, id respone) {
        
         if (requesStatus == HCRequestStatusSuccess) {
-            
+            [self hideHUDView];
             [self.navigationController popViewControllerAnimated:YES];
-            
-            HCTagContactInfo *info = [[HCTagContactInfo alloc]init];
-            info.trueName = self.textField1.text;
-            info.phoneNo = self.textField2.text;
-            info.imageName = self.imgStr;
-            info.conactPersonImage = self.image;
-            
             [[NSNotificationCenter defaultCenter]postNotificationName:@"saveNewContact" object:nil];
+            
         }
         else
         {
+            self.saveNumber = 0;
             [self showHUDText:@"保存失败"];
         }
         
@@ -348,7 +349,7 @@
         NSLog(@"%@",responseObject);
         self.imgStr = responseObject[@"Data"][@"files"][0];
         
-        if (_info) {
+        if ([self.title isEqualToString:@"编辑紧急联系人"]) {
         // 变更紧急联系人
             [self chanageContactPerson];
         }
@@ -357,9 +358,6 @@
         // 添加紧急联系人
             [self requestData];
         }
-        
-        
-       
     } failure:^(NSError *error) {
         
     }];
@@ -387,6 +385,7 @@
         }
         else
         {
+            self.saveNumber = 0;
              [self showHUDText:@"保存失败"];
         }
     }];

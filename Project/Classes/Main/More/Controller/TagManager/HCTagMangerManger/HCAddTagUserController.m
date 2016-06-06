@@ -44,6 +44,9 @@
 
 @property (nonatomic,strong) UISwitch *sw;
 
+@property (nonatomic,assign)NSInteger saveNum;//记录保存次数,防止重复保存
+
+
 @end
 
 @implementation HCAddTagUserController
@@ -52,6 +55,7 @@
     [super viewDidLoad];
      [self requestContactData];
     self.title = @"新增标签使用者";
+    self.saveNum = 0;
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
     self.navigationItem.rightBarButtonItem = item;
     if (self.isNewObj)
@@ -335,8 +339,6 @@
 -(void)saveNewContact
 {
     [self requestContactData];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)itemClick:(UIBarButtonItem *)item
@@ -398,28 +400,30 @@
             return;
         }
         
-        if (_isEdit)
+        if (self.saveNum == 0)
         {
-            if (self.image) {
-                [self uploadImage];
-            }
-            else
+            self.saveNum = 1;
+            if (_isEdit)
             {
-                [self changeObject];
-            }
-            
-            
-        }else
-        {
-            if (self.image)
+                if (self.image) {
+                    [self uploadImage];
+                }
+                else
+                {
+                    [self changeObject];
+                }
+            }else
             {
-                [self uploadImage];
+                if (self.image)
+                {
+                    [self uploadImage];
+                }
+                else
+                {
+                    [self showHUDText:@"请上传头像"];
+                }
+                
             }
-            else
-            {
-                [self showHUDText:@"请上传头像"];
-            }
-            
         }
     }
 }
@@ -755,7 +759,7 @@
     HCTagContactInfo *info2 = self.selectArr[1];
     self.info.relation1 = info1.relative;
     self.info.contactorId1 = info1.contactorId;
-    self.info.relation2 = info2.contactorId;
+    self.info.relation2 = info2.relative;
     self.info.contactorId2 = info2.contactorId;
     api.info = self.info;
     api.openHealthCard = self.info.openHealthCard;

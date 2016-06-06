@@ -109,7 +109,7 @@ static NSString *kGroupName = @"GroupName";
     //这个是所有的
     if ([rootViewControllerClass isSubclassOfClass:[HCHomeViewController class]])
     {
-        navVc.tabBarItem.badgeValue = @"10";
+//        navVc.tabBarItem.badgeValue = @"10";
     }
     NSString *selectedImage = [NSString stringWithFormat:@"%@_sel",name];
     navVc.tabBarItem.selectedImage = OrigIMG(selectedImage);

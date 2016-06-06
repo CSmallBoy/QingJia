@@ -28,6 +28,9 @@
 #import "HCReplyLineApi.h"
 
 #import "IQKeyboardManager.h"
+//大图
+#import "HCBigImageViewController.h"
+
 
 @interface HCPromisedCommentController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -94,7 +97,6 @@
 {
     HCPromisedCommentFrameInfo *frameInfo = self.dataSource[indexPath.row];
     HCPromisedCommentInfo *info = frameInfo.commentInfo;
-    
     if ([info.isScan isEqualToString:@"1"]) {
         
         HCPromisedCommentScanCell *cell = [HCPromisedCommentScanCell CellWithTableView:tableView];
@@ -120,28 +122,29 @@
             }
             else
             {
-                UIImageView *imageview = button.subviews[1];
-                _startFrame = [imageview convertRect:imageview.bounds toView:self.view];
-                UIImageView *selfIV = [[UIImageView alloc]initWithFrame:_startFrame];
-                selfIV.image = imageview.image;
-                selfIV.backgroundColor = [UIColor blackColor];
-                selfIV.userInteractionEnabled = YES;
-                    
-                UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImageView:)];
-                [selfIV addGestureRecognizer:tap];
-                selfIV.contentMode = UIViewContentModeScaleAspectFit;
-                [self.view addSubview:selfIV];
-                self.navigationController.navigationBarHidden = YES;
-                [UIView animateWithDuration:0.4 animations:^{
-                        
-                    selfIV.frame = self.view.frame;
-                        
-                }];
+                
+//                UIImageView *imageview = button.subviews[1];
+//                _startFrame = [button convertRect:button.bounds toView:self.view];
+//                UIImageView *selfIV = [[UIImageView alloc]initWithFrame:_startFrame];
+//                selfIV.image = button.currentBackgroundImage;
+//                selfIV.backgroundColor = [UIColor blackColor];
+//                selfIV.userInteractionEnabled = YES;
+//                    
+//                UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImageView:)];
+//                [selfIV addGestureRecognizer:tap];
+//                selfIV.contentMode = UIViewContentModeScaleAspectFit;
+//                [self.view addSubview:selfIV];
+//                self.navigationController.navigationBarHidden = YES;
+//                [UIView animateWithDuration:0.4 animations:^{
+//                        
+//                    selfIV.frame = self.view.frame;
+//                        
+//                }];
+                [self showBigImageBySmallImage:button.currentBackgroundImage];
             }
         };
         
             cell.commnetFrameInfo = self.dataSource[indexPath.row];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
     }
         
@@ -168,6 +171,15 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
+}
+
+#pragma mark - clickImage
+// 点击进入图片大图
+-(void)showBigImageBySmallImage:(UIImage *)image
+{
+    HCBigImageViewController *bigImageVC = [[HCBigImageViewController alloc] init];
+    bigImageVC.image = image;
+    [self.navigationController pushViewController:bigImageVC animated:YES];
 }
 
 #pragma mark ---- UIActionSheetDelegate
@@ -296,19 +308,19 @@
     }
 }
 
--(void)removeBigImageView:(UITapGestureRecognizer *)tap
-{
-    self.navigationController.navigationBarHidden = NO;
-    UIImageView *imageView = (UIImageView *)tap.view;
-    imageView.backgroundColor = [UIColor clearColor];
-    [UIView animateWithDuration:0.4 animations:^{
-        imageView.frame = _startFrame;
-    }completion:^(BOOL finished) {
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        [imageView removeFromSuperview];
-    }];
-
-}
+//-(void)removeBigImageView:(UITapGestureRecognizer *)tap
+//{
+//    self.navigationController.navigationBarHidden = NO;
+//    UIImageView *imageView = (UIImageView *)tap.view;
+//    imageView.backgroundColor = [UIColor clearColor];
+//    [UIView animateWithDuration:0.4 animations:^{
+//        imageView.frame = _startFrame;
+//    }completion:^(BOOL finished) {
+//        imageView.contentMode = UIViewContentModeScaleToFill;
+//        [imageView removeFromSuperview];
+//    }];
+//
+//}
 
 -(void)clickImageBtn:(UIButton *) button
 {
@@ -331,7 +343,7 @@
     {
         if (self.images.count>0) {
             // 先上传图片
-            self.textField.text = @"暂无描述";
+//            self.textField.text = @"暂无描述";
             [self upLoadImages:1];
             
         }
@@ -379,6 +391,7 @@
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
         self.myTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        self.myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     }
     return _myTableView;
 }
@@ -492,7 +505,15 @@
     HCPromisedCommentInfo *info = [[HCPromisedCommentInfo alloc]init];
     NSString *str = [self.imgStrArr componentsJoinedByString:@","];
     info.imageNames = str;
-    info.content = self.textField.text;
+    
+    if ([self.textField.text isEqualToString:@""])
+    {
+        info.content = @"暂无相关描述";
+    }
+    else
+    {
+        info.content = self.textField.text;
+    }
     info.toId = @"";
     api.info = info;
     api.callId = self.callId;
@@ -534,7 +555,7 @@
     UIImage *image = self.images[num-1];
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
-    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"clue",uuid,token]];
+    NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",kkClue,uuid,token]];
     [KLHttpTool uploadImageWithUrl:str image:image success:^(id responseObject) {
         NSLog(@"%@",responseObject);
         NSString *imgStr = responseObject[@"Data"][@"files"][0];

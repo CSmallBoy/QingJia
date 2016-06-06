@@ -65,7 +65,10 @@
     self.myTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreData)];
     [self.view addSubview:self.myTableView];
 
-    
+    //发呼成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"callPromised" object:nil];
+    //删除呼成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"delectCallSuccess" object:nil];
 }
 
 -(void)show
@@ -96,13 +99,13 @@
         }];
     }
     //举报
-    if (tag == 1)
+    if (tag == 0)
     {
         HCPromisedReportController *reportVC = [[HCPromisedReportController alloc]init];
         [self.navigationController pushViewController:reportVC animated:YES];
     }
     //收藏
-    if (tag == 2) {
+    if (tag == 1) {
         
         HCNotificationCenterInfo *info = self.dataSource[indexpath.row];
         
@@ -151,30 +154,21 @@
 {
     if (tableView == self.myTableView)
     {
-
-        
         UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
-        btn1.backgroundColor = COLOR(247, 68, 76, 1);
-        UIImageView *imageView1= [[UIImageView alloc]initWithFrame:CGRectMake(15, 25, 30, 30)];
-        imageView1.image = IMG(@"一呼百应详情－delete");
-        [btn1 addSubview:imageView1];
-        btn1.tag = 100;
-        
-        UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
-        btn2.backgroundColor = COLOR(49, 155, 225, 1);
+        btn1.backgroundColor = COLOR(49, 155, 225, 1);
         UIImageView *imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(15, 25, 30, 30)];
         imageView2.image = IMG(@"一呼百应详情－account");
-        [btn2 addSubview:imageView2];
-        btn2.tag = 200;
+        [btn1 addSubview:imageView2];
+        btn1.tag = 200;
        
         
-        UIButton  *btn3 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
-        btn3.backgroundColor = COLOR(253, 143, 40, 1);
+        UIButton  *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
+        btn2.backgroundColor = COLOR(253, 143, 40, 1);
         UIImageView *imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(15, 25, 30, 30)];
         imageView3.image = IMG(@"信息中心－favourite");
-        [btn3 addSubview:imageView3];
-        btn3.tag = 300;
-        btnArr = [[NSMutableArray alloc]initWithObjects:btn1,btn2,btn3,nil];
+        [btn2 addSubview:imageView3];
+        btn2.tag = 300;
+        btnArr = [[NSMutableArray alloc]initWithObjects:btn1,btn2,nil];
 
         static NSString *cellIdentifier = @"centermessageCell";
         HCNotifiMessageCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];

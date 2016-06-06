@@ -432,7 +432,7 @@
 #pragma mark  创建地图
 //打开创建
 - (void)CreatMap{ 
-        [MAMapServices sharedServices].apiKey =@"20e897d0e7d653770541a040a12065d8";
+//        [MAMapServices sharedServices].apiKey =@"20e897d0e7d653770541a040a12065d8";
         _mapview = [[MAMapView alloc]init];
         _mapview.userTrackingMode = 0;
         _mapview.delegate = self;

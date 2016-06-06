@@ -59,4 +59,7 @@
 @property (nonatomic,strong) NSString *lossImageName;
 @property (nonatomic,strong) NSString *createTime;
 @property (nonatomic,strong) NSString *lossDesciption;
+
+@property (nonatomic,copy)NSString *hasCall;//是否发呼
+
 @end

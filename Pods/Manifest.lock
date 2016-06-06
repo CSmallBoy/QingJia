@@ -24,8 +24,11 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMap2DMap (3.3.0)
-  - AMapLocation (1.2.2)
+  - AMap2DMap (4.0.0):
+    - AMapFoundation (= 1.0.0)
+  - AMapFoundation (1.0.0)
+  - AMapLocation (2.0.0):
+    - AMapFoundation (~> 1.0)
   - Bolts/Tasks (1.7.0)
   - DZNEmptyDataSet (1.8.1)
   - EaseMobSDKFull (2.2.5.1)
@@ -40,7 +43,7 @@ PODS:
     - TTTAttributedLabel (~> 1.13.4)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
-  - SDCycleScrollView (1.64):
+  - SDCycleScrollView (1.65):
     - SDWebImage (~> 3.7)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
@@ -83,8 +86,9 @@ SPEC CHECKSUMS:
   ACEExpandableTextCell: 02c1fdb5a57344f543c9536c8c985ffcca1ed8b2
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  AMap2DMap: e53461cdc345375e514579db17dbd721ff9ed9eb
-  AMapLocation: 5412fbf0385716d4d481e39a95929057cddc093f
+  AMap2DMap: 72868a24c1a7c70f86729a4dfb4e4c2dc301f727
+  AMapFoundation: af861f5d299a4f17a1a8b50fd91242933bb352f3
+  AMapLocation: 40141a31e7c584e59d590079eb8e565a90ecdf4d
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   EaseMobSDKFull: 3c2df52237336183f57f6b56366c36abcc77cd3b
@@ -95,7 +99,7 @@ SPEC CHECKSUMS:
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MLEmojiLabel: ceeab17d10d296cc00636bf201c8da597fdede10
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
-  SDCycleScrollView: 806fedb9342ab03b58b84442f985517b42c7cbb7
+  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
