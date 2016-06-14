@@ -108,7 +108,6 @@ static HCAppMgr *_sharedManager = nil;
     [self requestLogout];
     [readUserInfo Dicdelete];
     [readUserInfo familyDicdelete];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"showRadar"];// 删除已经发过@“呼”的缓存，
     [[HCAccountMgr manager] clean];
 }
 
@@ -144,7 +143,15 @@ static HCAppMgr *_sharedManager = nil;
 {
     NHCCancellationApi *api2 = [[NHCCancellationApi alloc]init];
     [api2 startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *array) {
-        [self login];
+        if (requestStatus == HCRequestStatusSuccess)
+        {
+            [self login];
+        }
+        else
+        {
+            NSLog(@"************************************************%@", message);
+        }
+        
     }];
     [HCAccountMgr manager].isLogined = NO;
     //环信账号退出

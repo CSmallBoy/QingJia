@@ -60,6 +60,7 @@
    
     //对象信息页面
     [self setupBackItem];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableview];
     if (self.isObj)//允许编辑
     {
@@ -102,8 +103,8 @@
     if (_tableview == nil)
     {
         _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-50-64) style:UITableViewStyleGrouped];
+        _tableview.backgroundColor = [UIColor whiteColor];
         _tableview.tableHeaderView = HCTabelHeadView(0.1);
-        _tableview.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
         _tableview.delegate = self;
         _tableview.dataSource = self;
     }
@@ -173,7 +174,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.1;
+    return 5;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -270,9 +271,9 @@
             [cell addSubview:self.scrollView];
             return cell;
         }
-        else
+        else       
         {
-            HCTagUserDetailCell *cell = [HCTagUserDetailCell cellWithTableView:tableView];
+            HCTagUserDetailCell *cell = [HCTagUserDetailCell cellWithTableView:tableView byIndexPath:indexPath];
             cell.info = self.info;
             cell.image = self.image;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -30,7 +30,7 @@
 @property (nonatomic,strong) UIImage *image;
 @property (nonatomic,strong) NSString *imgStr;
 
-@property (nonatomic, strong)UILabel *tagIdLabel;//标签ID
+//@property (nonatomic, strong)UILabel *tagIdLabel;//标签ID
 @property (nonatomic, strong)UIButton *colthingButton;//衣服图片
 @property (nonatomic, strong)UILabel *label;
 @property (nonatomic, strong)UIView *selectedColthingView;//选择衣服类型
@@ -52,7 +52,7 @@
     self.view.backgroundColor = kHCBackgroundColor;
     [self requestObjectData];
     
-    [self.view addSubview:self.tagIdLabel];
+//    [self.view addSubview:self.tagIdLabel];
     [self.view addSubview:self.colthingButton];
     [self.view addSubview:self.label];
     [self.view addSubview:self.selectedColthingView];
@@ -66,25 +66,25 @@
 }
 
 #pragma mark - lazyLoading
-
-- (UILabel *)tagIdLabel
-{
-    if (_tagIdLabel == nil)
-    {
-        _tagIdLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 94/668.0*SCREEN_HEIGHT, SCREEN_WIDTH, 30/668.0*SCREEN_HEIGHT)];
-        _tagIdLabel.textColor = [UIColor blackColor];
-        _tagIdLabel.text = self.labelGuid;
-        _tagIdLabel.textAlignment = 1;
-    }
-    return _tagIdLabel;
-}
+//
+//- (UILabel *)tagIdLabel
+//{
+//    if (_tagIdLabel == nil)
+//    {
+//        _tagIdLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 94/668.0*SCREEN_HEIGHT, SCREEN_WIDTH, 30/668.0*SCREEN_HEIGHT)];
+//        _tagIdLabel.textColor = [UIColor blackColor];
+//        _tagIdLabel.text = self.labelGuid;
+//        _tagIdLabel.textAlignment = 1;
+//    }
+//    return _tagIdLabel;
+//}
 
 - (UIButton *)colthingButton
 {
     if (_colthingButton == nil)
     {
         _colthingButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _colthingButton.frame = CGRectMake((SCREEN_WIDTH-100/375.0*SCREEN_WIDTH)/2,MaxY(self.tagIdLabel)+20/668.0*SCREEN_HEIGHT, 100/375.0*SCREEN_WIDTH, 100/668.0*SCREEN_HEIGHT);
+        _colthingButton.frame = CGRectMake(110/375.0*SCREEN_WIDTH, 94/668.0*SCREEN_HEIGHT, 150/375.0*SCREEN_WIDTH, 150/668.0*SCREEN_HEIGHT);
         ViewRadius(_colthingButton, 5);
         _colthingButton.layer.borderWidth = 1;
         _colthingButton.layer.borderColor = [UIColor grayColor].CGColor;

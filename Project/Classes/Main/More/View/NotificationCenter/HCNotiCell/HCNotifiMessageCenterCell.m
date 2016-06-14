@@ -289,7 +289,7 @@
     }
     else
     {
-        NSDictionary *dic = @{@"info" : self.info.callId};
+        NSDictionary *dic = @{@"info" : self.info.callId,@"status": self.info.status};
      [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextOtherController" object:nil userInfo:dic];
     }
     

@@ -131,12 +131,12 @@
 {
     NSLog(@" 登陆成功  @@@@@@@@@@@@@@@@@ %@",noti.userInfo); 
     //设置tags
-    NSSet *tags = [NSSet setWithObject:@"666666"];
-    NSSet *set = [JPUSHService filterValidTags:tags];
-    [JPUSHService setTags:set alias:nil fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
-        NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags , iAlias);
-
-    }];
+//    NSSet *tags = [NSSet setWithObject:@"666666"];
+//    NSSet *set = [JPUSHService filterValidTags:tags];
+//    [JPUSHService setTags:set alias:nil fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+//        NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags , iAlias);
+//
+//    }];
 }
 
 //-(void)tagsAliasCallback:(int)iResCode
@@ -219,23 +219,63 @@ didFinishLaunchingWithOptions:launchOptions
 {
     NSDictionary * userInfo = [notification userInfo];
     NSString *content = [userInfo valueForKey:@"content"];//内容
-    NSDictionary *extras = [userInfo valueForKey:@"extras"];
-    NSString *customizeField1 = [extras valueForKey:@"customizeField1"];
+//    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+//    NSString *customizeField1 = [extras valueForKey:@"customizeField1"];
+    NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     
+    NSString *type = [[[dic objectForKey:@"Data"] objectForKey:@"jpush"] objectForKey:@"type"];
+    
+    if ([type isEqualToString:@"2"])//提醒验证(加入家庭)
+    {
+        
+    }
+    else if ([type isEqualToString:@"3"])//提醒验证(邀请加入家庭请求)
+    {
+        
+    }
+    else if ([type isEqualToString:@"5"])//发呼
+    {
+        //通过推送取到callId,以便之后的操作
+        NSString *callId = [[[dic objectForKey:@"Data"] objectForKey:@"jpush"] objectForKey:@"id"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"jpushCallAnswer" object:nil];
+    }
+    else if ([type isEqualToString:@"6"])//时光评论或点赞
+    {
+        
+    }
+    else if ([type isEqualToString:@"7"])//呼应推送(发现线索及扫描发呼的标签，都会推送到呼发起者和所有线索提供者)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"jpushCallAnswer" object:nil];
+    }
     NSLog(@"customMessage: %@",userInfo);
+    //设置icon角标
+//    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 //极光服务器的推送消息类型
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    //账号在其他地方登录推送通知处理
+    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    NSData *data = [alert dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//    NSString *type = [[[dic objectForKey:@"Data"] objectForKey:@"jpush"] objectForKey:@"type"];
+//    if ([type isEqualToString:@"4"])
+//    {
+        //利用环信监听登录状态的方法,处理推送
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+//    }
     NSLog(@"%@", userInfo);
-    if (_mainController)
-    {
-        [self.mainController jumpToChatList];
-    }
-    [JPUSHService handleRemoteNotification:userInfo];
-    NSLog(@"收到通知:%@", [self logDic:userInfo]);
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"time" object:nil userInfo:userInfo];
+    
+    
+//    if (_mainController)
+//    {
+//        [self.mainController jumpToChatList];
+//    }
+//    [JPUSHService handleRemoteNotification:userInfo];
+//    NSLog(@"收到通知:%@", [self logDic:userInfo]);
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"time" object:nil userInfo:userInfo];
 }
 // log NSSet with UTF8
 - (NSString *)logDic:(NSDictionary *)dic {

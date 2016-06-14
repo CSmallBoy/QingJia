@@ -22,7 +22,7 @@
 #import "HCTagContactInfo.h"// 联系人模型
 
 
-@interface HCAddTagUserController ()<HCPickerViewDelegate,SDWebImageManagerDelegate>
+@interface HCAddTagUserController ()<HCPickerViewDelegate,SDWebImageManagerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (nonatomic,strong) HCPickerView *datePicker;
 @property (nonatomic,strong) HCNewTagInfo *info;
 @property (nonatomic,strong) UIImage *image;
@@ -46,6 +46,12 @@
 
 @property (nonatomic,assign)NSInteger saveNum;//记录保存次数,防止重复保存
 
+@property (nonatomic,strong)UIPickerView *pickerView;//选择器
+@property (nonatomic,strong)UIToolbar *toolBar;//工具栏
+@property (nonatomic,strong)UIView *pickerSupView;//
+@property (nonatomic,strong)NSMutableArray *allSelectArray;//数据
+@property (nonatomic,copy)NSString *classStr;//判断选中哪一行
+@property (nonatomic,copy)NSString *selectContect;
 
 @end
 
@@ -70,6 +76,7 @@
         item.title = @"编辑";
     }
     self.tableView.tableHeaderView = HCTabelHeadView(0.1);
+    self.tableView.backgroundColor = [UIColor whiteColor];
     [self setupBackItem];
     self.info.openHealthCard = @"1";
     // 添加了一个紧急联系人
@@ -124,7 +131,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.1;
+    return 5;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -241,7 +248,7 @@
         }
         else
         {
-            HCTagUserDetailCell *cell = [HCTagUserDetailCell cellWithTableView:tableView];
+            HCTagUserDetailCell *cell = [HCTagUserDetailCell cellWithTableView:tableView byIndexPath:indexPath];
             cell.info = self.info;
             cell.image = self.image;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -296,19 +303,53 @@
 {
     if (tableView == self.tableView)
     {
-        if (indexPath.section == 0 && indexPath.row == 3)
+        self.selectContect = nil;
+        [self.allSelectArray removeAllObjects];
+        [self.datePicker removeFromSuperview];
+        if (indexPath.section == 0 && indexPath.row == 3)//生日
         {
             [self.view endEditing:NO];
             [self.datePicker show];
         }
-        else  if (indexPath.section == 0  && indexPath.row == 0)
+        else  if (indexPath.section == 0  && indexPath.row == 0)//头像
         {
-            [self.datePicker removeFromSuperview];
             [self showAlbum];
         }
-        else
+        else if (indexPath.section == 1 && indexPath.row == 0)//身高
         {
-            [self.datePicker removeFromSuperview];
+            self.classStr = @"身高";
+            for (int i = 50; i < 200; i++)
+            {
+                NSString *heightStr = [NSString stringWithFormat:@"%d cm", i];
+                [self.allSelectArray addObject:heightStr];
+            }
+            [self.pickerView reloadAllComponents];
+            [self.pickerView selectRow:0 inComponent:0 animated:NO];
+            [self.navigationController.view addSubview:self.pickerSupView];
+        }
+        else if (indexPath.section == 1 && indexPath.row == 1)//体重
+        {
+            self.classStr = @"体重";
+            for (int i = 1; i < 150; i++)
+            {
+                NSString *weightStr = [NSString stringWithFormat:@"%d kg", i];
+                [self.allSelectArray addObject:weightStr];
+            }
+            [self.pickerView reloadAllComponents];
+            [self.pickerView selectRow:0 inComponent:0 animated:NO];
+            [self.navigationController.view addSubview:self.pickerSupView];
+        }
+        else if (indexPath.section == 1 && indexPath.row == 2)//血型
+        {
+            self.classStr = @"血型";
+            [self.allSelectArray addObject:@"A 型"];
+            [self.allSelectArray addObject:@"B 型"];
+            [self.allSelectArray addObject:@"O 型"];
+            [self.allSelectArray addObject:@"AB 型"];
+            [self.allSelectArray addObject:@"其 他"];
+            [self.pickerView reloadAllComponents];
+            [self.pickerView selectRow:0 inComponent:0 animated:NO];
+            [self.navigationController.view addSubview:self.pickerSupView];
         }
     }else
     {
@@ -328,12 +369,7 @@
     self.info.birthDay = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-
 }
-
-
-
-
 
 #pragma mark --- private  mothods
 -(void)saveNewContact
@@ -634,6 +670,115 @@
 }
 
 
+#pragma mark - UIPickerViewDelegate
+
+//列数
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+//每列的的行数
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.allSelectArray.count;
+}
+
+//每列的宽度
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    return SCREEN_WIDTH;
+}
+
+//每行的高度
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return HEIGHT(self.pickerView)/4;
+}
+
+//返回每行的标题
+- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return self.allSelectArray[row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.selectContect = self.allSelectArray[row];
+}
+
+//用来改变字体等
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
+{
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel){
+        pickerLabel = [[UILabel alloc] init];
+        pickerLabel.textAlignment = 1;
+        pickerLabel.font = [UIFont systemFontOfSize:17];
+    }
+    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
+    return pickerLabel;
+}
+
+
+//取消选择器
+- (void)removeSelf:(UITapGestureRecognizer *)sender
+{
+    [sender.view removeFromSuperview];
+}
+
+//选择按钮,取消选择器
+- (void)cancelButtonAction
+{
+    [self.pickerSupView removeFromSuperview];
+}
+
+//确定按钮,选择选项
+- (void)sureButtonAction
+{
+    [self.pickerSupView removeFromSuperview];
+    if ([self.classStr isEqualToString:@"身高"])
+    {
+        if (self.selectContect == nil)
+        {
+            self.info.height = @"50 cm";
+        }
+        else
+        {
+            self.info.height = self.selectContect;
+        }
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    if ([self.classStr isEqualToString:@"体重"])
+    {
+        if (self.selectContect == nil)
+        {
+            self.info.weight = @"1 kg";
+        }
+        else
+        {
+            self.info.weight = self.selectContect;
+        }
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    if ([self.classStr isEqualToString:@"血型"])
+    {
+        if (self.selectContect == nil)
+        {
+            self.info.bloodType = @"A 型";
+        }
+        else
+        {
+            self.info.bloodType = self.selectContect;
+        }
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:1];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
+
 #pragma mark--- setter Or getter
 
 - (HCPickerView *)datePicker
@@ -646,6 +791,46 @@
         _datePicker.delegate = self;
     }
     return _datePicker;
+}
+
+- (UIPickerView *)pickerView
+{
+    if (_pickerView == nil)
+    {
+        _pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-180/668.0*SCREEN_HEIGHT, SCREEN_WIDTH, 180/668.0*SCREEN_HEIGHT)];
+        _pickerView.backgroundColor = RGB(237, 237, 237);
+        _pickerView.delegate = self;
+        _pickerView.dataSource = self;
+    }
+    return _pickerView;
+}
+
+- (UIToolbar *)toolBar
+{
+    if (_toolBar == nil)
+    {
+        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-220/668.0*SCREEN_HEIGHT, SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT)];
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"  取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonAction)];
+        UIBarButtonItem *sureButton = [[UIBarButtonItem alloc] initWithTitle:@"确定  " style:UIBarButtonItemStylePlain target:self action:@selector(sureButtonAction)];
+        UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:NULL];
+        _toolBar.items = @[cancelButton,spaceButton,sureButton];
+        
+    }
+    return _toolBar;
+}
+
+- (UIView *)pickerSupView
+{
+    if (_pickerSupView == nil)
+    {
+        _pickerSupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _pickerSupView.backgroundColor = [UIColor clearColor];
+        [_pickerSupView addSubview:self.toolBar];
+        [_pickerSupView addSubview:self.pickerView];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeSelf:)];
+        [_pickerSupView addGestureRecognizer:tap];
+    }
+    return _pickerSupView;
 }
 
 
@@ -677,7 +862,6 @@
 }
 
 
-
 - (NSMutableArray *)imgArr
 {
     if(!_imgArr){
@@ -693,6 +877,16 @@
         _relativeArr = @[@"曾祖父",@"曾祖母",@"祖父",@"祖母",@"父亲",@"母亲",@"兄弟",@"姐妹",@"儿子",@"女儿",@"孙女",@"孙子"];
     }
     return _relativeArr;
+}
+
+
+- (NSMutableArray *)allSelectArray
+{
+    if (_allSelectArray == nil)
+    {
+        _allSelectArray = [NSMutableArray array];
+    }
+    return _allSelectArray;
 }
 
 

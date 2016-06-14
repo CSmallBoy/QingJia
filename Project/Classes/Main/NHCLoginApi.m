@@ -16,7 +16,7 @@
 
 - (NSString *)requestUrl
 { //登陆
-    return @"User/login.do";
+    return @"User/loginNew.do";
 }
 - (id)requestArgument
 {// 登陆

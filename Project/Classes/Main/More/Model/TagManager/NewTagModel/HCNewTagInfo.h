@@ -47,6 +47,8 @@
 
 @property (nonatomic,strong) NSString *objectId;
 
+@property (nonatomic, copy)NSString *status;
+
 
 @property (nonatomic,strong) NSString *labelTitle;//标签描述
 @property (nonatomic,strong) NSString *labelId;//标签ID

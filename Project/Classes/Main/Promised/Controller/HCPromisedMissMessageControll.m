@@ -332,7 +332,7 @@
         [button addTarget:self action:@selector(choseMissPhotos) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MinX(button)-5, MaxY(button)+5, 70, 10)];
-        titleLabel.text = @"添加正面照片";
+        titleLabel.text = @"添加走失者正面照片";
         titleLabel.textAlignment = 1;
         titleLabel.font = [UIFont systemFontOfSize:11];
         titleLabel.textColor = [UIColor lightGrayColor];
@@ -611,6 +611,7 @@
 - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error
 {
     self.textField2.text = @"上海市闵行区集心路37号";
+    self.cityStr = @"上海市";
     self.nowLocation = [[CLLocation alloc] initWithLatitude:31.232 longitude:37.2242];
 }
 
@@ -623,6 +624,7 @@
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
             self.textField2.text = placemark.name;
             self.nowLocation = location;
+            self.cityStr = placemark.locality;
         }
     }];
     [self.locationManager stopUpdatingLocation];
@@ -681,6 +683,7 @@
     api.callLocation = [NSString stringWithFormat:@"%f,%f",self.nowLocation.coordinate.latitude,self.nowLocation.coordinate.longitude];
     api.lossAddress = self.textField2.text;
     api.lossDesciption = self.textView.text;
+    api.lossCityId = [self getCityFromPlist];
     api.tagArr = self.tagArr;
     api.ContractArr = self.contactArr;
         
@@ -691,8 +694,6 @@
         if (request == HCRequestStatusSuccess)
         {
             [self hideHUDView];
-            //设置推送tag
-            [[HCSetTagMgr manager]setPushTag];
             //发送过呼之后的跳转
             UIViewController *vc= self.navigationController.viewControllers[0];
             [self.navigationController popToViewController:vc animated:YES];
@@ -707,6 +708,48 @@
     }];
     
 }
+
+
+//取到对应城市的id
+- (NSString *)getCityFromPlist
+{
+    NSMutableArray *allCitysArr = [NSMutableArray array];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *path =[paths objectAtIndex:0];
+    NSString *cityList =[path stringByAppendingPathComponent:@"city.plist"];
+    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:cityList];
+    
+    //取出所有的城市
+    NSArray *allProvinceArr = dic[@"regionData"];
+    for (NSDictionary *aDic in allProvinceArr)
+    {
+        NSString *fullName = aDic[@"regionName"];
+        NSString *lastWord = [fullName substringFromIndex:[fullName length]-1];
+        if ([lastWord isEqualToString:@"市"])
+        {
+            HCCityInfo *info = [HCCityInfo mj_objectWithKeyValues:aDic];
+            [allCitysArr addObject:info];
+        }
+        else
+        {
+            NSArray *regions = aDic[@"regions"];
+            for (NSDictionary *regionDic in regions)
+            {
+                HCCityInfo *info = [HCCityInfo mj_objectWithKeyValues:regionDic];
+                [allCitysArr addObject:info];
+            }
+        }
+    }
+    for (HCCityInfo *info in allCitysArr)
+    {
+        if ([self.cityStr isEqualToString:info.regionName])
+        {
+            return info.regionId;
+        }
+    }
+    return @"0";
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

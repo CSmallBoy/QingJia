@@ -10,6 +10,7 @@
 #import "HCFeedbackTextView.h"
 #import "HCNewTagInfo.h"
 
+#define CELL_HEIGHT 44
  // ---------------------------标签使用者详细信息 cell 为完成-----------------------------
 @interface HCTagUserDetailCell ()<UITextFieldDelegate,HCFeedbackTextViewDelegate,UITextViewDelegate>
 
@@ -18,6 +19,7 @@
 @property (nonatomic,strong) HCFeedbackTextView *textView;
 @property (nonatomic,strong) UIImageView *headBtn ;
 //@property (nonatomic,strong) UISwitch *addressSW;
+@property (nonatomic, strong)UIView *sexSelect;//性别选择
 
 
 @property (nonatomic,strong) NSArray *baseTitles;
@@ -30,15 +32,14 @@
 
 @implementation HCTagUserDetailCell
 
-+(instancetype)cellWithTableView:(UITableView *)tableView
++(instancetype)cellWithTableView:(UITableView *)tableView byIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *ID = @"TagUserDetailCell";
-    HCTagUserDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    
+    HCTagUserDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell)
     {
         cell = [[HCTagUserDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-        [cell addSubviews];
+        [cell addSubviewsByIndexPath:indexPath];
     }
     return cell;
 }
@@ -60,7 +61,7 @@
             break;
         case 102:
         {
-            self.info.sex = textField.text;
+//            self.info.sex = textField.text;
         }
             break;
         case 103:
@@ -136,7 +137,7 @@
 
 #pragma mark --- private mothods
 
--(void)addSubviews
+-(void)addSubviewsByIndexPath:(NSIndexPath *)indexPath
 {
     for (UIView *view in self.contentView.subviews) {
         [view removeFromSuperview];
@@ -146,6 +147,7 @@
     [self.contentView addSubview:self.textField];
     [self.contentView addSubview:self.headBtn];
     [self.contentView addSubview:self.textView];
+    
 
 //    _addressSW = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-50, 7, 30, 30)];
 //    _addressSW.on = YES;
@@ -201,8 +203,17 @@
             case 2:
             {
                 self.headBtn.hidden = YES;
-                self.textField.hidden = NO;
-                self.textField.text = self.info.sex;
+                if (IsEmpty(self.info.sex))
+                {
+                    self.textField.hidden = YES;
+                    [self.contentView addSubview:self.sexSelect];
+                }
+                else
+                {
+                    self.textField.hidden = NO;
+                    self.textField.text = self.info.sex;
+                }
+                self.textField.enabled = NO;
             }
                 break;
             case 3:
@@ -229,7 +240,7 @@
             default:
                 break;
         }
-        [_textField setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+//        [_textField setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
         self.textField.tag = 100+indexPath.row;
     }
     else
@@ -242,19 +253,25 @@
             case 0:
             {
                 self.textField.text = self.info.height;
+                self.textField.hidden = NO;
                  self.textView.hidden = YES;
+                self.textField.enabled = NO;
             }
                 break;
             case 1:
             {
                 self.textField.text = self.info.weight;
+                self.textField.hidden = NO;
                  self.textView.hidden = YES;
+                self.textField.enabled = NO;
             }
                 break;
             case 2:
             {
                 self.textField.text = self.info.bloodType;
+                self.textField.hidden = NO;
                  self.textView.hidden = YES;
+                self.textField.enabled = NO;
             }
                 break;
             case 3:
@@ -297,7 +314,7 @@
                 break;
         }
         
-        [_textField setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+//        [_textField setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
         self.textField.tag = 200 + indexPath.row;
         self.textView.textView.tag = 300 +indexPath.row;
         
@@ -335,7 +352,7 @@
 {
     if (!_textView)
     {
-        _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(85, 5, SCREEN_WIDTH-100, 88)];
+        _textView = [[HCFeedbackTextView alloc]initWithFrame:CGRectMake(85, 5, SCREEN_WIDTH-100, 80)];
         _textView.maxTextLength = SCREEN_WIDTH-100;
         _textView.textView.delegate = self;
         self.textView.delegate = self;
@@ -392,6 +409,73 @@
     return _headBtn;
 }
 
+- (UIView *)sexSelect
+{
+    if (_sexSelect == nil)
+    {
+        _sexSelect = [[UIView alloc] initWithFrame:CGRectMake(80/375.0*SCREEN_WIDTH, 0, SCREEN_WIDTH-80/375.0*SCREEN_WIDTH, CELL_HEIGHT-1)];
+        
+        UIButton *manButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        manButton.frame = CGRectMake(0, (CELL_HEIGHT-20)/2, 20, 20);
+        manButton.tag = 520;
+        [manButton setBackgroundImage:IMG(@"contactUnSelect") forState:UIControlStateNormal];
+        [manButton setBackgroundImage:IMG(@"contactSelect") forState:UIControlStateSelected];
+        [manButton addTarget:self action:@selector(selectdButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *manLabel = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(manButton)+10, 0, 30, CELL_HEIGHT)];
+        manLabel.textColor = [UIColor blackColor];
+        manLabel.text = @"男";
+        
+        UIButton *womanButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        womanButton.frame = CGRectMake(MaxX(manLabel)+20, (CELL_HEIGHT-20)/2, 20, 20);
+        womanButton.tag = 521;
+        [womanButton setBackgroundImage:IMG(@"contactUnSelect") forState:UIControlStateNormal];
+        [womanButton setBackgroundImage:IMG(@"contactSelect") forState:UIControlStateSelected];
+        [womanButton addTarget:self action:@selector(selectdButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *womanLabel = [[UILabel alloc] initWithFrame:CGRectMake(MaxX(womanButton)+10, 0, 30, CELL_HEIGHT)];
+        womanLabel.textColor = [UIColor blackColor];
+        womanLabel.text = @"女";
+        
+        [_sexSelect addSubview:manButton];
+        [_sexSelect addSubview:manLabel];
+        [_sexSelect addSubview:womanButton];
+        [_sexSelect addSubview:womanLabel];
+    }
+    return _sexSelect;
+}
 
+- (void)selectdButtonAction:(UIButton *)sender
+{
+    UIView *view = sender.superview;
+    UIButton *button1 = [view viewWithTag:520];
+    UIButton *button2 = [view viewWithTag:521];
+    if (sender.tag == 520)
+    {
+        button2.selected = sender.selected;
+        sender.selected = !sender.selected;
+        if (sender.selected)
+        {
+            self.info.sex = @"男";
+        }
+        else
+        {
+            self.info.sex = @"女";
+        }
+    }
+    else if (sender.tag == 521)
+    {
+        button1.selected = sender.selected;
+        sender.selected = !sender.selected;
+        if (sender.selected)
+        {
+            self.info.sex = @"女";
+        }
+        else
+        {
+            self.info.sex = @"男";
+        }
+    }
+}
 
 @end

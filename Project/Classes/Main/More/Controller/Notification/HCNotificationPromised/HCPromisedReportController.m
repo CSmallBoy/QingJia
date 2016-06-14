@@ -88,6 +88,7 @@
 {
     if ([[_textView.textView.text substringFromIndex:5] length] > 0)
     {
+        [self showHUDView:@"举报中"];
         if (_imagesArr.count > 0)
         {
             [self postImagesToService:1];
@@ -327,6 +328,7 @@
         NSLog(@"++++%@", respone);
         if (requestStatus == HCRequestStatusSuccess)
         {
+            [self hideHUDView];
             [self showHUDText:@"您已经举报成功"];
             [self.navigationController popViewControllerAnimated:YES];
         }

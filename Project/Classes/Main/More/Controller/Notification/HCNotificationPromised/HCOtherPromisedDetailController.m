@@ -83,10 +83,12 @@
     //一呼百应详情 ----- 别人的一呼百应
     [super viewDidLoad];
     [self setupBackItem];
+    // 导航栏上的加号“+”
+    [self addItem];
     self.view.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     self.title = @"一呼百应详情";
     _isShowDelete = NO;
-    [self requestDetailData];
+    
     
     [self.scrollView addSubview:self.headBtn];
     [self.scrollView addSubview:self.sexIV];
@@ -96,14 +98,25 @@
     [self.scrollView addSubview:self.missTimeLabel];
     [self.scrollView addSubview:self.missPlaceLabel];
     [self.scrollView addSubview:self.missMessageLabel];
-    [self.view addSubview:self.scrollView];
-    [self.view addSubview:self.footerView];
+    self.view = self.scrollView;
+    [self.navigationController.view addSubview:self.footerView];
     [self.view addSubview:self.deletIV];
     
-    // 导航栏上的加号“+”
-    [self addItem];
+    [self requestDetailData];
     
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.view addSubview:self.footerView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.footerView removeFromSuperview];
 }
 
 #pragma mark - layoutSubviews
@@ -154,6 +167,16 @@
             label.text = self.info.relation2;
         }
     }
+    //医疗卡
+    if ([self.info.openHealthCard isEqualToString:@"1"])//医疗卡打开
+    {
+        [_MedicalBtn setBackgroundImage:IMG(@"notification_health") forState:UIControlStateNormal];
+    }
+    else
+    {
+        _MedicalBtn.userInteractionEnabled = NO;
+        [_MedicalBtn setBackgroundImage:IMG(@"promisedDetail_medical") forState:UIControlStateNormal];
+    }
     //编号
     _numLabel.text = [NSString stringWithFormat:@"编号:%@",self.info.callId];
     
@@ -182,7 +205,7 @@
     }else
     {
         [UIView animateWithDuration:0.3 animations:^{
-            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, 64, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
+            self.deletIV.frame = CGRectMake(255/375.0*SCREEN_WIDTH, 0, 110/375.0*SCREEN_WIDTH, 160/668.0*SCREEN_HEIGHT);
         } completion:^(BOOL finished) {
             _isShowDelete = YES;
         }];
@@ -635,8 +658,6 @@
         //        _MedicalBtn.layer.borderColor = [UIColor whiteColor].CGColor;
         ViewRadius(_MedicalBtn,25/375.0*SCREEN_WIDTH);
         [_MedicalBtn addTarget:self action:@selector(toMedicalVC) forControlEvents:UIControlEventTouchUpInside];
-        [_MedicalBtn setBackgroundImage:IMG(@"notification_health") forState:UIControlStateNormal];
-        
     }
     return _MedicalBtn;
 }
@@ -780,9 +801,11 @@
 
 -(void)requestDetailData
 {
+    [self showHUDView:nil];
     HCGetCallDetailInfoApi *api = [[HCGetCallDetailInfoApi alloc] init];
     api.callId = self.callId;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        [self hideHUDView];
         if (requestStatus == HCRequestStatusSuccess)
         {
             NSDictionary *dic = respone[@"Data"][@"callInf"];

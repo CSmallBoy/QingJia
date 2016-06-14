@@ -63,6 +63,7 @@
                                @"lossAddress":_lossAddress,
                                @"lossDesciption":_lossDesciption,
                                @"lossImageName":_lossImageName,
+                               @"lossCityId":_lossCityId,
                                @"openHealthCard":self.info.openHealthCard,
                                @"openHomeAddress":self.info.openHomeAddress};
         

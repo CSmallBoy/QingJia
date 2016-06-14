@@ -28,6 +28,7 @@
 @property (nonatomic,strong) NSString *relation2;
 @property (nonatomic,strong) NSString *contactorPhoneNo2;
 
-@property (nonatomic,copy)NSString *status;//0为打开,1为关闭
+@property (nonatomic,copy)NSString *status;//呼的状态 0为打开,1为关闭
+@property (nonatomic,copy)NSString *openHealthCard;//医疗卡的状态 0为不公开
 
 @end

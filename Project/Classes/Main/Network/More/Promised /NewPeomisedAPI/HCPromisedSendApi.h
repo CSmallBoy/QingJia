@@ -20,6 +20,7 @@ typedef void (^HCPromisedSendBlock) (HCRequestStatus request,NSString *message,i
 @property (nonatomic,strong) NSString *lossImageName;
 @property (nonatomic,strong) NSArray *tagArr;
 @property (nonatomic,strong) NSArray *ContractArr;
+@property (nonatomic,copy)NSString *lossCityId;//走失城市id
 
 @property (nonatomic,strong) HCNewTagInfo *info;
 

@@ -58,7 +58,7 @@
     [self.myTableView.tableHeaderView addSubview:self.seatchBar];
     [self requestData];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"aboutMeData" object:nil];
 
      self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
@@ -246,7 +246,7 @@
         
         HCNotificationCenterInfo *info = self.results[indexPath.row];
         
-        NSDictionary *dic = @{@"info" :info.callId};
+        NSDictionary *dic = @{@"info" :info.callId,@"status":info.status};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextOtherController" object:nil userInfo:dic];
         
         self.seatchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 30);

@@ -29,6 +29,9 @@ static NSString *kConversationChatter = @"ConversationChatter";
 static NSString *kGroupName = @"GroupName";
 
 @interface HCRootTabBarController ()<UIAlertViewDelegate, IChatManagerDelegate, EMCallManagerDelegate>
+{
+    NSInteger callPushNum;//呼应推送数量
+}
 
 @property (nonatomic, strong) UINavigationController *messageRootVC;
 @property (nonatomic, strong) ConversationListController *messageListVC;
@@ -50,6 +53,9 @@ static NSString *kGroupName = @"GroupName";
     [self.tabBar insertSubview:redTabBarView atIndex:0];
     self.tabBar.layer.masksToBounds = YES; // 超出部分不显示
     self.tabBar.opaque = YES;
+    
+    callPushNum = 0;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jpushCallAnswer) name:@"jpushCallAnswer" object:nil];
     
     [self setupEase];
 }
@@ -885,5 +891,22 @@ static NSString *kGroupName = @"GroupName";
         [self setSelectedViewController:_messageRootVC];
     }
 }
+
+
+
+#pragma mark - 推送消息角标处理
+
+- (void)jpushCallAnswer
+{
+    callPushNum++;
+    for (UINavigationController *VC in self.viewControllers)
+    {
+        if ([VC.topViewController isKindOfClass:[HCPromisedViewController class]])
+        {
+            VC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", callPushNum];
+        }
+    }
+}
+
 
 @end

@@ -32,7 +32,7 @@
 #import "HCBigImageViewController.h"
 
 
-@interface HCPromisedCommentController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface HCPromisedCommentController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate>
 {
     NSInteger   _photoCount;
     UIButton  * _addPhotoBtn;
@@ -40,6 +40,8 @@
     BOOL        _startEdit;
 //    CGFloat     _JianpanH;
     BOOL        _isSelfID;
+    MBProgressHUD *_HUD;
+
    
 }
 
@@ -339,6 +341,7 @@
 // 点击了发送按钮
 -(void)sendBtnClick:(UIButton *)button
 {
+    [self showHUDView:@"发送中"];
     if (self.textField.text.length == 0 )
     {
         if (self.images.count>0) {
@@ -349,6 +352,7 @@
         }
         else
         {
+            [self hideHUDView];
             [self showHUDText:@"请输入文字或者上传图片"];
             return;
         }
@@ -500,7 +504,6 @@
 //发送
 -(void)upLoadData
 {
-    [self showHUDView:@"发送中"];
     HCReplyLineApi *api = [[HCReplyLineApi alloc]init];
     HCPromisedCommentInfo *info = [[HCPromisedCommentInfo alloc]init];
     NSString *str = [self.imgStrArr componentsJoinedByString:@","];
@@ -522,6 +525,8 @@
         
         if (requestStatus == HCRequestStatusSuccess) {
             
+            [self.images removeAllObjects];
+            [self.imgStrArr removeAllObjects];
             [self hideHUDView];
             NSLog(@"评论成功");
             self.textField.text = nil;
@@ -530,6 +535,8 @@
         }
         else
         {
+            [self.images removeAllObjects];
+            [self.imgStrArr removeAllObjects];
             NSString *str = responseObject[@"message"];
             [self showHUDText:str];
         }
@@ -565,9 +572,34 @@
     
     } failure:^(NSError *error) {
         [self showHUDError:@"图片上传失败"];
+        [self.images removeAllObjects];
+        [self.imgStrArr removeAllObjects];
     }];
 
 }
+
+#pragma mark - 重写MBProgress避免其添加到scrollView导致位置跑偏
+- (void)showHUDView:(NSString *)text
+{
+    _HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    _HUD.delegate = self;
+    _HUD.labelText = text;
+    [self.view endEditing:YES];
+}
+
+- (void)hideHUDView
+{
+    [_HUD hide:YES];
+}
+
+#pragma mark - MBProgressHUDDelegate
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [_HUD removeFromSuperview];
+    _HUD = nil;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

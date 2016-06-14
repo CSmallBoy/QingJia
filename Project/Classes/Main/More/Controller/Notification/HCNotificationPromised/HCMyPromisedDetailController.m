@@ -42,13 +42,9 @@
 @property (nonatomic,strong) UILabel *missPlaceLabel;//丢失地方
 @property (nonatomic,strong) UILabel    *numLabel;
 
-
-//@property (nonatomic,strong) UIButton   * FatherTel;
-//@property (nonatomic,strong) UIButton   * MotherTel;
 @property (nonatomic,strong) UIButton   *foundBtn;
 @property (nonatomic,strong) UIButton   *headBtn;
 @property (nonatomic,strong) UIButton   *MedicalBtn;
-
 
 @property (nonatomic,strong) UIView     *blackView;
 @property (nonatomic,strong) UIView     *myAlertView;
@@ -56,16 +52,14 @@
 @property (nonatomic,strong) UIView     *grayView;
 @property (nonatomic,strong) UIScrollView     *scrollView;
 
-@property (nonatomic,assign)   BOOL  isShowDelete;
-@property (nonatomic,strong) UIImageView   *deletIV;
+@property (nonatomic,strong)UIView *backView;//图片的父视图
+@property (nonatomic,strong)UIImageView *leftAnimationView;//动画
+@property (nonatomic,strong)UIImageView *rightAnimationview;
 
 @property (nonatomic,strong) HCNotificationCenterInfo   *info;
 
-
-@property (nonatomic,strong)UIView *backView;//图片的父视图
-
-@property (nonatomic,strong)UIImageView *leftAnimationView;//动画
-@property (nonatomic,strong)UIImageView *rightAnimationview;
+@property (nonatomic,strong)UIView *bottonView;
+@property (nonatomic,strong)UIButton *getClueBtn;//发现线索
 
 @end
 
@@ -75,8 +69,9 @@
     // --------与我相关一呼百应详情-----------------
     [super viewDidLoad];
     self.info = self.data[@"info"];
+    // 导航栏上的加号“+”
+    [self addItem];
     [self setupBackItem];
-    [self requestDetailData];
     self.view.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     self.title = @"一呼百应详情";
     
@@ -89,15 +84,26 @@
     [self.scrollView addSubview:self.missTimeLabel];
     [self.scrollView addSubview:self.missPlaceLabel];
     [self.scrollView addSubview:self.missMessageLabel];
-    
-    
-    [self.view addSubview:self.scrollView];
-    [self.view addSubview:self.foundBtn];
+
+    self.view = self.scrollView;
+    [self.navigationController.view addSubview:self.bottonView];
  
-    // 导航栏上的加号“+”
-    [self addItem];
+    [self requestDetailData];
     
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.view addSubview:self.bottonView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.bottonView removeFromSuperview];
+}
+
 
 #pragma mark - layoutSubviews
 
@@ -147,6 +153,16 @@
             label.text = self.info.relation2;
         }
     }
+    //医疗卡
+    if ([self.info.openHealthCard isEqualToString:@"1"])//医疗卡打开
+    {
+        [_MedicalBtn setBackgroundImage:IMG(@"notification_health") forState:UIControlStateNormal];
+    }
+    else
+    {
+        _MedicalBtn.userInteractionEnabled = NO;
+        [_MedicalBtn setBackgroundImage:IMG(@"promisedDetail_medical") forState:UIControlStateNormal];
+    }
     //编号
     _numLabel.text = [NSString stringWithFormat:@"编号:%@",self.info.callId];
     
@@ -154,58 +170,10 @@
 
 -(void)addItem
 {
-    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:IMG(@"导航条－inclass_Plus") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick:)];
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:IMG(@"myPromisedDetail_share") style:UIBarButtonItemStylePlain target:self action:@selector(toShoreVC:)];
     self.navigationItem.rightBarButtonItem = right;
-    
 }
 
-// 点击了右边的Item
--(void)rightItemClick:(UIBarButtonItem *)right
-{
-    if (_isShowDelete)
-    {
-        [self removeDeletIV];
-        _isShowDelete = NO;
-    }else
-    {
-        
-        UIImageView  *view = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 64, 105, 75)];
-        view.image = IMG(@"delete-report-23");
-        view.userInteractionEnabled = YES;
-        
-        UIButton  *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        deleteBtn.frame = CGRectMake(15, 15, 20, 16);
-        [deleteBtn setBackgroundImage:IMG(@"myPromisedDetail_info") forState:UIControlStateNormal];
-        [deleteBtn addTarget:self action:@selector(toFindLineVC:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:deleteBtn];
-        
-        UIButton *deleteText = [UIButton buttonWithType:UIButtonTypeCustom];
-        deleteText.frame = CGRectMake(50, 13, 40, 20);
-        deleteText.titleLabel.font = [UIFont systemFontOfSize:15];
-        [deleteText setTitle:@"消息" forState:UIControlStateNormal];
-        [deleteText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [deleteText addTarget:self action:@selector(toFindLineVC:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:deleteText];
-        
-        UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        reportBtn.frame = CGRectMake(15, 48, 20, 20);
-        [reportBtn setBackgroundImage:IMG(@"myPromisedDetail_share") forState:UIControlStateNormal];
-        [reportBtn addTarget:self action:@selector(toShoreVC:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:reportBtn];
-        
-        UIButton *reportText = [UIButton buttonWithType:UIButtonTypeCustom];
-        reportText.frame = CGRectMake(50, 48, 40, 20);
-        reportText.titleLabel.font = [UIFont systemFontOfSize:15];
-        [reportText setTitle:@"分享" forState:UIControlStateNormal];
-        [reportText setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [reportText addTarget:self action:@selector(toShoreVC:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:reportText];
-        
-        self.deletIV = view;
-        [self.view addSubview:self.deletIV];
-        _isShowDelete = YES;
-    }
-}
 
 // 跳转到分享界面
 -(void)toShoreVC:(UIButton *)button
@@ -255,16 +223,9 @@
 {
     HCPromisedCommentController *myFindLineVC = [[HCPromisedCommentController alloc]init];
     myFindLineVC.callId = self.info.callId;
-    [self.deletIV removeFromSuperview];
     [self.navigationController pushViewController:myFindLineVC animated:YES];
 }
 
-// 移除蓝色视图
--(void)removeDeletIV
-{
-    [_deletIV removeFromSuperview];
-    _isShowDelete  = NO;
-}
 #pragma mark ---SKStoreProductViewControllerDelegate
 
 // 点击了appstore的取消按钮
@@ -287,8 +248,19 @@
 // 点击了已经找到的按钮
 -(void)foundBtnClick:(UIButton *)button
 {
-    [self.view addSubview:self.blackView];
-    [self.view addSubview:self.myAlertView];
+    if ([self.status isEqualToString:@"1"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该呼已经被关闭" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
+        });
+        [alert show];
+    }
+    else
+    {
+        [self.view addSubview:self.blackView];
+    }
+    
 }
 
 // 点击联系人1
@@ -347,33 +319,27 @@
         
     }else  if ([button.titleLabel.text isEqualToString:@"关闭"])
     {
-        
         //关闭一呼百应
         [self showHUDView:nil];
         HCClosePromisedApi *api = [[HCClosePromisedApi alloc]init];
         api.callId = self.info.callId;
-        
-        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-           
+        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
+         {
             if (requestStatus == HCRequestStatusSuccess) {
-                
-                [self hideHUDView];
-                
-                NSLog(@"-----------------------关闭一呼百应--------------------------");
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"aboutMeData" object:nil];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"callPromised" object:nil];
-                [self.blackView removeFromSuperview];
-                [self.myAlertView removeFromSuperview];
-                
+                    
+            [self hideHUDView];
+            NSLog(@"-----------------------关闭一呼百应--------------------------");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"aboutMeData" object:nil];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"callPromised" object:nil];
+            [self.blackView removeFromSuperview];
             }
-            
-        }];
+                
+         }];
     }
     else
     {
         [self.blackView removeFromSuperview];
-        [self.myAlertView removeFromSuperview];
     }
 }
 
@@ -388,11 +354,6 @@
 // 点击进入图片大图
 -(void)addBigImage:(UITapGestureRecognizer *)tap
 {
-    if (_isShowDelete) {
-        [_deletIV removeFromSuperview];
-        _isShowDelete = NO;
-        return;
-    }
     UIImageView  *smallImageView = (UIImageView *)tap.view;
     HCBigImageViewController *bigImageVC = [[HCBigImageViewController alloc] init];
     bigImageVC.image = smallImageView.image;
@@ -564,8 +525,6 @@
 //        _MedicalBtn.layer.borderColor = [UIColor whiteColor].CGColor;
         ViewRadius(_MedicalBtn,25/375.0*SCREEN_WIDTH);
         [_MedicalBtn addTarget:self action:@selector(toMedicalVC) forControlEvents:UIControlEventTouchUpInside];
-        [_MedicalBtn setBackgroundImage:IMG(@"notification_health") forState:UIControlStateNormal];
-        
     }
     return _MedicalBtn;
 }
@@ -578,8 +537,6 @@
 //        _numLabel.adjustsFontSizeToFitWidth = YES;
         _numLabel.font = [UIFont systemFontOfSize:13];
         _numLabel.textColor = [UIColor blackColor];
-        
-        
     }
     return _numLabel;
 }
@@ -621,20 +578,41 @@
     return _rightAnimationview;
 }
 
+//底部选择栏
+- (UIView *)bottonView
+{
+    if (_bottonView == nil)
+    {
+        _bottonView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49)];
+        _bottonView.backgroundColor = [UIColor whiteColor];
+        [_bottonView addSubview:self.getClueBtn];
+        [_bottonView addSubview:self.foundBtn];
+    }
+    return _bottonView;
+}
 
-
+- (UIButton *)getClueBtn
+{
+    if (_getClueBtn == nil)
+    {
+        _getClueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _getClueBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH/2-0.5, 49);
+        [_getClueBtn setTitle:@"发现线索" forState:UIControlStateNormal];
+        _getClueBtn.backgroundColor = [UIColor orangeColor];
+        [_getClueBtn addTarget:self action:@selector(toFindLineVC:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _getClueBtn;
+}
 
 //已找到
 - (UIButton *)foundBtn
 {
     if(!_foundBtn){
         _foundBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _foundBtn.frame = CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49);
+        _foundBtn.frame = CGRectMake(SCREEN_WIDTH/2+0.5, 0, SCREEN_WIDTH/2-0.5, 49);
         [_foundBtn setTitle:@"已找到" forState:UIControlStateNormal];
         _foundBtn.backgroundColor = [UIColor orangeColor];
         [_foundBtn addTarget:self action:@selector(foundBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        
-        
     }
     return _foundBtn;
 }
@@ -644,9 +622,9 @@
 - (UIView *)blackView
 {
     if(!_blackView){
-        _blackView = [[UIView alloc]initWithFrame:self.view.frame];
-        _blackView.backgroundColor = [UIColor blackColor];
-        _blackView.alpha = 0.3;
+        _blackView = [[UIView alloc] initWithFrame:self.view.frame];
+        _blackView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.3];
+        [_blackView addSubview:self.myAlertView];
     }
     return _blackView;
 }
@@ -657,17 +635,17 @@
     if(!_myAlertView){
         _myAlertView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 300/375.0*SCREEN_WIDTH,160/668.0*SCREEN_HEIGHT)];
         _myAlertView.backgroundColor = [UIColor whiteColor];
-        _myAlertView.center =self.view.center;
+        _myAlertView.center = CGPointMake(SCREEN_WIDTH/2, (SCREEN_HEIGHT-64-49)/2);
         ViewRadius(_myAlertView, 5);
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 35/668.0*SCREEN_HEIGHT, 300/375.0*SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT)];
-        label.text = @"请确认是否关闭我的一呼百应!";
+        label.text = @"请确认是否关闭一呼百应";
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor blackColor];
         [_myAlertView addSubview:label];
-        NSArray *Arr = @[@"好评",@"关闭",@"取消"];
-        for (int i = 0;i<3 ; i++) {
+        NSArray *Arr = @[@"关闭",@"取消"];
+        for (int i = 0;i<2 ; i++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake((40 + i *80)/375.0*SCREEN_WIDTH, 100/668.0*SCREEN_HEIGHT, 60/375.0*SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT);
+            button.frame = CGRectMake((40 + i *130)/375.0*SCREEN_WIDTH, 100/668.0*SCREEN_HEIGHT, 90/375.0*SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT);
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [button setTitle:Arr[i] forState:UIControlStateNormal];
             button.layer.borderColor = [UIColor blackColor].CGColor;
@@ -676,7 +654,6 @@
             button.layer.cornerRadius = 7;
             [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
             [_myAlertView addSubview:button];
-            
         }
     }
     return _myAlertView;
@@ -689,9 +666,6 @@
         _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT, SCREEN_HEIGHT-49)];
         _scrollView.backgroundColor = kHCBackgroundColor;
         _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(self.backView.frame) + 30/668.0*SCREEN_HEIGHT);
-        
-        UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeDeletIV)];
-        [_scrollView addGestureRecognizer:tap];
     }
     return _scrollView;
 }
@@ -710,9 +684,11 @@
 
 -(void)requestDetailData
 {
+    [self showHUDView:nil];
     HCGetCallDetailInfoApi *api = [[HCGetCallDetailInfoApi alloc] init];
     api.callId = self.callId;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+        [self hideHUDView];
         if (requestStatus == HCRequestStatusSuccess)
         {
             NSDictionary *dic = respone[@"Data"][@"callInf"];

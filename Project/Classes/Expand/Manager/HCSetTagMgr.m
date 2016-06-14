@@ -54,7 +54,7 @@ static HCSetTagMgr *_sharedManager = nil;
 - (void)setupTimeLocation
 {
     self.times = 0;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(startUpdatingLocation) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(startUpdatingLocation) userInfo:nil repeats:YES];
 }
 
 - (void)startUpdatingLocation
@@ -143,7 +143,7 @@ static HCSetTagMgr *_sharedManager = nil;
     {
         if ([self.cityString isEqualToString:info.regionName])
         {
-            locationTag = [NSString stringWithFormat:@"%@_%@", info.regionName,info.regionId];
+            locationTag = [NSString stringWithFormat:@"Location_%@", info.regionId];
         }
     }
     

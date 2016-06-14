@@ -27,6 +27,8 @@
 
 #import "HCMyPromisedNotifiMessageCell.h"
 #import "HCDeletePromisedApi.h"
+//发现线索
+#import "HCPromisedCommentController.h"
 
 @interface HCMyNotificationViewController ()<UISearchDisplayDelegate,UISearchBarDelegate,UISearchControllerDelegate,UITableViewDelegate,UITableViewDataSource,SCSwipeTableViewCellDelegate>
 
@@ -54,7 +56,7 @@
     [self.myTableView.tableHeaderView addSubview:self.seatchBar];
     [self requestData];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
     
     [self.view addSubview:self.myTableView];
     
@@ -100,8 +102,8 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (tableView == self.myTableView) {
-        
+    if (tableView == self.myTableView)
+    {
         if (indexPath.section == 0 ) {// 自己发出去的“呼”cell
             UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 80)];
             btn1.backgroundColor = COLOR(247, 68, 76, 1);
@@ -126,15 +128,12 @@
         }
         else
         {
-            
             HCNewTagInfo *messInfo = self.messageArr[indexPath.row];
             HCNotifcationMessageCell  *cell = [HCNotifcationMessageCell cellWithTableView:tableView];
             cell.messageInfo = messInfo;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
-            
         }
-        
     }
     else
     {
@@ -169,12 +168,6 @@
         return cell;
         
     }
-  
-   
-
-    
-    
-
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -186,11 +179,30 @@
 {
     if (section == 0)
     {
-         return 1;
+         return 40;
     }
     
-    return 10;
+    return 40;
    
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
+    label.backgroundColor = kHCBackgroundColor;
+    label.font = [UIFont systemFontOfSize:15];
+    label.textColor = [UIColor blackColor];
+    if (section == 0)
+    {
+        label.text = @"  已发出的呼应";
+    }
+    else
+    {
+        label.text = @"  已提供的线索";
+    }
+    [view addSubview:label];
+    return view;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -248,8 +260,16 @@
     if (indexPath.section == 0 && tableView == self.myTableView)
     {
         HCNotificationCenterInfo *info = self.dataSource[indexPath.row];
-      NSDictionary *dic = @{@"info" : info.callId};
+      NSDictionary *dic = @{@"info" : info.callId,@"status":info.status};
       [[NSNotificationCenter defaultCenter] postNotificationName:@"ToNextMyController" object:nil userInfo:dic];
+    }
+    if (indexPath.section == 1 && tableView == self.myTableView)
+    {
+        HCNewTagInfo *messInfo = self.messageArr[indexPath.row];
+        HCPromisedCommentController *commentVC = [[HCPromisedCommentController alloc] init];
+        commentVC.callId = messInfo.callId;
+        commentVC.hidesBottomBarWhenPushed = YES;
+        [self.parentViewController.navigationController pushViewController:commentVC animated:YES];
     }
 
 }

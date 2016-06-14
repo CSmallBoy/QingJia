@@ -125,39 +125,38 @@
     
     
     NSArray *arr = [commnetFrameInfo.commentInfo.imageNames componentsSeparatedByString:@","];
-    
-    
-    for (int i = 0; i<arr.count; i++) {
-        
-        
-        UIButton *button =self.btnArr[i];
-        switch (i) {
-            case 0:
-                button.frame = commnetFrameInfo.button1Frame;
-                break;
-            case 1:
-                button.frame = commnetFrameInfo.button2Frame;
-                break;
-            case 2:
-                button.frame = commnetFrameInfo.button3Frame;
-                break;
-            default:
-                break;
-        }
-        
-        NSURL *url = [readUserInfo originUrl:arr[i] :kkClue];
-//        UIImageView *imageView= [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, button.frame.size.width, button.frame.size.height)];
-//        [imageView sd_setImageWithURL:url placeholderImage:IMG(@"Head-Portraits")];
-//        imageView.tag = 100;
-//        [button addSubview:imageView];
-        [button sd_setBackgroundImageWithURL:url forState:UIControlStateNormal placeholderImage:IMG(@"Head-Portraits")];
-        
-        [self addSubview:button];
-
+    NSMutableArray *subArr;
+    if (arr.count > 3)
+    {
+        subArr = [NSMutableArray arrayWithObjects:arr[0],arr[1],arr[2], nil];
     }
-//    self.redTextField.frame = commnetFrameInfo.readTextFildFrame;
+    else
+    {
+        subArr = [NSMutableArray arrayWithArray:arr];
+    }
 
-
+    for (int i = 0; i<subArr.count; i++)
+    {
+        UIButton *button =self.btnArr[i];
+            switch (i)
+        {
+                case 0:
+                    button.frame = commnetFrameInfo.button1Frame;
+                    break;
+                case 1:
+                    button.frame = commnetFrameInfo.button2Frame;
+                    break;
+                case 2:
+                    button.frame = commnetFrameInfo.button3Frame;
+                    break;
+                default:
+                    break;
+        }
+        NSURL *url = [readUserInfo originUrl:subArr[i] :kkClue];
+        [button sd_setBackgroundImageWithURL:url forState:UIControlStateNormal placeholderImage:IMG(@"Head-Portraits")];
+            
+        [self addSubview:button];
+    }
 }
 
 - (UIButton *)headBtn

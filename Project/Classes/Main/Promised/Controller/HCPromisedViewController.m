@@ -68,6 +68,7 @@
     [self addNavItem];
     self.navigationController.navigationItem.backBarButtonItem = nil;
     
+//    self.navigationController.tabBarItem.badgeValue = @"0";
     
     [self requestData]; // 请求对象列表
     [self createUI];
@@ -78,7 +79,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextMyDetailController:) name:@"ToNextMyController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ToNextOtherController:) name:@"ToNextOtherController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showRadarView) name:@"showRadarView" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:@"show" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"refreshObjectData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callPromised) name:@"callPromised" object:nil];
     
@@ -101,7 +102,6 @@
     {
         [self.radarView removeFromSuperview];
     }
-    
     for (NSInteger i = 0; i<self.dataArr.count; i++)
     {
         HCNewTagInfo *info = self.dataArr[i];
@@ -114,7 +114,6 @@
         {
             info.isBlack = NO;
         }
-        
     }
     [self.smallTableView reloadData];
 }
@@ -181,7 +180,7 @@
 {
     if (_bgImage == nil)
     {
-        _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 0.8*SCREEN_WIDTH,(350/668.0)*SCREEN_HEIGHT)];
+        _bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 300/375.0*SCREEN_WIDTH,(350/668.0)*SCREEN_HEIGHT)];
         _bgImage.userInteractionEnabled = YES;
         _bgImage.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+50/668.0*SCREEN_HEIGHT);
         _bgImage.image = [UIImage imageNamed:@"yihubaiying_Background.png"];
@@ -315,18 +314,18 @@
 
 -(void)ToNextMyDetailController:(NSNotification *)info
 {
-
     HCMyPromisedDetailController *detailVC = [[HCMyPromisedDetailController alloc]init];
     detailVC.callId = [info.userInfo objectForKey:@"info"];
+    detailVC.status = [info.userInfo objectForKey:@"status"];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
-
 }
 
 -(void)ToNextOtherController:(NSNotification  *)noti
 {
     HCOtherPromisedDetailController * OtherVC = [[HCOtherPromisedDetailController alloc]init];
     OtherVC.callId = [noti.userInfo objectForKey:@"info"];
+    OtherVC.status = [noti.userInfo objectForKey:@"status"];
     OtherVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:OtherVC animated:YES];
 }
@@ -342,10 +341,8 @@
     }
     else
     {
-        [_radarView removeFromSuperview];
+        [self.radarView removeFromSuperview];
     }
-    
-    
     for (NSInteger i = 0; i<self.dataArr.count; i++)
     {
         HCNewTagInfo *info = self.dataArr[i];
@@ -492,19 +489,18 @@
 -(void)requestData
 {
     [self showHUDView:nil];
-    
      HCTagUserAmostListApi *api = [[HCTagUserAmostListApi alloc]init];
-    
+    //获取缓存
+    if ([api cacheJson])
+    {
+        NSLog(@"++++++++++++++____________________%@", [api cacheJson]);
+    }
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-       
-        
         if (requestStatus == HCRequestStatusSuccess) {
             [self.dataArr removeAllObjects];
-            
             int k = 0;
             NSArray *array = respone[@"Data"][@"rows"];
             for (NSDictionary *dic in array) {
-                
                 HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
                 [self.dataArr addObject:info];
                 if ([info.hasCall isEqualToString:@"1"])
@@ -522,7 +518,6 @@
                 self.hasCall = @"0";
             }
             [self show];
-            
             HCNewTagInfo *info = [[HCNewTagInfo alloc]init];
             info.trueName = @"+ 新增录入";
             [self.dataArr addObject:info];

@@ -21,10 +21,19 @@
 - (id)requestArgument
 {   //退出登录
     NSDictionary *dict  = [readUserInfo getReadDic];
-    NSDictionary *head = @{@"UUID":dict[@"UserInf"][@"uuid"],
-                           @"platForm":[readUserInfo GetPlatForm],
-                           @"userName":dict[@"UserInf"][@"userName"],
-                           @"token":dict[@"Token"]};
+    NSDictionary *head = nil;
+    //添加判断防止退出时闪退
+    if (!IsEmpty(dict))
+    {
+        head = @{@"UUID":dict[@"UserInf"][@"uuid"],
+                 @"platForm":[readUserInfo GetPlatForm],
+                 @"userName":dict[@"UserInf"][@"userName"],
+                 @"token":dict[@"Token"]};
+    }
+    else
+    {
+        head = @{};
+    }
     NSMutableDictionary *para = [NSMutableDictionary dictionaryWithCapacity:0];
     NSDictionary *body = @{@"Para":para,
                            @"Head":head};
@@ -33,7 +42,7 @@
 - (id)formatResponseObject:(id)responseObject
 {
     //退出时清理个人信息
-    //[readUserInfo Dicdelete];
+//    [readUserInfo Dicdelete];
     return responseObject;
 }
 @end

@@ -16,7 +16,7 @@
 
 - (NSString *)requestUrl
 { //注册
-    return @"User/regUser.do";
+    return @"User/regUserNew.do";
 }
 - (id)requestArgument
 {// 注册

@@ -14,6 +14,6 @@
 @property (nonatomic,strong) NSIndexPath *indexPath;
 @property (nonatomic,strong) HCNewTagInfo *info;
 @property (nonatomic,strong) UIImage *image;
-+(instancetype)cellWithTableView:(UITableView *)tableView;
++(instancetype)cellWithTableView:(UITableView *)tableView byIndexPath:(NSIndexPath *)indexPath;
 
 @end

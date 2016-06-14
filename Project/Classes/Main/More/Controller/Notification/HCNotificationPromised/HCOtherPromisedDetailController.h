@@ -12,4 +12,6 @@
 
 @property (nonatomic, copy)NSString *callId;
 
+@property (nonatomic, copy)NSString *status;
+
 @end

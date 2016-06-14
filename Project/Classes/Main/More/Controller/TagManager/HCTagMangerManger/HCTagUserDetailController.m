@@ -174,7 +174,7 @@
         
     }else
     {
-        HCTagUserDetailCell *cell = [HCTagUserDetailCell cellWithTableView:tableView];
+        HCTagUserDetailCell *cell = [HCTagUserDetailCell cellWithTableView:tableView byIndexPath:indexPath];
         cell.info = self.info;
         cell.image = self.image;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
