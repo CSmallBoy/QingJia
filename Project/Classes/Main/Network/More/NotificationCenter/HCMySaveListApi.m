@@ -35,4 +35,10 @@
     return responseObject;
 }
 
+//开启YTK缓存,默认缓存是关闭的(返回大于0是开启)
+- (NSInteger)cacheTimeInSeconds
+{
+    return 1;
+}
+
 @end

@@ -10,7 +10,7 @@
 
 @implementation NHCChatUserInfoApi
 
--(void)startRequest:(NHCChatUSer)requestBlock
+-(void)startRequest:(NHCChatUSer1)requestBlock
 {
     [super startRequest:requestBlock];
 }

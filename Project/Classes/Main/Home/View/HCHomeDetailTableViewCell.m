@@ -60,15 +60,29 @@
     self.deveceModel.frame = CGRectMake(MaxX(self.headButton)+10, MaxY(self.nickName), 200, 20);
     
     self.times.frame = CGRectMake(WIDTH(self)-130, MinY(self.nickName), 120, 20);
+    CGFloat contentsHeight = [Utils detailTextHeight:_info.FTContent lineSpage:4 width:WIDTH(self)-20 font:14];
+    self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
     if (_isDelete)
     {
-        self.deleteBtn.frame =CGRectMake(WIDTH(self)-50, MinY(self.nickName)+25, 40, 20);
+        
+        if (!IsEmpty(_info.FTImages))
+        {
+            self.deleteBtn.frame = CGRectMake(WIDTH(self)-50, MaxY(self.moreImgView) + 5, 40, 20);
+            
+        }else
+        {
+            
+            
+            self.deleteBtn.frame = CGRectMake(WIDTH(self)-50, MaxY(self.contents) + 5, 40, 20);
+            
+        }
+        
+        //self.deleteBtn.frame =CGRectMake(WIDTH(self)-50, MaxY(self.moreImgView) + 5, 40, 20);
         [self.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
         [self.deleteBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [self.deleteBtn addTarget:self action:@selector(deleteTime) forControlEvents:UIControlEventTouchUpInside];
     }
-    CGFloat contentsHeight = [Utils detailTextHeight:_info.FTContent lineSpage:4 width:WIDTH(self)-20 font:14];
-    self.contents.frame = CGRectMake(10, MaxY(self.headButton)+5, WIDTH(self)-20, contentsHeight);
+    
     
     // 图片
     if (!IsEmpty(_info.FTImages))
@@ -81,13 +95,13 @@
     {
         if (!IsEmpty(_praiseArr))
         {
-            self.praiseTag.frame = CGRectMake(10, MaxY(self.moreImgView)+5, WIDTH(self)-20, _praiseHeight);
+            self.praiseTag.frame = CGRectMake(10, MaxY(self.moreImgView)+5, WIDTH(self)-70, _praiseHeight);
         }
     }else
     {
         if (!IsEmpty(_praiseArr))
         {
-            self.praiseTag.frame = CGRectMake(10, MaxY(self.contents)+5, WIDTH(self)-20, _praiseHeight);
+            self.praiseTag.frame = CGRectMake(10, MaxY(self.contents)+5, WIDTH(self)-70, _praiseHeight);
         }
     }
 }
@@ -98,6 +112,8 @@
     [api startRequest:^(HCRequestStatus resquestStatus, NSString *message, NSArray *array) {
         if (resquestStatus == HCRequestStatusSuccess) {
             //删除成功后的操作
+            [_delegates delete];
+            
         }
     }];
     
@@ -158,7 +174,7 @@
     }else
     {
         self.moreImgView.hidden = YES;
-    }    
+    }
     if (!IsEmpty(_praiseArr) && !self.praiseTag.subviews.count)
     {
         //暂时不写
@@ -251,7 +267,7 @@
     {
         _praiseTag = [[HCPraiseTagListView alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 20)];
         _praiseTag.delegate = self;
-//        _praiseTag.backgroundColor = [UIColor lightGrayColor];
+        //        _praiseTag.backgroundColor = [UIColor lightGrayColor];
     }
     return _praiseTag;
 }

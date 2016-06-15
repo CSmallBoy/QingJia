@@ -14,7 +14,7 @@
 }
 -(NSString *)requestUrl{
     
-    return @"Times/getRemindSummary.do";
+    return @"Times/getReminder.do";
 }
 -(id)requestArgument{
     NSDictionary *head = @{@"platForm":[readUserInfo GetPlatForm],

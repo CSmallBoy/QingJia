@@ -77,12 +77,14 @@
         NHCChatGroupInfoApi *Api = [[NHCChatGroupInfoApi alloc]init];
         Api.chatNames = model.conversation.chatter;
         [Api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSArray *arr) {
-            model.title = arr[0][@"familyNickName"];
+            // model.title = arr[0][@"familyNickName"];
+            
             UIImageView *image = [[UIImageView alloc]init];
             NSString *string = @"http://58.210.13.58:8090/uploads/images/defaultFamily.png";
-            [image sd_setImageWithURL:[NSURL URLWithString:string]];
+            //  [image sd_setImageWithURL:[NSURL URLWithString:arr[0][@"imageName"]]];
             
-            model.avatarImage = image.image;
+            //   model.avatarImage = image.image;
+            
             cell.model = model;
         }];
     }else{
@@ -97,7 +99,7 @@
         }];
     }
     
-   
+    
     //环信之前的
     //cell.model = model;
     
@@ -180,7 +182,7 @@
             [self.dataArray addObject:model];
         }
     }
-
+    
     [self tableViewDidFinishTriggerHeader:YES reload:YES];
 }
 

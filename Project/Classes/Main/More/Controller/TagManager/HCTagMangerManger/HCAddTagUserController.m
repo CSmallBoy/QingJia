@@ -432,7 +432,7 @@
         }
         if (self.selectArr.count != 2) {
             
-            [self showHUDText:@"必须绑定连个紧急联系人"];
+            [self showHUDText:@"必须绑定两个紧急联系人"];
             return;
         }
         
@@ -450,6 +450,7 @@
                 }
             }else
             {
+                [self showHUDView:@"保存中"];
                 if (self.image)
                 {
                     [self uploadImage];
@@ -942,6 +943,7 @@
            [self requestData];
         }
     } failure:^(NSError *error) {
+        [self hideHUDView];
     }];
 }
 
@@ -959,6 +961,7 @@
     api.openHealthCard = self.info.openHealthCard;
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
     {
+        [self hideHUDView];
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self showHUDText:@"添加标签使用者成功"];

@@ -185,7 +185,7 @@
             if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter]) {
                 RobotChatViewController *chatController = [[RobotChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
                 chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
-               
+                
                 chatController.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:chatController animated:YES];
             } else {
@@ -193,7 +193,7 @@
                 NSLog(@"%ld",(long)conversationModel.conversation.conversationType)
                 //1 是群聊
                 if (conversationModel.conversation.conversationType == 1 ) {
-
+                    
                     
                 }else if (conversationModel.conversation.conversationType==0){
                     //传过去一个单聊的用户头像
@@ -241,7 +241,7 @@
                 model.title = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
                 model.avatarURLPath = profileEntity.imageUrl;
             }
-       
+            
         }
         
     }//这个地方是判断是否是群聊天  不是就直接返回model

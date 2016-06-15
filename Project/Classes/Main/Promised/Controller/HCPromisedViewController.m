@@ -115,7 +115,7 @@
             info.isBlack = NO;
         }
     }
-    [self.smallTableView reloadData];
+    [self.smallTableView reloadData];    
 }
 
 
@@ -488,13 +488,57 @@
 
 -(void)requestData
 {
-    [self showHUDView:nil];
      HCTagUserAmostListApi *api = [[HCTagUserAmostListApi alloc]init];
-    //获取缓存
-    if ([api cacheJson])
+     [[HCDetectNetworkStatusMgr shareManager] detectNetworkStatus:^(AFNetworkReachabilityStatus networkStatus)
     {
-        NSLog(@"++++++++++++++____________________%@", [api cacheJson]);
-    }
+         if (networkStatus == AFNetworkReachabilityStatusNotReachable)//没有网络的情况下
+         {
+             if ([api cacheJson])//如果有缓存就使用缓存
+             {
+                 [self.dataArr removeAllObjects];
+                 int k = 0;
+                 NSArray *array = [api cacheJson][@"Data"][@"rows"];
+                 for (NSDictionary *dic in array)
+                 {
+                     HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
+                     [self.dataArr addObject:info];
+                     if ([info.hasCall isEqualToString:@"1"])
+                     {
+                         k++;
+                     }
+                 }
+                 if (k > 0)
+                 {
+                     self.hasCall = @"1";
+                     
+                 }
+                 else
+                 {
+                     self.hasCall = @"0";
+                 }
+                 [self show];
+                 HCNewTagInfo *info = [[HCNewTagInfo alloc]init];
+                 info.trueName = @"+ 新增录入";
+                 [self.dataArr addObject:info];
+                 [self hideHUDView];
+                 [self.smallTableView reloadData];
+             }
+             else//如果没有缓存,给出无网络的提示
+             {
+                 
+             }
+             
+             if(self.dataArr.count == 0)
+             {
+                 HCNewTagInfo *info = [[HCNewTagInfo alloc]init];
+                 info.trueName = @"+ 新增录入";
+                 [self.dataArr addObject:info];
+                 [self.smallTableView reloadData];
+             }
+         }
+     }];
+    
+    //网络请求
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         if (requestStatus == HCRequestStatusSuccess) {
             [self.dataArr removeAllObjects];
@@ -521,9 +565,6 @@
             HCNewTagInfo *info = [[HCNewTagInfo alloc]init];
             info.trueName = @"+ 新增录入";
             [self.dataArr addObject:info];
-            
-            [self hideHUDView];
-            
             [self.smallTableView reloadData];
  
         }

@@ -104,7 +104,6 @@
     
     [self requestDetailData];
     
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -811,6 +810,33 @@
             NSDictionary *dic = respone[@"Data"][@"callInf"];
             self.info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
             [self addDataSuorce];
+            
+            //推送问题
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            NSMutableArray *mutableArray = [NSMutableArray
+                                            arrayWithArray:[user objectForKey:@"callIdArr"]];
+            if (mutableArray.count)
+            {
+                if ([mutableArray containsObject:self.callId])
+                {
+                    [mutableArray removeObject:self.callId];
+                    NSInteger callPushNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Call_Badge"] integerValue];
+                    callPushNum--;
+                    [[NSUserDefaults standardUserDefaults] setInteger:callPushNum forKey:@"Call_Badge"];
+                    if (callPushNum == 0)
+                    {
+                        self.navigationController.tabBarItem.badgeValue = nil;
+                    }
+                    else
+                    {
+                        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", callPushNum];
+                    }
+                }
+            }
+            NSArray * array = [NSArray arrayWithArray:mutableArray];
+            [user setObject:array forKey:@"callIdArr"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"cityCallPush" object:nil];
+
         }
     }];
 }

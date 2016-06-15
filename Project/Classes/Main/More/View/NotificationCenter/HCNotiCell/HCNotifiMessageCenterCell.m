@@ -38,6 +38,9 @@
 @property (nonatomic, assign)BOOL otherCellIsOpen;
 @property (nonatomic, assign)BOOL isHiding;
 @property (nonatomic, assign)BOOL isShowing;
+
+@property (nonatomic, strong)UILabel *redBadgeLabel;//红色角标
+
 @end
 
 @implementation HCNotifiMessageCenterCell
@@ -78,6 +81,23 @@
 -(void)setInfo:(HCNotificationCenterInfo *)info
 {
     _info = info;
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *mutableArray = [NSMutableArray
+                                    arrayWithArray:[user objectForKey:@"callIdArr"]];
+    self.redBadgeLabel.hidden = YES;
+    if (mutableArray.count)
+    {
+        for (NSString *callIDStr in mutableArray)
+        {
+            if ([info.callId isEqualToString:callIDStr])
+            {
+                self.redBadgeLabel.hidden = NO;
+            }
+        }
+    }
+
+    NSArray * array = [NSArray arrayWithArray:mutableArray];
+    [user setObject:array forKey:@"callIdArr"];
 
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ %@ %@岁",info.trueName,info.sex,info.age]];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13], NSForegroundColorAttributeName: [UIColor lightGrayColor]} range:NSMakeRange(info.trueName.length,attStr.length -info.trueName.length)];
@@ -131,6 +151,17 @@
         _sendLabel.textAlignment = NSTextAlignmentRight;
     }
     return _sendLabel;
+}
+
+- (UILabel *)redBadgeLabel
+{
+    if (_redBadgeLabel == nil)
+    {
+        _redBadgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 20, MaxY(self.sendLabel), 10, 10)];
+        ViewRadius(_redBadgeLabel, 5);
+        _redBadgeLabel.backgroundColor = [UIColor redColor];
+    }
+    return _redBadgeLabel;
 }
 
 
@@ -212,8 +243,11 @@
     
     [_SCContentView addSubview:self.headBtn];
     [_SCContentView addSubview:self.NameSexAgeLB];
+    [_SCContentView addSubview:self.redBadgeLabel];
     [_SCContentView addSubview:self.sendLabel];
     [_SCContentView addSubview:self.missLabel];
+    
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

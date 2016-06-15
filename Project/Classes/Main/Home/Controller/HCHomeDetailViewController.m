@@ -144,15 +144,15 @@
     array = [NSMutableArray arrayWithArray:_detailInfo.praiseArr];
     for (int  i = 0; i < array.count; i++)
     {
-//        HCHomeDetailUserInfo *info = _detailInfo.praiseArr[i];
-//        NSString *title = nil;
-//        if (i != _detailInfo.praiseArr.count - 1)
-//        {
-//            title = [NSString stringWithFormat:@"%@、", info.nickName];
-//        }else
-//        {
-//            title = info.nickName;
-//        }
+        //        HCHomeDetailUserInfo *info = _detailInfo.praiseArr[i];
+        //        NSString *title = nil;
+        //        if (i != _detailInfo.praiseArr.count - 1)
+        //        {
+        //            title = [NSString stringWithFormat:@"%@、", info.nickName];
+        //        }else
+        //        {
+        //            title = info.nickName;
+        //        }
         NSString *title = array[i];
         NSDictionary *attriDic = @{NSFontAttributeName: [UIFont systemFontOfSize:13]};
         CGSize size_value = [title sizeWithAttributes:attriDic];
@@ -252,5 +252,9 @@
     
 }
 
+-(void)delete
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 @end

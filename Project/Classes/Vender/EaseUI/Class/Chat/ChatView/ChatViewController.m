@@ -109,10 +109,10 @@
         //        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:clearButton];
     }
     else{//群聊  删除群聊详情的功能
-//        UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-//        [detailButton setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
-//        [detailButton addTarget:self action:@selector(showGroupDetailAction) forControlEvents:UIControlEventTouchUpInside];
-//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
+        //        UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+        //        [detailButton setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
+        //        [detailButton addTarget:self action:@selector(showGroupDetailAction) forControlEvents:UIControlEventTouchUpInside];
+        //        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
     }
 }
 
@@ -161,7 +161,7 @@
             sendCell = [[CustomMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model];
             sendCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-
+        
         //等于1 是群组聊天
         if (model.message.messageType == 1) {
             if (model.isSender) {
@@ -212,7 +212,7 @@
     UserProfileViewController *userprofile = [[UserProfileViewController alloc] initWithUsername:messageModel.nickname];
     userprofile.userimage = messageModel.avatarImage;
     [self.navigationController pushViewController:userprofile animated:YES];
-   
+    
     
 }
 
@@ -297,35 +297,35 @@
         NSLog(@"%ld",(long)model.message.messageType);
         //等于1 是群组聊天
         if (model.message.messageType==1) {//群组是model。nickName
-//            NHCChatUserInfoApi *API= [[NHCChatUserInfoApi alloc]init];
-//            API.chatName = [model.nickname stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-//            [_arr_muat addObject:API.chatName];
-//            NSSet *sab = [NSSet setWithArray:_arr_muat];
-//            _arr_fina = [sab allObjects];
-//            NSLog(@"%@",model.nickname);
-//            NSLog(@"%@",_arr_fina);
-//            for (NSString *string in _arr_fina)
-//            {
-//                if ([string isEqualToString:API.chatName]) {
-//                    model.avatarImage = _dict_muat[string];
-//                    NSLog(@"%@",model.avatarImage);
-//                }else{
-//                    [API startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-//                        if (requestStatus== HCRequestStatusSuccess) {
-//                            UIImageView *image = [[UIImageView alloc]init];
-//                            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
-//                            NSLog(@"%@",[readUserInfo url:dict[@"imageName"] :kkUser]);
-//                            model.avatarImage = image.image;
-//                            [_dict_muat setValue:image.image forKey:API.chatName];
-//                            //[_dict_muat addObserver:image.image forKeyPath:API.chatName options:nil context:nil];
-//                            
-//                            
-//                        }
-//                        
-//                    }];
-//                }
-//                
-//            }
+            //            NHCChatUserInfoApi *API= [[NHCChatUserInfoApi alloc]init];
+            //            API.chatName = [model.nickname stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+            //            [_arr_muat addObject:API.chatName];
+            //            NSSet *sab = [NSSet setWithArray:_arr_muat];
+            //            _arr_fina = [sab allObjects];
+            //            NSLog(@"%@",model.nickname);
+            //            NSLog(@"%@",_arr_fina);
+            //            for (NSString *string in _arr_fina)
+            //            {
+            //                if ([string isEqualToString:API.chatName]) {
+            //                    model.avatarImage = _dict_muat[string];
+            //                    NSLog(@"%@",model.avatarImage);
+            //                }else{
+            //                    [API startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+            //                        if (requestStatus== HCRequestStatusSuccess) {
+            //                            UIImageView *image = [[UIImageView alloc]init];
+            //                            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser] placeholderImage:IMG(@"1")];
+            //                            NSLog(@"%@",[readUserInfo url:dict[@"imageName"] :kkUser]);
+            //                            model.avatarImage = image.image;
+            //                            [_dict_muat setValue:image.image forKey:API.chatName];
+            //                            //[_dict_muat addObserver:image.image forKeyPath:API.chatName options:nil context:nil];
+            //
+            //
+            //                        }
+            //
+            //                    }];
+            //                }
+            //
+            //            }
             NSDictionary *dict = [readUserInfo getReadDicMessage];
             NSLog(@"%@",model.nickname)
             model.avatarImage = dict[model.nickname];

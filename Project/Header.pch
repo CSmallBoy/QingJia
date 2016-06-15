@@ -24,6 +24,8 @@
 #import "HCDictionaryMgr.h"
 #import "MJExtension.h"
 #import "SDImageCache.h"
+#import "AFNetworking.h"
+#import "HCDetectNetworkStatusMgr.h"
 
 
 #import "EaseUI.h"

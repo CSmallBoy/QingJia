@@ -149,6 +149,7 @@
             ZLPhotoPickerViewController *zlpVC = [[ZLPhotoPickerViewController alloc]init];
             zlpVC.maxCount = 3;
             zlpVC.callBack = ^(NSArray *arr){
+                [self.imagesArr removeAllObjects];
                 for (ZLPhotoAssets *zl in arr)
                 {
                     UIImage  *image = zl.originImage;
@@ -193,6 +194,44 @@
         [self.bottomView addSubview:imageView];
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+//长按删除
+- (void)deletePhoto:(UILongPressGestureRecognizer *)longPress
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(40,0, 20, 20);
+    ViewRadius(button, 10);
+    [button addTarget:self action:@selector(smallBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [longPress.view addSubview:button];
+    [button setBackgroundImage:IMG(@"longPressDelectImage") forState:UIControlStateNormal];
+}
+
+-(void)smallBtnClick:(UIButton *)btn
+{
+    UIView *view = btn.superview;
+    NSInteger index = view.tag-100;
+    for (int k = 0; k < self.imagesArr.count; k++)
+    {
+        for (UIView *aView in self.bottomView.subviews)
+        {
+            if (aView.tag == 100+k)
+            {
+                [aView removeFromSuperview];
+            }
+        }
+    }
+    [self.imagesArr removeObjectAtIndex:index];
+    for (int i = 0; i< self.imagesArr.count; i++)
+    {
+        UIImageView  *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(90 +80*i, 180, 60, 60)];
+        imageView.image = self.imagesArr[i];
+        UILongPressGestureRecognizer  *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(deletePhoto:)];
+        [imageView addGestureRecognizer:longPress];
+        imageView.userInteractionEnabled = YES;
+        imageView.tag = 100+i;
+        [self.bottomView addSubview:imageView];
+    }
 }
 
 

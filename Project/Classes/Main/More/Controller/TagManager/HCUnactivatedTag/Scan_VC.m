@@ -303,6 +303,7 @@ static const CGFloat kMargin = 30;
 {
     
     NSString * frist_str = [str substringToIndex:1];
+    NSString * label_str = [str substringToIndex:4];
     if ([frist_str isEqualToString:@"U"]) {
         //扫码添加好友
         __block HCMessagePersonInfoVC *vc = [[HCMessagePersonInfoVC alloc]init];
@@ -341,11 +342,12 @@ static const CGFloat kMargin = 30;
             
         }];
         
-    }else if ([frist_str isEqualToString:@"M"]){
+    }else if ([label_str isEqualToString:@"http"]){
         //判断标签是否激活
         
         NHCLabelStateApi *api = [[NHCLabelStateApi alloc]init];
-        api.resultStr = str;
+        NSString *label_id = [str substringFromIndex:[str rangeOfString:@"="].location + 1];
+        api.resultStr = label_id;
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
             // 0:未激活，1：激活，2：激活（标签拥有者）3：呼，4：呼（标签拥有者），5：停用，6：停用（标签拥有者），7：无效
             NSString *status = responseObject[@"Data"][@"labelInf"][@"status"];
@@ -355,7 +357,7 @@ static const CGFloat kMargin = 30;
             {
                 //没有激活是下面的操作
                 HCBindTagController *bindVC = [[HCBindTagController alloc]init];
-                bindVC.labelGuid = str;
+                bindVC.labelGuid = label_id;
                 [self.navigationController pushViewController:bindVC animated:YES];
             }
             else if ([status isEqualToString:@"1"] || [status isEqualToString:@"2"])

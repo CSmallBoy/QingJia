@@ -7,7 +7,9 @@
 //
 
 #import "ContactListViewController.h"
-
+#import "HCGradeManagerViewController.h"
+#import "MyFriendsApi.h"
+#import "ChineseString.h"
 //#import "EaseChineseToPinyin.h"
 #import "ChatViewController.h"
 #import "RobotListViewController.h"
@@ -41,7 +43,13 @@
 @interface ContactListViewController ()<UISearchBarDelegate, UISearchDisplayDelegate,BaseTableCellDelegate,UIActionSheetDelegate,EaseUserCellDelegate>
 {
     NSIndexPath *_currentLongPressIndex;
+    
+    NSMutableArray *friendsArr;
+    
 }
+@property(nonatomic,strong)NSMutableArray *indexArray;
+@property(nonatomic,strong)NSMutableArray *letterResultArr;
+@property (nonatomic, strong) NSMutableArray *imageNameArr;
 
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
 @property (strong, nonatomic) NSMutableArray *contactsSource;
@@ -69,8 +77,10 @@
     _dict_mutab = [NSMutableDictionary dictionary];
     _dict_mutab_nick = [NSMutableDictionary dictionary];
     self.UserDataSource = [NSMutableArray array];
+    friendsArr = [[NSMutableArray alloc]init];
+    _imageNameArr = [[NSMutableArray alloc]init];
     [self searchController];
-
+    
     [self reloadDataSource];
     
     // 获取当前用户在Parse服务器上的好友数据（头像、昵称），储存到内存中或者本地沙盒中
@@ -82,8 +92,11 @@
     
     
     //好友search
-//    self.tableView.tableHeaderView = self.searchBar;
+    //    self.tableView.tableHeaderView = self.searchBar;
     [self tableViewDidTriggerHeaderRefresh];
+    
+    
+    [self getMyFriends];
     
 }
 
@@ -98,6 +111,59 @@
 {
     [super didReceiveMemoryWarning];
 }
+
+
+-(void)getMyFriends
+{
+    MyFriendsApi *api = [[MyFriendsApi alloc]init];
+    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        friendsArr =responseObject[@"Data"][@"rows"];
+        
+        NSMutableArray *arr = [[NSMutableArray alloc]init];
+        for (int i = 0; i< friendsArr.count; i++) {
+            
+            NSString *nickName = [friendsArr[i] objectForKey:@"nickName"];
+            [arr addObject:nickName];
+            
+        }
+        self.indexArray = [ChineseString IndexArray:arr];
+        self.letterResultArr = [ChineseString LetterSortArray:arr];
+        NSLog(@"%@",self.letterResultArr);
+        if (self.letterResultArr.count !=0 &&friendsArr.count !=0) {
+            
+            for (int i =0; i< self.letterResultArr.count; i++) {
+                
+                
+                NSArray *array = self.letterResultArr[i];
+                for (int k = 0; k<array.count; k++) {
+                    
+                    NSMutableArray *a = [[NSMutableArray alloc]init];
+                    for (int j=0; j<friendsArr.count; j++) {
+                        
+                        if ([array[k] isEqualToString:[friendsArr[j] objectForKey:@"nickName"]]) {
+                            
+                            [a addObject:friendsArr[i]];
+                        }
+                        
+                    }
+                    [_imageNameArr addObject:a];
+                }
+                
+            }
+            
+        }
+        
+        
+        
+        NSLog(@"------------%@",_imageNameArr);
+        
+    }];
+    
+    
+}
+
 
 #pragma mark - getter
 
@@ -130,14 +196,14 @@
 //搜索
 - (EMSearchDisplayController *)searchController
 {
-   __block NSDictionary *dict_all;
+    __block NSDictionary *dict_all;
     __block NSMutableArray *arr = [NSMutableArray array];
     if (_searchController == nil)
     {
         _searchController = [[EMSearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
         _searchController.delegate = self;
         _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-           _searchController.searchResultsTableView.tableFooterView = [[UIView alloc] init];
+        _searchController.searchResultsTableView.tableFooterView = [[UIView alloc] init];
         
         __weak ContactListViewController *weakSelf = self;
         [_searchController setCellForRowAtIndexPathCompletion:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath) {
@@ -156,35 +222,35 @@
         
         [_searchController setHeightForRowAtIndexPathCompletion:^CGFloat(UITableView *tableView, NSIndexPath *indexPath)
          {
-            return 50;
-        }];
+             return 50;
+         }];
         
         [_searchController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath)
          {
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
-            
-            EMBuddy *buddy = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-            NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
-            NSString *loginUsername = [loginInfo objectForKey:kSDKUsername];
-            if (loginUsername && loginUsername.length > 0) {
-                if ([loginUsername isEqualToString:buddy.username])
-                {
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"friend.notChatSelf", @"can't talk to yourself") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
-                    [alertView show];
-                    return;
-                }
-            }
-            
-            [weakSelf.searchController.searchBar endEditing:YES];
-            ChatViewController *chatVC = [[ChatViewController alloc] initWithConversationChatter:buddy.username
-                                                                                conversationType:eConversationTypeChat];
+             [tableView deselectRowAtIndexPath:indexPath animated:YES];
+             
+             EMBuddy *buddy = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
+             NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
+             NSString *loginUsername = [loginInfo objectForKey:kSDKUsername];
+             if (loginUsername && loginUsername.length > 0) {
+                 if ([loginUsername isEqualToString:buddy.username])
+                 {
+                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"friend.notChatSelf", @"can't talk to yourself") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+                     [alertView show];
+                     return;
+                 }
+             }
+             
+             [weakSelf.searchController.searchBar endEditing:YES];
+             ChatViewController *chatVC = [[ChatViewController alloc] initWithConversationChatter:buddy.username
+                                                                                 conversationType:eConversationTypeChat];
              //搜索结果的展示
-            chatVC.title = [[UserProfileManager sharedInstance] getNickNameWithUsername:dict_all[@"nickName"]];
+             chatVC.title = [[UserProfileManager sharedInstance] getNickNameWithUsername:dict_all[@"nickName"]];
              chatVC.title = [[UserProfileManager sharedInstance] getNickNameWithUsername:arr[indexPath.row][@"nickName"]];
              
-            chatVC.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:chatVC animated:YES];
-        }];
+             chatVC.hidesBottomBarWhenPushed = YES;
+             [weakSelf.navigationController pushViewController:chatVC animated:YES];
+         }];
     }
     
     return _searchController;
@@ -193,7 +259,7 @@
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.dataArray count] + 1;
+    return [self.indexArray count] +1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -202,7 +268,9 @@
     {
         return 2;
     }
-    return [[self.dataArray objectAtIndex:(section - 1)] count]-1;
+    NSLog(@"%@",self.letterResultArr);
+    
+    return [[self.letterResultArr objectAtIndex:section-1] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -227,28 +295,66 @@
             cell.titleLabel.text = NSLocalizedString(@"title.group", @"Group");
             return cell;
         }
-
+        
     }
     else{//下面分组的
         
-        NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
-         EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
-        model.avatarImage = [readUserInfo getReadDicMessage][model.buddy.username];
-        model.nickname = [readUserInfo getReadDicMessageNickname][model.buddy.username];
-        cell.model = model;
-        cell.indexPath = indexPath;
-        cell.delegate = self;
-
+        //        NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
+        //        EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
+        //        model.avatarImage = [readUserInfo getReadDicMessage][model.buddy.username];
+        //        model.nickname = [readUserInfo getReadDicMessageNickname][model.buddy.username];
+        //        cell.model = model;
+        //        cell.indexPath = indexPath;
+        //        cell.delegate = self;
+        
+        //        cell.titleLabel.text = [friendsArr[indexPath.row] objectForKey:@"nickName"];
+        //
+        //        //[cell.avatarView.imageView sd_setImageWithURL:[friendsArr[indexPath.row] objectForKey:@"imageName"] placeholderImage:nil];
+        //        [cell.avatarView.imageView sd_setImageWithURL:[readUserInfo url:[friendsArr[indexPath.row] objectForKey:@"imageName"]:kkUser]];
+        UITapGestureRecognizer* singleRecognizer;
+        singleRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(SingleTap:)];
+        //点击的次数
+        singleRecognizer.numberOfTapsRequired = 1; // 单击
+        
+        //给self.view添加一个手势监测；
+        
+        [cell.avatarView addGestureRecognizer:singleRecognizer];
+        
+        cell.titleLabel.text = [[self.letterResultArr objectAtIndex:indexPath.section -1]objectAtIndex:indexPath.row];
+        
+        NSDictionary *imageArr = [[self.imageNameArr objectAtIndex:indexPath.section -1]objectAtIndex:indexPath.row];
+        //  [cell.avatarView.imageView sd_setImageWithURL:[readUserInfo url:[friendsArr[indexPath.row] objectForKey:@"imageName"]:kkUser]];
+        
+        NSLog(@"%@--------哈哈哈哈哈哈哈哈%@",self.imageNameArr,self.letterResultArr)
+        [cell.avatarView.imageView sd_setImageWithURL:[readUserInfo url:[imageArr objectForKey:@"imageName"] :kkUser]];
     }
     
     return cell;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    return index;
+}
+
+-(void)SingleTap:(UITapGestureRecognizer*)recognizer
+{
+    //处理单击操作
+    
+    HCGradeManagerViewController *vc = [[HCGradeManagerViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 #pragma mark - Table view delegate
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return self.sectionTitles;
+    return self.indexArray;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *key = [self.indexArray objectAtIndex:section];
+    return key;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -273,6 +379,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 22)];
     label.backgroundColor = [UIColor clearColor];
     //[label setText:[self.sectionTitles objectAtIndex:(section - 1)]];
+    label.text = [self.indexArray objectAtIndex:section -1];
     [contentView addSubview:label];
     return contentView;
 }
@@ -316,30 +423,35 @@
         }
     }
     else{
-        EaseUserModel *model = [[self.dataArray objectAtIndex:(section - 1)] objectAtIndex:row];
+        // EaseUserModel *model = [[self.dataArray objectAtIndex:(section - 1)] objectAtIndex:row];
+        NSDictionary *nameArr = [[self.imageNameArr objectAtIndex:indexPath.section -1]objectAtIndex:indexPath.row];
         NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
         NSString *loginUsername = [loginInfo objectForKey:kSDKUsername];
         if (loginUsername && loginUsername.length > 0) {
-            if ([loginUsername isEqualToString:model.buddy.username]) {
+            
+            if (![loginUsername compare:[nameArr objectForKey:@"chatName"]]) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"friend.notChatSelf", @"can't talk to yourself") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
                 [alertView show];
                 
                 return;
             }
         }
-        ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:model.buddy.username conversationType:eConversationTypeChat];
-        chatController.title = model.nickname.length > 0 ? model.nickname : model.buddy.username;
+        
+        
+        NSString *name = [nameArr objectForKey:@"chatName"];
+        ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:name conversationType:eConversationTypeChat];
+        chatController.title = name.length > 0 ? [nameArr objectForKey:@"nickName"] : name;
         chatController.hidesBottomBarWhenPushed = YES;
         
         
         
-        NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
-        api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-            UIImageView *image = [[UIImageView alloc]init];
-            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
-            chatController.imageUserPh = image.image;
-        }];
+        //        NHCChatUserInfoApi *api = [[NHCChatUserInfoApi alloc]init];
+        //        api.chatName = [model.buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+        //        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+        //            UIImageView *image = [[UIImageView alloc]init];
+        //            [image sd_setImageWithURL:[readUserInfo url:dict[@"imageName"] :kkUser]];
+        //            chatController.imageUserPh = image.image;
+        //        }];
         [self.navigationController pushViewController:chatController animated:YES];
     }
 }
@@ -468,12 +580,12 @@
     for (EMBuddy *buddy in buddyList) {
         if (![blockList containsObject:buddy.username])
         {
-//            //////////////////////////////////////////////////////////////这个地方是好友信息
-//            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
-//            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
-//            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
-//                
-//            }];
+            //            //////////////////////////////////////////////////////////////这个地方是好友信息
+            //            NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
+            //            api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
+            //            [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
+            //
+            //            }];
             
             [contactsSource addObject:buddy];
         }
@@ -526,7 +638,7 @@
             firstLetter2 = [[firstLetter2 substringToIndex:1] uppercaseString];
             return [firstLetter1 caseInsensitiveCompare:firstLetter2];
         }];
-
+        
         [sortedArray replaceObjectAtIndex:i withObject:[NSMutableArray arrayWithArray:array]];
     }
     
@@ -635,7 +747,7 @@
         {
             
             if (IsEmpty([readUserInfo getReadDicMessage])) {
-             
+                
                 NHCChatUserInfoApi * api = [[NHCChatUserInfoApi alloc]init];
                 api.chatName = [buddy.username stringByReplacingOccurrencesOfString:@"cn" withString:@"CN"];
                 [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSDictionary *dict) {
@@ -688,9 +800,9 @@
                     }];
                 }
                 
-              
                 
-            
+                
+                
             }
             
             [self.contactsSource addObject:buddy];
@@ -733,7 +845,7 @@
 - (void)didUpdateBlockedList:(NSArray *)blockedList
 {
     [self reloadDataSource];
-   
+    
 }
 
 @end

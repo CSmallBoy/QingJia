@@ -275,9 +275,12 @@
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(SCREEN_WIDTH/3-40,0, 20, 20);
-    button.backgroundColor = [UIColor  redColor];
+    ViewRadius(button, 10);
+//    button.backgroundColor = [UIColor  redColor];
     [button addTarget:self action:@selector(smallBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [longPress.view addSubview:button];
+    [button setBackgroundImage:IMG(@"longPressDelectImage") forState:UIControlStateNormal];
+    
 }
 
 -(void)smallBtnClick:(UIButton *)btn

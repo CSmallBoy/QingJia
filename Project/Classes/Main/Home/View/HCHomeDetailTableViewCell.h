@@ -10,6 +10,8 @@
 
 @protocol HCHomeDetailTableViewCellDelegate <NSObject>
 
+-(void)delete;
+
 @optional
 
 - (void)hchomeDetailTableViewCellHeight:(CGFloat)cellHeight;

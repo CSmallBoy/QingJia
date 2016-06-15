@@ -21,7 +21,8 @@
 
 
 
-@interface HCEditUserMessageViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,HCPickerViewDelegate>{
+@interface HCEditUserMessageViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,HCPickerViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>{
+    
     UIImagePickerController *_myPk;
     UIImagePickerController * _picker;
     UIImageView *buttonImage;
@@ -30,12 +31,38 @@
     NSArray *arr2;
     NHCUSerInfoApi *api;
     MyselfInfoModel *model;
+    MyselfInfoModel *selfModel;
     UIDatePicker * datePicker;
     UIView *view_back;
     NSString *str;
     BOOL FromPhoto;
     
+    //昵称
+    UITextField *nickName_tf;
+    //姓名
+    UITextField *name_tf;
+    //性别
+    UITextField *sex_tf;
+    //生日
+    UILabel *birthDay_tf;
+    //属相
+    UITextField *animal_tf;
+    //地址
+    UITextField *address_tf;
+    //祖籍
+    UILabel *hometown_tf;
+    //签名
+    UITextField *sign_tf;
+    //手机号
+    UITextField *phone_tf;
+    
+    NSArray *provinces;
+    
+    UIToolbar  *_toolbar;
+    
+    UIPickerView *provincesPickview;
 }
+@property (nonatomic, strong) NSDictionary *person_dict;
 
 @end
 
@@ -43,6 +70,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //获得个人信息缓存
+    _person_dict = [readUserInfo getReadDic];
+    selfModel = [[MyselfInfoModel alloc]init];
     self.title = @"个人信息编辑";
     [self setupBackItem];
     [self.view addSubview:self.tableView];
@@ -55,21 +86,21 @@
     model = [[MyselfInfoModel alloc]init];
     api = [[NHCUSerInfoApi alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toChangeNumber) name:@"toChangeNumber" object:nil];
-     NSDictionary *dic = [readUserInfo getReadDic];
+    NSDictionary *dic = [readUserInfo getReadDic];
     Arr = @[@[@"头像",@"昵称",@"姓名",@"性别",@"生日",@"属相",@"住址",@"祖籍",@"签名"],
             @[@"绑定手机号"]];
-   
+    
     //第一步  先判断是否本地编辑过
     if(IsEmpty(dic[@"company"])){
         if (IsEmpty(dic[@"UserInf"][@"imageName"]))
         {
-            NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,@"请输入住址",@"请输点击选择祖籍",@"请输入签名"];
-            arr2= @[arr,
-                    @[@"181109722222"]];
+            //NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,@"请输入住址",@"请输点击选择祖籍",@"请输入签名"];
+            //            arr2= @[arr,
+            //                    @[@"181109722222"]];
         }else{
-            NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,_adress,_copany,_professional];
-            arr2= @[arr,
-                    @[@"181109722222"]];
+            //            NSArray *arr = @[@"请点击点击选择头像",@"请输入昵称",_ture_name,_sex,_birthday,_shuxiang,_adress,_copany,_professional];
+            //            arr2= @[arr,
+            //                    @[@"181109722222"]];
         }
     }else{
         if (IsEmpty(dic[@"UserInf"][@"imageName"]))
@@ -93,6 +124,32 @@
     model.adress = _adress;
     model.professional = _professional;
     str = _birthday;
+    
+    if (_person_dict[@"nickName"]) {
+        
+        NSLog(@"%@",_person_dict);
+        selfModel.nickName =  _person_dict[@"nickName"];
+        selfModel.userPhoto = _person_dict[@"imageName"];
+        selfModel.adress =  _person_dict[@"adress"];
+        selfModel.company =  _person_dict[@"career"];
+        selfModel.career = _person_dict[@"career"];
+        selfModel.userDescription = _person_dict[@"userDescription"];
+        selfModel.birday = _person_dict[@"birthDay"];
+        selfModel.Animalsign = _person_dict[@"chineseZodiac"];
+        
+    }
+    else
+    {
+        selfModel.nickName =  _person_dict[@"UserInf"][@"nickName"];
+        selfModel.userPhoto = _person_dict[@"UserInf"][@"imageName"];
+        selfModel.adress =  _person_dict[@"UserInf"][@"homeAddress"];
+        selfModel.company =  _person_dict[@"UserInf"][@"career"];
+        selfModel.career = _person_dict[@"UserInf"][@"company"];
+        selfModel.userDescription = _person_dict[@"UserInf"][@"userDescription"];
+        selfModel.birday = _person_dict[@"UserInf"][@"birthDay"];
+        selfModel.Animalsign = _person_dict[@"UserInf"][@"chineseZodiac"];
+    }
+    
     
     
 }
@@ -183,7 +240,7 @@
         UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 44)];
         label1.text = @"绑定手机号";
         UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(120, 0, 120, 44)];
-        label2.text = @"18300673332";
+        label2.text = _person_dict[@"UserInf"][@"phoneNo"];
         UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 0, 50, 44)];
         label3.text = @"修改";
         [cell.contentView addSubview:label3];
@@ -203,7 +260,7 @@
                 }
             }else{
                 if (choose.size.width==88) {
-                    [headImage sd_setImageWithURL:[readUserInfo url:_headimage :kkUser]];
+                    [headImage sd_setImageWithURL:[readUserInfo url:selfModel.userPhoto :kkUser]];
                 }else{
                     headImage.image = choose;
                 }
@@ -215,24 +272,70 @@
         NSDictionary *dict_catch = [readUserInfo getReadDic];
         //需要先看网络上有没有   在判断本地有没有
         
-        if (IsEmpty(dict_catch[@"UserInf"][@"career"])) {
-            switch (indexPath.row) {
-                case 2:
-                    text_tf.text = arr2[indexPath.section][indexPath.row];
-                    break;
-                case 3:
-                    text_tf.text = arr2[indexPath.section][indexPath.row];
-                    break;
-                case 6:
-                    text_tf.text = arr2[indexPath.section][indexPath.row];
-                    break;
-                default:
-                    break;
-            }
-            text_tf.placeholder = arr2[indexPath.section][indexPath.row];
-        }else{
-            text_tf.text = arr2[indexPath.section][indexPath.row];
+        
+        if (indexPath.row == 1) {
+            
+            NSLog(@"%@",_person_dict);
+            nickName_tf =[[UITextField alloc]initWithFrame:CGRectMake(62, 10, SCREEN_WIDTH-100, 20)];
+            nickName_tf.returnKeyType = UIReturnKeyDone;
+            nickName_tf.text = selfModel.nickName;
+            nickName_tf.delegate = self;
+            [cell.contentView addSubview:nickName_tf];
         }
+        else if (indexPath.row == 2)
+        {
+            name_tf =[[UITextField alloc]initWithFrame:CGRectMake(62, 10, SCREEN_WIDTH-100, 20)];
+            name_tf.text = _person_dict[@"UserInf"][@"trueName"];
+            name_tf.enabled = NO;
+            [cell.contentView addSubview:name_tf];
+        }
+        else if (indexPath.row == 3)
+        {
+            sex_tf =[[UITextField alloc]initWithFrame:CGRectMake(62, 10, SCREEN_WIDTH-100, 20)];
+            sex_tf.text = _person_dict[@"UserInf"][@"sex"];
+            sex_tf.enabled = NO;
+            [cell.contentView addSubview:sex_tf];
+        }
+        else if (indexPath.row == 4)
+        {
+            birthDay_tf =[[UILabel alloc]initWithFrame:CGRectMake(62, 10, SCREEN_WIDTH-100, 20)];
+            birthDay_tf.text = selfModel.birday;
+            
+            [cell.contentView addSubview:birthDay_tf];
+        }
+        else if (indexPath.row == 5)
+        {
+            animal_tf =[[UITextField alloc]initWithFrame:CGRectMake(62, 10, SCREEN_WIDTH-100, 20)];
+            animal_tf.text = selfModel.Animalsign;
+            animal_tf.enabled = NO;
+            animal_tf.delegate = self;
+            [cell.contentView addSubview:animal_tf];
+        }
+        else if (indexPath.row == 6)
+        {
+            address_tf =[[UITextField alloc]initWithFrame:CGRectMake(62, 10, SCREEN_WIDTH-100, 20)];
+            address_tf.text = selfModel.adress;
+            address_tf.returnKeyType = UIReturnKeyDone;
+            address_tf.delegate = self;
+            [cell.contentView addSubview:address_tf];
+        }
+        else if (indexPath.row == 7)
+        {
+            hometown_tf =[[UILabel alloc]initWithFrame:CGRectMake(62, 10, SCREEN_WIDTH-100, 20)];
+            hometown_tf.text = selfModel.career;
+            
+            [cell.contentView addSubview:hometown_tf];
+        }
+        else if (indexPath.row == 8)
+        {
+            sign_tf =[[UITextField alloc]initWithFrame:CGRectMake(62, 10, SCREEN_WIDTH-100, 20)];
+            sign_tf.text = selfModel.userDescription;
+            sign_tf.returnKeyType = UIReturnKeyDone;
+            sign_tf.delegate = self;
+            [cell.contentView addSubview:sign_tf];
+        }
+        
+        
         text_tf.delegate =self;
         if (indexPath.row==0||indexPath.row==3||indexPath.row==5||indexPath.row==2||indexPath.row==4) {
             text_tf.userInteractionEnabled = NO;
@@ -246,9 +349,11 @@
         }
         label.text = Arr[indexPath.section][indexPath.row];
         [cell addSubview:label];
-        [cell addSubview:text_tf];
+        //        [cell addSubview:text_tf];
         
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
@@ -278,10 +383,43 @@
         [myalert addAction:cancel];
         [self presentViewController:myalert animated:YES completion:nil];
     }else if (indexPath.section == 0 &&indexPath.row==4){
+        
         [self makeDatePicker];
+        
     }else if (indexPath.section==1 && indexPath.row==0){
         [self toChangeNumber];
-    }else{
+    }
+    else if (indexPath.section == 0 && indexPath.row ==7)
+    {
+        //文件路径
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString *path =[paths objectAtIndex:0];
+        NSString *cityList =[path stringByAppendingPathComponent:@"city.plist"];
+        
+        NSDictionary *Dic = [NSDictionary dictionaryWithContentsOfFile:cityList];
+        provinces = [Dic objectForKey:@"regionData"];
+        
+        NSLog(@"%@",provinces);
+        
+        [self makeProvincesPicker];
+    }
+    else if (indexPath.section == 0 && indexPath.row == 2)
+    {
+        [self showHint:@"sorry,姓名不可以更改"];
+    }
+    else if (indexPath.section ==0 && indexPath.row ==3)
+    {
+        [self showHint:@"sorry,性别不可以更改"];
+    }
+    else if (indexPath.section == 0 && indexPath.row ==5)
+    {
+        [self showHint:@"sorry,属相不可以更改"];
+    }
+    else if (indexPath.section ==0 && indexPath.row == 8)
+    {
+        selfModel.userDescription = sign_tf.text;
+    }
+    else{
         
     }
     
@@ -323,13 +461,21 @@
      {
          //在这个地方执行上传文字的操作
          if (FromPhoto) {
-             model.userPhoto = responseObject[@"Data"][@"files"][0];
+             selfModel.userPhoto = responseObject[@"Data"][@"files"][0];
          }else{
              model.userPhoto = _headimage;
          }
-         api.myModel = model;
+         selfModel.userDescription = sign_tf.text;
+         selfModel.nickName = nickName_tf.text;
+         selfModel.adress = address_tf.text;
+         selfModel.career =animal_tf.text;
+         selfModel.birday = birthDay_tf.text;
+         
+         api.myModel = selfModel;
+         
          [api startRequest:^(HCRequestStatus requestStatus, NSString *message, NSString *chineseZodiac)
           {
+              
               if (requestStatus == HCRequestStatusSuccess)
               {
                   if (IsEmpty(str)) {
@@ -337,12 +483,15 @@
                   }else{
                       [dic setObject:str forKey:@"birthday"];
                   }
+                  
                   [dic setObject:chineseZodiac forKey:@"chineseZodiac"];
-                  [dic setObject:model.userPhoto forKey:@"PhotoStr"];
-                  [dic setObject:model.nickName forKey:@"nickName"];
-                  [dic setObject:model.adress forKey:@"adress"];
-                  [dic setObject:model.company forKey:@"company"];
-                  [dic setObject:model.professional forKey:@"professional"];
+                  [dic setObject:selfModel.userPhoto forKey:@"imageName"];
+                  [dic setObject:selfModel.nickName forKey:@"nickName"];
+                  [dic setObject:selfModel.adress forKey:@"adress"];
+                  [dic setObject:selfModel.company forKey:@"career"];
+                  [dic setObject:selfModel.professional forKey:@"professional"];
+                  [dic setObject:selfModel.userDescription forKey:@"userDescription"];
+                  [dic setObject:selfModel.birday forKey:@"birthDay"];
                   [readUserInfo Dicdelete];
                   [readUserInfo creatDic:dic];
                   //[[NSNotificationCenter defaultCenter] postNotificationName:@"Photo" object:nil userInfo:dic];
@@ -357,7 +506,7 @@
                           }
                       }
                       //通知左边修改头像
-                      NSDictionary *dict = @{@"photo":model.userPhoto};
+                      NSDictionary *dict = @{@"photo":selfModel.userPhoto};
                       [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserPhoto" object:nil userInfo:dict];
                       
                       [self showHUDSuccess:@"保存成功"];
@@ -453,19 +602,107 @@
                                        datePickerMode:UIDatePickerModeDate isHaveNavControler:YES];
     pick.datePicker.maximumDate = [NSDate date];
     pick.delegate = self;
-    pick.delegate = self;
     [self.view addSubview:pick];
     
 }
 
--(void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result{
-    NSDate *date = result[@"date"];
-    model.birday = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
-    str = model.birday;
-    NSIndexPath  *indexPath_1=[NSIndexPath indexPathForRow:4 inSection:0];
-    NSArray*indexArray=[NSArray  arrayWithObject:indexPath_1];
-    [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:(UITableViewRowAnimationAutomatic)];
+-(void)makeProvincesPicker
+{
+    provincesPickview = [[UIPickerView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 200, SCREEN_WIDTH, 200)];
+    provincesPickview.showsSelectionIndicator = YES;
+    [provincesPickview setBackgroundColor:[UIColor lightGrayColor]];
+    provincesPickview.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    provincesPickview.delegate = self;
+    [self.view addSubview:provincesPickview];
+    [provincesPickview selectRow:1 inComponent:0 animated:YES];
     
+    _toolbar = [self setToolbarStyle];
+    [self setToolbarWithPickViewFrame];
+    [self.view addSubview:_toolbar];
+}
+
+-(UIToolbar *)setToolbarStyle {
+    
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
+    
+    UIBarButtonItem *lefttem = [[UIBarButtonItem alloc] initWithTitle:@"    取消" style:UIBarButtonItemStyleDone target:self action:@selector(remove)];
+    [lefttem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor darkGrayColor],NSFontAttributeName:BOLDSYSTEMFONT(16.0)} forState:UIControlStateNormal];
+    UIBarButtonItem *centerSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"确定    " style:UIBarButtonItemStyleDone target:self action:@selector(doneClick)];
+    [right setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor darkGrayColor],NSFontAttributeName:BOLDSYSTEMFONT(16.0)} forState:UIControlStateNormal];
+    toolbar.items = @[lefttem,centerSpace,right];
+    
+    return toolbar;
+}
+
+-(void)setToolbarWithPickViewFrame{
+    
+    _toolbar.frame = CGRectMake(0, MinY(provincesPickview) - 44,[UIScreen mainScreen].bounds.size.width, 44);
+    
+}
+-(void)remove
+{
+    [_toolbar removeFromSuperview];
+    [provincesPickview removeFromSuperview];
+}
+
+-(void)doneClick
+{
+    NSLog(@"%ld",(long)[provincesPickview selectedRowInComponent:0]);
+    NSLog(@"--------%@",[provinces[[provincesPickview selectedRowInComponent:0]] objectForKey:@"regionName"]);
+    [_toolbar removeFromSuperview];
+    [provincesPickview removeFromSuperview];
+    hometown_tf.text =[provinces[[provincesPickview selectedRowInComponent:0]] objectForKey:@"regionName"];
+    selfModel.company = hometown_tf.text;
+    
+}
+#pragma mark ---------pickerviewdeledate-------
+//-(void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated
+//
+//{
+//    return;
+//}
+
+//设置列数
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView
+{
+    return 1;
+}
+
+//返回数组总数
+- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component
+{
+    
+    return provinces.count;//将数据建立一个数组
+}
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    
+    return [provinces[row] objectForKey:@"regionName"];
+    
+}
+//触发事件
+- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSLog(@"12312");
+}
+
+-(void)doneBtnClick:(HCPickerView *)pickView result:(NSDictionary *)result{
+    
+    NSDate *date = result[@"date"];
+    //model.birday = [Utils getDateStringWithDate:date format:@"yyyy-MM-dd"];
+    //    str = model.birday;
+    //    NSIndexPath  *indexPath_1=[NSIndexPath indexPathForRow:4 inSection:0];
+    //    NSArray*indexArray=[NSArray  arrayWithObject:indexPath_1];
+    //    [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:(UITableViewRowAnimationAutomatic)];
+    birthDay_tf.text = [NSString stringWithFormat:@"%@",[Utils getDateStringWithDate:date format:@"yyyy-MM-dd"]];
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 

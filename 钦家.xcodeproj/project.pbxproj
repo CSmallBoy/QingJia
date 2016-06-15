@@ -1129,8 +1129,21 @@
 		EAE464971CF6A158005A0558 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE464961CF6A158005A0558 /* PlaceholderTextView.m */; };
 		EAE7B7311CE45ECC00E47B1B /* HCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */; };
 		EAE7B7341CE470B700E47B1B /* HCGetCityInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B7331CE470B700E47B1B /* HCGetCityInfoApi.m */; };
+		EAEC11B91D10062A0059E730 /* HCDetectNetworkStatusMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEC11B81D10062A0059E730 /* HCDetectNetworkStatusMgr.m */; };
 		EAF55F331CEB52B50058DDB0 /* HCMissTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF55F321CEB52B50058DDB0 /* HCMissTagTableViewCell.m */; };
 		EAF6D7911CEC584B00368A9A /* HCCityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF6D7901CEC584B00368A9A /* HCCityInfo.m */; };
+		EAFEC95E1D10F18100C26EC6 /* HCTimePushListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC95D1D10F18100C26EC6 /* HCTimePushListInfo.m */; };
+		EAFEC9611D10F4F800C26EC6 /* HCTimePushListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC9601D10F4F800C26EC6 /* HCTimePushListCell.m */; };
+		EAFEC9671D11075800C26EC6 /* NHCHomeClickPushListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC9661D11075800C26EC6 /* NHCHomeClickPushListApi.m */; };
+		EAFEC96A1D11694600C26EC6 /* HCDeleteFamilyMember.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC9691D11694600C26EC6 /* HCDeleteFamilyMember.m */; };
+		EAFEC9701D11699900C26EC6 /* GetAllFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC96D1D11699900C26EC6 /* GetAllFamily.m */; };
+		EAFEC9711D11699900C26EC6 /* HCEditFamilyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC96F1D11699900C26EC6 /* HCEditFamilyApi.m */; };
+		EAFEC9761D1169DB00C26EC6 /* HCCreateAllFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC9731D1169DB00C26EC6 /* HCCreateAllFamily.m */; };
+		EAFEC9771D1169DB00C26EC6 /* HCCreateAllFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC9751D1169DB00C26EC6 /* HCCreateAllFriends.m */; };
+		EAFEC97A1D116A0D00C26EC6 /* HCDeleteMember.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC9791D116A0D00C26EC6 /* HCDeleteMember.m */; };
+		EAFEC97D1D116A5100C26EC6 /* AddFamilyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC97C1D116A5100C26EC6 /* AddFamilyMemberViewController.m */; };
+		EAFEC9801D116C3C00C26EC6 /* MyFriendsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC97F1D116C3C00C26EC6 /* MyFriendsApi.m */; };
+		EAFEC9841D116C7E00C26EC6 /* ChineseString.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC9831D116C7E00C26EC6 /* ChineseString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3194,10 +3207,36 @@
 		EAE7B7301CE45ECC00E47B1B /* HCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCLoginViewController.xib; sourceTree = "<group>"; };
 		EAE7B7321CE470B700E47B1B /* HCGetCityInfoApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCGetCityInfoApi.h; path = ../More/NotificationCenter/HCGetCityInfoApi.h; sourceTree = "<group>"; };
 		EAE7B7331CE470B700E47B1B /* HCGetCityInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCGetCityInfoApi.m; path = ../More/NotificationCenter/HCGetCityInfoApi.m; sourceTree = "<group>"; };
+		EAEC11B71D10062A0059E730 /* HCDetectNetworkStatusMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDetectNetworkStatusMgr.h; sourceTree = "<group>"; };
+		EAEC11B81D10062A0059E730 /* HCDetectNetworkStatusMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDetectNetworkStatusMgr.m; sourceTree = "<group>"; };
 		EAF55F311CEB52B50058DDB0 /* HCMissTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCMissTagTableViewCell.h; path = Project/Classes/Main/Network/Public/HCMissTagTableViewCell.h; sourceTree = SOURCE_ROOT; };
 		EAF55F321CEB52B50058DDB0 /* HCMissTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCMissTagTableViewCell.m; path = Project/Classes/Main/Network/Public/HCMissTagTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		EAF6D78F1CEC584B00368A9A /* HCCityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCityInfo.h; sourceTree = "<group>"; };
 		EAF6D7901CEC584B00368A9A /* HCCityInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCityInfo.m; sourceTree = "<group>"; };
+		EAFEC95C1D10F18100C26EC6 /* HCTimePushListInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTimePushListInfo.h; sourceTree = "<group>"; };
+		EAFEC95D1D10F18100C26EC6 /* HCTimePushListInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTimePushListInfo.m; sourceTree = "<group>"; };
+		EAFEC95F1D10F4F800C26EC6 /* HCTimePushListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTimePushListCell.h; sourceTree = "<group>"; };
+		EAFEC9601D10F4F800C26EC6 /* HCTimePushListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTimePushListCell.m; sourceTree = "<group>"; };
+		EAFEC9651D11075800C26EC6 /* NHCHomeClickPushListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeClickPushListApi.h; sourceTree = "<group>"; };
+		EAFEC9661D11075800C26EC6 /* NHCHomeClickPushListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeClickPushListApi.m; sourceTree = "<group>"; };
+		EAFEC9681D11694600C26EC6 /* HCDeleteFamilyMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDeleteFamilyMember.h; sourceTree = "<group>"; };
+		EAFEC9691D11694600C26EC6 /* HCDeleteFamilyMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDeleteFamilyMember.m; sourceTree = "<group>"; };
+		EAFEC96C1D11699900C26EC6 /* GetAllFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAllFamily.h; sourceTree = "<group>"; };
+		EAFEC96D1D11699900C26EC6 /* GetAllFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAllFamily.m; sourceTree = "<group>"; };
+		EAFEC96E1D11699900C26EC6 /* HCEditFamilyApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEditFamilyApi.h; sourceTree = "<group>"; };
+		EAFEC96F1D11699900C26EC6 /* HCEditFamilyApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEditFamilyApi.m; sourceTree = "<group>"; };
+		EAFEC9721D1169DB00C26EC6 /* HCCreateAllFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateAllFamily.h; sourceTree = "<group>"; };
+		EAFEC9731D1169DB00C26EC6 /* HCCreateAllFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateAllFamily.m; sourceTree = "<group>"; };
+		EAFEC9741D1169DB00C26EC6 /* HCCreateAllFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateAllFriends.h; sourceTree = "<group>"; };
+		EAFEC9751D1169DB00C26EC6 /* HCCreateAllFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateAllFriends.m; sourceTree = "<group>"; };
+		EAFEC9781D116A0D00C26EC6 /* HCDeleteMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDeleteMember.h; sourceTree = "<group>"; };
+		EAFEC9791D116A0D00C26EC6 /* HCDeleteMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDeleteMember.m; sourceTree = "<group>"; };
+		EAFEC97B1D116A5000C26EC6 /* AddFamilyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFamilyMemberViewController.h; sourceTree = "<group>"; };
+		EAFEC97C1D116A5100C26EC6 /* AddFamilyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFamilyMemberViewController.m; sourceTree = "<group>"; };
+		EAFEC97E1D116C3C00C26EC6 /* MyFriendsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendsApi.h; sourceTree = "<group>"; };
+		EAFEC97F1D116C3C00C26EC6 /* MyFriendsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendsApi.m; sourceTree = "<group>"; };
+		EAFEC9821D116C7E00C26EC6 /* ChineseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseString.h; sourceTree = "<group>"; };
+		EAFEC9831D116C7E00C26EC6 /* ChineseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseString.m; sourceTree = "<group>"; };
 		F4EEF78DAD28437A3011F298 /* Pods-钦家.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-钦家.release.xcconfig"; path = "Pods/Target Support Files/Pods-钦家/Pods-钦家.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3311,6 +3350,8 @@
 				0A2B46CA1C7F12AF00AAA157 /* HCHomeInfo.m */,
 				0A2B46CB1C7F12AF00AAA157 /* HCPublishInfo.h */,
 				0A2B46CC1C7F12AF00AAA157 /* HCPublishInfo.m */,
+				EAFEC95C1D10F18100C26EC6 /* HCTimePushListInfo.h */,
+				EAFEC95D1D10F18100C26EC6 /* HCTimePushListInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3338,6 +3379,8 @@
 				0A2B46DF1C7F12AF00AAA157 /* HCShowMoreImage.m */,
 				C729C4691CE08F690010D3C0 /* HCHomeNotiButton.h */,
 				C729C46A1CE08F690010D3C0 /* HCHomeNotiButton.m */,
+				EAFEC95F1D10F4F800C26EC6 /* HCTimePushListCell.h */,
+				EAFEC9601D10F4F800C26EC6 /* HCTimePushListCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3345,6 +3388,7 @@
 		0A2B46FA1C7F12C800AAA157 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				EAFEC96B1D11699900C26EC6 /* Myfamily */,
 				0A2B46FB1C7F12C800AAA157 /* Grade */,
 				0A2B46FE1C7F12C800AAA157 /* Home */,
 				0A2B470B1C7F12C800AAA157 /* Left */,
@@ -3395,6 +3439,8 @@
 				0A2B47081C7F12C800AAA157 /* HCHomePictureDetailApi.m */,
 				0A2B47091C7F12C800AAA157 /* HCHomePublishApi.h */,
 				0A2B470A1C7F12C800AAA157 /* HCHomePublishApi.m */,
+				EAFEC9781D116A0D00C26EC6 /* HCDeleteMember.h */,
+				EAFEC9791D116A0D00C26EC6 /* HCDeleteMember.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -4511,6 +4557,8 @@
 				EA11F74B1CF7E8B100BC9945 /* HCCityInfoMgr.m */,
 				EADBF0821D003DEA00130D59 /* HCSavePhotoToAblumMgr.h */,
 				EADBF0831D003DEA00130D59 /* HCSavePhotoToAblumMgr.m */,
+				EAEC11B71D10062A0059E730 /* HCDetectNetworkStatusMgr.h */,
+				EAEC11B81D10062A0059E730 /* HCDetectNetworkStatusMgr.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -4518,6 +4566,7 @@
 		0A6B7E0E1BF1EB74008D54B3 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				EAFEC9811D116C7E00C26EC6 /* ChineseSorting */,
 				0A6B7E0F1BF1EB74008D54B3 /* Utils.h */,
 				0A6B7E101BF1EB74008D54B3 /* Utils.m */,
 			);
@@ -5222,6 +5271,8 @@
 				C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */,
 				C77A28621CE96EFC008BB9BE /* NHCHomepushListApi.h */,
 				C77A28631CE96EFC008BB9BE /* NHCHomepushListApi.m */,
+				EAFEC9651D11075800C26EC6 /* NHCHomeClickPushListApi.h */,
+				EAFEC9661D11075800C26EC6 /* NHCHomeClickPushListApi.m */,
 			);
 			name = HomeApi;
 			sourceTree = "<group>";
@@ -5308,6 +5359,8 @@
 				C758EDF91C743E7A0081FFE1 /* HCMergingFamilyViewController.m */,
 				C758EE021C743E7A0081FFE1 /* MyFamilyViewController.h */,
 				C758EE031C743E7A0081FFE1 /* MyFamilyViewController.m */,
+				EAFEC97B1D116A5000C26EC6 /* AddFamilyMemberViewController.h */,
+				EAFEC97C1D116A5100C26EC6 /* AddFamilyMemberViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5370,6 +5423,8 @@
 				C768C5C21CD623890059284E /* NHCChatGroupInfoApi.m */,
 				C79254551CE0CB8700F57FF2 /* NHCScanUSerCodeApi.h */,
 				C79254561CE0CB8700F57FF2 /* NHCScanUSerCodeApi.m */,
+				EAFEC97E1D116C3C00C26EC6 /* MyFriendsApi.h */,
+				EAFEC97F1D116C3C00C26EC6 /* MyFriendsApi.m */,
 			);
 			name = messageApi;
 			sourceTree = "<group>";
@@ -5426,6 +5481,10 @@
 			children = (
 				C78D78611C5F28F600622CE2 /* HCCreateGradeInfo.h */,
 				C78D78621C5F28F600622CE2 /* HCCreateGradeInfo.m */,
+				EAFEC9721D1169DB00C26EC6 /* HCCreateAllFamily.h */,
+				EAFEC9731D1169DB00C26EC6 /* HCCreateAllFamily.m */,
+				EAFEC9741D1169DB00C26EC6 /* HCCreateAllFriends.h */,
+				EAFEC9751D1169DB00C26EC6 /* HCCreateAllFriends.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7435,6 +7494,8 @@
 				C706D62C1CE5DF9B0096EF9E /* NHCGetFamilyImageApi.m */,
 				C706D62E1CE613BC0096EF9E /* NHCEditingFamilyImageApi.h */,
 				C706D62F1CE613BC0096EF9E /* NHCEditingFamilyImageApi.m */,
+				EAFEC9681D11694600C26EC6 /* HCDeleteFamilyMember.h */,
+				EAFEC9691D11694600C26EC6 /* HCDeleteFamilyMember.m */,
 			);
 			name = family;
 			sourceTree = "<group>";
@@ -7481,6 +7542,26 @@
 				EAE464961CF6A158005A0558 /* PlaceholderTextView.m */,
 			);
 			path = NewCallAnswerCell;
+			sourceTree = "<group>";
+		};
+		EAFEC96B1D11699900C26EC6 /* Myfamily */ = {
+			isa = PBXGroup;
+			children = (
+				EAFEC96C1D11699900C26EC6 /* GetAllFamily.h */,
+				EAFEC96D1D11699900C26EC6 /* GetAllFamily.m */,
+				EAFEC96E1D11699900C26EC6 /* HCEditFamilyApi.h */,
+				EAFEC96F1D11699900C26EC6 /* HCEditFamilyApi.m */,
+			);
+			path = Myfamily;
+			sourceTree = "<group>";
+		};
+		EAFEC9811D116C7E00C26EC6 /* ChineseSorting */ = {
+			isa = PBXGroup;
+			children = (
+				EAFEC9821D116C7E00C26EC6 /* ChineseString.h */,
+				EAFEC9831D116C7E00C26EC6 /* ChineseString.m */,
+			);
+			path = ChineseSorting;
 			sourceTree = "<group>";
 		};
 		F7927DD51B00DCDF2D1B92AB /* Pods */ = {
@@ -7933,6 +8014,7 @@
 			files = (
 				C7B00B4A1C5F26050010F93B /* GroupListViewController.m in Sources */,
 				C78D7B3E1C5F28F700622CE2 /* HCNotifiMessageCenterCell.m in Sources */,
+				EAFEC9801D116C3C00C26EC6 /* MyFriendsApi.m in Sources */,
 				0A54917C1C2BC32D0085F50D /* ZXRSSExpandedBlockParsedResult.m in Sources */,
 				0A2B47741C7F12C800AAA157 /* HCCustomTagApi.m in Sources */,
 				0A5491B41C2BC32D0085F50D /* ZXPDF417ScanningDecoder.m in Sources */,
@@ -7958,6 +8040,7 @@
 				0A5491B71C2BC32D0085F50D /* ZXPDF417.m in Sources */,
 				C7B00B6A1C5F26050010F93B /* EMRemarkImageView.m in Sources */,
 				0A5491BD1C2BC32D0085F50D /* ZXPDF417Common.m in Sources */,
+				EAFEC97D1D116A5100C26EC6 /* AddFamilyMemberViewController.m in Sources */,
 				C7692F571C3A4B2200582A10 /* MDCFocusView.m in Sources */,
 				0A5491421C2BC32D0085F50D /* ZXDefaultGridSampler.m in Sources */,
 				C78D7B521C5F28F700622CE2 /* HCGoodsListTableViewCell.m in Sources */,
@@ -7970,6 +8053,7 @@
 				C7B00B7E1C5F26050010F93B /* MWGridCell.m in Sources */,
 				C7B00BA01C5F26050010F93B /* PSTGridLayoutItem.m in Sources */,
 				C758EE431C743E7A0081FFE1 /* HCInviteFamilyViewController.m in Sources */,
+				EAFEC9841D116C7E00C26EC6 /* ChineseString.m in Sources */,
 				0A5491311C2BC32D0085F50D /* ZXCapture.m in Sources */,
 				C78D7B251C5F28F700622CE2 /* HCPromisedCommentInfo.m in Sources */,
 				C7B00B9D1C5F26050010F93B /* PSTCollectionViewLayout.m in Sources */,
@@ -8084,6 +8168,7 @@
 				C7B00B411C5F26050010F93B /* ConversationListController.m in Sources */,
 				C7B00B6E1C5F26050010F93B /* EMSearchDisplayController.m in Sources */,
 				0A2B47601C7F12C800AAA157 /* HCHomeLikeCountApi.m in Sources */,
+				EAFEC9771D1169DB00C26EC6 /* HCCreateAllFriends.m in Sources */,
 				0A8BE3B51C7E8D7C008E8100 /* ButtonView.m in Sources */,
 				0A5491331C2BC32D0085F50D /* ZXImage.m in Sources */,
 				0A54916A1C2BC32D0085F50D /* ZXDataMatrixWriter.m in Sources */,
@@ -8196,6 +8281,7 @@
 				8D15E5611CBB726600FA3B11 /* HCTagEditApi.m in Sources */,
 				0A5491B81C2BC32D0085F50D /* ZXPDF417BarcodeMatrix.m in Sources */,
 				0A54912E1C2BC32D0085F50D /* ZXVINResultParser.m in Sources */,
+				EAFEC95E1D10F18100C26EC6 /* HCTimePushListInfo.m in Sources */,
 				C7B00B451C5F26050010F93B /* ChatGroupDetailViewController.m in Sources */,
 				0A54918B1C2BC32D0085F50D /* ZXRSSFinderPattern.m in Sources */,
 				0A5491211C2BC32D0085F50D /* ZXSMSMMSResultParser.m in Sources */,
@@ -8268,6 +8354,7 @@
 				EAF6D7911CEC584B00368A9A /* HCCityInfo.m in Sources */,
 				0A5491D31C2BC32D0085F50D /* ZXQRCodeEncoder.m in Sources */,
 				C78D7B161C5F28F700622CE2 /* HCCaseDetailViewController.m in Sources */,
+				EAFEC96A1D11694600C26EC6 /* HCDeleteFamilyMember.m in Sources */,
 				0A6B7F201BF1EB74008D54B3 /* HCAccountDBMgr.m in Sources */,
 				C7B00B9A1C5F26050010F93B /* PSTCollectionViewData.m in Sources */,
 				C7B00B471C5F26050010F93B /* ContactView.m in Sources */,
@@ -8285,6 +8372,7 @@
 				8D05FF741CB39EB1005AC51C /* HCMtalkShopingController.m in Sources */,
 				C7B00B6B1C5F26050010F93B /* BaseViewController.m in Sources */,
 				8D131A881C7D7C7F00F0D5A0 /* UIViewController+Alert.m in Sources */,
+				EAFEC97A1D116A0D00C26EC6 /* HCDeleteMember.m in Sources */,
 				0A5491011C2BC32D0085F50D /* ZXAztecDecoder.m in Sources */,
 				C7B00BAE1C5F26050010F93B /* EaseChineseToPinyin.m in Sources */,
 				0A5491BE1C2BC32D0085F50D /* ZXPDF417Reader.m in Sources */,
@@ -8338,6 +8426,7 @@
 				8D134CDC1CCDE6AB001B77EE /* HCPromisedSubCommentCell.m in Sources */,
 				C752A87C1CB4FF22006719F1 /* NHCUserHeathApi.m in Sources */,
 				0A2B47781C7F12C800AAA157 /* HCPromisedAddCallMessageAPI.m in Sources */,
+				EAFEC9611D10F4F800C26EC6 /* HCTimePushListCell.m in Sources */,
 				C7692F581C3A4B2200582A10 /* MDCSpotlightView.m in Sources */,
 				0A5491881C2BC32D0085F50D /* ZXAbstractRSSReader.m in Sources */,
 				C7B00B7A1C5F26050010F93B /* EMVoiceConverter.mm in Sources */,
@@ -8567,6 +8656,7 @@
 				C78D7AEB1C5F28F700622CE2 /* HCAddFriendlistTableViewCell.m in Sources */,
 				0A8BE3BA1C7E8D7C008E8100 /* HCinviteFamilyTableViewCell.m in Sources */,
 				8D0AE5B41CBDE5CA00E97D7D /* HCTagMangerMangerController.m in Sources */,
+				EAEC11B91D10062A0059E730 /* HCDetectNetworkStatusMgr.m in Sources */,
 				0A5491AC1C2BC32D0085F50D /* ZXPDF417BarcodeValue.m in Sources */,
 				0A54919F1C2BC32D0085F50D /* ZXOneDReader.m in Sources */,
 				0A2B47711C7F12C800AAA157 /* HCApplyReissueResonApi.m in Sources */,
@@ -8581,6 +8671,7 @@
 				C7BBF0211CBE1F9E00E9691C /* NHCHomeCommentListApi.m in Sources */,
 				0A6B7F181BF1EB74008D54B3 /* NSString+MD5.m in Sources */,
 				0A5491C31C2BC32D0085F50D /* ZXQRCodeDataMask.m in Sources */,
+				EAFEC9761D1169DB00C26EC6 /* HCCreateAllFamily.m in Sources */,
 				0A5491A91C2BC32D0085F50D /* ZXModulusPoly.m in Sources */,
 				8D9790351CB3A00B00FE3C12 /* HCBuyRecordInfo.m in Sources */,
 				0A5491751C2BC32D0085F50D /* ZXAI01393xDecoder.m in Sources */,
@@ -8603,6 +8694,7 @@
 				C7B00BA11C5F26050010F93B /* PSTGridLayoutRow.m in Sources */,
 				0A2B46E81C7F12AF00AAA157 /* HCShareViewController.m in Sources */,
 				0A2B46F21C7F12AF00AAA157 /* HCFunctionTagView.m in Sources */,
+				EAFEC9701D11699900C26EC6 /* GetAllFamily.m in Sources */,
 				EAF55F331CEB52B50058DDB0 /* HCMissTagTableViewCell.m in Sources */,
 				C78D7D4E1C5F342700622CE2 /* HCPromisedDetailInfo.m in Sources */,
 				8D1590631CB67D3400B08BDC /* HCFamilyapplyList.m in Sources */,
@@ -8654,6 +8746,7 @@
 				8D97903B1CB3A00B00FE3C12 /* HCMyOrderFollowInfo.m in Sources */,
 				C704999A1CF6CFF2003DD1E7 /* HCFamilyUserInfoViewController.m in Sources */,
 				8D131A8F1C7D7C7F00F0D5A0 /* ZLPhotoAssets.m in Sources */,
+				EAFEC9671D11075800C26EC6 /* NHCHomeClickPushListApi.m in Sources */,
 				8D1075061CC91170008511ED /* HCPromiedTagWhenMissController.m in Sources */,
 				8D131A891C7D7C7F00F0D5A0 /* ViewController.m in Sources */,
 				C75EFD771CB939EF008C4C52 /* NHCHomeCommentsApi.m in Sources */,
@@ -8771,6 +8864,7 @@
 				C78D7B471C5F28F700622CE2 /* HCShowReasonTableViewCell.m in Sources */,
 				C762D1661CA53660006D2BB4 /* MyselfInfoModel.m in Sources */,
 				0A5491A41C2BC32D0085F50D /* ZXUPCEANExtensionSupport.m in Sources */,
+				EAFEC9711D11699900C26EC6 /* HCEditFamilyApi.m in Sources */,
 				8D11911D1C5F3ADA003505D3 /* HCMyNotificationCenterTableViewCell.m in Sources */,
 				0A5491581C2BC32D0085F50D /* ZXDataMatrixDataBlock.m in Sources */,
 			);

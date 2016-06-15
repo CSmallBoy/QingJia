@@ -7,7 +7,10 @@
 //
 
 #import "HCTableViewController.h"
-
+#import "HCFriendMessageInfo.h"
 @interface HCFamilyUserInfoViewController : HCTableViewController
+
+@property (nonatomic, retain) HCFriendMessageInfo *info;
+@property (nonatomic, copy) NSString *memberId;
 
 @end

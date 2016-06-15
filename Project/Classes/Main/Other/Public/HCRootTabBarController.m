@@ -30,6 +30,7 @@ static NSString *kGroupName = @"GroupName";
 
 @interface HCRootTabBarController ()<UIAlertViewDelegate, IChatManagerDelegate, EMCallManagerDelegate>
 {
+    NSInteger timePushNum;//时光推送数量
     NSInteger callPushNum;//呼应推送数量
 }
 
@@ -53,9 +54,12 @@ static NSString *kGroupName = @"GroupName";
     [self.tabBar insertSubview:redTabBarView atIndex:0];
     self.tabBar.layer.masksToBounds = YES; // 超出部分不显示
     self.tabBar.opaque = YES;
-    
-    callPushNum = 0;
+
+    [self initTabbarbadge];
+    //呼应推送角标增加处理
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jpushCallAnswer) name:@"jpushCallAnswer" object:nil];
+    //时光推送
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jpushTime) name:@"time" object:nil];
     
     [self setupEase];
 }
@@ -113,10 +117,10 @@ static NSString *kGroupName = @"GroupName";
     UINavigationController *navVc = [[class  alloc] initWithRootViewController:rootVC];
     navVc.tabBarItem.image = OrigIMG(name);
     //这个是所有的
-    if ([rootViewControllerClass isSubclassOfClass:[HCHomeViewController class]])
-    {
+//    if ([rootViewControllerClass isSubclassOfClass:[HCHomeViewController class]])
+//    {
 //        navVc.tabBarItem.badgeValue = @"10";
-    }
+//    }
     NSString *selectedImage = [NSString stringWithFormat:@"%@_sel",name];
     navVc.tabBarItem.selectedImage = OrigIMG(selectedImage);
     // 设置字体颜色
@@ -892,18 +896,83 @@ static NSString *kGroupName = @"GroupName";
     }
 }
 
+#pragma mark - 初始化推送角标
+- (void)initTabbarbadge
+{
+    timePushNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Time_Badge"] integerValue];
+    callPushNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Call_Badge"] integerValue];
+    if (timePushNum == 0)
+    {
+        for (UINavigationController *VC in self.viewControllers)
+        {
+            if ([VC.topViewController isKindOfClass:[HCHomeViewController class]])
+            {
+                VC.tabBarItem.badgeValue = nil;
+            }
+        }
+    }
+    else
+    {
+        for (UINavigationController *VC in self.viewControllers)
+        {
+            if ([VC.topViewController isKindOfClass:[HCHomeViewController class]])
+            {
+                VC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", timePushNum];
+                
+            }
+        }
+    }
+    
+    if (callPushNum == 0)
+    {
+        for (UINavigationController *VC in self.viewControllers)
+        {
+            if ([VC.topViewController isKindOfClass:[HCPromisedViewController class]])
+            {
+                VC.tabBarItem.badgeValue = nil;
+            }
+        }
+    }
+    else
+    {
+        for (UINavigationController *VC in self.viewControllers)
+        {
+            if ([VC.topViewController isKindOfClass:[HCPromisedViewController class]])
+            {
+                VC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", callPushNum];
+            }
+        }
+    }
 
+}
 
 #pragma mark - 推送消息角标处理
 
 - (void)jpushCallAnswer
 {
+    callPushNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Call_Badge"] integerValue];
     callPushNum++;
+    [[NSUserDefaults standardUserDefaults] setInteger:callPushNum forKey:@"Call_Badge"];
     for (UINavigationController *VC in self.viewControllers)
     {
         if ([VC.topViewController isKindOfClass:[HCPromisedViewController class]])
         {
             VC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", callPushNum];
+        }
+    }
+}
+
+- (void)jpushTime
+{
+    timePushNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Time_Badge"] integerValue];
+    timePushNum++;
+    [[NSUserDefaults standardUserDefaults] setInteger:timePushNum forKey:@"Time_Badge"];
+    for (UINavigationController *VC in self.viewControllers)
+    {
+        if ([VC.topViewController isKindOfClass:[HCHomeViewController class]])
+        {
+            VC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", timePushNum];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"timePushUI" object:nil];
         }
     }
 }

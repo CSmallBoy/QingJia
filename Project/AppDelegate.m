@@ -36,7 +36,7 @@
 #import "HCGetCityInfoApi.h"
 #import "HCGetCityInfoVersionApi.h"
 
-@interface AppDelegate ()<AMapLocationManagerDelegate>
+@interface AppDelegate ()<AMapLocationManagerDelegate,UITabBarControllerDelegate>
 
 
 @property (nonatomic, strong) AMapLocationManager *locationManager;
@@ -110,6 +110,23 @@
     //检测省市县三级联动数据版本
     [self getCityVersionFromService];
     
+    
+    //存储推送角标
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"App_First_Start"])//如果应用是第一次启动
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"App_First_Start"];
+        //时光的角标
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"Time_Badge"];
+        //呼应的角标
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"Call_Badge"];
+        //callID推送
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        NSArray * array = [NSArray arrayWithArray:mutableArray];
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        [user setObject:array forKey:@"callIdArr"];
+    }
+    
+    
     return YES;
 }
 
@@ -178,6 +195,7 @@
     }else
     {
         _mainController = [[HCRootTabBarController alloc] init];
+        _mainController.delegate = self;
         
         HCLeftViewController *left = [[HCLeftViewController alloc] init];
         
@@ -238,11 +256,18 @@ didFinishLaunchingWithOptions:launchOptions
     {
         //通过推送取到callId,以便之后的操作
         NSString *callId = [[[dic objectForKey:@"Data"] objectForKey:@"jpush"] objectForKey:@"id"];
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *mutableArray = [NSMutableArray
+                                        arrayWithArray:[user objectForKey:@"callIdArr"]];
+        [mutableArray addObject:callId];
+        NSArray * array = [NSArray arrayWithArray:mutableArray];
+        [user setObject:array forKey:@"callIdArr"];
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jpushCallAnswer" object:nil];
     }
     else if ([type isEqualToString:@"6"])//时光评论或点赞
     {
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"time" object:nil userInfo:userInfo];
     }
     else if ([type isEqualToString:@"7"])//呼应推送(发现线索及扫描发呼的标签，都会推送到呼发起者和所有线索提供者)
     {
@@ -260,12 +285,9 @@ didFinishLaunchingWithOptions:launchOptions
     NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     NSData *data = [alert dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//    NSString *type = [[[dic objectForKey:@"Data"] objectForKey:@"jpush"] objectForKey:@"type"];
-//    if ([type isEqualToString:@"4"])
-//    {
-        //利用环信监听登录状态的方法,处理推送
-        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
-//    }
+    //利用环信监听登录状态的方法,处理推送
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+
     NSLog(@"%@", userInfo);
     
     
@@ -419,6 +441,17 @@ didFinishLaunchingWithOptions:launchOptions
         }
     }];
 }
+
+//#pragma mark - tabbarDelegate
+//
+//- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+//{
+//    if ([viewController.tabBarItem.title isEqualToString:@"呼·应"])
+//    {
+//        viewController.tabBarItem.badgeValue = nil;
+//    }
+//    return YES;
+//}
 
 
 @end

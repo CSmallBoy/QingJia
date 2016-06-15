@@ -44,33 +44,11 @@
 @implementation HCUserMessageViewController
 - (void)viewWillAppear:(BOOL)animated{
     _dict = [readUserInfo getReadDic];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.navigationBar.hidden = YES;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headbuttonImage) name:@"changeUserPhoto" object:nil];
-    //先判断本地有没有 没有 则是没有上传  自己手机上有没有
-    if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
-        if (IsEmpty(_dict[@"PhotoStr"])) {
-            [_headButton setBackgroundImage:OrigIMG(@"mySelfHead") forState:UIControlStateNormal];
-            
-        }else{
-            [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
-           
-            _image_str = _dict[@"PhotoStr"];
-        }
-    }else{
-        //已经编辑过的
-        if (IsEmpty(_dict[@"PhotoStr"])) {
-            //没有二次以上的编辑
-            if (IsEmpty(_dict[@"UserInf"][@"imageName"])) {
-                
-            }else{
-                [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
-                _image_str = _dict[@"UserInf"][@"imageName"];
-                            }
-        }else{
-            [_headButton sd_setBackgroundImageWithURL:[readUserInfo url:_dict[@"PhotoStr"] :kkUser] forState:UIControlStateNormal];
-            _image_str = _dict[@"PhotoStr"];
-            
-        }
-    }
     //获取健康 信息
     NHCGetUserHeathApi *API= [[NHCGetUserHeathApi alloc]init];
     [API startRequest:^(HCRequestStatus requestStatus, NSString *message, id responseObject) {
@@ -93,7 +71,16 @@
 //头像
 -(void)headbuttonImage{
     
-    NSString *str_url = [readUserInfo getReadDic][@"PhotoStr"];
+    NSString *str_url;
+    if (_dict[@"imageName"]) {
+        
+        str_url = _dict[@"imageName"];
+    }
+    else
+    {
+        str_url = _dict[@"UserInf"][@"imageName"];
+    }
+    
     
     [_headButton sd_setImageWithURL:[readUserInfo url:str_url :kkUser] forState:UIControlStateNormal];
     _image_str = str_url;
@@ -110,6 +97,7 @@
     [self.tableView registerClass:[HCUserMessageTableViewCell class] forCellReuseIdentifier:HCUserCell];
 }
 
+
 #pragma mark - UITableView
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,152 +105,125 @@
     HCUserMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HCUserCell];
     cell.indexPath = indexPath;
     //    当你上传成功后   服务器没有给返回值智能本地记录上传
-    if (IsEmpty(_dict[@"company"])) {
-        //有两种可能  一已经完善过  另一种没有完善
-        if (IsEmpty(_dict[@"UserInf"][@"company"])) {
-            //此种情况下 是没有 完善信息  不操作
-            if (indexPath.section==0) {
-                switch (indexPath.row) {
-                    case 0:{
-                        cell.textField.text = _dict[@"UserInf"][@"trueName"];
-                        _ture_name = cell.textField.text;
-                        
-                        
-                    }
-                        break;
-                    case 2:{
-                        cell.textField.text = _dict[@"UserInf"][@"sex"];
-                        _sex = cell.textField.text;
-                    }
-                        
-                        break;
-                    case 4:{
-                        cell.textField.text = _dict[@"UserInf"][@"chineseZodiac"];
-                        _shuxiang = cell.textField.text;
-                    }
-                        
-                        break;
-                    case 3:{
-                        cell.textField.text = _dict[@"UserInf"][@"birthDay"];
-                        label_age.text = [readUserInfo ageWith:cell.textField.text];
-                        _birthday = cell.textField.text;
-                    }
-                        break;
-                    default:
-                        break;
-                }
+    
+    NSLog(@"%@",_dict);
+    
+    switch (indexPath.row) {
+        case 0:
+        {
+            cell.textField.text = _dict[@"UserInf"][@"trueName"];
+            _ture_name = cell.textField.text;
+            
+        }
+            break;
+            
+        case 1:
+        {
+            cell.textField.text = _dict[@"UserInf"][@"userId"];
+        }
+            break;
+        case 2:
+        {
+            if (_dict[@"userDescription"]) {
+                
+                cell.textField.text = _dict[@"userDescription"];
+                _headimage = _dict[@"imageName"];
+            }
+            else
+            {
+                cell.textField.text = _dict[@"UserInf"][@"userDescription"];
+                _headimage = _dict[@"UserInf"][@"imageName"];
                 
             }
-        }else{
-            //此种情况是完善过后  的赋值
-            switch (indexPath.row) {
-                case 0:
-                {
-                    cell.textField.text = _dict[@"UserInf"][@"trueName"];
-                    _ture_name = cell.textField.text;
-                    _headimage = _dict[@"UserInf"][@"imageName"];
-                }
-                    break;
-                case 2:
-                {
-                    cell.textField.text = _dict[@"UserInf"][@"sex"];
-                    _sex = cell.textField.text;
-                    
-                }
-                    break;
-                case 3:
-                {
-                    cell.textField.text = _dict[@"UserInf"][@"birthDay"];
-                    label_age.text = [readUserInfo ageWith:cell.textField.text];
-                    _birthday = cell.textField.text;
-                }
-                    break;
-                case 4:
-                {
-                    cell.textField.text = _dict[@"UserInf"][@"chineseZodiac"];
-                    _shuxiang = cell.textField.text;
-                }
-                    break;
-                case 5:
-                {
-                    cell.textField.text = _dict[@"UserInf"][@"homeAddress"];
-                    _adress = cell.textField.text;
-                }
-                    break;
-                case 6:
-                {
-                    cell.textField.text = _dict[@"UserInf"][@"company"];
-                    _copany = cell.textField.text;
-                    
-                }
-                    break;
-                case 7:
-                {
-                    cell.textField.text = _dict[@"UserInf"][@"career"];
-                    _professional = cell.textField.text;
-                    
-                }
-                    break;
-                default:
-                    break;
+            
+            
+        }
+            break;
+        case 3:
+        {
+            cell.textField.text = _dict[@"UserInf"][@"sex"];
+            _sex = cell.textField.text;
+        }
+            break;
+        case 4:
+        {
+            if (_dict[@"birthDay"]) {
+                cell.textField.text = _dict[@"birthDay"];
+            }
+            else
+            {
+                cell.textField.text = _dict[@"UserInf"][@"birthDay"];
+            }
+            
+            
+            _birthday = cell.textField.text;
+            
+            //                    cell.textField.text = _dict[@"UserInf"][@"chineseZodiac"];
+            //                    _shuxiang = cell.textField.text;
+        }
+            break;
+        case 5:
+        {
+            if (_dict[@"birthDay"]) {
+                
+                cell.textField.text = [readUserInfo ageWith:_dict[@"birthDay"]];
+                
+            }
+            else
+            {
+                cell.textField.text = [readUserInfo ageWith:_dict[@"UserInf"][@"birthDay"]];
+            }
+            
+            _adress = cell.textField.text;
+        }
+            break;
+        case 6:
+        {
+            if (_dict[@"chineseZodiac"]) {
+                cell.textField.text = _dict[@"chineseZodiac"];
+            }
+            else
+            {
+                cell.textField.text = _dict[@"UserInf"][@"chineseZodiac"];
             }
             
         }
-        
-    }else{
-        switch (indexPath.row) {
-            case 0:
-            {
-                cell.textField.text = _dict[@"UserInf"][@"trueName"];
-                _ture_name = cell.textField.text;
-                _headimage = _dict[@"PhotoStr"];
-            }
-                break;
-            case 2:
-            {
-                cell.textField.text = _dict[@"UserInf"][@"sex"];
-                _sex = cell.textField.text;
+            break;
+        case 7:
+        {
+            if (_dict[@"career"]) {
+                cell.textField.text = _dict[@"career"];
                 
             }
-                break;
-            case 3:
+            else
             {
-                cell.textField.text = _dict[@"birthday"];
-                label_age.text = [readUserInfo ageWith:cell.textField.text];
-                _birthday = cell.textField.text;
+                cell.textField.text = _dict[@"UserInf"][@"company"];
             }
-                break;
-            case 4:
-            {
-                cell.textField.text = _dict[@"chineseZodiac"];
-                _shuxiang = cell.textField.text;
-                
-            }
-                break;
-            case 5:
-            {
-                cell.textField.text = _dict[@"adress"];
-                _adress = cell.textField.text;
-            }
-                break;
-            case 6:
-            {
-                cell.textField.text = _dict[@"company"];
-                _copany = cell.textField.text;
-                
-            }
-                break;
-            case 7:
-            {
-                cell.textField.text = _dict[@"professional"];
-                _professional = cell.textField.text;
-            }
-                break;
-            default:
-                break;
+            
+            _professional = cell.textField.text;
+            
         }
-        
+            break;
+        case 8:
+        {
+            if (_dict[@"adress"]) {
+                cell.textField.text = _dict[@"adress"];
+            }
+            else
+            {
+                cell.textField.text = _dict[@"UserInf"][@"homeAddress"];
+            }
+            
+            
+        }
+            break;
+        default:
+            break;
     }
+    
+    
+    
+    
     return cell;
 }
 
@@ -282,8 +243,9 @@
         //4.28日
         //VC.head_image = _dict[@"UserInf"][@"imageName"];
         VC.head_image = _headimage;
+        self.navigationController.navigationBar.hidden = NO;
         [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.row==8){
+    }else if (indexPath.row==9){
         HCUserHeathViewController * Vc= [[HCUserHeathViewController alloc]init];
         
         if (IsEmpty(arr[0])) {
@@ -291,7 +253,6 @@
         }else{
             Vc.arr_heath = arr;
         }
-        
         [self.navigationController pushViewController:Vc animated:YES];
         
     }
@@ -332,6 +293,7 @@
     editVC.copany = _copany;
     editVC.professional = _professional;
     editVC.headimage = _headimage;
+    self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:editVC animated:YES];
     
 }
@@ -364,16 +326,8 @@
     [self.navigationController pushViewController:headImage animated:YES];
 }
 
-#pragma mark - setter
 
-- (UIBarButtonItem *)rightItem
-{
-    if (!_rightItem)
-    {
-        _rightItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(handleRightItem)];
-    }
-    return _rightItem;
-}
+
 
 - (HCPickerView *)datePicker
 {
@@ -391,30 +345,66 @@
 {
     if (!_headBackground)
     {
-        _headBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), WIDTH(self.view)*0.45)];
-        _headBackground.image = OrigIMG(@"2Dbarcode_message_Background");
+        _headBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), WIDTH(self.view)*0.65)];
+        _headBackground.image = OrigIMG(@"personinfo_background");
         _headBackground.userInteractionEnabled = YES;
-        label_age = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50 , _headBackground.frame.size.height*0.8, 40, 20)];
         //label_age.text = @"24岁";
         [_headBackground addSubview:label_age];
         [_headBackground addSubview:self.headButton];
         [_headBackground addSubview:self.nickName];
         [_headBackground addSubview:self.markLabel];
+        
+        UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [back_button setFrame:CGRectMake(10, 30, 30, 30)];
+        [back_button setImage:[UIImage imageNamed:@"barItem-back"] forState:UIControlStateNormal];
+        [back_button addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:back_button];
+        
+        UILabel *label = [[UILabel alloc]init];
+        label.frame = CGRectMake(0, 30, SCREEN_WIDTH, 30);
+        label.text = @"个人信息";
+        label.center = CGPointMake(SCREEN_WIDTH/2, label.center.y);
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        [self.view addSubview:label];
+        
+        UIButton *deit = [UIButton buttonWithType:UIButtonTypeCustom];
+        [deit setFrame:CGRectMake(SCREEN_WIDTH - 10 - 60, 30, 60, 30)];
+        [deit setTitle:@"编辑" forState:UIControlStateNormal];
+        [deit addTarget:self action:@selector(handleRightItem) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:deit];
     }
     return _headBackground;
 }
 
+-(void)backClick
+{
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 - (UIButton *)headButton
 {
     if (!_headButton)
     {
+        _dict = [readUserInfo getReadDic];
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _headButton.frame = CGRectMake(0, 30, WIDTH(self.view)*0.2, WIDTH(self.view)*0.2);
+        _headButton.frame = CGRectMake(0, 80, WIDTH(self.view)*0.4, WIDTH(self.view)*0.4);
         _headButton.center = CGPointMake(self.view.center.x, _headButton.center.y);
         
-        
+        if (_dict[@"imageName"]) {
+            [_headButton sd_setImageWithURL:[readUserInfo url:_dict[@"imageName"] :kkUser] forState:UIControlStateNormal];
+            
+        }
+        else
+        {
+            [_headButton sd_setImageWithURL:[readUserInfo url:_dict[@"UserInf"][@"imageName"] :kkUser] forState:UIControlStateNormal];
+            
+        }
         [_headButton addTarget:self action:@selector(handleHeadButton) forControlEvents:UIControlEventTouchUpInside];
         ViewRadius(_headButton, WIDTH(_headButton)*0.5);
+        
+        
     }
     return _headButton;
 }
@@ -434,7 +424,7 @@
         _nickName.textAlignment = NSTextAlignmentCenter;
         _nickName.textColor = [UIColor whiteColor];
     }
-    return _nickName;
+    return nil;
 }
 
 

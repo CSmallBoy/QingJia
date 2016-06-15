@@ -45,7 +45,7 @@
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView addSubview:self.family.view];
     [self.mainScrollView addSubview:self.familyGroup.view];
-    self.tabBarItem.badgeValue = @"3";
+//    self.tabBarItem.badgeValue = @"3";
     //测试城市
 //    HCGetCityInfoApi *api = [[HCGetCityInfoApi alloc]init];
 //    [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {

@@ -82,7 +82,8 @@
     self.tableView.mj_footer = footer;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHomeData) name:@"刷新数据所有" object:nil];
     AccordingTo = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shuxin) name:@"time" object:nil];
+    //推送消息显示
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shuxin) name:@"timePushUI" object:nil];
 
 }
 -(void)shuxin{
@@ -172,7 +173,8 @@
         //根据推送  显示   隐藏
         view_notification.backgroundColor = [UIColor whiteColor];
         HCHomeNotiButton *button = [[HCHomeNotiButton alloc]init];
-        button.message_num.text = @"10条新消息";
+        NSInteger messageNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Time_Badge"] integerValue];
+        button.message_num.text = [NSString stringWithFormat:@"%ld条新消息", messageNum];
         button.headimage.image = IMG(@"1");
         button.backgroundColor = [UIColor darkGrayColor];
         ViewRadius(button, 5);
@@ -190,7 +192,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section==0) {
-        if (AccordingTo) {
+        NSInteger messageNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Time_Badge"] integerValue];
+        if (messageNum == 0) {
             return 1;
         }else{
             return 50;
