@@ -920,39 +920,39 @@ static NSString * const reuseIdentifier = @"FriendCell";
 
 -(void)headPress:(UIButton *)btn
 {
-    if (isDelete == NO) {
-        
-        NSLog(@"%@",self.dataSource);
-        
-        HCFriendMessageInfo *info=self.dataSource[btn.tag - 12315];
-        HCFamilyUserInfoViewController *vc = [[HCFamilyUserInfoViewController alloc]init];
-        // vc.info = info;
-        vc.memberId = info.userId;
-        vc.hidesBottomBarWhenPushed  = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else
-    {
-        [self showHint:@"删除好友"];
-        
-        HCFriendMessageInfo *info=self.dataSource[btn.tag - 12315];
-        HCDeleteFamilyMember *delete = [[HCDeleteFamilyMember alloc]init];
-        delete.memberId = info.userId;
-        [delete startRequest:^(HCRequestStatus requestStatus, NSString *message, id response) {
-            
-            NSLog(@"%@",response);
-            if (requestStatus == HCRequestStatusSuccess) {
-                
-                [self showHint:@"删除成功"];
-                [self.tableView reloadData];
-            }
-            else
-            {
-                [self showHint:@"对不起,你没有这个权限"];
-            }
-        }];
-        
-    }
+//    if (isDelete == NO) {
+//        
+//        NSLog(@"%@",self.dataSource);
+//        
+//        HCFriendMessageInfo *info=self.dataSource[btn.tag - 12315];
+//        HCFamilyUserInfoViewController *vc = [[HCFamilyUserInfoViewController alloc]init];
+//        // vc.info = info;
+//        vc.memberId = info.userId;
+//        vc.hidesBottomBarWhenPushed  = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+//    else
+//    {
+//        [self showHint:@"删除好友"];
+//        
+//        HCFriendMessageInfo *info=self.dataSource[btn.tag - 12315];
+//        HCDeleteFamilyMember *delete = [[HCDeleteFamilyMember alloc]init];
+//        delete.memberId = info.userId;
+//        [delete startRequest:^(HCRequestStatus requestStatus, NSString *message, id response) {
+//            
+//            NSLog(@"%@",response);
+//            if (requestStatus == HCRequestStatusSuccess) {
+//                
+//                [self showHint:@"删除成功"];
+//                [self.tableView reloadData];
+//            }
+//            else
+//            {
+//                [self showHint:@"对不起,你没有这个权限"];
+//            }
+//        }];
+//        
+//    }
     
 }
 
