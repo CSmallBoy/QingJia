@@ -49,7 +49,6 @@
     headImage = [[UIImageView alloc]init];
     headImage.frame = CGRectMake(0, 80, WIDTH(self.view)*0.4, WIDTH(self.view)*0.4);
     ViewRadius(headImage, WIDTH(headImage)/2);
-    headImage.backgroundColor = [UIColor redColor];
     headImage.center = CGPointMake(SCREEN_WIDTH/2, headImage.center.y);
     [self.view addSubview:headImage];
     

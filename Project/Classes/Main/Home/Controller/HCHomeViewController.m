@@ -146,7 +146,7 @@
         _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.view), HEIGHT(self.view)-44)];
         //_mainScrollView.contentSize = CGSizeMake(WIDTH(self.view)*2, 0);
         _mainScrollView.contentSize = CGSizeMake(WIDTH(self.view), 0);
-        _mainScrollView.backgroundColor = [UIColor greenColor];
+       // _mainScrollView.backgroundColor = [UIColor greenColor];
         _mainScrollView.delegate = self;
         _mainScrollView.pagingEnabled = YES;
         _mainScrollView.bounces = NO;

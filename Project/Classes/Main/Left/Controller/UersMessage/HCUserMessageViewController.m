@@ -113,7 +113,7 @@
         {
             cell.textField.text = _dict[@"UserInf"][@"trueName"];
             _ture_name = cell.textField.text;
-            
+        
         }
             break;
             
@@ -142,7 +142,6 @@
         case 3:
         {
             cell.textField.text = _dict[@"UserInf"][@"sex"];
-            _sex = cell.textField.text;
         }
             break;
         case 4:

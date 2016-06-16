@@ -11,7 +11,7 @@
 #import "HCFeedbackViewController.h"
 #import "HCFeedbackView.h"
 #import "HCAboutMTalkViewController.h"
-
+#import "HCChangeBoundleTelNumberControll.h"
 @interface HCSoftwareSettingViewController ()
 
 @property (nonatomic, strong) NSDictionary *imageNameDic;
@@ -39,13 +39,17 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sofeware"];
     
     NSArray *imageNameArr = self.imageNameDic[[NSString stringWithFormat:@"%@", @(indexPath.section+1)]];
-    cell.imageView.image = OrigIMG(imageNameArr[indexPath.row]);
-    
     NSArray *titleArr = self.titleDic[[NSString stringWithFormat:@"%@", @(indexPath.section+1)]];
-    cell.textLabel.text = titleArr[indexPath.row];
+    
     cell.textLabel.font = [UIFont systemFontOfSize:16];
     
     cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    if (indexPath.section <2) {
+        cell.imageView.image = OrigIMG(imageNameArr[indexPath.row]);
+        cell.textLabel.text = titleArr[indexPath.row];
+    }
+    
     if (indexPath.section == 0)
     {
         if (indexPath.row == 0 )
@@ -59,6 +63,21 @@
             cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
+    }
+    if (indexPath.section == 2) {
+        
+        cell.textLabel.text = @"绑定手机号";
+        UILabel *label = [[UILabel alloc]init];
+        label.frame = CGRectMake(100, 0, SCREEN_WIDTH, 50);
+        NSDictionary *dic= [readUserInfo getReadDic];
+        label.text = dic[@"UserInf"][@"phoneNo"];;
+        [cell.contentView addSubview:label];
+        
+        
+        UILabel *reWrite = [[UILabel alloc]init];
+        reWrite.frame = CGRectMake(SCREEN_WIDTH - 50, 0, 50, 50);
+        reWrite.text = @"修改";
+        [cell.contentView addSubview:reWrite];
     }
     return cell;
 }
@@ -109,6 +128,12 @@
         [self.view addSubview:_whiteView];
     }
     
+    if (indexPath.section == 2) {
+        HCChangeBoundleTelNumberControll *changeVC = [[HCChangeBoundleTelNumberControll alloc]init];
+        
+        [self.navigationController pushViewController:changeVC animated:YES];
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -128,13 +153,20 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *array = self.imageNameDic[[NSString stringWithFormat:@"%@", @(section+1)]];
-    return array.count;
+    
+    if (section <2) {
+        return array.count;
+    }
+    else{
+        
+        return 1;
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

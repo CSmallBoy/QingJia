@@ -131,31 +131,57 @@
         self.indexArray = [ChineseString IndexArray:arr];
         self.letterResultArr = [ChineseString LetterSortArray:arr];
         NSLog(@"%@",self.letterResultArr);
-        if (self.letterResultArr.count !=0 &&friendsArr.count !=0) {
+//        if (self.letterResultArr.count !=0 &&friendsArr.count !=0) {
+//            
+//            for (int i =0; i< self.letterResultArr.count; i++) {
+//                
+//                
+//                NSArray *array = self.letterResultArr[i];
+//                for (int k = 0; k<array.count; k++) {
+//                    
+//                    NSMutableArray *a = [[NSMutableArray alloc]init];
+//                    for (int j=0; j<friendsArr.count; j++) {
+//                        
+//                        if ([array[k] isEqualToString:[friendsArr[j] objectForKey:@"nickName"]]) {
+//                            
+//                            [a addObject:friendsArr[i]];
+//                        }
+//                        
+//                    }
+//                    [_imageNameArr addObject:a];
+//                }
+//                
+//            }
+//            
+//        }
+        
+        
+        
+        for (int i =0; i< self.letterResultArr.count; i++) {
             
-            for (int i =0; i< self.letterResultArr.count; i++) {
+            NSArray *arr = self.letterResultArr[i];
+             NSMutableArray *array = [[NSMutableArray alloc]init];
+            for (int j = 0; j<arr.count; j++) {
                 
+                NSLog(@"%@",arr[j]);
+                //[_imageNameArr addObject:arr[j]];
                 
-                NSArray *array = self.letterResultArr[i];
-                for (int k = 0; k<array.count; k++) {
+               
+                for (int k = 0; k<friendsArr.count; k++) {
                     
-                    NSMutableArray *a = [[NSMutableArray alloc]init];
-                    for (int j=0; j<friendsArr.count; j++) {
+                    NSString *nickName = [friendsArr[k]objectForKey:@"nickName"];
+                    if ([nickName isEqualToString:arr[j]]) {
                         
-                        if ([array[k] isEqualToString:[friendsArr[j] objectForKey:@"nickName"]]) {
-                            
-                            [a addObject:friendsArr[i]];
-                        }
-                        
+                        NSLog(@"%@",nickName);
+                        [array addObject:friendsArr[k]];
                     }
-                    [_imageNameArr addObject:a];
+                    
                 }
                 
+               
             }
-            
+             [_imageNameArr addObject:array];//
         }
-        
-        
         
         NSLog(@"------------%@",_imageNameArr);
         

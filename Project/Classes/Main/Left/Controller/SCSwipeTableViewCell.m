@@ -111,7 +111,7 @@
 - (UIView *)makeAlertView{
     
     UIView *view_grond = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH *0.15, SCREEN_HEIGHT *0.3, SCREEN_WIDTH *0.7, 120)];
-    view_grond.backgroundColor = [UIColor greenColor];
+   // view_grond.backgroundColor = [UIColor greenColor];
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, view_grond.bounds.size.width, 30)];
     label.text = @"请选择与管理员的关系";
     UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(15, 35, view_grond.bounds.size.width-30, 30)];

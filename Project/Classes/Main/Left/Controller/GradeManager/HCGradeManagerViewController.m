@@ -374,7 +374,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
                     [btn addTarget: self action:@selector(clickHead:) forControlEvents:UIControlEventTouchUpInside];
                     btn.tag = 666 + i;
                     
-                    scrollView.contentSize = CGSizeMake(10000, 100);
+                    scrollView.contentSize = CGSizeMake(memberarr.count *100, 100);
                     
                     UIImageView *headImage = [[UIImageView alloc]init];
                     headImage.frame = CGRectMake(i * 100, 0, SCREEN_WIDTH*0.17, SCREEN_WIDTH*0.17);
@@ -415,7 +415,7 @@ static NSString * const reuseIdentifier = @"FriendCell";
                     [scrollView addSubview:btn];
                     btn.tag = 666 + (indexPath.section * indexPath.row +1);
                     [btn addTarget: self action:@selector(clickHead:) forControlEvents:UIControlEventTouchUpInside];
-                    scrollView.contentSize = CGSizeMake(10000, 100);
+                    scrollView.contentSize = CGSizeMake(memberarr.count*100, 100);
                     
                     UIImageView *headImage = [[UIImageView alloc]init];
                     headImage.frame = CGRectMake(i * 100, 0, SCREEN_WIDTH*0.17, SCREEN_WIDTH*0.17);
@@ -920,39 +920,39 @@ static NSString * const reuseIdentifier = @"FriendCell";
 
 -(void)headPress:(UIButton *)btn
 {
-//    if (isDelete == NO) {
-//        
-//        NSLog(@"%@",self.dataSource);
-//        
-//        HCFriendMessageInfo *info=self.dataSource[btn.tag - 12315];
-//        HCFamilyUserInfoViewController *vc = [[HCFamilyUserInfoViewController alloc]init];
-//        // vc.info = info;
-//        vc.memberId = info.userId;
-//        vc.hidesBottomBarWhenPushed  = YES;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
-//    else
-//    {
-//        [self showHint:@"删除好友"];
-//        
-//        HCFriendMessageInfo *info=self.dataSource[btn.tag - 12315];
-//        HCDeleteFamilyMember *delete = [[HCDeleteFamilyMember alloc]init];
-//        delete.memberId = info.userId;
-//        [delete startRequest:^(HCRequestStatus requestStatus, NSString *message, id response) {
-//            
-//            NSLog(@"%@",response);
-//            if (requestStatus == HCRequestStatusSuccess) {
-//                
-//                [self showHint:@"删除成功"];
-//                [self.tableView reloadData];
-//            }
-//            else
-//            {
-//                [self showHint:@"对不起,你没有这个权限"];
-//            }
-//        }];
-//        
-//    }
+    if (isDelete == NO) {
+        
+        NSLog(@"%@",self.dataSource);
+        
+        HCFriendMessageInfo *info=self.dataSource[btn.tag - 12315];
+        HCFamilyUserInfoViewController *vc = [[HCFamilyUserInfoViewController alloc]init];
+        // vc.info = info;
+        vc.memberId = info.userId;
+        vc.hidesBottomBarWhenPushed  = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else
+    {
+        [self showHint:@"删除好友"];
+        
+        HCFriendMessageInfo *info=self.dataSource[btn.tag - 12315];
+        HCDeleteFamilyMember *delete = [[HCDeleteFamilyMember alloc]init];
+        delete.memberId = info.userId;
+        [delete startRequest:^(HCRequestStatus requestStatus, NSString *message, id response) {
+            
+            NSLog(@"%@",response);
+            if (requestStatus == HCRequestStatusSuccess) {
+                
+                [self showHint:@"删除成功"];
+                [self.tableView reloadData];
+            }
+            else
+            {
+                [self showHint:@"对不起,你没有这个权限"];
+            }
+        }];
+        
+    }
     
 }
 

@@ -52,11 +52,6 @@
     }
     self.textField.attributedPlaceholder = placeholder;
     
-    if (indexPath.row == 8)
-    {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
     if (indexPath.row == 1)
     {
         self.codeImgView.hidden = NO;
@@ -101,9 +96,9 @@
 {
     if (!_titleArr)
     {
-        _titleArr = @[@"姓名", @"名片", @"性别",
-                      @"生日", @"属相", @"住址",
-                      @"祖籍", @"签名", @"健康"];
+        _titleArr = @[@"姓名", @"ID", @"签名",
+                      @"性别", @"生日", @"年龄",
+                      @"属相", @"祖籍", @"住址"];
     }
     return _titleArr;
 }
