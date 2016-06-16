@@ -1109,6 +1109,7 @@
 		C7DB55C31CDAF58A0041B0C9 /* NHCRegionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB55C21CDAF58A0041B0C9 /* NHCRegionApi.m */; };
 		C7F370471CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */; };
 		C7F421081CD055A2006BDA77 /* NHCHomeTimeToComentApi.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */; };
+		CCE975611D1236C0007EA9CE /* HCMemberApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE975601D1236C0007EA9CE /* HCMemberApi.m */; };
 		CECDAAF2E5B39B0DC4150D1A /* libPods-钦家.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1654B84ADD13561D399A8A /* libPods-钦家.a */; };
 		EA009B6F1CF44D800063EC47 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA009B671CF448A20063EC47 /* MAMapKit.framework */; };
 		EA041F011CF6CACF001E05DF /* HCPeopleRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA041F001CF6CACF001E05DF /* HCPeopleRelationViewController.m */; };
@@ -3169,6 +3170,8 @@
 		C7F370461CCE3E6A00A0AE49 /* NHCHomeComentTwoListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeComentTwoListApi.m; sourceTree = "<group>"; };
 		C7F421061CD055A2006BDA77 /* NHCHomeTimeToComentApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCHomeTimeToComentApi.h; sourceTree = "<group>"; };
 		C7F421071CD055A2006BDA77 /* NHCHomeTimeToComentApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCHomeTimeToComentApi.m; sourceTree = "<group>"; };
+		CCE9755F1D1236C0007EA9CE /* HCMemberApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMemberApi.h; sourceTree = "<group>"; };
+		CCE975601D1236C0007EA9CE /* HCMemberApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMemberApi.m; sourceTree = "<group>"; };
 		D2D0F7C08CB3A13ED613B580 /* Pods-钦家.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-钦家.debug.xcconfig"; path = "Pods/Target Support Files/Pods-钦家/Pods-钦家.debug.xcconfig"; sourceTree = "<group>"; };
 		EA009B671CF448A20063EC47 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = Pods/AMap2DMap/MAMapKit.framework; sourceTree = "<group>"; };
 		EA041EFF1CF6CACF001E05DF /* HCPeopleRelationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPeopleRelationViewController.h; sourceTree = "<group>"; };
@@ -7486,6 +7489,8 @@
 		C7B90BDA1CA4E4710022C60C /* family */ = {
 			isa = PBXGroup;
 			children = (
+				CCE9755F1D1236C0007EA9CE /* HCMemberApi.h */,
+				CCE975601D1236C0007EA9CE /* HCMemberApi.m */,
 				C7B90BDB1CA4E4D80022C60C /* NHCCreatefamilyApi.h */,
 				C7B90BDC1CA4E4D80022C60C /* NHCCreatefamilyApi.m */,
 				C7B90BDE1CA4EB1B0022C60C /* NHCApplyToFamily.h */,
@@ -8401,6 +8406,7 @@
 				C7B00B951C5F26050010F93B /* UIView+EMWebCacheOperation.m in Sources */,
 				C78D7B4B1C5F28F700622CE2 /* HCApplyReturnDetailCell.m in Sources */,
 				8D131A951C7D7C7F00F0D5A0 /* ZLPhotoPickerBrowserViewController.m in Sources */,
+				CCE975611D1236C0007EA9CE /* HCMemberApi.m in Sources */,
 				C7B00BC31C5F26050010F93B /* EaseBubbleView+Video.m in Sources */,
 				0A2B47751C7F12C800AAA157 /* HCLogisticsApi.m in Sources */,
 				8D9790461CB3A03F00FE3C12 /* HCSureOrderCell.m in Sources */,
