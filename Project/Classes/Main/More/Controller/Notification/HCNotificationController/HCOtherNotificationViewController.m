@@ -416,10 +416,13 @@
 - (void)requestData
 {
     HCMessageCenterListApi *api = [[HCMessageCenterListApi alloc]init];
+    api.key = @"";
+    api._start = @"0";
+    api._count = @"20";
     
-    [[HCDetectNetworkStatusMgr shareManager] detectNetworkStatus:^(AFNetworkReachabilityStatus networkStatus) {
-        if (networkStatus == AFNetworkReachabilityStatusNotReachable)//没有网络的情况下
-        {
+//    [[HCDetectNetworkStatusMgr shareManager] detectNetworkStatus:^(AFNetworkReachabilityStatus networkStatus) {
+//        if (networkStatus == AFNetworkReachabilityStatusNotReachable)//没有网络的情况下
+//        {
             if ([api cacheJson])//如果有缓存就使用缓存
             {
                 [self.dataSource removeAllObjects];
@@ -439,12 +442,10 @@
                 
             }
             
-        }
-    }];
+//        }
+//    }];
     
-    api.key = @"";
-    api._start = @"0";
-    api._count = @"20";
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
     {
         if (requestStatus == HCRequestStatusSuccess)
