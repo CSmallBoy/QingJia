@@ -424,36 +424,31 @@
     api.key = @"";
     api._start = @"0";
     api._count = @"20";
-//    [[HCDetectNetworkStatusMgr shareManager] detectNetworkStatus:^(AFNetworkReachabilityStatus networkStatus) {
-//        if (networkStatus == AFNetworkReachabilityStatusNotReachable)//没有网络的情况下
-//        {
-            if ([api cacheJson])//如果有缓存就使用缓存
-            {
-                [self.dataSource removeAllObjects];
-                NSArray *array1 = [api cacheJson][@"Data"][@"rows1"];
-                for (NSDictionary *dic in array1) {
-                    HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
-                    [self.dataSource addObject:info];
-                }
-                [self.messageArr removeAllObjects];
-                NSArray *array2 = [api cacheJson][@"Data"][@"rows2"];
-                for (NSDictionary *dic in array2) {
-                    HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
-                    [self.messageArr addObject:info];
-                }
-                [self.myTableView.mj_header endRefreshing];
-                [self.myTableView reloadData];
-            }
-            else//如果没有缓存,给出无网络的提示
-            {
+
+    if ([api cacheJson])//如果有缓存就使用缓存
+    {
+        [self.dataSource removeAllObjects];
+        NSArray *array1 = [api cacheJson][@"Data"][@"rows1"];
+        for (NSDictionary *dic in array1)
+        {
+            HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+            [self.dataSource addObject:info];
+        }
+        [self.messageArr removeAllObjects];
+        NSArray *array2 = [api cacheJson][@"Data"][@"rows2"];
+        for (NSDictionary *dic in array2)
+        {
+            HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+            [self.messageArr addObject:info];
+        }
+            [self.myTableView.mj_header endRefreshing];
+            [self.myTableView reloadData];
+        }
+    else//如果没有缓存,给出无网络的提示
+    {
                 
-            }
+    }
 
-//        }
-//    }];
-
-    
-    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
     {
         if (requestStatus == HCRequestStatusSuccess) {

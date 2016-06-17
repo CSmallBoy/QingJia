@@ -142,6 +142,102 @@
 
     HCTagAmostDetailListApi *api = [[HCTagAmostDetailListApi alloc]init];
     api.labelStatus = @"1";
+    
+    if ([api cacheJson])
+    {
+        [self.dataSource removeAllObjects];
+        NSArray *oldArr = [api cacheJson][@"Data"][@"rows"];
+        
+        if (oldArr.count>0) {
+            
+            NSMutableArray *smallArr = [NSMutableArray array];
+            NSMutableArray *bigArr = [NSMutableArray array];
+            
+            [bigArr addObject:smallArr];
+            
+            for (int i = 0; i<oldArr.count; i++)
+            {
+                if (i == 0)
+                {
+                    [smallArr addObject:oldArr[i]];
+                }
+                else
+                {
+                    for (int j = 0; j<bigArr.count; j++)
+                    {
+                        
+                        NSString *bigStr =bigArr[j][0][@"trueName"];
+                        NSString *oldStr =oldArr[i][@"trueName"];
+                        
+                        if ([bigStr isEqualToString:oldStr])
+                        {
+                            [bigArr[j] addObject:oldArr[i]];
+                            break;
+                            
+                            
+                        }else
+                        {
+                            if (j == bigArr.count-1)
+                            {
+                                NSMutableArray *newArr = [NSMutableArray array];
+                                [newArr addObject:oldArr[i]];
+                                [bigArr addObject:newArr];
+                                break;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            
+            NSLog(@"%@",bigArr);
+            
+            if (bigArr.count > 0) {
+                for (int i = 0; i<bigArr.count; i++) {
+                    NSArray *smallArr = bigArr[i];
+                    HCTagManagerInfo *info = [[HCTagManagerInfo alloc] init];
+                    info.tagUserName = [NSString stringWithFormat:@"%@",smallArr[0][@"trueName"]];
+                    NSMutableArray *tagNameArr =[NSMutableArray array];
+                    
+                    for (int j = 0; j<smallArr.count; j++) {
+                        [tagNameArr addObject:smallArr[j][@"labelTitle"] ];
+                    }
+                    info.tagNameArr = tagNameArr;
+                    
+                    NSMutableArray *imgArr = [NSMutableArray array];
+                    for (int  k = 0; k<smallArr.count; k++) {
+                        
+                        NSURL *url = [readUserInfo originUrl:smallArr[k][@"imageName"] :kkLabel];
+                        
+                        UIImage *imgFromUrl =[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:url]];
+                        
+                        if (imgFromUrl == nil) {
+                            imgFromUrl = IMG(@"time_picture");
+                        }
+                        
+                        [imgArr addObject:imgFromUrl];
+                    }
+                    
+                    info.imgArr = imgArr;
+                    
+                    NSMutableArray *tagIDArr = [NSMutableArray array];
+                    
+                    for (int m = 0; m< smallArr.count; m++)
+                    {
+                        [tagIDArr addObject:smallArr[m][@"labelId"]];
+                    }
+                    info.tagIDArr = tagIDArr;
+                    
+                    [self.dataSource addObject:info];
+                    [self.tableView reloadData];
+                }
+                
+                NSLog(@"*********标签概要信息列表*************");
+            }
+        }
+
+    }
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         if (requestStatus == HCRequestStatusSuccess) {
             

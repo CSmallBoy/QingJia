@@ -255,7 +255,7 @@
         else
         {
             if ([self.title isEqualToString:@"编辑紧急联系人"]) {
-                
+                [self showHUDView:nil];
                 if (self.image) {
                     [self upLoadImage];
                 }else
@@ -320,8 +320,8 @@
     api.imgStr = self.imgStr;
     [api startRequest:^(HCRequestStatus requesStatus, NSString *message, id respone) {
        
+        [self hideHUDView];
         if (requesStatus == HCRequestStatusSuccess) {
-            [self hideHUDView];
             [self.navigationController popViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"saveNewContact" object:nil];
             
@@ -338,6 +338,7 @@
 
 -(void)upLoadImage
 {
+    
     NSString *token = [HCAccountMgr manager].loginInfo.Token;
     NSString *uuid = [HCAccountMgr manager].loginInfo.UUID;
     NSString *str = [kUPImageUrl stringByAppendingString:[NSString stringWithFormat:@"fileType=%@&UUID=%@&token=%@",@"contactor",uuid,token]];

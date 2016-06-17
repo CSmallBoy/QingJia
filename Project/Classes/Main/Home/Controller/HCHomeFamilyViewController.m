@@ -181,9 +181,17 @@
         [button setFrame:CGRectMake(SCREEN_WIDTH/3, 10, SCREEN_WIDTH/3, 33)];
         [view_notification addSubview:button];
         [button addTarget:self action:@selector(changeViewCon) forControlEvents:UIControlEventTouchUpInside];
-        if (AccordingTo) {
+//        if (AccordingTo) {
+//            view_notification.hidden = YES;
+//        }else{
+//            view_notification.hidden = NO;
+//        }
+        if (messageNum == 0)
+        {
             view_notification.hidden = YES;
-        }else{
+        }
+        else
+        {
             view_notification.hidden = NO;
         }
     }
@@ -193,12 +201,16 @@
 {
     if (section==0) {
         NSInteger messageNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Time_Badge"] integerValue];
-        if (messageNum == 0) {
+        if (messageNum == 0)
+        {
             return 1;
-        }else{
+        }
+        else
+        {
             return 50;
         }
-    }else{
+    }else
+    {
         return 1;
     }
 }

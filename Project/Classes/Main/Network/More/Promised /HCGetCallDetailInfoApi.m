@@ -30,4 +30,10 @@
     
     return responseObject;
 }
+
+- (NSInteger)cacheTimeInSeconds
+{
+    return 1;
+}
+
 @end

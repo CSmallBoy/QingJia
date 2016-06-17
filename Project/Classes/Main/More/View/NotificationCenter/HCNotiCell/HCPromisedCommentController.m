@@ -485,6 +485,26 @@
     api.callId = self.callId;
     api._start = @"21";
     api._count = @"2";
+    
+    
+    if ([api cacheJson])
+    {
+        [self.dataSource removeAllObjects];
+        NSArray *array = [api cacheJson][@"Data"][@"rows"];
+        for (NSDictionary *dic in array)
+        {
+            HCPromisedCommentFrameInfo *frameInfo = [[HCPromisedCommentFrameInfo alloc]init];
+            HCPromisedCommentInfo *info = [HCPromisedCommentInfo mj_objectWithKeyValues:dic];
+            frameInfo.commentInfo = info;
+            [self.dataSource addObject:frameInfo];
+        }
+        [self.myTableView reloadData];
+    }
+    else
+    {
+        
+    }
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        
         if (requestStatus == HCRequestStatusSuccess) {

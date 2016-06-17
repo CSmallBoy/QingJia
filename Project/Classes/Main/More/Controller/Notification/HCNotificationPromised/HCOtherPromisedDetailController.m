@@ -803,6 +803,18 @@
     [self showHUDView:nil];
     HCGetCallDetailInfoApi *api = [[HCGetCallDetailInfoApi alloc] init];
     api.callId = self.callId;
+    
+    if ([api cacheJson])
+    {
+        NSDictionary *dic = [api cacheJson][@"Data"][@"callInf"];
+        self.info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+        [self addDataSuorce];
+    }
+    else
+    {
+        
+    }
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         [self hideHUDView];
         if (requestStatus == HCRequestStatusSuccess)
@@ -835,7 +847,7 @@
             }
             NSArray * array = [NSArray arrayWithArray:mutableArray];
             [user setObject:array forKey:@"callIdArr"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"cityCallPush" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"readCityCallPush" object:nil];
 
         }
     }];

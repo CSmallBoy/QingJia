@@ -133,6 +133,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         
     }
     else{//登陆失败加载登陆页面控制器
+        //退出登录的时候本地角标清零
+        //时光的角标
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"Time_Badge"];
+        //呼应的角标
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"Call_Badge"];
+        //callID推送
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        NSArray * array = [NSArray arrayWithArray:mutableArray];
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        [user setObject:array forKey:@"callIdArr"];
+        
         self.mainController = nil;
         
         //        LoginViewController *loginController = [[LoginViewController alloc] init];

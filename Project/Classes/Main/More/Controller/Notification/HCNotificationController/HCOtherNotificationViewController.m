@@ -71,7 +71,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"delectCallSuccess" object:nil];
     
     //阅读过同城别人发的呼
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"cityCallPush" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"readCityCallPush" object:nil];
+    
+    //有新的同城推送
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"newCityCallPush" object:nil];
 }
 
 -(void)show
@@ -419,33 +422,26 @@
     api.key = @"";
     api._start = @"0";
     api._count = @"20";
-    
-//    [[HCDetectNetworkStatusMgr shareManager] detectNetworkStatus:^(AFNetworkReachabilityStatus networkStatus) {
-//        if (networkStatus == AFNetworkReachabilityStatusNotReachable)//没有网络的情况下
-//        {
-            if ([api cacheJson])//如果有缓存就使用缓存
-            {
-                [self.dataSource removeAllObjects];
-                NSArray *array = [api cacheJson][@"Data"][@"rows"];
-                for (NSDictionary *dic in array)
-                {
-                    HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
-                    [self.dataSource addObject:info];
-                }
-                HCNotificationCenterInfo *info = [self.dataSource lastObject];
-                self.moreID = info.callId;
-                [self.myTableView.mj_header endRefreshing];
-                [self.myTableView reloadData];
-            }
-            else//如果没有缓存,给出无网络的提示
-            {
+
+    if ([api cacheJson])//如果有缓存就使用缓存
+    {
+        [self.dataSource removeAllObjects];
+        NSArray *array = [api cacheJson][@"Data"][@"rows"];
+        for (NSDictionary *dic in array)
+        {
+            HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+            [self.dataSource addObject:info];
+        }
+        HCNotificationCenterInfo *info = [self.dataSource lastObject];
+        self.moreID = info.callId;
+        [self.myTableView.mj_header endRefreshing];
+        [self.myTableView reloadData];
+    }
+    else//如果没有缓存,给出无网络的提示
+    {
                 
-            }
-            
-//        }
-//    }];
-    
-    
+    }
+
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
     {
         if (requestStatus == HCRequestStatusSuccess)

@@ -76,7 +76,6 @@
 //选中事件 停用标签信息
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HCHeathViewController *heath_vc = [[HCHeathViewController alloc]init];
-    
     [self.navigationController pushViewController:heath_vc animated:YES];
 }
 #pragma mark---private methods

@@ -125,8 +125,6 @@
         NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
         [user setObject:array forKey:@"callIdArr"];
     }
-    
-    
     return YES;
 }
 
@@ -286,6 +284,18 @@ didFinishLaunchingWithOptions:launchOptions
     NSData *data = [alert dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     //利用环信监听登录状态的方法,处理推送
+    //1.当退出时将本地的角标清零
+    //时光的角标
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"Time_Badge"];
+    //呼应的角标
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"Call_Badge"];
+    //callID推送
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    NSArray * array = [NSArray arrayWithArray:mutableArray];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setObject:array forKey:@"callIdArr"];
+    //2.取消自动登录,跳转到登录界面
+    [HCAccountMgr manager].isLogined = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
 
     NSLog(@"%@", userInfo);

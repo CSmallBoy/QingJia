@@ -166,6 +166,17 @@
     //编号
     _numLabel.text = [NSString stringWithFormat:@"编号:%@",self.info.callId];
     
+    //已找到
+    if ([self.info.status isEqualToString:@"0"])
+    {
+        
+    }
+    else
+    {
+        self.foundBtn.backgroundColor = [UIColor darkGrayColor];
+        self.foundBtn.userInteractionEnabled = NO;
+    }
+    
 }
 
 -(void)addItem
@@ -248,19 +259,7 @@
 // 点击了已经找到的按钮
 -(void)foundBtnClick:(UIButton *)button
 {
-    if ([self.status isEqualToString:@"1"])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该呼已经被关闭" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [alert dismissWithClickedButtonIndex:0 animated:YES];
-        });
-        [alert show];
-    }
-    else
-    {
-        [self.view addSubview:self.blackView];
-    }
-    
+    [self.view addSubview:self.blackView];
 }
 
 // 点击联系人1
@@ -325,9 +324,14 @@
         api.callId = self.info.callId;
         [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone)
          {
-            if (requestStatus == HCRequestStatusSuccess) {
+            if (requestStatus == HCRequestStatusSuccess)
+            {
                     
             [self hideHUDView];
+                
+            self.foundBtn.backgroundColor = [UIColor darkGrayColor];
+            self.foundBtn.userInteractionEnabled = NO;
+                
             NSLog(@"-----------------------关闭一呼百应--------------------------");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"aboutMeData" object:nil];
             [self.navigationController popToRootViewControllerAnimated:YES];
@@ -687,6 +691,18 @@
     [self showHUDView:nil];
     HCGetCallDetailInfoApi *api = [[HCGetCallDetailInfoApi alloc] init];
     api.callId = self.callId;
+    
+    if ([api cacheJson])
+    {
+        NSDictionary *dic = [api cacheJson][@"Data"][@"callInf"];
+        self.info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+        [self addDataSuorce];
+    }
+    else
+    {
+        
+    }
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         [self hideHUDView];
         if (requestStatus == HCRequestStatusSuccess)

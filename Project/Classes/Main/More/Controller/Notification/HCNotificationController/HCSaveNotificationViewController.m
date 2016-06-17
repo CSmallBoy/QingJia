@@ -359,32 +359,22 @@
     api._start = @"0";
     api._count = @"20";
     
-//    [[HCDetectNetworkStatusMgr shareManager] detectNetworkStatus:^(AFNetworkReachabilityStatus networkStatus) {
-//        if (networkStatus == AFNetworkReachabilityStatusNotReachable)//没有网络的情况下
-//        {
-            if ([api cacheJson])//如果有缓存就使用缓存
-            {
-                [self.dataSource removeAllObjects];
+    if ([api cacheJson])//如果有缓存就使用缓存
+    {
+        [self.dataSource removeAllObjects];
+        NSArray *array = [api cacheJson][@"Data"][@"rows"];
+        for (NSDictionary *dic in array)
+        {
+            HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
+            [self.dataSource addObject:info];
+        }
+            [self.myTableView reloadData];
+    }
+    else//如果没有缓存,给出无网络的提示
+    {
                 
-                NSArray *array = [api cacheJson][@"Data"][@"rows"];
-                
-                for (NSDictionary *dic in array) {
-                    
-                    HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic ];
-                    [self.dataSource addObject:info];
-                }
-                
-                [self.myTableView reloadData];
-            }
-            else//如果没有缓存,给出无网络的提示
-            {
-                
-            }
-            
-//        }
-//    }];
-    
-    
+    }
+
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        

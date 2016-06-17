@@ -331,7 +331,7 @@
         [button setBackgroundImage:IMG(@"Add-Images") forState:UIControlStateNormal];
         [button addTarget:self action:@selector(choseMissPhotos) forControlEvents:UIControlEventTouchUpInside];
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, WIDTH(self.bigView), 10)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, MaxY(button)+5, WIDTH(self.bigView), 10)];
         titleLabel.text = @"添加走失者正面照片";
         titleLabel.textAlignment = 1;
         titleLabel.font = [UIFont systemFontOfSize:11];

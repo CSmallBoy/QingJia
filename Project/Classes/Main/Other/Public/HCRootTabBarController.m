@@ -958,6 +958,7 @@ static NSString *kGroupName = @"GroupName";
         if ([VC.topViewController isKindOfClass:[HCPromisedViewController class]])
         {
             VC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", callPushNum];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"newCityCallPush" object:nil];
         }
     }
 }

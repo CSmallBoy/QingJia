@@ -741,6 +741,50 @@
 {
     HCInitSendMessageApi *api = [[HCInitSendMessageApi alloc]init];
     api.objectId = self.objId;
+    
+    if ([api cacheJson])
+    {
+        NSDictionary *dic = [api cacheJson][@"Data"][@"objectInf"];
+        self.info = [HCNewTagInfo mj_objectWithKeyValues:dic];
+        self.title = [NSString stringWithFormat:@"%@的标签",self.info.trueName];
+        
+        //紧急联系人1
+        self.contactInfo1 = [[HCTagContactInfo alloc] init];
+        self.contactInfo1.trueName = self.info.contactorTrueName1;
+        self.contactInfo1.phoneNo = self.info.contactorPhoneNo1;
+        self.contactInfo1.imageName = self.info.imageName1;
+        self.contactInfo1.relative = self.info.relation1;
+        self.contactInfo1.contactorId = self.info.contactorId1;
+        //紧急联系人2
+        self.contactInfo2 = [[HCTagContactInfo alloc] init];
+        self.contactInfo2.trueName = self.info.contactorTrueName2;
+        self.contactInfo2.phoneNo = self.info.contactorPhoneNo2;
+        self.contactInfo2.imageName = self.info.imageName2;
+        self.contactInfo2.relative = self.info.relation2;
+        self.contactInfo2.contactorId = self.info.contactorId2;
+        
+        [self.selectArr addObject:self.contactInfo1];
+        [self.selectArr addObject:self.contactInfo2];
+        
+        //如果total为0,代表该对象没有绑定标签
+        NSNumber *total = [api cacheJson][@"Data"][@"total"];
+        if ([total integerValue] != 0)
+        {
+            NSArray *array = [api cacheJson][@"Data"][@"rows"];
+            for (NSDictionary *dic in array)
+            {
+                HCNewTagInfo *info = [HCNewTagInfo mj_objectWithKeyValues:dic];
+                [self.tagArr addObject:info];
+            }
+        }
+        [self.tableview reloadData];
+
+    }
+    else
+    {
+        
+    }
+    
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
         
         if (requestStatus == HCRequestStatusSuccess)
