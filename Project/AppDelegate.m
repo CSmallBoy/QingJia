@@ -119,15 +119,11 @@
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"Time_Badge"];
         //呼应的角标
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"Call_Badge"];
-        //同城发呼callID推送
+        //callID推送
         NSMutableArray *mutableArray = [NSMutableArray array];
         NSArray * array = [NSArray arrayWithArray:mutableArray];
         NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
         [user setObject:array forKey:@"callIdArr"];
-        //发现线索callID推送
-        NSMutableDictionary *clueMutableDic = [NSMutableDictionary dictionary];
-        NSDictionary * clueDic = [NSDictionary dictionaryWithDictionary:clueMutableDic];
-        [user setObject:clueDic forKey:@"clueCallIdDic"];
     }
     return YES;
 }
@@ -273,22 +269,6 @@ didFinishLaunchingWithOptions:launchOptions
     }
     else if ([type isEqualToString:@"7"])//呼应推送(发现线索及扫描发呼的标签，都会推送到呼发起者和所有线索提供者)
     {
-        NSString *callId = [[[dic objectForKey:@"Data"] objectForKey:@"jpush"] objectForKey:@"callId"];
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        NSMutableDictionary *mutableDic = [NSMutableDictionary
-                                        dictionaryWithDictionary:[user objectForKey:@"clueCallIdDic"]];
-        if (![[mutableDic allKeys] containsObject:callId])//如果推送中没有这个ID,即为第一条
-        {
-            [mutableDic setObject:@"1" forKey:callId];
-        }
-        else//推送中有ID则累加
-        {
-            NSInteger num = [[mutableDic objectForKey:callId] integerValue];
-            num++;
-            [mutableDic setObject:[NSString stringWithFormat:@"%ld", num] forKey:callId];
-        }
-        NSDictionary * dic = [NSDictionary dictionaryWithDictionary:mutableDic];
-        [user setObject:dic forKey:@"clueCallIdDic"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jpushCallAnswer" object:nil];
     }
     NSLog(@"customMessage: %@",userInfo);
