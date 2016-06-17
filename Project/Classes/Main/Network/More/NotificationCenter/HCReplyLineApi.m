@@ -34,7 +34,7 @@
     NSDictionary *para = @{@"callId":_callId,
                            @"imageNames":self.info.imageNames,
                            @"content":self.info.content,
-                           @"createLocation":@"121.76,31.05",
+                           @"createLocation":self.info.createLocation,
                            @"toId":self.info.toId};
     
     [Utils stringWithObject:@{@"Head":head,

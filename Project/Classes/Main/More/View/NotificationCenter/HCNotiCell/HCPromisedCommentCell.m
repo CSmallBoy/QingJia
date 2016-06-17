@@ -27,6 +27,9 @@
 @property (nonatomic,strong) UIButton  *button3;
 @property (nonatomic,strong) UIButton  *redTextField;
 
+@property (nonatomic,strong)UIImageView *locationImage;
+@property (nonatomic,strong)UILabel *locationLabel;
+
 @property (nonatomic,strong) NSArray   *btnArr;
 
 @end
@@ -34,10 +37,10 @@
 
 @implementation HCPromisedCommentCell
 
-+(instancetype)cellWithTableView:(UITableView *)tableView
++(instancetype)cellWithTableView:(UITableView *)tableView byIndexPath:(NSIndexPath *)indexPath
 {
    static  NSString  * ID = @"commentCell";
-    HCPromisedCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    HCPromisedCommentCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell) {
         cell = [[HCPromisedCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         [cell addSubviews];
@@ -60,10 +63,11 @@
     [self addSubview:self.nickLabel];
     [self addSubview:self.timeLabel];
     [self addSubview:self.commentLabel];
+    [self addSubview:self.locationLabel];
+    [self addSubview:self.locationImage];
     
     self.btnArr = @[self.button1,self.button2,self.button3];
-    
-//    [self addSubview:self.redTextField];
+
 
 }
 //点击了头像
@@ -91,21 +95,8 @@
 
 -(void)setCommnetFrameInfo:(HCPromisedCommentFrameInfo *)commnetFrameInfo
 {
-    
-    for (UIView *view in self.subviews)
-    {
-        [view removeFromSuperview];
-    }
-    [self addSubview: self.headBtn];
-    [self addSubview:self.nickLabel];
-    [self addSubview:self.timeLabel];
-    [self addSubview:self.commentLabel];
-    
     self.btnArr = @[self.button1,self.button2,self.button3];
-//    [self addSubview:self.redTextField];
-    
     _commnetFrameInfo = commnetFrameInfo;
-
     self.headBtn.frame = commnetFrameInfo.headBtnFrame;
     
     UIImageView *HeadIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.headBtn.frame.size.width, self.headBtn.frame.size.height)];
@@ -157,6 +148,21 @@
             
         [self addSubview:button];
     }
+    
+    self.locationImage.frame = commnetFrameInfo.locationImageFrame;
+    self.locationLabel.frame = commnetFrameInfo.locationLabelFrame;
+    self.locationLabel.text = commnetFrameInfo.commentInfo.createLocation;
+    if ([commnetFrameInfo.commentInfo.createLocation isEqualToString:@"位置保密"])
+    {
+        self.locationImage.image = IMG(@"promisedDetail_location2");
+        self.locationLabel.text = commnetFrameInfo.commentInfo.createLocation;
+        self.locationLabel.textColor = [UIColor darkGrayColor];
+    }
+    else
+    {
+        self.locationImage.image = IMG(@"promisedDetail_location1");
+    }
+    
 }
 
 - (UIButton *)headBtn
@@ -235,6 +241,24 @@
     return _button3;
 }
 
+- (UIImageView *)locationImage
+{
+    if (_locationImage == nil)
+    {
+        _locationImage = [[UIImageView alloc] init];
+    }
+    return _locationImage;
+}
+
+- (UILabel *)locationLabel
+{
+    if (_locationLabel == nil)
+    {
+        _locationLabel = [[UILabel alloc] init];
+        _locationLabel.font = [UIFont systemFontOfSize:13];
+    }
+    return _locationLabel;
+}
 
 
 - (UIButton *)redTextField

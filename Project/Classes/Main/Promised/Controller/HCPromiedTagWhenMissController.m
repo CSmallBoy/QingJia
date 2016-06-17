@@ -127,6 +127,7 @@
         _tagTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50/668.0*SCREEN_HEIGHT) style:UITableViewStylePlain];
         _tagTableView.delegate = self;
         _tagTableView.dataSource = self;
+        _tagTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
     return _tagTableView;
 }

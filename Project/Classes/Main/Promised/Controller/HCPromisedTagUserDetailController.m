@@ -744,6 +744,8 @@
     
     if ([api cacheJson])
     {
+        [self.tagArr removeAllObjects];
+        [self.selectArr removeAllObjects];
         NSDictionary *dic = [api cacheJson][@"Data"][@"objectInf"];
         self.info = [HCNewTagInfo mj_objectWithKeyValues:dic];
         self.title = [NSString stringWithFormat:@"%@的标签",self.info.trueName];
@@ -789,6 +791,8 @@
         
         if (requestStatus == HCRequestStatusSuccess)
         {
+            [self.tagArr removeAllObjects];
+            [self.selectArr removeAllObjects];
             NSDictionary *dic = respone[@"Data"][@"objectInf"];
             self.info = [HCNewTagInfo mj_objectWithKeyValues:dic];
             self.title = [NSString stringWithFormat:@"%@的标签",self.info.trueName];

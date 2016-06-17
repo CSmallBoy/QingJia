@@ -38,9 +38,15 @@
 #import "HCOtherPromisedDetailController.h"
 //已停用->提示已停用
 //无效->提示无效
+//定位
+#import <AMapLocationKit/AMapLocationKit.h>
+//扫描已发呼的标签
+#import "HCScanCardApi.h"
+
+
 static const CGFloat kBorderW = 100;
 static const CGFloat kMargin = 30;
-@interface Scan_VC ()<UIAlertViewDelegate,AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
+@interface Scan_VC ()<UIAlertViewDelegate,AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,AMapLocationManagerDelegate>{
     UIImagePickerController *controller;
     
 }
@@ -48,12 +54,18 @@ static const CGFloat kMargin = 30;
 @property (nonatomic, weak)   UIView *maskView;
 @property (nonatomic, strong) UIView *scanWindow;
 @property (nonatomic, strong) UIImageView *scanNetImageView;
+
+@property (nonatomic,strong) AMapLocationManager *locationManager;//定位
+
+@property (nonatomic,copy)NSString *locationStr;
 @end
 
 @implementation Scan_VC
 -(void)viewWillAppear:(BOOL)animated{
     
     //self.navigationController.navigationBar.hidden=YES;
+    [_session startRunning];
+    [self locationButtonAction];
     [self resumeAnimation];
     
 }
@@ -377,6 +389,13 @@ static const CGFloat kMargin = 30;
             {
                 if ([status isEqualToString:@"3"])
                 {
+                    HCScanCardApi *scanApi = [[HCScanCardApi alloc] init];
+                    scanApi.labelGuid = label_id;
+                    scanApi.createLocation = self.locationStr;
+                    [scanApi startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
+                        
+                    }];
+                    
                     HCOtherPromisedDetailController *detailVC = [[HCOtherPromisedDetailController alloc] init];
                     detailVC.callId = callId;
                     [self.navigationController pushViewController:detailVC animated:YES];
@@ -407,19 +426,6 @@ static const CGFloat kMargin = 30;
     else{
         UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
-//        HCScanApi *api = [[HCScanApi alloc]init];
-//        api.labelGuid = str;
-//        api.createLocation = self.createLocation;
-//        [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
-//            if (requestStatus == HCRequestStatusSuccess) {
-//                NSDictionary *dic = respone[@"Data"][@"labelInf"];
-//                HCNotificationCenterInfo *info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
-//                HCOtherPromisedDetailController *vc = [[HCOtherPromisedDetailController alloc]init];
-//                vc.data = @{@"info":info};
-//                [self.navigationController pushViewController:vc animated:YES];
-//            }
-//            
-//        }];
     }
     
 }
@@ -536,6 +542,51 @@ static const CGFloat kMargin = 30;
         [_session startRunning];
     }
 }
+
+#pragma mark - Location
+- (void)locationButtonAction
+{
+    self.locationStr = @"位置保密";
+    //先判断是否有定位权限
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted)
+    {
+        //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"定位服务已关闭,请在设置\"隐私\"中开启定位服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        //        [alertView show];
+    }
+    else
+    {
+        self.locationManager = [[AMapLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
+#pragma mark - AMapLocationManager Delegate
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error
+{
+    //    self.textField2.text = @"上海市闵行区集心路37号";
+    self.locationStr = @"位置保密";
+    //    self.nowLocation = [[CLLocation alloc] initWithLatitude:31.232 longitude:37.2242];
+}
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
+{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (!IsEmpty(placemarks))
+        {
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            self.locationStr = placemark.name;
+            //            self.nowLocation = location;
+            //            self.cityStr = placemark.locality;
+        }
+    }];
+    [self.locationManager stopUpdatingLocation];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

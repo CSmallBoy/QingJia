@@ -69,6 +69,11 @@
     
     //发呼成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"callPromised" object:nil];
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"newCityCallPush" object:nil];
+    //阅读完留言刷新列表
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"readCluePush" object:nil];
+    
 }
 
 #pragma mark ---  SCSwipeTableViewCellDelegate

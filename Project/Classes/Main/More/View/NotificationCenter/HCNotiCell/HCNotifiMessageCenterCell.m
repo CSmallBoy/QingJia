@@ -96,9 +96,6 @@
         }
     }
 
-    NSArray * array = [NSArray arrayWithArray:mutableArray];
-    [user setObject:array forKey:@"callIdArr"];
-
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ %@ %@岁",info.trueName,info.sex,info.age]];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13], NSForegroundColorAttributeName: [UIColor lightGrayColor]} range:NSMakeRange(info.trueName.length,attStr.length -info.trueName.length)];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} range:NSMakeRange(0, attStr.length-info.trueName.length)];

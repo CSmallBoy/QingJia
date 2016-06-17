@@ -42,7 +42,8 @@
 @property (nonatomic,strong)UIImageView *header_button;
 
 
-
+@property (nonatomic, strong)UIView *alertBackground;//弹出提示框时的灰色背景
+@property (nonatomic, strong)UIView *customAlertView;//自定义提示框
 
 @end
 
@@ -75,7 +76,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    ool = YES;
     [self requestData];
 }
 
@@ -85,7 +86,6 @@
         button_view.hidden = NO;
        
     }else{
-            //[button removeFromSuperview];
          button_view.hidden = YES;
     }
     ool =!ool;
@@ -163,6 +163,58 @@
 }
 #pragma mark --Setter Or Getter
 
+- (UIView *)alertBackground
+{
+    if (_alertBackground == nil)
+    {
+        _alertBackground = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        _alertBackground.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        [_alertBackground addSubview:self.customAlertView];
+    }
+    return _alertBackground;
+}
+
+
+- (UIView *)customAlertView
+{
+    if (_customAlertView == nil)
+    {
+        _customAlertView = [[UIView alloc] initWithFrame:CGRectMake(30/375.0*SCREEN_WIDTH, 230/668.0*SCREEN_HEIGHT, SCREEN_WIDTH-60/375.0*SCREEN_WIDTH, 190/668.0*SCREEN_HEIGHT)];
+        ViewRadius(_customAlertView, 5);
+        _customAlertView.backgroundColor = [UIColor whiteColor];
+        
+        
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 55/668.0*SCREEN_HEIGHT, WIDTH(_customAlertView), 20/668.0*SCREEN_HEIGHT)];
+        titleLabel.text = @"确认是否永久停用该标签";
+        titleLabel.textAlignment = 1;
+        [_customAlertView addSubview:titleLabel];
+        
+        UIButton *sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        sureButton.frame = CGRectMake(30/375.0*SCREEN_WIDTH, MaxY(titleLabel)+45/668.0*SCREEN_HEIGHT, 120/375.0*SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT);
+        ViewRadius(sureButton, 5);
+        sureButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        sureButton.layer.borderWidth = 1;
+        sureButton.tag = 1000;
+        [sureButton setTitle:@"是" forState:UIControlStateNormal];
+        [sureButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [sureButton addTarget:self action:@selector(label_buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_customAlertView addSubview:sureButton];
+        
+        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancelButton.frame = CGRectMake(MaxX(sureButton)+15/375.0*SCREEN_WIDTH, MaxY(titleLabel)+45/668.0*SCREEN_HEIGHT, 120/375.0*SCREEN_WIDTH, 40/668.0*SCREEN_HEIGHT);
+        ViewRadius(cancelButton, 5);
+        cancelButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        cancelButton.layer.borderWidth = 1;
+        cancelButton.tag = 1001;
+        [cancelButton setTitle:@"否" forState:UIControlStateNormal];
+        [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [cancelButton addTarget:self action:@selector(label_buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_customAlertView addSubview:cancelButton];
+    }
+    return _customAlertView;
+}
+
+
 -(UIView *)headerView
 {
     if (!_headerView)
@@ -181,11 +233,11 @@
     [_headerView addSubview:_header_button];
     
     //添加的button
-    button_view= [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 0, 90, 63)];
+    button_view= [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 0, 90, 72)];
     button_view.userInteractionEnabled = YES;
     button_view.image = [UIImage imageNamed:@"group"];
     button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0, 2, 90, 30);
+    button.frame = CGRectMake(0, 4, 90, 34);
     [button setTitle:@"编辑标签" forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setBackgroundColor:[UIColor clearColor]];
@@ -194,7 +246,7 @@
    
     [button_view addSubview:button];
     button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(0,33, 90, 30);
+    button2.frame = CGRectMake(0,38, 90, 34);
     [button2 setBackgroundColor:[UIColor clearColor]];
     [button2 setTitle:@"停用标签" forState:UIControlStateNormal];
     button2.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -208,8 +260,7 @@
 
 //编辑标签
 -(void)editingClick{
-    [button2 removeFromSuperview];
-    [button_view removeFromSuperview];
+    button_view.hidden = YES;
     HCAddTagUserController *editVC = [[HCAddTagUserController alloc]init];
     editVC.data = @{@"info":self.info};
     editVC.isEdit = YES;
@@ -218,46 +269,21 @@
     [self.navigationController pushViewController:editVC animated:YES];
 }
 
--(void)stopClick{
-    NSArray *arr = @[@"停用",@"取消"];
-    view_all = [[UIView alloc]initWithFrame:self.view.bounds];
-    view_all.backgroundColor  = [UIColor grayColor];
-    view_all.alpha = 0.97;
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.2,SCREEN_HEIGHT*0.33, SCREEN_WIDTH*0.6, SCREEN_HEIGHT*0.3)];
-    view.backgroundColor = [UIColor whiteColor];
-    
-    for (int i = 0 ; i < 2; i ++) {
-        UIButton *label_button = [UIButton buttonWithType:UIButtonTypeCustom];
-        label_button.frame = CGRectMake(10,SCREEN_HEIGHT*0.32*0.5+35*i , SCREEN_WIDTH*0.6-20, 28);
-        label_button.tag = 1000+i;
-        [label_button setTitle:arr[i] forState:UIControlStateNormal];
-        [label_button addTarget:self action:@selector(label_buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        if (i == 0) {
-            [label_button setBackgroundColor:[UIColor redColor]];
-        }else{
-            [label_button setBackgroundColor:[UIColor blueColor]];
-        }
-        [view addSubview:label_button];
-    }
-    UILabel *alert_label = [[UILabel alloc]initWithFrame:CGRectMake(view.bounds.size.width*0.1, 15, view.bounds.size.width*0.8, 50)];
-    alert_label.text = @"确认是否永久停用该标签!";
-    alert_label.numberOfLines = 0;
-    [view addSubview:alert_label];
-    ViewBorderRadius(view, 10, 0, CLEARCOLOR);
-    [view_all addSubview:view];
-    [self.view addSubview:view_all];
-    
+-(void)stopClick
+{
+    [self.navigationController.view addSubview:self.alertBackground];
 }
 -(void)label_buttonClick:(UIButton*)buttton{
     switch (buttton.tag) {
         case 1000:
         {
+            [self.alertBackground removeFromSuperview];
             [self requestStopApi];
         }
             break;
         case 1001:
         {
-            [view_all removeFromSuperview];
+            [self.alertBackground removeFromSuperview];
         }
             break;
         default:

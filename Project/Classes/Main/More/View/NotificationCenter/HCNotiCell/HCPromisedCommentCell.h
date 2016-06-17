@@ -22,6 +22,6 @@ typedef void (^subCommentBlock)(NSIndexPath *indexPath);
 @property (nonatomic,strong) subCommentBlock subBlock;
 @property (nonatomic,strong) NSIndexPath  *indexPath;
 
-+(instancetype)cellWithTableView:(UITableView *)tableView;
++(instancetype)cellWithTableView:(UITableView *)tableView byIndexPath:(NSIndexPath *)indexPath;
 
 @end

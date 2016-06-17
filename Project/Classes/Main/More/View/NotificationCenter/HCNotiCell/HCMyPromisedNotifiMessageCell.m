@@ -34,6 +34,8 @@
 @property (nonatomic, assign)BOOL isHiding;
 @property (nonatomic, assign)BOOL isShowing;
 
+@property (nonatomic,strong)UIImageView *clueImage;
+
 @end
 
 @implementation HCMyPromisedNotifiMessageCell
@@ -75,6 +77,20 @@
 {
     _info = info;
     
+    self.clueImage.hidden = YES;
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *clueMutableDic = [NSMutableDictionary dictionaryWithDictionary:[user objectForKey:@"clueCallIdDic"]];
+    if ([clueMutableDic allKeys].count)
+    {
+        for (NSString *callIdStr in [clueMutableDic allKeys])
+        {
+            if ([callIdStr isEqualToString:info.callId])
+            {
+                self.clueImage.hidden = NO;
+            }
+        }
+    }
+    
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ %@ %@岁",info.trueName,info.sex,info.age]];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13], NSForegroundColorAttributeName: [UIColor lightGrayColor]} range:NSMakeRange(info.trueName.length,attStr.length -info.trueName.length)];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} range:NSMakeRange(0, attStr.length-info.trueName.length)];
@@ -104,7 +120,15 @@
     return _headBtn;
 }
 
-
+- (UIImageView *)clueImage
+{
+    if (_clueImage == nil)
+    {
+        _clueImage = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 35, 0, 25, 20)];
+        _clueImage.image = IMG(@"myPromised_clue");
+    }
+    return _clueImage;
+}
 
 
 
@@ -121,7 +145,7 @@
 - (UILabel *)sendLabel
 {
     if(!_sendLabel){
-        _sendLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH -160, INTERVAL, 150, 20)];
+        _sendLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH -160, 20, 150, 10)];
         _sendLabel.font = [UIFont systemFontOfSize:11];
         _sendLabel.textColor = [UIColor lightGrayColor];
         _sendLabel.textAlignment = NSTextAlignmentRight;
@@ -210,6 +234,7 @@
     [_SCContentView addSubview:self.NameSexAgeLB];
     [_SCContentView addSubview:self.sendLabel];
     [_SCContentView addSubview:self.missLabel];
+    [_SCContentView addSubview:self.clueImage];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

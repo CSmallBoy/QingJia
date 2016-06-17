@@ -491,8 +491,9 @@
         if (requestStatus == HCRequestStatusSuccess)
         {
             [self showHUDSuccess:@"激活成功"];
-            [self.navigationController popToRootViewControllerAnimated:NO];
+            
             self.tabBarController.selectedIndex = 3;
+            [self.navigationController popToRootViewControllerAnimated:NO];
         }
         else
         {

@@ -1124,6 +1124,7 @@
 		EAD7FD0F1CF54EF50058EF81 /* HCLostInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7FD0E1CF54EF50058EF81 /* HCLostInfoCell.m */; };
 		EADBF07E1D002FDE00130D59 /* HCBigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADBF07D1D002FDE00130D59 /* HCBigImageViewController.m */; };
 		EADBF0841D003DEA00130D59 /* HCSavePhotoToAblumMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = EADBF0831D003DEA00130D59 /* HCSavePhotoToAblumMgr.m */; };
+		EADC39CD1D141A370013DD1B /* HCScanCardApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC39CC1D141A370013DD1B /* HCScanCardApi.m */; };
 		EADDE7CA1CFEE73F00987A0E /* HCGetCallDetailInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE7C91CFEE73F00987A0E /* HCGetCallDetailInfoApi.m */; };
 		EADDE7CD1CFF0A1F00987A0E /* HCMyPromisedNotifiMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE7CC1CFF0A1F00987A0E /* HCMyPromisedNotifiMessageCell.m */; };
 		EAE04D441CDF62CF003EDF0F /* HCReportApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE04D431CDF62CF003EDF0F /* HCReportApi.m */; };
@@ -3199,6 +3200,8 @@
 		EADBF07D1D002FDE00130D59 /* HCBigImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBigImageViewController.m; sourceTree = "<group>"; };
 		EADBF0821D003DEA00130D59 /* HCSavePhotoToAblumMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSavePhotoToAblumMgr.h; sourceTree = "<group>"; };
 		EADBF0831D003DEA00130D59 /* HCSavePhotoToAblumMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSavePhotoToAblumMgr.m; sourceTree = "<group>"; };
+		EADC39CB1D141A370013DD1B /* HCScanCardApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCScanCardApi.h; sourceTree = "<group>"; };
+		EADC39CC1D141A370013DD1B /* HCScanCardApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCScanCardApi.m; sourceTree = "<group>"; };
 		EADDE7C81CFEE73F00987A0E /* HCGetCallDetailInfoApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCGetCallDetailInfoApi.h; sourceTree = "<group>"; };
 		EADDE7C91CFEE73F00987A0E /* HCGetCallDetailInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCGetCallDetailInfoApi.m; sourceTree = "<group>"; };
 		EADDE7CB1CFF0A1F00987A0E /* HCMyPromisedNotifiMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMyPromisedNotifiMessageCell.h; sourceTree = "<group>"; };
@@ -3523,6 +3526,8 @@
 				EAE04D431CDF62CF003EDF0F /* HCReportApi.m */,
 				EA090FA21CE2BFED00B6E009 /* HCDeletePromisedApi.h */,
 				EA090FA31CE2BFED00B6E009 /* HCDeletePromisedApi.m */,
+				EADC39CB1D141A370013DD1B /* HCScanCardApi.h */,
+				EADC39CC1D141A370013DD1B /* HCScanCardApi.m */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -8295,6 +8300,7 @@
 				0A5491141C2BC32D0085F50D /* ZXEmailAddressParsedResult.m in Sources */,
 				C78D7B371C5F28F700622CE2 /* HCLightGrayLineView.m in Sources */,
 				C78D7B4C1C5F28F700622CE2 /* HCApplyReturnOrderCell.m in Sources */,
+				EADC39CD1D141A370013DD1B /* HCScanCardApi.m in Sources */,
 				C758EE401C743E7A0081FFE1 /* HCaddRelativeViewController.m in Sources */,
 				8D16D1311CC46B87008DC6D7 /* HCTagUserMangerViewController.m in Sources */,
 				C7B1E1951CC4863A0087D330 /* NHCHomeSingleFigureApi.m in Sources */,

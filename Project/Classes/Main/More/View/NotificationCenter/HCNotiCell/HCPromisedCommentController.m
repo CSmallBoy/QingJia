@@ -30,9 +30,12 @@
 #import "IQKeyboardManager.h"
 //大图
 #import "HCBigImageViewController.h"
+//定位
+#import <AMapLocationKit/AMapLocationKit.h>
+//刷新
+#import "MJRefresh.h"
 
-
-@interface HCPromisedCommentController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate>
+@interface HCPromisedCommentController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,AMapLocationManagerDelegate>
 {
     NSInteger   _photoCount;
     UIButton  * _addPhotoBtn;
@@ -62,6 +65,10 @@
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) NSMutableArray *imgStrArr;
 
+@property (nonatomic,strong) AMapLocationManager *locationManager;//定位
+
+@property (nonatomic,copy)NSString *locationStr;
+
 @end
 
 @implementation HCPromisedCommentController
@@ -83,7 +90,10 @@
     
     [self.view addSubview:self.myTableView];
     [self.view addSubview:self.inputView];
+    
+    self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
     [self setupBackItem];
+    [self locationButtonAction];
     
 }
 #pragma mark - 
@@ -97,17 +107,17 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HCPromisedCommentFrameInfo *frameInfo = self.dataSource[indexPath.row];
-    HCPromisedCommentInfo *info = frameInfo.commentInfo;
-    if ([info.isScan isEqualToString:@"1"]) {
-        
-        HCPromisedCommentScanCell *cell = [HCPromisedCommentScanCell CellWithTableView:tableView];
-        cell.info = info;
-        return cell;
-    }
-    else
-    {
-        HCPromisedCommentCell *cell = [HCPromisedCommentCell cellWithTableView:tableView];
+//    HCPromisedCommentFrameInfo *frameInfo = self.dataSource[indexPath.row];
+//    HCPromisedCommentInfo *info = frameInfo.commentInfo;
+//    if ([info.isScan isEqualToString:@"1"]) {
+//        
+//        HCPromisedCommentScanCell *cell = [HCPromisedCommentScanCell CellWithTableView:tableView];
+//        cell.info = info;
+//        return cell;
+//    }
+//    else
+//    {
+        HCPromisedCommentCell *cell = [HCPromisedCommentCell cellWithTableView:tableView byIndexPath:indexPath];
         cell.indexPath = indexPath;
         cell.block = ^(UIButton *button)
         {
@@ -124,32 +134,14 @@
             }
             else
             {
-                
-//                UIImageView *imageview = button.subviews[1];
-//                _startFrame = [button convertRect:button.bounds toView:self.view];
-//                UIImageView *selfIV = [[UIImageView alloc]initWithFrame:_startFrame];
-//                selfIV.image = button.currentBackgroundImage;
-//                selfIV.backgroundColor = [UIColor blackColor];
-//                selfIV.userInteractionEnabled = YES;
-//                    
-//                UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeBigImageView:)];
-//                [selfIV addGestureRecognizer:tap];
-//                selfIV.contentMode = UIViewContentModeScaleAspectFit;
-//                [self.view addSubview:selfIV];
-//                self.navigationController.navigationBarHidden = YES;
-//                [UIView animateWithDuration:0.4 animations:^{
-//                        
-//                    selfIV.frame = self.view.frame;
-//                        
-//                }];
                 [self showBigImageBySmallImage:button.currentBackgroundImage];
             }
         };
         
             cell.commnetFrameInfo = self.dataSource[indexPath.row];
             return cell;
-    }
-        
+//    }
+    
 }
 
 
@@ -158,9 +150,9 @@
     HCPromisedCommentFrameInfo *frameCell = self.dataSource[indexPath.row];
     
     HCPromisedCommentInfo *info = frameCell.commentInfo;
-    if ([info.isScan isEqualToString:@"1"]) {
-        return 130;
-    }
+//    if ([info.isScan isEqualToString:@"1"]) {
+//        return 130;
+//    }
     
     return frameCell.cellHeight;
 }
@@ -304,28 +296,12 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             
-            // self.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             self.myTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-44-64);
             self.inputView.frame = CGRectMake(0, CGRectGetMaxY(self.myTableView.frame), SCREEN_WIDTH, 44);
-//            self.photoView.frame = CGRectMake(0, SCREEN_HEIGHT+SCREEN_WIDTH/3, SCREEN_WIDTH, SCREEN_WIDTH/3);
             [self.photoView removeFromSuperview];
         }];
     }
 }
-
-//-(void)removeBigImageView:(UITapGestureRecognizer *)tap
-//{
-//    self.navigationController.navigationBarHidden = NO;
-//    UIImageView *imageView = (UIImageView *)tap.view;
-//    imageView.backgroundColor = [UIColor clearColor];
-//    [UIView animateWithDuration:0.4 animations:^{
-//        imageView.frame = _startFrame;
-//    }completion:^(BOOL finished) {
-//        imageView.contentMode = UIViewContentModeScaleToFill;
-//        [imageView removeFromSuperview];
-//    }];
-//
-//}
 
 -(void)clickImageBtn:(UIButton *) button
 {
@@ -476,6 +452,51 @@
     return _imgStrArr;
 }
 
+#pragma mark - Location
+- (void)locationButtonAction
+{
+    self.locationStr = @"位置保密";
+    //先判断是否有定位权限
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted)
+    {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"定位服务已关闭,请在设置\"隐私\"中开启定位服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alertView show];
+    }
+    else
+    {
+        self.locationManager = [[AMapLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
+#pragma mark - AMapLocationManager Delegate
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error
+{
+//    self.textField2.text = @"上海市闵行区集心路37号";
+    self.locationStr = @"位置保密";
+//    self.nowLocation = [[CLLocation alloc] initWithLatitude:31.232 longitude:37.2242];
+}
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
+{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (!IsEmpty(placemarks))
+        {
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            self.locationStr = placemark.name;
+//            self.nowLocation = location;
+//            self.cityStr = placemark.locality;
+        }
+    }];
+    [self.locationManager stopUpdatingLocation];
+}
+
+
 #pragma mark ---  network
 
 //请求评论信息
@@ -483,8 +504,8 @@
 {
     HCCommentListApi *api = [[HCCommentListApi alloc]init];
     api.callId = self.callId;
-    api._start = @"21";
-    api._count = @"2";
+    api._start = @"0";
+    api._count = @"50";
     
     
     if ([api cacheJson])
@@ -507,6 +528,7 @@
     
     [api startRequest:^(HCRequestStatus requestStatus, NSString *message, id respone) {
        
+        [self.myTableView.mj_header endRefreshing];
         if (requestStatus == HCRequestStatusSuccess) {
             
             [self.dataSource removeAllObjects];
@@ -531,6 +553,7 @@
     HCPromisedCommentInfo *info = [[HCPromisedCommentInfo alloc]init];
     NSString *str = [self.imgStrArr componentsJoinedByString:@","];
     info.imageNames = str;
+    info.createLocation = self.locationStr;
     
     if ([self.textField.text isEqualToString:@""])
     {

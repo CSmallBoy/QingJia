@@ -334,7 +334,6 @@
                 
             NSLog(@"-----------------------关闭一呼百应--------------------------");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"aboutMeData" object:nil];
-            [self.navigationController popToRootViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"callPromised" object:nil];
             [self.blackView removeFromSuperview];
             }
@@ -710,6 +709,34 @@
             NSDictionary *dic = respone[@"Data"][@"callInf"];
             self.info = [HCNotificationCenterInfo mj_objectWithKeyValues:dic];
             [self addDataSuorce];
+            
+            //推送问题
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            NSMutableDictionary *clueMutableDic = [NSMutableDictionary dictionaryWithDictionary:[user objectForKey:@"clueCallIdDic"]];
+            if ([clueMutableDic allKeys].count)
+            {
+                if ([[clueMutableDic allKeys] containsObject:self.callId])
+                {
+                    NSInteger num = [[clueMutableDic objectForKey:self.callId] integerValue];
+                    NSInteger callPushNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Call_Badge"] integerValue];
+                    callPushNum = callPushNum - num;
+                    [[NSUserDefaults standardUserDefaults] setInteger:callPushNum forKey:@"Call_Badge"];
+                    [clueMutableDic removeObjectForKey:self.callId];
+                    if (callPushNum == 0 || callPushNum < 0)
+                    {
+                        self.navigationController.tabBarItem.badgeValue = nil;
+                    }
+                    else
+                    {
+                        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", callPushNum];
+                    }
+                }
+            }
+            NSDictionary * clueDic = [NSDictionary dictionaryWithDictionary:clueMutableDic];
+            [user setObject:clueDic forKey:@"clueCallIdDic"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"readCluePush" object:nil];
+
+            
         }
     }];
 }

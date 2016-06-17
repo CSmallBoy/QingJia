@@ -24,6 +24,9 @@
 
 @property (nonatomic,assign) CGRect  readTextFildFrame;
 
+@property (nonatomic,assign)CGRect locationImageFrame;
+@property (nonatomic,assign)CGRect locationLabelFrame;
+
 @property(nonatomic,assign) CGFloat  cellHeight;
 
 @end

@@ -28,6 +28,8 @@
 @property (nonatomic, strong)UIImageView *pullDownImage;//下拉菜单
 //@property (nonatomic, strong)UITapGestureRecognizer *tag;
 
+@property (nonatomic, strong)UIView *backgroundView;//透明假的背景
+
 @end
 
 @implementation HCTagManagerViewController
@@ -42,7 +44,7 @@
     [self.view addSubview:self.segmented];
     [self.view addSubview:self.activatedTagVC.view];
     [self.view addSubview:self.closedTagVC.view];
-    [self.view addSubview:self.pullDownImage];
+    [self.view addSubview:self.backgroundView];
     self.closedTagVC.view.hidden = YES;
     
     //弹出拉下菜单
@@ -53,6 +55,15 @@
 
 #pragma mark -----private methods
 
+- (void)tapAction:(UITapGestureRecognizer *)tap
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.backgroundView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+    } completion:^(BOOL finished) {
+        _isPull = NO;
+    }];
+}
+
 //点击+
 - (void)pullDownMenu
 {
@@ -60,7 +71,7 @@
     {
 //        [self.navigationController.view addGestureRecognizer:self.tag];
         [UIView animateWithDuration:0.3 animations:^{
-            self.pullDownImage.frame = CGRectMake(255/375.0*SCREEN_WIDTH, 64, 110/375.0*SCREEN_WIDTH, 82/668.0*SCREEN_HEIGHT);
+            self.backgroundView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
         } completion:^(BOOL finished) {
             _isPull = YES;
         }];
@@ -69,7 +80,7 @@
     {
 //        [self.navigationController.view removeGestureRecognizer:self.tag];
         [UIView animateWithDuration:0.3 animations:^{
-            self.pullDownImage.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -82/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 82/668.0*SCREEN_HEIGHT);
+            self.backgroundView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-64);
         } completion:^(BOOL finished) {
             _isPull = NO;
         }];
@@ -79,7 +90,7 @@
 //点击扫码
 - (void)scanButtonClick
 {
-    self.pullDownImage.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -82/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 82/668.0*SCREEN_HEIGHT);
+    self.backgroundView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-64);
     _isPull = NO;
     Scan_VC *scanVC = [[Scan_VC alloc]init];
     [self.navigationController pushViewController:scanVC animated:YES];
@@ -88,7 +99,7 @@
 // 点击了管理按钮
 -(void)manageBtnClick:(UIBarButtonItem *)right
 {
-    self.pullDownImage.frame = CGRectMake(255/375.0*SCREEN_WIDTH, -82/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 82/668.0*SCREEN_HEIGHT);
+    self.backgroundView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-64);
     _isPull = NO;
     HCTagMangerMangerController *mangerVC = [[HCTagMangerMangerController alloc]init];
     [self.navigationController pushViewController:mangerVC animated:YES];
@@ -131,6 +142,20 @@
 
 #pragma mark----Setter Or Getter
 
+- (UIView *)backgroundView
+{
+    if (_backgroundView == nil)
+    {
+        _backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+        _backgroundView.backgroundColor = [UIColor clearColor];
+        [_backgroundView addSubview:self.pullDownImage];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+        [_backgroundView addGestureRecognizer:tap];
+        
+    }
+    return _backgroundView;
+}
+
 - (UIImageView *)pullDownImage
 {
     if (_pullDownImage == nil)
@@ -155,7 +180,7 @@
         [scanTitleButton setTitle:@"扫码" forState:UIControlStateNormal];
         [scanTitleButton addTarget:self action:@selector(scanButtonClick) forControlEvents:UIControlEventTouchUpInside];
         
-        self.pullDownImage = [[UIImageView alloc] initWithFrame:CGRectMake(255/375.0*SCREEN_WIDTH, -82/668.0*SCREEN_HEIGHT, 110/375.0*SCREEN_WIDTH, 82/668.0*SCREEN_HEIGHT)];
+        self.pullDownImage = [[UIImageView alloc] initWithFrame:CGRectMake(255/375.0*SCREEN_WIDTH, 0, 110/375.0*SCREEN_WIDTH, 82/668.0*SCREEN_HEIGHT)];
         self.pullDownImage.image = IMG(@"delete-report-23");
         self.pullDownImage.userInteractionEnabled = YES;
 
